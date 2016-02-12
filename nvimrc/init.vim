@@ -88,8 +88,8 @@ Plug 'benekastah/neomake'
 " ag.vim for searching codes
 Plug 'rking/ag.vim'
 " for Ag quickly jump to the next result
-noremap <F7> <C-W><C-B>j<CR>
-noremap <F8> <C-W><C-B>k<CR>
+" noremap <F7> <C-W><C-B>j<CR>
+" noremap <F8> <C-W><C-B>k<CR>
 map <leader>A :Ag <cr>
 
 Plug 'terryma/vim-multiple-cursors'
@@ -129,9 +129,6 @@ nmap     <C-F>p <Plug>CtrlSFPwordPath
 nnoremap <C-F>o :CtrlSFOpen<CR>
 nnoremap <C-F>t :CtrlSFToggle<CR>
 inoremap <C-F>t <Esc>:CtrlSFToggle<CR>
-
-Plug 'yegappan/mru'                                  
-nnoremap <leader>M :MRU<CR>
 
 " gcc gcip
 Plug 'vim-scripts/tComment'                          
@@ -220,8 +217,41 @@ vmap <leader>a: :Tabularize /:\zs<CR>
 nmap <leader>a\| :Tabularize /\|<CR>
 vmap <leader>a\| :Tabularize /\|<CR>
 
+Plug 'Shougo/unite.vim'
+Plug 'Shougo/vimproc.vim'
+Plug 'Shougo/neoyank.vim'
+Plug 'Shougo/neomru.vim'
+Plug 'Shougo/unite-outline'
 
 call plug#end()
+
+" unite starts
+let g:unite_source_history_yank_enable = 1
+nnoremap <leader>t :<C-u>Unite -no-split -buffer-name=files   -start-insert file_rec/async:!<cr>
+nnoremap <leader>f :<C-u>Unite -no-split -buffer-name=files   -start-insert file<cr>
+nnoremap <leader>y :<C-u>Unite -no-split -buffer-name=yank    history/yank<cr>
+nnoremap <leader>b :<C-u>Unite -no-split -buffer-name=buffer  buffer<cr>
+nnoremap <leader>s :<C-u>Unite -buffer-name=grep grep<cr>
+nnoremap <leader>r :<C-u>Unite -no-split -buffer-name=mru     -start-insert file_mru<cr>
+nnoremap <leader>o :<C-u>Unite -no-split -buffer-name=outline -start-insert outline<cr>
+" Ignore
+call unite#custom#source('file_rec/async,file', 'ignore_pattern', 'bower_components\|dist\|fonts\|node_modules\|maps\|\.png$\|\.jpg$\|\.svg$\|\.gif$')
+" Configure Ag and use it instead of grep
+let g:unite_source_grep_command = 'ag'
+let g:unite_source_grep_default_opts =
+\ '--line-numbers --nocolor --nogroup --hidden --ignore ' .
+\  '''.hg'' --ignore ''.svn'' --ignore ''.git'' --ignore ''.bzr'''
+let g:unite_source_grep_recursive_opt = ''
+autocmd FileType unite call s:unite_settings()
+function! s:unite_settings()
+  " Play nice with supertab
+  let b:SuperTabDisabled=1
+  " Enable navigation with control-j and control-k in insert mode
+  imap <buffer> <C-j>   <Plug>(unite_select_next_line)
+  imap <buffer> <C-k>   <Plug>(unite_select_previous_line)
+endfunction
+" unite ends
+
 
 " Q: Closes the window
 nnoremap Q :q<cr>
@@ -266,6 +296,14 @@ nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
 nnoremap <c-l> <c-w>l
 nnoremap <c-h> <c-w>h
+" fix neovim <c-h> 产生<BS> 而vim <c-h>产生^H
+" 解决方法: https://github.com/neovim/neovim/issues/2048
+" 即在iTerm2中，运行
+" $ infocmp $TERM | sed 's/kbs=^[hH]/kbs=\\177/' > $TERM.ti
+" $ tic $TERM.ti
+" if has('nvim')
+"   map <BS> <C-W>h
+" endif
 set timeoutlen=500
 
 " sort
