@@ -19,7 +19,7 @@ let g:jedi#completions_enabled = 0
 let g:jedi#show_call_signatures_delay = 200
 
 Plug 'Valloric/YouCompleteMe'
-let g:ycm_global_ycm_extra_conf = '~/.nvim/ycm_extra_conf.py'
+let g:ycm_global_ycm_extra_conf = '~/.config/nvim/ycm_extra_conf.py'
 let g:ycm_collect_identifiers_from_tag_files = 1
 let g:ycm_confirm_extra_conf = 1
 let g:ycm_enable_diagnostic_signs = 0
@@ -233,6 +233,7 @@ set termencoding=utf-8
 set hidden
 set wildmenu
 set wildmode=longest:full,full
+set clipboard+=unnamed
 
 set nofoldenable
 set relativenumber
