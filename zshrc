@@ -32,6 +32,13 @@ function prompt()
 {
     if [ "$PWD" != "$MYOLDPWD" ]; then
         MYOLDPWD="$PWD"
-        test -e .venv && workon `cat .venv`
+        # test -e .venv && workon `cat .venv`
+	if [[ -e .venv ]]; then
+		target_env=$(cat .venv)
+		# 如果已经激活target_env，则不需要再次激活
+		if [[ "${VIRTUAL_ENV}" != *"${target_env}" ]]; then 
+			workon ${target_env}
+		fi
+	fi
     fi
 }
