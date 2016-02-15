@@ -12,6 +12,11 @@ nmap <silent> <leader>sv :so $MYVIMRC<CR>
 
 call plug#begin('~/.config/nvim/plugged')
 
+Plug 'benekastah/neomake'
+let g:neomake_python_enabled_makers = ['pylint']
+" run neomake on the current file on every write
+autocmd! BufWritePost * Neomake
+
 Plug 'davidhalter/jedi-vim'
 " Use YCM 
 " Disable jedi completions
