@@ -301,6 +301,15 @@ nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
 nnoremap <c-l> <c-w>l
 nnoremap <c-h> <c-w>h
+
+" terminal
+tnoremap <Esc> <C-\><C-n>
+" tnoremap <A-h> <C-\><C-n><C-w>h
+" tnoremap <A-j> <C-\><C-n><C-w>j
+" tnoremap <A-k> <C-\><C-n><C-w>k
+" tnoremap <A-l> <C-\><C-n><C-w>l
+
+
 " fix neovim <c-h> 产生<BS> 而vim <c-h>产生^H
 " 解决方法: https://github.com/neovim/neovim/issues/2048
 " 即在iTerm2中，运行
