@@ -24,7 +24,7 @@ let g:jedi#completions_enabled = 0
 let g:jedi#show_call_signatures_delay = 200
 
 Plug 'Valloric/YouCompleteMe'
-let g:ycm_global_ycm_extra_conf = '~/.config/nvim/ycm_extra_conf.py'
+let g:ycm_global_ycm_extra_conf = '~/.config/nvim/etc/ycm_extra_conf.py'
 let g:ycm_collect_identifiers_from_tag_files = 1
 let g:ycm_confirm_extra_conf = 1
 let g:ycm_enable_diagnostic_signs = 0
@@ -437,5 +437,24 @@ augroup MyAutoCmd
   autocmd FileType html noremap <buffer> <Leader>cf :call HtmlBeautify()<CR>
   " for css or scss
   autocmd FileType css noremap <buffer> <Leader>cf :call CSSBeautify()<CR>
+
+  autocmd FileType vim setlocal ts=2 sts=2 sw=2 et
 augroup END
 
+" language runner
+function! LangRunner()
+  if (&ft == "python")
+    nnoremap <leader>R :!python %<cr>
+  endif
+endfunction
+
+au BufEnter * call LangRunner()
+
+" Mark sure vim returns to the same line when you reopen a file
+augroup line_return
+  au!
+  au BufReadPost *
+    \ if line("'\"") > 0 && line("'\"") <= line("$") |
+    \   execute 'normal! g`"zvzz' |
+    \ endif
+augroup END
