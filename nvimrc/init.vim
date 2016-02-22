@@ -23,7 +23,17 @@ Plug 'davidhalter/jedi-vim'
 let g:jedi#completions_enabled = 0 
 let g:jedi#show_call_signatures_delay = 200
 
-Plug 'Valloric/YouCompleteMe'
+" Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
+function! BuildYCM(info)
+  " info is a dictionary with 3 fields
+  " - name:   name of the plugin
+  " - status: 'installed', 'updated', or 'unchanged'
+  " - force:  set on PlugInstall! or PlugUpdate!
+  if a:info.status == 'installed' || a:info.force
+    !./install.py --clang-completer
+  endif
+endfunction
+Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
 let g:ycm_global_ycm_extra_conf = '~/.config/nvim/etc/ycm_extra_conf.py'
 let g:ycm_collect_identifiers_from_tag_files = 1
 let g:ycm_confirm_extra_conf = 1
@@ -56,7 +66,7 @@ Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 let g:UltiSnipsExpandTrigger="<c-l>"
 " 不用YouCompleteMe, 使用SuperTAB
 " let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsListSnippets="<leader><tab>"
+let g:UltiSnipsListSnippets="<leader>3"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 let g:UltiSnipsEditSplit="vertical"
@@ -64,7 +74,8 @@ nnoremap <F2> :UltiSnipsEdit<CR>
 
 Plug 'scrooloose/nerdtree'
 let NERDTreeWinPos = 1
-nnoremap <silent> <leader><tab> :NERDTreeToggle<CR>
+" nnoremap <silent> <leader><tab> :NERDTreeToggle<CR>
+nnoremap <silent> <leader>1 :NERDTreeToggle<CR>
 
 Plug 'majutsushi/tagbar'
 nnoremap <silent> <leader>2 :TagbarToggle<CR>
@@ -107,6 +118,7 @@ Plug 'Chiel92/vim-autoformat'
 
 " for markdown preview
 Plug 'shime/vim-livedown'
+" sudo npm install -g livedown
 " should markdown preview get shown automatically upon opening markdown buffer
 let g:livedown_autorun = 0
 " should the browser window pop-up upon previewing
@@ -223,17 +235,54 @@ nmap <leader>a\| :Tabularize /\|<CR>
 vmap <leader>a\| :Tabularize /\|<CR>
 
 Plug 'Shougo/unite.vim'
-Plug 'Shougo/vimproc.vim'
+Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 Plug 'Shougo/neoyank.vim'
 Plug 'Shougo/neomru.vim'
 Plug 'Shougo/unite-outline'
 
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+" This is the default extra key bindings
+let g:fzf_action = {
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-x': 'split',
+  \ 'ctrl-v': 'vsplit' }
+
+" Default fzf layout
+" - down / up / left / right
+" - window (nvim only)
+" let g:fzf_layout = { 'down': '~85%' }
+let g:fzf_layout = { 'down': '100%' }
+
+" For Commits and BCommits to customize the options used by 'git log':
+let g:fzf_commits_log_options = '--decorate --graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
+
+" Advanced customization using autoload functions
+autocmd VimEnter * command! Colors
+  \ call fzf#vim#colors({'left': '15%', 'options': '--reverse --margin 30%,0'})
+function! s:fzf_statusline()
+  " Override statusline as you like
+  highlight fzf1 ctermfg=161 ctermbg=251
+  highlight fzf2 ctermfg=23 ctermbg=251
+  highlight fzf3 ctermfg=237 ctermbg=251
+  setlocal statusline=%#fzf1#\ >\ %#fzf2#fz%#fzf3#f
+endfunction
+
+autocmd! User FzfStatusLine call <SID>fzf_statusline()
+
 call plug#end()
+
+" fzf的性能比unite.vim要好
+nnoremap <silent> <expr> <Leader>f (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":Files\<cr>"
+nnoremap <silent> <Leader><Enter>  :Buffers<CR>
+nnoremap <silent> <Leader>ag       :Ag <C-R><C-W><CR>
+nnoremap <silent> <Leader>`        :Marks<CR>
 
 " unite starts
 let g:unite_source_history_yank_enable = 1
+" 虽然file_rec/async性能没有fzf.vim好，但功能多一些，比如mru, outline
 nnoremap <leader>t :<C-u>Unite -no-split -buffer-name=files   -start-insert file_rec/async:!<cr>
-nnoremap <leader>f :<C-u>Unite -no-split -buffer-name=files   -start-insert file<cr>
+" nnoremap <leader>f :<C-u>Unite -no-split -buffer-name=files   -start-insert file<cr>
 nnoremap <leader>y :<C-u>Unite -no-split -buffer-name=yank    history/yank<cr>
 nnoremap <leader>b :<C-u>Unite -no-split -buffer-name=buffer  buffer<cr>
 nnoremap <leader>s :<C-u>Unite -buffer-name=grep grep<cr>
