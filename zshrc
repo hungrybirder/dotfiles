@@ -4,10 +4,6 @@ COMPLETION_WAITING_DOTS="true"
 export PATH="/usr/local/opt/coreutils/libexec/gnubin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin"
 source $ZSH/oh-my-zsh.sh
 #
-if [ -f ${HOME}/.bashrc ]; then
-	source ${HOME}/.bashrc
-fi
-
 if [ -f ${HOME}/.bash_profile ]; then
 	source ${HOME}/.bash_profile
 fi
@@ -42,3 +38,5 @@ function prompt()
 	fi
     fi
 }
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
