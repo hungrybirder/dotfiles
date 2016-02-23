@@ -377,6 +377,7 @@ nnoremap <silent> <Leader>b  :Buffers<CR>
 nnoremap <silent> <Leader>ag       :Ag <C-R><C-W><CR>
 nnoremap <silent> <Leader>`        :Marks<CR>
 nnoremap <leader>m :<c-u>FZFMru<cr>
+nnoremap <leader>l :<c-u>FZFLines<cr>
 nnoremap <leader>t :<c-u>Tags<cr>
 nnoremap <leader>T :<c-u>BTags<cr>
 " Open files in horizontal split
@@ -572,6 +573,7 @@ noremap <Left> <Nop>
 noremap <Right> <Nop>
 
 augroup MyAutoCmd
+  au!
   filetype on
   autocmd FileType python setlocal ts=4 sts=4 sw=4 et
   " if use YCM comment out one line below
