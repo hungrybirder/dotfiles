@@ -102,11 +102,8 @@ Plug 'Lokaltog/vim-easymotion'
 Plug 'benekastah/neomake'
 
 " ag.vim for searching codes
-Plug 'rking/ag.vim'
-" for Ag quickly jump to the next result
-" noremap <F7> <C-W><C-B>j<CR>
-" noremap <F8> <C-W><C-B>k<CR>
-map <leader>A :Ag <cr>
+" replaced by fzf.vim Ag command
+" Plug 'rking/ag.vim'
 
 Plug 'terryma/vim-multiple-cursors'
 
@@ -373,9 +370,9 @@ call plug#end()
 
 " fzf的性能比unite.vim要好
 nnoremap <silent> <expr> <Leader>f (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":Files\<cr>"
-nnoremap <silent> <Leader>b  :Buffers<CR>
-nnoremap <silent> <Leader>ag       :Ag <C-R><C-W><CR>
-nnoremap <silent> <Leader>`        :Marks<CR>
+nnoremap <silent> <Leader>b :Buffers<cr>
+nnoremap <silent> <Leader>a :Ag<cr>
+nnoremap <silent> <Leader>` :Marks<cr>
 nnoremap <leader>m :<c-u>FZFMru<cr>
 nnoremap <leader>l :<c-u>FZFLines<cr>
 nnoremap <leader>t :<c-u>Tags<cr>
