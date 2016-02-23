@@ -40,6 +40,8 @@ function prompt()
 }
 
 # fzf init
+export FZF_DEFAULT_COMMAND='ag --ignore="*.pyc" -g ""'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 # Modified version where you can press
 #   - CTRL-O to open with `open` command,
