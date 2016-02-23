@@ -66,7 +66,7 @@ Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 let g:UltiSnipsExpandTrigger="<c-l>"
 " 不用YouCompleteMe, 使用SuperTAB
 " let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsListSnippets="<leader>3"
+let g:UltiSnipsListSnippets="<leader><enter>"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 let g:UltiSnipsEditSplit="vertical"
