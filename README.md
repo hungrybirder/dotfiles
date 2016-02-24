@@ -9,3 +9,4 @@ Email: liyong19861014@gmail.com
 * [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh) 强大的zsh
 * [git](https://git-scm.com) 这个不用多说了
 * [autojump](https://github.com/wting/autojump) 目录跳转工具
+* [virtualenvwrapper](https://virtualenvwrapper.readthedocs.org/en/latest/) python开发必备利器
