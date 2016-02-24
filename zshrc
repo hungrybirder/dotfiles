@@ -194,3 +194,12 @@ fkill() {
   fi
 }
 
+##########################################
+#
+#         My Useful Functions
+#
+##########################################
+# translate unix timestamp to readable str
+mytime() {
+  python -c "from time import ctime; print ctime($1)"
+}
