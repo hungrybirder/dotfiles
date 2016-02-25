@@ -436,7 +436,7 @@ set hlsearch
 " Clear the last hlsearch results
 nnoremap <F4> :let @/ = ""<CR>
 " Combine multi blank lines into one with no highlight
-nmap <leader>ll :g/^$/,/./-j<CR><F4><CR>
+nmap <leader>L :g/^$/,/./-j<CR><F4><CR>
 " Ctrl-r: Easier search and replace
 vnoremap <c-r> "hy:%s/<c-r>h//gc<left><left><left>
 
