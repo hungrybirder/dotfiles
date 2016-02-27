@@ -8,7 +8,7 @@ if [ -f ${HOME}/.bash_profile ]; then
 	source ${HOME}/.bash_profile
 fi
 
-export EDITOR="vim"
+export EDITOR="nvim"
 alias vim="nvim"
 alias god="/opt/vim74/bin/vim"
 export WORKON_HOME=$HOME/.virtualenvs
