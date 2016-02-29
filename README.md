@@ -10,3 +10,4 @@ Email: liyong19861014@gmail.com
 * [git](https://git-scm.com) 这个不用多说了
 * [autojump](https://github.com/wting/autojump) 目录跳转工具
 * [virtualenvwrapper](https://virtualenvwrapper.readthedocs.org/en/latest/) python开发必备利器
+* [iTerm2](http://www.item2.com) Mac上最流利的终端，配上[Meslo](https://github.com/powerline/fonts.git)字体、[Solarized Dark Higher Contrast](https://github.com/mbadolato/iTerm2-Color-Schemes.git)主题
