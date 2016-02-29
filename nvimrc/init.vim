@@ -377,6 +377,7 @@ nnoremap <leader>ss :SaveSession
 nnoremap <leader>sd :DeleteSession<cr>
 nnoremap <leader>sc :CloseSession<cr>
 
+Plug 'tpope/vim-fugitive'
 call plug#end()
 
 " fzf的性能比unite.vim要好
