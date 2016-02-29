@@ -366,6 +366,17 @@ xmap ga <Plug>(EasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
 
+
+Plug 'xolox/vim-misc'
+Plug 'xolox/vim-session'
+let g:session_directory = '~/.config/nvim/.sessions'
+let g:session_autoload = 'no'
+let g:session_autosave = 'no'
+nnoremap <leader>so :OpenSession
+nnoremap <leader>ss :SaveSession
+nnoremap <leader>sd :DeleteSession<cr>
+nnoremap <leader>sc :CloseSession<cr>
+
 call plug#end()
 
 " fzf的性能比unite.vim要好
