@@ -366,7 +366,6 @@ xmap ga <Plug>(EasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
 
-
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-session'
 let g:session_directory = '~/.config/nvim/.sessions'
@@ -387,6 +386,7 @@ nnoremap <silent> <Leader>a :Ag<cr>
 nnoremap <silent> <Leader>` :Marks<cr>
 nnoremap <leader>m :<c-u>FZFMru<cr>
 nnoremap <leader>l :<c-u>FZFLines<cr>
+nnoremap <leader>L :<c-u>Lines<cr>
 nnoremap <leader>t :<c-u>Tags<cr>
 nnoremap <leader>T :<c-u>BTags<cr>
 " Open files in horizontal split
@@ -448,7 +448,7 @@ set hlsearch
 " Clear the last hlsearch results
 nnoremap <F4> :let @/ = ""<CR>
 " Combine multi blank lines into one with no highlight
-nmap <leader>L :g/^$/,/./-j<CR><F4><CR>
+nmap <leader><leader>l :g/^$/,/./-j<CR><F4><CR>
 " Ctrl-r: Easier search and replace
 vnoremap <c-r> "hy:%s/<c-r>h//gc<left><left><left>
 
