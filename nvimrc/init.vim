@@ -597,6 +597,7 @@ augroup MyAutoCmd
   autocmd FileType cc setlocal ts=2 sts=2 sw=2 et
   autocmd FileType cpp setlocal ts=2 sts=2 sw=2 et
   autocmd FileType shell setlocal ts=4 sts=4 sw=4 et
+  autocmd FileType sh setlocal ts=4 sts=4 sw=4 et
   autocmd FileType java setlocal ts=4 sts=4 sw=4 et
   autocmd FileType php setlocal ts=4 sts=4 sw=4 et
 
