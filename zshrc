@@ -14,8 +14,9 @@ alias god="/opt/vim74/bin/vim"
 export WORKON_HOME=$HOME/.virtualenvs
 source /usr/local/bin/virtualenvwrapper.sh
 alias mvn="mvn -Denforcer.skip=true "
-alias fuck='eval $(thefuck $(fc -ln -1 | tail -n 1)); fc -R'
-alias FUCK="fuck"
+eval "$(thefuck --alias)"
+# alias fuck='eval $(thefuck $(fc -ln -1 | tail -n 1)); fc -R'
+# alias FUCK="fuck"
 
 [[ -s $(brew --prefix)/etc/profile.d/autojump.sh  ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
 
