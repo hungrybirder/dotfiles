@@ -54,6 +54,24 @@ function! YcmAutoTriggerToggle()
   endif
 endfunction
 
+" 解决ycm在启用vim-multiple-cursors后，慢变的问题
+" http://www.snip2code.com/Snippet/157563/vimrc-for-multiple-cursors-and-YouComple
+let s:multi_cursors_on = 0
+function! Multiple_cursors_before()
+  if !s:multi_cursors_on
+    let s:old_ycm_whitelist = g:ycm_filetype_whitelist
+    let g:ycm_filetype_whitelist = {}
+    let s:multi_cursors_on = 1
+  endif
+endfunction
+
+function! Multiple_cursors_after()
+  if s:multi_cursors_on
+    let g:ycm_filetype_whitelist = s:old_ycm_whitelist
+    let s:multi_cursors_on = 0
+  endif
+endfunction
+
 " Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
 Plug 'junegunn/vim-easy-align'
 
@@ -106,6 +124,9 @@ Plug 'benekastah/neomake'
 " Plug 'rking/ag.vim'
 
 Plug 'terryma/vim-multiple-cursors'
+" let g:multi_cursor_quit_key='<>'
+" let g:multi_cursor_exit_from_visual_mode = 0
+" let g:multi_cursor_exit_from_insert_mode= 0
 
 Plug 'maksimr/vim-jsbeautify'
 
@@ -594,6 +615,7 @@ augroup MyAutoCmd
   autocmd FileType python noremap <buffer><Leader>cf :Autoformat<CR><CR>
 
   autocmd FileType c setlocal ts=4 sts=4 sw=4 et
+  " autocmd FileType c nnoremap <buffer> <silent> <C-]> :YcmCompleter GoTo<cr>
   autocmd FileType cc setlocal ts=2 sts=2 sw=2 et
   autocmd FileType cpp setlocal ts=2 sts=2 sw=2 et
   autocmd FileType shell setlocal ts=4 sts=4 sw=4 et
