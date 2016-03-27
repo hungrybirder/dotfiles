@@ -398,6 +398,15 @@ nnoremap <leader>sd :DeleteSession<cr>
 nnoremap <leader>sc :CloseSession<cr>
 
 Plug 'tpope/vim-fugitive'
+
+"vim start screen
+Plug 'mhinz/vim-startify'
+
+" js 
+Plug 'pangloss/vim-javascript'
+
+" improve js edit
+Plug 'mattn/emmet-vim'
 call plug#end()
 
 " fzf的性能比unite.vim要好
