@@ -15,6 +15,7 @@ export WORKON_HOME=$HOME/.virtualenvs
 source /usr/local/bin/virtualenvwrapper.sh
 alias mvn="mvn -Denforcer.skip=true "
 eval "$(thefuck --alias)"
+fpath=(/usr/local/share/zsh-completions $fpath)
 # alias fuck='eval $(thefuck $(fc -ln -1 | tail -n 1)); fc -R'
 # alias FUCK="fuck"
 

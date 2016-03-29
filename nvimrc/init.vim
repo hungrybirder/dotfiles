@@ -118,6 +118,7 @@ Plug 'Lokaltog/vim-easymotion'
 
 " neomake
 Plug 'benekastah/neomake'
+let g:neomake_javascript_enabled_makers = ['jshint']
 
 " ag.vim for searching codes
 " replaced by fzf.vim Ag command
@@ -637,6 +638,7 @@ augroup MyAutoCmd
   autocmd FileType c,cc,cpp,objc setlocal path+=/usr/local/include
 
   " for html/js/css
+  autocmd FileType javascript setlocal ts=4 sts=4 sw=4 et
   autocmd FileType javascript noremap <buffer>  <Leader>cf :call JsBeautify()<CR>
   " for html
   autocmd FileType html noremap <buffer> <Leader>cf :call HtmlBeautify()<CR>
