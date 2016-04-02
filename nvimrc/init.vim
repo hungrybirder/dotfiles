@@ -411,6 +411,17 @@ Plug 'mattn/emmet-vim'
 
 " js auto-completion
 Plug 'ternjs/tern_for_vim', { 'do' : 'npm install' }
+let g:tern_show_argument_hints='on_hold'
+let g:tern_map_keys=1
+" <Leader> td :TernDoc  Documentation under cursor
+" <Leader> tb :TernDocBrowse  Browse documentation
+" <Leader> tt :TernType Type hints
+" <Leader> td :TernDef  Jump to definition (yes, 'td' is duplicated)
+" <Leader> tpd  :TernDefPreview Jump to definition inside preview
+" <Leader> tsd  :TernDefSplit Definition in new split
+" <Leader> ttd  :TernDefTab Definition in new tab
+" <Leader> tr :TernRefs All references under cursor
+" <Leader> tR :TernRename Rename variable
 call plug#end()
 
 " fzf的性能比unite.vim要好
@@ -421,8 +432,8 @@ nnoremap <silent> <Leader>` :Marks<cr>
 nnoremap <leader>m :<c-u>FZFMru<cr>
 nnoremap <leader>l :<c-u>FZFLines<cr>
 nnoremap <leader>L :<c-u>Lines<cr>
-nnoremap <leader>t :<c-u>Tags<cr>
-nnoremap <leader>T :<c-u>BTags<cr>
+" nnoremap <leader>t :<c-u>Tags<cr>
+" nnoremap <leader>T :<c-u>BTags<cr>
 " Open files in horizontal split
 nnoremap <silent> <Leader>s :call fzf#run({
 \   'down': '40%',
