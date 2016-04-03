@@ -422,6 +422,7 @@ let g:tern_map_keys=1
 " <Leader> ttd  :TernDefTab Definition in new tab
 " <Leader> tr :TernRefs All references under cursor
 " <Leader> tR :TernRename Rename variable
+
 call plug#end()
 
 " fzf的性能比unite.vim要好
@@ -489,6 +490,7 @@ set relativenumber
 nmap <leader>nn :set relativenumber!<CR>
 nmap <leader>N :set number!<CR>
 
+set magic
 set hlsearch
 " Clear the last hlsearch results
 nnoremap <F4> :let @/ = ""<CR>
