@@ -237,7 +237,6 @@ Plug 'vim-scripts/DrawIt'
 Plug 'Shougo/unite.vim'
 Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 Plug 'Shougo/neoyank.vim'
-Plug 'Shougo/neomru.vim'
 Plug 'Shougo/unite-outline'
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -457,13 +456,7 @@ nnoremap <silent> <Leader>v :call fzf#run({
 
 " unite start
 let g:unite_source_history_yank_enable = 1
-" 虽然file_rec/async性能没有fzf.vim好，但功能多一些，比如mru, outline
-" nnoremap <leader>t :<C-u>Unite -no-split -buffer-name=files   -start-insert file_rec/async:!<cr>
-" nnoremap <leader>f :<C-u>Unite -no-split -buffer-name=files   -start-insert file<cr>
 nnoremap <leader>y :<C-u>Unite -no-split -buffer-name=yank    history/yank<cr>
-" nnoremap <leader>b :<C-u>Unite -no-split -buffer-name=buffer  buffer<cr>
-" nnoremap <leader>s :<C-u>Unite -buffer-name=grep grep<cr>
-" nnoremap <leader>m :<C-u>Unite -no-split -buffer-name=mru     -start-insert file_mru<cr>
 nnoremap <leader>o :<C-u>Unite -no-split -buffer-name=outline -start-insert outline<cr>
 " Ignore
 call unite#custom#source('file_rec/async,file', 'ignore_pattern', 'bower_components\|dist\|fonts\|node_modules\|maps\|\.png$\|\.jpg$\|\.svg$\|\.gif$')
