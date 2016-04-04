@@ -423,6 +423,16 @@ let g:tern_map_keys=1
 " <Leader> tr :TernRefs All references under cursor
 " <Leader> tR :TernRename Rename variable
 
+" 显示变更的行
+Plug 'mhinz/vim-signify'
+" 变更的跳转
+" ]c   Jump to next hunk.
+" [c   Jump to previous hunk.
+"
+" ]C   Jump to last hunk.
+" [C   Jump to first hunk.
+"
+Plug 'Valloric/MatchTagAlways'
 call plug#end()
 
 " fzf的性能比unite.vim要好
