@@ -624,6 +624,11 @@ inoremap jk <esc>
 onoremap in( :<c-u>normal! f(vi(<cr>
 onoremap il( :<c-u>normal! F)vi(<cr>
 
+" 保存
+nnoremap <c-s> :<c-u>update<cr>
+inoremap <c-s> <c-o>:update<cr>
+vnoremap <c-s> <esc>:update<cr>gv
+
 " disable F1
 noremap <F1> <nop>
 noremap <Up> <Nop>
