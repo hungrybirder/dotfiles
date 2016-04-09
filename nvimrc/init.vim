@@ -20,7 +20,7 @@ autocmd! BufWritePost * Neomake
 Plug 'davidhalter/jedi-vim'
 " Use YCM 
 " Disable jedi completions
-let g:jedi#completions_enabled = 0 
+let g:jedi#completions_enabled = 0
 let g:jedi#show_call_signatures_delay = 200
 
 " Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
@@ -536,7 +536,7 @@ tnoremap <Esc> <C-\><C-n>
 " if has('nvim')
 "   map <BS> <C-W>h
 " endif
-set timeoutlen=500
+set timeoutlen=350
 
 " sort
 vnoremap <leader>s :sort<cr>
@@ -647,6 +647,7 @@ augroup MyAutoCmd
   " if use YCM comment out one line below
   " autocmd FileType python setlocal completefunc=jedi#completions omnifunc=jedi#completions
   autocmd FileType python noremap <buffer><Leader>cf :Autoformat<CR><CR>
+  autocmd FileType python inoremap <buffer><Leader>cf <c-c>:Autoformat<CR><CR>gi
 
   autocmd FileType c setlocal ts=4 sts=4 sw=4 et
   " autocmd FileType c nnoremap <buffer> <silent> <C-]> :YcmCompleter GoTo<cr>
