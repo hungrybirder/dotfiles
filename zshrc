@@ -10,6 +10,7 @@ fi
 
 export EDITOR="nvim"
 alias vim="nvim"
+export NVIM_PYTHON_LOG_FILE=${HOME}/.nvim.log
 alias god="/opt/vim74/bin/vim"
 export WORKON_HOME=$HOME/.virtualenvs
 source /usr/local/bin/virtualenvwrapper.sh
