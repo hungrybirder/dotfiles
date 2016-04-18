@@ -8,6 +8,7 @@ if [ -f ${HOME}/.bash_profile ]; then
 	source ${HOME}/.bash_profile
 fi
 
+export CSCOPE_DB=${HOME}/.cscope.vim
 export EDITOR="nvim"
 alias vim="nvim"
 export NVIM_PYTHON_LOG_FILE=${HOME}/.nvim.log
