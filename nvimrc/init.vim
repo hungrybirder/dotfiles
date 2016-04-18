@@ -191,23 +191,40 @@ let g:clang_format = 'GOOGLE'
 " cscope
 Plug 'vim-scripts/cscope.vim'
 " cscope mappings and settings
+if has("cscope")
+  set cscopequickfix=s-,c-,d-,i-,t-,e-
+  set csprg=/usr/local/bin/cscope
+  set csto=0
+  set cst
+  set nocsverb
+  " add any database in current directory
+  if filereadable("cscope.out")
+    cs add cscope.out
+  " else add database pointed to by environment
+  elseif $CSCOPE_DB != ""
+    cs add $CSCOPE_DB
+  endif
+  set csverb
+endif
 let g:cscope_silent = 1
+" nnoremap <leader>ca :call cscope#findInteractive(expand('<cword>'))<CR> 
+nnoremap <leader>cl :call ToggleLocationList()<CR> 
 " s: Find this C symbol
-nnoremap  <leader>fs :call cscope#find('s', expand('<cword>'))<CR>
+nnoremap  <leader>cs :call cscope#find('s', expand('<cword>'))<CR>
 " g: Find this definition
-nnoremap  <leader>fg :call cscope#find('g', expand('<cword>'))<CR>
+nnoremap  <leader>cg :call cscope#find('g', expand('<cword>'))<CR>
 " d: Find functions called by this function
-nnoremap  <leader>fd :call cscope#find('d', expand('<cword>'))<CR>
+nnoremap  <leader>cd :call cscope#find('d', expand('<cword>'))<CR>
 " c: Find functions calling this function
-nnoremap  <leader>fc :call cscope#find('c', expand('<cword>'))<CR>
+nnoremap  <leader>cc :call cscope#find('c', expand('<cword>'))<CR>
 " t: Find this text string
-nnoremap  <leader>ft :call cscope#find('t', expand('<cword>'))<CR>
+nnoremap  <leader>ct :call cscope#find('t', expand('<cword>'))<CR>
 " e: Find this egrep pattern
-nnoremap  <leader>fe :call cscope#find('e', expand('<cword>'))<CR>
+nnoremap  <leader>ce :call cscope#find('e', expand('<cword>'))<CR>
 " f: Find this file
-nnoremap  <leader>ff :call cscope#find('f', expand('<cword>'))<CR>
+" nnoremap  <leader>cf :call cscope#find('f', expand('<cword>'))<CR>
 " i: Find files #including this file
-nnoremap  <leader>fi :call cscope#find('i', expand('<cword>'))<CR>
+nnoremap  <leader>ci :call cscope#find('i', expand('<cword>'))<CR>
 " cscope mappings and settings end
 
 Plug 'plasticboy/vim-markdown'
