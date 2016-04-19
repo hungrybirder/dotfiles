@@ -208,7 +208,7 @@ if has("cscope")
 endif
 let g:cscope_silent = 1
 " nnoremap <leader>ca :call cscope#findInteractive(expand('<cword>'))<CR> 
-nnoremap <leader>cl :call ToggleLocationList()<CR> 
+nnoremap <leader>4 :call ToggleLocationList()<CR> 
 " s: Find this C symbol
 nnoremap  <leader>cs :call cscope#find('s', expand('<cword>'))<CR>
 " g: Find this definition
