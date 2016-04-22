@@ -207,3 +207,6 @@ fkill() {
 mytime() {
   python -c "from time import ctime; print ctime($1)"
 }
+
+export PYENV_ROOT=/usr/local/var/pyenv
+if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
