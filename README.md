@@ -7,6 +7,7 @@ Email: liyong19861014@gmail.com
 * [NeoVim](https://github.com/neovim/neovim) 21世纪的vim，性能好
 * [HomeBrew](http://brew.sh) Mac用户必备
 * [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh) 强大的zsh
+* [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions) zsh自动补全，类似fish，很方便
 * [git](https://git-scm.com) 这个不用多说了
 * [autojump](https://github.com/wting/autojump) 目录跳转工具
 * [virtualenvwrapper](https://virtualenvwrapper.readthedocs.org/en/latest/) python开发必备利器
