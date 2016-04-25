@@ -5,9 +5,25 @@ export PATH="/usr/local/opt/coreutils/libexec/gnubin:/usr/local/bin:/usr/bin:/bi
 fpath=(/usr/local/share/zsh-completions $fpath)
 plugins=(git autojump osx command-not-found python tmux virtualenvwrapper virtualenv jsontools pip zsh-autosuggestions)
 source $ZSH/oh-my-zsh.sh
-#
+
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.7.0_45.jdk/Contents/Home
+
 if [ -f ${HOME}/.bash_profile ]; then
 	source ${HOME}/.bash_profile
+fi
+
+if [ -f ~/cs/hhighlighter/h.sh ]; then
+        . ~/cs/hhighlighter/h.sh
+fi
+
+#Generic Colouriser
+source "`brew --prefix`/etc/grc.bashrc"
+#GNU Coreutils
+if brew list | grep coreutils > /dev/null ; then
+  PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
+  #alias ls='ls -F --show-control-chars --color=auto'
+  alias ls='ls --show-control-chars --color=auto'
+  eval `gdircolors -b $HOME/.dir_colors`
 fi
 
 export CSCOPE_DB=${HOME}/.cscope.vim
