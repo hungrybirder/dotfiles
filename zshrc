@@ -2,9 +2,9 @@ export ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="robbyrussell"
 # COMPLETION_WAITING_DOTS="true"
 export PATH="/usr/local/opt/coreutils/libexec/gnubin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin"
-fpath=(/usr/local/share/zsh-completions $fpath)
+# fpath=(/usr/local/share/zsh-completions $fpath)
 
-plugins=(git autojump osx command-not-found python tmux virtualenvwrapper jsontools pip zsh-autosuggestions)
+plugins=(git autojump osx command-not-found python tmux virtualenvwrapper jsontools pip zsh-autosuggestions zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
