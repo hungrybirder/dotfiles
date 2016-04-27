@@ -12,7 +12,7 @@
 # antigen
 OS_NAME=$(uname -s)
 export ANTIGEN_DEFAULT_REPO_URL=https://github.com/robbyrussell/oh-my-zsh.git
-source ${HOME}/cs/antigen/antigen.zsh
+source ${HOME}/cs/dotfiles/antigen/antigen.zsh
 
 antigen use oh-my-zsh
 
