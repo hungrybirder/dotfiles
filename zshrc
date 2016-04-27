@@ -10,6 +10,7 @@
 
 
 # antigen
+OS_NAME=$(uname -s)
 export ANTIGEN_DEFAULT_REPO_URL=https://github.com/robbyrussell/oh-my-zsh.git
 source ${HOME}/cs/antigen/antigen.zsh
 
@@ -17,14 +18,16 @@ antigen use oh-my-zsh
 
 antigen bundle git
 antigen bundle autojump
-antigen bundle osx
 antigen bundle command-not-found
 antigen bundle pip
 antigen bundle python
 antigen bundle tmux
 antigen bundle virtualenvwrapper
 antigen bundle jsontools
-antigen bundle brew
+if [[ "x${OS_NAME}" = "xDarwin" ]]; then
+  antigen bundle brew
+  antigen bundle osx
+fi
 antigen bundle zsh-users/zsh-autosuggestions
 antigen bundle zsh-users/zsh-syntax-highlighting
 
@@ -44,13 +47,16 @@ if [ -f ~/cs/hhighlighter/h.sh ]; then
 fi
 
 #Generic Colouriser
-source "`brew --prefix`/etc/grc.bashrc"
-#GNU Coreutils
-if brew list | grep coreutils > /dev/null ; then
-  PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
-  #alias ls='ls -F --show-control-chars --color=auto'
-  alias ls='ls --show-control-chars --color=auto'
-  eval `gdircolors -b $HOME/.dir_colors`
+if [[ "x${OS_NAME}" = "xDarwin" ]]; then
+  source "`brew --prefix`/etc/grc.bashrc"
+  #GNU Coreutils
+  if brew list | grep coreutils > /dev/null ; then
+    PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
+    #alias ls='ls -F --show-control-chars --color=auto'
+    alias ls='ls --show-control-chars --color=auto'
+    eval `gdircolors -b $HOME/.dir_colors`
+  fi
+
 fi
 
 export CSCOPE_DB=${HOME}/.cscope.vim
@@ -65,7 +71,9 @@ eval "$(thefuck --alias)"
 # alias fuck='eval $(thefuck $(fc -ln -1 | tail -n 1)); fc -R'
 # alias FUCK="fuck"
 
-[[ -s $(brew --prefix)/etc/profile.d/autojump.sh  ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
+if [[ "x${OS_NAME}" = "xDarwin" ]]; then
+  [[ -s $(brew --prefix)/etc/profile.d/autojump.sh  ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
+fi
 
 
 PROMPT_COMMAND='prompt'
