@@ -29,7 +29,7 @@ antigen bundle zsh-users/zsh-autosuggestions
 antigen bundle zsh-users/zsh-syntax-highlighting
 
 antigen theme cloud
-antigen theme agnoster
+
 
 antigen apply
 
