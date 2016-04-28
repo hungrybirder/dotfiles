@@ -9,31 +9,29 @@
 # source $ZSH/oh-my-zsh.sh
 
 
-# antigen
+# 测试zsh启动时间的方法
+# /usr/bin/time zsh -i -c exit
+
+# .zsh_history文件最大行数
+export SAVEHIST=400
 OS_NAME=$(uname -s)
+# antigen
 export ANTIGEN_DEFAULT_REPO_URL=https://github.com/robbyrussell/oh-my-zsh.git
 source ${HOME}/cs/dotfiles/antigen/antigen.zsh
 
 antigen use oh-my-zsh
 
 antigen bundle git
-antigen bundle autojump
+# antigen bundle autojump
 antigen bundle command-not-found
-antigen bundle pip
-antigen bundle python
-antigen bundle tmux
-antigen bundle virtualenvwrapper
-antigen bundle jsontools
-if [[ "x${OS_NAME}" = "xDarwin" ]]; then
-  antigen bundle brew
-  antigen bundle osx
-fi
+# antigen bundle pip
+# antigen bundle tmux
+# antigen bundle virtualenvwrapper
+# antigen bundle jsontools
 antigen bundle zsh-users/zsh-autosuggestions
 antigen bundle zsh-users/zsh-syntax-highlighting
 
-# antigen theme cloud
 antigen theme agnoster
-
 antigen apply
 
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.7.0_45.jdk/Contents/Home
@@ -68,8 +66,7 @@ export WORKON_HOME=$HOME/.virtualenvs
 source /usr/local/bin/virtualenvwrapper.sh
 alias mvn="mvn -Denforcer.skip=true "
 eval "$(thefuck --alias)"
-# alias fuck='eval $(thefuck $(fc -ln -1 | tail -n 1)); fc -R'
-# alias FUCK="fuck"
+
 
 if [[ "x${OS_NAME}" = "xDarwin" ]]; then
   [[ -s $(brew --prefix)/etc/profile.d/autojump.sh  ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
