@@ -10,6 +10,7 @@ antigen use oh-my-zsh
 antigen theme agnoster
 antigen bundle git
 antigen bundle command-not-found
+antigen bundle autojump
 antigen bundle zsh-users/zsh-autosuggestions
 antigen bundle zsh-users/zsh-syntax-highlighting
 
@@ -47,12 +48,6 @@ export WORKON_HOME=$HOME/.virtualenvs
 source /usr/local/bin/virtualenvwrapper.sh
 alias mvn="mvn -Denforcer.skip=true "
 eval "$(thefuck --alias)"
-
-
-if [[ "x${OS_NAME}" = "xDarwin" ]]; then
-  [[ -s $(brew --prefix)/etc/profile.d/autojump.sh  ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
-fi
-
 
 PROMPT_COMMAND='prompt'
 precmd() { eval "$PROMPT_COMMAND" }
