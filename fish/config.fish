@@ -48,3 +48,65 @@ end
 
 # 初始化fuck
 eval (thefuck --alias | tr '\n' ';')
+
+########################################
+#                                      #
+#         fzf functions starts         #
+#                                      #
+########################################
+
+# file open
+function fo
+  set cmd "fzf-tmux --query=$argv[1] --exit-0 --expect=ctrl-o,ctrl-e"
+  eval $cmd >/tmp/fo.tmp
+  set key (cat /tmp/fo.tmp | head -1)
+  set file (cat /tmp/fo.tmp | tail -1)
+  if test -n $file
+    command vim $file
+  end
+end
+
+# 进入目录
+function fd 
+  set cmd "find . -path '*/\.*' -prune -o -type d -print 2>/dev/null | fzf +m"
+  eval $cmd >/tmp/fd.tmp
+  set dir (cat /tmp/fd.tmp | tail -1)
+  if test -d $dir
+    cd $dir
+  end
+end
+
+# 进入任何目录，包括隐藏目录
+function fda
+  set cmd "find . -type d -print 2>/dev/null | fzf +m"
+  eval $cmd >/tmp/fda.tmp
+  set dir (cat /tmp/fda.tmp | tail -1)
+  if test -d $dir
+    cd $dir
+  end
+end
+
+function cdf
+  set cmd "ag --ignore-dir=\".git\" -g \"\" | fzf +m"
+  eval $cmd >/tmp/cdf.tmp
+  set file (cat /tmp/cdf.tmp | tail -1)
+  if test -f $file
+    set dir (dirname $file)
+    cd $dir
+  end
+end
+
+function fkill
+  set cmd "ps -ef | sed 1d | fzf -m"
+  eval $cmd >/tmp/fkill.tmp
+  set pid (cat /tmp/fkill.tmp | awk '{print $2}')
+  if [ "x$pid" != "x" ]
+    kill -9 $pid
+  end
+end
+########################################
+#                                      #
+#         fzf functions ends           #
+#                                      #
+########################################
+
