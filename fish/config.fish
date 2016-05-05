@@ -104,6 +104,13 @@ function fkill
     kill -9 $pid
   end
 end
+
+# git commit browser
+function fshow
+  set cmd "git log --graph --color=always --format=\"%C(auto)%h%d %s %C(black)%C(bold)%cr\" | fzf --ansi --no-sort --reverse --tiebreak=index --bind \"ctrl-m:execute: echo {} | grep -o '[a-z0-9]\{7\}' | xargs -I file git show --color=always file | less -R \""
+  eval $cmd
+end
+
 ########################################
 #                                      #
 #         fzf functions ends           #
