@@ -42,9 +42,9 @@ end
 # 设置virtualfish， fish中的virtualwrapper
 set -x PROJECT_HOME "$HOME/.project_home"
 eval (python -m virtualfish compat_aliases projects auto_activation)
-if set -q VIRTUAL_ENV
-    echo -n -s (set_color -b blue white) "(" (basename "$VIRTUAL_ENV") ")" (set_color normal) " "
-end
+# if set -q VIRTUAL_ENV
+#     echo -n -s (set_color -b blue white) "(" (basename "$VIRTUAL_ENV") ")" (set_color normal) " "
+# end
 
 # 初始化fuck
 eval (thefuck --alias | tr '\n' ';')
