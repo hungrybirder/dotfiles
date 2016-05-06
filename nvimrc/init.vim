@@ -306,8 +306,21 @@ function! s:buffer_lines()
   return res
 endfunction
 
+function! s:current_buffer_lines()
+  let res = []
+  call extend(res, map(getbufline(bufnr("$"),0,"$"), 'bufnr("$") . ":\t" . (v:key + 1) . ":\t" . v:val '))
+  return res
+endfunction
+
 command! FZFLines call fzf#run({
 \   'source':  <sid>buffer_lines(),
+\   'sink':    function('<sid>line_handler'),
+\   'options': '--extended --nth=3..',
+\   'down':    '60%'
+\})
+
+command! FZFBLines call fzf#run({
+\   'source':  <sid>current_buffer_lines(),
 \   'sink':    function('<sid>line_handler'),
 \   'options': '--extended --nth=3..',
 \   'down':    '60%'
@@ -457,8 +470,8 @@ nnoremap <silent> <Leader>b :Buffers<cr>
 nnoremap <silent> <Leader>a :Ag<cr>
 nnoremap <silent> <Leader>` :Marks<cr>
 nnoremap <leader>m :<c-u>FZFMru<cr>
-nnoremap <leader>l :<c-u>FZFLines<cr>
-nnoremap <leader>L :<c-u>Lines<cr>
+nnoremap <leader>L :<c-u>FZFLines<cr>
+nnoremap <leader>l :<c-u>FZFBLines<cr>
 " nnoremap <leader>t :<c-u>Tags<cr>
 " nnoremap <leader>T :<c-u>BTags<cr>
 " Open files in horizontal split
