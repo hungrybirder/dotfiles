@@ -17,7 +17,7 @@ end
 # 使用neovim
 set -gx EDITOR "nvim"
 abbr -a vim "nvim"
-set -gx NVIM_PYTHON_LOG_FILE "$HOME/.nvim.log"
+set -gx NVIM_PYTHON_LOG_FILE "/tmp/nvim.log"
 
 # 设置java
 set -x JAVA_HOME "/Library/Java/JavaVirtualMachines/jdk1.7.0_45.jdk/Contents/Home"
@@ -41,7 +41,7 @@ end
 
 # 设置virtualfish， fish中的virtualwrapper
 set -x PROJECT_HOME "$HOME/.project_home"
-eval (python -m virtualfish compat_aliases projects auto_activation)
+eval (python -m virtualfish auto_activation)
 # if set -q VIRTUAL_ENV
 #     echo -n -s (set_color -b blue white) "(" (basename "$VIRTUAL_ENV") ")" (set_color normal) " "
 # end
