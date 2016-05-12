@@ -222,6 +222,15 @@ fkill() {
   fi
 }
 
+# fssh， 从known_hosts中选择一个，登陆
+fssh() {
+  host=$(cut -d " " -f 1 $HOME/.ssh/known_hosts | fzf)
+  if [ "x$host" != "x" ]
+  then
+    ssh $host
+  fi
+}
+
 ##########################################
 #
 #         My Useful Functions

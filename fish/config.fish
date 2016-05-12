@@ -111,6 +111,16 @@ function fshow
   eval $cmd
 end
 
+# fssh， 从known_hosts中选择一个，登陆
+function fssh 
+  set cmd "cut -d ' ' -f 1 $HOME/.ssh/known_hosts | fzf "
+  eval $cmd >/tmp/fssh.tmp
+  set host (cat /tmp/fssh.tmp | tail -1)
+  if [ "x$host" != "x" ]
+    ssh $host
+  end
+end
+
 ########################################
 #                                      #
 #         fzf functions ends           #
