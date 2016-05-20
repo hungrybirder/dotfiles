@@ -127,3 +127,10 @@ end
 #                                      #
 ########################################
 
+function get_public_ip
+  set cmd "python -c 'import socket; sock=socket.create_connection((\'ns1.dnspod.net\',6666)); print sock.recv(16); sock.close()'"
+  eval $cmd 2>/dev/null
+  if [ ! $status -eq 0 ]
+    echo "无法获取公网IP，请检查联网情况！"
+  end
+end
