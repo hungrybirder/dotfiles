@@ -16,7 +16,7 @@ end
 
 # 使用neovim
 set -gx EDITOR "nvim"
-abbr -a vim "nvim"
+#abbr -a vim "nvim"
 set -gx NVIM_PYTHON_LOG_FILE "/tmp/nvim.log"
 
 # 设置java
@@ -62,7 +62,7 @@ function fo
   set key (cat /tmp/fo.tmp | head -1)
   set file (cat /tmp/fo.tmp | tail -1)
   if test -n $file
-    command vim $file
+    command nvim $file
   end
 end
 
