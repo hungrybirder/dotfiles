@@ -14,6 +14,7 @@ call plug#begin('~/.config/nvim/plugged')
 
 Plug 'benekastah/neomake'
 let g:neomake_python_enabled_makers = ['pylint']
+let g:neomake_javascript_enabled_makers = ['jshint']
 " run neomake on the current file on every write
 autocmd! BufWritePost * Neomake
 
@@ -72,9 +73,6 @@ function! Multiple_cursors_after()
   endif
 endfunction
 
-" Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
-Plug 'junegunn/vim-easy-align'
-
 " Using a non-master branch
 Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' }
 
@@ -115,10 +113,6 @@ let g:airline_theme = "dark"
 
 "easy motion
 Plug 'Lokaltog/vim-easymotion'
-
-" neomake
-Plug 'benekastah/neomake'
-let g:neomake_javascript_enabled_makers = ['jshint']
 
 " ag.vim for searching codes
 " replaced by fzf.vim Ag command
@@ -172,9 +166,9 @@ Plug 'vim-scripts/tComment'
 " :S/note{,s}/entr{y,ies}/g
 Plug 'tpope/vim-abolish'                             
 
-" <F5> :GundoToggle
 Plug 'sjl/gundo.vim'                                 
 " Gundo mapping and settings
+" <F5> :GundoToggle
 nnoremap <F5> :GundoToggle<CR>
 let g:gundo_width = 60
 let g:gundo_preview_height = 25
@@ -410,8 +404,8 @@ endfunction
 
 command! BTags call s:btags()
 
-" 对齐
 Plug 'junegunn/vim-easy-align'
+" 对齐
 " Start interactive EasyAlign in visual mode (e.g. vipga)
 xmap ga <Plug>(EasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
@@ -472,6 +466,7 @@ nnoremap <silent> <Leader>` :Marks<cr>
 nnoremap <leader>m :<c-u>FZFMru<cr>
 nnoremap <leader>L :<c-u>FZFLines<cr>
 nnoremap <leader>l :<c-u>FZFBLines<cr>
+
 " nnoremap <leader>t :<c-u>Tags<cr>
 " nnoremap <leader>T :<c-u>BTags<cr>
 " Open files in horizontal split
