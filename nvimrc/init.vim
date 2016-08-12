@@ -514,6 +514,7 @@ set wildmode=longest:full,full
 set clipboard+=unnamed
 
 set nofoldenable
+set number
 set relativenumber
 nmap <leader>nn :set relativenumber!<CR>
 nmap <leader>N :set number!<CR>
