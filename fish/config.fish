@@ -134,3 +134,6 @@ function get_public_ip
     echo "无法获取公网IP，请检查联网情况！"
   end
 end
+
+
+abbr -a htop="sudo htop"
