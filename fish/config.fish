@@ -1,5 +1,6 @@
 # Path to Oh My Fish install.
 set -gx OMF_PATH "/Users/liyong/.local/share/omf"
+set -g fish_user_paths "/usr/local/sbin" $fish_user_paths
 
 # Customize Oh My Fish configuration path.
 #set -gx OMF_CONFIG "/Users/liyong/.config/omf"
