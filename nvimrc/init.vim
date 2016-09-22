@@ -8,8 +8,6 @@ let g:maplocalleader = ","
 nmap <silent> <leader>ev :e $MYVIMRC<CR>
 nmap <silent> <leader>sv :so $MYVIMRC<CR>
 
-" let g:python_host_prog = '/usr/bin/python'
-
 call plug#begin('~/.config/nvim/plugged')
 
 Plug 'benekastah/neomake'
@@ -24,7 +22,6 @@ Plug 'davidhalter/jedi-vim'
 let g:jedi#completions_enabled = 0
 let g:jedi#show_call_signatures_delay = 200
 
-" Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
 function! BuildYCM(info)
   " info is a dictionary with 3 fields
   " - name:   name of the plugin
@@ -34,7 +31,13 @@ function! BuildYCM(info)
     !./install.py --clang-completer --tern-completer
   endif
 endfunction
-Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
+
+let py_ver = system("python -V | awk '{print $2}'")
+if py_ver =~ "2\.[0-9]\.[0-9]"
+  let g:ycm_python_binary_path = '/usr/local/bin/python'
+elseif py_ver =~ "3\.[0-9]\.[0-9]"
+  let g:ycm_python_binary_path = '/usr/local/bin/python3'
+endif
 let g:ycm_global_ycm_extra_conf = '~/.config/nvim/etc/ycm_extra_conf.py'
 let g:ycm_collect_identifiers_from_tag_files = 1
 let g:ycm_confirm_extra_conf = 1
@@ -54,6 +57,8 @@ function! YcmAutoTriggerToggle()
     let g:ycm_auto_trigger = 0
   endif
 endfunction
+Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
+
 
 " 解决ycm在启用vim-multiple-cursors后，慢变的问题
 " http://www.snip2code.com/Snippet/157563/vimrc-for-multiple-cursors-and-YouComple

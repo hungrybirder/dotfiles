@@ -70,6 +70,7 @@ flags = [
 '/usr/local/include',
 #python 
 '/usr/lib/python2.7',
+'/usr/local/Cellar/python3/3.5.2_1/Frameworks/Python.framework/Versions/3.5/lib/python3.5',
 #
 #
 '/usr/src/linux-headers-3.13.0-30-generic',
