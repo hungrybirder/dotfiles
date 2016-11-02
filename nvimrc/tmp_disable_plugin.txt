@@ -1,0 +1,65 @@
+
+" Plug 'davidhalter/jedi-vim'
+" Use YCM 
+" Disable jedi completions
+" let g:jedi#completions_enabled = 0
+" let g:jedi#show_call_signatures_delay = 200
+=======
+" Plug 'maksimr/vim-jsbeautify'
+=======
+" Plug 'einars/js-beautify'
+=======
+" Plug 'benmills/vimux'
+" 'benmills/vimux' mappings
+" Run the current file with rspec
+" map <Leader>rb :call VimuxRunCommand("clear; rspec " . bufname("%"))<CR>
+" Prompt for a command to run
+" map <Leader>vp :VimuxPromptCommand<CR>
+" Run last command executed by VimuxRunCommand
+" map <Leader>vl :VimuxRunLastCommand<CR>
+" Inspect runner pane
+" map <Leader>vi :VimuxInspectRunner<CR>
+" Close vim tmux runner opened by VimuxRunCommand
+" map <Leader>vq :VimuxCloseRunner<CR>
+" Interrupt any command running in the runner pane
+" map <Leader>vx :VimuxInterruptRunner<CR>
+" Zoom the runner pane (use <bind-key> z to restore runner pane)
+" map <Leader>vz :call VimuxZoomRunner()<CR>
+=======
+" Plug 'vim-scripts/DrawIt'
+=======
+" Plug 'xolox/vim-misc'
+" Plug 'xolox/vim-session'
+" let g:session_directory = '~/.config/nvim/.sessions'
+" let g:session_autoload = 'no'
+" let g:session_autosave = 'no'
+" nnoremap <leader>so :OpenSession
+" nnoremap <leader>ss :SaveSession
+" nnoremap <leader>sd :DeleteSession<cr>
+" nnoremap <leader>sc :CloseSession<cr>
+=======
+" 启动vim，显示MRU
+" Plug 'mhinz/vim-startify'
+=======
+" js 
+" Plug 'pangloss/vim-javascript'
+
+" improve js edit
+" Plug 'mattn/emmet-vim'
+
+" js auto-completion
+" Plug 'ternjs/tern_for_vim', { 'do' : 'npm install' }
+" let g:tern_show_argument_hints='on_hold'
+" let g:tern_map_keys=1
+" <Leader> td :TernDoc  Documentation under cursor
+" <Leader> tb :TernDocBrowse  Browse documentation
+" <Leader> tt :TernType Type hints
+" <Leader> td :TernDef  Jump to definition (yes, 'td' is duplicated)
+" <Leader> tpd  :TernDefPreview Jump to definition inside preview
+" <Leader> tsd  :TernDefSplit Definition in new split
+" <Leader> ttd  :TernDefTab Definition in new tab
+" <Leader> tr :TernRefs All references under cursor
+" <Leader> tR :TernRename Rename variable
+=======
+" 显示最近的闭合标签
+"Plug 'Valloric/MatchTagAlways'

@@ -16,22 +16,19 @@ let g:neomake_javascript_enabled_makers = ['jshint']
 " run neomake on the current file on every write
 autocmd! BufWritePost * Neomake
 
-Plug 'davidhalter/jedi-vim'
-" Use YCM 
-" Disable jedi completions
-let g:jedi#completions_enabled = 0
-let g:jedi#show_call_signatures_delay = 200
-
 function! BuildYCM(info)
   " info is a dictionary with 3 fields
   " - name:   name of the plugin
   " - status: 'installed', 'updated', or 'unchanged'
   " - force:  set on PlugInstall! or PlugUpdate!
   if a:info.status == 'installed' || a:info.force
-    !./install.py --clang-completer --tern-completer
+    !./install.py --clang-completer
+    " !./install.py --clang-completer --tern-completer
   endif
 endfunction
 
+let g:python_host_prog = '/usr/local/bin/python'
+let g:python3_host_prog = '/usr/local/bin/python3'
 let py_ver = system("python -V | awk '{print $2}'")
 if py_ver =~ "2\.[0-9]\.[0-9]"
   let g:ycm_python_binary_path = '/usr/local/bin/python'
@@ -43,7 +40,8 @@ let g:ycm_collect_identifiers_from_tag_files = 1
 let g:ycm_confirm_extra_conf = 1
 let g:ycm_enable_diagnostic_signs = 0
 let g:ycm_enable_diagnostic_highlighting = 0
-let g:ycm_autoclose_preview_window_after_completion = 1
+let g:ycm_autoclose_preview_window_after_completion = 0
+let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_collect_identifiers_from_comments_and_strings = 1
 nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
 nnoremap <silent> <Leader>d :YcmCompleter GoToDefinition<cr>
@@ -58,7 +56,6 @@ function! YcmAutoTriggerToggle()
   endif
 endfunction
 Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
-
 
 " 解决ycm在启用vim-multiple-cursors后，慢变的问题
 " http://www.snip2code.com/Snippet/157563/vimrc-for-multiple-cursors-and-YouComple
@@ -119,17 +116,9 @@ let g:airline_theme = "dark"
 "easy motion
 Plug 'Lokaltog/vim-easymotion'
 
-" ag.vim for searching codes
-" replaced by fzf.vim Ag command
-" Plug 'rking/ag.vim'
-
 Plug 'terryma/vim-multiple-cursors'
 let g:multi_cursor_exit_from_insert_mode = 0
 let g:multi_cursor_exit_from_visual_mode = 0
-
-Plug 'maksimr/vim-jsbeautify'
-
-Plug 'einars/js-beautify'
 
 Plug 'Chiel92/vim-autoformat'
 
@@ -171,8 +160,6 @@ Plug 'vim-scripts/tComment'
 Plug 'tpope/vim-abolish'                             
 
 Plug 'sjl/gundo.vim'                                 
-" Gundo mapping and settings
-" <F5> :GundoToggle
 nnoremap <F5> :GundoToggle<CR>
 let g:gundo_width = 60
 let g:gundo_preview_height = 25
@@ -225,30 +212,7 @@ nnoremap  <leader>ce :call cscope#find('e', expand('<cword>'))<CR>
 nnoremap  <leader>ci :call cscope#find('i', expand('<cword>'))<CR>
 " cscope mappings and settings end
 
-Plug 'plasticboy/vim-markdown'
-nnoremap <leader>tf :TableFormat<CR>
-
-Plug 'benmills/vimux'
-" 'benmills/vimux' mappings
-" Run the current file with rspec
-" map <Leader>rb :call VimuxRunCommand("clear; rspec " . bufname("%"))<CR>
-" Prompt for a command to run
-map <Leader>vp :VimuxPromptCommand<CR>
-" Run last command executed by VimuxRunCommand
-map <Leader>vl :VimuxRunLastCommand<CR>
-" Inspect runner pane
-map <Leader>vi :VimuxInspectRunner<CR>
-" Close vim tmux runner opened by VimuxRunCommand
-map <Leader>vq :VimuxCloseRunner<CR>
-" Interrupt any command running in the runner pane
-map <Leader>vx :VimuxInterruptRunner<CR>
-" Zoom the runner pane (use <bind-key> z to restore runner pane)
-map <Leader>vz :call VimuxZoomRunner()<CR>
-
 Plug 'tpope/vim-repeat'
-
-Plug 'vim-scripts/DrawIt'
-
 Plug 'Shougo/unite.vim'
 Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 Plug 'Shougo/neoyank.vim'
@@ -415,40 +379,7 @@ xmap ga <Plug>(EasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
 
-Plug 'xolox/vim-misc'
-Plug 'xolox/vim-session'
-let g:session_directory = '~/.config/nvim/.sessions'
-let g:session_autoload = 'no'
-let g:session_autosave = 'no'
-nnoremap <leader>so :OpenSession
-nnoremap <leader>ss :SaveSession
-nnoremap <leader>sd :DeleteSession<cr>
-nnoremap <leader>sc :CloseSession<cr>
-
 Plug 'tpope/vim-fugitive'
-
-"vim start screen
-Plug 'mhinz/vim-startify'
-
-" js 
-Plug 'pangloss/vim-javascript'
-
-" improve js edit
-Plug 'mattn/emmet-vim'
-
-" js auto-completion
-Plug 'ternjs/tern_for_vim', { 'do' : 'npm install' }
-let g:tern_show_argument_hints='on_hold'
-let g:tern_map_keys=1
-" <Leader> td :TernDoc  Documentation under cursor
-" <Leader> tb :TernDocBrowse  Browse documentation
-" <Leader> tt :TernType Type hints
-" <Leader> td :TernDef  Jump to definition (yes, 'td' is duplicated)
-" <Leader> tpd  :TernDefPreview Jump to definition inside preview
-" <Leader> tsd  :TernDefSplit Definition in new split
-" <Leader> ttd  :TernDefTab Definition in new tab
-" <Leader> tr :TernRefs All references under cursor
-" <Leader> tR :TernRename Rename variable
 
 " 显示变更的行
 Plug 'mhinz/vim-signify'
@@ -458,8 +389,7 @@ Plug 'mhinz/vim-signify'
 "
 " ]C   Jump to last hunk.
 " [C   Jump to first hunk.
-"
-Plug 'Valloric/MatchTagAlways'
+
 call plug#end()
 
 " fzf的性能比unite.vim要好
@@ -693,12 +623,12 @@ augroup MyAutoCmd
   autocmd FileType c,cc,cpp,objc setlocal path+=/usr/local/include
 
   " for html/js/css
-  autocmd FileType javascript setlocal ts=4 sts=4 sw=4 et
-  autocmd FileType javascript noremap <buffer>  <Leader>cf :call JsBeautify()<CR>
+  " autocmd FileType javascript setlocal ts=4 sts=4 sw=4 et
+  " autocmd FileType javascript noremap <buffer>  <Leader>cf :call JsBeautify()<CR>
   " for html
-  autocmd FileType html noremap <buffer> <Leader>cf :call HtmlBeautify()<CR>
+  " autocmd FileType html noremap <buffer> <Leader>cf :call HtmlBeautify()<CR>
   " for css or scss
-  autocmd FileType css noremap <buffer> <Leader>cf :call CSSBeautify()<CR>
+  " autocmd FileType css noremap <buffer> <Leader>cf :call CSSBeautify()<CR>
 
   autocmd FileType vim setlocal ts=2 sts=2 sw=2 et
 augroup END
