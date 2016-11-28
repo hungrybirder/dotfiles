@@ -650,3 +650,6 @@ augroup line_return
     \   execute 'normal! g`"zvzz' |
     \ endif
 augroup END
+
+" neovim 替换预览功能
+set inccommand=split
