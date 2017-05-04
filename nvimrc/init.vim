@@ -10,7 +10,7 @@ nmap <silent> <leader>sv :so $MYVIMRC<CR>
 
 call plug#begin('~/.config/nvim/plugged')
 
-Plug 'benekastah/neomake'
+Plug 'neomake/neomake'
 let g:neomake_python_enabled_makers = ['pylint']
 let g:neomake_javascript_enabled_makers = ['jshint']
 " run neomake on the current file on every write
