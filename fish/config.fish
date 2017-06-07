@@ -138,3 +138,8 @@ end
 
 
 abbr -a htop="sudo htop"
+# Homebrew behind a proxy
+# set -gx ALL_PROXY "sock5://127.0.0.1:1080"
+set -gx GOPATH "/Users/liyong/go"
+set -gx HOMEBREW_GITHUB_API_TOKEN "a7b5f50c9d95461863ed6ed5d50a8b18bb583de7"
+abbr -a wget="wget --no-check-certificate"

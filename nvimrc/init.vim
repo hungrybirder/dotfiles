@@ -8,6 +8,7 @@ let g:maplocalleader = ","
 nmap <silent> <leader>ev :e $MYVIMRC<CR>
 nmap <silent> <leader>sv :so $MYVIMRC<CR>
 
+
 call plug#begin('~/.config/nvim/plugged')
 
 Plug 'neomake/neomake'
@@ -132,6 +133,7 @@ let g:livedown_open = 1
 " the port on which Livedown server will run
 let g:livedown_port = 1337
 nmap <leader>md :LivedownPreview<CR>
+
 
 " Enter - Open corresponding file of current line in the window which CtrlSF
 " is launched from.
@@ -390,6 +392,10 @@ Plug 'mhinz/vim-signify'
 " ]C   Jump to last hunk.
 " [C   Jump to first hunk.
 
+Plug 'mattn/webapi-vim'
+Plug 'mattn/gist-vim'
+let g:gist_show_privates = 1
+let g:gist_post_private = 1
 call plug#end()
 
 " fzf的性能比unite.vim要好

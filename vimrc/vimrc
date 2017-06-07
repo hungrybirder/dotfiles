@@ -20,19 +20,74 @@ autocmd! BufWritePost * Neomake
 
 Plug 'junegunn/vim-easy-align'
 
+function! BuildYCM(info)
+  " info is a dictionary with 3 fields
+  " - name:   name of the plugin
+  " - status: 'installed', 'updated', or 'unchanged'
+  " - force:  set on PlugInstall! or PlugUpdate!
+  if a:info.status == 'installed' || a:info.force
+    !./install.py --clang-completer
+    " !./install.py --clang-completer --tern-completer
+  endif
+endfunction
+
+let g:python_host_prog = '/usr/local/bin/python'
+let g:python3_host_prog = '/usr/local/bin/python3'
+let py_ver = system("python -V | awk '{print $2}'")
+if py_ver =~ "2\.[0-9]\.[0-9]"
+  let g:ycm_python_binary_path = '/usr/local/bin/python'
+elseif py_ver =~ "3\.[0-9]\.[0-9]"
+  let g:ycm_python_binary_path = '/usr/local/bin/python3'
+endif
+let g:ycm_global_ycm_extra_conf = '~/.config/nvim/etc/ycm_extra_conf.py'
+let g:ycm_collect_identifiers_from_tag_files = 1
+let g:ycm_confirm_extra_conf = 1
+let g:ycm_enable_diagnostic_signs = 0
+let g:ycm_enable_diagnostic_highlighting = 0
+let g:ycm_autoclose_preview_window_after_completion = 0
+let g:ycm_autoclose_preview_window_after_insertion = 1
+let g:ycm_collect_identifiers_from_comments_and_strings = 1
+nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
+nnoremap <silent> <Leader>d :YcmCompleter GoToDefinition<cr>
+nnoremap <silent> <Leader>g :YcmCompleter GoToDeclaration<cr>
+noremap <leader>Y :call YcmAutoTriggerToggle()<cr>
+function! YcmAutoTriggerToggle()
+  let cur = g:ycm_auto_trigger
+  if cur == 0
+    let g:ycm_auto_trigger = 1
+  else
+    let g:ycm_auto_trigger = 0
+  endif
+endfunction
+Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
+
+
+" 解决ycm在启用vim-multiple-cursors后，慢变的问题
+" http://www.snip2code.com/Snippet/157563/vimrc-for-multiple-cursors-and-YouComple
+let s:multi_cursors_on = 0
+function! Multiple_cursors_before()
+  if !s:multi_cursors_on
+    let s:old_ycm_whitelist = g:ycm_filetype_whitelist
+    let g:ycm_filetype_whitelist = {}
+    let s:multi_cursors_on = 1
+  endif
+endfunction
+
+function! Multiple_cursors_after()
+  if s:multi_cursors_on
+    let g:ycm_filetype_whitelist = s:old_ycm_whitelist
+    let s:multi_cursors_on = 0
+  endif
+endfunction
+
+
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
-" 不用YouCompleteMe, 使用SuperTAB
-let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsExpandTrigger="<c-l>"
 let g:UltiSnipsListSnippets="<leader><enter>"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 let g:UltiSnipsEditSplit="vertical"
 nnoremap <F2> :UltiSnipsEdit<CR>
-
-Plug 'ervandew/supertab'
-
-Plug 'davidhalter/jedi-vim'
-let g:jedi#completions_command='<tab>'
 
 Plug 'scrooloose/nerdtree'
 let NERDTreeWinPos = 1
@@ -58,6 +113,8 @@ let g:airline#extensions#tabline#fnamemod = ':t' " only show buffer name
 let g:airline_theme = "dark"
 
 Plug 'terryma/vim-multiple-cursors'
+let g:multi_cursor_exit_from_insert_mode = 0
+let g:multi_cursor_exit_from_visual_mode = 0
 
 Plug 'Chiel92/vim-autoformat'
 
@@ -255,9 +312,9 @@ Plug 'mhinz/vim-signify'
 "
 " ]C   Jump to last hunk.
 " [C   Jump to first hunk.
-"
 call plug#end()
 
+nnoremap <silent> <expr> <Leader>f (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":Files\<cr>"
 nnoremap <silent> <Leader>b :Buffers<cr>
 nnoremap <silent> <Leader>a :Ag<cr>
 nnoremap <silent> <Leader>` :Marks<cr>
@@ -435,7 +492,7 @@ nnoremap N Nzzzv
 augroup MyAutoCmd
   au!
   filetype on
-  autocmd FileType python setlocal ts=4 sts=4 sw=4 et
+  autocmd FileType python setlocal ts=4 sts=4 sw=4 et omnifunc=jedi#completions
   autocmd FileType python noremap <buffer><Leader>cf :Autoformat<CR><CR>
   autocmd FileType python inoremap <buffer><Leader>cf <c-c>:Autoformat<CR><CR>gi
 augroup END
