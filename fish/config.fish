@@ -143,3 +143,6 @@ abbr -a htop="sudo htop"
 set -gx GOPATH "/Users/liyong/go"
 set -gx HOMEBREW_GITHUB_API_TOKEN "a7b5f50c9d95461863ed6ed5d50a8b18bb583de7"
 abbr -a wget="wget --no-check-certificate"
+
+# fish中使用gpg
+set -x GPG_TTY (tty)
