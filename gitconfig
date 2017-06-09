@@ -1,0 +1,33 @@
+# ln -s `pwd`/gitconfig ~/.gitconfig
+[color]
+	ui = auto
+	diff = auto
+	branch = auto
+	interactive = auto
+	status = auto
+[user]
+	name = liyong
+	email = hungrybirder@gmail.com
+	signingkey = 74B90ED41D7CD87487AC6855829488508AE2B583
+[push]
+	default = simple
+[diff]
+	tool = vimdiff
+[difftool]
+	prompt = false
+[alias]
+	fav = fetch --all --verbose
+	lgd = log --graph --decorate
+	diffstat = diff --stat
+	st = status
+[color "diff"]
+	meta = yellow bold
+	frag = magenta bold
+	old = red bold
+	new = green bold
+[github]
+	user = hungrybirder@gmail.com
+[gpg]
+	program = /usr/local/bin/gpg2
+[commit]
+	gpgsign = true
