@@ -1,5 +1,5 @@
 # My ALL dotfiles #
-Email: liyong19861014@gmail.com
+email: hungrybirder@gmail.com
 
 # very useful tools #
 * [iTerm2](http://www.item2.com) Mac上最流利的终端，配上[Meslo](https://github.com/powerline/fonts.git)字体、[Solarized Dark Higher Contrast](https://github.com/mbadolato/iTerm2-Color-Schemes.git)主题
