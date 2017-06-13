@@ -396,6 +396,8 @@ Plug 'mattn/webapi-vim'
 Plug 'mattn/gist-vim'
 let g:gist_show_privates = 1
 let g:gist_post_private = 1
+
+Plug 'jamessan/vim-gnupg'
 call plug#end()
 
 " fzf的性能比unite.vim要好

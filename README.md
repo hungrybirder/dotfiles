@@ -15,3 +15,4 @@ email: hungrybirder@gmail.com
 * [oh-my-fish](https://github.com/oh-my-fish/oh-my-fish) oh-my-fish，类似oh-my-zsh的fish shell框架
 * [git](https://git-scm.com) 这个不用多说了
 * [autojump](https://github.com/wting/autojump) 目录跳转工具
+* [GnuPG](https://www.gnupg.org) 加密总是好的 
