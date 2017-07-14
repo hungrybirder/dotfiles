@@ -1,0 +1,1 @@
+/home/liyong/code/dotfiles/nvimrc_for_kernel_dev/plugged/vim-colors-solarized/colors/solarized.vim
