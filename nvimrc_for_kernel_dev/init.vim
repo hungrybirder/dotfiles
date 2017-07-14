@@ -1,3 +1,8 @@
+let mapleader = ","
+let g:mapleader = ","
+let maplocalleader = ","
+let g:maplocalleader = ","
+
 " for developing kernel
 syn on
 filetype plugin indent on
@@ -202,10 +207,6 @@ command! BTags call s:btags()
 call plug#end()
 
 " for myself 
-let mapleader = ","
-let g:mapleader = ","
-let maplocalleader = ","
-let g:maplocalleader = ","
 
 nmap <silent> <leader>ev :e $MYVIMRC<CR>
 nmap <silent> <leader>sv :so $MYVIMRC<CR>
