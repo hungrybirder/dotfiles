@@ -11,95 +11,6 @@ set noexpandtab
 " for developing kernel end
 
 
-" for myself 
-let mapleader = ","
-let g:mapleader = ","
-let maplocalleader = ","
-let g:maplocalleader = ","
-
-nmap <silent> <leader>ev :e $MYVIMRC<CR>
-nmap <silent> <leader>sv :so $MYVIMRC<CR>
-
-nnoremap Q :q<cr>
-nnoremap <leader>Q :qa!<cr>
-
-nnoremap <c-j> <c-w>j
-nnoremap <c-k> <c-w>k
-nnoremap <c-l> <c-w>l
-nnoremap <c-h> <c-w>h
-
-" easy move code blocks
-vnoremap < <gv 
-vnoremap > >gv
-
-nnoremap <c-e> 3<c-e>
-nnoremap <c-y> 3<c-y>
-vnoremap <c-e> 3<c-e>
-vnoremap <c-y> 3<c-y>
-
-set list listchars=tab:› ,eol:¬
-set cursorline
-set backspace=indent,eol,start
-
-"inoremap maps a key combination for insert mode
-"<C-e> is the keybinding I am creating.
-"<C-o> is a command that switches vim to normal mode for one command.
-"$ jumps to the end of the line and we are switched back to insert mode.
-inoremap <C-e> <C-o>$
-inoremap <C-a> <C-o>0
-
-" Navigating in Command Mode
-cnoremap <C-a> <Home>
-cnoremap <C-e> <End>
-cnoremap <C-f> <Right>
-cnoremap <C-b> <Left>
-cnoremap <Esc>b <S-Left>
-cnoremap <Esc>f <S-Right>
-
-set showcmd
-set lazyredraw
-
-" 更新括号里的内容
-onoremap in( :<c-u>normal! f(vi(<cr>
-onoremap il( :<c-u>normal! F)vi(<cr>
-
-" 保存
-nnoremap <c-s> :<c-u>update<cr>
-inoremap <c-s> <c-o>:update<cr>
-vnoremap <c-s> <esc>:update<cr>gv
-
-" disable F1
-noremap <F1> <nop>
-noremap <Up> <Nop>
-noremap <Down> <Nop>
-noremap <Left> <Nop>
-noremap <Right> <Nop>
-
-" Keep search matches in the middle of the window.
-nnoremap n nzzzv
-nnoremap N Nzzzv
-
-set clipboard+=unnamed
-
-nnoremap <F4> :let @/ = ""<CR>
-
-set incsearch
-set ignorecase
-set smartcase
-set autoindent
-set pastetoggle=<F6>
-set grepprg=ag
-
-" Mark sure vim returns to the same line when you reopen a file
-augroup line_return
-  au!
-  au BufReadPost *
-    \ if line("'\"") > 0 && line("'\"") <= line("$") |
-    \   execute 'normal! g`"zvzz' |
-    \ endif
-augroup END
-" for myself end
-
 call plug#begin('~/.config/nvim/plugged')
 
 Plug 'neomake/neomake'
@@ -125,11 +36,6 @@ let g:tagbar_autoshowtag = 1
 let tags = "./tags"
 Plug 'majutsushi/tagbar'
 
-set t_Co=16
-let g:solarized_termcolors=256
-syntax enable
-set background=dark
-colorscheme solarized
 Plug 'altercation/vim-colors-solarized'
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -295,3 +201,97 @@ nnoremap <leader>l :<c-u>FZFBLines<cr>
 command! BTags call s:btags()
 call plug#end()
 
+" for myself 
+let mapleader = ","
+let g:mapleader = ","
+let maplocalleader = ","
+let g:maplocalleader = ","
+
+nmap <silent> <leader>ev :e $MYVIMRC<CR>
+nmap <silent> <leader>sv :so $MYVIMRC<CR>
+
+nnoremap Q :q<cr>
+nnoremap <leader>Q :qa!<cr>
+
+nnoremap <c-j> <c-w>j
+nnoremap <c-k> <c-w>k
+nnoremap <c-l> <c-w>l
+nnoremap <c-h> <c-w>h
+
+" easy move code blocks
+vnoremap < <gv 
+vnoremap > >gv
+
+nnoremap <c-e> 3<c-e>
+nnoremap <c-y> 3<c-y>
+vnoremap <c-e> 3<c-e>
+vnoremap <c-y> 3<c-y>
+
+set list listchars=tab:› ,eol:¬
+set cursorline
+set backspace=indent,eol,start
+
+set t_Co=16
+let g:solarized_termcolors=256
+syntax enable
+set background=dark
+colorscheme solarized
+
+"inoremap maps a key combination for insert mode
+"<C-e> is the keybinding I am creating.
+"<C-o> is a command that switches vim to normal mode for one command.
+"$ jumps to the end of the line and we are switched back to insert mode.
+inoremap <C-e> <C-o>$
+inoremap <C-a> <C-o>0
+
+" Navigating in Command Mode
+cnoremap <C-a> <Home>
+cnoremap <C-e> <End>
+cnoremap <C-f> <Right>
+cnoremap <C-b> <Left>
+cnoremap <Esc>b <S-Left>
+cnoremap <Esc>f <S-Right>
+
+set showcmd
+set lazyredraw
+
+" 更新括号里的内容
+onoremap in( :<c-u>normal! f(vi(<cr>
+onoremap il( :<c-u>normal! F)vi(<cr>
+
+" 保存
+nnoremap <c-s> :<c-u>update<cr>
+inoremap <c-s> <c-o>:update<cr>
+vnoremap <c-s> <esc>:update<cr>gv
+
+" disable F1
+noremap <F1> <nop>
+noremap <Up> <Nop>
+noremap <Down> <Nop>
+noremap <Left> <Nop>
+noremap <Right> <Nop>
+
+" Keep search matches in the middle of the window.
+nnoremap n nzzzv
+nnoremap N Nzzzv
+
+set clipboard+=unnamed
+
+nnoremap <F4> :let @/ = ""<CR>
+
+set incsearch
+set ignorecase
+set smartcase
+set autoindent
+set pastetoggle=<F6>
+set grepprg=ag
+
+" Mark sure vim returns to the same line when you reopen a file
+augroup line_return
+  au!
+  au BufReadPost *
+    \ if line("'\"") > 0 && line("'\"") <= line("$") |
+    \   execute 'normal! g`"zvzz' |
+    \ endif
+augroup END
+" for myself end
