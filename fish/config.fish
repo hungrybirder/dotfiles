@@ -21,7 +21,7 @@ set -gx EDITOR "nvim"
 set -gx NVIM_PYTHON_LOG_FILE "/tmp/nvim.log"
 
 # 设置java
-set -x JAVA_HOME "/Library/Java/JavaVirtualMachines/jdk1.7.0_45.jdk/Contents/Home"
+set -x JAVA_HOME "/Library/Java/JavaVirtualMachines/jdk1.8.0_144.jdk/Contents/Home"
 set PATH $JAVA_HOME/bin $PATH
 abbr -a mvn "mvn -Denforcer.skip=true"
 
