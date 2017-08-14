@@ -398,6 +398,8 @@ let g:gist_show_privates = 1
 let g:gist_post_private = 1
 
 Plug 'jamessan/vim-gnupg'
+
+Plug 'avakhov/vim-yaml'
 call plug#end()
 
 " fzf的性能比unite.vim要好
@@ -629,6 +631,8 @@ augroup MyAutoCmd
   autocmd FileType c,cc,cpp,objc nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
   autocmd FileType c,cc,cpp,objc vnoremap <buffer><Leader>cf :ClangFormat<CR>
   autocmd FileType c,cc,cpp,objc setlocal path+=/usr/local/include
+  autocmd FileType yaml noremap <buffer><Leader>cf :Autoformat<CR><CR>
+  autocmd FileType yaml inoremap <buffer><Leader>cf <c-c>:Autoformat<CR><CR>gi
 
   " for html/js/css
   " autocmd FileType javascript setlocal ts=4 sts=4 sw=4 et
