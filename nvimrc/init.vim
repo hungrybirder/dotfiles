@@ -400,6 +400,17 @@ let g:gist_post_private = 1
 Plug 'jamessan/vim-gnupg'
 
 Plug 'avakhov/vim-yaml'
+
+
+let g:AutoPairsFlyMode = 1
+" System Shortcuts:
+" <CR>  : Insert new indented line after return if cursor in blank brackets or quotes.
+" <BS>  : Delete brackets in pair
+" <M-p> : Toggle Autopairs (g:AutoPairsShortcutToggle)
+" <M-e> : Fast Wrap (g:AutoPairsShortcutFastWrap)
+" <M-n> : Jump to next closed pair (g:AutoPairsShortcutJump)
+" <M-b> : BackInsert (g:AutoPairsShortcutBackInsert)
+Plug 'jiangmiao/auto-pairs'
 call plug#end()
 
 " fzf的性能比unite.vim要好

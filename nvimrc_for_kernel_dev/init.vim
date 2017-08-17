@@ -204,6 +204,16 @@ nnoremap <leader>L :<c-u>FZFLines<cr>
 nnoremap <leader>l :<c-u>FZFBLines<cr>
 
 command! BTags call s:btags()
+
+let g:AutoPairsFlyMode = 1
+" System Shortcuts:
+" <CR>  : Insert new indented line after return if cursor in blank brackets or quotes.
+" <BS>  : Delete brackets in pair
+" <M-p> : Toggle Autopairs (g:AutoPairsShortcutToggle)
+" <M-e> : Fast Wrap (g:AutoPairsShortcutFastWrap)
+" <M-n> : Jump to next closed pair (g:AutoPairsShortcutJump)
+" <M-b> : BackInsert (g:AutoPairsShortcutBackInsert)
+Plug 'jiangmiao/auto-pairs'
 call plug#end()
 
 " for myself 
