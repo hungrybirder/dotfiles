@@ -33,3 +33,10 @@
 	gpgsign = false
 [format]
 	signoff = true
+
+[sendemail]
+	from = LIYONG <hungrybirder@gmail.com>
+	smtpencryption = tls
+	smtpserver = smtp.gmail.com
+	smtpuser = hungrybirder@gmail.com
+	smtpserverport = 587
