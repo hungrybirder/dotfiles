@@ -28,14 +28,11 @@ function! BuildYCM(info)
   endif
 endfunction
 
-let g:python_host_prog = '/usr/local/bin/python'
-let g:python3_host_prog = '/usr/local/bin/python3'
-let py_ver = system("python -V | awk '{print $2}'")
-if py_ver =~ "2\.[0-9]\.[0-9]"
-  let g:ycm_python_binary_path = '/usr/local/bin/python'
-elseif py_ver =~ "3\.[0-9]\.[0-9]"
-  let g:ycm_python_binary_path = '/usr/local/bin/python3'
-endif
+" host_prog是neovim的设置，与YCM没有关系
+let g:python_host_prog = 'python'
+let g:python3_host_prog = 'python3'
+
+let g:ycm_python_binary_path = 'python'
 let g:ycm_global_ycm_extra_conf = '~/.config/nvim/etc/ycm_extra_conf.py'
 let g:ycm_collect_identifiers_from_tag_files = 1
 let g:ycm_confirm_extra_conf = 1
