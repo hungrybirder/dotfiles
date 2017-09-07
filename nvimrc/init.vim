@@ -412,15 +412,19 @@ call plug#end()
 
 " fzf的性能比unite.vim要好
 nnoremap <silent> <expr> <Leader>f (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":Files\<cr>"
-nnoremap <silent> <Leader>b :Buffers<cr>
-nnoremap <silent> <Leader>a :Ag<cr>
-nnoremap <silent> <Leader>` :Marks<cr>
-nnoremap <leader>m :<c-u>FZFMru<cr>
+nnoremap <silent> <Leader>b :<c-u>Buffers<cr>
+nnoremap <silent> <Leader>a :<c-u>Ag<cr>
+nnoremap <silent> <leader>m :<c-u>Marks<cr>
+nnoremap <leader>r :<c-u>FZFMru<cr>
 nnoremap <leader>L :<c-u>FZFLines<cr>
 nnoremap <leader>l :<c-u>FZFBLines<cr>
 
-" nnoremap <leader>t :<c-u>Tags<cr>
-" nnoremap <leader>T :<c-u>BTags<cr>
+" Tags in the project (`ctags -R`)
+nnoremap <leader>t :<c-u>Tags<cr>
+
+"Tags in the current buffer 
+nnoremap <leader>T :<c-u>BTags<cr>
+
 " Open files in horizontal split
 nnoremap <silent> <Leader>s :call fzf#run({
 \   'down': '40%',

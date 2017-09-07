@@ -31,14 +31,11 @@ function! BuildYCM(info)
   endif
 endfunction
 
-let g:python_host_prog = '/usr/local/bin/python'
-let g:python3_host_prog = '/usr/local/bin/python3'
-let py_ver = system("python -V | awk '{print $2}'")
-if py_ver =~ "2\.[0-9]\.[0-9]"
-  let g:ycm_python_binary_path = '/usr/local/bin/python'
-elseif py_ver =~ "3\.[0-9]\.[0-9]"
-  let g:ycm_python_binary_path = '/usr/local/bin/python3'
-endif
+" host_prog是neovim的设置，与YCM没有关系
+let g:python_host_prog = 'python'
+let g:python3_host_prog = 'python3'
+
+let g:ycm_python_binary_path = 'python'
 let g:ycm_global_ycm_extra_conf = '~/.config/nvim/etc/ycm_extra_conf.py'
 let g:ycm_collect_identifiers_from_tag_files = 1
 let g:ycm_confirm_extra_conf = 1
@@ -312,15 +309,25 @@ Plug 'mhinz/vim-signify'
 "
 " ]C   Jump to last hunk.
 " [C   Jump to first hunk.
+
+Plug 'avakhov/vim-yaml'
 call plug#end()
 
 nnoremap <silent> <expr> <Leader>f (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":Files\<cr>"
-nnoremap <silent> <Leader>b :Buffers<cr>
-nnoremap <silent> <Leader>a :Ag<cr>
-nnoremap <silent> <Leader>` :Marks<cr>
-nnoremap <leader>m :<c-u>FZFMru<cr>
+nnoremap <silent> <Leader>b :<c-u>Buffers<cr>
+nnoremap <silent> <Leader>a :<c-u>Ag<cr>
+nnoremap <silent> <Leader>m :<c-u>Marks<cr>
+nnoremap <leader>r :<c-u>FZFMru<cr>
 nnoremap <leader>L :<c-u>FZFLines<cr>
 nnoremap <leader>l :<c-u>FZFBLines<cr>
+nnoremap <leader>t :<c-u>FZFBLines<cr>
+
+" Tags in the project (`ctags -R`)
+nnoremap <leader>t :<c-u>Tags<cr>
+
+"Tags in the current buffer
+nnoremap <leader>T :<c-u>BTags<cr>
+
 
 nnoremap <silent> <Leader>s :call fzf#run({
 \   'down': '40%',
