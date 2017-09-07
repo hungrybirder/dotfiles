@@ -203,6 +203,15 @@ nnoremap <leader>m :<c-u>FZFMru<cr>
 nnoremap <leader>L :<c-u>FZFLines<cr>
 nnoremap <leader>l :<c-u>FZFBLines<cr>
 
+nnoremap <silent> <Leader>s :call fzf#run({
+\   'down': '40%',
+\   'sink': 'botright split' })<CR>
+
+" Open files in vertical horizontal split
+nnoremap <silent> <Leader>v :call fzf#run({
+\   'right': winwidth('.') / 2,
+\   'sink':  'vertical botright split' })<CR>
+
 command! BTags call s:btags()
 
 let g:AutoPairsFlyMode = 1
