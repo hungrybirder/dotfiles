@@ -1,6 +1,6 @@
 [FORMAT]
 indent-string='    '
-max-line-length=120
+max-line-length=80
 
 [MESSAGES CONTROL]
 disable=invalid-name,broad-except,logging-format-interpolation,global-variable-not-assigned,missing-docstring,relative-import
