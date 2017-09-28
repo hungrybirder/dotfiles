@@ -310,6 +310,8 @@ Plug 'mhinz/vim-signify'
 " ]C   Jump to last hunk.
 " [C   Jump to first hunk.
 
+Plug 'jamessan/vim-gnupg'
+
 Plug 'avakhov/vim-yaml'
 call plug#end()
 
