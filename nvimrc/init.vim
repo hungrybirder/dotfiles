@@ -28,53 +28,73 @@ function! BuildYCM(info)
   endif
 endfunction
 
-" host_prog是neovim的设置，与YCM没有关系
-let g:python_host_prog = 'python'
-let g:python3_host_prog = 'python3'
-
-let g:ycm_python_binary_path = 'python'
-let g:ycm_global_ycm_extra_conf = '~/.config/nvim/etc/ycm_extra_conf.py'
-let g:ycm_collect_identifiers_from_tag_files = 1
-let g:ycm_confirm_extra_conf = 1
-let g:ycm_enable_diagnostic_signs = 0
-let g:ycm_enable_diagnostic_highlighting = 0
-let g:ycm_autoclose_preview_window_after_completion = 0
-let g:ycm_autoclose_preview_window_after_insertion = 1
-let g:ycm_collect_identifiers_from_comments_and_strings = 1
-nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
-nnoremap <silent> <Leader>d :YcmCompleter GoToDefinition<cr>
-nnoremap <silent> <Leader>g :YcmCompleter GoToDeclaration<cr>
-noremap <leader>Y :call YcmAutoTriggerToggle()<cr>
-function! YcmAutoTriggerToggle()
-  let cur = g:ycm_auto_trigger
-  if cur == 0
-    let g:ycm_auto_trigger = 1
-  else
-    let g:ycm_auto_trigger = 0
-  endif
-endfunction
-Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
+" let g:ycm_python_binary_path = 'python'
+" let g:ycm_global_ycm_extra_conf = '~/.config/nvim/etc/ycm_extra_conf.py'
+" let g:ycm_collect_identifiers_from_tag_files = 1
+" let g:ycm_confirm_extra_conf = 1
+" let g:ycm_enable_diagnostic_signs = 0
+" let g:ycm_enable_diagnostic_highlighting = 0
+" let g:ycm_autoclose_preview_window_after_completion = 0
+" let g:ycm_autoclose_preview_window_after_insertion = 1
+" let g:ycm_collect_identifiers_from_comments_and_strings = 1
+" nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
+" nnoremap <silent> <Leader>d :YcmCompleter GoToDefinition<cr>
+" nnoremap <silent> <Leader>g :YcmCompleter GoToDeclaration<cr>
+" noremap <leader>Y :call YcmAutoTriggerToggle()<cr>
+" function! YcmAutoTriggerToggle()
+"   let cur = g:ycm_auto_trigger
+"   if cur == 0
+"     let g:ycm_auto_trigger = 1
+"   else
+"     let g:ycm_auto_trigger = 0
+"   endif
+" endfunction
+" let g:ycm_server_keep_logfiles = 1
+" let g:ycm_server_log_level = 'debug'
+" Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
 
 " 解决ycm在启用vim-multiple-cursors后，慢变的问题
-" http://www.snip2code.com/Snippet/157563/vimrc-for-multiple-cursors-and-YouComple
 let s:multi_cursors_on = 0
 function! Multiple_cursors_before()
   if !s:multi_cursors_on
-    let s:old_ycm_whitelist = g:ycm_filetype_whitelist
-    let g:ycm_filetype_whitelist = {}
+    " let s:old_ycm_whitelist = g:ycm_filetype_whitelist
+    " let g:ycm_filetype_whitelist = {}
+    let g:deoplete#disable_auto_complete = 1
     let s:multi_cursors_on = 1
   endif
 endfunction
 
 function! Multiple_cursors_after()
   if s:multi_cursors_on
-    let g:ycm_filetype_whitelist = s:old_ycm_whitelist
+    " let g:ycm_filetype_whitelist = s:old_ycm_whitelist
     let s:multi_cursors_on = 0
+    let g:deoplete#disable_auto_complete = 0
   endif
 endfunction
 
-" Using a non-master branch
-Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' }
+" host_prog是neovim的设置，与YCM没有关系
+let g:python_host_prog = 'python'
+" let g:python3_host_prog = 'python3'
+let g:python3_host_prog = $HOME.'/.envs/experiment/bin/python3'
+
+" 代替YCM，用jedi-vim，来做python补全
+" let g:jedi#completions_command = "<C-N>"
+" Plug 'davidhalter/jedi-vim'
+
+Plug 'zchee/deoplete-jedi'
+let g:deoplete#enable_at_startup = 1
+let g:deoplete#enable_smart_case = 1
+inoremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
+inoremap <expr><BS>  deoplete#smart_close_popup()."\<C-h>"
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+
+function! s:my_cr_function() abort
+  return deoplete#close_popup() . "\<CR>"
+endfunction
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+
+let g:SuperTabDefaultCompletionType = "<c-n>"
+Plug 'ervandew/supertab'
 
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 " ultisnips
