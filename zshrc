@@ -1,20 +1,21 @@
 # 测试zsh启动时间的方法
 # /usr/bin/time zsh -i -c exit
 #
+OS_NAME=$(uname -s)
+
 export LC_ALL=en_US.utf-8
 export LANG=en_US.utf-8
 
 export ZSH=/Users/liyong/.oh-my-zsh
-# ZSH_THEME="robbyrussell"
 ZSH_THEME="agnoster"
 # virtualenv
-export WORKON_HOME=~/.envs
+export WORKON_HOME="${HOME}/.envs"
 export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
-mkdir -p $WORKON_HOME
-source /usr/local/bin/virtualenvwrapper.sh
+# plugins 可以激活virtualenvwrapper.sh
+# 所以不在这里激活
 # virtualenv end
 
-plugins=(git virtualenvwrapper gpg-agent autojump)
+plugins=(git virtualenvwrapper gpg-agent autojump jsontools)
 source $ZSH/oh-my-zsh.sh
 export PATH="/usr/local/bin:$PATH"
 
@@ -29,6 +30,19 @@ export EDITOR="/usr/local/bin/vim"
 # ShadowsocsX-NG http代理
 export http_proxy="http://127.0.0.1:1087"
 export https_proxy="http://127.0.0.1:1087"
+
+# colors 设置
+#Generic Colouriser
+if [[ "x${OS_NAME}" = "xDarwin" ]]; then
+  # 为了减少session启动时间
+  # 将coreutils目录写死了
+  if [ -d /usr/local/Cellar/coreutils ]; then
+    PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+    alias ls='ls --show-control-chars --color=auto'
+    eval `gdircolors -b $HOME/.dir_colors`
+  fi
+
+fi
 
 # fzf
 # fzf的配置有些多，所有放在最后

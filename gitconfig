@@ -1,10 +1,17 @@
 # ln -s `pwd`/gitconfig ~/.gitconfig
 [color]
-	ui = auto
-	diff = auto
-	branch = auto
-	interactive = auto
-	status = auto
+	ui = always
+	diff = always
+	branch = always
+	interactive = always
+	status = always
+	grep = always
+	pager = true
+	decorate = always
+	showbranch = always
+	added = green
+	changed = red bold
+	untracked = magenta bold
 [user]
 	name = liyong
 	email = hungrybirder@gmail.com
