@@ -72,15 +72,17 @@ function! Multiple_cursors_after()
   endif
 endfunction
 
-" host_prog是neovim的设置，与YCM没有关系
-let g:python_host_prog = 'python'
+" deoplete只会用python3或VIRTUAL_ENV环境变更 
+" 所以不设置下面这个变量了
+" let g:python_host_prog = 'python'
 " let g:python3_host_prog = 'python3'
-let g:python3_host_prog = $HOME.'/.envs/experiment/bin/python3'
 
 " 代替YCM，用jedi-vim，来做python补全
 " let g:jedi#completions_command = "<C-N>"
 " Plug 'davidhalter/jedi-vim'
 
+let g:deoplete#sources#jedi#server_timeout = 5
+let g:deoplete#sources#jedi#show_docstring = 1
 Plug 'zchee/deoplete-jedi'
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#enable_smart_case = 1
