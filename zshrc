@@ -51,7 +51,7 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 fs() {
-  host=$(cut -d " " -f 1 $HOME/.ssh/known_hosts | fzf)
+  host=$(cut -d " " -f 1 $HOME/.ssh/known_hosts | egrep -v -e '^[0-9]+\.' | egrep -v '^$' | fzf)
   if [ "x$host" != "x" ]
   then
     ssh $host
