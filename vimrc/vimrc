@@ -276,6 +276,13 @@ Plug 'mhinz/vim-signify'
 Plug 'jamessan/vim-gnupg'
 
 Plug 'avakhov/vim-yaml'
+
+" vim8 completor
+Plug 'maralla/completor.vim'
+
+let g:SuperTabDefaultCompletionType = "<c-n>"
+Plug 'ervandew/supertab'
+
 call plug#end()
 
 nnoremap <silent> <expr> <Leader>f (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":Files\<cr>"
