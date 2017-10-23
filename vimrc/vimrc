@@ -278,6 +278,8 @@ Plug 'jamessan/vim-gnupg'
 Plug 'avakhov/vim-yaml'
 
 " vim8 completor
+noremap <leader>d :call completor#do('definition')<CR>
+" noremap <leader>g :call completor#do('doc')<CR>
 Plug 'maralla/completor.vim'
 
 let g:SuperTabDefaultCompletionType = "<c-n>"
