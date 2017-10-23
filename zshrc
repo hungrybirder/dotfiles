@@ -17,7 +17,7 @@ export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
 
 plugins=(git virtualenvwrapper gpg-agent autojump jsontools)
 source $ZSH/oh-my-zsh.sh
-export PATH="/usr/local/bin:$PATH"
+export PATH="/usr/local/sbin:/usr/local/bin:$PATH"
 
 # 在 iTerm -> Preferences -> Profiles -> Keys 中，新建一个快捷键
 # 例如 ⌥ + a ，Action 选择 Send Hex Code，键值为 0x1 0x70 0x63 0x20 0xd，保存生效。
@@ -37,9 +37,9 @@ if [[ "x${OS_NAME}" = "xDarwin" ]]; then
   # 为了减少session启动时间
   # 将coreutils目录写死了
   if [ -d /usr/local/Cellar/coreutils ]; then
-    PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
-    alias ls='ls --show-control-chars --color=auto'
-    eval `gdircolors -b $HOME/.dir_colors`
+    # PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+    # alias ls='ls --show-control-chars --color=auto'
+    eval `/usr/local/bin/gdircolors -b $HOME/.dir_colors`
   fi
 
 fi
