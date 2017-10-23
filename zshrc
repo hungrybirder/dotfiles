@@ -38,7 +38,7 @@ if [[ "x${OS_NAME}" = "xDarwin" ]]; then
   # 将coreutils目录写死了
   if [ -d /usr/local/Cellar/coreutils ]; then
     # PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
-    # alias ls='ls --show-control-chars --color=auto'
+    alias ls='/usr/local/opt/coreutils/libexec/gnubin/ls --show-control-chars --color=auto'
     eval `/usr/local/bin/gdircolors -b $HOME/.dir_colors`
   fi
 
