@@ -471,7 +471,7 @@ nnoremap N Nzzzv
 augroup MyAutoCmd
   au!
   filetype on
-  autocmd FileType python setlocal ts=4 sts=4 sw=4 et omnifunc=jedi#completions
+  " autocmd FileType python setlocal ts=4 sts=4 sw=4 et omnifunc=jedi#completions
   autocmd FileType python noremap <buffer><Leader>cf :Autoformat<CR><CR>
   autocmd FileType python inoremap <buffer><Leader>cf <c-c>:Autoformat<CR><CR>gi
 augroup END
