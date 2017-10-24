@@ -95,6 +95,16 @@ function! s:my_cr_function() abort
 endfunction
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
+let g:jedi#auto_vim_configuration = 0 
+let g:jedi#completions_enabled = 0 "不启动jedi-vim的补全
+let g:jedi#goto_assignments_command = ''  " dynamically done for ft=python.
+let g:jedi#goto_definitions_command = ''  " dynamically done for ft=python.
+let g:jedi#rename_command = '<Leader>gR'
+let g:jedi#usages_command = '<Leader>gu'
+let g:jedi#smart_auto_mappings = 1
+Plug 'davidhalter/jedi-vim'
+
+
 let g:SuperTabDefaultCompletionType = "<c-n>"
 Plug 'ervandew/supertab'
 
