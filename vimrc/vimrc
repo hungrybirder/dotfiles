@@ -277,6 +277,15 @@ Plug 'jamessan/vim-gnupg'
 
 Plug 'avakhov/vim-yaml'
 
+let g:jedi#auto_vim_configuration = 0 
+let g:jedi#completions_enabled = 0 "不启动jedi-vim的补全
+" let g:jedi#goto_assignments_command = ''  " dynamically done for ft=python.
+" let g:jedi#goto_definitions_command = ''  " dynamically done for ft=python.
+let g:jedi#rename_command = '<Leader>gR'
+let g:jedi#usages_command = '<Leader>gu'
+" let g:jedi#smart_auto_mappings = 1
+Plug 'davidhalter/jedi-vim'
+
 " vim8 completor
 noremap <leader>d :call completor#do('definition')<CR>
 " noremap <leader>g :call completor#do('doc')<CR>
@@ -476,6 +485,8 @@ augroup MyAutoCmd
   " autocmd FileType python setlocal ts=4 sts=4 sw=4 et omnifunc=jedi#completions
   autocmd FileType python noremap <buffer><Leader>cf :Autoformat<CR><CR>
   autocmd FileType python inoremap <buffer><Leader>cf <c-c>:Autoformat<CR><CR>gi
+
+  autocmd FileType c setlocal ts=4 sts=4 sw=4 et
 augroup END
 
 " language runner
