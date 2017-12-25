@@ -125,3 +125,14 @@ cdf() {
    file=$(fzf +m -q "$1") && dir=$(dirname "$file") && cd "$dir"
 }
 # fzf end
+#
+# ##########################################
+#
+#         My Useful Functions
+#
+##########################################
+# translate unix timestamp to readable str
+mytime() {
+  python -c "from time import ctime; print ctime($1)"
+}
+
