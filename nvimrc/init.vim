@@ -150,7 +150,14 @@ Plug 'terryma/vim-multiple-cursors'
 let g:multi_cursor_exit_from_insert_mode = 0
 let g:multi_cursor_exit_from_visual_mode = 0
 
-Plug 'Chiel92/vim-autoformat'
+" Plug 'Chiel92/vim-autoformat'
+Plug 'sbdchd/neoformat'
+let g:neoformat_enabled_python = ['autopep8']
+" augroup fmt
+"   autocmd!
+"   autocmd BufWritePre * undojoin | Neoformat
+" augroup END
+
 
 " for markdown preview
 Plug 'shime/vim-livedown'
@@ -658,13 +665,10 @@ augroup MyAutoCmd
   au!
   filetype on
   autocmd FileType python setlocal ts=4 sts=4 sw=4 et
-  " if use YCM comment out one line below
-  " autocmd FileType python setlocal completefunc=jedi#completions omnifunc=jedi#completions
-  autocmd FileType python noremap <buffer><Leader>cf :Autoformat<CR><CR>
-  autocmd FileType python inoremap <buffer><Leader>cf <c-c>:Autoformat<CR><CR>gi
+  autocmd FileType python noremap <buffer><Leader>cf :Neoformat<CR><CR>
+  autocmd FileType python inoremap <buffer><Leader>cf <c-c>:Neoformat<CR><CR>gi
 
   autocmd FileType c setlocal ts=4 sts=4 sw=4 et
-  " autocmd FileType c nnoremap <buffer> <silent> <C-]> :YcmCompleter GoTo<cr>
   autocmd FileType cc setlocal ts=2 sts=2 sw=2 et
   autocmd FileType cpp setlocal ts=2 sts=2 sw=2 et
   autocmd FileType shell setlocal ts=4 sts=4 sw=4 et
@@ -672,19 +676,11 @@ augroup MyAutoCmd
   autocmd FileType java setlocal ts=4 sts=4 sw=4 et
   autocmd FileType php setlocal ts=4 sts=4 sw=4 et
 
-  autocmd FileType c,cc,cpp,objc nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
-  autocmd FileType c,cc,cpp,objc vnoremap <buffer><Leader>cf :ClangFormat<CR>
+  " autocmd FileType c,cc,cpp,objc nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
+  " autocmd FileType c,cc,cpp,objc vnoremap <buffer><Leader>cf :ClangFormat<CR>
   autocmd FileType c,cc,cpp,objc setlocal path+=/usr/local/include
-  autocmd FileType yaml noremap <buffer><Leader>cf :Autoformat<CR><CR>
-  autocmd FileType yaml inoremap <buffer><Leader>cf <c-c>:Autoformat<CR><CR>gi
-
-  " for html/js/css
-  " autocmd FileType javascript setlocal ts=4 sts=4 sw=4 et
-  " autocmd FileType javascript noremap <buffer>  <Leader>cf :call JsBeautify()<CR>
-  " for html
-  " autocmd FileType html noremap <buffer> <Leader>cf :call HtmlBeautify()<CR>
-  " for css or scss
-  " autocmd FileType css noremap <buffer> <Leader>cf :call CSSBeautify()<CR>
+  autocmd FileType yaml noremap <buffer><Leader>cf :Neoformat<CR><CR>
+  autocmd FileType yaml inoremap <buffer><Leader>cf <c-c>:Neoformat<CR><CR>gi
 
   autocmd FileType vim setlocal ts=2 sts=2 sw=2 et
 augroup END
