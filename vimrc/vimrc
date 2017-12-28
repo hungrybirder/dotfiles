@@ -76,7 +76,13 @@ Plug 'terryma/vim-multiple-cursors'
 let g:multi_cursor_exit_from_insert_mode = 0
 let g:multi_cursor_exit_from_visual_mode = 0
 
-Plug 'Chiel92/vim-autoformat'
+" Plug 'Chiel92/vim-autoformat'
+Plug 'sbdchd/neoformat'
+let g:neoformat_enabled_python = ['autopep8']
+augroup fmt
+  autocmd!
+  autocmd BufWritePre * undojoin | Neoformat
+augroup END
 
 Plug 'dyng/ctrlsf.vim'
 " ctrlsf mapping
@@ -483,8 +489,8 @@ augroup MyAutoCmd
   au!
   filetype on
   " autocmd FileType python setlocal ts=4 sts=4 sw=4 et omnifunc=jedi#completions
-  autocmd FileType python noremap <buffer><Leader>cf :Autoformat<CR><CR>
-  autocmd FileType python inoremap <buffer><Leader>cf <c-c>:Autoformat<CR><CR>gi
+  autocmd FileType python noremap <buffer><Leader>cf :Neoformat<CR><CR>
+  autocmd FileType python inoremap <buffer><Leader>cf <c-c>:Neoformat<CR><CR>gi
 
   autocmd FileType c setlocal ts=4 sts=4 sw=4 et
 augroup END
