@@ -79,10 +79,10 @@ let g:multi_cursor_exit_from_visual_mode = 0
 " Plug 'Chiel92/vim-autoformat'
 Plug 'sbdchd/neoformat'
 let g:neoformat_enabled_python = ['autopep8']
-augroup fmt
-  autocmd!
-  autocmd BufWritePre * undojoin | Neoformat
-augroup END
+" augroup fmt
+"   autocmd!
+"   autocmd BufWritePre * undojoin | Neoformat
+" augroup END
 
 Plug 'dyng/ctrlsf.vim'
 " ctrlsf mapping
