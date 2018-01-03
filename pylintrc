@@ -3,7 +3,7 @@ indent-string='    '
 max-line-length=80
 
 [MESSAGES CONTROL]
-disable=invalid-name
+disable=invalid-name,
 	broad-except,
 	logging-format-interpolation,
 	global-variable-not-assigned,
