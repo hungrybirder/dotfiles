@@ -583,15 +583,6 @@ set list listchars=tab:› ,eol:¬
 set cursorline
 set backspace=indent,eol,start
 
-" Special case: When the cursor is in a word, "cw" and "cW" do not include the
-" white space after a word, they only change up to the end of the word.  This is
-" because Vim interprets "cw" as change-word, and a word does not include the
-" following white space.
-" {Vi: "cw" when on a blank followed by other blanks changes only the first
-" blank; this is probably a bug, because "dw" deletes all the blanks; use the
-" 'w' flag in 'cpoptions' to make it work like Vi anyway}
-map cw dwi
-
 "inoremap maps a key combination for insert mode
 "<C-e> is the keybinding I am creating.
 "<C-o> is a command that switches vim to normal mode for one command.
