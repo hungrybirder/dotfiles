@@ -15,7 +15,7 @@ export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
 # 所以不在这里激活
 # virtualenv end
 
-plugins=(git virtualenvwrapper gpg-agent autojump jsontools)
+plugins=(git virtualenvwrapper gpg-agent autojump jsontools vagrant docker)
 source $ZSH/oh-my-zsh.sh
 export PATH="/usr/local/sbin:/usr/local/bin:$PATH"
 
