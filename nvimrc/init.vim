@@ -256,6 +256,7 @@ Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 Plug 'Shougo/neoyank.vim'
 Plug 'Shougo/unite-outline'
 
+
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 " This is the default extra key bindings
@@ -474,7 +475,7 @@ nnoremap <silent> <Leader>v :call fzf#run({
 \   'right': winwidth('.') / 2,
 \   'sink':  'vertical botright split' })<CR>
 
-" unite start
+" unite settings
 let g:unite_source_history_yank_enable = 1
 nnoremap <leader>y :<C-u>Unite -no-split -buffer-name=yank    history/yank<cr>
 nnoremap <leader>o :<C-u>Unite -no-split -buffer-name=outline -start-insert outline<cr>
@@ -494,7 +495,7 @@ function! s:unite_settings()
   imap <buffer> <C-j>   <Plug>(unite_select_next_line)
   imap <buffer> <C-k>   <Plug>(unite_select_previous_line)
 endfunction
-" unite end
+" unite settings end
 
 " Q: Closes the window
 nnoremap Q :q<cr>

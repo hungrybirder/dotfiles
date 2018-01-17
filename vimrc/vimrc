@@ -106,6 +106,10 @@ let g:gundo_preview_height = 25
 let g:gundo_right = 1
 
 Plug 'tpope/vim-repeat'
+Plug 'Shougo/unite.vim'
+Plug 'Shougo/vimproc.vim', { 'do': 'make' }
+Plug 'Shougo/neoyank.vim'
+Plug 'Shougo/unite-outline'
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -300,6 +304,8 @@ Plug 'maralla/completor.vim'
 let g:SuperTabDefaultCompletionType = "<c-n>"
 Plug 'ervandew/supertab'
 
+" vim ruby
+Plug 'vim-ruby/vim-ruby'
 call plug#end()
 
 nnoremap <silent> <expr> <Leader>f (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":Files\<cr>"
@@ -326,6 +332,29 @@ nnoremap <silent> <Leader>s :call fzf#run({
 nnoremap <silent> <Leader>v :call fzf#run({
 \   'right': winwidth('.') / 2,
 \   'sink':  'vertical botright split' })<CR>
+
+" unite settings
+let g:unite_source_history_yank_enable = 1
+nnoremap <leader>y :<C-u>Unite -no-split -buffer-name=yank    history/yank<cr>
+nnoremap <leader>o :<C-u>Unite -no-split -buffer-name=outline -start-insert outline<cr>
+" Ignore
+call unite#custom#source('file_rec/async,file', 'ignore_pattern', 'bower_components\|dist\|fonts\|node_modules\|maps\|\.png$\|\.jpg$\|\.svg$\|\.gif$')
+" Configure Ag and use it instead of grep
+let g:unite_source_grep_command = 'ag'
+let g:unite_source_grep_default_opts =
+\ '--line-numbers --nocolor --nogroup --hidden --ignore ' .
+\  '''.hg'' --ignore ''.svn'' --ignore ''.git'' --ignore ''.bzr'''
+let g:unite_source_grep_recursive_opt = ''
+autocmd FileType unite call s:unite_settings()
+function! s:unite_settings()
+  " Play nice with supertab
+  let b:SuperTabDisabled=1
+  " Enable navigation with control-j and control-k in insert mode
+  imap <buffer> <C-j>   <Plug>(unite_select_next_line)
+  imap <buffer> <C-k>   <Plug>(unite_select_previous_line)
+endfunction
+" unite settings end
+
 
 " Q: Closes the window
 nnoremap Q :q<cr>
