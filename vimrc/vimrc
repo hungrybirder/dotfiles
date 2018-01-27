@@ -83,6 +83,18 @@ let g:neoformat_enabled_python = ['autopep8']
 "   autocmd!
 "   autocmd BufWritePre * undojoin | Neoformat
 " augroup END
+"
+" for markdown preview
+Plug 'shime/vim-livedown'
+" sudo npm install -g livedown
+" should markdown preview get shown automatically upon opening markdown buffer
+let g:livedown_autorun = 0
+" should the browser window pop-up upon previewing
+let g:livedown_open = 1
+" the port on which Livedown server will run
+let g:livedown_port = 1337
+nmap <leader>md :LivedownPreview<CR>
+
 
 Plug 'dyng/ctrlsf.vim'
 " ctrlsf mapping
