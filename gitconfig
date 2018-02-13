@@ -28,10 +28,12 @@
 	diffstat = diff --stat
 	st = status
 [color "diff"]
-	meta = yellow bold
+	meta = yellow
 	frag = magenta bold
 	old = red bold
 	new = green bold
+	commit = yellow bold
+	whitespace = red reverse
 [github]
 	user = hungrybirder@gmail.com
 [gpg]
@@ -47,3 +49,10 @@
 	smtpserver = smtp.gmail.com
 	smtpuser = hungrybirder@gmail.com
 	smtpserverport = 587
+[color "diff-highlight"]
+	oldNormal = red bold
+	oldHighlight = red bold 52
+	newNormal = green bold
+	newHighlight = green bold 22
+[core]
+	pager = diff-so-fancy | less --tabs=4 -RFX

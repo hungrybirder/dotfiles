@@ -8,6 +8,9 @@ export LANG=en_US.utf-8
 
 export ZSH=/Users/liyong/.oh-my-zsh
 ZSH_THEME="agnoster"
+
+source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+
 # virtualenv
 export WORKON_HOME="${HOME}/.envs"
 export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
@@ -18,6 +21,8 @@ export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
 plugins=(git virtualenvwrapper gpg-agent autojump jsontools vagrant docker)
 source $ZSH/oh-my-zsh.sh
 export PATH="/usr/local/sbin:/usr/local/bin:$PATH"
+
+export PYENV_ROOT=$HOME/.pyenv
 
 # 在 iTerm -> Preferences -> Profiles -> Keys 中，新建一个快捷键
 # 例如 ⌥ + a ，Action 选择 Send Hex Code，键值为 0x1 0x70 0x63 0x20 0xd，保存生效。
