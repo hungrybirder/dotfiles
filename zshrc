@@ -145,6 +145,16 @@ show_docker_containers() {
   dockviz images --dot | dot -Tpng -o /tmp/containers.png && open /tmp/containers.png
 }
 
+dev() {
+  today=$(date +%Y%m%d)
+  target_dir=$HOME/tmp/${today}
+  if [[ -d ${target_dir} ]]; then
+    cd ${target_dir}
+  else
+    mkdir -p ${target_dir} && cd ${target_dir}
+  fi
+}
+
 # 一些特殊的设置
 # zsh <c-u> 默认是kill-whole-line(删除整行) 与bash的<c-u>不同
 # 改成与bash <c-u>一样，从光标处删除至行首
