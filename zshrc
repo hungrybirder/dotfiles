@@ -159,3 +159,7 @@ dev() {
 # zsh <c-u> 默认是kill-whole-line(删除整行) 与bash的<c-u>不同
 # 改成与bash <c-u>一样，从光标处删除至行首
 bindkey \^U backward-kill-line
+
+if [[ "Darwin" = ${OS_NAME} ]]; then
+  alias bubu="brew update && brew upgrade"
+fi

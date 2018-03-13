@@ -1,4 +1,5 @@
-# My ALL dotfiles #
+# My Dot Files #
+
 email: hungrybirder@gmail.com
 
 # very useful tools #
