@@ -28,7 +28,7 @@ export PYENV_ROOT=$HOME/.pyenv
 # 例如 ⌥ + a ，Action 选择 Send Hex Code，键值为 0x1 0x70 0x63 0x20 0xd，保存生效。
 alias pc="proxychains4"
 
-alias mvn="mvn -Denforcer.skip=true "
+alias mvn="mvn -Denforcer.skip=true -DdownloadSources=true "
 
 export EDITOR="/usr/local/bin/vim"
 
