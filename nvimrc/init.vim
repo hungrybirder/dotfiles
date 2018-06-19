@@ -16,6 +16,8 @@ let g:neomake_python_enabled_makers = ['pylint']
 let g:neomake_javascript_enabled_makers = ['jshint']
 " run neomake on the current file on every write
 autocmd! BufWritePost * Neomake
+" 不对java文件做neomake
+autocmd! BufRead *.java NeomakeDisableBuffer
 
 function! BuildYCM(info)
   " info is a dictionary with 3 fields
