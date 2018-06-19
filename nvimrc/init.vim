@@ -16,8 +16,6 @@ let g:neomake_python_enabled_makers = ['pylint']
 let g:neomake_javascript_enabled_makers = ['jshint']
 " run neomake on the current file on every write
 autocmd! BufWritePost * Neomake
-" 不对java文件做neomake
-autocmd! BufRead *.java NeomakeDisableBuffer
 
 function! BuildYCM(info)
   " info is a dictionary with 3 fields
@@ -677,6 +675,10 @@ augroup MyAutoCmd
   autocmd FileType yaml inoremap <buffer><Leader>cf <c-c>:Neoformat<CR><CR>gi
 
   autocmd FileType vim setlocal ts=2 sts=2 sw=2 et
+
+  " java不做neomake
+  autocmd Filetype java NeomakeDisableBuffer
+
 augroup END
 
 " language runner

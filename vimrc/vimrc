@@ -17,8 +17,6 @@ let g:neomake_python_enabled_makers = ['pylint']
 let g:neomake_javascript_enabled_makers = ['jshint']
 " run neomake on the current file on every write
 autocmd! BufWritePost * Neomake
-" 不对java文件做neomake
-autocmd! BufRead *.java NeomakeDisableBuffer
 
 Plug 'junegunn/vim-easy-align'
 
@@ -532,6 +530,9 @@ augroup MyAutoCmd
   autocmd FileType cc,cpp setlocal ts=4 sts=4 sw=4 et
 
   autocmd FileType sh setlocal ts=4 sts=4 sw=4 et
+  
+  " java不做neomake
+  autocmd Filetype java NeomakeDisableBuffer
 augroup END
 
 " language runner
