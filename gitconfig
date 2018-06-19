@@ -27,6 +27,7 @@
 	lgd = log --graph --decorate
 	diffstat = diff --stat
 	st = status
+	clone = clone --recursive
 [color "diff"]
 	meta = yellow
 	frag = magenta bold
