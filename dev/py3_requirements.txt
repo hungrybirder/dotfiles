@@ -20,7 +20,6 @@ pbr
 pexpect
 pickleshare
 pluggy
-prompt-toolkit
 psutil
 ptyprocess
 py
@@ -39,3 +38,4 @@ virtualenv
 wcwidth
 wrapt
 gevent
+bpython
