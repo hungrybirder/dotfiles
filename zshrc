@@ -18,11 +18,16 @@ export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
 # 所以不在这里激活
 # virtualenv end
 
-plugins=(git virtualenvwrapper gpg-agent autojump jsontools vagrant docker)
+# 使用pyenv来管理多个版本的py py3
+# 运行workon命令之前，需要先运行: pyenv virtualenvwrapper
+export PYENV_VIRTUALENVWRAPPER_PREFER_PYVENV="true"
+plugins=(pyenv git gpg-agent autojump jsontools vagrant docker)
+# plugins=(pyenv git virtualenvwrapper gpg-agent autojump jsontools vagrant docker)
 source $ZSH/oh-my-zsh.sh
 export PATH="/usr/local/sbin:/usr/local/bin:$PATH"
 
 export PYENV_ROOT=$HOME/.pyenv
+eval "pyenv virtualenvwrapper"
 
 # 在 iTerm -> Preferences -> Profiles -> Keys 中，新建一个快捷键
 # 例如 ⌥ + a ，Action 选择 Send Hex Code，键值为 0x1 0x70 0x63 0x20 0xd，保存生效。

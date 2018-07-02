@@ -28,35 +28,11 @@ function! BuildYCM(info)
   endif
 endfunction
 
-" let g:ycm_python_binary_path = 'python'
-" let g:ycm_global_ycm_extra_conf = '~/.config/nvim/etc/ycm_extra_conf.py'
-" let g:ycm_collect_identifiers_from_tag_files = 1
-" let g:ycm_confirm_extra_conf = 1
-" let g:ycm_enable_diagnostic_signs = 0
-" let g:ycm_enable_diagnostic_highlighting = 0
-" let g:ycm_autoclose_preview_window_after_completion = 0
-" let g:ycm_autoclose_preview_window_after_insertion = 1
-" let g:ycm_collect_identifiers_from_comments_and_strings = 1
-" nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
-" nnoremap <silent> <Leader>d :YcmCompleter GoToDefinition<cr>
-" nnoremap <silent> <Leader>g :YcmCompleter GoToDeclaration<cr>
-" noremap <leader>Y :call YcmAutoTriggerToggle()<cr>
-" function! YcmAutoTriggerToggle()
-"   let cur = g:ycm_auto_trigger
-"   if cur == 0
-"     let g:ycm_auto_trigger = 1
-"   else
-"     let g:ycm_auto_trigger = 0
-"   endif
-" endfunction
-" let g:ycm_server_keep_logfiles = 1
-" let g:ycm_server_log_level = 'debug'
-" Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
 
-" 解决ycm在启用vim-multiple-cursors后，慢变的问题
 let s:multi_cursors_on = 0
 function! Multiple_cursors_before()
   if !s:multi_cursors_on
+    " 解决ycm在启用vim-multiple-cursors后，慢变的问题
     " let s:old_ycm_whitelist = g:ycm_filetype_whitelist
     " let g:ycm_filetype_whitelist = {}
     let g:deoplete#disable_auto_complete = 1
@@ -668,8 +644,6 @@ augroup MyAutoCmd
   autocmd FileType java setlocal ts=4 sts=4 sw=4 et
   autocmd FileType php setlocal ts=4 sts=4 sw=4 et
 
-  " autocmd FileType c,cc,cpp,objc nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
-  " autocmd FileType c,cc,cpp,objc vnoremap <buffer><Leader>cf :ClangFormat<CR>
   autocmd FileType c,cc,cpp,objc setlocal path+=/usr/local/include
   autocmd FileType yaml noremap <buffer><Leader>cf :Neoformat<CR><CR>
   autocmd FileType yaml inoremap <buffer><Leader>cf <c-c>:Neoformat<CR><CR>gi
