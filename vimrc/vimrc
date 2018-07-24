@@ -109,6 +109,8 @@ inoremap <C-F>t <Esc>:CtrlSFToggle<CR>
 
 Plug 'vim-scripts/tComment'                          
 
+Plug 'tpope/vim-abolish'
+
 Plug 'sjl/gundo.vim'                                 
 " Gundo mapping and settings
 " <F5> :GundoToggle
