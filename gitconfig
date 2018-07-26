@@ -24,7 +24,7 @@
 	prompt = false
 [alias]
 	fav = fetch --all --verbose
-	lgd = log --graph --decorate
+	lgd = log --graph --decorate --show-signature
 	diffstat = diff --stat
 	st = status
 	clone = clone --recursive
@@ -38,7 +38,7 @@
 [github]
 	user = hungrybirder@gmail.com
 [gpg]
-	program = /usr/local/bin/gpg2
+	program = /usr/local/bin/gpg
 [commit]
 	gpgsign = false
 [format]

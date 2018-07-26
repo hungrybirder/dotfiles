@@ -178,3 +178,7 @@ bindkey \^U backward-kill-line
 if [[ "Darwin" = ${OS_NAME} ]]; then
   alias bubu="brew update && brew upgrade"
 fi
+
+# 一些特殊的配置，或function
+SPECIAL_SH="${HOME}/Dropbox/snippet/special.sh"
+test -f ${SPECIAL_SH} && source ${SPECIAL_SH}
