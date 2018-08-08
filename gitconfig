@@ -20,6 +20,7 @@
 	default = simple
 [diff]
 	tool = vimdiff
+	guitool = kdiff3
 [difftool]
 	prompt = false
 [alias]
