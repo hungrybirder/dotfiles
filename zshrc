@@ -170,6 +170,10 @@ dev() {
   fi
 }
 
+get_public_ip() {
+  nc ns1.dnspod.net 6666
+}
+
 # 一些特殊的设置
 # zsh <c-u> 默认是kill-whole-line(删除整行) 与bash的<c-u>不同
 # 改成与bash <c-u>一样，从光标处删除至行首
