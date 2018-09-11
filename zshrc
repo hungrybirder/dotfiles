@@ -161,7 +161,7 @@ show_docker_containers() {
 }
 
 dev() {
-  today=$(date +%Y%m%d)
+  today=$(date +%Y%m)
   target_dir=$HOME/tmp/${today}
   if [[ -d ${target_dir} ]]; then
     cd ${target_dir}
