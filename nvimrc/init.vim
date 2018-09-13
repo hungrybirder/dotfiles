@@ -423,7 +423,7 @@ call plug#end()
 " fzf的性能比unite.vim要好
 nnoremap <silent> <expr> <Leader>f (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":Files\<cr>"
 nnoremap <silent> <Leader>b :<c-u>Buffers<cr>
-nnoremap <silent> <Leader>a :<c-u>Ag<cr>
+nnoremap <silent> <Leader>a :<c-u>Rg<cr>
 nnoremap <silent> <leader>m :<c-u>Marks<cr>
 nnoremap <leader>r :<c-u>FZFMru<cr>
 nnoremap <leader>L :<c-u>FZFLines<cr>
