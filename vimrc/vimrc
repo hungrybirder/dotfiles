@@ -531,6 +531,8 @@ augroup MyAutoCmd
   autocmd FileType cc,cpp noremap <buffer><Leader>cf <c-c>:Neoformat<CR><CR>gi
   autocmd FileType cc,cpp inoremap <buffer><Leader>cf <c-c>:Neoformat<CR><CR>gi
   autocmd FileType c setlocal ts=4 sts=4 sw=4 et
+  autocmd FileType c nnoremap <buffer><Leader>cf <c-c>:Neoformat<CR><CR>gi
+  autocmd FileType c inoremap <buffer><Leader>cf <c-c>:Neoformat<CR><CR>gi
   autocmd FileType cc,cpp setlocal ts=4 sts=4 sw=4 et
 
   autocmd FileType sh setlocal ts=4 sts=4 sw=4 et
