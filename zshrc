@@ -171,7 +171,7 @@ dev() {
 }
 
 get_public_ip() {
-  nc ns1.dnspod.net 6666
+  nc ns1.dnspod.net 6666 | egrep -o "[0-9.]+"
 }
 
 # 一些特殊的设置
