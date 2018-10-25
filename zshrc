@@ -170,6 +170,24 @@ dev() {
   fi
 }
 
+today() {
+  month=$(date +%Y%m)
+  day=$(date +%d)
+  if [ ${day} -ge 3 ]; then
+    day="${day}th"
+  elif [ ${day} -eq 2 ]; then
+    day="2nd"
+  elif [ ${day} -eq 1 ]; then
+    day="1st"
+  fi 
+  target_dir=$HOME/tmp/${month}/${day}
+  if [[ -d ${target_dir} ]]; then
+    cd ${target_dir}
+  else
+    mkdir -p ${target_dir} && cd ${target_dir}
+  fi
+}
+
 get_public_ip() {
   nc ns1.dnspod.net 6666 | egrep -o "[0-9.]+"
 }
