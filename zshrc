@@ -10,6 +10,8 @@ export ZSH=/Users/liyong/.oh-my-zsh
 ZSH_THEME="agnoster"
 
 source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+#source /usr/local/share/zsh-history-substring-search/zsh-history-substring-search.zsh
+source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # virtualenv
 export WORKON_HOME="${HOME}/.envs"
