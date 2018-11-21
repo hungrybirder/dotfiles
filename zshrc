@@ -208,5 +208,5 @@ SPECIAL_SH="${HOME}/Dropbox/snippet/special.sh"
 test -f ${SPECIAL_SH} && source ${SPECIAL_SH}
 
 # go
-eval "$(goenv init -)"
+# eval "$(goenv init -)"
 # go end
