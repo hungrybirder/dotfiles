@@ -23,7 +23,7 @@ export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
 # 使用pyenv来管理多个版本的py py3
 # 运行workon命令之前，需要先运行: pyenv virtualenvwrapper
 export PYENV_VIRTUALENVWRAPPER_PREFER_PYVENV="true"
-plugins=(pyenv git gpg-agent autojump jsontools vagrant docker)
+plugins=(pyenv git gpg-agent autojump jsontools vagrant docker osx)
 # plugins=(pyenv git virtualenvwrapper gpg-agent autojump jsontools vagrant docker)
 source $ZSH/oh-my-zsh.sh
 export PATH="/usr/local/sbin:/usr/local/bin:$PATH"
