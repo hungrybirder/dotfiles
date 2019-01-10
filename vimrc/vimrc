@@ -317,6 +317,7 @@ Plug 'davidhalter/jedi-vim'
 noremap <leader>d :call completor#do('definition')<CR>
 " noremap <leader>g :call completor#do('doc')<CR>
 Plug 'maralla/completor.vim'
+let g:completor_clang_disable_placeholders = 1
 
 let g:SuperTabDefaultCompletionType = "<c-n>"
 Plug 'ervandew/supertab'
