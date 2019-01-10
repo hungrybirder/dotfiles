@@ -20,6 +20,8 @@ export WORKON_HOME="${HOME}/.envs"
 # 所以不在这里激活
 # virtualenv end
 
+export PYENV_VIRTUALENV_DISABLE_PROMPT=1
+
 # 使用pyenv来管理多个版本的py py3
 # 运行workon命令之前，需要先运行: pyenv virtualenvwrapper
 export PYENV_VIRTUALENVWRAPPER_PREFER_PYVENV="true"
@@ -210,3 +212,6 @@ test -f ${SPECIAL_SH} && source ${SPECIAL_SH}
 # go
 # eval "$(goenv init -)"
 # go end
+
+
+export GIT_INTERNAL_GETTEXT_TEST_FALLBACKS=1
