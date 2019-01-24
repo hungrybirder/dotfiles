@@ -65,13 +65,16 @@ function! s:my_cr_function() abort
 endfunction
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
-let g:jedi#rename_command = '<Leader>gR'
-let g:jedi#usages_command = '<Leader>gu'
 if exists(':DeopleteEnable')
   let g:jedi#completions_enabled = 0
   let g:jedi#auto_vim_configuration = 0
   let g:jedi#smart_auto_mappings = 0
   let g:jedi#show_call_signatures = 0
+  let g:jedi#goto_assignments_command = ''  " dynamically done for ft=python.
+  let g:jedi#goto_definitions_command = ''  " dynamically done for ft=python.
+  let g:jedi#use_tabs_not_buffers = 0  " current default is 1.
+  let g:jedi#rename_command = '<Leader>gR'
+  let g:jedi#usages_command = '<Leader>gu'
 endif
 Plug 'davidhalter/jedi-vim'
 
