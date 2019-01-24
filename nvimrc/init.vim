@@ -53,25 +53,26 @@ let g:python3_host_prog = '/Users/liyong/.envs/neovim3/bin/python'
 
 let g:deoplete#sources#jedi#server_timeout = 5
 let g:deoplete#sources#jedi#show_docstring = 1
-Plug 'zchee/deoplete-jedi'
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#enable_smart_case = 1
 inoremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
 inoremap <expr><BS>  deoplete#smart_close_popup()."\<C-h>"
 inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+Plug 'zchee/deoplete-jedi'
 
 function! s:my_cr_function() abort
   return deoplete#close_popup() . "\<CR>"
 endfunction
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
-let g:jedi#auto_vim_configuration = 0 
-let g:jedi#completions_enabled = 0 "不启动jedi-vim的补全
-" let g:jedi#goto_assignments_command = ''  " dynamically done for ft=python.
-" let g:jedi#goto_definitions_command = ''  " dynamically done for ft=python.
 let g:jedi#rename_command = '<Leader>gR'
 let g:jedi#usages_command = '<Leader>gu'
-" let g:jedi#smart_auto_mappings = 1
+if exists(':DeopleteEnable')
+  let g:jedi#completions_enabled = 0
+  let g:jedi#auto_vim_configuration = 0
+  let g:jedi#smart_auto_mappings = 0
+  let g:jedi#show_call_signatures = 0
+endif
 Plug 'davidhalter/jedi-vim'
 
 
