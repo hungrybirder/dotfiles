@@ -481,7 +481,19 @@ set termencoding=utf-8
 set hidden
 set wildmenu
 set wildmode=longest:full,full
-set clipboard+=unnamed
+set clipboard=unnamed
+let g:clipboard = {
+  \ 'name': 'pbcopy',
+  \ 'copy': {
+  \    '+': 'pbcopy',
+  \    '*': 'pbcopy',
+  \  },
+  \ 'paste': {
+  \    '+': 'pbpaste',
+  \    '*': 'pbpaste',
+  \ },
+  \ 'cache_enabled': 0,
+  \ }
 
 set nofoldenable
 set number
