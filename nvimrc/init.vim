@@ -506,7 +506,7 @@ set hlsearch
 " Clear the last hlsearch results
 nnoremap <F3> :let @/ = ""<CR>
 " Combine multi blank lines into one with no highlight
-nmap <leader><leader>l :g/^$/,/./-j<CR><F3><CR>
+" nmap <leader><leader>l :g/^$/,/./-j<CR><F3><CR>
 " Ctrl-r: Easier search and replace
 vnoremap <c-r> "hy:%s/<c-r>h//gc<left><left><left>
 
@@ -544,7 +544,7 @@ tnoremap <Esc> <C-\><C-n>
 " if has('nvim')
 "   map <BS> <C-W>h
 " endif
-set timeoutlen=350
+" set timeoutlen=350
 
 " sort
 vnoremap <leader>s :sort<cr>
