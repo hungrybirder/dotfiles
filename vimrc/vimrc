@@ -21,8 +21,8 @@ autocmd! BufWritePost * Neomake
 Plug 'junegunn/vim-easy-align'
 
 " host_prog是neovim的设置，与YCM没有关系
-let g:python_host_prog = 'python'
-let g:python3_host_prog = 'python3'
+" let g:python_host_prog = 'python'
+" let g:python3_host_prog = 'python3'
 
 
 " 解决ycm在启用vim-multiple-cursors后，慢变的问题
