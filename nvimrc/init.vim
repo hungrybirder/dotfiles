@@ -58,7 +58,7 @@ let g:deoplete#enable_smart_case = 1
 inoremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
 inoremap <expr><BS>  deoplete#smart_close_popup()."\<C-h>"
 inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-Plug 'zchee/deoplete-jedi'
+Plug 'deoplete-plugins/deoplete-jedi'
 
 function! s:my_cr_function() abort
   return deoplete#close_popup() . "\<CR>"
