@@ -58,24 +58,23 @@ let g:deoplete#enable_smart_case = 1
 inoremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
 inoremap <expr><BS>  deoplete#smart_close_popup()."\<C-h>"
 inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-Plug 'deoplete-plugins/deoplete-jedi'
 
 function! s:my_cr_function() abort
   return deoplete#close_popup() . "\<CR>"
 endfunction
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
-if exists(':DeopleteEnable')
-  let g:jedi#completions_enabled = 0
-  let g:jedi#auto_vim_configuration = 0
-  let g:jedi#smart_auto_mappings = 0
-  let g:jedi#show_call_signatures = 0
-  let g:jedi#goto_assignments_command = ''  " dynamically done for ft=python.
-  let g:jedi#goto_definitions_command = ''  " dynamically done for ft=python.
-  let g:jedi#use_tabs_not_buffers = 0  " current default is 1.
-  let g:jedi#rename_command = '<Leader>gR'
-  let g:jedi#usages_command = '<Leader>gu'
-endif
+Plug 'deoplete-plugins/deoplete-jedi'
+
+let g:jedi#completions_enabled = 0
+let g:jedi#auto_vim_configuration = 0
+let g:jedi#smart_auto_mappings = 0
+let g:jedi#show_call_signatures = 0
+let g:jedi#goto_assignments_command = ''  " dynamically done for ft=python.
+let g:jedi#goto_definitions_command = ''  " dynamically done for ft=python.
+let g:jedi#use_tabs_not_buffers = 0  " current default is 1.
+let g:jedi#rename_command = '<Leader>gR'
+let g:jedi#usages_command = '<Leader>gu'
 Plug 'davidhalter/jedi-vim'
 
 
