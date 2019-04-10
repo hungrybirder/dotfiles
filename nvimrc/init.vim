@@ -51,6 +51,9 @@ endfunction
 let g:python_host_prog = '/Users/liyong/.envs/neovim2/bin/python'
 let g:python3_host_prog = '/Users/liyong/.envs/neovim3/bin/python'
 
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+
+Plug 'deoplete-plugins/deoplete-jedi'
 let g:deoplete#sources#jedi#server_timeout = 5
 let g:deoplete#sources#jedi#show_docstring = 1
 let g:deoplete#enable_at_startup = 1
@@ -62,9 +65,6 @@ inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
 function! s:my_cr_function() abort
   return deoplete#close_popup() . "\<CR>"
 endfunction
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-
-Plug 'deoplete-plugins/deoplete-jedi'
 
 let g:jedi#completions_enabled = 0
 let g:jedi#auto_vim_configuration = 0
