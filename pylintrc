@@ -1,3 +1,6 @@
+[MASTER]
+load-plugins=pylint_protobuf
+
 [FORMAT]
 indent-string='    '
 max-line-length=80
@@ -8,4 +11,6 @@ disable=invalid-name,
 	logging-format-interpolation,
 	global-variable-not-assigned,
 	missing-docstring,
-	relative-import
+	relative-import,
+	logging-fstring-interpolation,
+	#no-member,
