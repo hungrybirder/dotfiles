@@ -116,7 +116,21 @@ let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline#extensions#tabline#fnamemod = ':t' " only show buffer name
 let g:airline_theme = "dark"
 
+" Keep search matches in the middle of the window.
+nnoremap n nzzzv
+nnoremap N Nzzzv
 "easy motion
+let g:EasyMotion_smartcase = 1
+map  / <Plug>(easymotion-sn)
+omap / <Plug>(easymotion-tn)
+nmap s <Plug>(easymotion-overwin-f2)
+nmap t <Plug>(easymotion-t2)
+map <leader>j <Plug>(easymotion-j)
+map <leader>k <Plug>(easymotion-k)
+map <Leader>L <Plug>(easymotion-bd-jk)
+nmap <Leader>L <Plug>(easymotion-overwin-line)
+map  <Leader>w <Plug>(easymotion-bd-w)
+nmap <Leader>w <Plug>(easymotion-overwin-w)
 Plug 'Lokaltog/vim-easymotion'
 
 Plug 'terryma/vim-multiple-cursors'
@@ -429,7 +443,6 @@ nnoremap <silent> <Leader>b :<c-u>Buffers<cr>
 nnoremap <silent> <Leader>a :<c-u>Rg<cr>
 nnoremap <silent> <leader>m :<c-u>Marks<cr>
 nnoremap <leader>r :<c-u>FZFMru<cr>
-nnoremap <leader>L :<c-u>FZFLines<cr>
 nnoremap <leader>l :<c-u>FZFBLines<cr>
 
 " Tags in the project (`ctags -R`)
@@ -633,10 +646,6 @@ noremap <Up> <Nop>
 noremap <Down> <Nop>
 noremap <Left> <Nop>
 noremap <Right> <Nop>
-
-" Keep search matches in the middle of the window.
-nnoremap n nzzzv
-nnoremap N Nzzzv
 
 augroup MyAutoCmd
   au!
