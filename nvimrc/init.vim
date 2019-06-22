@@ -453,14 +453,18 @@ Plug 'avakhov/vim-yaml'
 
 
 let g:AutoPairsFlyMode = 1
-" System Shortcuts:
-" <CR>  : Insert new indented line after return if cursor in blank brackets or quotes.
-" <BS>  : Delete brackets in pair
-" <M-p> : Toggle Autopairs (g:AutoPairsShortcutToggle)
-" <M-e> : Fast Wrap (g:AutoPairsShortcutFastWrap)
-" <M-n> : Jump to next closed pair (g:AutoPairsShortcutJump)
-" <M-b> : BackInsert (g:AutoPairsShortcutBackInsert)
+let g:AutoPairsShortcutToggle = '<F4>'
 Plug 'jiangmiao/auto-pairs'
+
+Plug 'ternjs/tern_for_vim', { 'for': ['javascript', 'javascript.jsx'] }
+let g:tern#command = ["tern"]
+let g:tern#arguments = ["--persistent"]
+Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript', 'javascript.jsx'] }
+let g:deoplete#sources#ternjs#timeout = 1
+let g:deoplete#sources#ternjs#types = 1
+let g:deoplete#sources#ternjs#depths = 1
+let g:deoplete#sources#ternjs#docs = 1
+Plug 'othree/jspc.vim', { 'for': ['javascript', 'javascript.jsx'] }
 call plug#end()
 
 " fzf的性能比unite.vim要好

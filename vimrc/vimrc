@@ -18,8 +18,6 @@ let g:neomake_javascript_enabled_makers = ['jshint']
 " run neomake on the current file on every write
 autocmd! BufWritePost * Neomake
 
-Plug 'junegunn/vim-easy-align'
-
 " host_prog是neovim的设置，与YCM没有关系
 " let g:python_host_prog = 'python'
 " let g:python3_host_prog = 'python3'
@@ -359,8 +357,9 @@ let g:completor_clang_disable_placeholders = 1
 let g:SuperTabDefaultCompletionType = "<c-n>"
 Plug 'ervandew/supertab'
 
-" vim ruby
-Plug 'vim-ruby/vim-ruby'
+let g:AutoPairsFlyMode = 1
+let g:AutoPairsShortcutToggle = '<F4>'
+Plug 'jiangmiao/auto-pairs'
 call plug#end()
 
 nnoremap <silent> <expr> <Leader>f (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":Files\<cr>"
