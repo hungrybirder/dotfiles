@@ -456,6 +456,7 @@ let g:AutoPairsFlyMode = 1
 let g:AutoPairsShortcutToggle = '<F4>'
 Plug 'jiangmiao/auto-pairs'
 
+" js
 Plug 'ternjs/tern_for_vim', { 'for': ['javascript', 'javascript.jsx'] }
 let g:tern#command = ["tern"]
 let g:tern#arguments = ["--persistent"]
