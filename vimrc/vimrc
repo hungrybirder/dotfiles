@@ -343,16 +343,39 @@ Plug 'jamessan/vim-gnupg'
 
 Plug 'avakhov/vim-yaml'
 
-" let g:jedi#auto_vim_configuration = 0 
-" let g:jedi#completions_enabled = 0 "不启动jedi-vim的补全
-" let g:jedi#rename_command = '<Leader>gR'
-" let g:jedi#usages_command = '<Leader>gu'
-" Plug 'davidhalter/jedi-vim'
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
+let g:deoplete#enable_at_startup = 1
 
-" vim8 completor
-noremap <leader>d :call completor#do('definition')<CR>
-Plug 'maralla/completor.vim'
-let g:completor_clang_disable_placeholders = 1
+Plug 'deoplete-plugins/deoplete-jedi'
+let g:deoplete#sources#jedi#server_timeout = 5
+let g:deoplete#sources#jedi#show_docstring = 1
+let g:deoplete#enable_at_startup = 1
+let g:deoplete#enable_smart_case = 1
+inoremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
+inoremap <expr><BS>  deoplete#smart_close_popup()."\<C-h>"
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+
+function! s:my_cr_function() abort
+  return deoplete#close_popup() . "\<CR>"
+endfunction
+
+let g:jedi#completions_enabled = 0
+let g:jedi#auto_vim_configuration = 0
+let g:jedi#smart_auto_mappings = 0
+let g:jedi#show_call_signatures = 0
+let g:jedi#goto_assignments_command = ''  " dynamically done for ft=python.
+let g:jedi#goto_definitions_command = ''  " dynamically done for ft=python.
+let g:jedi#use_tabs_not_buffers = 0  " current default is 1.
+let g:jedi#rename_command = '<Leader>gR'
+let g:jedi#usages_command = '<Leader>gu'
+Plug 'davidhalter/jedi-vim'
+
 
 let g:SuperTabDefaultCompletionType = "<c-n>"
 Plug 'ervandew/supertab'
