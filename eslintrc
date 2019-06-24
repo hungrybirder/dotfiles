@@ -1,0 +1,13 @@
+{
+    "parserOptions": {
+        "ecmaVersion": 6,
+        "ecmaFeatures": {
+        }
+    },
+    "rules": {
+    },
+    env: {
+        'node': true,
+        'es6': true,
+    },
+}
