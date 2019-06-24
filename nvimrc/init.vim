@@ -13,7 +13,7 @@ call plug#begin('~/.config/nvim/plugged')
 
 Plug 'neomake/neomake'
 let g:neomake_python_enabled_makers = ['pylint']
-let g:neomake_javascript_enabled_makers = ['jshint']
+let g:neomake_javascript_enabled_makers = ['eslint']
 " run neomake on the current file on every write
 autocmd! BufWritePost * Neomake
 
@@ -701,6 +701,10 @@ augroup MyAutoCmd
   " java不做neomake
   autocmd Filetype java NeomakeDisableBuffer
 
+  " javascript
+  autocmd FileType javascript setlocal ts=2 sts=2 sw=2 et
+  autocmd FileType javascript nnoremap <buffer><Leader>cf <c-c>:Neoformat<CR><CR>
+  autocmd FileType javascript inoremap <buffer><Leader>cf <c-c>:Neoformat<CR><CR>gi
 augroup END
 
 " language runner
