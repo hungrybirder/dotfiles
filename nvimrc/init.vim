@@ -17,18 +17,6 @@ let g:neomake_javascript_enabled_makers = ['eslint']
 " run neomake on the current file on every write
 autocmd! BufWritePost * Neomake
 
-function! BuildYCM(info)
-  " info is a dictionary with 3 fields
-  " - name:   name of the plugin
-  " - status: 'installed', 'updated', or 'unchanged'
-  " - force:  set on PlugInstall! or PlugUpdate!
-  if a:info.status == 'installed' || a:info.force
-    !./install.py --clang-completer
-    " !./install.py --clang-completer --tern-completer
-  endif
-endfunction
-
-
 let s:multi_cursors_on = 0
 function! Multiple_cursors_before()
   if !s:multi_cursors_on
