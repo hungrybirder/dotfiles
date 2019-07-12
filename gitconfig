@@ -59,3 +59,5 @@
 [core]
 	pager = diff-so-fancy | less --tabs=4 -RFX
 	quotepath = false
+[merge]
+	tool = vimdiff
