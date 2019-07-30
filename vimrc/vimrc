@@ -23,22 +23,6 @@ autocmd! BufWritePost * Neomake
 " let g:python3_host_prog = 'python3'
 
 
-" 解决ycm在启用vim-multiple-cursors后，慢变的问题
-" http://www.snip2code.com/Snippet/157563/vimrc-for-multiple-cursors-and-YouComple
-let s:multi_cursors_on = 0
-function! Multiple_cursors_before()
-  if !s:multi_cursors_on
-    let s:multi_cursors_on = 1
-  endif
-endfunction
-
-function! Multiple_cursors_after()
-  if s:multi_cursors_on
-    let s:multi_cursors_on = 0
-  endif
-endfunction
-
-
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 let g:UltiSnipsExpandTrigger="<c-l>"
 let g:UltiSnipsListSnippets="<leader><enter>"
@@ -117,6 +101,21 @@ noremap <silent><expr> <Space>/ incsearch#go(<SID>config_easyfuzzymotion())
 Plug 'terryma/vim-multiple-cursors'
 let g:multi_cursor_exit_from_insert_mode = 0
 let g:multi_cursor_exit_from_visual_mode = 0
+
+function! Multiple_cursors_before()
+  if deoplete#is_enabled()
+    call deoplete#disable()
+    let g:deoplete_is_enable_before_multi_cursors = 1
+  else
+    let g:deoplete_is_enable_before_multi_cursors = 0
+  endif
+endfunction
+
+function! Multiple_cursors_after()
+  if g:deoplete_is_enable_before_multi_cursors
+    call deoplete#enable()
+  endif
+endfunction
 
 " Plug 'Chiel92/vim-autoformat'
 Plug 'sbdchd/neoformat'

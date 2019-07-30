@@ -17,25 +17,6 @@ let g:neomake_javascript_enabled_makers = ['eslint']
 " run neomake on the current file on every write
 autocmd! BufWritePost * Neomake
 
-let s:multi_cursors_on = 0
-function! Multiple_cursors_before()
-  if !s:multi_cursors_on
-    " 解决ycm在启用vim-multiple-cursors后，慢变的问题
-    " let s:old_ycm_whitelist = g:ycm_filetype_whitelist
-    " let g:ycm_filetype_whitelist = {}
-    let g:deoplete#disable_auto_complete = 1
-    let s:multi_cursors_on = 1
-  endif
-endfunction
-
-function! Multiple_cursors_after()
-  if s:multi_cursors_on
-    " let g:ycm_filetype_whitelist = s:old_ycm_whitelist
-    let s:multi_cursors_on = 0
-    let g:deoplete#disable_auto_complete = 0
-  endif
-endfunction
-
 let g:python_host_prog = '/Users/liyong/.envs/neovim2/bin/python'
 let g:python3_host_prog = '/Users/liyong/.envs/neovim3/bin/python'
 
@@ -150,6 +131,21 @@ noremap <silent><expr> <Space>/ incsearch#go(<SID>config_easyfuzzymotion())
 Plug 'terryma/vim-multiple-cursors'
 let g:multi_cursor_exit_from_insert_mode = 0
 let g:multi_cursor_exit_from_visual_mode = 0
+
+function! Multiple_cursors_before()
+  if deoplete#is_enabled()
+    call deoplete#disable()
+    let g:deoplete_is_enable_before_multi_cursors = 1
+  else
+    let g:deoplete_is_enable_before_multi_cursors = 0
+  endif
+endfunction
+
+function! Multiple_cursors_after()
+  if g:deoplete_is_enable_before_multi_cursors
+    call deoplete#enable()
+  endif
+endfunction
 
 " Plug 'Chiel92/vim-autoformat'
 Plug 'sbdchd/neoformat'
