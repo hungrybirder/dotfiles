@@ -565,7 +565,9 @@ tnoremap <Esc> <C-\><C-n>
 " if has('nvim')
 "   map <BS> <C-W>h
 " endif
-" set timeoutlen=350
+" set timeoutlen=180
+autocmd InsertEnter * set timeoutlen=180
+autocmd InsertLeave * set timeoutlen=1000
 
 " sort
 vnoremap <leader>s :sort<cr>
