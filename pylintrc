@@ -1,6 +1,3 @@
-[MASTER]
-load-plugins=pylint_protobuf
-
 [FORMAT]
 indent-string='    '
 max-line-length=80
