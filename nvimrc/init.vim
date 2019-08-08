@@ -445,6 +445,10 @@ let g:deoplete#sources#ternjs#types = 1
 let g:deoplete#sources#ternjs#depths = 1
 let g:deoplete#sources#ternjs#docs = 1
 Plug 'othree/jspc.vim', { 'for': ['javascript', 'javascript.jsx'] }
+
+Plug 'qpkorr/vim-bufkill'
+map <C-c> :BD<cr>
+
 call plug#end()
 
 " fzf的性能比unite.vim要好
