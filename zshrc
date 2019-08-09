@@ -236,3 +236,6 @@ test -f ${SPECIAL_SH} && source ${SPECIAL_SH}
 
 
 export GIT_INTERNAL_GETTEXT_TEST_FALLBACKS=1
+
+# added by travis gem
+[ -f /Users/liyong/.travis/travis.sh ] && source /Users/liyong/.travis/travis.sh
