@@ -14,6 +14,7 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'neomake/neomake'
 let g:neomake_python_enabled_makers = ['pylint']
 let g:neomake_javascript_enabled_makers = ['eslint']
+let g:neomake_open_list = 2
 " run neomake on the current file on every write
 autocmd! BufWritePost * Neomake
 
