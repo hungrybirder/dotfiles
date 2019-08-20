@@ -402,6 +402,7 @@ Plug 'qpkorr/vim-bufkill'
 map <C-c> :BD<cr>
 
 Plug 'Rykka/riv.vim'
+" pip install https://github.com/Rykka/instant-rst.py/archive/master.zip
 Plug 'Rykka/InstantRst'
 let g:instant_rst_localhost_only = 1
 call plug#end()
@@ -456,6 +457,7 @@ nnoremap Q :q<cr>
 " close all windows
 nnoremap <leader>Q :qa!<cr>
 
+set maxmempattern=5000
 set fileencodings=utf-8,ucs-bom,gb18030,gbk,gb2312,cp936
 set termencoding=utf-8
 set hidden

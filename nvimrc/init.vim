@@ -451,6 +451,7 @@ Plug 'qpkorr/vim-bufkill'
 map <C-c> :BD<cr>
 
 Plug 'Rykka/riv.vim'
+" pip install https://github.com/Rykka/instant-rst.py/archive/master.zip
 Plug 'Rykka/InstantRst'
 let g:instant_rst_localhost_only = 1
 call plug#end()
