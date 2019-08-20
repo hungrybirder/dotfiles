@@ -450,6 +450,9 @@ Plug 'othree/jspc.vim', { 'for': ['javascript', 'javascript.jsx'] }
 Plug 'qpkorr/vim-bufkill'
 map <C-c> :BD<cr>
 
+Plug 'Rykka/riv.vim'
+Plug 'Rykka/InstantRst'
+let g:instant_rst_localhost_only = 1
 call plug#end()
 
 " fzf的性能比unite.vim要好
