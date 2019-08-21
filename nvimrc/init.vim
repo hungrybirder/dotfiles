@@ -695,6 +695,9 @@ augroup MyAutoCmd
   autocmd FileType javascript setlocal ts=2 sts=2 sw=2 et
   autocmd FileType javascript nnoremap <buffer><Leader>cf <c-c>:Neoformat<CR><CR>
   autocmd FileType javascript inoremap <buffer><Leader>cf <c-c>:Neoformat<CR><CR>gi
+
+  autocmd FileType rst nnoremap <buffer><Leader>md <c-c>:InstantRst<CR>
+  autocmd FileType rst inoremap <buffer><Leader>md <c-c>:InstantRst<CR>
 augroup END
 
 " language runner
