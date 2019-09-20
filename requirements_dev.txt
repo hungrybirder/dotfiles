@@ -1,0 +1,9 @@
+jedi
+pylint
+autopep8
+ipython
+pytest
+pytest-cov
+pytest-ordering
+pytest-repeat
+tox
