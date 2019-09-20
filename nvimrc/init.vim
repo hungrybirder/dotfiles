@@ -23,6 +23,16 @@ let g:python3_host_prog = '/Users/liyong/.envs/neovim3/bin/python'
 
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
+let g:ranger_map_keys = 0
+map <leader>F :Ranger<CR>
+" add this line if you use NERDTree
+let g:NERDTreeHijackNetrw = 0 
+" open ranger when vim open a directory
+let g:ranger_replace_netrw = 1 
+Plug 'francoiscabrol/ranger.vim'
+Plug 'rbgrouleff/bclose.vim'
+
+
 Plug 'deoplete-plugins/deoplete-jedi'
 let g:deoplete#sources#jedi#server_timeout = 5
 let g:deoplete#sources#jedi#show_docstring = 1
@@ -417,6 +427,7 @@ xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 
 Plug 'tpope/vim-fugitive'
+Plug 'junegunn/gv.vim'
 
 " 显示变更的行
 Plug 'mhinz/vim-signify'

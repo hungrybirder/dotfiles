@@ -332,6 +332,7 @@ xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 
 Plug 'tpope/vim-fugitive'
+Plug 'junegunn/gv.vim'
 
 " 显示变更的行
 Plug 'mhinz/vim-signify'
@@ -346,8 +347,18 @@ Plug 'jamessan/vim-gnupg'
 
 Plug 'avakhov/vim-yaml'
 
+let g:ranger_map_keys = 0
+map <leader>F :Ranger<CR>
+" add this line if you use NERDTree
+let g:NERDTreeHijackNetrw = 0 
+" open ranger when vim open a directory
+let g:ranger_replace_netrw = 1 
+map <leader>F :Ranger<CR>
+Plug 'francoiscabrol/ranger.vim'
+
 if has('nvim')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+  Plug 'rbgrouleff/bclose.vim'
 else
   Plug 'Shougo/deoplete.nvim'
   Plug 'roxma/nvim-yarp'
