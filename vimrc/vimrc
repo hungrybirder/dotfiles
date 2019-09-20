@@ -355,10 +355,10 @@ let g:NERDTreeHijackNetrw = 0
 let g:ranger_replace_netrw = 1 
 map <leader>F :Ranger<CR>
 Plug 'francoiscabrol/ranger.vim'
+Plug 'rbgrouleff/bclose.vim'
 
 if has('nvim')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-  Plug 'rbgrouleff/bclose.vim'
 else
   Plug 'Shougo/deoplete.nvim'
   Plug 'roxma/nvim-yarp'
