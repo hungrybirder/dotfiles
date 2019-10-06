@@ -126,6 +126,11 @@ let g:neoformat_enabled_python = ['autopep8']
 "   autocmd BufWritePre * undojoin | Neoformat
 " augroup END
 "
+Plug 'plasticboy/vim-markdown'
+let g:vim_markdown_math = 1
+
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
+
 " for markdown preview
 Plug 'shime/vim-livedown'
 " sudo npm install -g livedown
