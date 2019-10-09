@@ -11,18 +11,17 @@ nmap <silent> <leader>sv :so $MYVIMRC<CR>
 
 call plug#begin('~/.vim/plugged')
 
+let g:ale_open_list = 1
+let g:ale_set_loclist = 1
+let g:ale_set_quickfix = 0
+let g:ale_linters = {'python':['pylint'], 'javascript':['eslint'], 'java':[]}
+let g:ale_echo_msg_error_str = 'E'
+let g:ale_echo_msg_warning_str = 'W'
+let g:ale_echo_msg_format = '[%code%] %s [%severity%]'
+nmap <silent> <space>k <Plug>(ale_previous_wrap)
+nmap <silent> <space>j <Plug>(ale_next_wrap)
 
-Plug 'benekastah/neomake'
-let g:neomake_python_enabled_makers = ['pylint']
-let g:neomake_javascript_enabled_makers = ['eslint']
-let g:neomake_open_list = 2
-" run neomake on the current file on every write
-autocmd! BufWritePost * Neomake
-
-" host_prog是neovim的设置，与YCM没有关系
-" let g:python_host_prog = 'python'
-" let g:python3_host_prog = 'python3'
-
+Plug 'dense-analysis/ale'
 
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 let g:UltiSnipsExpandTrigger="<c-l>"
@@ -636,7 +635,7 @@ augroup MyAutoCmd
   autocmd FileType sh setlocal ts=4 sts=4 sw=4 et
   
   " java不做neomake
-  autocmd Filetype java NeomakeDisableBuffer
+  " autocmd Filetype java NeomakeDisableBuffer
 
   " javascript
   autocmd FileType javascript setlocal ts=2 sts=2 sw=2 et

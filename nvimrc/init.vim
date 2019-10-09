@@ -11,12 +11,17 @@ nmap <silent> <leader>sv :so $MYVIMRC<CR>
 
 call plug#begin('~/.config/nvim/plugged')
 
-Plug 'neomake/neomake'
-let g:neomake_python_enabled_makers = ['pylint']
-let g:neomake_javascript_enabled_makers = ['eslint']
-let g:neomake_open_list = 2
-" run neomake on the current file on every write
-autocmd! BufWritePost * Neomake
+let g:ale_open_list = 1
+let g:ale_set_loclist = 1
+let g:ale_set_quickfix = 0
+let g:ale_linters = {'python':['pylint'], 'javascript':['eslint'], 'java':[]}
+let g:ale_echo_msg_error_str = 'E'
+let g:ale_echo_msg_warning_str = 'W'
+let g:ale_echo_msg_format = '[%code%] %s [%severity%]'
+nmap <silent> <space>k <Plug>(ale_previous_wrap)
+nmap <silent> <space>j <Plug>(ale_next_wrap)
+
+Plug 'dense-analysis/ale'
 
 let g:python_host_prog = '/Users/liyong/.envs/neovim2/bin/python'
 let g:python3_host_prog = '/Users/liyong/.envs/neovim3/bin/python'
@@ -707,7 +712,7 @@ augroup MyAutoCmd
   autocmd FileType vim setlocal ts=2 sts=2 sw=2 et
 
   " java不做neomake
-  autocmd Filetype java NeomakeDisableBuffer
+  " autocmd Filetype java NeomakeDisableBuffer
 
   " javascript
   autocmd FileType javascript setlocal ts=2 sts=2 sw=2 et
