@@ -166,17 +166,24 @@ let g:neoformat_enabled_python = ['autopep8']
 "   autocmd BufWritePre * undojoin | Neoformat
 " augroup END
 
+Plug 'plasticboy/vim-markdown'
+let g:vim_markdown_math = 1
+
+Plug 'mzlogin/vim-markdown-toc'
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
+Plug 'iamcco/mathjax-support-for-mkdp'
+nmap <leader>md :MarkdownPreview<CR>
 
 " for markdown preview
-Plug 'shime/vim-livedown'
+" Plug 'shime/vim-livedown'
 " sudo npm install -g livedown
 " should markdown preview get shown automatically upon opening markdown buffer
-let g:livedown_autorun = 0
+" let g:livedown_autorun = 0
 " should the browser window pop-up upon previewing
-let g:livedown_open = 1
+" let g:livedown_open = 1
 " the port on which Livedown server will run
-let g:livedown_port = 1337
-nmap <leader>md :LivedownPreview<CR>
+" let g:livedown_port = 1337
+" nmap <leader>md :LivedownPreview<CR>
 
 
 " Enter - Open corresponding file of current line in the window which CtrlSF
