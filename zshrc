@@ -242,3 +242,7 @@ export GIT_INTERNAL_GETTEXT_TEST_FALLBACKS=1
 
 # golang
 export GOPATH=$(go env GOPATH)
+
+if [[ -d ${GOPATH}/bin ]]; then
+    export PATH="${GOPATH}/bin:${PATH}"
+fi

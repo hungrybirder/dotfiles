@@ -477,6 +477,13 @@ Plug 'Rykka/riv.vim'
 " pip install https://github.com/Rykka/instant-rst.py/archive/master.zip
 Plug 'Rykka/InstantRst'
 let g:instant_rst_localhost_only = 1
+
+" golang
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'deoplete-plugins/deoplete-go', { 'do': 'make'}
+let g:go_fmt_command = "goimports"
+let g:go_def_mode = "gopls"
+let g:go_auto_type_info = 1 
 call plug#end()
 
 " fzf的性能比unite.vim要好
