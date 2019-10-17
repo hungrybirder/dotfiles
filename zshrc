@@ -46,7 +46,7 @@ export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 # 使用pyenv来管理多个版本的py py3
 # 运行workon命令之前，需要先运行: pyenv virtualenvwrapper
 export PYENV_VIRTUALENVWRAPPER_PREFER_PYVENV="true"
-plugins=(pyenv git gpg-agent autojump jsontools vagrant docker osx pip)
+plugins=(pyenv git gpg-agent autojump jsontools vagrant docker osx pip golang)
 # plugins=(pyenv git virtualenvwrapper gpg-agent autojump jsontools vagrant docker)
 source $ZSH/oh-my-zsh.sh
 export PATH="/usr/local/sbin:/usr/local/bin:$PATH"
@@ -239,3 +239,6 @@ export GIT_INTERNAL_GETTEXT_TEST_FALLBACKS=1
 
 # added by travis gem
 [ -f /Users/liyong/.travis/travis.sh ] && source /Users/liyong/.travis/travis.sh
+
+# golang
+export GOPATH=$(go env GOPATH)
