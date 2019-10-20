@@ -18,6 +18,9 @@ let g:ale_linters = {'python':['pylint'], 'javascript':['eslint'], 'java':[]}
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%code%] %s [%severity%]'
+" let g:ale_lint_on_text_changed = 'normal'
+" let g:ale_lint_on_insert_leave = 0
+" let g:ale_lint_delay = 2000
 nmap <silent> <space>k <Plug>(ale_previous_wrap)
 nmap <silent> <space>j <Plug>(ale_next_wrap)
 
@@ -430,6 +433,8 @@ Plug 'deoplete-plugins/deoplete-go', { 'do': 'make'}
 let g:go_fmt_command = "goimports"
 let g:go_def_mode = "gopls"
 let g:go_auto_type_info = 1 
+let g:go_fmt_autosave = 0
+" let g:go_fmt_fail_silently = 1
 call plug#end()
 
 nnoremap <silent> <expr> <Leader>f (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":Files\<cr>"
@@ -651,12 +656,17 @@ augroup MyAutoCmd
 
   autocmd FileType rst nnoremap <buffer><Leader>md <c-c>:InstantRst<CR>
   autocmd FileType rst inoremap <buffer><Leader>md <c-c>:InstantRst<CR>
+
+  autocmd FileType go noremap <buffer><Leader>cf :GoFmt<CR><CR>
+  autocmd FileType go inoremap <buffer><Leader>cf <c-c>:GoFmt<CR><CR>gi
 augroup END
 
 " language runner
 function! LangRunner()
   if (&ft == "python")
     nnoremap <leader>R :!python %<cr>
+  elseif (&ft == "go")
+    nnoremap <leader>R :GoRun %<cr>
   endif
 endfunction
 
