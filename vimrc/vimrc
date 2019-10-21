@@ -11,22 +11,8 @@ nmap <silent> <leader>sv :so $MYVIMRC<CR>
 
 call plug#begin('~/.vim/plugged')
 
-let g:ale_open_list = 1
-let g:ale_set_loclist = 1
-let g:ale_set_quickfix = 0
-let g:ale_linters = {'python':['pylint'], 'javascript':['eslint'], 'java':[]}
-let g:ale_echo_msg_error_str = 'E'
-let g:ale_echo_msg_warning_str = 'W'
-let g:ale_echo_msg_format = '[%code%] %s [%severity%]'
-" let g:ale_lint_on_text_changed = 'normal'
-" let g:ale_lint_on_insert_leave = 0
-" let g:ale_lint_delay = 2000
-nmap <silent> <space>k <Plug>(ale_previous_wrap)
-nmap <silent> <space>j <Plug>(ale_next_wrap)
-
-Plug 'dense-analysis/ale'
-
-Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 let g:UltiSnipsExpandTrigger="<c-l>"
 let g:UltiSnipsListSnippets="<leader><enter>"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
@@ -429,12 +415,33 @@ let g:instant_rst_localhost_only = 1
 
 " golang
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+"gS gJ
+Plug 'AndrewRadev/splitjoin.vim'
 Plug 'deoplete-plugins/deoplete-go', { 'do': 'make'}
 let g:go_fmt_command = "goimports"
 let g:go_def_mode = "gopls"
 let g:go_auto_type_info = 1 
 let g:go_fmt_autosave = 0
-" let g:go_fmt_fail_silently = 1
+let g:go_fmt_fail_silently = 1
+
+Plug 'dense-analysis/ale'
+let g:ale_open_list = 1
+let g:ale_set_loclist = 1
+let g:ale_set_quickfix = 0
+let g:ale_linters = {
+\ 'python':['pylint'],
+\ 'javascript':['eslint'],
+\ 'java':[], 
+\ }
+let g:ale_echo_msg_error_str = 'E'
+let g:ale_echo_msg_warning_str = 'W'
+let g:ale_echo_msg_format = '[%code%] %s [%severity%]'
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_lint_on_insert_leave = 0
+let g:ale_lint_on_enter = 1
+nmap <silent> <space>j <Plug>(ale_next_wrap)
+nmap <silent> <space>k <Plug>(ale_previous_wrap)
+
 call plug#end()
 
 nnoremap <silent> <expr> <Leader>f (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":Files\<cr>"
@@ -659,6 +666,10 @@ augroup MyAutoCmd
 
   autocmd FileType go noremap <buffer><Leader>cf :GoFmt<CR><CR>
   autocmd FileType go inoremap <buffer><Leader>cf <c-c>:GoFmt<CR><CR>gi
+  autocmd Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
+  autocmd Filetype go command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')
+  autocmd Filetype go command! -bang AS call go#alternate#Switch(<bang>0, 'split')
+  autocmd Filetype go command! -bang AT call go#alternate#Switch(<bang>0, 'tabe')
 augroup END
 
 " language runner

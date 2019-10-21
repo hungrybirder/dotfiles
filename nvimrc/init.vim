@@ -11,17 +11,6 @@ nmap <silent> <leader>sv :so $MYVIMRC<CR>
 
 call plug#begin('~/.config/nvim/plugged')
 
-let g:ale_open_list = 1
-let g:ale_set_loclist = 1
-let g:ale_set_quickfix = 0
-let g:ale_linters = {'python':['pylint'], 'javascript':['eslint'], 'java':[]}
-let g:ale_echo_msg_error_str = 'E'
-let g:ale_echo_msg_warning_str = 'W'
-let g:ale_echo_msg_format = '[%code%] %s [%severity%]'
-nmap <silent> <space>k <Plug>(ale_previous_wrap)
-nmap <silent> <space>j <Plug>(ale_next_wrap)
-
-Plug 'dense-analysis/ale'
 
 let g:python_host_prog = '/Users/liyong/.envs/neovim2/bin/python'
 let g:python3_host_prog = '/Users/liyong/.envs/neovim3/bin/python'
@@ -480,10 +469,33 @@ let g:instant_rst_localhost_only = 1
 
 " golang
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+"gS gJ
+Plug 'AndrewRadev/splitjoin.vim'
 Plug 'deoplete-plugins/deoplete-go', { 'do': 'make'}
 let g:go_fmt_command = "goimports"
 let g:go_def_mode = "gopls"
 let g:go_auto_type_info = 1 
+let g:go_fmt_autosave = 0
+let g:go_fmt_fail_silently = 1
+
+Plug 'dense-analysis/ale'
+let g:ale_open_list = 1
+let g:ale_set_loclist = 1
+let g:ale_set_quickfix = 0
+let g:ale_linters = {
+\ 'python':['pylint'],
+\ 'javascript':['eslint'],
+\ 'java':[], 
+\ }
+let g:ale_echo_msg_error_str = 'E'
+let g:ale_echo_msg_warning_str = 'W'
+let g:ale_echo_msg_format = '[%code%] %s [%severity%]'
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_lint_on_insert_leave = 0
+let g:ale_lint_on_enter = 1
+nmap <silent> <space>j <Plug>(ale_next_wrap)
+nmap <silent> <space>k <Plug>(ale_previous_wrap)
+
 call plug#end()
 
 " fzf的性能比unite.vim要好
@@ -728,6 +740,13 @@ augroup MyAutoCmd
 
   autocmd FileType rst nnoremap <buffer><Leader>md <c-c>:InstantRst<CR>
   autocmd FileType rst inoremap <buffer><Leader>md <c-c>:InstantRst<CR>
+
+  autocmd FileType go noremap <buffer><Leader>cf :GoFmt<CR><CR>
+  autocmd FileType go inoremap <buffer><Leader>cf <c-c>:GoFmt<CR><CR>gi
+  autocmd Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
+  autocmd Filetype go command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')
+  autocmd Filetype go command! -bang AS call go#alternate#Switch(<bang>0, 'split')
+  autocmd Filetype go command! -bang AT call go#alternate#Switch(<bang>0, 'tabe')
 augroup END
 
 " language runner
