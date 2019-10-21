@@ -479,7 +479,16 @@ let g:go_fmt_autosave = 0
 let g:go_fmt_fail_silently = 1
 
 Plug 'dense-analysis/ale'
-let g:ale_open_list = 1
+
+function! SetAleOpenList()
+  if (&ft == "go")
+    let g:ale_open_list = 0
+  else
+    let g:ale_open_list = 1
+  endif
+endfunction
+au BufEnter * call SetAleOpenList()
+
 let g:ale_set_loclist = 1
 let g:ale_set_quickfix = 0
 let g:ale_linters = {
