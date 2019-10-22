@@ -480,27 +480,21 @@ let g:go_fmt_fail_silently = 1
 
 Plug 'dense-analysis/ale'
 
-function! SetAleOpenList()
-  if (&ft == "go")
-    let g:ale_open_list = 0
-  else
-    let g:ale_open_list = 1
-  endif
-endfunction
-au BufEnter * call SetAleOpenList()
-
-let g:ale_set_loclist = 1
-let g:ale_set_quickfix = 0
+let g:ale_set_quickfix = 1
+let g:ale_open_list = 1
 let g:ale_linters = {
 \ 'python':['pylint'],
 \ 'javascript':['eslint'],
 \ 'java':[], 
+\ 'go':['gofmt', 'golint'], 
+\ }
+let g:ale_fixers = {
+\ 'python': ['autopep8'],
+\ 'go': ['gofmt']
 \ }
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%code%] %s [%severity%]'
-let g:ale_lint_on_text_changed = 'never'
-let g:ale_lint_on_insert_leave = 0
 let g:ale_lint_on_enter = 1
 nmap <silent> <space>j <Plug>(ale_next_wrap)
 nmap <silent> <space>k <Plug>(ale_previous_wrap)
@@ -762,6 +756,8 @@ augroup END
 function! LangRunner()
   if (&ft == "python")
     nnoremap <leader>R :!python %<cr>
+  elseif (&ft == "go")
+    nnoremap <leader>R :GoRun %<cr>
   endif
 endfunction
 
