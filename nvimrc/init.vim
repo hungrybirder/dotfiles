@@ -499,6 +499,8 @@ let g:ale_lint_on_enter = 1
 nmap <silent> <space>j <Plug>(ale_next_wrap)
 nmap <silent> <space>k <Plug>(ale_previous_wrap)
 
+"toml
+Plug 'cespare/vim-toml'
 call plug#end()
 
 " fzf的性能比unite.vim要好
