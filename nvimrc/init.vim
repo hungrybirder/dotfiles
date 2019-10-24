@@ -788,7 +788,7 @@ augroup go
   autocmd FileType go nmap <silent> <Leader>S <Plug>(go-def-split)
   autocmd FileType go nmap <silent> <Leader>D <Plug>(go-def-tab)
 
-  autocmd FileType go nmap <silent> <Leader>X <Plug>(go-doc-vertical)
+  autocmd FileType go nmap <silent> <Leader>x <Plug>(go-doc-vertical)
 
   autocmd FileType go nmap <silent> <Leader>I <Plug>(go-info)
   autocmd FileType go nmap <silent> <Leader>L <Plug>(go-metalinter)
