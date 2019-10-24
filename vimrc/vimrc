@@ -418,16 +418,50 @@ Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 "gS gJ
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'deoplete-plugins/deoplete-go', { 'do': 'make'}
+let g:go_test_prepend_name = 1
+let g:go_fmt_fail_silently = 1
 let g:go_fmt_command = "goimports"
 let g:go_def_mode = "gopls"
 let g:go_auto_type_info = 1 
-let g:go_fmt_autosave = 0
-let g:go_fmt_fail_silently = 1
+let g:go_fmt_autosave = 1
+let g:go_auto_sameids = 0
+
+let g:go_null_module_warning = 0
+let g:go_echo_command_info = 1
+
+let g:go_autodetect_gopath = 1
+let g:go_metalinter_autosave_enabled = ['vet', 'golint']
+let g:go_metalinter_enabled = ['vet', 'golint']
+
+let g:go_highlight_space_tab_error = 0
+let g:go_highlight_array_whitespace_error = 0
+let g:go_highlight_trailing_whitespace_error = 0
+let g:go_highlight_extra_types = 0
+let g:go_highlight_build_constraints = 1
+let g:go_highlight_types = 0
+let g:go_highlight_operators = 1
+let g:go_highlight_format_strings = 0
+let g:go_highlight_function_calls = 0
+let g:go_gocode_propose_source = 1
+let g:go_modifytags_transform = 'camelcase'
+let g:go_fold_enable = []
+
+nmap <C-g> :GoDecls<cr>
+imap <C-g> <esc>:<C-u>GoDecls<cr>
+
+function! s:build_go_files()
+  let l:file = expand('%')
+  if l:file =~# '^\f\+_test\.go$'
+    call go#test#Test(0, 1)
+  elseif l:file =~# '^\f\+\.go$'
+    call go#cmd#Build(0)
+  endif
+endfunction
 
 Plug 'dense-analysis/ale'
 
 let g:ale_set_quickfix = 1
-let g:ale_open_list = 1
+let g:ale_open_list = 0
 let g:ale_linters = {
 \ 'python':['pylint'],
 \ 'javascript':['eslint'],
@@ -669,13 +703,32 @@ augroup MyAutoCmd
 
   autocmd FileType rst nnoremap <buffer><Leader>md <c-c>:InstantRst<CR>
   autocmd FileType rst inoremap <buffer><Leader>md <c-c>:InstantRst<CR>
+augroup END
 
-  autocmd FileType go noremap <buffer><Leader>cf :GoFmt<CR><CR>
-  autocmd FileType go inoremap <buffer><Leader>cf <c-c>:GoFmt<CR><CR>gi
+augroup go
+  autocmd!
+  autocmd FileType go nmap <silent> <Leader>V <Plug>(go-def-vertical)
+  autocmd FileType go nmap <silent> <Leader>S <Plug>(go-def-split)
+  autocmd FileType go nmap <silent> <Leader>D <Plug>(go-def-tab)
+
+  autocmd FileType go nmap <silent> <Leader>X <Plug>(go-doc-vertical)
+
+  autocmd FileType go nmap <silent> <Leader>I <Plug>(go-info)
+  autocmd FileType go nmap <silent> <Leader>L <Plug>(go-metalinter)
+
+  autocmd FileType go nmap <silent> <leader>T  <Plug>(go-test)
+  " autocmd FileType go nmap <silent> <leader>r  <Plug>(go-run)
+  " autocmd FileType go nmap <silent> <leader>e  <Plug>(go-install)
+
+  autocmd FileType go nmap <silent> <Leader>C <Plug>(go-coverage-toggle)
+  autocmd FileType go nmap <silent> <leader>B :<C-u>call <SID>build_go_files()<CR>
   autocmd Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
   autocmd Filetype go command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')
   autocmd Filetype go command! -bang AS call go#alternate#Switch(<bang>0, 'split')
   autocmd Filetype go command! -bang AT call go#alternate#Switch(<bang>0, 'tabe')
+
+  autocmd FileType go noremap <buffer><Leader>cf :GoFmt<CR><CR>
+  autocmd FileType go inoremap <buffer><Leader>cf <c-c>:GoFmt<CR><CR>gi
 augroup END
 
 " language runner
