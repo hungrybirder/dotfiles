@@ -586,6 +586,9 @@ nnoremap Q :q<cr>
 " close all windows
 nnoremap <leader>Q :qa!<cr>
 
+" Act like D and C
+nnoremap Y y$
+
 set fileencodings=utf-8,ucs-bom,gb18030,gbk,gb2312,cp936
 set termencoding=utf-8
 set hidden
