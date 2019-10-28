@@ -570,7 +570,7 @@ set pastetoggle=<F6>
 set grepprg=ag
 set t_Co=256
 
-let g:solarized_termcolors=256
+" let g:solarized_termcolors=256
 syntax enable
 set background=dark
 " colorscheme solarized

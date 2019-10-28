@@ -78,7 +78,9 @@ let g:tagbar_width = 33
 let g:tagbar_autoshowtag = 1
 let tags = "./tags"
 
-Plug 'altercation/vim-colors-solarized'
+" Plug 'altercation/vim-colors-solarized'
+Plug 'NLKNguyen/papercolor-theme'
+
 
 " vim-airline
 Plug 'bling/vim-airline'
@@ -632,10 +634,12 @@ set pastetoggle=<F6>
 set grepprg=ag
 set t_Co=256
 
-let g:solarized_termcolors=256
+" let g:solarized_termcolors=256
 syntax enable
 set background=dark
-colorscheme solarized
+" colorscheme solarized
+colorscheme PaperColor
+
 
 " easy move around windows
 nnoremap <c-j> <c-w>j
