@@ -244,5 +244,6 @@ export GIT_INTERNAL_GETTEXT_TEST_FALLBACKS=1
 export GOPATH=$(go env GOPATH)
 
 if [[ -d ${GOPATH}/bin ]]; then
-    export PATH="${GOPATH}/bin:${PATH}"
+    export GOBIN="${GOPATH}/bin"
+    export PATH="${GOBIN}:${PATH}"
 fi
