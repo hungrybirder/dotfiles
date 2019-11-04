@@ -537,6 +537,9 @@ nmap <silent> <space>k <Plug>(ale_previous_wrap)
 
 "toml
 Plug 'cespare/vim-toml'
+
+" python text object and motion
+Plug 'jeetsukumaran/vim-pythonsense'
 call plug#end()
 
 " fzf的性能比unite.vim要好
