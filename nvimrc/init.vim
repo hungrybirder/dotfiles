@@ -57,12 +57,10 @@ Plug 'ervandew/supertab'
 
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 " ultisnips
-" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-" let g:UltiSnipsExpandTrigger="<c-l>"
 let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 let g:UltiSnipsListSnippets="<leader><enter>"
-let g:UltiSnipsJumpForwardTrigger="<c-j>"
-let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 let g:UltiSnipsEditSplit="vertical"
 nnoremap <F2> :UltiSnipsEdit<CR>
 
@@ -464,6 +462,7 @@ Plug 'qpkorr/vim-bufkill'
 map <C-c> :BD<cr>
 
 Plug 'Rykka/riv.vim'
+let g:riv_ignored_imaps = "<Tab>,<S-Tab>"
 " pip install https://github.com/Rykka/instant-rst.py/archive/master.zip
 Plug 'Rykka/InstantRst'
 let g:instant_rst_localhost_only = 1
