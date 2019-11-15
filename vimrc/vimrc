@@ -406,6 +406,11 @@ let g:deoplete#sources#ternjs#depths = 1
 let g:deoplete#sources#ternjs#docs = 1
 Plug 'othree/jspc.vim', { 'for': ['javascript', 'javascript.jsx'] }
 
+Plug 'deoplete-plugins/deoplete-clang'
+if has("mac")
+  let g:deoplete#sources#clang#libclang_path="/Library/Developer/CommandLineTools/usr/lib/libclang.dylib"
+endif
+
 Plug 'qpkorr/vim-bufkill'
 map <C-c> :BD<cr>
 
