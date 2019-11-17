@@ -23,7 +23,6 @@ nnoremap <F2> :UltiSnipsEdit<CR>
 Plug 'scrooloose/nerdtree'
 let NERDTreeWinPos = 1
 nnoremap <silent> <leader><tab> :NERDTreeToggle<CR>
-nnoremap <silent> <leader>1 :NERDTreeToggle<CR>
 
 Plug 'majutsushi/tagbar'
 nnoremap <silent> <leader>2 :TagbarToggle<CR>
