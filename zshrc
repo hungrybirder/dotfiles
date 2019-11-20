@@ -7,7 +7,9 @@ export LC_ALL=en_US.utf-8
 export LANG=en_US.utf-8
 
 export ZSH=/Users/liyong/.oh-my-zsh
-ZSH_THEME="agnoster"
+# ZSH_THEME="agnoster"
+# git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
+ZSH_THEME="powerlevel10k/powerlevel10k"
 
 
 # zsh history setting
