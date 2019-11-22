@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block, everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # 测试zsh启动时间的方法
 # /usr/bin/time zsh -i -c exit
 #
@@ -225,7 +232,7 @@ get_public_ip() {
 bindkey \^U backward-kill-line
 
 if [[ "Darwin" = ${OS_NAME} ]]; then
-  alias bubu="brew update && brew upgrade"
+  alias bubu="brew upgrade"
 fi
 
 # 一些特殊的配置，或function
@@ -249,3 +256,6 @@ if [[ -d ${GOPATH}/bin ]]; then
     export GOBIN="${GOPATH}/bin"
     export PATH="${GOBIN}:${PATH}"
 fi
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
