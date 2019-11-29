@@ -492,6 +492,9 @@ Plug 'cespare/vim-toml'
 
 " python text object and motion
 Plug 'jeetsukumaran/vim-pythonsense'
+
+" 中文排版
+Plug 'hotoo/pangu.vim'
 call plug#end()
 
 nnoremap <silent> <expr> <Leader>f (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":Files\<cr>"
@@ -717,6 +720,9 @@ augroup MyAutoCmd
 
   autocmd FileType rst nnoremap <buffer><Leader>md <c-c>:InstantRst<CR>
   autocmd FileType rst inoremap <buffer><Leader>md <c-c>:InstantRst<CR>
+
+  " 中文排版
+  autocmd BufWritePre *.markdown,*.md,*.text,*.txt,*.wiki,*.cnx call PanGuSpacing()
 augroup END
 
 augroup go
