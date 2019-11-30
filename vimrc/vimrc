@@ -159,13 +159,7 @@ let g:gundo_right = 1
 
 " vim-surround
 Plug 'tpope/vim-surround'
-
 Plug 'tpope/vim-repeat'
-Plug 'Shougo/unite.vim'
-Plug 'Shougo/vimproc.vim', { 'do': 'make' }
-Plug 'Shougo/neoyank.vim'
-Plug 'Shougo/unite-outline'
-
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 " This is the default extra key bindings
@@ -353,6 +347,12 @@ map <leader>F :Ranger<CR>
 Plug 'francoiscabrol/ranger.vim'
 Plug 'rbgrouleff/bclose.vim'
 
+Plug 'Shougo/unite.vim'
+Plug 'Shougo/vimproc.vim', { 'do': 'make' }
+Plug 'Shougo/neoyank.vim'
+Plug 'Shougo/unite-outline'
+Plug 'Shougo/neoinclude.vim'
+Plug 'Shougo/neco-vim'
 if has('nvim')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 else
