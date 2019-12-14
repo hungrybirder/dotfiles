@@ -7,10 +7,13 @@ Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'Shougo/neco-vim'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'vim-scripts/tComment'                          
+Plug 'NLKNguyen/papercolor-theme'
 
 call plug#end() " }}}
 
 " general {{{
+syntax enable
+
 let mapleader = ","
 let g:mapleader = ","
 let maplocalleader = ","
@@ -65,6 +68,8 @@ set pastetoggle=<F6>
 set grepprg=rg
 set t_Co=256
 set background=dark
+colorscheme PaperColor
+
 set dictionary+=/usr/share/dict/words
 set lazyredraw
 set showcmd
