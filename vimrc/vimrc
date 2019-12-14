@@ -706,6 +706,10 @@ augroup MyAutoCmd
   " autocmd FileType python setlocal ts=4 sts=4 sw=4 et omnifunc=jedi#completions
   autocmd FileType python noremap <buffer><Leader>cf :Neoformat<CR><CR>
   autocmd FileType python inoremap <buffer><Leader>cf <c-c>:Neoformat<CR><CR>gi
+  autocmd FileType python
+        \ setlocal foldmethod=indent expandtab smarttab nosmartindent
+        \ | setlocal tabstop=4 softtabstop=4 shiftwidth=4
+
 
   autocmd FileType cc,cpp noremap <buffer><Leader>cf <c-c>:Neoformat<CR><CR>gi
   autocmd FileType cc,cpp inoremap <buffer><Leader>cf <c-c>:Neoformat<CR><CR>gi
