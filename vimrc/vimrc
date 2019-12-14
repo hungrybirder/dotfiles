@@ -694,6 +694,10 @@ noremap <Down> <Nop>
 noremap <Left> <Nop>
 noremap <Right> <Nop>
 
+" vim 8.2 popup
+set completeopt+=popup
+set completepopup=height:10,width:60,highlight:InfoPopup,border:on,align:menu
+
 augroup MyAutoCmd
   au!
   filetype on
