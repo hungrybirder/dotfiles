@@ -8,7 +8,10 @@ Plug 'Shougo/neco-vim' " vimscripts for deoplete complete
 Plug 'terryma/vim-multiple-cursors'
 Plug 'vim-scripts/tComment'                          
 Plug 'NLKNguyen/papercolor-theme'
-
+Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets' " snippets
+Plug 'bling/vim-airline'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
 call plug#end() " }}}
 
 " general {{{
@@ -110,6 +113,9 @@ nnoremap Q :q<cr>
 nnoremap <leader>Q :qa!<cr>
 " Act like D and C
 nnoremap Y y$
+" Keep search matches in the middle of the window.
+nnoremap n nzzzv
+nnoremap N Nzzzv
 " easy move around windows
 nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
@@ -187,6 +193,23 @@ noremap <Down> <Nop>
 noremap <Left> <Nop>
 noremap <Right> <Nop>
 " mappings }}}
+
+" snippets {{{
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+let g:UltiSnipsListSnippets="<leader><enter>"
+let g:UltiSnipsEditSplit="vertical"
+" snippets }}}
+
+" airline {{{
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
+let g:airline#extensions#tabline#fnamemod = ':t' " only show buffer name
+let g:airline_theme = "dark"
+" airline }}}
+
 
 " denite {{{
 try
@@ -307,7 +330,7 @@ endfunction
 
 " FIND and GREP COMMANDS
 if executable('rg')
-	" Ripgrep
+  " Ripgrep
   call denite#custom#var('file/rec', 'command', ['rg', '--files', '--glob', '!.git'])
   call denite#custom#var('grep', 'command', ['rg', '--threads', '1'])
   call denite#custom#var('grep', 'recursive_opts', [])
