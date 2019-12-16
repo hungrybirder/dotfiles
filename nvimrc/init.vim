@@ -104,7 +104,88 @@ set showfulltag     " Show tag and tidy search in completion
 
 " mappings {{{
 nnoremap <F3> :let @/ = ""<CR>
+" Q: Closes the window
+nnoremap Q :q<cr>
+" close all windows
+nnoremap <leader>Q :qa!<cr>
+" Act like D and C
+nnoremap Y y$
+" easy move around windows
+nnoremap <c-j> <c-w>j
+nnoremap <c-k> <c-w>k
+nnoremap <c-l> <c-w>l
+nnoremap <c-h> <c-w>h
+" ctrl_e ctrl_y 3 lines
+nnoremap <c-e> 3<c-e>
+nnoremap <c-y> 3<c-y>
+vnoremap <c-e> 3<c-e>
+vnoremap <c-y> 3<c-y>
 
+" 单个word加双引号
+nnoremap <leader>" viw<esc>a"<esc>hbi"<esc>lel
+" visually selected加双引号
+vnoremap <leader>" :normal! `<i"<esc>`>la"<esc>"
+
+" Ctrl-r: Easier search and replace
+vnoremap <c-r> "hy:%s/<c-r>h//gc<left><left><left>
+" sort
+vnoremap <leader>s :sort<cr>
+" easy move code blocks
+vnoremap < <gv 
+vnoremap > >gv 
+
+"inoremap maps a key combination for insert mode
+"<C-e> is the keybinding I am creating.
+"<C-o> is a command that switches vim to normal mode for one command.
+"$ jumps to the end of the line and we are switched back to insert mode.
+inoremap <C-e> <C-o>$
+inoremap <C-a> <C-o>0
+
+" Navigating in Command Mode
+cnoremap <C-a> <Home>
+cnoremap <C-e> <End>
+cnoremap <C-f> <Right>
+cnoremap <C-b> <Left>
+cnoremap <Esc>b <S-Left>
+cnoremap <Esc>f <S-Right>
+
+" When you forgot to open vim with sudo, use w!!
+cmap w!! w !sudo tee > /dev/null %
+
+"Insert Mode move word forward and backward
+inoremap <c-b> <c-\><c-O>b
+inoremap <c-f> <c-\><c-O>w
+
+" Calculate from current line
+nnoremap <leader>ca yypkA<Esc>jOscale=2<Esc>:.,+1!bc<CR>kdd
+
+" delete current line
+map <c-d> dd
+" delete current line in Insert Mode
+imap <c-d> <esc>ddi
+
+map <c-u> viwU
+" convert the current work to uppercase in Insert Mode
+imap <c-u> <esc>viwUea
+
+" exit insert mode
+inoremap jk <esc>
+
+" 更新括号里的内容，非常有用
+onoremap in( :<c-u>normal! f(vi(<cr>
+onoremap il( :<c-u>normal! F)vi(<cr>
+
+" 保存
+nnoremap <c-s> :<c-u>update<cr>
+inoremap <c-s> <c-o>:update<cr>
+vnoremap <c-s> <esc>:update<cr>gv
+
+" disable F1
+noremap <F1> <nop>
+noremap <Up> <Nop>
+noremap <Down> <Nop>
+noremap <Left> <Nop>
+noremap <Right> <Nop>
 " mappings }}}
 
 " denite {{{
@@ -258,3 +339,68 @@ function! Multiple_cursors_after()
   endif
 endfunction
 " vim-multiple-cursors }}}
+
+" MyAutoCmd {{{
+augroup MyAutoCmd
+  au!
+  filetype on
+  " autocmd FileType python setlocal ts=4 sts=4 sw=4 et omnifunc=jedi#completions
+  autocmd FileType python noremap <buffer><Leader>cf :Neoformat<CR><CR>
+  autocmd FileType python inoremap <buffer><Leader>cf <c-c>:Neoformat<CR><CR>gi
+  autocmd FileType python
+        \ setlocal foldmethod=indent expandtab smarttab nosmartindent
+        \ | setlocal tabstop=4 softtabstop=4 shiftwidth=4
+
+
+  autocmd FileType cc,cpp noremap <buffer><Leader>cf <c-c>:Neoformat<CR><CR>gi
+  autocmd FileType cc,cpp inoremap <buffer><Leader>cf <c-c>:Neoformat<CR><CR>gi
+  autocmd FileType c setlocal ts=4 sts=4 sw=4 et
+  autocmd FileType c nnoremap <buffer><Leader>cf <c-c>:Neoformat<CR><CR>gi
+  autocmd FileType c inoremap <buffer><Leader>cf <c-c>:Neoformat<CR><CR>gi
+  autocmd FileType cc,cpp setlocal ts=4 sts=4 sw=4 et
+
+  autocmd FileType sh setlocal ts=4 sts=4 sw=4 et
+  
+  " java不做neomake
+  " autocmd Filetype java NeomakeDisableBuffer
+
+  " javascript
+  autocmd FileType javascript setlocal ts=2 sts=2 sw=2 et
+  autocmd FileType javascript nnoremap <buffer><Leader>cf <c-c>:Neoformat<CR><CR>
+  autocmd FileType javascript inoremap <buffer><Leader>cf <c-c>:Neoformat<CR><CR>gi
+
+  autocmd FileType rst nnoremap <buffer><Leader>md <c-c>:InstantRst<CR>
+  autocmd FileType rst inoremap <buffer><Leader>md <c-c>:InstantRst<CR>
+
+  " 中文排版
+  autocmd BufWritePre *.markdown,*.md,*.text,*.txt,*.wiki,*.cnx call PanGuSpacing()
+augroup END
+" MyAutoCmd }}}
+
+" autogroup go {{{
+augroup go
+  autocmd!
+  autocmd FileType go nmap <silent> <Leader>V <Plug>(go-def-vertical)
+  autocmd FileType go nmap <silent> <Leader>S <Plug>(go-def-split)
+  autocmd FileType go nmap <silent> <Leader>D <Plug>(go-def-tab)
+
+  autocmd FileType go nmap <silent> <Leader>x <Plug>(go-doc-vertical)
+
+  autocmd FileType go nmap <silent> <Leader>I <Plug>(go-info)
+  autocmd FileType go nmap <silent> <Leader>L <Plug>(go-metalinter)
+
+  autocmd FileType go nmap <silent> <leader>T  <Plug>(go-test)
+  " autocmd FileType go nmap <silent> <leader>r  <Plug>(go-run)
+  " autocmd FileType go nmap <silent> <leader>e  <Plug>(go-install)
+
+  autocmd FileType go nmap <silent> <Leader>C <Plug>(go-coverage-toggle)
+  autocmd FileType go nmap <silent> <leader>B :<C-u>call <SID>build_go_files()<CR>
+  autocmd Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
+  autocmd Filetype go command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')
+  autocmd Filetype go command! -bang AS call go#alternate#Switch(<bang>0, 'split')
+  autocmd Filetype go command! -bang AT call go#alternate#Switch(<bang>0, 'tabe')
+
+  autocmd FileType go noremap <buffer><Leader>cf :GoFmt<CR><CR>
+  autocmd FileType go inoremap <buffer><Leader>cf <c-c>:GoFmt<CR><CR>gi
+augroup END
+" autogroup go }}}
