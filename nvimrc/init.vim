@@ -12,6 +12,19 @@ Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets' " snippets
 Plug 'bling/vim-airline'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
+
+Plug 'junegunn/vim-easy-align'
+Plug 'tpope/vim-fugitive'
+Plug 'junegunn/gv.vim'
+
+" 变更的跳转
+" ]c   Jump to next hunk.
+" [c   Jump to previous hunk.
+" ]C   Jump to last hunk.
+" [C   Jump to first hunk.
+Plug 'mhinz/vim-signify'
+
+Plug 'jamessan/vim-gnupg'
 call plug#end() " }}}
 
 " general {{{
@@ -210,6 +223,10 @@ let g:airline#extensions#tabline#fnamemod = ':t' " only show buffer name
 let g:airline_theme = "dark"
 " airline }}}
 
+" align {{{
+xmap ga <Plug>(EasyAlign)
+nmap ga <Plug>(EasyAlign)
+" align }}}
 
 " denite {{{
 try
