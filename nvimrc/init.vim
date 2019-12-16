@@ -2,9 +2,9 @@ set nocompatible
 
 " plugins {{{
 call plug#begin('~/.config/nvim/plugged')
-" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'Shougo/neco-vim'
+Plug 'Shougo/neco-vim' " vimscripts for deoplete complete
 Plug 'terryma/vim-multiple-cursors'
 Plug 'vim-scripts/tComment'                          
 Plug 'NLKNguyen/papercolor-theme'
