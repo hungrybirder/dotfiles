@@ -2,29 +2,37 @@ set nocompatible
 
 " plugins {{{
 call plug#begin('~/.config/nvim/plugged')
+
+" deoplete framework {{{
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'Shougo/neco-vim' " vimscripts for deoplete complete
+" deoplete framework }}}
+
+" snippet framework
+Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+
 Plug 'terryma/vim-multiple-cursors'
 Plug 'vim-scripts/tComment'
 Plug 'NLKNguyen/papercolor-theme'
-Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets' " snippets
 Plug 'bling/vim-airline'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
-
+Plug 'rbgrouleff/bclose.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'tpope/vim-fugitive'
 Plug 'junegunn/gv.vim'
-
 " 变更的跳转
 " ]c   Jump to next hunk.
 " [c   Jump to previous hunk.
 " ]C   Jump to last hunk.
 " [C   Jump to first hunk.
 Plug 'mhinz/vim-signify'
-
 Plug 'jamessan/vim-gnupg'
+Plug 'jiangmiao/auto-pairs'
+Plug 'qpkorr/vim-bufkill'
+Plug 'cespare/vim-toml'
+Plug 'hotoo/pangu.vim' " 中文排版
 call plug#end() " }}}
 
 " general {{{
@@ -228,6 +236,15 @@ xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 " align }}}
 
+" autopairs {{{
+let g:AutoPairsFlyMode = 1
+let g:AutoPairsShortcutToggle = '<F4>'
+" autopairs }}}
+
+" bufkill {{{
+map <C-c> :BD<cr>
+" bufkill }}}
+
 " denite {{{
 try
   call denite#custom#var('file/rec', 'command', ['rg', '--files', '--glob', '!.git'])
@@ -351,6 +368,7 @@ endif " }}}
 
 " deoplete {{{
 let g:deoplete#enable_at_startup = 1
+let g:deoplete#enable_smart_case = 1
 " deoplete }}}
 
 " vim-multiple-cursors {{{
