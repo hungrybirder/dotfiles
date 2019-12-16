@@ -6,7 +6,7 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'Shougo/neco-vim' " vimscripts for deoplete complete
 Plug 'terryma/vim-multiple-cursors'
-Plug 'vim-scripts/tComment'                          
+Plug 'vim-scripts/tComment'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets' " snippets
 Plug 'bling/vim-airline'
@@ -43,12 +43,12 @@ augroup line_return
     \ if line("'\"") > 0 && line("'\"") <= line("$") |
     \   execute 'normal! g`"zvzz' |
     \ endif
-augroup END 
+augroup END
 " general }}}
 
 
 " setting {{{
-set list listchars=tab:› ,eol:¬
+set list listchars=tab:› ,eol:¬,trail:•
 set backspace=indent,eol,start
 set laststatus=2
 set maxmempattern=5000
@@ -150,8 +150,8 @@ vnoremap <c-r> "hy:%s/<c-r>h//gc<left><left><left>
 " sort
 vnoremap <leader>s :sort<cr>
 " easy move code blocks
-vnoremap < <gv 
-vnoremap > >gv 
+vnoremap < <gv
+vnoremap > >gv
 
 "inoremap maps a key combination for insert mode
 "<C-e> is the keybinding I am creating.
@@ -231,26 +231,21 @@ nmap ga <Plug>(EasyAlign)
 " denite {{{
 try
   call denite#custom#var('file/rec', 'command', ['rg', '--files', '--glob', '!.git'])
-  
   " Use ripgrep in place of "grep"
   call denite#custom#var('grep', 'command', ['rg'])
-  
   " Custom options for ripgrep
   "   --vimgrep:  Show results with every match on it's own line
   "   --hidden:   Search hidden directories and files
   "   --heading:  Show the file name above clusters of matches from each file
   "   --S:        Search case insensitively if the pattern is all lowercase
   call denite#custom#var('grep', 'default_opts', ['--hidden', '--vimgrep', '--heading', '-S'])
-  
   " Recommended defaults for ripgrep via Denite docs
   call denite#custom#var('grep', 'recursive_opts', [])
   call denite#custom#var('grep', 'pattern_opt', ['--regexp'])
   call denite#custom#var('grep', 'separator', ['--'])
   call denite#custom#var('grep', 'final_opts', [])
-  
   " Remove date from buffer list
   call denite#custom#var('buffer', 'date_format', '')
-  
   " Custom options for Denite
   "   auto_resize             - Auto resize the Denite window height automatically.
   "   prompt                  - Customize denite prompt
@@ -273,7 +268,6 @@ try
   \ 'winrow': 1,
   \ 'vertical_preview': 1
   \ }}
-  
   " Loop through denite options and enable them
   function! s:profile(opts) abort
     for l:fname in keys(a:opts)
@@ -282,7 +276,6 @@ try
       endfor
     endfor
   endfunction
-  
   call s:profile(s:denite_options)
 catch
   echo 'Denite not installed. It should work after running :PlugInstall'
@@ -400,7 +393,7 @@ augroup MyAutoCmd
   autocmd FileType cc,cpp setlocal ts=4 sts=4 sw=4 et
 
   autocmd FileType sh setlocal ts=4 sts=4 sw=4 et
-  
+
   " java不做neomake
   " autocmd Filetype java NeomakeDisableBuffer
 
