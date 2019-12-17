@@ -499,8 +499,8 @@ Plug 'jeetsukumaran/vim-pythonsense'
 Plug 'hotoo/pangu.vim'
 call plug#end()
 
-nnoremap <silent> <expr> <Leader>f (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":Files\<cr>"
-nnoremap <silent> <Leader><space> :<c-u>Buffers<cr>
+nnoremap <silent> <expr> <space>f (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":Files\<cr>"
+nnoremap <silent> <space>b :<c-u>Buffers<cr>
 nnoremap <silent> <Leader>a :<c-u>Rg<cr>
 nnoremap <silent> <Leader>m :<c-u>Marks<cr>
 nnoremap <leader>r :<c-u>FZFMru<cr>

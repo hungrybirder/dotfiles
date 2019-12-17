@@ -11,6 +11,9 @@ Plug 'deoplete-plugins/deoplete-go', { 'do': 'make'} "go for deoplete
 
 " deoplete framework }}}
 
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+
 " snippet framework
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 
@@ -446,6 +449,39 @@ function! Multiple_cursors_after()
 endfunction
 " vim-multiple-cursors }}}
 
+" fzf {{{
+" Reverse the layout to make the FZF list top-down
+let $FZF_DEFAULT_OPTS='--layout=reverse'
+
+" Using the custom window creation function
+if has('nvim')
+  let $FZF_DEFAULT_OPTS .= ' --layout=reverse'
+
+  function! FloatingFZF()
+    let width = float2nr(&columns * 0.7)
+    let height = float2nr(&lines * 0.6)
+    let opts = { 'relative': 'editor',
+               \ 'row': (&lines - height) / 2,
+               \ 'col': (&columns - width) / 2,
+               \ 'width': width,
+               \ 'height': height }
+
+    let win = nvim_open_win(nvim_create_buf(v:false, v:true), v:true, opts)
+    call setwinvar(win, '&winhighlight', 'NormalFloat:Normal')
+  endfunction
+endif
+
+let g:fzf_layout = { 'window': 'call FloatingFZF()' }
+autocmd! FileType fzf
+autocmd  FileType fzf set laststatus=0 noshowmode noruler
+  \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
+
+" IMPORTANT FZF MAPPINGS
+nnoremap <silent> <expr> <space>f (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":Files\<cr>"
+nnoremap <silent> <space>b :<c-u>Buffers<cr>
+
+" fzf }}}
+
 " MyAutoCmd {{{
 augroup MyAutoCmd
   au!
@@ -457,6 +493,8 @@ augroup MyAutoCmd
         \ setlocal foldmethod=indent expandtab smarttab nosmartindent
         \ | setlocal tabstop=4 softtabstop=4 shiftwidth=4
 
+
+  autocmd FileType vim setlocal ts=2 sts=2 sw=2 et
 
   autocmd FileType cc,cpp noremap <buffer><Leader>cf <c-c>:Neoformat<CR><CR>gi
   autocmd FileType cc,cpp inoremap <buffer><Leader>cf <c-c>:Neoformat<CR><CR>gi
