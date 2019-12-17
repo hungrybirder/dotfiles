@@ -451,12 +451,10 @@ endfunction
 
 " fzf {{{
 " Reverse the layout to make the FZF list top-down
-let $FZF_DEFAULT_OPTS='--layout=reverse'
 
 " Using the custom window creation function
 if has('nvim')
-  let $FZF_DEFAULT_OPTS .= ' --layout=reverse'
-
+  let $FZF_DEFAULT_OPTS='--layout=reverse'
   function! FloatingFZF()
     let width = float2nr(&columns * 0.7)
     let height = float2nr(&lines * 0.6)
@@ -469,9 +467,10 @@ if has('nvim')
     let win = nvim_open_win(nvim_create_buf(v:false, v:true), v:true, opts)
     call setwinvar(win, '&winhighlight', 'NormalFloat:Normal')
   endfunction
+
+  let g:fzf_layout = { 'window': 'call FloatingFZF()'}
 endif
 
-let g:fzf_layout = { 'window': 'call FloatingFZF()' }
 autocmd! FileType fzf
 autocmd  FileType fzf set laststatus=0 noshowmode noruler
   \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
@@ -479,6 +478,8 @@ autocmd  FileType fzf set laststatus=0 noshowmode noruler
 " IMPORTANT FZF MAPPINGS
 nnoremap <silent> <expr> <space>f (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":Files\<cr>"
 nnoremap <silent> <space>b :<c-u>Buffers<cr>
+nnoremap <silent> <Leader>s :call fzf#run({'down': '40%', 'sink': 'botright split' })<CR>
+nnoremap <silent> <Leader>v :call fzf#run({'right': winwidth('.') / 2, 'sink': 'vertical botright split' })<CR>
 
 " fzf }}}
 
