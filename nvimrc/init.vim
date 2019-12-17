@@ -336,9 +336,9 @@ try
   \ 'auto_resize': 0,
   \ 'prompt': '> ',
   \ 'statusline': 0,
-  \ 'highlight_matched_char': 'QuickFixLine',
+  \ 'highlight_matched_char': 'Visual',
   \ 'highlight_matched_range': 'Visual',
-  \ 'highlight_window_background': 'Visual',
+  \ 'highlight_window_background': 'NormalFloat',
   \ 'highlight_filter_background': 'DiffAdd',
   \ 'winrow': 1,
   \ 'vertical_preview': 1
