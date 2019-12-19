@@ -479,7 +479,17 @@ if executable('rg')
   call denite#custom#var('grep', 'final_opts', [])
   call denite#custom#var('grep', 'separator', ['--'])
   call denite#custom#var('grep', 'default_opts', ['-i', '--vimgrep', '--no-heading'])
-endif " }}}
+endif
+
+" IMPORTANT Denite MAPPINGS
+
+if has('nvim')
+  nnoremap <space>o :<C-u>Denite -split=floating outline -winrow=10<cr>
+else
+  nnoremap <space>o :<C-u>Denite -split=no outline -winrow=10<cr>
+endif
+
+" denite }}}
 
 " deoplete {{{
 let g:deoplete#enable_at_startup = 1
