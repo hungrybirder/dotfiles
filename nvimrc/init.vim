@@ -12,6 +12,7 @@ Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'AndrewRadev/splitjoin.vim' "gS gJ
 Plug 'deoplete-plugins/deoplete-jedi' " py for deoplete
 Plug 'davidhalter/jedi-vim'
+Plug 'jeetsukumaran/vim-pythonsense'
 
 Plug 'ncm2/float-preview.nvim'
 " deoplete framework }}}
@@ -54,6 +55,14 @@ Plug 'jamessan/vim-gnupg'
 Plug 'jiangmiao/auto-pairs'
 Plug 'cespare/vim-toml'
 Plug 'hotoo/pangu.vim' " 中文排版
+Plug 'avakhov/vim-yaml'
+
+" for markdown
+Plug 'plasticboy/vim-markdown'
+Plug 'mzlogin/vim-markdown-toc'
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
+Plug 'iamcco/mathjax-support-for-mkdp'
+
 
 call plug#end() " }}}
 
@@ -358,7 +367,10 @@ let g:tagbar_width = 33
 let g:tagbar_autoshowtag = 1
 let tags = "./tags"
 " tagbar }}}
-
+" markdown {{{
+let g:vim_markdown_math = 1
+nmap <leader>md :MarkdownPreview<CR>
+" markdown }}}
 " denite {{{
 try
   call denite#custom#var('file/rec', 'command', ['rg', '--files', '--glob', '!.git'])
