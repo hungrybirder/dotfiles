@@ -25,6 +25,9 @@ Plug 'sbdchd/neoformat'
 " code syntax check
 Plug 'dense-analysis/ale'
 
+" tag
+Plug 'majutsushi/tagbar'
+
 " snippet framework
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 
@@ -347,6 +350,15 @@ nmap <silent> <space>j <Plug>(ale_next_wrap)
 nmap <silent> <space>k <Plug>(ale_previous_wrap)
 
 " ale }}}
+
+" target {{{
+nnoremap <silent> <leader>2 :TagbarToggle<CR>
+let g:tagbar_left = 1
+let g:tagbar_width = 33
+let g:tagbar_autoshowtag = 1
+let tags = "./tags"
+" tagbar }}}
+
 " denite {{{
 try
   call denite#custom#var('file/rec', 'command', ['rg', '--files', '--glob', '!.git'])
