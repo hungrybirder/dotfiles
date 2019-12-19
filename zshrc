@@ -213,7 +213,7 @@ today() {
     day="2nd"
   elif [ ${day} -eq 1 ]; then
     day="1st"
-  fi 
+  fi
   target_dir=$HOME/tmp/${month}/${day}
   if [[ -d ${target_dir} ]]; then
     cd ${target_dir}

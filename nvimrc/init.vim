@@ -316,7 +316,7 @@ let g:jedi#smart_auto_mappings = 0
 let g:jedi#show_call_signatures = 0
 " deoplete-jedi & jedi }}}
 
-" float-preview {{{ 
+" float-preview {{{
 let g:float_preview#docked = 0
 "float-preview }}}
 
@@ -330,7 +330,7 @@ let g:ale_open_list = 0
 let g:ale_linters = {
 \ 'python':['pylint'],
 \ 'javascript':['eslint'],
-\ 'java':[], 
+\ 'java':[],
 \ 'go': ['gofmt', 'golint']
 \ }
 let g:ale_fixers = {
