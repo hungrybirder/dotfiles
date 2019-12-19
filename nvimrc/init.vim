@@ -8,11 +8,22 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'Shougo/neco-vim' " vimscripts for deoplete complete
 Plug 'deoplete-plugins/deoplete-go', { 'do': 'make'} "go for deoplete
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'AndrewRadev/splitjoin.vim' "gS gJ
+Plug 'deoplete-plugins/deoplete-jedi' " py for deoplete
+Plug 'davidhalter/jedi-vim'
 
+Plug 'ncm2/float-preview.nvim'
 " deoplete framework }}}
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+
+" auto format plugin
+Plug 'sbdchd/neoformat'
+
+" code syntax check
+Plug 'dense-analysis/ale'
 
 " snippet framework
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
@@ -41,10 +52,6 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'cespare/vim-toml'
 Plug 'hotoo/pangu.vim' " 中文排版
 
-" golang
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-"gS gJ
-Plug 'AndrewRadev/splitjoin.vim'
 call plug#end() " }}}
 
 " general {{{
@@ -302,11 +309,47 @@ function! s:build_go_files()
   endif
 endfunction
 " vim-go }}}
+" deoplete-jedi & jedi {{{
+let g:jedi#completions_enabled = 0 " use deoplete-go to complete
+let g:jedi#auto_vim_configuration = 0
+let g:jedi#smart_auto_mappings = 0
+let g:jedi#show_call_signatures = 0
+" deoplete-jedi & jedi }}}
 
+" float-preview {{{ 
+let g:float_preview#docked = 0
+"float-preview }}}
+
+" neoformat {{{
+let g:neoformat_enabled_python = ['autopep8']
+" neoformat }}}
+
+" ale {{{
+let g:ale_set_quickfix = 1
+let g:ale_open_list = 0
+let g:ale_linters = {
+\ 'python':['pylint'],
+\ 'javascript':['eslint'],
+\ 'java':[], 
+\ 'go': ['gofmt', 'golint']
+\ }
+let g:ale_fixers = {
+\ '*': ['remove_trailing_lines', 'trim_whitespace'],
+\ 'python': ['autopep8'],
+\ 'go': ['gofmt']
+\ }
+let g:ale_echo_msg_error_str = 'E'
+let g:ale_echo_msg_warning_str = 'W'
+let g:ale_echo_msg_format = '[%code%] %s [%severity%]'
+let g:ale_lint_on_enter = 1
+let g:ale_fix_on_save = 1
+nmap <silent> <space>j <Plug>(ale_next_wrap)
+nmap <silent> <space>k <Plug>(ale_previous_wrap)
+
+" ale }}}
 " denite {{{
 try
   call denite#custom#var('file/rec', 'command', ['rg', '--files', '--glob', '!.git'])
-  " Use ripgrep in place of "grep"
   call denite#custom#var('grep', 'command', ['rg'])
   " Custom options for ripgrep
   "   --vimgrep:  Show results with every match on it's own line
@@ -319,17 +362,7 @@ try
   call denite#custom#var('grep', 'pattern_opt', ['--regexp'])
   call denite#custom#var('grep', 'separator', ['--'])
   call denite#custom#var('grep', 'final_opts', [])
-  " Remove date from buffer list
   call denite#custom#var('buffer', 'date_format', '')
-  " Custom options for Denite
-  "   auto_resize             - Auto resize the Denite window height automatically.
-  "   prompt                  - Customize denite prompt
-  "   direction               - Specify Denite window direction as directly below current pane
-  "   winminheight            - Specify min height for Denite window
-  "   highlight_mode_insert   - Specify h1-CursorLine in insert mode
-  "   prompt_highlight        - Specify color of prompt
-  "   highlight_matched_char  - Matched characters highlight
-  "   highlight_matched_range - matched range highlight
   let s:denite_options = {'default' : {
   \ 'split': 'floating',
   \ 'start_filter': 1,
@@ -493,6 +526,7 @@ augroup MyAutoCmd
   autocmd FileType python
         \ setlocal foldmethod=indent expandtab smarttab nosmartindent
         \ | setlocal tabstop=4 softtabstop=4 shiftwidth=4
+  autocmd FileType python set completeopt-=preview
 
 
   autocmd FileType vim setlocal ts=2 sts=2 sw=2 et
