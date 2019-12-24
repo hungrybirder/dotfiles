@@ -258,8 +258,8 @@ let g:SuperTabDefaultCompletionType = "<c-n>"
 
 " snippets {{{
 let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger = "<tab>"
-let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+let g:UltiSnipsJumpForwardTrigger = "<c-j>"
+let g:UltiSnipsJumpBackwardTrigger = "<c-k>"
 let g:UltiSnipsListSnippets="<leader><enter>"
 let g:UltiSnipsEditSplit="vertical"
 " snippets }}}
