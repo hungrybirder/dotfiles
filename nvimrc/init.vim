@@ -550,6 +550,7 @@ autocmd  FileType fzf set laststatus=0 noshowmode noruler
 " IMPORTANT FZF MAPPINGS
 nnoremap <silent> <expr> <space>f (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":Files\<cr>"
 nnoremap <silent> <space>b :<c-u>Buffers<cr>
+nnoremap <silent> <space>r :<c-u>History<cr>
 nnoremap <silent> <Leader>s :call fzf#run({'down': '40%', 'sink': 'botright split' })<CR>
 nnoremap <silent> <Leader>v :call fzf#run({'right': winwidth('.') / 2, 'sink': 'vertical botright split' })<CR>
 

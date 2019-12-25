@@ -145,11 +145,11 @@ nnoremap <C-F>o :CtrlSFOpen<CR>
 nnoremap <C-F>t :CtrlSFToggle<CR>
 inoremap <C-F>t <Esc>:CtrlSFToggle<CR>
 
-Plug 'vim-scripts/tComment'                          
+Plug 'vim-scripts/tComment'
 
 Plug 'tpope/vim-abolish'
 
-Plug 'sjl/gundo.vim'                                 
+Plug 'sjl/gundo.vim'
 " Gundo mapping and settings
 " <F5> :GundoToggle
 nnoremap <F5> :GundoToggle<CR>
@@ -340,9 +340,9 @@ Plug 'avakhov/vim-yaml'
 let g:ranger_map_keys = 0
 map <leader>F :Ranger<CR>
 " add this line if you use NERDTree
-let g:NERDTreeHijackNetrw = 0 
+let g:NERDTreeHijackNetrw = 0
 " open ranger when vim open a directory
-let g:ranger_replace_netrw = 1 
+let g:ranger_replace_netrw = 1
 map <leader>F :Ranger<CR>
 Plug 'francoiscabrol/ranger.vim'
 Plug 'rbgrouleff/bclose.vim'
@@ -430,7 +430,7 @@ let g:go_fmt_fail_silently = 1
 let g:go_fmt_command = "goimports"
 let g:go_def_mode = "gopls"
 let g:go_list_type = "quickfix"
-let g:go_auto_type_info = 1 
+let g:go_auto_type_info = 1
 let g:go_fmt_autosave = 1
 let g:go_auto_sameids = 0
 " let g:go_doc_popup_window = 0
@@ -474,7 +474,7 @@ let g:ale_open_list = 0
 let g:ale_linters = {
 \ 'python':['pylint'],
 \ 'javascript':['eslint'],
-\ 'java':[], 
+\ 'java':[],
 \ 'go': ['gofmt', 'golint']
 \ }
 let g:ale_fixers = {
@@ -502,9 +502,9 @@ call plug#end()
 
 nnoremap <silent> <expr> <space>f (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":Files\<cr>"
 nnoremap <silent> <space>b :<c-u>Buffers<cr>
+nnoremap <silent> <space>r :<c-u>FZFMru<cr>
 nnoremap <silent> <Leader>a :<c-u>Rg<cr>
 nnoremap <silent> <Leader>m :<c-u>Marks<cr>
-nnoremap <leader>r :<c-u>FZFMru<cr>
 
 " Tags in the project (`ctags -R`)
 nnoremap <leader>t :<c-u>Tags<cr>
@@ -612,8 +612,8 @@ autocmd InsertLeave * set timeoutlen=1000
 vnoremap <leader>s :sort<cr>
 
 " easy move code blocks
-vnoremap < <gv 
-vnoremap > >gv 
+vnoremap < <gv
+vnoremap > >gv
 
 " ctrl+k ctrl+l dictionary completion
 set dictionary+=/usr/share/dict/words
@@ -721,7 +721,7 @@ augroup MyAutoCmd
   autocmd FileType cc,cpp setlocal ts=4 sts=4 sw=4 et
 
   autocmd FileType sh setlocal ts=4 sts=4 sw=4 et
-  
+
   " java不做neomake
   " autocmd Filetype java NeomakeDisableBuffer
 
