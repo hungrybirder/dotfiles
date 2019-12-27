@@ -136,7 +136,7 @@ set showcmd
 set gfn=Monaco:h18
 set history=1000
 
-set noexpandtab     " Don't expand tabs to spaces.
+set noexpandtab
 set tabstop=4       " The number of spaces a tab is
 set softtabstop=4   " While performing editing operations
 set shiftwidth=4    " Number of spaces to use in auto(indent)
@@ -567,6 +567,7 @@ nmap <Leader>L <Plug>(easymotion-overwin-line)
 map  <Leader>w <Plug>(easymotion-bd-w)
 nmap <Leader>w <Plug>(easymotion-overwin-w)
 
+let g:incsearch#magic = '\v'
 function! s:incsearch_config(...) abort
   return incsearch#util#deepextend(deepcopy({
   \   'modules': [incsearch#config#easymotion#module({'overwin': 1})],
@@ -590,6 +591,15 @@ function! s:config_easyfuzzymotion(...) abort
   \ }), get(a:, 1, {}))
 endfunction
 noremap <silent><expr> <Space>/ incsearch#go(<SID>config_easyfuzzymotion())
+
+augroup incsearch-keymap
+    autocmd!
+    autocmd VimEnter * call s:incsearch_keymap()
+augroup END
+function! s:incsearch_keymap()
+    IncSearchNoreMap <D-v> <c-r>+
+    IncSearchNoreMap <C-v> <c-r>+
+endfunction
 " easymotion }}}
 
 
