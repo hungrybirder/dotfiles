@@ -136,7 +136,7 @@ set showcmd
 set gfn=Monaco:h18
 set history=1000
 
-set noexpandtab
+set expandtab
 set tabstop=4       " The number of spaces a tab is
 set softtabstop=4   " While performing editing operations
 set shiftwidth=4    " Number of spaces to use in auto(indent)
