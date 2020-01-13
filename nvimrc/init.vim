@@ -243,7 +243,6 @@ inoremap <c-s> <c-o>:update<cr>
 vnoremap <c-s> <esc>:update<cr>gv
 
 " disable F1
-noremap <F1> <nop>
 noremap <Up> <Nop>
 noremap <Down> <Nop>
 noremap <Left> <Nop>
@@ -436,14 +435,17 @@ let g:Lf_WindowPosition = 'popup'
 let g:Lf_PreviewInPopup = 1
 let g:Lf_StlSeparator = { 'left': "\ue0b0", 'right': "\ue0b2", 'font': "DejaVu Sans Mono for Powerline" }
 let g:Lf_PreviewResult = {'Function': 0, 'BufTag': 0 }
-noremap <space>f :<C-U><C-R>=printf("Leaderf file %s", "")<CR><CR>
-noremap <space>b :<C-U><C-R>=printf("Leaderf buffer %s", "")<CR><CR>
-noremap <space>r :<C-U><C-R>=printf("Leaderf mru %s", "")<CR><CR>
-noremap <space>t :<C-U><C-R>=printf("Leaderf bufTag %s", "")<CR><CR>
-noremap <space>l :<C-U><C-R>=printf("Leaderf line %s", "")<CR><CR>
-noremap <space>o :<C-U><C-R>=printf("Leaderf function %s", "")<CR><CR>
-noremap <F2> :<C-U><C-R>=printf("Leaderf function %s", "")<CR><CR>
+noremap <space>f :<C-U>LeaderfFile<CR>
+noremap <space>r :<C-U>LeaderfMru<CR>
+noremap <space>l :<C-U>LeaderfLine<CR>
+noremap <space>o :<C-U>LeaderfFunction<CR>
+noremap <space>b :<C-U>LeaderfBuffer<CR>
+noremap <space>t :<C-U>LeaderfBufTag<CR>
+noremap <space>T :<C-U>LeaderfBufTagAll<CR>
+noremap <F1> :<C-U>LeaderfHelp<CR>
+noremap <F12> :<C-U>LeaderfFunctionAll<CR>
 noremap <space>a :<C-U><C-R>=printf("Leaderf rg %s", "")<CR><CR>
+
 
 " noremap <C-B> :<C-U><C-R>=printf("Leaderf! rg --current-buffer -e %s ", expand("<cword>"))<CR>
 " noremap <C-F> :<C-U><C-R>=printf("Leaderf! rg -e %s ", expand("<cword>"))<CR>
