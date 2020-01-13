@@ -407,8 +407,8 @@ endfunction
 if has('nvim')
   let $FZF_DEFAULT_OPTS='--layout=reverse'
   function! FloatingFZF()
-    let width = float2nr(&columns * 0.7)
-    let height = float2nr(&lines * 0.6)
+    let width = float2nr(&columns * 2 / 3)
+    let height = float2nr(&lines * 0.4)
     let opts = { 'relative': 'editor',
                \ 'row': (&lines - height) / 2,
                \ 'col': (&columns - width) / 2,
