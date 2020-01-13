@@ -16,8 +16,9 @@ Plug 'jeetsukumaran/vim-pythonsense'
 Plug 'ncm2/float-preview.nvim'
 " deoplete framework }}}
 
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
+" Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+" Plug 'junegunn/fzf.vim'
+Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
 
 " auto format plugin
 Plug 'sbdchd/neoformat'
@@ -404,36 +405,70 @@ endfunction
 " Reverse the layout to make the FZF list top-down
 
 " Using the custom window creation function
-if has('nvim')
-  let $FZF_DEFAULT_OPTS='--layout=reverse'
-  function! FloatingFZF()
-    let width = float2nr(&columns * 2 / 3)
-    let height = float2nr(&lines * 0.4)
-    let opts = { 'relative': 'editor',
-               \ 'row': (&lines - height) / 2,
-               \ 'col': (&columns - width) / 2,
-               \ 'width': width,
-               \ 'height': height }
-
-    let win = nvim_open_win(nvim_create_buf(v:false, v:true), v:true, opts)
-    call setwinvar(win, '&winhighlight', 'NormalFloat:Normal')
-  endfunction
-
-  let g:fzf_layout = { 'window': 'call FloatingFZF()'}
-endif
-
-autocmd! FileType fzf
-autocmd  FileType fzf set laststatus=0 noshowmode noruler
-  \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
+" if has('nvim')
+"   let $FZF_DEFAULT_OPTS='--layout=reverse'
+"   function! FloatingFZF()
+"     let width = float2nr(&columns * 2 / 3)
+"     let height = float2nr(&lines * 0.4)
+"     let opts = { 'relative': 'editor',
+"                \ 'row': (&lines - height) / 2,
+"                \ 'col': (&columns - width) / 2,
+"                \ 'width': width,
+"                \ 'height': height }
+"
+"     let win = nvim_open_win(nvim_create_buf(v:false, v:true), v:true, opts)
+"     call setwinvar(win, '&winhighlight', 'NormalFloat:Normal')
+"   endfunction
+"
+"   let g:fzf_layout = { 'window': 'call FloatingFZF()'}
+" endif
+"
+" autocmd! FileType fzf
+" autocmd  FileType fzf set laststatus=0 noshowmode noruler
+"   \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
 
 " IMPORTANT FZF MAPPINGS
-nnoremap <silent> <expr> <space>f (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":Files\<cr>"
-nnoremap <silent> <space>b :<c-u>Buffers<cr>
-nnoremap <silent> <space>r :<c-u>History<cr>
-nnoremap <silent> <Leader>s :call fzf#run({'down': '40%', 'sink': 'botright split' })<CR>
-nnoremap <silent> <Leader>v :call fzf#run({'right': winwidth('.') / 2, 'sink': 'vertical botright split' })<CR>
+" nnoremap <silent> <expr> <space>f (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":Files\<cr>"
+" nnoremap <silent> <space>b :<c-u>Buffers<cr>
+" nnoremap <silent> <space>r :<c-u>History<cr>
+" nnoremap <silent> <Leader>s :call fzf#run({'down': '40%', 'sink': 'botright split' })<CR>
+" nnoremap <silent> <Leader>v :call fzf#run({'right': winwidth('.') / 2, 'sink': 'vertical botright split' })<CR>
 
 " fzf }}}
+" leaderf {{{
+let g:Lf_HideHelp = 0
+let g:Lf_UseCache = 0
+let g:Lf_UseVersionControlTool = 0
+let g:Lf_IgnoreCurrentBufferName = 1
+let g:Lf_WindowPosition = 'popup'
+let g:Lf_PreviewInPopup = 1
+let g:Lf_StlSeparator = { 'left': "\ue0b0", 'right': "\ue0b2", 'font': "DejaVu Sans Mono for Powerline" }
+let g:Lf_PreviewResult = {'Function': 0, 'BufTag': 0 }
+noremap <space>f :<C-U><C-R>=printf("Leaderf file %s", "")<CR><CR>
+noremap <space>b :<C-U><C-R>=printf("Leaderf buffer %s", "")<CR><CR>
+noremap <space>r :<C-U><C-R>=printf("Leaderf mru %s", "")<CR><CR>
+noremap <space>t :<C-U><C-R>=printf("Leaderf bufTag %s", "")<CR><CR>
+noremap <space>l :<C-U><C-R>=printf("Leaderf line %s", "")<CR><CR>
+noremap <space>o :<C-U><C-R>=printf("Leaderf function %s", "")<CR><CR>
+noremap <space>a :<C-U><C-R>=printf("Leaderf rg %s", "")<CR><CR>
+
+" noremap <C-B> :<C-U><C-R>=printf("Leaderf! rg --current-buffer -e %s ", expand("<cword>"))<CR>
+" noremap <C-F> :<C-U><C-R>=printf("Leaderf! rg -e %s ", expand("<cword>"))<CR>
+" xnoremap gf :<C-U><C-R>=printf("Leaderf rg -F -e %s ", leaderf#Rg#visual())<CR>
+" noremap go :<C-U>Leaderf! rg --recall<CR>
+
+" gtags
+" brew install global
+" pip3 install pygments
+"" Leaderf gtags --update
+let g:Lf_GtagsAutoGenerate = 0
+let g:Lf_Gtagslabel = 'native-pygments'
+noremap <leader>fr :<C-U><C-R>=printf("Leaderf! gtags -r %s --auto-jump", expand("<cword>"))<CR><CR>
+noremap <leader>fd :<C-U><C-R>=printf("Leaderf! gtags -d %s --auto-jump", expand("<cword>"))<CR><CR>
+noremap <leader>fo :<C-U><C-R>=printf("Leaderf! gtags --recall %s", "")<CR><CR>
+noremap <leader>fn :<C-U><C-R>=printf("Leaderf gtags --next %s", "")<CR><CR>
+noremap <leader>fp :<C-U><C-R>=printf("Leaderf gtags --previous %s", "")<CR><CR>
+"leaderf }}}
 
 " easymotion {{{
 let g:EasyMotion_smartcase = 1
