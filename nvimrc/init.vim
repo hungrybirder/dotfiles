@@ -442,6 +442,7 @@ noremap <space>r :<C-U><C-R>=printf("Leaderf mru %s", "")<CR><CR>
 noremap <space>t :<C-U><C-R>=printf("Leaderf bufTag %s", "")<CR><CR>
 noremap <space>l :<C-U><C-R>=printf("Leaderf line %s", "")<CR><CR>
 noremap <space>o :<C-U><C-R>=printf("Leaderf function %s", "")<CR><CR>
+noremap <F2> :<C-U><C-R>=printf("Leaderf function %s", "")<CR><CR>
 noremap <space>a :<C-U><C-R>=printf("Leaderf rg %s", "")<CR><CR>
 
 " noremap <C-B> :<C-U><C-R>=printf("Leaderf! rg --current-buffer -e %s ", expand("<cword>"))<CR>
@@ -458,8 +459,8 @@ let g:Lf_Gtagslabel = 'native-pygments'
 noremap <leader>fr :<C-U><C-R>=printf("Leaderf! gtags -r %s --auto-jump", expand("<cword>"))<CR><CR>
 noremap <leader>fd :<C-U><C-R>=printf("Leaderf! gtags -d %s --auto-jump", expand("<cword>"))<CR><CR>
 noremap <leader>fo :<C-U><C-R>=printf("Leaderf! gtags --recall %s", "")<CR><CR>
-noremap <leader>fn :<C-U><C-R>=printf("Leaderf gtags --next %s", "")<CR><CR>
-noremap <leader>fp :<C-U><C-R>=printf("Leaderf gtags --previous %s", "")<CR><CR>
+noremap <F7> :<C-U><C-R>=printf("Leaderf gtags --next %s", "")<CR><CR>
+noremap <F8> :<C-U><C-R>=printf("Leaderf gtags --previous %s", "")<CR><CR>
 "leaderf }}}
 
 " easymotion {{{
