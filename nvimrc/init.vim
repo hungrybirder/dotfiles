@@ -26,9 +26,6 @@ Plug 'sbdchd/neoformat'
 " code syntax check
 Plug 'dense-analysis/ale'
 
-" tag
-Plug 'majutsushi/tagbar'
-
 " snippet framework
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 
@@ -160,6 +157,8 @@ set matchpairs+=<:> " Add HTML brackets to pair matching
 set matchtime=1     " Tenths of a second to show the matching paren
 set cpoptions-=m    " showmatch will wait 0.5s or until a char is typed
 set showfulltag     " Show tag and tidy search in completion
+
+let tags = "./tags"
 " setting }}}
 
 " mappings {{{
@@ -365,13 +364,6 @@ nmap <silent> <space>k <Plug>(ale_previous_wrap)
 
 " ale }}}
 
-" target {{{
-nnoremap <silent> <leader>2 :TagbarToggle<CR>
-let g:tagbar_left = 1
-let g:tagbar_width = 33
-let g:tagbar_autoshowtag = 1
-let tags = "./tags"
-" tagbar }}}
 " markdown {{{
 let g:vim_markdown_math = 1
 nmap <leader>md :MarkdownPreview<CR>
