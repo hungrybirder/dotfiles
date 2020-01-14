@@ -255,7 +255,7 @@ export GOPATH=$(go env GOPATH)
 if [[ -d ${GOPATH}/bin ]]; then
     export GOBIN="${GOPATH}/bin"
     export PATH="${GOBIN}:${PATH}"
-    export GO111MODULE=on
+    export GO111MODULE=auto
 fi
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
