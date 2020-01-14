@@ -16,8 +16,8 @@ Plug 'jeetsukumaran/vim-pythonsense'
 Plug 'ncm2/float-preview.nvim'
 " deoplete framework }}}
 
-" Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-" Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
 
 " auto format plugin
