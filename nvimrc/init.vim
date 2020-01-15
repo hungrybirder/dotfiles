@@ -19,6 +19,7 @@ Plug 'ncm2/float-preview.nvim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
+Plug 'majutsushi/tagbar'
 
 " auto format plugin
 Plug 'sbdchd/neoformat'
@@ -158,7 +159,6 @@ set matchtime=1     " Tenths of a second to show the matching paren
 set cpoptions-=m    " showmatch will wait 0.5s or until a char is typed
 set showfulltag     " Show tag and tidy search in completion
 
-let tags = "./tags"
 " setting }}}
 
 " mappings {{{
@@ -464,6 +464,11 @@ noremap <leader>fo :<C-U><C-R>=printf("Leaderf! gtags --recall %s", "")<CR><CR>
 noremap <F7> :<C-U><C-R>=printf("Leaderf gtags --next %s", "")<CR><CR>
 noremap <F8> :<C-U><C-R>=printf("Leaderf gtags --previous %s", "")<CR><CR>
 "leaderf }}}
+
+" tagbar {{{
+nnoremap <silent> <leader>2 :TagbarToggle<CR>
+let tags = "./tags"
+"tagbar }}}
 
 " easymotion {{{
 let g:EasyMotion_smartcase = 1
