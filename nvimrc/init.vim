@@ -67,6 +67,7 @@ Plug 'haya14busa/incsearch.vim'
 Plug 'haya14busa/incsearch-easymotion.vim'
 Plug 'haya14busa/incsearch-fuzzy.vim'
 
+Plug 'liuchengxu/vim-which-key'
 call plug#end() " }}}
 
 " general {{{
@@ -78,6 +79,7 @@ let maplocalleader = ","
 let g:maplocalleader = ","
 nmap <silent> <leader>ev :e $MYVIMRC<CR>
 nmap <silent> <leader>sv :so $MYVIMRC<CR>
+nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
 
 augroup line_return
   au!
