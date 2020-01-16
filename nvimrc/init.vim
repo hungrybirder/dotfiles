@@ -445,8 +445,8 @@ noremap <space>r :<C-U>LeaderfMru<CR>
 noremap <space>l :<C-U>LeaderfLine<CR>
 noremap <space>o :<C-U>LeaderfFunction<CR>
 noremap <space>b :<C-U>LeaderfBuffer<CR>
-noremap <space>t :<C-U>LeaderfBufTag<CR>
-noremap <space>T :<C-U>LeaderfBufTagAll<CR>
+noremap <space>t :<C-U>LeaderfBufTagAll<CR>
+noremap <space>T :<C-U>LeaderfTag<CR>
 noremap <F1> :<C-U>LeaderfHelp<CR>
 noremap <F12> :<C-U>LeaderfFunctionAll<CR>
 noremap <space>a :<C-U><C-R>=printf("Leaderf rg %s", "")<CR><CR>
