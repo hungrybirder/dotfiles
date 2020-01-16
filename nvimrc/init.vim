@@ -437,6 +437,9 @@ let g:Lf_WindowPosition = 'popup'
 let g:Lf_PreviewInPopup = 1
 let g:Lf_StlSeparator = { 'left': "\ue0b0", 'right': "\ue0b2", 'font': "DejaVu Sans Mono for Powerline" }
 let g:Lf_PreviewResult = {'Function': 0, 'BufTag': 0 }
+" <C-X> open in horizontal split window
+" <C-]> open in vertical split window
+" <C-T> open in new tabpage
 noremap <space>f :<C-U>LeaderfFile<CR>
 noremap <space>r :<C-U>LeaderfMru<CR>
 noremap <space>l :<C-U>LeaderfLine<CR>
