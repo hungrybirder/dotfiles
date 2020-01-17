@@ -282,9 +282,9 @@ let g:AutoPairsFlyMode = 1
 let g:AutoPairsShortcutToggle = '<F4>'
 " autopairs }}}
 
-" bufkill {{{
-" map <C-c> :Bclose<cr>
-" bufkill }}}
+" bclose {{{
+noremap <leader><BS> :Bclose<cr>
+" bclose }}}
 
 " vim-go {{{
 let g:go_test_prepend_name = 1
