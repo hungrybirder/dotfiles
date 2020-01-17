@@ -472,6 +472,7 @@ noremap <F8> :<C-U><C-R>=printf("Leaderf gtags --previous %s", "")<CR><CR>
 
 " tagbar {{{
 nnoremap <silent> <leader>2 :TagbarToggle<CR>
+let g:tagbar_left = 1
 let tags = "./tags"
 "tagbar }}}
 
