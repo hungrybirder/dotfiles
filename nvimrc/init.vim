@@ -283,7 +283,7 @@ let g:AutoPairsShortcutToggle = '<F4>'
 " autopairs }}}
 
 " bufkill {{{
-map <C-c> :Bclose<cr>
+" map <C-c> :Bclose<cr>
 " bufkill }}}
 
 " vim-go {{{
