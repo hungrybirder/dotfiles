@@ -466,8 +466,8 @@ let g:Lf_Gtagslabel = 'native-pygments'
 noremap <leader>fr :<C-U><C-R>=printf("Leaderf! gtags -r %s --auto-jump", expand("<cword>"))<CR><CR>
 noremap <leader>fd :<C-U><C-R>=printf("Leaderf! gtags -d %s --auto-jump", expand("<cword>"))<CR><CR>
 noremap <leader>fo :<C-U><C-R>=printf("Leaderf! gtags --recall %s", "")<CR><CR>
-noremap <F7> :<C-U><C-R>=printf("Leaderf gtags --next %s", "")<CR><CR>
-noremap <F8> :<C-U><C-R>=printf("Leaderf gtags --previous %s", "")<CR><CR>
+noremap <space>n :<C-U><C-R>=printf("Leaderf gtags --next %s", "")<CR><CR>
+noremap <space>p :<C-U><C-R>=printf("Leaderf gtags --previous %s", "")<CR><CR>
 "leaderf }}}
 
 " tagbar {{{
