@@ -251,18 +251,13 @@ noremap <Left> <Nop>
 noremap <Right> <Nop>
 " mappings }}}
 
-" supertab {{{
-" Why does <tab> navigate the completion menu from bottom to top?
-let g:SuperTabDefaultCompletionType = "<c-n>"
-" supertab}}}
-
-" snippets {{{
+" supertab && snippets {{{
+let g:SuperTabDefaultCompletionType = "context"
+let g:SuperTabContextTextOmniPrecedence = ['&omnifunc', '&completefunc']
 let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger = "<c-j>"
-let g:UltiSnipsJumpBackwardTrigger = "<c-k>"
-let g:UltiSnipsListSnippets="<leader><enter>"
-let g:UltiSnipsEditSplit="vertical"
-" snippets }}}
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+" supertab && snippets }}}
 
 " airline {{{
 let g:airline#extensions#tabline#enabled = 1
