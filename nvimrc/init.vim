@@ -6,7 +6,6 @@ call plug#begin('~/.config/nvim/plugged')
 " deoplete framework {{{
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'Shougo/neco-vim' " vimscripts for deoplete complete
-Plug 'deoplete-plugins/deoplete-go', { 'do': 'make'} "go for deoplete
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'AndrewRadev/splitjoin.vim' "gS gJ
 Plug 'deoplete-plugins/deoplete-jedi' " py for deoplete
@@ -370,6 +369,8 @@ nmap <leader>md :MarkdownPreview<CR>
 " deoplete {{{
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#enable_smart_case = 1
+" 设置 omni_patterns, 这样deoplete=>go#complete#Complete(vim-go)=>gopls
+" 不再依赖deoplete-go(依赖gocode)
 call deoplete#custom#option('omni_patterns', {
 \ 'go': '[^. *\t]\.\w*',
 \})
