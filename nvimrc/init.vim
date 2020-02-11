@@ -12,6 +12,7 @@ Plug 'AndrewRadev/splitjoin.vim' "gS gJ
 Plug 'deoplete-plugins/deoplete-jedi' " py for deoplete
 Plug 'davidhalter/jedi-vim'
 Plug 'jeetsukumaran/vim-pythonsense'
+Plug 'Shougo/echodoc.vim'
 
 Plug 'ncm2/float-preview.nvim'
 " deoplete framework }}}
@@ -597,3 +598,14 @@ augroup go
 augroup END
 
 " autogroup go }}}
+
+" echodoc {{{
+let g:echodoc_enable_at_startup = 1
+if has('nvim')
+  let g:echodoc#type = "floating"
+  highlight link EchoDocFloat Pmenu
+else
+  let g:echodoc#type = "popup"
+  highlight link EchoDocPopup Pmenu
+endif
+" echodoc }}}
