@@ -19,6 +19,8 @@ Plug 'deoplete-plugins/deoplete-jedi' " py for deoplete
 Plug 'davidhalter/jedi-vim'
 Plug 'jeetsukumaran/vim-pythonsense'
 Plug 'Shougo/echodoc.vim'
+Plug 'Shougo/neoinclude.vim'
+Plug 'Shougo/deoplete-clangx'
 " deoplete framework }}}
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -542,6 +544,8 @@ augroup MyAutoCmd
 
   autocmd FileType vim setlocal ts=2 sts=2 sw=2 et
 
+  autocmd FileType c set completeopt-=preview
+  autocmd FileType cc,cpp set completeopt-=preview
   autocmd FileType cc,cpp noremap <buffer><Leader>cf <c-c>:Neoformat<CR><CR>gi
   autocmd FileType cc,cpp inoremap <buffer><Leader>cf <c-c>:Neoformat<CR><CR>gi
   autocmd FileType c setlocal ts=4 sts=4 sw=4 et
