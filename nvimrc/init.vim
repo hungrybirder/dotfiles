@@ -330,12 +330,6 @@ function! s:build_go_files()
   endif
 endfunction
 " vim-go }}}
-" deoplete-jedi & jedi {{{
-let g:jedi#completions_enabled = 0 " use deoplete-go to complete
-let g:jedi#auto_vim_configuration = 0
-let g:jedi#smart_auto_mappings = 0
-let g:jedi#show_call_signatures = 0
-" deoplete-jedi & jedi }}}
 
 " float-preview {{{
 let g:float_preview#docked = 0
@@ -380,6 +374,13 @@ call deoplete#custom#option('omni_patterns', {
 \ 'go': '[^. *\t]\.\w*',
 \})
 " deoplete }}}
+
+" deoplete-jedi & jedi {{{
+let g:jedi#completions_enabled = 0
+let g:jedi#auto_vim_configuration = 0
+let g:jedi#smart_auto_mappings = 0
+let g:jedi#show_call_signatures = 0
+" deoplete-jedi & jedi }}}
 
 " vim-multiple-cursors {{{
 let g:multi_cursor_exit_from_insert_mode = 0
