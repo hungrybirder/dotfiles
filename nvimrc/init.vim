@@ -13,6 +13,7 @@ Plug 'davidhalter/jedi-vim'
 Plug 'jeetsukumaran/vim-pythonsense'
 Plug 'Shougo/echodoc.vim'
 Plug 'Shougo/neoinclude.vim'
+Plug 'deoplete-plugins/deoplete-tag'
 Plug 'Shougo/deoplete-clangx'
 
 Plug 'ncm2/float-preview.nvim'
