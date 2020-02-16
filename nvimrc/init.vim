@@ -287,7 +287,7 @@ let g:AutoPairsShortcutToggle = '<F4>'
 " autopairs }}}
 
 " bclose {{{
-noremap <leader><BS> :Bclose<cr>
+noremap <space><BS> :Bclose<cr>
 " bclose }}}
 
 " vim-go {{{
