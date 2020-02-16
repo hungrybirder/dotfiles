@@ -45,7 +45,6 @@ Plug 'NLKNguyen/papercolor-theme'
 Plug 'bling/vim-airline'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
-Plug 'rbgrouleff/bclose.vim'
 Plug 'moll/vim-bbye'
 Plug 'junegunn/vim-easy-align'
 Plug 'tpope/vim-fugitive'
@@ -291,9 +290,9 @@ let g:AutoPairsFlyMode = 1
 let g:AutoPairsShortcutToggle = '<F4>'
 " autopairs }}}
 
-" bclose {{{
-noremap <space><BS> :Bclose<cr>
-" bclose }}}
+" vim-bbye {{{
+noremap <space><BS> :Bdelete<cr>
+" vim-bbye }}}
 
 " vim-go {{{
 let g:go_test_prepend_name = 1
