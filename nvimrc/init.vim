@@ -119,7 +119,7 @@ if has('mac')
 endif
 
 if has('clipboard')
-  set clipboard& clipboard+=unnamedplus
+  set clipboard& clipboard+=unnamed
 endif
 ""
 set nofoldenable
