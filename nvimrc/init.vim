@@ -391,6 +391,7 @@ function! Multiple_cursors_before()
   if deoplete#is_enabled()
     call deoplete#disable()
     let g:deoplete_is_enable_before_multi_cursors = 1
+    call ale#toggle#Disable()
   else
     let g:deoplete_is_enable_before_multi_cursors = 0
   endif
@@ -399,6 +400,7 @@ endfunction
 function! Multiple_cursors_after()
   if g:deoplete_is_enable_before_multi_cursors
     call deoplete#enable()
+    call ale#toggle#Enable()
   endif
 endfunction
 " vim-multiple-cursors }}}
