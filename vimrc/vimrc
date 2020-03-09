@@ -603,6 +603,10 @@ augroup go
   autocmd FileType go inoremap <buffer><Leader>cf <c-c>:GoFmt<CR><CR>gi
   autocmd FileType go setlocal ts=4 sts=4 sw=4 noexpandtab
   autocmd FileType go setlocal completeopt-=preview
+  autocmd Filetype go
+    \  command! -bang A call go#alternate#Switch(<bang>0, 'edit')
+    \| command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')
+    \| command! -bang AS call go#alternate#Switch(<bang>0, 'split')
 augroup END
 
 " autogroup go }}}
