@@ -250,13 +250,17 @@ export GIT_INTERNAL_GETTEXT_TEST_FALLBACKS=1
 [ -f /Users/liyong/.travis/travis.sh ] && source /Users/liyong/.travis/travis.sh
 
 # golang
-export GOPATH=$(go env GOPATH)
+export PATH="$(go env GOBIN):${PATH}"
+# export GOPATH=$(go env GOPATH)
 
-if [[ -d ${GOPATH}/bin ]]; then
-    export GOBIN="${GOPATH}/bin"
-    export PATH="${GOBIN}:${PATH}"
-    export GO111MODULE=auto
-fi
+# if [[ -d ${GOPATH}/bin ]]; then
+#     export GOBIN="${GOPATH}/bin"
+#     export PATH="${GOBIN}:${PATH}"
+#     export GO111MODULE=auto
+# fi
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# LESS
+export LESS="-C -M -I -j 10 -# 4"
