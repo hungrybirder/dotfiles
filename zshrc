@@ -263,4 +263,4 @@ export PATH="$(go env GOBIN):${PATH}"
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # LESS
-export LESS="-C -M -I -j 10 -# 4"
+# export LESS="-C -M -I -j 10 -# 4"
