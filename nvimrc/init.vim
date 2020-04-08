@@ -38,7 +38,8 @@ Plug 'ervandew/supertab'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'vim-scripts/tComment'
 Plug 'NLKNguyen/papercolor-theme'
-Plug 'bling/vim-airline'
+" Plug 'bling/vim-airline'
+Plug 'itchyny/lightline.vim'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'moll/vim-bbye'
@@ -268,12 +269,18 @@ let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 " supertab && snippets }}}
 
 " airline {{{
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#left_sep = ' '
-let g:airline#extensions#tabline#left_alt_sep = '|'
-let g:airline#extensions#tabline#fnamemod = ':t' " only show buffer name
-let g:airline_theme = "dark"
+" let g:airline#extensions#tabline#enabled = 1
+" let g:airline#extensions#tabline#left_sep = ' '
+" let g:airline#extensions#tabline#left_alt_sep = '|'
+" let g:airline#extensions#tabline#fnamemod = ':t' " only show buffer name
+" let g:airline_theme = "dark"
 " airline }}}
+
+" lightline {{{
+let g:lightline = {
+      \ 'colorscheme': 'wombat'
+      \}
+" lightline}}}
 
 " align {{{
 xmap ga <Plug>(EasyAlign)
