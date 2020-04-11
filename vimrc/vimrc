@@ -208,6 +208,8 @@ vnoremap <leader>s :sort<cr>
 " easy move code blocks
 vnoremap < <gv
 vnoremap > >gv
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
 
 "inoremap maps a key combination for insert mode
 "<C-e> is the keybinding I am creating.
