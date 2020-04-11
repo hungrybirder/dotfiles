@@ -38,6 +38,7 @@ Plug 'ervandew/supertab'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'vim-scripts/tComment'
 Plug 'NLKNguyen/papercolor-theme'
+Plug 'morhetz/gruvbox'
 " Plug 'bling/vim-airline'
 Plug 'itchyny/lightline.vim'
 Plug 'bling/vim-bufferline'
@@ -132,7 +133,8 @@ set pastetoggle=<F6>
 set grepprg=rg
 set t_Co=256
 set background=dark
-colorscheme PaperColor
+" colorscheme PaperColor
+colorscheme gruvbox
 
 set dictionary+=/usr/share/dict/words
 set lazyredraw
