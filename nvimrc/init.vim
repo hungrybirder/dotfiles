@@ -327,9 +327,6 @@ let g:go_gocode_propose_source = 1
 let g:go_modifytags_transform = 'camelcase'
 let g:go_fold_enable = []
 
-nmap <C-g> :GoDecls<cr>
-imap <C-g> <esc>:<C-u>GoDecls<cr>
-
 function! s:build_go_files()
   let l:file = expand('%')
   if l:file =~# '^\f\+_test\.go$'
@@ -593,6 +590,10 @@ augroup go
   autocmd FileType go nmap <silent> <Leader>V <Plug>(go-def-vertical)
   autocmd FileType go nmap <silent> <Leader>S <Plug>(go-def-split)
   autocmd FileType go nmap <silent> <Leader>D <Plug>(go-def-tab)
+  autocmd FileType go nmap <silent> <Leader>d :GoDef<cr>
+  autocmd FileType go nmap <C-g> :GoDecls<cr>
+  autocmd FileType go imap <C-g> <esc>:<C-u>GoDecls<cr>
+
 
   autocmd FileType go nmap <silent> <Leader>x <Plug>(go-doc-vertical)
 
@@ -614,10 +615,6 @@ augroup go
   autocmd FileType go inoremap <buffer><Leader>cf <c-c>:GoFmt<CR><CR>gi
   autocmd FileType go setlocal ts=4 sts=4 sw=4 noexpandtab
   autocmd FileType go setlocal completeopt-=preview
-  autocmd Filetype go
-    \  command! -bang A call go#alternate#Switch(<bang>0, 'edit')
-    \| command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')
-    \| command! -bang AS call go#alternate#Switch(<bang>0, 'split')
 augroup END
 
 " autogroup go }}}
