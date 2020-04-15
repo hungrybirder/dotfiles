@@ -401,6 +401,7 @@ function! Multiple_cursors_before()
     call deoplete#disable()
     let g:deoplete_is_enable_before_multi_cursors = 1
     call ale#toggle#Disable()
+    call echodoc#disable()
   else
     let g:deoplete_is_enable_before_multi_cursors = 0
   endif
@@ -410,6 +411,7 @@ function! Multiple_cursors_after()
   if g:deoplete_is_enable_before_multi_cursors
     call deoplete#enable()
     call ale#toggle#Enable()
+    call echodoc#enable()
   endif
 endfunction
 " vim-multiple-cursors }}}
@@ -595,6 +597,8 @@ augroup go
   autocmd FileType go nmap <silent> <Leader>d :GoDef<cr>
   autocmd FileType go nmap <C-g> :GoDecls<cr>
   autocmd FileType go imap <C-g> <esc>:<C-u>GoDecls<cr>
+  autocmd FileType go nmap <space>g :GoDeclsDir<cr>
+  autocmd FileType go imap <space>g <esc>:<C-u>GoDeclsDir<cr>
 
 
   autocmd FileType go nmap <silent> <Leader>x <Plug>(go-doc-vertical)
