@@ -74,6 +74,7 @@ nmap <leader>i <Plug>(coc-implementation)
 nmap <space>r <Plug>(coc-references)
 nmap <space>f :<c-u>CocList files<cr>
 nmap <space>o :<c-u>CocList outline<cr>
+nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
 nnoremap <leader>cr :CocRestart
 
 fun! TrimWhitespace()
@@ -83,3 +84,7 @@ fun! TrimWhitespace()
 endfun
 
 autocmd BufWritePre * :call TrimWhitespace()
+
+augroup typescript
+  autocmd FileType typescript setlocal ts=2 sts=2 sw=2 noexpandtab
+augroup END
