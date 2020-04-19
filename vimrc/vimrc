@@ -43,7 +43,6 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'vim-scripts/tComment'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'morhetz/gruvbox'
-" Plug 'bling/vim-airline'
 Plug 'itchyny/lightline.vim'
 Plug 'bling/vim-bufferline'
 Plug 'tpope/vim-surround'
@@ -276,14 +275,6 @@ let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 " let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 " supertab && snippets }}}
 
-" airline {{{
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#left_sep = ' '
-let g:airline#extensions#tabline#left_alt_sep = '|'
-let g:airline#extensions#tabline#fnamemod = ':t' " only show buffer name
-let g:airline_theme = "dark"
-" airline }}}
-
 " lightline {{{
 let g:lightline = {
       \ 'colorscheme': 'wombat'
@@ -303,44 +294,6 @@ let g:AutoPairsShortcutToggle = '<F4>'
 " vim-bbye {{{
 noremap <space><BS> :Bdelete<cr>
 " vim-bbye }}}
-
-" vim-go {{{
-let g:go_test_prepend_name = 1
-let g:go_fmt_fail_silently = 1
-let g:go_fmt_command = "goimports"
-let g:go_def_mode = "gopls"
-let g:go_list_type = "quickfix"
-let g:go_auto_type_info = 1
-let g:go_fmt_autosave = 1
-let g:go_auto_sameids = 0
-let g:go_doc_popup_window = 1
-let g:go_null_module_warning = 0
-let g:go_echo_command_info = 1
-let g:go_autodetect_gopath = 1
-let g:go_metalinter_autosave_enabled = ['vet', 'golint']
-let g:go_metalinter_enabled = ['vet', 'golint']
-let g:go_highlight_space_tab_error = 0
-let g:go_highlight_array_whitespace_error = 0
-let g:go_highlight_trailing_whitespace_error = 0
-let g:go_highlight_extra_types = 0
-let g:go_highlight_build_constraints = 1
-let g:go_highlight_types = 0
-let g:go_highlight_operators = 1
-let g:go_highlight_format_strings = 0
-let g:go_highlight_function_calls = 0
-let g:go_gocode_propose_source = 1
-let g:go_modifytags_transform = 'camelcase'
-let g:go_fold_enable = []
-
-function! s:build_go_files()
-  let l:file = expand('%')
-  if l:file =~# '^\f\+_test\.go$'
-    call go#test#Test(0, 1)
-  elseif l:file =~# '^\f\+\.go$'
-    call go#cmd#Build(0)
-  endif
-endfunction
-" vim-go }}}
 
 " neoformat {{{
 let g:neoformat_enabled_python = ['autopep8']
@@ -413,40 +366,6 @@ function! Multiple_cursors_after()
 endfunction
 " vim-multiple-cursors }}}
 
-" fzf {{{
-" Reverse the layout to make the FZF list top-down
-
-" Using the custom window creation function
-" if has('nvim')
-"   let $FZF_DEFAULT_OPTS='--layout=reverse'
-"   function! FloatingFZF()
-"     let width = float2nr(&columns * 2 / 3)
-"     let height = float2nr(&lines * 0.4)
-"     let opts = { 'relative': 'editor',
-"                \ 'row': (&lines - height) / 2,
-"                \ 'col': (&columns - width) / 2,
-"                \ 'width': width,
-"                \ 'height': height }
-"
-"     let win = nvim_open_win(nvim_create_buf(v:false, v:true), v:true, opts)
-"     call setwinvar(win, '&winhighlight', 'NormalFloat:Normal')
-"   endfunction
-"
-"   let g:fzf_layout = { 'window': 'call FloatingFZF()'}
-" endif
-"
-" autocmd! FileType fzf
-" autocmd  FileType fzf set laststatus=0 noshowmode noruler
-"   \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
-
-" IMPORTANT FZF MAPPINGS
-" nnoremap <silent> <expr> <space>f (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":Files\<cr>"
-" nnoremap <silent> <space>b :<c-u>Buffers<cr>
-" nnoremap <silent> <space>r :<c-u>History<cr>
-" nnoremap <silent> <Leader>s :call fzf#run({'down': '40%', 'sink': 'botright split' })<CR>
-" nnoremap <silent> <Leader>v :call fzf#run({'right': winwidth('.') / 2, 'sink': 'vertical botright split' })<CR>
-
-" fzf }}}
 " leaderf {{{
 let g:Lf_HideHelp = 1
 let g:Lf_UseCache = 0
@@ -467,12 +386,6 @@ noremap <space>w :<C-U>LeaderfWindow<CR>
 noremap <F1> :<C-U>LeaderfHelp<CR>
 noremap <F12> :<C-U>LeaderfFunctionAll<CR>
 noremap <space>a :<C-U><C-R>=printf("Leaderf rg %s", "")<CR><CR>
-
-
-" noremap <C-B> :<C-U><C-R>=printf("Leaderf! rg --current-buffer -e %s ", expand("<cword>"))<CR>
-" noremap <C-F> :<C-U><C-R>=printf("Leaderf! rg -e %s ", expand("<cword>"))<CR>
-" xnoremap gf :<C-U><C-R>=printf("Leaderf rg -F -e %s ", leaderf#Rg#visual())<CR>
-" noremap go :<C-U>Leaderf! rg --recall<CR>
 
 " gtags
 " brew install global
@@ -503,6 +416,16 @@ map  <Leader>w <Plug>(easymotion-bd-w)
 nmap <Leader>w <Plug>(easymotion-overwin-w)
 " easymotion }}}
 
+" echodoc {{{
+let g:echodoc_enable_at_startup = 1
+if has('nvim')
+  let g:echodoc#type = "floating"
+  highlight link EchoDocFloat Pmenu
+else
+  let g:echodoc#type = "popup"
+  highlight link EchoDocPopup Pmenu
+endif
+" echodoc }}}
 
 " MyAutoCmd {{{
 augroup MyAutoCmd
@@ -546,6 +469,44 @@ augroup MyAutoCmd
 augroup END
 " MyAutoCmd }}}
 
+" vim-go {{{
+let g:go_test_prepend_name = 1
+let g:go_fmt_fail_silently = 1
+let g:go_fmt_command = "goimports"
+let g:go_def_mode = "gopls"
+let g:go_list_type = "quickfix"
+let g:go_auto_type_info = 1
+let g:go_fmt_autosave = 1
+let g:go_auto_sameids = 0
+let g:go_doc_popup_window = 1
+let g:go_null_module_warning = 0
+let g:go_echo_command_info = 1
+let g:go_autodetect_gopath = 1
+let g:go_metalinter_autosave_enabled = ['vet', 'golint']
+let g:go_metalinter_enabled = ['vet', 'golint']
+let g:go_highlight_space_tab_error = 0
+let g:go_highlight_array_whitespace_error = 0
+let g:go_highlight_trailing_whitespace_error = 0
+let g:go_highlight_extra_types = 0
+let g:go_highlight_build_constraints = 1
+let g:go_highlight_types = 0
+let g:go_highlight_operators = 1
+let g:go_highlight_format_strings = 0
+let g:go_highlight_function_calls = 0
+let g:go_gocode_propose_source = 1
+let g:go_modifytags_transform = 'camelcase'
+let g:go_fold_enable = []
+
+function! s:build_go_files()
+  let l:file = expand('%')
+  if l:file =~# '^\f\+_test\.go$'
+    call go#test#Test(0, 1)
+  elseif l:file =~# '^\f\+\.go$'
+    call go#cmd#Build(0)
+  endif
+endfunction
+" vim-go }}}
+
 " autogroup go {{{
 augroup go
   autocmd!
@@ -582,14 +543,3 @@ augroup go
 augroup END
 
 " autogroup go }}}
-
-" echodoc {{{
-let g:echodoc_enable_at_startup = 1
-if has('nvim')
-  let g:echodoc#type = "floating"
-  highlight link EchoDocFloat Pmenu
-else
-  let g:echodoc#type = "popup"
-  highlight link EchoDocPopup Pmenu
-endif
-" echodoc }}}
