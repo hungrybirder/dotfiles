@@ -527,6 +527,8 @@ augroup go
   autocmd FileType go imap <C-g> <esc>:<C-u>GoDecls<cr>
   autocmd FileType go nmap <space>g :GoDeclsDir<cr>
   autocmd FileType go imap <space>g <esc>:<C-u>GoDeclsDir<cr>
+  autocmd FileType go nmap <space>o :<C-U>GoDecls<CR>
+  autocmd FileType go imap <space>o <esc>:<C-U>GoDecls<CR>
 
 
   autocmd FileType go nmap <silent> <Leader>x <Plug>(go-doc-vertical)
