@@ -307,7 +307,7 @@ let g:ale_open_list = 0
 let g:ale_linters = {
 \ 'python':['pylint'],
 \ 'javascript':['eslint'],
-\ 'typescript':['eslint'],
+\ 'typescript':['eslint', 'tsserver'],
 \ 'java':[],
 \ 'go': ['gofmt', 'golint']
 \ }
@@ -556,5 +556,6 @@ augroup END
 " autogroup es {{{
 augroup typescript
   autocmd FileType typescript nmap <silent> <Leader>d :TSDef<cr>
+  autocmd FileType typescript let g:ale_open_list = 1
 augroup END
 " autogroup }}}
