@@ -15,8 +15,11 @@ Plug 'Shougo/echodoc.vim'
 Plug 'Shougo/neoinclude.vim'
 Plug 'deoplete-plugins/deoplete-tag'
 Plug 'Shougo/deoplete-clangx'
-
 Plug 'ncm2/float-preview.nvim'
+
+Plug 'leafgarland/typescript-vim'
+Plug 'HerringtonDarkholme/yats.vim' " for ts syntax file
+Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
 " deoplete framework }}}
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -304,13 +307,16 @@ let g:ale_open_list = 0
 let g:ale_linters = {
 \ 'python':['pylint'],
 \ 'javascript':['eslint'],
+\ 'typescript':['eslint'],
 \ 'java':[],
 \ 'go': ['gofmt', 'golint']
 \ }
 let g:ale_fixers = {
 \ '*': ['remove_trailing_lines', 'trim_whitespace'],
 \ 'python': ['autopep8'],
-\ 'go': ['gofmt']
+\ 'go': ['gofmt'],
+\ 'javascript':['eslint'],
+\ 'typescript':['eslint'],
 \ }
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
@@ -546,3 +552,9 @@ augroup go
 augroup END
 
 " autogroup go }}}
+
+" autogroup es {{{
+augroup typescript
+  autocmd FileType go nmap <silent> <Leader>d :TSDef<cr>
+augroup END
+" autogroup }}}
