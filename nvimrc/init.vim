@@ -522,7 +522,7 @@ augroup go
   autocmd FileType go nmap <silent> <Leader>V <Plug>(go-def-vertical)
   autocmd FileType go nmap <silent> <Leader>S <Plug>(go-def-split)
   autocmd FileType go nmap <silent> <Leader>D <Plug>(go-def-tab)
-  autocmd FileType go nmap <silent> <Leader>d :GoDef<cr>
+  autocmd FileType go nmap <silent> <Leader>d :<c-u>GoDef<cr>
   autocmd FileType go nmap <C-g> :GoDecls<cr>
   autocmd FileType go imap <C-g> <esc>:<C-u>GoDecls<cr>
   autocmd FileType go nmap <space>g :GoDeclsDir<cr>
@@ -555,6 +555,6 @@ augroup END
 
 " autogroup es {{{
 augroup typescript
-  autocmd FileType go nmap <silent> <Leader>d :TSDef<cr>
+  autocmd FileType typescript nmap <silent> <Leader>d :TSDef<cr>
 augroup END
 " autogroup }}}
