@@ -33,18 +33,8 @@ highlight ColorColumn ctermbg=0 guibg=lightgrey
 
 call plug#begin('~/.vim/plugged')
 
-" 已经安装的 coc 插件
-" coc-tag
-" coc-lists
-" coc-tsserver
-" coc-autopairs
-" coc-markplace
-" coc-snippets
-" coc-yank
-" coc-json
-" coc-yaml
-" coc-prettier
-" coc-highlight
+" coc 插件
+" :CocInstall coc-tag coc-lists coc-tsserver coc-autopairs coc-markplace coc-snippets coc-yank coc-json coc-yaml coc-prettier coc-highlight coc-html
 Plug 'Shougo/neco-vim'
 Plug 'neoclide/coc-neco'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -63,8 +53,8 @@ if executable('rg')
     let g:rg_derive_root='true'
 endif
 
-vnoremap J :m '>+1<CR>gv=gv
-vnoremap K :m '<-2<CR>gv=gv
+" vnoremap J :m '>+1<CR>gv=gv
+" vnoremap K :m '<-2<CR>gv=gv
 
 function! s:check_back_space() abort
     let col = col('.') - 1
