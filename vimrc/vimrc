@@ -33,6 +33,18 @@ highlight ColorColumn ctermbg=0 guibg=lightgrey
 
 call plug#begin('~/.vim/plugged')
 
+" 已经安装的 coc 插件
+" coc-tag
+" coc-lists
+" coc-tsserver
+" coc-autopairs
+" coc-markplace
+" coc-snippets
+" coc-yank
+" coc-json
+" coc-yaml
+Plug 'Shougo/neco-vim'
+Plug 'neoclide/coc-neco'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 Plug 'morhetz/gruvbox'
@@ -68,6 +80,7 @@ let g:coc_snippet_prev = '<c-k>'
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 inoremap <silent><expr> <C-space> coc#refresh()
 
+nnoremap <leader>cr :CocRestart
 nmap <leader>d <Plug>(coc-definition)
 nmap <leader>y <Plug>(coc-type-definition)
 nmap <leader>i <Plug>(coc-implementation)
@@ -75,7 +88,7 @@ nmap <space>r <Plug>(coc-references)
 nmap <space>f :<c-u>CocList files<cr>
 nmap <space>o :<c-u>CocList outline<cr>
 nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
-nnoremap <leader>cr :CocRestart
+nnoremap <silent> <space>y  :<C-u>CocList -A --normal yank<cr>
 
 fun! TrimWhitespace()
     let l:save = winsaveview()
