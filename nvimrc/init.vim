@@ -152,7 +152,7 @@ set smartindent     " Smart autoindenting on new lines
 set shiftround      " Round indent to multiple of 'shiftwidth'
 
 set timeout ttimeout
-set timeoutlen=750  " Time out on mappings
+set timeoutlen=500  " Time out on mappings
 set updatetime=100  " Idle time to write swap and trigger CursorHold
 set ttimeoutlen=10  " Time out on key codes
 
@@ -526,9 +526,7 @@ augroup go
   autocmd FileType go nmap <C-g> :GoDecls<cr>
   autocmd FileType go imap <C-g> <esc>:<C-u>GoDecls<cr>
   autocmd FileType go nmap <space>g :GoDeclsDir<cr>
-  autocmd FileType go imap <space>g <esc>:<C-u>GoDeclsDir<cr>
   autocmd FileType go nmap <space>o :<C-U>GoDecls<CR>
-  autocmd FileType go imap <space>o <esc>:<C-U>GoDecls<CR>
 
 
   autocmd FileType go nmap <silent> <Leader>x <Plug>(go-doc-vertical)
