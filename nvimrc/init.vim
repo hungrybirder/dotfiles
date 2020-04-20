@@ -503,7 +503,7 @@ let g:go_highlight_operators = 1
 let g:go_highlight_format_strings = 0
 let g:go_highlight_function_calls = 0
 let g:go_gocode_propose_source = 1
-let g:go_modifytags_transform = 'camelcase'
+let g:go_addtags_transform = 'camelcase'
 let g:go_fold_enable = []
 
 function! s:build_go_files()
