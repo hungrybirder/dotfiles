@@ -38,6 +38,7 @@ call plug#begin('~/.vim/plugged')
 " :CocInstall coc-tag coc-lists coc-tsserver coc-autopairs coc-markplace coc-snippets coc-yank coc-json coc-yaml coc-prettier coc-highlight coc-html
 Plug 'Shougo/neco-vim'
 Plug 'neoclide/coc-neco'
+Plug 'neoclide/jsonc.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 Plug 'morhetz/gruvbox'
@@ -45,6 +46,7 @@ Plug 'jremmen/vim-ripgrep'
 Plug 'tpope/vim-fugitive'
 Plug 'mhinz/vim-signify'
 Plug 'vim-scripts/tComment'
+
 
 call plug#end()
 
@@ -87,6 +89,7 @@ nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
 nnoremap <silent> <space>y  :<C-u>CocList -A --normal yank<cr>
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
 autocmd CursorHold * silent call CocActionAsync('highlight')
+autocmd BufRead,BufNewFile tsconfig.json set filetype=jsonc
 
 fun! TrimWhitespace()
     let l:save = winsaveview()
