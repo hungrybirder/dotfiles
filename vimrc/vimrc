@@ -98,13 +98,14 @@ nmap <leader>i <Plug>(coc-implementation)
 nmap <leader>r <Plug>(coc-references)
 nmap <space>f :<c-u>CocList files<cr>
 nnoremap <silent> <space>p :<C-u>CocListResume<CR>
-nnoremap <silent> <space>j  :<C-u>CocNext<CR>
-nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
-nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
-nmap <space>o :<c-u>CocList outline<cr>
-nmap <space>b :<c-u>CocList buffers<cr>
-nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
-nnoremap <silent> <space>y  :<C-u>CocList -A --normal yank<cr>
+nnoremap <silent> <space>j :<C-u>CocNext<CR>
+nnoremap <silent> <space>k :<C-u>CocPrev<CR>
+nnoremap <silent> <space>s :<C-u>CocList -I symbols<cr>
+nnoremap <silent> <space>o :<c-u>CocList outline<cr>
+nnoremap <silent> <space>b :<c-u>CocList buffers<cr>
+nnoremap <silent> <space>a :<C-u>CocList diagnostics<cr>
+nnoremap <silent> <space>c :<C-u>CocList commands<cr>
+nnoremap <silent> <space>y :<C-u>CocList -A --normal yank<cr>
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
 autocmd CursorHold * silent call CocActionAsync('highlight')
 autocmd BufRead,BufNewFile tsconfig.json set filetype=jsonc
