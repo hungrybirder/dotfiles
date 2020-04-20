@@ -17,6 +17,8 @@ augroup line_return
 augroup end
 
 set hidden
+set nobackup
+set nowritebackup
 set noerrorbells
 set tabstop=4 softtabstop=4
 set shiftwidth=4
@@ -28,7 +30,9 @@ set incsearch
 set cmdheight=2
 set updatetime=50
 set shortmess+=c
+set signcolumn=yes
 set backspace=indent,eol,start
+set laststatus=2
 
 highlight ColorColumn ctermbg=0 guibg=lightgrey
 
@@ -46,7 +50,7 @@ Plug 'jremmen/vim-ripgrep'
 Plug 'tpope/vim-fugitive'
 Plug 'mhinz/vim-signify'
 Plug 'vim-scripts/tComment'
-
+Plug 'itchyny/lightline.vim'
 
 call plug#end()
 
@@ -57,8 +61,18 @@ if executable('rg')
     let g:rg_derive_root='true'
 endif
 
-" vnoremap J :m '>+1<CR>gv=gv
-" vnoremap K :m '<-2<CR>gv=gv
+set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+let g:lightline = {
+  \ 'colorscheme': 'wombat',
+  \ 'active': {
+  \   'left': [ [ 'mode', 'paste' ],
+  \             [ 'cocstatus', 'readonly', 'filename', 'modified' ] ]
+  \ },
+  \ 'component_function': {
+  \   'cocstatus': 'coc#status'
+  \ },
+  \ }
+" Use auocmd to force lightline update.
 
 function! s:check_back_space() abort
     let col = col('.') - 1
@@ -81,8 +95,12 @@ nnoremap <leader>cr :CocRestart
 nmap <leader>d <Plug>(coc-definition)
 nmap <leader>y <Plug>(coc-type-definition)
 nmap <leader>i <Plug>(coc-implementation)
-nmap <space>r <Plug>(coc-references)
+nmap <leader>r <Plug>(coc-references)
 nmap <space>f :<c-u>CocList files<cr>
+nnoremap <silent> <space>p :<C-u>CocListResume<CR>
+nnoremap <silent> <space>j  :<C-u>CocNext<CR>
+nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
+nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
 nmap <space>o :<c-u>CocList outline<cr>
 nmap <space>b :<c-u>CocList buffers<cr>
 nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
@@ -90,6 +108,20 @@ nnoremap <silent> <space>y  :<C-u>CocList -A --normal yank<cr>
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
 autocmd CursorHold * silent call CocActionAsync('highlight')
 autocmd BufRead,BufNewFile tsconfig.json set filetype=jsonc
+
+" Use K to show documentation in preview window.
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+" Add `:Format` command to format current buffer.
+command! -nargs=0 Format :call CocAction('format')
 
 fun! TrimWhitespace()
     let l:save = winsaveview()
@@ -99,8 +131,14 @@ endfun
 
 autocmd BufWritePre * :call TrimWhitespace()
 
-augroup typescript
+augroup my
+  autocmd!
   autocmd FileType typescript setlocal ts=2 sts=2 sw=2 noexpandtab
-  autocmd FileType typescript,javascript,css,json imap <leader>cf <esc>:<c-u>Prettier<cr>
-  autocmd FileType typescript,javascript,css,json nmap <leader>cf :<c-u>Prettier<cr>
+  autocmd FileType typescript,javascript,css,json imap <leader>cf <esc>:<c-u>Format<cr>
+  autocmd FileType typescript,javascript,css,json nmap <leader>cf :<c-u>Format<cr>
+  " Setup formatexpr specified filetype(s).
+  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+  " Update signature help on jump placeholder.
+  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 augroup END
+autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
