@@ -43,6 +43,8 @@ call plug#begin('~/.vim/plugged')
 " coc-yank
 " coc-json
 " coc-yaml
+" coc-prettier
+" coc-highlight
 Plug 'Shougo/neco-vim'
 Plug 'neoclide/coc-neco'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -88,8 +90,11 @@ nmap <leader>i <Plug>(coc-implementation)
 nmap <space>r <Plug>(coc-references)
 nmap <space>f :<c-u>CocList files<cr>
 nmap <space>o :<c-u>CocList outline<cr>
+nmap <space>b :<c-u>CocList buffers<cr>
 nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
 nnoremap <silent> <space>y  :<C-u>CocList -A --normal yank<cr>
+command! -nargs=0 Prettier :CocCommand prettier.formatFile
+autocmd CursorHold * silent call CocActionAsync('highlight')
 
 fun! TrimWhitespace()
     let l:save = winsaveview()
@@ -101,4 +106,6 @@ autocmd BufWritePre * :call TrimWhitespace()
 
 augroup typescript
   autocmd FileType typescript setlocal ts=2 sts=2 sw=2 noexpandtab
+  autocmd FileType typescript,javascript,css,json imap <leader>cf <esc>:<c-u>Prettier<cr>
+  autocmd FileType typescript,javascript,css,json nmap <leader>cf :<c-u>Prettier<cr>
 augroup END
