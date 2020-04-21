@@ -385,17 +385,17 @@ let g:Lf_PreviewResult = {'Function': 0, 'BufTag': 0 }
 " <C-X> open in horizontal split window
 " <C-]> open in vertical split window
 " <C-T> open in new tabpage
-noremap <space>f :<C-U>LeaderfFile<CR>
-noremap <space>r :<C-U>LeaderfMru<CR>
-noremap <space>l :<C-U>LeaderfLine<CR>
-noremap <space>o :<C-U>LeaderfFunction<CR>
-noremap <space>b :<C-U>LeaderfBuffer<CR>
-noremap <space>t :<C-U>LeaderfBufTagAll<CR>
-noremap <space>T :<C-U>LeaderfTag<CR>
-noremap <space>w :<C-U>LeaderfWindow<CR>
-noremap <F1> :<C-U>LeaderfHelp<CR>
-noremap <F12> :<C-U>LeaderfFunctionAll<CR>
-noremap <space>a :<C-U><C-R>=printf("Leaderf rg %s", "")<CR><CR>
+noremap <silent> <space>f :<C-U>LeaderfFile<CR>
+noremap <silent> <space>r :<C-U>LeaderfMru<CR>
+noremap <silent> <space>l :<C-U>LeaderfLine<CR>
+noremap <silent> <space>o :<C-U>LeaderfFunction<CR>
+noremap <silent> <space>b :<C-U>LeaderfBuffer<CR>
+noremap <silent> <space>t :<C-U>LeaderfBufTagAll<CR>
+noremap <silent> <space>T :<C-U>LeaderfTag<CR>
+noremap <silent> <space>w :<C-U>LeaderfWindow<CR>
+noremap <silent> <F1> :<C-U>LeaderfHelp<CR>
+noremap <silent> <F12> :<C-U>LeaderfFunctionAll<CR>
+noremap <silent> <space>a :<C-U><C-R>=printf("Leaderf rg %s", "")<CR><CR>
 
 " gtags
 " brew install global
