@@ -1,4 +1,5 @@
 {
+  "coc.preferences.currentFunctionSymbolAutoUpdate": true,
   "list.insertMappings": {
     "<C-c>": "do:exit"
   }

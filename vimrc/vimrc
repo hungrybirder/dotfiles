@@ -61,18 +61,23 @@ if executable('rg')
     let g:rg_derive_root='true'
 endif
 
-set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+function! CocCurrentFunction()
+    return get(b:, 'coc_current_function', '')
+endfunction
+
 let g:lightline = {
   \ 'colorscheme': 'wombat',
   \ 'active': {
   \   'left': [ [ 'mode', 'paste' ],
-  \             [ 'cocstatus', 'readonly', 'filename', 'modified' ] ]
+  \             [ 'cocstatus', 'currentfunction', 'readonly', 'filename', 'modified' ] ]
   \ },
   \ 'component_function': {
-  \   'cocstatus': 'coc#status'
+  \   'cocstatus': 'coc#status',
+  \   'currentfunction': 'CocCurrentFunction'
   \ },
   \ }
-" Use auocmd to force lightline update.
+set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
 
 function! s:check_back_space() abort
     let col = col('.') - 1
@@ -142,4 +147,3 @@ augroup my
   " Update signature help on jump placeholder.
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 augroup END
-autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
