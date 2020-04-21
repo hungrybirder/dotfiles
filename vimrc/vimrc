@@ -33,6 +33,7 @@ set shortmess+=c
 set signcolumn=yes
 set backspace=indent,eol,start
 set laststatus=2
+inoremap jk <esc>
 
 highlight ColorColumn ctermbg=0 guibg=lightgrey
 
