@@ -143,8 +143,8 @@ autocmd BufWritePre * :call TrimWhitespace()
 augroup my
   autocmd!
   autocmd FileType typescript setlocal ts=2 sts=2 sw=2 noexpandtab
-  autocmd FileType typescript,javascript,css,json imap <leader>cf <esc>:<c-u>Format<cr>
-  autocmd FileType typescript,javascript,css,json nmap <leader>cf :<c-u>Format<cr>
+  autocmd FileType typescript,javascript,css,json imap <silent> <leader>cf <esc>:<c-u>Format<cr>
+  autocmd FileType typescript,javascript,css,json nmap <silent> <leader>cf :<c-u>Format<cr>
   " Setup formatexpr specified filetype(s).
   autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
   " Update signature help on jump placeholder.
