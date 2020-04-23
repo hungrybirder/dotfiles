@@ -42,7 +42,7 @@ highlight ColorColumn ctermbg=0 guibg=lightgrey
 call plug#begin('~/.vim/plugged')
 
 " coc 插件
-" :CocInstall coc-tag coc-lists coc-tsserver coc-autopairs coc-markplace coc-snippets coc-yank coc-json coc-yaml coc-prettier coc-highlight coc-html
+" :CocInstall coc-tag coc-lists coc-tsserver coc-autopairs coc-markplace coc-snippets coc-yank coc-json coc-yaml coc-prettier coc-highlight coc-html coc-go
 Plug 'Shougo/neco-vim'
 Plug 'neoclide/coc-neco'
 Plug 'neoclide/jsonc.vim'
@@ -119,6 +119,7 @@ nnoremap <silent> <space>l :<C-u>CocList grep<cr>
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
 autocmd CursorHold * silent call CocActionAsync('highlight')
 autocmd BufRead,BufNewFile tsconfig.json set filetype=jsonc
+autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
 
 " Use K to show documentation in preview window.
 nnoremap <silent> K :call <SID>show_documentation()<CR>
