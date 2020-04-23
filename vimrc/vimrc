@@ -116,6 +116,7 @@ nnoremap <silent> <space>a :<C-u>CocList diagnostics<cr>
 nnoremap <silent> <space>c :<C-u>CocList commands<cr>
 nnoremap <silent> <space>y :<C-u>CocList -A --normal yank<cr>
 nnoremap <silent> <space>l :<C-u>CocList grep<cr>
+nnoremap <silent> <space>w :<C-U>CocList windows<CR>
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
 autocmd CursorHold * silent call CocActionAsync('highlight')
 autocmd BufRead,BufNewFile tsconfig.json set filetype=jsonc
