@@ -5,5 +5,8 @@
   },
   "go.goplsOptions": {
     "completeUnimported": true
-  }
+  },
+
+  "clangd.path": "/usr/local/opt/llvm/bin/clangd",
+  "clangd.semanticHighlighting": true
 }

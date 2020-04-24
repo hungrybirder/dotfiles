@@ -42,11 +42,14 @@ highlight ColorColumn ctermbg=0 guibg=lightgrey
 call plug#begin('~/.vim/plugged')
 
 " coc 插件
-" :CocInstall coc-tag coc-lists coc-tsserver coc-autopairs coc-markplace coc-snippets coc-yank coc-json coc-yaml coc-prettier coc-highlight coc-html coc-go
+" :CocInstall coc-tag coc-lists coc-tsserver coc-autopairs coc-markplace coc-snippets coc-yank coc-json coc-yaml coc-prettier coc-highlight coc-html coc-go coc-clangd coc-cmake
 Plug 'Shougo/neco-vim'
 Plug 'neoclide/coc-neco'
 Plug 'neoclide/jsonc.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+Plug 'liuchengxu/vista.vim'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
 Plug 'morhetz/gruvbox'
 Plug 'jremmen/vim-ripgrep'
@@ -110,7 +113,8 @@ nnoremap <silent> <space>p :<C-u>CocListResume<CR>
 nnoremap <silent> <space>j :<C-u>CocNext<CR>
 nnoremap <silent> <space>k :<C-u>CocPrev<CR>
 nnoremap <silent> <space>s :<C-u>CocList -I symbols<cr>
-nnoremap <silent> <space>o :<c-u>CocList outline<cr>
+" nnoremap <silent> <space>o :<c-u>CocList outline<cr>
+nnoremap <silent> <space>o :<c-u>Vista finder coc<cr>
 nnoremap <silent> <space>b :<c-u>CocList buffers<cr>
 nnoremap <silent> <space>a :<C-u>CocList diagnostics<cr>
 nnoremap <silent> <space>c :<C-u>CocList commands<cr>
