@@ -423,6 +423,8 @@ nmap s <Plug>(easymotion-overwin-f)
 nmap t <Plug>(easymotion-t2)
 map  <Leader>w <Plug>(easymotion-bd-w)
 nmap <Leader>w <Plug>(easymotion-overwin-w)
+map  <Leader>f <Plug>(easymotion-bd-f)
+nmap <Leader>f <Plug>(easymotion-overwin-f)
 " easymotion }}}
 
 " echodoc {{{
