@@ -48,6 +48,9 @@ Plug 'neoclide/coc-neco'
 Plug 'neoclide/jsonc.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
+Plug 'pangloss/vim-javascript'
+Plug 'HerringtonDarkholme/yats.vim'
+
 Plug 'liuchengxu/vista.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
@@ -55,8 +58,11 @@ Plug 'morhetz/gruvbox'
 Plug 'jremmen/vim-ripgrep'
 Plug 'tpope/vim-fugitive'
 Plug 'mhinz/vim-signify'
+Plug 'junegunn/gv.vim'
 Plug 'vim-scripts/tComment'
 Plug 'itchyny/lightline.vim'
+Plug 'easymotion/vim-easymotion'
+Plug 'haya14busa/incsearch.vim'
 
 call plug#end()
 
@@ -161,3 +167,14 @@ augroup my
   " Update signature help on jump placeholder.
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 augroup END
+
+" easymotion {{{
+let g:EasyMotion_smartcase = 1
+let g:incsearch#magic = '\v'
+nmap s <Plug>(easymotion-overwin-f)
+nmap t <Plug>(easymotion-t2)
+map  <Leader>w <Plug>(easymotion-bd-w)
+nmap <Leader>w <Plug>(easymotion-overwin-w)
+map  <Leader>f <Plug>(easymotion-bd-f)
+nmap <Leader>f <Plug>(easymotion-overwin-f)
+" easymotion }}}
