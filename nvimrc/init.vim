@@ -334,12 +334,15 @@ nmap <leader>md :MarkdownPreview<CR>
 " markdown }}}
 " deoplete {{{
 let g:deoplete#enable_at_startup = 1
-let g:deoplete#enable_smart_case = 1
 " 设置 omni_patterns, 这样deoplete=>go#complete#Complete(vim-go)=>gopls
 " 不再依赖deoplete-go(依赖gocode)
 call deoplete#custom#option('omni_patterns', {
 \ 'go': '[^. *\t]\.\w*',
 \})
+call deoplete#custom#option({
+\ 'auto_complete_delay': 0,
+\ 'smart_case': v:true,
+\ })
 " deoplete }}}
 
 " deoplete-jedi & jedi {{{
