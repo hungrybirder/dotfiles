@@ -342,6 +342,7 @@ call deoplete#custom#option('omni_patterns', {
 call deoplete#custom#option({
 \ 'auto_complete_delay': 0,
 \ 'smart_case': v:true,
+\ 'refresh_always': v:false,
 \ })
 " deoplete }}}
 
