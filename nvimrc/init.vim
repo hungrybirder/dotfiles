@@ -166,6 +166,12 @@ set matchpairs+=<:> " Add HTML brackets to pair matching
 set matchtime=1     " Tenths of a second to show the matching paren
 set cpoptions-=m    " showmatch will wait 0.5s or until a char is typed
 set showfulltag     " Show tag and tidy search in completion
+set noerrorbells
+set nowrap
+set noswapfile
+set nobackup
+set undofile
+set undodir=~/.config/nvim/undodir
 
 " setting }}}
 

@@ -34,6 +34,11 @@ set signcolumn=yes
 set backspace=indent,eol,start
 set laststatus=2
 set clipboard+=unnamed
+set noerrorbells
+set nowrap
+set noswapfile
+set nobackup
+set undodir=~/.vim/undodir
 
 inoremap jk <esc>
 
