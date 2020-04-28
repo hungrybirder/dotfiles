@@ -73,6 +73,7 @@ Plug 'easymotion/vim-easymotion'
 Plug 'haya14busa/incsearch.vim'
 
 Plug 'liuchengxu/vim-which-key'
+Plug 'mbbill/undotree'
 call plug#end() " }}}
 
 " general {{{

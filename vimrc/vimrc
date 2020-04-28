@@ -17,6 +17,7 @@ augroup line_return
 augroup end
 
 set hidden
+set wildmenu
 set nobackup
 set nowritebackup
 set noerrorbells
@@ -68,6 +69,7 @@ Plug 'vim-scripts/tComment'
 Plug 'itchyny/lightline.vim'
 Plug 'easymotion/vim-easymotion'
 Plug 'haya14busa/incsearch.vim'
+Plug 'mbbill/undotree'
 
 call plug#end()
 
