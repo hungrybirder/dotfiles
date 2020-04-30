@@ -47,6 +47,8 @@ highlight ColorColumn ctermbg=0 guibg=lightgrey
 
 call plug#begin('~/.vim/plugged')
 
+Plug 'fatih/vim-go'
+
 " coc 插件
 " :CocInstall coc-tag coc-lists coc-tsserver coc-autopairs coc-markplace coc-snippets coc-yank coc-json coc-yaml coc-prettier coc-highlight coc-html coc-go coc-clangd coc-cmake
 Plug 'Shougo/neco-vim'
@@ -185,3 +187,67 @@ nmap <Leader>w <Plug>(easymotion-overwin-w)
 map  <Leader>f <Plug>(easymotion-bd-f)
 nmap <Leader>f <Plug>(easymotion-overwin-f)
 " easymotion }}}
+
+" vim-go {{{
+" disable vim-go :GoDef short cut (gd)
+" this is handled by LanguageClient [LC]
+let g:go_def_mapping_enabled = 0
+let g:go_code_completion_enabled = 0
+let g:go_gopls_enabled = 1
+let g:go_test_prepend_name = 1
+let g:go_fmt_fail_silently = 1
+let g:go_fmt_command = "goimports"
+let g:go_def_mode = "gopls"
+let g:go_list_type = "quickfix"
+let g:go_auto_type_info = 1
+let g:go_fmt_autosave = 1
+let g:go_auto_sameids = 0
+let g:go_doc_popup_window = 1
+let g:go_null_module_warning = 0
+let g:go_echo_command_info = 1
+let g:go_autodetect_gopath = 1
+let g:go_metalinter_autosave_enabled = ['vet', 'golint']
+let g:go_metalinter_enabled = ['vet', 'golint']
+let g:go_highlight_space_tab_error = 0
+let g:go_highlight_array_whitespace_error = 0
+let g:go_highlight_trailing_whitespace_error = 0
+let g:go_highlight_extra_types = 0
+let g:go_highlight_build_constraints = 1
+let g:go_highlight_types = 0
+let g:go_highlight_operators = 1
+let g:go_highlight_format_strings = 0
+let g:go_highlight_function_calls = 0
+let g:go_gocode_propose_source = 1
+let g:go_addtags_transform = 'camelcase'
+let g:go_fold_enable = []
+
+function! s:build_go_files()
+  let l:file = expand('%')
+  if l:file =~# '^\f\+_test\.go$'
+    call go#test#Test(0, 1)
+  elseif l:file =~# '^\f\+\.go$'
+    call go#cmd#Build(0)
+  endif
+endfunction
+
+augroup go
+  autocmd!
+  autocmd FileType go nmap <silent> <Leader>V <Plug>(go-def-vertical)
+  autocmd FileType go nmap <silent> <Leader>S <Plug>(go-def-split)
+  autocmd FileType go nmap <C-g> :GoDecls<cr>
+  autocmd FileType go imap <C-g> <esc>:<C-u>GoDecls<cr>
+  autocmd FileType go nmap <space>g :GoDeclsDir<cr>
+  autocmd FileType go nmap <space>o :<C-U>GoDecls<CR>
+
+  autocmd Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
+  autocmd Filetype go command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')
+  autocmd Filetype go command! -bang AS call go#alternate#Switch(<bang>0, 'split')
+  autocmd Filetype go command! -bang AT call go#alternate#Switch(<bang>0, 'tabe')
+
+  autocmd FileType go noremap <buffer><Leader>cf :GoFmt<CR><CR>
+  autocmd FileType go inoremap <buffer><Leader>cf <c-c>:GoFmt<CR><CR>gi
+  autocmd FileType go setlocal ts=4 sts=4 sw=4 noexpandtab
+  autocmd FileType go setlocal completeopt-=preview
+augroup END
+
+" vim-go }}}
