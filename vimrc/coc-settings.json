@@ -8,5 +8,10 @@
   },
 
   "clangd.path": "/usr/local/opt/llvm/bin/clangd",
-  "clangd.semanticHighlighting": true
+  "clangd.semanticHighlighting": true,
+
+  "snippets.ultisnips.directories": [
+    "UltiSnips",
+    "gosnippets/UltiSnips",
+  ],
 }

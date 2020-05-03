@@ -109,14 +109,13 @@ inoremap <silent><expr> <Tab>
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+inoremap <silent><expr> <C-space> coc#refresh()
 
 let g:coc_snippet_next = '<c-j>'
 let g:coc_snippet_prev = '<c-k>'
 " 其实用 <C-l> 触发代码片段展开挺好的，使用<TAB>会有next or expand的冲突
 imap <C-l> <Plug>(coc-snippets-expand)
-
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-inoremap <silent><expr> <C-space> coc#refresh()
 
 nnoremap <leader>cr :CocRestart
 nmap <leader>d <Plug>(coc-definition)
