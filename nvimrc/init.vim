@@ -407,6 +407,7 @@ noremap <silent> <space>w :<C-U>LeaderfWindow<CR>
 noremap <silent> <F1> :<C-U>LeaderfHelp<CR>
 noremap <silent> <F12> :<C-U>LeaderfFunctionAll<CR>
 noremap <silent> <space>a :<C-U><C-R>=printf("Leaderf rg %s", "")<CR><CR>
+nnoremap <space>g :GFiles<CR>
 
 " gtags
 " brew install global
