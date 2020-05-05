@@ -61,6 +61,7 @@ Plug 'HerringtonDarkholme/yats.vim'
 
 Plug 'liuchengxu/vista.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 
 Plug 'morhetz/gruvbox'
 Plug 'jremmen/vim-ripgrep'
