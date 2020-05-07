@@ -431,6 +431,7 @@ let tags = "./tags"
 " nerdtree {{{
 map <leader><tab> :<c-u>NERDTreeToggle<CR>
 autocmd BufEnter * if bufname('#') =~# "^NERD_tree_" && winnr('$') > 1 | b# | endif
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 " nerdtree}}}
 
 " easymotion {{{
