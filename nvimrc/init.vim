@@ -26,6 +26,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
 Plug 'majutsushi/tagbar'
+Plug 'preservim/nerdtree'
 
 " auto format plugin
 Plug 'sbdchd/neoformat'
@@ -424,9 +425,13 @@ noremap <space>p :<C-U><C-R>=printf("Leaderf gtags --previous %s", "")<CR><CR>
 
 " tagbar {{{
 nnoremap <silent> <leader>2 :TagbarToggle<CR>
-let g:tagbar_left = 1
 let tags = "./tags"
 "tagbar }}}
+
+" nerdtree {{{
+map <leader><tab> :<c-u>NERDTreeToggle<CR>
+autocmd BufEnter * if bufname('#') =~# "^NERD_tree_" && winnr('$') > 1 | b# | endif
+" nerdtree}}}
 
 " easymotion {{{
 let g:EasyMotion_smartcase = 1

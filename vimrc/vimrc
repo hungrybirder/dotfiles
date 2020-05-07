@@ -73,6 +73,7 @@ Plug 'itchyny/lightline.vim'
 Plug 'easymotion/vim-easymotion'
 Plug 'haya14busa/incsearch.vim'
 Plug 'mbbill/undotree'
+Plug 'preservim/nerdtree'
 
 call plug#end()
 
@@ -177,6 +178,11 @@ augroup my
   " Update signature help on jump placeholder.
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 augroup END
+
+" nerdtree {{{
+map <leader><tab> :<c-u>NERDTreeToggle<CR>
+autocmd BufEnter * if bufname('#') =~# "^NERD_tree_" && winnr('$') > 1 | b# | endif
+" nerdtree}}}
 
 " easymotion {{{
 let g:EasyMotion_smartcase = 1
