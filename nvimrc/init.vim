@@ -359,6 +359,7 @@ let g:jedi#completions_enabled = 0
 let g:jedi#auto_vim_configuration = 0
 let g:jedi#smart_auto_mappings = 0
 let g:jedi#show_call_signatures = 0
+let g:jedi#usages_command = "<space>r"
 " deoplete-jedi & jedi }}}
 
 " vim-multiple-cursors {{{
@@ -398,7 +399,7 @@ let g:Lf_PreviewResult = {'Function': 0, 'BufTag': 0 }
 " <C-]> open in vertical split window
 " <C-T> open in new tabpage
 noremap <silent> <space>f :<C-U>LeaderfFile<CR>
-noremap <silent> <space>r :<C-U>LeaderfMru<CR>
+noremap <silent> <space>m :<C-U>LeaderfMru<CR>
 noremap <silent> <space>l :<C-U>LeaderfLine<CR>
 noremap <silent> <space>o :<C-U>LeaderfFunction<CR>
 noremap <silent> <space>b :<C-U>LeaderfBuffer<CR>
@@ -547,6 +548,7 @@ augroup go
   autocmd FileType go imap <C-g> <esc>:<C-u>GoDecls<cr>
   autocmd FileType go nmap <space>g :GoDeclsDir<cr>
   autocmd FileType go nmap <space>o :<C-U>GoDecls<CR>
+  autocmd FileType go nmap <space>r :<C-U>GoReferrers<CR>
 
 
   autocmd FileType go nmap <silent> <Leader>x <Plug>(go-doc-vertical)
