@@ -369,6 +369,7 @@ nmap <leader>md :MarkdownPreview<CR>
 let g:deoplete#enable_at_startup = 1
 " 设置 omni_patterns, 这样deoplete=>go#complete#Complete(vim-go)=>gopls
 " 不再依赖deoplete-go(依赖gocode)
+set completeopt+=noselect
 call deoplete#custom#option('omni_patterns', {
 \ 'go': '[^. *\t]\.\w*',
 \})
