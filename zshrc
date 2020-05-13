@@ -232,7 +232,7 @@ get_public_ip() {
 bindkey \^U backward-kill-line
 
 if [[ "Darwin" = ${OS_NAME} ]]; then
-  alias bubu="brew upgrade"
+  alias bu="brew upgrade"
 fi
 
 # 一些特殊的配置，或function
