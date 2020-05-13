@@ -303,7 +303,10 @@ let g:lightline.active = { 'right': [[
   \ 'linter_errors',
   \ 'linter_warnings',
   \ 'linter_infos',
-  \ 'linter_ok' ]]
+  \ 'linter_ok' ],
+  \ ['lineinfo'], ['percent'],
+  \ ['fileencoding', 'filetype'],
+  \]
   \ }
 let g:lightline#ale#indicator_checking = "\uf110"
 let g:lightline#ale#indicator_infos = "\uf129"
@@ -342,7 +345,7 @@ let g:ale_linters = {
 \ 'javascript':['eslint'],
 \ 'typescript':['eslint', 'tsserver'],
 \ 'java':[],
-\ 'go': ['gofmt', 'golint']
+\ 'go': ['gofmt', 'golint', 'go vet']
 \ }
 let g:ale_fixers = {
 \ '*': ['remove_trailing_lines', 'trim_whitespace'],
