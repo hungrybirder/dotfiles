@@ -262,4 +262,3 @@ augroup END
 " fzf {{{
 noremap <silent> <F1> :<C-U>Helptags<CR>
 " fzf}}}
-
