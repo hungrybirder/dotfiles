@@ -259,3 +259,7 @@ augroup go
 augroup END
 
 " vim-go }}}
+" fzf {{{
+noremap <silent> <F1> :<C-U>Helptags<CR>
+" fzf}}}
+
