@@ -50,7 +50,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'fatih/vim-go'
 
 " coc 插件
-" :CocInstall coc-tag coc-lists coc-tsserver coc-autopairs coc-markplace coc-snippets coc-yank coc-json coc-yaml coc-prettier coc-highlight coc-html coc-go coc-clangd coc-cmake
+" :CocInstall coc-tag coc-lists coc-tsserver coc-autopairs coc-markplace coc-snippets coc-yank coc-json coc-yaml coc-prettier coc-highlight coc-html coc-go coc-clangd coc-cmake coc-explorer
 Plug 'Shougo/neco-vim'
 Plug 'neoclide/coc-neco'
 Plug 'neoclide/jsonc.vim'
@@ -125,6 +125,7 @@ nmap <leader>d <Plug>(coc-definition)
 nmap <leader>y <Plug>(coc-type-definition)
 nmap <leader>i <Plug>(coc-implementation)
 nmap <leader>r <Plug>(coc-references)
+nmap <space>e :CocCommand explorer<CR>
 nmap <space>f :<c-u>CocList files<cr>
 nnoremap <silent> <space>p :<C-u>CocListResume<CR>
 nnoremap <silent> <space>j :<C-u>CocNext<CR>
