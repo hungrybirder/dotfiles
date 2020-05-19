@@ -7,6 +7,21 @@ nmap <silent> <leader>sv :so $MYVIMRC<CR>
 
 nnoremap Q :q<cr>
 nnoremap <leader>Q :qa!<cr>
+" Act like D and C
+nnoremap Y y$
+" Keep search matches in the middle of the window.
+nnoremap n nzzzv
+nnoremap N Nzzzv
+" easy move around windows
+nnoremap <c-j> <c-w>j
+nnoremap <c-k> <c-w>k
+nnoremap <c-l> <c-w>l
+nnoremap <c-h> <c-w>h
+" ctrl_e ctrl_y 3 lines
+nnoremap <c-e> 3<c-e>
+nnoremap <c-y> 3<c-y>
+vnoremap <c-e> 3<c-e>
+vnoremap <c-y> 3<c-y>
 
 augroup line_return
   au!
