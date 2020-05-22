@@ -91,6 +91,8 @@ Plug 'haya14busa/incsearch.vim'
 Plug 'mbbill/undotree'
 Plug 'preservim/nerdtree'
 
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
+
 call plug#end()
 
 colorscheme gruvbox
@@ -279,3 +281,7 @@ augroup END
 " fzf {{{
 noremap <silent> <F1> :<C-U>Helptags<CR>
 " fzf}}}
+" markdown {{{
+let g:vim_markdown_math = 1
+nmap <leader>md :MarkdownPreview<CR>
+" markdown }}}
