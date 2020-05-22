@@ -70,6 +70,7 @@ Plug 'Shougo/neco-vim'
 Plug 'neoclide/coc-neco'
 Plug 'neoclide/jsonc.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'majutsushi/tagbar'
 
 Plug 'pangloss/vim-javascript'
 Plug 'HerringtonDarkholme/yats.vim'
@@ -285,3 +286,7 @@ noremap <silent> <F1> :<C-U>Helptags<CR>
 let g:vim_markdown_math = 1
 nmap <leader>md :MarkdownPreview<CR>
 " markdown }}}
+" tagbar {{{
+nnoremap <silent> <leader>2 :TagbarToggle<CR>
+let tags = "./tags"
+"tagbar }}}
