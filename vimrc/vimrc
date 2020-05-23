@@ -64,8 +64,6 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'fatih/vim-go'
 
-" coc 插件
-" :CocInstall coc-tag coc-lists coc-tsserver coc-autopairs coc-markplace coc-snippets coc-yank coc-json coc-yaml coc-prettier coc-highlight coc-html coc-go coc-clangd coc-cmake coc-explorer
 Plug 'Shougo/neco-vim'
 Plug 'neoclide/coc-neco'
 Plug 'neoclide/jsonc.vim'
@@ -102,6 +100,26 @@ set background=dark
 if executable('rg')
     let g:rg_derive_root='true'
 endif
+
+" 常用的 coc 插件
+let g:coc_global_extensions = [
+    \ 'coc-tag',
+    \ 'coc-lists',
+    \ 'coc-tsserver',
+    \ 'coc-pairs',
+    \ 'coc-marketplace',
+    \ 'coc-snippets',
+    \ 'coc-yank',
+    \ 'coc-json',
+    \ 'coc-yaml',
+    \ 'coc-prettier',
+    \ 'coc-highlight',
+    \ 'coc-html',
+    \ 'coc-go',
+    \ 'coc-clangd',
+    \ 'coc-cmake',
+    \ 'coc-explorer'
+    \ ]
 
 function! CocCurrentFunction()
     return get(b:, 'coc_current_function', '')
