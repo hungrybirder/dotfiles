@@ -70,6 +70,8 @@ Plug 'neoclide/jsonc.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'majutsushi/tagbar'
 
+Plug 'honza/vim-snippets'
+
 Plug 'pangloss/vim-javascript'
 Plug 'HerringtonDarkholme/yats.vim'
 
