@@ -23,6 +23,9 @@ nnoremap <c-y> 3<c-y>
 vnoremap <c-e> 3<c-e>
 vnoremap <c-y> 3<c-y>
 
+inoremap <C-e> <C-o>$
+inoremap <C-a> <C-o>0
+
 augroup line_return
   au!
   au bufreadpost *
@@ -131,11 +134,12 @@ let g:lightline = {
   \ 'colorscheme': 'wombat',
   \ 'active': {
   \   'left': [ [ 'mode', 'paste' ],
-  \             [ 'cocstatus', 'currentfunction', 'readonly', 'filename', 'modified' ] ]
+  \             [ 'cocstatus', 'gitbranch', 'currentfunction', 'readonly', 'filename', 'modified' ] ]
   \ },
   \ 'component_function': {
   \   'cocstatus': 'coc#status',
-  \   'currentfunction': 'CocCurrentFunction'
+  \   'currentfunction': 'CocCurrentFunction',
+  \   'gitbranch': 'FugitiveHead',
   \ },
   \ }
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
