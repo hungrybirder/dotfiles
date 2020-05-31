@@ -42,7 +42,7 @@ Plug 'ervandew/supertab'
 
 Plug 'terryma/vim-multiple-cursors'
 Plug 'vim-scripts/tComment'
-Plug 'morhetz/gruvbox'
+Plug 'gruvbox-community/gruvbox'
 Plug 'itchyny/lightline.vim'
 Plug 'maximbaz/lightline-ale'
 " Plug 'bling/vim-bufferline'
