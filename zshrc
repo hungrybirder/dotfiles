@@ -264,3 +264,6 @@ export PATH="$(go env GOBIN):${PATH}"
 
 # LESS
 # export LESS="-C -M -I -j 10 -# 4"
+
+alias nv="nvim"
+alias vn="nvim"
