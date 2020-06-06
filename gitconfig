@@ -65,3 +65,5 @@
 #     insteadOf = https://git.corp.kuaishou.com/
 [http]
 	sslVerify = false
+[pull]
+	rebase = true
