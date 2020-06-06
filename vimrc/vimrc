@@ -304,9 +304,12 @@ augroup go
 augroup END
 
 " vim-go }}}
+
 " fzf {{{
 noremap <silent> <F1> :<C-U>Helptags<CR>
-" fzf}}}
+let g:fzf_layout = { 'window': { 'width': 0.75, 'height': 0.6 } }
+" fzf }}}
+
 " markdown {{{
 let g:vim_markdown_math = 1
 nmap <leader>md :MarkdownPreview<CR>
