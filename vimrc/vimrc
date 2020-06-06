@@ -315,3 +315,8 @@ nmap <leader>md :MarkdownPreview<CR>
 nnoremap <silent> <leader>2 :TagbarToggle<CR>
 let tags = "./tags"
 "tagbar }}}
+
+" Sweet Sweet FuGITive
+nmap <leader>gh :diffget //3<CR>
+nmap <leader>gu :diffget //2<CR>
+nmap <leader>gs :G<CR>
