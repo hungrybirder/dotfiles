@@ -96,6 +96,7 @@ Plug 'mbbill/undotree'
 Plug 'preservim/nerdtree'
 
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
+Plug 'jiangmiao/auto-pairs'
 
 call plug#end()
 
@@ -111,7 +112,6 @@ let g:coc_global_extensions = [
     \ 'coc-tag',
     \ 'coc-lists',
     \ 'coc-tsserver',
-    \ 'coc-pairs',
     \ 'coc-marketplace',
     \ 'coc-snippets',
     \ 'coc-yank',
@@ -323,3 +323,8 @@ let tags = "./tags"
 nmap <leader>gh :diffget //3<CR>
 nmap <leader>gu :diffget //2<CR>
 nmap <leader>gs :G<CR>
+
+" autopairs {{{
+let g:AutoPairsFlyMode = 1
+let g:AutoPairsShortcutToggle = '<F4>'
+" autopairs }}}
