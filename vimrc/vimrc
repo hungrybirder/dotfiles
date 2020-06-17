@@ -98,6 +98,7 @@ Plug 'preservim/nerdtree'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 Plug 'jiangmiao/auto-pairs'
 
+Plug 'sbdchd/neoformat'
 call plug#end()
 
 colorscheme gruvbox
@@ -222,6 +223,13 @@ augroup my
   autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
   " Update signature help on jump placeholder.
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+augroup END
+
+augroup fmt
+  autocmd!
+  autocmd FileType cc,cpp noremap <buffer><Leader>cf <c-c>:Neoformat<CR><CR>gi
+  autocmd FileType cc,cpp inoremap <buffer><Leader>cf <c-c>:Neoformat<CR><CR>gi
+  autocmd BufWritePre *.cc,*.cpp undojoin | Neoformat
 augroup END
 
 " nerdtree {{{
