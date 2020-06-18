@@ -130,7 +130,7 @@ if has('clipboard')
 endif
 ""
 set nofoldenable
-set relativenumber
+set number relativenumber
 set magic
 set hlsearch
 set pastetoggle=<F6>
