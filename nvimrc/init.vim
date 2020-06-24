@@ -416,6 +416,7 @@ endfunction
 " vim-multiple-cursors }}}
 
 " leaderf {{{
+let g:Lf_StlColorscheme = 'gruvbox_material'
 let g:Lf_HideHelp = 1
 let g:Lf_UseCache = 0
 let g:Lf_UseMemoryCache = 0
