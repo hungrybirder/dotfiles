@@ -100,6 +100,8 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 Plug 'jiangmiao/auto-pairs'
 
 Plug 'sbdchd/neoformat'
+
+Plug 'moll/vim-bbye'
 call plug#end()
 
 colorscheme gruvbox
@@ -338,3 +340,7 @@ nmap <leader>gs :G<CR>
 let g:AutoPairsFlyMode = 1
 let g:AutoPairsShortcutToggle = '<F4>'
 " autopairs }}}
+
+" vim-bbye {{{
+noremap <space><BS> :Bdelete<cr>
+" vim-bbye }}}
