@@ -111,6 +111,7 @@ fs() {
   host=$(awk '{print $1}' $HOME/.ssh/known_hosts | gsed "s/^\[//;s/\].*$//;s/,.*//" | fzf)
   if [ "x$host" != "x" ]
   then
+    echo "ssh $host"
     ssh $host
   fi
 }
