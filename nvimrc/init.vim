@@ -451,7 +451,6 @@ noremap <silent> <space>w :<C-U>LeaderfWindow<CR>
 noremap <silent> <F1> :<C-U>LeaderfHelp<CR>
 noremap <silent> <F12> :<C-U>LeaderfFunctionAll<CR>
 noremap <silent> <space>a :<C-U><C-R>=printf("Leaderf rg %s", "")<CR><CR>
-nnoremap <C-p> :GFiles<CR>
 " close quickfix
 noremap <silent> <space>c :<C-U>cclose<CR>
 
@@ -467,6 +466,13 @@ noremap <leader>fo :<C-U><C-R>=printf("Leaderf! gtags --recall %s", "")<CR><CR>
 noremap <space>n :<C-U><C-R>=printf("Leaderf gtags --next %s", "")<CR><CR>
 noremap <space>p :<C-U><C-R>=printf("Leaderf gtags --previous %s", "")<CR><CR>
 "leaderf }}}
+
+" fzf {{{
+" noremap <silent> <F1> :<C-U>Helptags<CR>
+let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.8 } }
+nnoremap <C-p> :GFiles<CR>
+" fzf }}}
+
 
 " tagbar {{{
 nnoremap <silent> <leader>2 :TagbarToggle<CR>
