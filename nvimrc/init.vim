@@ -471,6 +471,9 @@ noremap <space>p :<C-U><C-R>=printf("Leaderf gtags --previous %s", "")<CR><CR>
 " noremap <silent> <F1> :<C-U>Helptags<CR>
 let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.8 } }
 nnoremap <C-p> :GFiles<CR>
+let g:fzf_action = {
+  \ 'ctrl-x': 'split',
+  \ 'ctrl-]': 'vsplit' }
 " fzf }}}
 
 
