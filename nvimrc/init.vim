@@ -77,6 +77,9 @@ Plug 'haya14busa/incsearch.vim'
 
 Plug 'liuchengxu/vim-which-key'
 Plug 'mbbill/undotree'
+
+" Language packs
+Plug 'sheerun/vim-polyglot'
 call plug#end() " }}}
 
 " general {{{

@@ -103,6 +103,9 @@ Plug 'sbdchd/neoformat'
 
 Plug 'moll/vim-bbye'
 Plug 'terryma/vim-multiple-cursors'
+
+" Language packs
+Plug 'sheerun/vim-polyglot'
 call plug#end()
 
 let g:gruvbox_contrast_dark = 'hard'
