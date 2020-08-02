@@ -104,6 +104,7 @@ Plug 'sbdchd/neoformat'
 Plug 'moll/vim-bbye'
 Plug 'terryma/vim-multiple-cursors'
 
+Plug 'tpope/vim-surround'
 " Language packs
 Plug 'sheerun/vim-polyglot'
 call plug#end()
