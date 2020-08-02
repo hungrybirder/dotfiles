@@ -268,3 +268,4 @@ export PATH="$(go env GOBIN):${PATH}"
 
 alias nv="nvim"
 alias vn="nvim"
+alias v="vim"
