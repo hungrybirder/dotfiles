@@ -233,7 +233,8 @@ get_public_ip() {
 bindkey \^U backward-kill-line
 
 if [[ "Darwin" = ${OS_NAME} ]]; then
-  alias bu="brew upgrade"
+  alias bu="all_proxy=socks5://localhost:1086 brew upgrade"
+  alias bubu="all_proxy=socks5://localhost:1086 brew cask upgrade --greedy"
 fi
 
 # 一些特殊的配置，或function
