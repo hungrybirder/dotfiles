@@ -562,6 +562,7 @@ let g:go_test_prepend_name = 1
 let g:go_fmt_fail_silently = 1
 let g:go_fmt_command = "goimports"
 let g:go_def_mode = "gopls"
+let g:go_implements_mode = 'gopls'
 let g:go_list_type = "quickfix"
 let g:go_auto_type_info = 1
 let g:go_fmt_autosave = 1
@@ -584,6 +585,12 @@ let g:go_highlight_function_calls = 0
 let g:go_gocode_propose_source = 1
 let g:go_addtags_transform = 'camelcase'
 let g:go_fold_enable = []
+let g:go_debug_windows = {
+          \ 'vars':       'leftabove 30vnew',
+          \ 'stack':      'leftabove 20new',
+          \ 'goroutines': 'botright 10new',
+          \ 'out':        'botright 5new',
+\ }
 
 function! s:build_go_files()
   let l:file = expand('%')
