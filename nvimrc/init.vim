@@ -360,7 +360,7 @@ let g:ale_linters = {
 \ }
 let g:ale_fixers = {
 \ '*': ['remove_trailing_lines', 'trim_whitespace'],
-\ 'python': ['autopep8'],
+\ 'python': ['autopep8', 'isort'],
 \ 'go': ['gofmt'],
 \ 'javascript':['eslint'],
 \ 'typescript':['eslint'],
