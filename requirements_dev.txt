@@ -8,3 +8,4 @@ pytest-ordering
 pytest-repeat
 tox
 isort
+yapf
