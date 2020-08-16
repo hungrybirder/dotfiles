@@ -11,6 +11,7 @@ Plug 'AndrewRadev/splitjoin.vim' "gS gJ
 Plug 'deoplete-plugins/deoplete-jedi' " py for deoplete
 Plug 'davidhalter/jedi-vim'
 Plug 'jeetsukumaran/vim-pythonsense'
+Plug 'Vimjas/vim-python-pep8-indent'
 Plug 'Shougo/echodoc.vim'
 Plug 'Shougo/neoinclude.vim'
 Plug 'deoplete-plugins/deoplete-tag'
@@ -187,6 +188,8 @@ set nobackup
 set undofile
 set undodir=~/.config/nvim/undodir
 
+set splitbelow
+set splitright
 " setting }}}
 
 " mappings {{{
