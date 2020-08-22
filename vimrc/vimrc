@@ -58,7 +58,7 @@ set nowrap
 set noswapfile
 set nobackup
 set undodir=~/.vim/undodir
-set splitbelow
+" set splitbelow
 set splitright
 
 inoremap jk <esc>

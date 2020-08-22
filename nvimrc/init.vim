@@ -188,7 +188,7 @@ set nobackup
 set undofile
 set undodir=~/.config/nvim/undodir
 
-set splitbelow
+" set splitbelow
 set splitright
 " setting }}}
 
