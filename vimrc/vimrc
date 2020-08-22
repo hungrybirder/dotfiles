@@ -84,6 +84,7 @@ Plug 'HerringtonDarkholme/yats.vim'
 Plug 'liuchengxu/vista.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'stsewd/fzf-checkout.vim'
 Plug 'airblade/vim-rooter'
 
 Plug 'gruvbox-community/gruvbox'
