@@ -364,7 +364,7 @@ let g:ale_linters = {
 \ }
 let g:ale_fixers = {
 \ '*': ['remove_trailing_lines', 'trim_whitespace'],
-\ 'python': ['isort', 'yapf'],
+\ 'python': ['yapf'],
 \ 'go': ['gofmt'],
 \ 'javascript':['eslint'],
 \ 'typescript':['eslint'],
