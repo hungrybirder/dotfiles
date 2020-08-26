@@ -1,70 +1,6 @@
 set nocompatible
 syntax on
 
-let mapleader = ","
-nmap <silent> <leader>ev :e $MYVIMRC<CR>
-nmap <silent> <leader>sv :so $MYVIMRC<CR>
-
-nnoremap Q :q<cr>
-nnoremap <leader>Q :qa!<cr>
-" Act like D and C
-nnoremap Y y$
-" Keep search matches in the middle of the window.
-nnoremap n nzzzv
-nnoremap N Nzzzv
-" easy move around windows
-nnoremap <c-j> <c-w>j
-nnoremap <c-k> <c-w>k
-nnoremap <c-l> <c-w>l
-nnoremap <c-h> <c-w>h
-" ctrl_e ctrl_y 3 lines
-nnoremap <c-e> 3<c-e>
-nnoremap <c-y> 3<c-y>
-vnoremap <c-e> 3<c-e>
-vnoremap <c-y> 3<c-y>
-
-inoremap <C-e> <C-o>$
-inoremap <C-a> <C-o>0
-
-augroup line_return
-  au!
-  au bufreadpost *
-    \ if line("'\"") > 0 && line("'\"") <= line("$") |
-    \   execute 'normal! g`"zvzz' |
-    \ endif
-augroup end
-
-set hidden
-set wildmenu
-set nobackup
-set nowritebackup
-set noerrorbells
-set tabstop=4 softtabstop=4
-set shiftwidth=4
-set expandtab
-set smartindent
-set number relativenumber
-set smartcase
-set incsearch
-set cmdheight=2
-set updatetime=50
-set shortmess+=c
-set signcolumn=yes
-set backspace=indent,eol,start
-set laststatus=2
-set clipboard+=unnamed
-set noerrorbells
-set nowrap
-set noswapfile
-set nobackup
-set undodir=~/.vim/undodir
-" set splitbelow
-set splitright
-
-inoremap jk <esc>
-
-highlight ColorColumn ctermbg=0 guibg=lightgrey
-
 call plug#begin('~/.vim/plugged')
 
 Plug 'fatih/vim-go'
@@ -111,6 +47,99 @@ Plug 'tpope/vim-surround'
 " Language packs
 Plug 'sheerun/vim-polyglot'
 call plug#end()
+
+" general {{{
+syntax enable
+
+let mapleader = ","
+let g:mapleader = ","
+let maplocalleader = ","
+let g:maplocalleader = ","
+nmap <silent> <leader>ev :e $MYVIMRC<CR>
+nmap <silent> <leader>sv :so $MYVIMRC<CR>
+nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
+
+augroup line_return
+  au!
+  au BufReadPost *
+    \ if line("'\"") > 0 && line("'\"") <= line("$") |
+    \   execute 'normal! g`"zvzz' |
+    \ endif
+augroup END
+" general }}}
+
+
+" setting {{{
+set hidden
+set wildmenu
+set nobackup
+set nowritebackup
+set noerrorbells
+set tabstop=4 softtabstop=4
+set shiftwidth=4
+set expandtab
+set smartindent
+set number relativenumber
+set smartcase
+set incsearch
+set cmdheight=2
+set updatetime=50
+set shortmess+=c
+set signcolumn=yes
+set backspace=indent,eol,start
+set laststatus=2
+set clipboard+=unnamed
+set noerrorbells
+set nowrap
+set noswapfile
+set nobackup
+set undodir=~/.vim/undodir
+" set splitbelow
+set splitright
+" setting }}}
+
+" mapping {{{
+nmap <silent> <leader>ev :e $MYVIMRC<CR>
+nmap <silent> <leader>sv :so $MYVIMRC<CR>
+
+nnoremap Q :q<cr>
+nnoremap <leader>Q :qa!<cr>
+" Act like D and C
+nnoremap Y y$
+" Keep search matches in the middle of the window.
+nnoremap n nzzzv
+nnoremap N Nzzzv
+" easy move around windows
+nnoremap <c-j> <c-w>j
+nnoremap <c-k> <c-w>k
+nnoremap <c-l> <c-w>l
+nnoremap <c-h> <c-w>h
+" ctrl_e ctrl_y 3 lines
+nnoremap <c-e> 3<c-e>
+nnoremap <c-y> 3<c-y>
+vnoremap <c-e> 3<c-e>
+vnoremap <c-y> 3<c-y>
+
+inoremap <C-e> <C-o>$
+inoremap <C-a> <C-o>0
+
+nnoremap <Leader>+ :vertical resize +5<CR>
+nnoremap <Leader>- :vertical resize -5<CR>
+
+inoremap jk <esc>
+" mapping }}}
+
+highlight ColorColumn ctermbg=0 guibg=lightgrey
+
+
+augroup line_return
+  au!
+  au bufreadpost *
+    \ if line("'\"") > 0 && line("'\"") <= line("$") |
+    \   execute 'normal! g`"zvzz' |
+    \ endif
+augroup end
+
 
 let g:gruvbox_contrast_dark = 'hard'
 if exists('+termguicolors')
