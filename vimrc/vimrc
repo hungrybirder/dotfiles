@@ -405,3 +405,10 @@ endfunction
 function! Multiple_cursors_after()
 endfunction
 " vim-multiple-cursors }}}
+
+" fugitive {{{
+nmap <leader>gh :diffget //3<CR>
+nmap <leader>gu :diffget //2<CR>
+nmap <leader>gs :G<CR>
+nnoremap <leader>gc :GCheckout<CR>
+" fugitive }}}
