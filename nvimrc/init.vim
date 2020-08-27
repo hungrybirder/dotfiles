@@ -519,7 +519,7 @@ endif
 
 " fugitive {{{
 nmap <leader>gh :diffget //3<CR>
-nmap <leader>gu :diffget //2<CR>
+nmap <leader>gf :diffget //2<CR>
 nmap <leader>gs :G<CR>
 nnoremap <leader>gc :GCheckout<CR>
 let g:fzf_checkout_track_key = 'ctrl-t'
