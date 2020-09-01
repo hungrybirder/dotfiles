@@ -303,6 +303,13 @@ let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 
 " lightline {{{
 let g:lightline = {'colorscheme': 'wombat'}
+let g:lightline.component_function = {'gitbranch':'FugitiveHead'}
+let g:lightline.active = {
+  \'right': [
+    \['linter_checking', 'linter_errors', 'linter_warnings', 'linter_infos', 'linter_ok'],
+    \['lineinfo'], ['percent'],['fileencodings','filetype']],
+  \'left': [['mode','paste'],['gitbranch', 'readonly', 'filename', 'modified']],
+\}
 let g:lightline.component_expand = {
   \  'linter_checking': 'lightline#ale#checking',
   \  'linter_infos': 'lightline#ale#infos',
@@ -316,16 +323,6 @@ let g:lightline.component_type = {
   \  'linter_warnings': 'warning',
   \  'linter_errors': 'error',
   \  'linter_ok': 'right',
-  \ }
-let g:lightline.active = { 'right': [[
-  \ 'linter_checking',
-  \ 'linter_errors',
-  \ 'linter_warnings',
-  \ 'linter_infos',
-  \ 'linter_ok' ],
-  \ ['lineinfo'], ['percent'],
-  \ ['fileencoding', 'filetype'],
-  \]
   \ }
 let g:lightline#ale#indicator_checking = "\uf110"
 let g:lightline#ale#indicator_infos = "\uf129"
