@@ -54,6 +54,7 @@ Plug 'tpope/vim-repeat'
 Plug 'moll/vim-bbye'
 Plug 'junegunn/vim-easy-align'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
 Plug 'junegunn/gv.vim'
 " 变更的跳转
 " ]c   Jump to next hunk.

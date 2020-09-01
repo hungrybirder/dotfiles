@@ -61,8 +61,6 @@
 	quotepath = false
 [merge]
 	tool = vimdiff
-# [url "git@git.corp.kuaishou.com:"]
-#     insteadOf = https://git.corp.kuaishou.com/
 [http]
 	sslVerify = false
 [pull]
