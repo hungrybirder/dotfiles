@@ -127,6 +127,7 @@ inoremap <C-a> <C-o>0
 nnoremap <Leader>+ :vertical resize +5<CR>
 nnoremap <Leader>- :vertical resize -5<CR>
 
+noremap <Leader>pu :<c-u>PlugUpdate<CR>
 inoremap jk <esc>
 " mapping }}}
 
