@@ -465,13 +465,13 @@ noremap <silent> <space>c :<C-U>cclose<CR>
 " brew install global
 " pip3 install pygments
 "" Leaderf gtags --update
-let g:Lf_GtagsAutoGenerate = 0
-let g:Lf_Gtagslabel = 'native-pygments'
-noremap <leader>fr :<C-U><C-R>=printf("Leaderf gtags -r %s --auto-jump", expand("<cword>"))<CR><CR>
-noremap <leader>fd :<C-U><C-R>=printf("Leaderf! gtags -d %s --auto-jump", expand("<cword>"))<CR><CR>
-noremap <leader>fo :<C-U><C-R>=printf("Leaderf! gtags --recall %s", "")<CR><CR>
-noremap <space>n :<C-U><C-R>=printf("Leaderf gtags --next %s", "")<CR><CR>
-noremap <space>p :<C-U><C-R>=printf("Leaderf gtags --previous %s", "")<CR><CR>
+" let g:Lf_GtagsAutoGenerate = 0
+" let g:Lf_Gtagslabel = 'native-pygments'
+" noremap <leader>fr :<C-U><C-R>=printf("Leaderf gtags -r %s --auto-jump", expand("<cword>"))<CR><CR>
+" noremap <leader>fd :<C-U><C-R>=printf("Leaderf! gtags -d %s --auto-jump", expand("<cword>"))<CR><CR>
+" noremap <leader>fo :<C-U><C-R>=printf("Leaderf! gtags --recall %s", "")<CR><CR>
+" noremap <space>n :<C-U><C-R>=printf("Leaderf gtags --next %s", "")<CR><CR>
+" noremap <space>p :<C-U><C-R>=printf("Leaderf gtags --previous %s", "")<CR><CR>
 "leaderf }}}
 
 " fzf {{{
@@ -692,6 +692,8 @@ augroup go
   autocmd FileType go nmap <space>g :GoDeclsDir<cr>
   autocmd FileType go nmap <space>o :<C-U>GoDecls<CR>
   autocmd FileType go nmap <space>r :<C-U>GoReferrers<CR>
+  autocmd FileType go nmap <space>n :<C-U>cnext<CR>
+  autocmd FileType go nmap <space>p :<C-U>cprevious<CR>
 
 
   autocmd FileType go nmap <silent> <Leader>x <Plug>(go-doc-vertical)
@@ -718,6 +720,8 @@ augroup go
 augroup END
 
 " autogroup go }}}
+
+autocmd FileType qf wincmd J
 
 " autogroup es {{{
 " augroup typescript

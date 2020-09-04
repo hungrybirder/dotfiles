@@ -216,8 +216,8 @@ imap <C-l> <Plug>(coc-snippets-expand)
 nnoremap <leader>cr :CocRestart
 nmap <leader>d <Plug>(coc-definition)
 nmap <leader>y <Plug>(coc-type-definition)
-nmap <leader>i <Plug>(coc-implementation)
-nmap <leader>r <Plug>(coc-references)
+nmap <space>i <Plug>(coc-implementation)
+nmap <space>r <Plug>(coc-references)
 nmap <leader>rn <Plug>(coc-rename)
 nmap <space>e :CocCommand explorer<CR>
 nmap <space>f :<c-u>Files<cr>
@@ -353,6 +353,9 @@ augroup go
   autocmd FileType go imap <C-g> <esc>:<C-u>GoDecls<cr>
   autocmd FileType go nmap <space>g :GoDeclsDir<cr>
   autocmd FileType go nmap <space>o :<C-U>GoDecls<CR>
+
+  autocmd FileType go nmap <space>n :<C-U>cnext<CR>
+  autocmd FileType go nmap <space>p :<C-U>cprevious<CR>
 
   autocmd Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
   autocmd Filetype go command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')
