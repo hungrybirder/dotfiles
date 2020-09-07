@@ -227,7 +227,7 @@ bindkey \^U backward-kill-line
 
 if [[ "Darwin" = ${OS_NAME} ]]; then
   alias bu="all_proxy=socks5://localhost:1086 brew upgrade"
-  alias bubu="all_proxy=socks5://localhost:1086 brew cask upgrade --greedy"
+  alias bubu="all_proxy=socks5://localhost:1086  brew upgrade --cask --greedy"
 fi
 
 # 一些特殊的配置，或function
