@@ -449,7 +449,7 @@ let g:Lf_PreviewResult = {'Function': 0, 'BufTag': 0 }
 " <C-]> open in vertical split window
 " <C-T> open in new tabpage
 noremap <silent> <space>f :<C-U>LeaderfFile<CR>
-noremap <silent> <space>m :<C-U>LeaderfMru<CR>
+noremap <silent> <space>M :<C-U>LeaderfMru<CR>
 noremap <silent> <space>l :<C-U>LeaderfLine<CR>
 noremap <silent> <space>o :<C-U>LeaderfFunction<CR>
 noremap <silent> <space>b :<C-U>LeaderfBuffer<CR>
@@ -459,9 +459,6 @@ noremap <silent> <space>w :<C-U>LeaderfWindow<CR>
 noremap <silent> <F1> :<C-U>LeaderfHelp<CR>
 noremap <silent> <F12> :<C-U>LeaderfFunctionAll<CR>
 noremap <silent> <space>a :<C-U><C-R>=printf("Leaderf rg %s", "")<CR><CR>
-" close quickfix
-noremap <silent> <space>c :<C-U>cclose<CR>
-
 " gtags
 " brew install global
 " pip3 install pygments
@@ -718,16 +715,26 @@ augroup go
   autocmd FileType go inoremap <buffer><Leader>cf <c-c>:GoFmt<CR><CR>gi
   autocmd FileType go setlocal ts=4 sts=4 sw=4 noexpandtab
   autocmd FileType go setlocal completeopt-=preview
+  autocmd FileType go let g:ale_set_loclist = 1
+  autocmd FileType go let g:ale_set_quickfix = 0
 augroup END
 
 " autogroup go }}}
 
-autocmd FileType qf wincmd J
 
 " vim-qf {{{
 " nmap <F9> <Plug>(qf_qf_previous)
 " nmap <F10>  <Plug>(qf_qf_next)
 " vim-qf }}}
+
+" quickfix {{{
+autocmd FileType qf wincmd J
+nnoremap <space>n :<C-U>cnext<CR>
+nnoremap <space>m :<C-U>cprevious<CR>
+" close quickfix
+noremap <silent> <space>c :<C-U>cclose<CR>
+" quickfix }}}
+
 
 " autogroup es {{{
 " augroup typescript
