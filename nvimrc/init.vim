@@ -83,6 +83,7 @@ Plug 'mbbill/undotree'
 
 " Language packs
 Plug 'sheerun/vim-polyglot'
+" Plug 'romainl/vim-qf'
 call plug#end() " }}}
 
 " general {{{
@@ -722,6 +723,11 @@ augroup END
 " autogroup go }}}
 
 autocmd FileType qf wincmd J
+
+" vim-qf {{{
+" nmap <F9> <Plug>(qf_qf_previous)
+" nmap <F10>  <Plug>(qf_qf_next)
+" vim-qf }}}
 
 " autogroup es {{{
 " augroup typescript
