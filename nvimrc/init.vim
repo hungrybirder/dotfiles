@@ -193,6 +193,9 @@ set undodir=~/.config/nvim/undodir
 
 " set splitbelow
 set splitright
+
+set shortmess=a
+set cmdheight=2
 " setting }}}
 
 " mappings {{{
