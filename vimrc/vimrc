@@ -175,6 +175,7 @@ let g:coc_global_extensions = [
     \ 'coc-cmake',
     \ 'coc-deno',
     \ 'coc-explorer',
+    \ 'coc-fzf-preview',
     \ ]
 
 function! CocCurrentFunction()
@@ -220,7 +221,8 @@ nmap <space>i <Plug>(coc-implementation)
 nmap <space>r <Plug>(coc-references)
 nmap <leader>rn <Plug>(coc-rename)
 nmap <space>e :CocCommand explorer<CR>
-nmap <space>f :<c-u>Files<cr>
+" nmap <space>f :<c-u>Files<cr>
+nmap <space>f :<c-u>CocCommand fzf-preview.ProjectFiles<cr>
 " nmap <space>f :<c-u>CocList files<cr>
 nnoremap <silent> <space>p :<C-u>CocListResume<CR>
 nnoremap <silent> <space>j :<C-u>CocNext<CR>
@@ -228,7 +230,8 @@ nnoremap <silent> <space>k :<C-u>CocPrev<CR>
 nnoremap <silent> <space>s :<C-u>CocList -I symbols<cr>
 " nnoremap <silent> <space>o :<c-u>CocList outline<cr>
 nnoremap <silent> <space>o :<c-u>Vista finder coc<cr>
-nnoremap <silent> <space>b :<c-u>CocList buffers<cr>
+nnoremap <silent> <space>b :<c-u>CocCommand fzf-preview.Buffers<cr>
+" nnoremap <silent> <space>b :<c-u>CocList buffers<cr>
 nnoremap <silent> <space>a :<C-u>CocList diagnostics<cr>
 nnoremap <silent> <space>c :<C-u>CocList commands<cr>
 nnoremap <silent> <space>y :<C-u>CocList -A --normal yank<cr>
@@ -376,6 +379,8 @@ let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.8 } }
 let g:fzf_action = {
   \ 'ctrl-x': 'split',
   \ 'ctrl-]': 'vsplit' }
+
+let g:fzf_preview_floating_window_rate = 0.8
 " fzf }}}
 
 " markdown {{{
