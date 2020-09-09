@@ -356,7 +356,7 @@ let g:float_preview#docked = 0
 "float-preview }}}
 
 " neoformat {{{
-let g:neoformat_enabled_python = ['autopep8']
+let g:neoformat_enabled_python = ['yapf']
 " neoformat }}}
 
 " ale {{{
