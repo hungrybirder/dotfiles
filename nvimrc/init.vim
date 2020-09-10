@@ -36,7 +36,8 @@ Plug 'preservim/nerdtree'
 Plug 'sbdchd/neoformat'
 
 " code syntax check
-Plug 'dense-analysis/ale', {'tag':'v2.7.0'}
+" Plug 'dense-analysis/ale', {'commit':'7d90ff56'} "Wrong
+Plug 'dense-analysis/ale', {'commit':'b4b75126'}
 
 " snippet framework
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
