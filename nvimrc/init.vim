@@ -36,7 +36,7 @@ Plug 'preservim/nerdtree'
 Plug 'sbdchd/neoformat'
 
 " code syntax check
-Plug 'dense-analysis/ale'
+Plug 'dense-analysis/ale', {'tag':'v2.7.0'}
 
 " snippet framework
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
@@ -367,7 +367,7 @@ let g:ale_linters = {
 \ 'javascript':['eslint'],
 \ 'typescript':['eslint', 'tsserver'],
 \ 'java':[],
-\ 'go': ['gofmt', 'golint', 'go vet']
+\ 'go': ['gofmt', 'golint', 'go vet'],
 \ }
 let g:ale_fixers = {
 \ '*': ['remove_trailing_lines', 'trim_whitespace'],
@@ -375,15 +375,16 @@ let g:ale_fixers = {
 \ 'go': ['gofmt'],
 \ 'javascript':['eslint'],
 \ 'typescript':['eslint'],
+\ 'markdown':['remark-lint'],
 \ }
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%code%] %s [%severity%]'
 let g:ale_lint_on_enter = 1
 let g:ale_fix_on_save = 1
+let g:ale_completion_enabled = 0
 nmap <silent> <space>j <Plug>(ale_next_wrap)
 nmap <silent> <space>k <Plug>(ale_previous_wrap)
-
 " ale }}}
 
 " markdown {{{
