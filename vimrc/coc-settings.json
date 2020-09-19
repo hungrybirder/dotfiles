@@ -12,6 +12,7 @@
 
   "snippets.ultisnips.directories": [
     "UltiSnips",
-    "gosnippets/UltiSnips",
+    "gosnippets/UltiSnips"
   ],
+  "coc.preferences.formatOnSaveFiletypes": ["typescript"]
 }
