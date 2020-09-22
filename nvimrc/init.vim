@@ -29,8 +29,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'stsewd/fzf-checkout.vim'
 Plug 'airblade/vim-rooter'
 Plug 'Yggdroot/LeaderF', { 'do': './install.sh'}
-" Plug 'Yggdroot/LeaderF', { 'do': './install.sh', 'tag':'v1.22' }
-Plug 'majutsushi/tagbar'
+Plug 'preservim/tagbar'
 Plug 'preservim/nerdtree'
 
 " auto format plugin
