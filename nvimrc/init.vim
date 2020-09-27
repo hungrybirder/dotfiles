@@ -369,6 +369,7 @@ let g:ale_linters = {
 \ 'typescript':['eslint', 'tsserver'],
 \ 'java':[],
 \ 'go': ['gofmt', 'golint', 'go vet'],
+\ 'markdown':['remark-lint'],
 \ }
 let g:ale_fixers = {
 \ '*': ['remove_trailing_lines', 'trim_whitespace'],
