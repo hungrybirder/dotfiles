@@ -10,9 +10,6 @@
   "clangd.path": "/usr/local/opt/llvm/bin/clangd",
   "clangd.semanticHighlighting": true,
 
-  "snippets.ultisnips.directories": [
-    "UltiSnips",
-    "gosnippets/UltiSnips"
-  ],
-  "coc.preferences.formatOnSaveFiletypes": ["typescript"]
+  "snippets.ultisnips.directories": ["UltiSnips", "gosnippets/UltiSnips"],
+  "coc.preferences.formatOnSaveFiletypes": ["typescript", "json", "jsonc"]
 }
