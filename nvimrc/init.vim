@@ -669,11 +669,12 @@ let g:go_highlight_function_calls = 0
 let g:go_gocode_propose_source = 1
 let g:go_addtags_transform = 'camelcase'
 let g:go_fold_enable = []
+let g:go_debug_log_output = 'debugger'
+" set vars/stack/out/goroutines windows
 let g:go_debug_windows = {
-          \ 'vars':       'leftabove 30vnew',
-          \ 'stack':      'leftabove 20new',
-          \ 'goroutines': 'botright 10new',
-          \ 'out':        'botright 5new',
+            \ 'vars':  'rightbelow 55vnew',
+            \ 'stack': 'topleft 5new',
+            \ 'out': 'botright 4new',
 \ }
 
 function! s:build_go_files()
