@@ -726,6 +726,8 @@ augroup go
   autocmd FileType go setlocal completeopt-=preview
   autocmd FileType go let g:ale_set_loclist = 1
   autocmd FileType go let g:ale_set_quickfix = 0
+  autocmd FileType go nmap <F7> :<C-u>GoDebugStart<CR>
+  autocmd FileType go nmap <F12> :<C-u>GoDebugStepOut<CR>
 augroup END
 
 " autogroup go }}}
