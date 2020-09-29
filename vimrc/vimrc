@@ -243,7 +243,7 @@ noremap <silent> <space>c :<C-U>cclose<CR>
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
 autocmd CursorHold * silent call CocActionAsync('highlight')
 autocmd BufRead,BufNewFile tsconfig.json set filetype=jsonc
-autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
+" autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
 
 let g:vista_sidebar_position = "vertical topleft"
 let g:vista_sidebar_width = 35
