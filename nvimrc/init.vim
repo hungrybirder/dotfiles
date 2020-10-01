@@ -141,7 +141,6 @@ set nofoldenable
 set number relativenumber
 set magic
 set hlsearch
-set pastetoggle=<F6>
 set grepprg=rg
 set t_Co=256
 
