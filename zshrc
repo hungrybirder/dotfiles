@@ -64,18 +64,14 @@ alias mvn="mvn -Denforcer.skip=true -DdownloadSources=true "
 
 export EDITOR="/usr/local/bin/vim"
 
-# ShadowsocsX-NG http代理
-# export http_proxy="http://127.0.0.1:1087"
-# export https_proxy="http://127.0.0.1:1087"
-
 disable_http_proxy() {
   unset http_proxy
   unset https_proxy
 }
 
 enable_http_proxy() {
-  export http_proxy="http://127.0.0.1:1087"
-  export https_proxy="http://127.0.0.1:1087"
+  export http_proxy="http://127.0.0.1:7890"
+  export https_proxy="http://127.0.0.1:7890"
 }
 
 # colors 设置
@@ -226,8 +222,8 @@ get_public_ip() {
 bindkey \^U backward-kill-line
 
 if [[ "Darwin" = ${OS_NAME} ]]; then
-  alias bu="all_proxy=socks5://localhost:1086 brew upgrade"
-  alias bubu="all_proxy=socks5://localhost:1086  brew upgrade --cask --greedy"
+  alias bu="all_proxy=socks5://localhost:7891 brew upgrade"
+  alias bubu="all_proxy=socks5://localhost:7891  brew upgrade --cask --greedy"
 fi
 
 # 一些特殊的配置，或function
