@@ -129,6 +129,11 @@ nnoremap <Leader>- :vertical resize -5<CR>
 
 noremap <Leader>pu :<c-u>PlugUpdate<CR>
 inoremap jk <esc>
+
+" greatest remap ever
+" using Block Hole Register
+" :help "_
+vnoremap <leader>p "_dP
 " mapping }}}
 
 highlight ColorColumn ctermbg=0 guibg=lightgrey

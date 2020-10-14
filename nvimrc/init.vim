@@ -291,6 +291,11 @@ nnoremap <Leader>+ :vertical resize +5<CR>
 nnoremap <Leader>- :vertical resize -5<CR>
 
 noremap <Leader>pu :<c-u>PlugUpdate<CR>
+
+" greatest remap ever
+" using Block Hole Register
+" :help "_
+vnoremap <leader>p "_dP
 " mappings }}}
 
 " supertab && snippets {{{
