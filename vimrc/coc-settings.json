@@ -10,6 +10,15 @@
   "clangd.path": "/usr/local/opt/llvm/bin/clangd",
   "clangd.semanticHighlighting": true,
 
+  // 因为使用了coc-clangd插件，所以不需要配置languageserver了
+  /* "languageserver": { */
+  /*   "clangd": { */
+  /*     "command": "/usr/local/opt/llvm/bin/clangd", */
+  /*     "rootPatterns": ["compile_flags.txt", "compile_commands.json"], */
+  /*     "filetypes": ["c", "cpp", "objc", "objcpp"] */
+  /*   } */
+  /* }, */
+
   "snippets.ultisnips.directories": ["UltiSnips", "gosnippets/UltiSnips"],
   "coc.preferences.formatOnSaveFiletypes": ["typescript", "json", "jsonc"]
 }
