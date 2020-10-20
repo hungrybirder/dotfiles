@@ -83,7 +83,7 @@ Plug 'liuchengxu/vim-which-key'
 Plug 'mbbill/undotree'
 
 " Language packs
-Plug 'sheerun/vim-polyglot'
+" Plug 'sheerun/vim-polyglot'
 " Plug 'romainl/vim-qf'
 call plug#end() " }}}
 

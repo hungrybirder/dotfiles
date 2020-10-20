@@ -46,7 +46,7 @@ Plug 'terryma/vim-multiple-cursors'
 
 Plug 'tpope/vim-surround'
 " Language packs
-Plug 'sheerun/vim-polyglot'
+" Plug 'sheerun/vim-polyglot'
 call plug#end()
 
 " general {{{
