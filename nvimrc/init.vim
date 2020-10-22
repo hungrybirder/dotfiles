@@ -4,8 +4,8 @@ set nocompatible
 call plug#begin('~/.config/nvim/plugged')
 
 " deoplete framework {{{
-" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins', 'commit': '36775838ad578e4d2b5ac83f936d8be7640a0a76' }
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins', 'commit': '36775838ad578e4d2b5ac83f936d8be7640a0a76' }
 Plug 'Shougo/neco-vim' " vimscripts for deoplete complete
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'AndrewRadev/splitjoin.vim' "gS gJ
