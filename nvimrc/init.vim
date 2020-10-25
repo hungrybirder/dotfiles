@@ -197,6 +197,7 @@ set splitright
 
 set shortmess=a
 set cmdheight=2
+set scrolloff=7
 " setting }}}
 
 " mappings {{{
@@ -501,6 +502,8 @@ let g:tagbar_sort = 0
 "tagbar }}}
 
 " nerdtree {{{
+let NERDTreeQuitOnOpen=1
+let g:NERDTreeMinimalUI=1
 map <leader><tab> :<c-u>NERDTreeToggle<CR>
 autocmd BufEnter * if bufname('#') =~# "^NERD_tree_" && winnr('$') > 1 | b# | endif
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
