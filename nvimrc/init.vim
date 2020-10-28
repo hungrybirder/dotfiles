@@ -376,6 +376,7 @@ let g:ale_linters = {
 \ 'java':[],
 \ 'go': ['gofmt', 'golint', 'go vet'],
 \ 'markdown':['remark-lint'],
+\ 'rst':['rstcheck'],
 \ }
 let g:ale_fixers = {
 \ '*': ['remove_trailing_lines', 'trim_whitespace'],
