@@ -33,6 +33,7 @@ Plug 'Yggdroot/LeaderF', { 'do': './install.sh'}
 Plug 'preservim/tagbar'
 Plug 'ryanoasis/vim-devicons'
 Plug 'preservim/nerdtree' | Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 
 " auto format plugin
 Plug 'sbdchd/neoformat'
