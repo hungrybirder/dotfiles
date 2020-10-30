@@ -31,6 +31,7 @@ Plug 'stsewd/fzf-checkout.vim'
 Plug 'airblade/vim-rooter'
 Plug 'Yggdroot/LeaderF', { 'do': './install.sh'}
 Plug 'preservim/tagbar'
+Plug 'ryanoasis/vim-devicons'
 Plug 'preservim/nerdtree' | Plug 'Xuyuanp/nerdtree-git-plugin'
 
 " auto format plugin
@@ -342,6 +343,7 @@ let g:lightline#ale#indicator_infos = "\uf129"
 let g:lightline#ale#indicator_warnings = "\uf071"
 let g:lightline#ale#indicator_errors = "\uf05e"
 let g:lightline#ale#indicator_ok = "\uf00c"
+" let g:lightline#bufferline#enable_devicons = 1
 " lightline}}}
 
 " align {{{
@@ -508,6 +510,10 @@ let g:NERDTreeMinimalUI=1
 map <leader><tab> :<c-u>NERDTreeToggle<CR>
 autocmd BufEnter * if bufname('#') =~# "^NERD_tree_" && winnr('$') > 1 | b# | endif
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+if exists('g:loaded_webdevicons')
+    call webdevicons#refresh()
+endif
 " nerdtree}}}
 
 " easymotion {{{
