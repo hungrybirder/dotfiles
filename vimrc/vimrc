@@ -34,7 +34,7 @@ Plug 'itchyny/lightline.vim'
 Plug 'easymotion/vim-easymotion'
 Plug 'haya14busa/incsearch.vim'
 Plug 'mbbill/undotree'
-Plug 'preservim/nerdtree'
+" Plug 'preservim/nerdtree'
 
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 Plug 'jiangmiao/auto-pairs'
@@ -226,7 +226,7 @@ nmap <leader>y <Plug>(coc-type-definition)
 nmap <space>i <Plug>(coc-implementation)
 nmap <space>r <Plug>(coc-references)
 nmap <leader>rn <Plug>(coc-rename)
-nmap <space>e :CocCommand explorer<CR>
+nmap <leader><tab> :CocCommand explorer<CR>
 " nmap <space>f :<c-u>Files<cr>
 nmap <space>f :<c-u>CocCommand fzf-preview.ProjectFiles<cr>
 " nmap <space>f :<c-u>CocList files<cr>
@@ -296,11 +296,11 @@ augroup fmt
 augroup END
 
 " nerdtree {{{
-let NERDTreeQuitOnOpen=1
-let g:NERDTreeMinimalUI=1
-map <leader><tab> :<c-u>NERDTreeToggle<CR>
-autocmd BufEnter * if bufname('#') =~# "^NERD_tree_" && winnr('$') > 1 | b# | endif
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+" let NERDTreeQuitOnOpen=1
+" let g:NERDTreeMinimalUI=1
+" map <leader><tab> :<c-u>NERDTreeToggle<CR>
+" autocmd BufEnter * if bufname('#') =~# "^NERD_tree_" && winnr('$') > 1 | b# | endif
+" autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 " nerdtree}}}
 
 " easymotion {{{

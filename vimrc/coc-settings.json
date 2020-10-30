@@ -20,5 +20,8 @@
   /* }, */
 
   "snippets.ultisnips.directories": ["UltiSnips", "gosnippets/UltiSnips"],
-  "coc.preferences.formatOnSaveFiletypes": ["typescript", "json", "jsonc"]
+  "coc.preferences.formatOnSaveFiletypes": ["typescript", "json", "jsonc"],
+
+  // coc-explorer
+  "explorer.quitOnOpen": true
 }
