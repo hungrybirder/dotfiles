@@ -31,7 +31,7 @@ Plug 'stsewd/fzf-checkout.vim'
 Plug 'airblade/vim-rooter'
 Plug 'Yggdroot/LeaderF', { 'do': './install.sh'}
 Plug 'preservim/tagbar'
-Plug 'preservim/nerdtree'
+Plug 'preservim/nerdtree' | Plug 'Xuyuanp/nerdtree-git-plugin'
 
 " auto format plugin
 Plug 'sbdchd/neoformat'
