@@ -88,6 +88,8 @@ Plug 'mbbill/undotree'
 " Language packs
 " Plug 'sheerun/vim-polyglot'
 " Plug 'romainl/vim-qf'
+
+Plug 'szw/vim-maximizer'
 call plug#end() " }}}
 
 " general {{{
@@ -706,6 +708,12 @@ function! s:build_go_files()
   endif
 endfunction
 " vim-go }}}
+
+" maximizer {{{
+nnoremap <silent><leader>m :MaximizerToggle<CR>
+vnoremap <silent><leader>m :MaximizerToggle<CR>gv
+inoremap <silent><leader>m <C-o>:MaximizerToggle<CR>
+" maximizer }}}
 
 " autogroup go {{{
 augroup go

@@ -47,6 +47,8 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-surround'
 " Language packs
 " Plug 'sheerun/vim-polyglot'
+
+Plug 'szw/vim-maximizer'
 call plug#end()
 
 " general {{{
@@ -510,3 +512,9 @@ let g:fzf_tag_actions = {
 \ },
 \}
 " fugitive }}}
+
+" maximizer {{{
+nnoremap <silent><leader>m :MaximizerToggle<CR>
+vnoremap <silent><leader>m :MaximizerToggle<CR>gv
+inoremap <silent><leader>m <C-o>:MaximizerToggle<CR>
+" maximizer }}}
