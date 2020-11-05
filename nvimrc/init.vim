@@ -200,6 +200,10 @@ set splitright
 set shortmess=a
 set cmdheight=2
 set scrolloff=7
+
+" terminal
+tnoremap <Esc> <C-\><C-n>
+
 " setting }}}
 
 " mappings {{{
