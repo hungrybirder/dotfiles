@@ -1,0 +1,49 @@
+{
+  "configurations": {
+    "go_main": {
+      "adapter": "vscode-go",
+      "configuration": {
+        "request": "launch",
+        "program": "${file}",
+        "mode": "debug",
+        "dlvToolPath": "$HOME/go/bin/dlv",
+        "trace": true,
+        "env": {
+            "GO111MODULE": "on"
+        }
+      }
+    },
+    "go_unit_test": {
+      "adapter": "vscode-go",
+      "configuration": {
+        "request": "launch",
+        "mode": "test",
+        "dlvToolPath": "$HOME/go/bin/dlv",
+        "program": "${relativeFile}",
+        "trace": true,
+        "args": [
+            "-test.v"
+        ],
+        "showLog": true
+      }
+    },
+    "debugy_python3": {
+      "adapter": "debugpy",
+      "configuration": {
+        "request": "launch",
+        "type": "python",
+        "cwd": "${workspaceRoot}",
+        "program": "${file}",
+        "stopOnEntry": false,
+        "console": "integratedTerminal"
+      },
+      "breakpoints": {
+        "exception": {
+          "raised": "N",
+          "uncaught": "",
+          "userUnhandled": ""
+        }
+      }
+    }
+  }
+}
