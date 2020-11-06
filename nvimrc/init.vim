@@ -210,7 +210,7 @@ tnoremap <Esc> <C-\><C-n>
 " setting }}}
 
 " mappings {{{
-nnoremap <F3> :let @/ = ""<CR>
+nnoremap <F2> :let @/ = ""<CR>
 " Q: Closes the window
 nnoremap Q :q<cr>
 " close all windows
@@ -718,6 +718,17 @@ inoremap <silent><leader>m <C-o>:MaximizerToggle<CR>
 
 " vimspector {{{
 let g:vimspector_enable_mappings = 'HUMAN'
+" F5	When debugging, continue. Otherwise start debugging.	vimspector#Continue()
+" F3	Stop debugging.	vimspector#Stop()
+" F4	Restart debugging with the same configuration.	vimspector#Restart()
+" F6	Pause debugee.	vimspector#Pause()
+" F9	Toggle line breakpoint on the current line.	vimspector#ToggleBreakpoint()
+" <leader>F9	Toggle conditional line breakpoint on the current line.	vimspector#ToggleBreakpoint( { trigger expr, hit count expr } )
+" F8	Add a function breakpoint for the expression under cursor	vimspector#AddFunctionBreakpoint( '<cexpr>' )
+" <leader>F8	Run to Cursor	vimspector#RunToCursor()
+" F10	Step Over	vimspector#StepOver()
+" F11	Step Into	vimspector#StepInto()
+" F12	Step out of current function scope	vimspector#StepOut()
 
 fun GotoWindow(id)
     call win_gotoid(a:id)

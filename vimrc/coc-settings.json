@@ -23,5 +23,6 @@
   "coc.preferences.formatOnSaveFiletypes": ["typescript", "json", "jsonc"],
 
   // coc-explorer
-  "explorer.quitOnOpen": true
+  "explorer.quitOnOpen": true,
+  "explorer.file.showHiddenFiles": false
 }
