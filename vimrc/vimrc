@@ -51,7 +51,7 @@ Plug 'tpope/vim-surround'
 Plug 'szw/vim-maximizer'
 Plug 'puremourning/vimspector'
 
-Plug 'ryanoasis/vim-devicons'
+Plug 'ryanoasis/vim-devicons' | Plug 'lambdalisue/glyph-palette.vim'
 call plug#end()
 
 " general {{{
@@ -566,3 +566,9 @@ nmap <leader>dbp <Plug>VimspectorToggleBreakpoint
 nmap <leader>dcbp <Plug>VimspectorToggleConditionalBreakpoint
 " vimspector }}}
 
+augroup my-glyph-palette
+  autocmd! *
+  autocmd FileType coc-explorer call glyph_palette#apply()
+  autocmd FileType fern call glyph_palette#apply()
+  autocmd FileType nerdtree,startify call glyph_palette#apply()
+augroup END

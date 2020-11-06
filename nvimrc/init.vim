@@ -34,7 +34,7 @@ Plug 'preservim/tagbar'
 Plug 'ryanoasis/vim-devicons'
 Plug 'preservim/nerdtree' | Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-
+" Plug 'lambdalisue/glyph-palette.vim'
 " auto format plugin
 Plug 'sbdchd/neoformat'
 
@@ -827,3 +827,10 @@ noremap <silent> <space>c :<C-U>cclose<CR>
 "   autocmd FileType typescript let g:ale_open_list = 1
 " augroup END
 " autogroup }}}
+
+" augroup my-glyph-palette
+"   autocmd! *
+"   autocmd FileType coc-explorer call glyph_palette#apply()
+"   autocmd FileType fern call glyph_palette#apply()
+"   autocmd FileType nerdtree,startify call glyph_palette#apply()
+" augroup END
