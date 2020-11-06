@@ -50,6 +50,8 @@ Plug 'tpope/vim-surround'
 
 Plug 'szw/vim-maximizer'
 Plug 'puremourning/vimspector'
+
+Plug 'ryanoasis/vim-devicons'
 call plug#end()
 
 " general {{{

@@ -24,5 +24,6 @@
 
   // coc-explorer
   "explorer.quitOnOpen": true,
-  "explorer.file.showHiddenFiles": false
+  "explorer.file.showHiddenFiles": false,
+  "explorer.icon.enableVimDevicons": true
 }
