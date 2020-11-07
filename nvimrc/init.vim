@@ -361,7 +361,7 @@ nmap ga <Plug>(EasyAlign)
 
 " autopairs {{{
 let g:AutoPairsFlyMode = 1
-let g:AutoPairsShortcutToggle = '<F4>'
+let g:AutoPairsShortcutToggle = '<leader>3'
 " autopairs }}}
 
 " vim-bbye {{{

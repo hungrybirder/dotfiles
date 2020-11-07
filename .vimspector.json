@@ -22,7 +22,7 @@
         "dlvToolPath": "$HOME/go/bin/dlv",
         "program": "${relativeFile}",
         "trace": true,
-        "args": ["-test.v", "-stderrthreshold=info"],
+        "args": ["-test.v"],
         "showLog": true
       }
     },
@@ -53,6 +53,17 @@
         "externalConsole": false,
         "stopAtEntry": true,
         "type": "cppdbg"
+      }
+    },
+    "vsnode-node": {
+      "adapter": "vscode-node",
+      "configuration": {
+        "request": "launch",
+        "protocol": "auto",
+        "stopOnEntry": true,
+        "console": "integratedTerminal",
+        "program": "${workspaceRoot}/simple.js",
+        "cwd": "${workspaceRoot}"
       }
     }
   }
