@@ -65,6 +65,13 @@
         "program": "${workspaceRoot}/simple.js",
         "cwd": "${workspaceRoot}"
       }
+    },
+    "bash": {
+        "adapter": "vscode-bash",
+        "configuration": {
+            "request": "launch",
+            "program": "${file}"
+        }
     }
   }
 }
