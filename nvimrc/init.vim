@@ -212,7 +212,7 @@ tnoremap <Esc> <C-\><C-n>
 " setting }}}
 
 " mappings {{{
-nnoremap <leader>4 :let @/ = ""<CR>
+nnoremap <silent><leader>4 :let @/ = ""<CR>
 " Q: Closes the window
 nnoremap Q :q<cr>
 " close all windows
