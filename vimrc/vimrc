@@ -52,6 +52,8 @@ Plug 'szw/vim-maximizer'
 Plug 'puremourning/vimspector'
 
 Plug 'ryanoasis/vim-devicons' | Plug 'lambdalisue/glyph-palette.vim'
+
+Plug 'rhysd/clever-f.vim'
 call plug#end()
 
 " general {{{
@@ -565,6 +567,11 @@ nmap <leader>drc <Plug>VimspectorRunToCursor
 nmap <leader>dbp <Plug>VimspectorToggleBreakpoint
 nmap <leader>dcbp <Plug>VimspectorToggleConditionalBreakpoint
 " vimspector }}}
+
+" clever-f {{{
+map ; <Plug>(clever-f-repeat-forward)
+map , <Plug>(clever-f-repeat-back)
+" }}}
 
 augroup my-glyph-palette
   autocmd! *

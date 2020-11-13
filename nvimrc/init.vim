@@ -91,6 +91,8 @@ Plug 'mbbill/undotree'
 
 Plug 'szw/vim-maximizer'
 Plug 'puremourning/vimspector'
+
+Plug 'rhysd/clever-f.vim'
 call plug#end() " }}}
 
 " general {{{
@@ -708,8 +710,8 @@ function! s:build_go_files()
     call go#cmd#Build(0)
   endif
 endfunction
-" vim-go }}}
 
+" vim-go }}}
 " maximizer {{{
 nnoremap <silent><leader>m :MaximizerToggle<CR>
 vnoremap <silent><leader>m :MaximizerToggle<CR>gv
@@ -820,6 +822,10 @@ nnoremap <space>m :<C-U>cprevious<CR>
 noremap <silent> <space>c :<C-U>cclose<CR>
 " quickfix }}}
 
+" clever-f {{{
+map ; <Plug>(clever-f-repeat-forward)
+map , <Plug>(clever-f-repeat-back)
+" }}}
 
 " autogroup es {{{
 " augroup typescript
