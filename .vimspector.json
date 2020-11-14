@@ -55,6 +55,27 @@
         "type": "cppdbg"
       }
     },
+    "lldb-vscode": {
+      "adapter": "lldb-vscode",
+      "configuration": {
+        "request": "launch",
+        "program": "${workspaceRoot}/build/${fileBasenameNoExtension}",
+        "MIMode": "lldb",
+        "externalConsole": false,
+        "stopAtEntry": true,
+        "type": "lldb",
+        "breakpoints": {
+          "exception": {
+            "cpp_catch": "",
+            "cpp_throw": "",
+            "objc_catch": "",
+            "objc_throw": "",
+            "swift_catch": "",
+            "swift_throw": ""
+          }
+        }
+      }
+    },
     "vsnode-node": {
       "adapter": "vscode-node",
       "configuration": {
@@ -67,11 +88,11 @@
       }
     },
     "bash": {
-        "adapter": "vscode-bash",
-        "configuration": {
-            "request": "launch",
-            "program": "${file}"
-        }
+      "adapter": "vscode-bash",
+      "configuration": {
+        "request": "launch",
+        "program": "${file}"
+      }
     }
   }
 }
