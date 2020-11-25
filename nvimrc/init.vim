@@ -504,6 +504,11 @@ nnoremap <C-p> :GFiles<CR>
 let g:fzf_action = {
   \ 'ctrl-x': 'split',
   \ 'ctrl-]': 'vsplit' }
+
+if has("nvim")
+  au TermOpen * tnoremap <Esc> <c-\><c-n>
+  au FileType fzf tunmap <Esc>
+endif
 " fzf }}}
 
 
