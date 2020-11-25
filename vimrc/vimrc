@@ -3,13 +3,11 @@ syntax on
 
 call plug#begin('~/.vim/plugged')
 
-Plug 'fatih/vim-go'
-
 Plug 'Shougo/neco-vim'
 Plug 'neoclide/coc-neco'
 Plug 'neoclide/jsonc.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'jackguo380/vim-lsp-cxx-highlight'
+" Plug 'jackguo380/vim-lsp-cxx-highlight'
 Plug 'preservim/tagbar'
 
 Plug 'honza/vim-snippets'
@@ -17,7 +15,6 @@ Plug 'honza/vim-snippets'
 Plug 'pangloss/vim-javascript'
 Plug 'HerringtonDarkholme/yats.vim'
 
-Plug 'liuchengxu/vista.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'stsewd/fzf-checkout.vim'
@@ -34,7 +31,6 @@ Plug 'itchyny/lightline.vim'
 Plug 'easymotion/vim-easymotion'
 Plug 'haya14busa/incsearch.vim'
 Plug 'mbbill/undotree'
-" Plug 'preservim/nerdtree'
 
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 Plug 'jiangmiao/auto-pairs'
@@ -60,9 +56,6 @@ call plug#end()
 syntax enable
 
 let mapleader = " "
-" let g:mapleader = ","
-" let maplocalleader = ","
-" let g:maplocalleader = ","
 nmap <silent> <leader>ev :e $MYVIMRC<CR>
 nmap <silent> <leader>sv :so $MYVIMRC<CR>
 nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
@@ -239,8 +232,7 @@ nnoremap <silent> <space>p :<C-u>CocListResume<CR>
 nnoremap <silent> <space>j :<C-u>CocNext<CR>
 nnoremap <silent> <space>k :<C-u>CocPrev<CR>
 nnoremap <silent> <space>s :<C-u>CocList -I symbols<cr>
-" nnoremap <silent> <space>o :<c-u>CocList outline<cr>
-nnoremap <silent> <space>o :<c-u>Vista finder coc<cr>
+nnoremap <silent> <space>o :<c-u>CocList outline<cr>
 nnoremap <silent> <space>b :<c-u>CocCommand fzf-preview.Buffers<cr>
 " nnoremap <silent> <space>b :<c-u>CocList buffers<cr>
 nnoremap <silent> <space>a :<C-u>CocList diagnostics<cr>
@@ -254,7 +246,6 @@ noremap <silent> <space>c :<C-U>cclose<CR>
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
 autocmd CursorHold * silent call CocActionAsync('highlight')
 autocmd BufRead,BufNewFile tsconfig.json set filetype=jsonc
-" autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
 
 let g:vista_sidebar_position = "vertical topleft"
 let g:vista_sidebar_width = 35
@@ -312,88 +303,7 @@ augroup END
 let g:EasyMotion_smartcase = 1
 let g:incsearch#magic = '\v'
 nmap s <Plug>(easymotion-overwin-f)
-" nmap t <Plug>(easymotion-t2)
-" map  <Leader>w <Plug>(easymotion-bd-w)
-" nmap <Leader>w <Plug>(easymotion-overwin-w)
-" map  <Leader>f <Plug>(easymotion-bd-f)
-" nmap <Leader>f <Plug>(easymotion-overwin-f)
 " easymotion }}}
-
-" vim-go {{{
-" disable vim-go :GoDef short cut (gd)
-" this is handled by LanguageClient [LC]
-let g:go_def_mapping_enabled = 0
-let g:go_code_completion_enabled = 0
-let g:go_gopls_enabled = 1
-let g:go_test_prepend_name = 1
-let g:go_fmt_fail_silently = 1
-let g:go_fmt_command = "goimports"
-let g:go_def_mode = "gopls"
-let g:go_list_type = "quickfix"
-let g:go_auto_type_info = 1
-let g:go_fmt_autosave = 1
-let g:go_auto_sameids = 0
-let g:go_doc_popup_window = 1
-let g:go_null_module_warning = 0
-let g:go_echo_command_info = 1
-let g:go_autodetect_gopath = 1
-let g:go_metalinter_autosave_enabled = ['vet', 'golint']
-let g:go_metalinter_enabled = ['vet', 'golint']
-let g:go_highlight_space_tab_error = 0
-let g:go_highlight_array_whitespace_error = 0
-let g:go_highlight_trailing_whitespace_error = 0
-let g:go_highlight_extra_types = 0
-let g:go_highlight_build_constraints = 1
-let g:go_highlight_types = 0
-let g:go_highlight_operators = 1
-let g:go_highlight_format_strings = 0
-let g:go_highlight_function_calls = 0
-let g:go_gocode_propose_source = 1
-let g:go_addtags_transform = 'camelcase'
-let g:go_fold_enable = []
-let g:go_debug_log_output = 'debugger'
-" set vars/stack/out/goroutines windows
-let g:go_debug_windows = {
-            \ 'vars':  'rightbelow 55vnew',
-            \ 'stack': 'topleft 5new',
-            \ 'out': 'botright 4new',
-\ }
-
-function! s:build_go_files()
-  let l:file = expand('%')
-  if l:file =~# '^\f\+_test\.go$'
-    call go#test#Test(0, 1)
-  elseif l:file =~# '^\f\+\.go$'
-    call go#cmd#Build(0)
-  endif
-endfunction
-
-augroup go
-  autocmd!
-  autocmd FileType go nmap <silent> <Leader>V <Plug>(go-def-vertical)
-  autocmd FileType go nmap <silent> <Leader>S <Plug>(go-def-split)
-  autocmd FileType go nmap <C-g> :GoDecls<cr>
-  autocmd FileType go imap <C-g> <esc>:<C-u>GoDecls<cr>
-  autocmd FileType go nmap <space>g :GoDeclsDir<cr>
-  autocmd FileType go nmap <space>o :<C-U>GoDecls<CR>
-
-  autocmd FileType go nmap <space>n :<C-U>cnext<CR>
-  autocmd FileType go nmap <space>p :<C-U>cprevious<CR>
-
-  autocmd Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
-  autocmd Filetype go command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')
-  autocmd Filetype go command! -bang AS call go#alternate#Switch(<bang>0, 'split')
-  autocmd Filetype go command! -bang AT call go#alternate#Switch(<bang>0, 'tabe')
-
-  autocmd FileType go noremap <buffer><Leader>cf :GoFmt<CR><CR>
-  autocmd FileType go inoremap <buffer><Leader>cf <c-c>:GoFmt<CR><CR>gi
-  autocmd FileType go setlocal ts=4 sts=4 sw=4 noexpandtab
-  autocmd FileType go setlocal completeopt-=preview
-  autocmd FileType go nmap <F7> :<C-u>GoDebugStart<CR>
-  autocmd FileType go nmap <F12> :<C-u>GoDebugStepOut<CR>
-augroup END
-
-" vim-go }}}
 
 " fzf {{{
 noremap <silent> <F1> :<C-U>Helptags<CR>
