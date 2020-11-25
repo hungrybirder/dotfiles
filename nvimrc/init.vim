@@ -98,10 +98,10 @@ call plug#end() " }}}
 " general {{{
 syntax enable
 
-let mapleader = ","
-let g:mapleader = ","
-let maplocalleader = ","
-let g:maplocalleader = ","
+let mapleader = " "
+" let g:mapleader = ","
+" let maplocalleader = ","
+" let g:maplocalleader = ","
 nmap <silent> <leader>ev :e $MYVIMRC<CR>
 nmap <silent> <leader>sv :so $MYVIMRC<CR>
 nnoremap <silent> <leader> :WhichKey '<Space>'<CR>

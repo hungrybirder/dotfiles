@@ -59,10 +59,10 @@ call plug#end()
 " general {{{
 syntax enable
 
-let mapleader = ","
-let g:mapleader = ","
-let maplocalleader = ","
-let g:maplocalleader = ","
+let mapleader = " "
+" let g:mapleader = ","
+" let maplocalleader = ","
+" let g:maplocalleader = ","
 nmap <silent> <leader>ev :e $MYVIMRC<CR>
 nmap <silent> <leader>sv :so $MYVIMRC<CR>
 nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
@@ -108,9 +108,6 @@ set scrolloff=7
 " setting }}}
 
 " mapping {{{
-nmap <silent> <leader>ev :e $MYVIMRC<CR>
-nmap <silent> <leader>sv :so $MYVIMRC<CR>
-
 nnoremap Q :q<cr>
 nnoremap <leader>Q :qa!<cr>
 " Act like D and C
