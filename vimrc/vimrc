@@ -38,7 +38,7 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'sbdchd/neoformat'
 
 Plug 'moll/vim-bbye'
-Plug 'terryma/vim-multiple-cursors'
+Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 
 Plug 'tpope/vim-surround'
 " Language packs
@@ -339,16 +339,10 @@ let g:AutoPairsShortcutToggle = '<leader>3'
 " vim-bbye {{{
 noremap <space><BS> :Bdelete<cr>
 " vim-bbye }}}
-" vim-multiple-cursors {{{
-let g:multi_cursor_exit_from_insert_mode = 0
-let g:multi_cursor_exit_from_visual_mode = 0
 
-function! Multiple_cursors_before()
-endfunction
-
-function! Multiple_cursors_after()
-endfunction
-" vim-multiple-cursors }}}
+" vim-visual-multi {{{
+let g:VM_leader = '\\'
+" vim-visual-multi }}}
 
 " fugitive {{{
 nmap <leader>gh :diffget //3<CR>

@@ -47,7 +47,7 @@ Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 
 Plug 'ervandew/supertab'
 
-Plug 'terryma/vim-multiple-cursors'
+Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'vim-scripts/tComment'
 Plug 'gruvbox-community/gruvbox'
 Plug 'itchyny/lightline.vim'
@@ -435,29 +435,9 @@ let g:jedi#show_call_signatures = 0
 let g:jedi#usages_command = "<space>r"
 " deoplete-jedi & jedi }}}
 
-" vim-multiple-cursors {{{
-let g:multi_cursor_exit_from_insert_mode = 0
-let g:multi_cursor_exit_from_visual_mode = 0
-
-function! Multiple_cursors_before()
-  if deoplete#is_enabled()
-    call deoplete#disable()
-    let g:deoplete_is_enable_before_multi_cursors = 1
-    call ale#toggle#Disable()
-    call echodoc#disable()
-  else
-    let g:deoplete_is_enable_before_multi_cursors = 0
-  endif
-endfunction
-
-function! Multiple_cursors_after()
-  if g:deoplete_is_enable_before_multi_cursors
-    call deoplete#enable()
-    call ale#toggle#Enable()
-    call echodoc#enable()
-  endif
-endfunction
-" vim-multiple-cursors }}}
+" vim-visual-multi {{{
+let g:VM_leader = '\\'
+" vim-visual-multi }}}
 
 " leaderf {{{
 let g:Lf_StlColorscheme = 'gruvbox_material'
