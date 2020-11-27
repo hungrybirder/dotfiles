@@ -421,9 +421,9 @@ let g:fzf_tag_actions = {
 " fugitive }}}
 
 " maximizer {{{
-nnoremap <silent><leader>m :MaximizerToggle<CR>
-vnoremap <silent><leader>m :MaximizerToggle<CR>gv
-inoremap <silent><leader>m <C-o>:MaximizerToggle<CR>
+nnoremap <silent>,m :MaximizerToggle<CR>
+vnoremap <silent>,m :MaximizerToggle<CR>gv
+inoremap <silent>,m <C-o>:MaximizerToggle<CR>
 " maximizer }}}
 
 " vimspector {{{

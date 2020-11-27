@@ -5,7 +5,6 @@ call plug#begin('~/.config/nvim/plugged')
 
 " deoplete framework {{{
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins', 'commit': '36775838ad578e4d2b5ac83f936d8be7640a0a76' }
 Plug 'Shougo/neco-vim' " vimscripts for deoplete complete
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'AndrewRadev/splitjoin.vim' "gS gJ
@@ -16,8 +15,6 @@ Plug 'Vimjas/vim-python-pep8-indent'
 Plug 'Shougo/echodoc.vim'
 Plug 'Shougo/neoinclude.vim'
 Plug 'deoplete-plugins/deoplete-tag'
-" Plug 'deoplete-plugins/deoplete-clang'
-" Plug 'Shougo/deoplete-clangx'
 Plug 'ncm2/float-preview.nvim'
 
 " Plug 'leafgarland/typescript-vim'
@@ -84,10 +81,6 @@ Plug 'haya14busa/incsearch.vim'
 
 Plug 'liuchengxu/vim-which-key'
 Plug 'mbbill/undotree'
-
-" Language packs
-" Plug 'sheerun/vim-polyglot'
-" Plug 'romainl/vim-qf'
 
 Plug 'szw/vim-maximizer'
 Plug 'puremourning/vimspector'
@@ -698,9 +691,9 @@ endfunction
 
 " vim-go }}}
 " maximizer {{{
-nnoremap <silent><leader>m :MaximizerToggle<CR>
-vnoremap <silent><leader>m :MaximizerToggle<CR>gv
-inoremap <silent><leader>m <C-o>:MaximizerToggle<CR>
+nnoremap <silent>,m :MaximizerToggle<CR>
+vnoremap <silent>,m :MaximizerToggle<CR>gv
+inoremap <silent>,m <C-o>:MaximizerToggle<CR>
 " maximizer }}}
 
 " vimspector {{{
