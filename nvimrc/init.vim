@@ -693,7 +693,7 @@ endfunction
 " maximizer {{{
 nnoremap <silent>,m :MaximizerToggle<CR>
 vnoremap <silent>,m :MaximizerToggle<CR>gv
-inoremap <silent>,m <C-o>:MaximizerToggle<CR>
+" inoremap <silent>,m <C-o>:MaximizerToggle<CR>
 " maximizer }}}
 
 " vimspector {{{
