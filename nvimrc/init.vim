@@ -297,6 +297,7 @@ nnoremap <Leader>+ :vertical resize +5<CR>
 nnoremap <Leader>- :vertical resize -5<CR>
 
 noremap <Leader>pu :<c-u>PlugUpdate<CR>
+noremap <Leader>pc :<c-u>PlugClean<CR>
 
 " greatest remap ever
 " using Block Hole Register
