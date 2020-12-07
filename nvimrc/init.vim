@@ -46,7 +46,8 @@ Plug 'ervandew/supertab'
 
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'vim-scripts/tComment'
-Plug 'gruvbox-community/gruvbox'
+" Plug 'gruvbox-community/gruvbox'
+Plug 'lifepillar/vim-gruvbox8'
 Plug 'itchyny/lightline.vim'
 Plug 'maximbaz/lightline-ale'
 " Plug 'bling/vim-bufferline'
@@ -153,7 +154,7 @@ endif
 let g:gruvbox_invert_selection='0'
 
 set background=dark
-colorscheme gruvbox
+colorscheme gruvbox8
 
 set dictionary+=/usr/share/dict/words
 set lazyredraw
