@@ -288,7 +288,7 @@ augroup fmt
   autocmd!
   autocmd FileType cc,cpp setlocal ts=2 sts=2 sw=2 et
   autocmd FileType cc,cpp noremap <buffer><Leader>cf <c-c>:Neoformat<CR><CR>gi
-  autocmd FileType cc,cpp inoremap <buffer><Leader>cf <c-c>:Neoformat<CR><CR>gi
+  " autocmd FileType cc,cpp inoremap <buffer><Leader>cf <c-c>:Neoformat<CR><CR>gi
   autocmd BufWritePre *.cc,*.cpp undojoin | Neoformat
 augroup END
 
