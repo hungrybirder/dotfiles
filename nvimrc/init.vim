@@ -173,7 +173,7 @@ set shiftround      " Round indent to multiple of 'shiftwidth'
 
 set timeout ttimeout
 set timeoutlen=500  " Time out on mappings
-set updatetime=100  " Idle time to write swap and trigger CursorHold
+set updatetime=50   " Idle time to write swap and trigger CursorHold
 set ttimeoutlen=10  " Time out on key codes
 
 set ignorecase      " Search ignoring case
