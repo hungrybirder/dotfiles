@@ -274,7 +274,7 @@ lua require'lspconfig'.bashls.setup{ on_attach=require'completion'.on_attach }
 " lua require'nvim_lsp'.sumneko_lua.setup{ on_attach=require'completion'.on_attach }
 
 nmap <leader>gh :diffget //3<CR>
-nmap <leader>gu :diffget //2<CR>
+nmap <leader>gf :diffget //2<CR>
 nmap <leader>gs :G<CR>
 fun! EmptyRegisters()
     let regs=split('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789/-"', '\zs')
