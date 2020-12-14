@@ -23,7 +23,7 @@
   "coc.preferences.formatOnSaveFiletypes": ["typescript", "json", "jsonc"],
 
   // coc-explorer
-  "explorer.quitOnOpen": true,
+  "explorer.quitOnOpen": false,
   "explorer.file.showHiddenFiles": false,
   "explorer.icon.enableVimDevicons": true,
   "explorer.icon.enableNerdfont": true
