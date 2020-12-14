@@ -1,4 +1,3 @@
 .python-version
 vimrc/plugged/*
 *.swp
-nvim
