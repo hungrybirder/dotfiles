@@ -92,52 +92,21 @@ Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-lua/telescope.nvim'
 
-"  I AM SO SORRY FOR DOING COLOR SCHEMES IN MY VIMRC, BUT I HAVE
-"  TOOOOOOOOOOOOO
+" code snippets
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 
-Plug 'colepeters/spacemacs-theme.vim'
-Plug 'sainnhe/gruvbox-material'
-Plug 'phanviet/vim-monokai-pro'
-Plug 'flazz/vim-colorschemes'
-Plug 'chriskempson/base16-vim'
-" Plug '/home/mpaulson/personal/VimDeathmatch/client'
+" supertab is good for lsp + ultisnip
+Plug 'ervandew/supertab'
 
-" HARPOON!!
-" Plug '/home/mpaulson/personal/harpoon'
-
-" Fire Nvim
-Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(69) } }
-
+" auto format
+Plug 'sbdchd/neoformat'
 call plug#end()
 
+colorscheme gruvbox
 " let g:vimspector_install_gadgets = [ 'debugpy', 'vscode-cpptools', 'CodeLLDB' ]
 
-let g:theprimeagen_colorscheme = "gruvbox"
-fun! ColorMyPencils()
-    colorscheme ayu
-    set background=dark
-
-    let g:gruvbox_contrast_dark = 'hard'
-    if exists('+termguicolors')
-        let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-        let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-    endif
-    let g:gruvbox_invert_selection='0'
-
-    highlight ColorColumn ctermbg=0 guibg=grey
-    highlight Normal guibg=none
-    " highlight LineNr guifg=#ff8659
-    " highlight LineNr guifg=#aed75f
-    highlight LineNr guifg=#5eacd3
-    highlight netrwDir guifg=#5eacd3
-    highlight qfFileName guifg=#aed75f
-endfun
-call ColorMyPencils()
-
 lua require'nvim-treesitter.configs'.setup { highlight = { enable = true } }
-
-let g:vim_be_good_log_file = 1
-let g:vim_apm_log = 1
 
 if executable('rg')
     let g:rg_derive_root='true'
@@ -174,7 +143,6 @@ let g:fzf_branch_actions = {
       \ },
       \}
 
-lua require('telescope').setup({defaults = {file_sorter = require('telescope.sorters').get_fzy_sorter}})
 
 nnoremap <leader>a :lua vim.lsp.buf.definition()<CR>
 nnoremap <leader>d :lua vim.lsp.buf.definition()<CR>
@@ -252,18 +220,9 @@ nnoremap <leader>y "+y
 vnoremap <leader>y "+y
 nnoremap <leader>Y gg"+yG
 
-" vim TODO
-nmap <Leader>tu <Plug>BujoChecknormal
-nmap <Leader>th <Plug>BujoAddnormal
-let g:bujo#todo_file_path = $HOME . "/.cache/bujo"
-
-nnoremap <Leader>ww ofunction wait(ms: number): Promise<void> {<CR>return new Promise(res => setTimeout(res, ms));<CR>}<esc>k=i{<CR>
-
-" Vim with me
-nnoremap <leader>vwm :call ColorMyPencils()<CR>
-
 inoremap <C-c> <esc>
 
+let g:completion_enable_snippet = 'UltiSnips'
 let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
 lua require'lspconfig'.tsserver.setup{ on_attach=require'completion'.on_attach }
 lua require'lspconfig'.clangd.setup{ on_attach=require'completion'.on_attach, cmd={"/usr/local/opt/llvm/bin/clangd", "--background-index"} }
@@ -271,7 +230,14 @@ lua require'lspconfig'.pyls.setup{ on_attach=require'completion'.on_attach }
 lua require'lspconfig'.gopls.setup{ on_attach=require'completion'.on_attach }
 lua require'lspconfig'.rust_analyzer.setup{ on_attach=require'completion'.on_attach }
 lua require'lspconfig'.bashls.setup{ on_attach=require'completion'.on_attach }
-" lua require'nvim_lsp'.sumneko_lua.setup{ on_attach=require'completion'.on_attach }
+lua require'lspconfig'.jsonls.setup{ on_attach=require'completion'.on_attach }
+lua require'lspconfig'.yamlls.setup{ on_attach=require'completion'.on_attach }
+lua require'lspconfig'.html.setup{ on_attach=require'completion'.on_attach }
+lua require'lspconfig'.cmake.setup{ on_attach=require'completion'.on_attach }
+lua require'lspconfig'.dockerls.setup{ on_attach=require'completion'.on_attach }
+lua require'lspconfig'.sumneko_lua.setup{ on_attach=require'completion'.on_attach }
+lua require('telescope').setup({defaults = {file_sorter = require('telescope.sorters').get_fzy_sorter}})
+
 
 nmap <leader>gh :diffget //3<CR>
 nmap <leader>gf :diffget //2<CR>
@@ -289,30 +255,6 @@ fun! TrimWhitespace()
     call winrestview(l:save)
 endfun
 
-" ES
-com! W w
-
-fun! ThePrimeagen_LspHighlighter()
-    lua print("Testing")
-    lua package.loaded["my_lspconfig"] = nil
-    lua require("my_lspconfig")
-endfun
-
-" Terminal commands
-" ueoa is first through fourth finger left hand home row.
-" This just means I can crush, with opposite hand, the 4 terminal positions
-"
-" These functions are stored in harpoon.  A plugn that I am developing
-" nmap <leader>tu :call GotoBuffer(0)<CR>
-" nmap <leader>te :call GotoBuffer(1)<CR>
-" nmap <leader>to :call GotoBuffer(2)<CR>
-" nmap <leader>ta :call GotoBuffer(3)<CR>
-" nmap <leader>nn :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
-" \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
-" \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
-
-" com! SetLspVirtualText call ThePrimeagen_LspHighlighter()
-
 augroup highlight_yank
     autocmd!
     autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank({timeout = 40})
@@ -321,13 +263,7 @@ augroup END
 augroup THE_PRIMEAGEN
     autocmd!
     autocmd BufWritePre * :call TrimWhitespace()
-    " autocmd VimEnter * :VimApm
     autocmd BufEnter,BufWinEnter,TabEnter *.rs :lua require'lsp_extensions'.inlay_hints{}
-
-    " Fire Neovim
-    au BufEnter github.com_*.txt set filetype=markdown
-    au BufEnter txti.es_*.txt set filetype=typescript
-    au BufEnter stackoverflow_*.txt filetype=markdown
 augroup END
 
 " Q: Closes the window
@@ -335,6 +271,27 @@ nnoremap Q :q<cr>
 " close all windows
 nnoremap <leader>Q :qa!<cr>
 
+augroup line_return
+  au!
+  au BufReadPost *
+    \ if line("'\"") > 0 && line("'\"") <= line("$") |
+    \   execute 'normal! g`"zvzz' |
+    \ endif
+augroup END
+
+let g:neoformat_enabled_python = ['yapf']
+let g:neoformat_enabled_go = ['goimports']
+augroup fmt
+  autocmd!
+  autocmd BufWritePre * undojoin | Neoformat
+augroup END
+
 " Use <Tab> and <S-Tab> to navigate through popup menu
-inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+" inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+" inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+let g:SuperTabDefaultCompletionType = "<c-n>"
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+
