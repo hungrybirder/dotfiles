@@ -74,7 +74,7 @@ Plug 'puremourning/vimspector'
 Plug 'szw/vim-maximizer'
 
 Plug 'rust-lang/rust.vim'
-Plug 'tweekmonster/gofmt.vim'
+" Plug 'tweekmonster/gofmt.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'vim-utils/vim-man'
 Plug 'mbbill/undotree'
@@ -101,6 +101,9 @@ Plug 'ervandew/supertab'
 
 " auto format
 Plug 'sbdchd/neoformat'
+
+" comment
+Plug 'tomtom/tcomment_vim'
 call plug#end()
 
 colorscheme gruvbox
@@ -160,6 +163,8 @@ fun! GotoWindow(id)
 endfun
 
 " Debugger remaps
+let g:vimspector_enable_mappings = 'HUMAN'
+
 nnoremap <leader>m :MaximizerToggle!<CR>
 nnoremap <leader>dd :call vimspector#Launch()<CR>
 nnoremap <leader>dc :call GotoWindow(g:vimspector_session_windows.code)<CR>
@@ -236,6 +241,9 @@ lua require'lspconfig'.html.setup{ on_attach=require'completion'.on_attach }
 lua require'lspconfig'.cmake.setup{ on_attach=require'completion'.on_attach }
 lua require'lspconfig'.dockerls.setup{ on_attach=require'completion'.on_attach }
 lua require'lspconfig'.sumneko_lua.setup{ on_attach=require'completion'.on_attach }
+lua require'lspconfig'.sqlls.setup{ on_attach=require'completion'.on_attach }
+lua require'lspconfig'.vuels.setup{ on_attach=require'completion'.on_attach }
+
 lua require('telescope').setup({defaults = {file_sorter = require('telescope.sorters').get_fzy_sorter}})
 
 

@@ -45,7 +45,7 @@ Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 Plug 'ervandew/supertab'
 
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
-Plug 'vim-scripts/tComment'
+Plug 'tomtom/tcomment_vim'
 " Plug 'gruvbox-community/gruvbox'
 Plug 'lifepillar/vim-gruvbox8'
 Plug 'itchyny/lightline.vim'
