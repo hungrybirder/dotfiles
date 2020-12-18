@@ -37,6 +37,14 @@ set shortmess+=c
 
 set colorcolumn=80
 
+" Navigating in Command Mode
+cnoremap <C-a> <Home>
+cnoremap <C-e> <End>
+cnoremap <C-f> <Right>
+cnoremap <C-b> <Left>
+cnoremap <Esc>b <S-Left>
+cnoremap <Esc>f <S-Right>
+
 call plug#begin('~/codes/dotfiles/nvim/plugged')
 
 let g:firenvim_config = {
@@ -64,6 +72,7 @@ Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-lua/completion-nvim'
 Plug 'tjdevries/nlua.nvim'
 Plug 'tjdevries/lsp_extensions.nvim'
+
 
 " Neovim Tree shitter
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
@@ -155,7 +164,7 @@ nnoremap <leader>rr :lua vim.lsp.buf.references()<CR>
 nnoremap <leader>rn :lua vim.lsp.buf.rename()<CR>
 nnoremap <leader>h :lua vim.lsp.buf.hover()<CR>
 nnoremap <leader>ca :lua vim.lsp.buf.code_action()<CR>
-nnoremap <leader>sd :lua vim.lsp.util.show_line_diagnostics(); vim.lsp.util.show_line_diagnostics()<CR>
+nnoremap <leader>sd :lua vim.lsp.diagnostic.show_line_diagnostics()<CR>
 
 fun! GotoWindow(id)
     call win_gotoid(a:id)
@@ -243,6 +252,9 @@ lua require'lspconfig'.dockerls.setup{ on_attach=require'completion'.on_attach }
 lua require'lspconfig'.sumneko_lua.setup{ on_attach=require'completion'.on_attach }
 lua require'lspconfig'.sqlls.setup{ on_attach=require'completion'.on_attach }
 lua require'lspconfig'.vuels.setup{ on_attach=require'completion'.on_attach }
+lua require'lspconfig'.diagnosticls.setup{}
+
+
 
 lua require('telescope').setup({defaults = {file_sorter = require('telescope.sorters').get_fzy_sorter}})
 
@@ -289,6 +301,7 @@ augroup END
 
 let g:neoformat_enabled_python = ['yapf']
 let g:neoformat_enabled_go = ['goimports']
+let g:neoformat_enabled_ruby = ['']
 augroup fmt
   autocmd!
   autocmd BufWritePre * undojoin | Neoformat
