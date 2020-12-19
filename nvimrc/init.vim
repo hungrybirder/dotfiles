@@ -608,24 +608,16 @@ let g:fzf_tag_actions = {
 augroup MyAutoCmd
   au!
   filetype on
-  " autocmd FileType python setlocal ts=4 sts=4 sw=4 et omnifunc=jedi#completions
-  autocmd FileType python noremap <buffer><Leader>cf :Neoformat<CR><CR>
-  " autocmd FileType python inoremap <buffer><Leader>cf <c-c>:Neoformat<CR><CR>gi
   autocmd FileType python
         \ setlocal foldmethod=indent expandtab smarttab nosmartindent
         \ | setlocal tabstop=4 softtabstop=4 shiftwidth=4
   autocmd FileType python set completeopt-=preview
 
-
   autocmd FileType vim setlocal ts=2 sts=2 sw=2 et
 
   autocmd FileType c set completeopt-=preview
   autocmd FileType cc,cpp set completeopt-=preview
-  autocmd FileType cc,cpp noremap <buffer><Leader>cf <c-c>:Neoformat<CR><CR>gi
-  " autocmd FileType cc,cpp inoremap <buffer><Leader>cf <c-c>:Neoformat<CR><CR>gi
   autocmd FileType c setlocal ts=4 sts=4 sw=4 et
-  autocmd FileType c nnoremap <buffer><Leader>cf <c-c>:Neoformat<CR><CR>gi
-  " autocmd FileType c inoremap <buffer><Leader>cf <c-c>:Neoformat<CR><CR>gi
   autocmd FileType cc,cpp setlocal ts=4 sts=4 sw=4 et
 
   autocmd FileType sh setlocal ts=4 sts=4 sw=4 et
@@ -635,10 +627,8 @@ augroup MyAutoCmd
 
   " javascript
   autocmd FileType javascript setlocal ts=2 sts=2 sw=2 et
-  autocmd FileType javascript nnoremap <buffer><Leader>cf <c-c>:Neoformat<CR><CR>
-  " autocmd FileType javascript inoremap <buffer><Leader>cf <c-c>:Neoformat<CR><CR>gi
-
   autocmd FileType rst nnoremap <buffer><Leader>md <c-c>:InstantRst<CR>
+
   " autocmd FileType rst inoremap <buffer><Leader>md <c-c>:InstantRst<CR>
 
   " 中文排版
