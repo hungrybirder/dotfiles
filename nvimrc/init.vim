@@ -297,6 +297,7 @@ noremap <Right> <Nop>
 nnoremap <Leader>+ :vertical resize +5<CR>
 nnoremap <Leader>- :vertical resize -5<CR>
 
+noremap <Leader>pi :<c-u>PlugInstall<CR>
 noremap <Leader>pu :<c-u>PlugUpdate<CR>
 noremap <Leader>pc :<c-u>PlugClean<CR>
 

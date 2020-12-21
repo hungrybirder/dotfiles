@@ -37,6 +37,8 @@ set shortmess+=c
 
 set colorcolumn=80
 
+set clipboard& clipboard+=unnamed
+
 " Navigating in Command Mode
 cnoremap <C-a> <Home>
 cnoremap <C-e> <End>
@@ -75,7 +77,8 @@ Plug 'tjdevries/lsp_extensions.nvim'
 
 
 " Neovim Tree shitter
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+" Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate', 'commit': '42ca4a4c0'}
 Plug 'nvim-treesitter/playground'
 
 " Debugger Plugins
@@ -113,12 +116,15 @@ Plug 'sbdchd/neoformat'
 
 " comment
 Plug 'tomtom/tcomment_vim'
+
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+
+Plug 'mhinz/vim-signify'
 call plug#end()
 
 colorscheme gruvbox
-" let g:vimspector_install_gadgets = [ 'debugpy', 'vscode-cpptools', 'CodeLLDB' ]
 
-lua require'nvim-treesitter.configs'.setup { highlight = { enable = true } }
 
 if executable('rg')
     let g:rg_derive_root='true'
@@ -236,6 +242,7 @@ nnoremap <leader>Y gg"+yG
 
 inoremap <C-c> <esc>
 
+lua require'nvim-treesitter.configs'.setup { highlight = { enable = true } }
 let g:completion_enable_snippet = 'UltiSnips'
 let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
 lua require'lspconfig'.tsserver.setup{ on_attach=require'completion'.on_attach }
@@ -316,3 +323,6 @@ let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 
+noremap <Leader>pi :<c-u>PlugInstall<CR>
+noremap <Leader>pu :<c-u>PlugUpdate<CR>
+noremap <Leader>pc :<c-u>PlugClean<CR>
