@@ -268,3 +268,6 @@ alias vn="nvim"
 alias nn="nvim -u ${HOME}/codes/dotfiles/nvim/init.vim"
 
 export SSLKEYLOGFILE="${HOME}/tmp/ssl_key.log"
+
+
+[[ -f "$HOME/.cargo/env" ]] && source "$HOME/.cargo/env"
