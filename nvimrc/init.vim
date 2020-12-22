@@ -87,6 +87,8 @@ Plug 'szw/vim-maximizer'
 Plug 'puremourning/vimspector'
 
 Plug 'rhysd/clever-f.vim'
+
+Plug 'wellle/context.vim'
 call plug#end() " }}}
 
 " general {{{
