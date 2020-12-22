@@ -387,6 +387,7 @@ let g:ale_linters = {
 \ 'go': ['gofmt', 'golint', 'go vet'],
 \ 'markdown':['remark-lint'],
 \ 'rst':['rstcheck'],
+\ 'sh':['shellcheck'],
 \ }
 let g:ale_fixers = {
 \ '*': ['remove_trailing_lines', 'trim_whitespace'],
@@ -395,6 +396,7 @@ let g:ale_fixers = {
 \ 'javascript':['eslint'],
 \ 'typescript':['eslint'],
 \ 'markdown':['remark-lint'],
+\ 'sh':['shfmt'],
 \ }
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'

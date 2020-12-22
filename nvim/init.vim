@@ -166,26 +166,26 @@ endfun
 let g:vimspector_enable_mappings = 'HUMAN'
 
 nnoremap <leader>m :MaximizerToggle!<CR>
-nnoremap <leader>dd :call vimspector#Launch()<CR>
-nnoremap <leader>dc :call GotoWindow(g:vimspector_session_windows.code)<CR>
-nnoremap <leader>dt :call GotoWindow(g:vimspector_session_windows.tagpage)<CR>
-nnoremap <leader>dv :call GotoWindow(g:vimspector_session_windows.variables)<CR>
-nnoremap <leader>dw :call GotoWindow(g:vimspector_session_windows.watches)<CR>
-nnoremap <leader>ds :call GotoWindow(g:vimspector_session_windows.stack_trace)<CR>
-nnoremap <leader>do :call GotoWindow(g:vimspector_session_windows.output)<CR>
-nnoremap <leader>de :call vimspector#Reset()<CR>
-
-nnoremap <leader>dtcb :call vimspector#CleanLineBreakpoint()<CR>
-
-nmap <leader>dl <Plug>VimspectorStepInto
-nmap <leader>dj <Plug>VimspectorStepOver
-nmap <leader>dk <Plug>VimspectorStepOut
-nmap <leader>d_ <Plug>VimspectorRestart
-nnoremap <leader>d<space> :call vimspector#Continue()<CR>
-
-nmap <leader>drc <Plug>VimspectorRunToCursor
-nmap <leader>dbp <Plug>VimspectorToggleBreakpoint
-nmap <leader>dcbp <Plug>VimspectorToggleConditionalBreakpoint
+" nnoremap <leader>dd :call vimspector#Launch()<CR>
+" nnoremap <leader>dc :call GotoWindow(g:vimspector_session_windows.code)<CR>
+" nnoremap <leader>dt :call GotoWindow(g:vimspector_session_windows.tagpage)<CR>
+" nnoremap <leader>dv :call GotoWindow(g:vimspector_session_windows.variables)<CR>
+" nnoremap <leader>dw :call GotoWindow(g:vimspector_session_windows.watches)<CR>
+" nnoremap <leader>ds :call GotoWindow(g:vimspector_session_windows.stack_trace)<CR>
+" nnoremap <leader>do :call GotoWindow(g:vimspector_session_windows.output)<CR>
+" nnoremap <leader>de :call vimspector#Reset()<CR>
+"
+" nnoremap <leader>dtcb :call vimspector#CleanLineBreakpoint()<CR>
+"
+" nmap <leader>dl <Plug>VimspectorStepInto
+" nmap <leader>dj <Plug>VimspectorStepOver
+" nmap <leader>dk <Plug>VimspectorStepOut
+" nmap <leader>d_ <Plug>VimspectorRestart
+" nnoremap <leader>d<space> :call vimspector#Continue()<CR>
+"
+" nmap <leader>drc <Plug>VimspectorRunToCursor
+" nmap <leader>dbp <Plug>VimspectorToggleBreakpoint
+" nmap <leader>dcbp <Plug>VimspectorToggleConditionalBreakpoint
 
 " <Plug>VimspectorStop
 " <Plug>VimspectorPause
@@ -214,30 +214,26 @@ inoremap <C-c> <esc>
 let g:completion_enable_snippet = 'UltiSnips'
 let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
 
-" let g:completion_chain_complete_list = {
-" 			\'default' : {
-" 			\	'default' : [
-" 			\		{'complete_items' : ['lsp', 'snippet']},
-" 			\		{'mode' : 'file'}
-" 			\	],
-" 			\	'comment' : [],
-" 			\	'string' : []
-" 			\	},
-" 			\'vim' : [
-" 			\	{'complete_items': ['snippet']},
-" 			\	{'mode' : 'cmd'}
-" 			\	],
-" 			\'c' : [
-" 			\	{'complete_items': ['ts']}
-" 			\	],
-" 			\'python' : [
-" 			\	{'complete_items': ['ts']}
-" 			\	],
-" 			\'lua' : [
-" 			\	{'complete_items': ['ts']}
-" 			\	],
-" 			\}
-" autocmd BufEnter * lua require'completion'.on_attach()
+lua require'lspconfig'.tsserver.setup{ on_attach=require'completion'.on_attach }
+lua require'lspconfig'.clangd.setup{ on_attach=require'completion'.on_attach, cmd={"/usr/local/opt/llvm/bin/clangd", "--background-index"} }
+lua require'lspconfig'.pyls.setup{ on_attach=require'completion'.on_attach }
+lua require'lspconfig'.gopls.setup{ on_attach=require'completion'.on_attach }
+lua require'lspconfig'.rust_analyzer.setup{ on_attach=require'completion'.on_attach }
+lua require'lspconfig'.bashls.setup{ on_attach=require'completion'.on_attach }
+lua require'lspconfig'.jsonls.setup{ on_attach=require'completion'.on_attach }
+lua require'lspconfig'.yamlls.setup{ on_attach=require'completion'.on_attach }
+lua require'lspconfig'.html.setup{ on_attach=require'completion'.on_attach }
+lua require'lspconfig'.cmake.setup{ on_attach=require'completion'.on_attach }
+lua require'lspconfig'.dockerls.setup{ on_attach=require'completion'.on_attach }
+lua require'lspconfig'.sumneko_lua.setup{ on_attach=require'completion'.on_attach }
+lua require'lspconfig'.sqlls.setup{ on_attach=require'completion'.on_attach }
+lua require'lspconfig'.vuels.setup{ on_attach=require'completion'.on_attach }
+lua require('telescope').setup({defaults = {file_sorter = require('telescope.sorters').get_fzy_sorter}})
+lua <<EOF
+require'lspconfig'.diagnosticls.setup{
+  filetypes = { "sh" },
+}
+EOF
 
 lua<<EOF
 require'nvim-treesitter.configs'.setup {
@@ -308,22 +304,6 @@ require'nvim-treesitter.configs'.setup {
 
 }
 EOF
-lua require'lspconfig'.tsserver.setup{ on_attach=require'completion'.on_attach }
-lua require'lspconfig'.clangd.setup{ on_attach=require'completion'.on_attach, cmd={"/usr/local/opt/llvm/bin/clangd", "--background-index"} }
-lua require'lspconfig'.pyls.setup{ on_attach=require'completion'.on_attach }
-lua require'lspconfig'.gopls.setup{ on_attach=require'completion'.on_attach }
-lua require'lspconfig'.rust_analyzer.setup{ on_attach=require'completion'.on_attach }
-lua require'lspconfig'.bashls.setup{ on_attach=require'completion'.on_attach }
-lua require'lspconfig'.jsonls.setup{ on_attach=require'completion'.on_attach }
-lua require'lspconfig'.yamlls.setup{ on_attach=require'completion'.on_attach }
-lua require'lspconfig'.html.setup{ on_attach=require'completion'.on_attach }
-lua require'lspconfig'.cmake.setup{ on_attach=require'completion'.on_attach }
-lua require'lspconfig'.dockerls.setup{ on_attach=require'completion'.on_attach }
-lua require'lspconfig'.sumneko_lua.setup{ on_attach=require'completion'.on_attach }
-lua require'lspconfig'.sqlls.setup{ on_attach=require'completion'.on_attach }
-lua require'lspconfig'.vuels.setup{ on_attach=require'completion'.on_attach }
-lua require'lspconfig'.diagnosticls.setup{}
-lua require('telescope').setup({defaults = {file_sorter = require('telescope.sorters').get_fzy_sorter}})
 
 
 nnoremap <leader>gh :diffget //3<CR>
