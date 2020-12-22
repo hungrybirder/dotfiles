@@ -1,98 +1,115 @@
 {
-  "configurations": {
-    "go_main": {
-      "adapter": "vscode-go",
-      "configuration": {
-        "request": "launch",
-        "program": "${file}",
-        "mode": "debug",
-        "dlvToolPath": "$HOME/go/bin/dlv",
-        "trace": true,
-        "env": {
-          "GO111MODULE": "on"
+    "configurations": {
+        "go_main": {
+            "adapter": "vscode-go",
+            "configuration": {
+                "request": "launch",
+                "program": "${file}",
+                "mode": "debug",
+                "dlvToolPath": "$HOME/go/bin/dlv",
+                "trace": true,
+                "env": {
+                    "GO111MODULE": "on"
+                },
+                "args": ["-stderrthreshold=info"]
+            }
         },
-        "args": ["-stderrthreshold=info"]
-      }
-    },
-    "go_unit_test": {
-      "adapter": "vscode-go",
-      "configuration": {
-        "request": "launch",
-        "mode": "test",
-        "dlvToolPath": "$HOME/go/bin/dlv",
-        "program": "${relativeFile}",
-        "trace": true,
-        "args": ["-test.v"],
-        "showLog": true
-      }
-    },
-    "debugy_python3": {
-      "adapter": "debugpy",
-      "configuration": {
-        "request": "launch",
-        "type": "python",
-        "cwd": "${workspaceRoot}",
-        "program": "${file}",
-        "stopOnEntry": false,
-        "console": "integratedTerminal"
-      },
-      "breakpoints": {
-        "exception": {
-          "raised": "N",
-          "uncaught": "",
-          "userUnhandled": ""
+        "go_unit_test": {
+            "adapter": "vscode-go",
+            "configuration": {
+                "request": "launch",
+                "mode": "test",
+                "dlvToolPath": "$HOME/go/bin/dlv",
+                "program": "${relativeFile}",
+                "trace": true,
+                "args": ["-test.v"],
+                "showLog": true
+            }
+        },
+        "debugy_python3": {
+            "adapter": "debugpy",
+            "configuration": {
+                "request": "launch",
+                "type": "python",
+                "cwd": "${workspaceRoot}",
+                "program": "${file}",
+                "stopOnEntry": false,
+                "console": "integratedTerminal"
+            },
+            "breakpoints": {
+                "exception": {
+                    "raised": "N",
+                    "uncaught": "",
+                    "userUnhandled": ""
+                }
+            }
+        },
+        "vscode-cpptools": {
+            "adapter": "vscode-cpptools",
+            "configuration": {
+                "request": "launch",
+                "program": "${workspaceRoot}/build/${fileBasenameNoExtension}",
+                "MIMode": "lldb",
+                "externalConsole": false,
+                "stopAtEntry": true,
+                "type": "cppdbg"
+            }
+        },
+        "lldb-vscode": {
+            "adapter": "lldb-vscode",
+            "configuration": {
+                "request": "launch",
+                "program": "${workspaceRoot}/build/${fileBasenameNoExtension}",
+                "MIMode": "lldb",
+                "externalConsole": false,
+                "stopAtEntry": true,
+                "type": "lldb",
+                "breakpoints": {
+                    "exception": {
+                        "cpp_catch": "",
+                        "cpp_throw": "",
+                        "objc_catch": "",
+                        "objc_throw": "",
+                        "swift_catch": "",
+                        "swift_throw": ""
+                    }
+                }
+            }
+        },
+        "vsnode-node": {
+            "adapter": "vscode-node",
+            "configuration": {
+                "request": "launch",
+                "protocol": "auto",
+                "stopOnEntry": true,
+                "console": "integratedTerminal",
+                "program": "${workspaceRoot}/simple.js",
+                "cwd": "${workspaceRoot}"
+            }
+        },
+        "bash": {
+            "adapter": "vscode-bash",
+            "configuration": {
+                "request": "launch",
+                "program": "${file}"
+            }
+        },
+        "rust": {
+            "adapter": "CodeLLDB",
+            "configuration": {
+                "request": "launch",
+                "program": "${workspaceRoot}/target/debug/hello_cargo",
+                "breakpoints": {
+                    "exception": {
+                        "cpp_catch": "",
+                        "cpp_throw": "",
+                        "objc_catch": "",
+                        "objc_throw": "",
+                        "swift_catch": "",
+                        "swift_throw": ""
+                    }
+                }
+            }
         }
-      }
-    },
-    "vscode-cpptools": {
-      "adapter": "vscode-cpptools",
-      "configuration": {
-        "request": "launch",
-        "program": "${workspaceRoot}/build/${fileBasenameNoExtension}",
-        "MIMode": "lldb",
-        "externalConsole": false,
-        "stopAtEntry": true,
-        "type": "cppdbg"
-      }
-    },
-    "lldb-vscode": {
-      "adapter": "lldb-vscode",
-      "configuration": {
-        "request": "launch",
-        "program": "${workspaceRoot}/build/${fileBasenameNoExtension}",
-        "MIMode": "lldb",
-        "externalConsole": false,
-        "stopAtEntry": true,
-        "type": "lldb",
-        "breakpoints": {
-          "exception": {
-            "cpp_catch": "",
-            "cpp_throw": "",
-            "objc_catch": "",
-            "objc_throw": "",
-            "swift_catch": "",
-            "swift_throw": ""
-          }
-        }
-      }
-    },
-    "vsnode-node": {
-      "adapter": "vscode-node",
-      "configuration": {
-        "request": "launch",
-        "protocol": "auto",
-        "stopOnEntry": true,
-        "console": "integratedTerminal",
-        "program": "${workspaceRoot}/simple.js",
-        "cwd": "${workspaceRoot}"
-      }
-    },
-    "bash": {
-      "adapter": "vscode-bash",
-      "configuration": {
-        "request": "launch",
-        "program": "${file}"
-      }
     }
-  }
 }
