@@ -148,16 +148,6 @@ let g:fzf_branch_actions = {
       \}
 
 
-nnoremap <leader>a :lua vim.lsp.buf.definition()<CR>
-nnoremap <leader>d :lua vim.lsp.buf.definition()<CR>
-nnoremap <leader>i :lua vim.lsp.buf.implementation()<CR>
-nnoremap <leader>sh :lua vim.lsp.buf.signature_help()<CR>
-nnoremap <leader>rr :lua vim.lsp.buf.references()<CR>
-nnoremap <leader>rn :lua vim.lsp.buf.rename()<CR>
-nnoremap <leader>h :lua vim.lsp.buf.hover()<CR>
-nnoremap <leader>ca :lua vim.lsp.buf.code_action()<CR>
-nnoremap <leader>sd :lua vim.lsp.diagnostic.show_line_diagnostics()<CR>
-
 fun! GotoWindow(id)
     call win_gotoid(a:id)
     MaximizerToggle
@@ -337,6 +327,16 @@ require'nvim-treesitter.configs'.setup {
 
 }
 EOF
+
+nnoremap <leader>a :lua vim.lsp.buf.definition()<CR>
+nnoremap <leader>d :lua vim.lsp.buf.definition()<CR>
+nnoremap <leader>i :lua vim.lsp.buf.implementation()<CR>
+nnoremap <leader>sh :lua vim.lsp.buf.signature_help()<CR>
+nnoremap <leader>rr :lua vim.lsp.buf.references()<CR>
+nnoremap <leader>rn :lua vim.lsp.buf.rename()<CR>
+nnoremap <leader>h :lua vim.lsp.buf.hover()<CR>
+nnoremap <leader>ca :lua vim.lsp.buf.code_action()<CR>
+nnoremap <leader>sd :lua vim.lsp.diagnostic.show_line_diagnostics()<CR>
 
 nnoremap <leader>f :Telescope fd<CR>
 nnoremap <leader>o :Telescope lsp_document_symbols<CR>
