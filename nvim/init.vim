@@ -39,6 +39,8 @@ set colorcolumn=80
 
 set clipboard& clipboard+=unnamed
 
+set grepprg=rg
+
 vnoremap < <gv
 vnoremap > >gv
 
@@ -200,7 +202,7 @@ nnoremap <leader>Y gg"+yG
 
 inoremap <C-c> <esc>
 
-let g:completion_enable_snippet = 'UltiSnips'
+" let g:completion_enable_snippet = 'UltiSnips'
 let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
 
 lua require'lspconfig'.tsserver.setup{ on_attach=require'completion'.on_attach }
@@ -217,23 +219,6 @@ lua require'lspconfig'.dockerls.setup{ on_attach=require'completion'.on_attach }
 lua require'lspconfig'.sumneko_lua.setup{ on_attach=require'completion'.on_attach }
 lua require'lspconfig'.sqlls.setup{ on_attach=require'completion'.on_attach }
 lua require'lspconfig'.vuels.setup{ on_attach=require'completion'.on_attach }
-
-lua <<EOF
-local actions = require('telescope.actions')
-require('telescope').setup{
-  defaults = {
-    file_sorter = require('telescope.sorters').get_fzy_sorter,
-    mappings = {
-      i = {
-        ["<c-j>"] = actions.move_selection_next,
-        ["<c-k>"] = actions.move_selection_previous,
-      },
-    },
-    file_previewer = require'telescope.previewers'.cat.new,
-  }
-}
-require('telescope').load_extension('fzy_native')
-EOF
 
 lua <<EOF
 require'lspconfig'.diagnosticls.setup{
@@ -330,6 +315,32 @@ require'nvim-treesitter.configs'.setup {
 }
 EOF
 
+lua <<EOF
+local actions = require('telescope.actions')
+require('telescope').setup{
+  defaults = {
+    file_sorter = require('telescope.sorters').get_fzy_sorter,
+    mappings = {
+      i = {
+        ["<c-j>"] = actions.move_selection_next,
+        ["<c-k>"] = actions.move_selection_previous,
+      },
+    },
+    -- ]]file_previewer = require'telescope.previewers'.cat.new,
+  },
+  extensions = {
+      fzy_native = {
+          override_generic_sorter = true,
+          override_file_sorter = true,
+      },
+      fzf_writer = {
+          use_highlighter = true,
+      },
+  }
+}
+require('telescope').load_extension('fzy_native')
+EOF
+
 nnoremap <leader>a :lua vim.lsp.buf.definition()<CR>
 nnoremap <leader>d :lua vim.lsp.buf.definition()<CR>
 nnoremap <leader>i :lua vim.lsp.buf.implementation()<CR>
@@ -340,6 +351,7 @@ nnoremap <leader>h :lua vim.lsp.buf.hover()<CR>
 nnoremap <leader>ca :lua vim.lsp.buf.code_action()<CR>
 nnoremap <leader>sd :lua vim.lsp.diagnostic.show_line_diagnostics()<CR>
 
+"nnoremap <leader>f :lua require('telescope').extensions.fzf_writer.files()<CR>
 nnoremap <leader>f :Telescope fd<CR>
 nnoremap <leader>o :Telescope lsp_document_symbols<CR>
 nnoremap <leader>r :Telescope lsp_references<CR>
@@ -359,23 +371,6 @@ fun! EmptyRegisters()
         call setreg(r, [])
     endfor
 endfun
-
-fun! TrimWhitespace()
-    let l:save = winsaveview()
-    keeppatterns %s/\s\+$//e
-    call winrestview(l:save)
-endfun
-
-augroup highlight_yank
-    autocmd!
-    autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank({timeout = 40})
-augroup END
-
-augroup THE_PRIMEAGEN
-    autocmd!
-    autocmd BufWritePre * :call TrimWhitespace()
-    autocmd BufEnter,BufWinEnter,TabEnter *.rs :lua require'lsp_extensions'.inlay_hints{}
-augroup END
 
 " Q: Closes the window
 nnoremap Q :q<cr>
