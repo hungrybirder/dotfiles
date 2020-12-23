@@ -87,6 +87,7 @@ Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-lua/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzf-writer.nvim'
+Plug 'nvim-telescope/telescope-fzy-native.nvim'
 Plug 'nvim-telescope/telescope-vimspector.nvim'
 
 " code snippets
@@ -231,6 +232,7 @@ require('telescope').setup{
     file_previewer = require'telescope.previewers'.cat.new,
   }
 }
+require('telescope').load_extension('fzy_native')
 EOF
 
 lua <<EOF
