@@ -86,6 +86,7 @@ Plug 'szw/vim-maximizer'
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-lua/telescope.nvim'
+Plug 'nvim-telescope/telescope-fzf-writer.nvim'
 Plug 'nvim-telescope/telescope-vimspector.nvim'
 
 " code snippets
@@ -190,9 +191,6 @@ nnoremap <leader>m :MaximizerToggle!<CR>
 " <Plug>VimspectorStop
 " <Plug>VimspectorPause
 " <Plug>VimspectorAddFunctionBreakpoint
-nnoremap <leader>pw :lua require('telescope.builtin').grep_string { search = vim.fn.expand("<cword>") }<CR>
-nnoremap <leader>pb :lua require('telescope.builtin').buffers()<CR>
-nnoremap <leader>vh :lua require('telescope.builtin').help_tags()<CR>
 nnoremap <c-h> :wincmd h<CR>
 nnoremap <c-j> :wincmd j<CR>
 nnoremap <c-k> :wincmd k<CR>
@@ -228,7 +226,23 @@ lua require'lspconfig'.dockerls.setup{ on_attach=require'completion'.on_attach }
 lua require'lspconfig'.sumneko_lua.setup{ on_attach=require'completion'.on_attach }
 lua require'lspconfig'.sqlls.setup{ on_attach=require'completion'.on_attach }
 lua require'lspconfig'.vuels.setup{ on_attach=require'completion'.on_attach }
-lua require('telescope').setup({defaults = {file_sorter = require('telescope.sorters').get_fzy_sorter}})
+
+lua <<EOF
+local actions = require('telescope.actions')
+require('telescope').setup{
+  defaults = {
+    file_sorter = require('telescope.sorters').get_fzy_sorter,
+    mappings = {
+      i = {
+        ["<c-j>"] = actions.move_selection_next,
+        ["<c-k>"] = actions.move_selection_previous,
+      },
+    },
+    file_previewer = require'telescope.previewers'.cat.new,
+  }
+}
+EOF
+
 lua <<EOF
 require'lspconfig'.diagnosticls.setup{
   filetypes = { "sh" },
@@ -259,6 +273,25 @@ require'nvim-treesitter.configs'.setup {
       peek_definition_code = {
         ["df"] = "@function.outer",
         ["dF"] = "@class.outer",
+      },
+    },
+    move = {
+      enable = true,
+      goto_next_start = {
+        ["]m"] = "@function.outer",
+        ["]]"] = "@class.outer",
+      },
+      goto_next_end = {
+        ["]M"] = "@function.outer",
+        ["]["] = "@class.outer",
+      },
+      goto_previous_start = {
+        ["[m"] = "@function.outer",
+        ["[["] = "@class.outer",
+      },
+      goto_previous_end = {
+        ["[M"] = "@function.outer",
+        ["[]"] = "@class.outer",
       },
     },
     --[[
@@ -305,6 +338,13 @@ require'nvim-treesitter.configs'.setup {
 }
 EOF
 
+nnoremap <leader>f :Telescope fd<CR>
+nnoremap <leader>o :Telescope lsp_document_symbols<CR>
+nnoremap <leader>r :Telescope lsp_references<CR>
+nnoremap <c-p> :Telescope git_files<CR>
+" nnoremap <leader>pw :lua require('telescope.builtin').grep_string { search = vim.fn.expand("<cword>") }<CR>
+" nnoremap <leader>pb :lua require('telescope.builtin').buffers()<CR>
+" nnoremap <leader>vh :lua require('telescope.builtin').help_tags()<CR>
 
 nnoremap <leader>gh :diffget //3<CR>
 nnoremap <leader>gf :diffget //2<CR>
