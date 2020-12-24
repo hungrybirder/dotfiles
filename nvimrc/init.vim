@@ -87,8 +87,6 @@ Plug 'szw/vim-maximizer'
 Plug 'puremourning/vimspector'
 
 Plug 'rhysd/clever-f.vim'
-
-Plug 'wellle/context.vim'
 call plug#end() " }}}
 
 " general {{{
@@ -695,6 +693,12 @@ vnoremap <silent>,m :MaximizerToggle<CR>gv
 
 " vimspector {{{
 let g:vimspector_enable_mappings = 'HUMAN'
+let g:vimspector_sign_priority = {
+  \    'vimspectorBP':         12,
+  \    'vimspectorBPCond':     11,
+  \    'vimspectorBPDisabled': 10,
+  \    'vimspectorPC':         999,
+  \ }
 " F5	When debugging, continue. Otherwise start debugging.	vimspector#Continue()
 " F3	Stop debugging.	vimspector#Stop()
 " F4	Restart debugging with the same configuration.	vimspector#Restart()
