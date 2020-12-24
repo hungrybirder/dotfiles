@@ -33,7 +33,7 @@ Plug 'preservim/nerdtree' | Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 " Plug 'lambdalisue/glyph-palette.vim'
 " auto format plugin
-Plug 'sbdchd/neoformat'
+" Plug 'sbdchd/neoformat'
 
 " code syntax check
 " Plug 'dense-analysis/ale', {'commit':'7d90ff56'} "Wrong
@@ -373,7 +373,7 @@ let g:float_preview#docked = 0
 "float-preview }}}
 
 " neoformat {{{
-let g:neoformat_enabled_python = ['yapf']
+" let g:neoformat_enabled_python = ['yapf']
 " neoformat }}}
 
 " ale {{{
