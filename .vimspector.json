@@ -1,5 +1,29 @@
 {
     "configurations": {
+        "lua": {
+            "adapter": "lua-local",
+            "configuration": {
+                "request": "launch",
+                "type": "lua-local",
+                "cwd": "${workspaceFolder}",
+                "program": {
+                    "lua": "lua",
+                    "file": "${file}"
+                }
+            }
+        },
+        "luajit": {
+            "adapter": "lua-local",
+            "configuration": {
+                "request": "launch",
+                "type": "lua-local",
+                "cwd": "${workspaceFolder}",
+                "program": {
+                    "lua": "luajit",
+                    "file": "${file}"
+                }
+            }
+        },
         "go_main": {
             "adapter": "vscode-go",
             "configuration": {

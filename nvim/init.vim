@@ -3,15 +3,14 @@ filetype plugin indent on
 
 set exrc
 set guicursor=
-set relativenumber
-set nohlsearch
+set number relativenumber
+set hlsearch
 set hidden
 set noerrorbells
 set tabstop=4 softtabstop=4
 set shiftwidth=4
 set expandtab
 set smartindent
-set nu
 set nowrap
 set smartcase
 set noswapfile
@@ -27,7 +26,6 @@ set signcolumn=yes
 
 " Give more space for displaying messages.
 set cmdheight=2
-
 " Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
 " delays and poor user experience.
 set updatetime=50
@@ -59,6 +57,7 @@ Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-lua/completion-nvim'
 Plug 'tjdevries/nlua.nvim'
 Plug 'tjdevries/lsp_extensions.nvim'
+Plug 'Shougo/echodoc.vim'
 
 
 " nvim Tree Sitter NBNBNB
@@ -110,6 +109,7 @@ Plug 'vim-airline/vim-airline-themes'
 
 " langs
 Plug 'rust-lang/rust.vim'
+Plug 'fatih/vim-go'
 call plug#end()
 
 colorscheme gruvbox
@@ -158,16 +158,22 @@ endfun
 
 " Debugger remaps
 let g:vimspector_enable_mappings = 'HUMAN'
+let g:vimspector_sign_priority = {
+  \    'vimspectorBP':         12,
+  \    'vimspectorBPCond':     11,
+  \    'vimspectorBPDisabled': 10,
+  \    'vimspectorPC':         999,
+  \ }
 
 nnoremap <leader>m :MaximizerToggle!<CR>
-" nnoremap <leader>dd :call vimspector#Launch()<CR>
+nnoremap <leader>dd :call vimspector#Launch()<CR>
 " nnoremap <leader>dc :call GotoWindow(g:vimspector_session_windows.code)<CR>
 " nnoremap <leader>dt :call GotoWindow(g:vimspector_session_windows.tagpage)<CR>
 " nnoremap <leader>dv :call GotoWindow(g:vimspector_session_windows.variables)<CR>
 " nnoremap <leader>dw :call GotoWindow(g:vimspector_session_windows.watches)<CR>
 " nnoremap <leader>ds :call GotoWindow(g:vimspector_session_windows.stack_trace)<CR>
 " nnoremap <leader>do :call GotoWindow(g:vimspector_session_windows.output)<CR>
-" nnoremap <leader>de :call vimspector#Reset()<CR>
+nnoremap <leader>de :call vimspector#Reset()<CR>
 "
 " nnoremap <leader>dtcb :call vimspector#CleanLineBreakpoint()<CR>
 "
@@ -208,7 +214,14 @@ let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
 lua require'lspconfig'.tsserver.setup{ on_attach=require'completion'.on_attach }
 lua require'lspconfig'.clangd.setup{ on_attach=require'completion'.on_attach, cmd={"/usr/local/opt/llvm/bin/clangd", "--background-index"} }
 lua require'lspconfig'.pyls.setup{ on_attach=require'completion'.on_attach }
-lua require'lspconfig'.gopls.setup{ on_attach=require'completion'.on_attach }
+" lua require'lspconfig'.gopls.setup{ on_attach=require'completion'.on_attach }
+lua <<EOF
+  require "lspconfig".gopls.setup {
+    on_attach=require'completion'.on_attach,
+    cmd = {"gopls", "--remote=auto"},
+  }
+EOF
+
 lua require'lspconfig'.rust_analyzer.setup{ on_attach=require'completion'.on_attach }
 lua require'lspconfig'.bashls.setup{ on_attach=require'completion'.on_attach }
 lua require'lspconfig'.jsonls.setup{ on_attach=require'completion'.on_attach }
@@ -219,6 +232,7 @@ lua require'lspconfig'.dockerls.setup{ on_attach=require'completion'.on_attach }
 lua require'lspconfig'.sumneko_lua.setup{ on_attach=require'completion'.on_attach }
 lua require'lspconfig'.sqlls.setup{ on_attach=require'completion'.on_attach }
 lua require'lspconfig'.vuels.setup{ on_attach=require'completion'.on_attach }
+lua require'lspconfig'.vimls.setup{ on_attach=require'completion'.on_attach }
 
 lua <<EOF
 require'lspconfig'.diagnosticls.setup{
@@ -302,15 +316,15 @@ require('telescope').setup{
 require('telescope').load_extension('fzy_native')
 EOF
 
-nnoremap <leader>a :lua vim.lsp.buf.definition()<CR>
-nnoremap <leader>d :lua vim.lsp.buf.definition()<CR>
-nnoremap <leader>i :lua vim.lsp.buf.implementation()<CR>
-nnoremap <leader>sh :lua vim.lsp.buf.signature_help()<CR>
-nnoremap <leader>rr :lua vim.lsp.buf.references()<CR>
-nnoremap <leader>rn :lua vim.lsp.buf.rename()<CR>
-nnoremap <leader>h :lua vim.lsp.buf.hover()<CR>
-nnoremap <leader>ca :lua vim.lsp.buf.code_action()<CR>
-nnoremap <leader>sd :lua vim.lsp.diagnostic.show_line_diagnostics()<CR>
+nnoremap <silent> <leader>d :lua vim.lsp.buf.definition()<CR>
+nnoremap <silent> <leader>i :lua vim.lsp.buf.implementation()<CR>
+nnoremap <silent> <leader>sh :lua vim.lsp.buf.signature_help()<CR>
+nnoremap <silent> <leader>rr :lua vim.lsp.buf.references()<CR>
+nnoremap <silent> <leader>rn :lua vim.lsp.buf.rename()<CR>
+nnoremap <silent> K :lua vim.lsp.buf.hover()<CR>
+" nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
+" nnoremap <silent> <leader>ca :lua vim.lsp.buf.code_action()<CR>
+nnoremap <silent> <leader>sd :lua vim.lsp.diagnostic.show_line_diagnostics()<CR>
 
 " nnoremap <leader>f :lua require('telescope').extensions.fzf_writer.files()<CR>
 nnoremap <leader>f :Telescope find_files<CR>
@@ -368,3 +382,22 @@ let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 noremap <Leader>pi :<c-u>PlugInstall<CR>
 noremap <Leader>pu :<c-u>PlugUpdate<CR>
 noremap <Leader>pc :<c-u>PlugClean<CR>
+
+
+func! EnableEchoDoc()
+  call echodoc#enable()
+  if has('nvim')
+    let g:echodoc#type = "floating"
+    highlight link EchoDocFloat Pmenu
+  else
+    let g:echodoc#type = "popup"
+    highlight link EchoDocPopup Pmenu
+  endif
+endfun
+
+augroup MyEchoDoc
+  autocmd!
+  autocmd FileType go call EnableEchoDoc()
+augroup END
+
+let g:go_gopls_enabled = 0
