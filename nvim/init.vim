@@ -68,7 +68,6 @@ Plug 'nvim-treesitter/playground'
 Plug 'romgrk/nvim-treesitter-context'
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 Plug 'nvim-treesitter/nvim-treesitter-refactor'
-Plug 'p00f/nvim-ts-rainbow'
 
 
 Plug 'tpope/vim-fugitive'
@@ -85,9 +84,10 @@ Plug 'puremourning/vimspector'
 Plug 'szw/vim-maximizer'
 
 " telescope requirements...
-Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/telescope.nvim'
+Plug 'kyazdani42/nvim-web-devicons'
 Plug 'nvim-telescope/telescope-fzf-writer.nvim'
 Plug 'nvim-telescope/telescope-fzy-native.nvim'
 Plug 'nvim-telescope/telescope-vimspector.nvim'
@@ -271,47 +271,7 @@ require'nvim-treesitter.configs'.setup {
         ["[]"] = "@class.outer",
       },
     },
-    --[[
-    swap = {
-      enable = true,
-      swap_next = {
-        ["<leader>a"] = "@parameter.inner",
-      },
-      swap_previous = {
-        ["<leader>A"] = "@parameter.inner",
-      },
-    },
-    --]]
   },
-  -- nvim-treesitter/nvim-treesitter-refactor
-  --[[
-  refactor = {
-    highlight_current_scope = { enable = true },
-    smart_rename = {
-      enable = true,
-      keymaps = {
-        smart_rename = "grr",
-      },
-    },
-    navigation = {
-      enable = true,
-      keymaps = {
-        goto_definition = "gnd",
-        list_definitions = "gnD",
-        list_definitions_toc = "gO",
-        goto_next_usage = "<a-*>",
-        goto_previous_usage = "<a-#>",
-      },
-    },
-  },
-  --]]
-
-  -- p00f/nvim-ts-rainbow
-  rainbow = {
-    enable = true,
-    disable = {'bash'} -- please disable bash until I figure #1 out
-  }
-
 }
 EOF
 
@@ -319,18 +279,19 @@ lua <<EOF
 local actions = require('telescope.actions')
 require('telescope').setup{
   defaults = {
-    file_sorter = require('telescope.sorters').get_fzy_sorter,
+    -- file_sorter = require('telescope.sorters').get_fzy_sorter,
     mappings = {
       i = {
         ["<c-j>"] = actions.move_selection_next,
         ["<c-k>"] = actions.move_selection_previous,
+        ["<esc>"] = actions.close,
       },
     },
-    -- ]]file_previewer = require'telescope.previewers'.cat.new,
+    preview_cutoff = 20,
   },
   extensions = {
       fzy_native = {
-          override_generic_sorter = true,
+          override_generic_sorter = false,
           override_file_sorter = true,
       },
       fzf_writer = {
@@ -351,11 +312,13 @@ nnoremap <leader>h :lua vim.lsp.buf.hover()<CR>
 nnoremap <leader>ca :lua vim.lsp.buf.code_action()<CR>
 nnoremap <leader>sd :lua vim.lsp.diagnostic.show_line_diagnostics()<CR>
 
-"nnoremap <leader>f :lua require('telescope').extensions.fzf_writer.files()<CR>
-nnoremap <leader>f :Telescope fd<CR>
+" nnoremap <leader>f :lua require('telescope').extensions.fzf_writer.files()<CR>
+nnoremap <leader>f :Telescope find_files<CR>
 nnoremap <leader>o :Telescope lsp_document_symbols<CR>
 nnoremap <leader>r :Telescope lsp_references<CR>
 nnoremap <c-p> :Telescope git_files<CR>
+nnoremap <leader>sv :so ~/codes/dotfiles/nvim/init.vim<CR>
+nnoremap <leader>ev :edit ~/codes/dotfiles/nvim/init.vim<CR>
 " nnoremap <leader>pw :lua require('telescope.builtin').grep_string { search = vim.fn.expand("<cword>") }<CR>
 " nnoremap <leader>pb :lua require('telescope.builtin').buffers()<CR>
 " nnoremap <leader>vh :lua require('telescope.builtin').help_tags()<CR>
