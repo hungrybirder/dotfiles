@@ -12,6 +12,7 @@ set shiftwidth=4
 set expandtab
 set smartindent
 set nowrap
+set ignorecase
 set smartcase
 set noswapfile
 set nobackup
@@ -210,6 +211,7 @@ inoremap <C-c> <esc>
 
 " let g:completion_enable_snippet = 'UltiSnips'
 let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
+let g:completion_matching_ignore_case = 1
 
 lua require'lspconfig'.tsserver.setup{ on_attach=require'completion'.on_attach }
 lua require'lspconfig'.clangd.setup{ on_attach=require'completion'.on_attach, cmd={"/usr/local/opt/llvm/bin/clangd", "--background-index"} }
