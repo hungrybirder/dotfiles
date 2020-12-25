@@ -43,6 +43,13 @@ set grepprg=rg
 vnoremap < <gv
 vnoremap > >gv
 
+"inoremap maps a key combination for insert mode
+"<C-e> is the keybinding I am creating.
+"<C-o> is a command that switches vim to normal mode for one command.
+"$ jumps to the end of the line and we are switched back to insert mode.
+inoremap <C-e> <C-o>$
+inoremap <C-a> <C-o>0
+
 " Navigating in Command Mode
 cnoremap <C-a> <Home>
 cnoremap <C-e> <End>
@@ -59,6 +66,7 @@ Plug 'nvim-lua/completion-nvim'
 Plug 'tjdevries/nlua.nvim'
 Plug 'tjdevries/lsp_extensions.nvim'
 Plug 'Shougo/echodoc.vim'
+" Plug 'steelsojka/completion-buffers'
 
 
 " nvim Tree Sitter NBNBNB
@@ -212,18 +220,19 @@ inoremap <C-c> <esc>
 " let g:completion_enable_snippet = 'UltiSnips'
 let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
 let g:completion_matching_ignore_case = 1
+let g:completion_chain_complete_list = {
+\'default' : [
+\    {'complete_items': ['lsp', 'snippet']},
+\    {'mode': '<c-p>'},
+\    {'mode': '<c-n>'}
+\]
+\}
+" autocmd bufenter * lua require'completion'.on_attach()
 
+lua require'lspconfig'.diagnosticls.setup{}
 lua require'lspconfig'.tsserver.setup{ on_attach=require'completion'.on_attach }
 lua require'lspconfig'.clangd.setup{ on_attach=require'completion'.on_attach, cmd={"/usr/local/opt/llvm/bin/clangd", "--background-index"} }
 lua require'lspconfig'.pyls.setup{ on_attach=require'completion'.on_attach }
-" lua require'lspconfig'.gopls.setup{ on_attach=require'completion'.on_attach }
-lua <<EOF
-  require "lspconfig".gopls.setup {
-    on_attach=require'completion'.on_attach,
-    cmd = {"gopls", "--remote=auto"},
-  }
-EOF
-
 lua require'lspconfig'.rust_analyzer.setup{ on_attach=require'completion'.on_attach }
 lua require'lspconfig'.bashls.setup{ on_attach=require'completion'.on_attach }
 lua require'lspconfig'.jsonls.setup{ on_attach=require'completion'.on_attach }
@@ -235,11 +244,11 @@ lua require'lspconfig'.sumneko_lua.setup{ on_attach=require'completion'.on_attac
 lua require'lspconfig'.sqlls.setup{ on_attach=require'completion'.on_attach }
 lua require'lspconfig'.vuels.setup{ on_attach=require'completion'.on_attach }
 lua require'lspconfig'.vimls.setup{ on_attach=require'completion'.on_attach }
-
 lua <<EOF
-require'lspconfig'.diagnosticls.setup{
-  filetypes = { "sh" },
-}
+  require "lspconfig".gopls.setup {
+    on_attach=require'completion'.on_attach,
+    cmd = {"gopls", "--remote=auto"},
+  }
 EOF
 
 lua<<EOF
@@ -327,17 +336,15 @@ nnoremap <silent> K :lua vim.lsp.buf.hover()<CR>
 " nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
 " nnoremap <silent> <leader>ca :lua vim.lsp.buf.code_action()<CR>
 nnoremap <silent> <leader>sd :lua vim.lsp.diagnostic.show_line_diagnostics()<CR>
+nnoremap <silent><leader>j <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
+nnoremap <silent><leader>k <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
 
-" nnoremap <leader>f :lua require('telescope').extensions.fzf_writer.files()<CR>
-nnoremap <leader>f :Telescope find_files<CR>
+nnoremap <leader>f :lua require('telescope').extensions.fzf_writer.files()<CR>
 nnoremap <leader>o :Telescope lsp_document_symbols<CR>
 nnoremap <leader>r :Telescope lsp_references<CR>
 nnoremap <c-p> :Telescope git_files<CR>
 nnoremap <leader>sv :so ~/codes/dotfiles/nvim/init.vim<CR>
 nnoremap <leader>ev :edit ~/codes/dotfiles/nvim/init.vim<CR>
-" nnoremap <leader>pw :lua require('telescope.builtin').grep_string { search = vim.fn.expand("<cword>") }<CR>
-" nnoremap <leader>pb :lua require('telescope.builtin').buffers()<CR>
-" nnoremap <leader>vh :lua require('telescope.builtin').help_tags()<CR>
 
 nnoremap <leader>gh :diffget //3<CR>
 nnoremap <leader>gf :diffget //2<CR>
