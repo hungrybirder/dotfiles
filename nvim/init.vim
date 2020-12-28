@@ -4,7 +4,7 @@ filetype plugin indent on
 set exrc
 set guicursor=
 set number relativenumber
-set hlsearch
+set nohlsearch
 set hidden
 set noerrorbells
 set tabstop=4 softtabstop=4
@@ -60,6 +60,13 @@ cnoremap <Esc>f <S-Right>
 
 call plug#begin('~/codes/dotfiles/nvim/plugged')
 
+" marks
+Plug 'kshenoy/vim-signature'
+Plug 'rhysd/clever-f.vim'
+
+Plug 'tweekmonster/startuptime.vim'
+Plug 'tpope/vim-surround'
+
 " Neovim lsp Plugins
 Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-lua/completion-nvim'
@@ -103,9 +110,6 @@ Plug 'nvim-telescope/telescope-vimspector.nvim'
 " code snippets
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
-
-" supertab is good for lsp + ultisnip
-Plug 'ervandew/supertab'
 
 " auto format
 Plug 'sbdchd/neoformat'
@@ -217,36 +221,133 @@ nnoremap <leader>Y gg"+yG
 
 inoremap <C-c> <esc>
 
-" let g:completion_enable_snippet = 'UltiSnips'
+let g:completion_enable_snippet = 'UltiSnips'
+let g:completion_confirm_key = "\<C-y>"
 let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
 let g:completion_matching_ignore_case = 1
-let g:completion_chain_complete_list = {
-\'default' : [
-\    {'complete_items': ['lsp', 'snippet']},
-\    {'mode': '<c-p>'},
-\    {'mode': '<c-n>'}
-\]
-\}
+" let g:completion_chain_complete_list = {
+" \'default' : [
+" \    {'complete_items': ['lsp', 'snippet']},
+" \    {'mode': '<c-p>'},
+" \    {'mode': '<c-n>'}
+" \]
+" \}
 " autocmd bufenter * lua require'completion'.on_attach()
 
-lua require'lspconfig'.diagnosticls.setup{}
-lua require'lspconfig'.tsserver.setup{ on_attach=require'completion'.on_attach }
-lua require'lspconfig'.clangd.setup{ on_attach=require'completion'.on_attach, cmd={"/usr/local/opt/llvm/bin/clangd", "--background-index"} }
-lua require'lspconfig'.pyls.setup{ on_attach=require'completion'.on_attach }
-lua require'lspconfig'.rust_analyzer.setup{ on_attach=require'completion'.on_attach }
-lua require'lspconfig'.bashls.setup{ on_attach=require'completion'.on_attach }
-lua require'lspconfig'.jsonls.setup{ on_attach=require'completion'.on_attach }
-lua require'lspconfig'.yamlls.setup{ on_attach=require'completion'.on_attach }
-lua require'lspconfig'.html.setup{ on_attach=require'completion'.on_attach }
-lua require'lspconfig'.cmake.setup{ on_attach=require'completion'.on_attach }
-lua require'lspconfig'.dockerls.setup{ on_attach=require'completion'.on_attach }
-lua require'lspconfig'.sumneko_lua.setup{ on_attach=require'completion'.on_attach }
-lua require'lspconfig'.sqlls.setup{ on_attach=require'completion'.on_attach }
-lua require'lspconfig'.vuels.setup{ on_attach=require'completion'.on_attach }
-lua require'lspconfig'.vimls.setup{ on_attach=require'completion'.on_attach }
 lua <<EOF
-  require "lspconfig".gopls.setup {
-    on_attach=require'completion'.on_attach,
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+  vim.lsp.diagnostic.on_publish_diagnostics, {
+    underline = false,
+    virtual_text = false,
+    signs = true,
+    update_in_insert = false,
+  }
+)
+local chain_complete_list = {
+  default = {
+    {complete_items = {'lsp', 'snippet'}},
+    {complete_items = {'path'}, triggered_only = {'./', '/'}},
+    {complete_items = {'buffers'}},
+  },
+  string = {
+    {complete_items = {'path'}, triggered_only = {'./', '/'}},
+    {complete_items = {'buffers'}},
+  },
+  comment = {},
+}
+local utf8 = function(cp)
+  if cp < 128 then
+    return string.char(cp)
+  end
+  local s = ""
+  local prefix_max = 32
+  while true do
+    local suffix = cp % 64
+    s = string.char(128 + suffix)..s
+    cp = (cp - suffix) / 64
+    if cp < prefix_max then
+      return string.char((256 - (2 * prefix_max)) + cp)..s
+    end
+    prefix_max = prefix_max / 2
+  end
+end
+local customize_lsp_label = {
+  Method = utf8(0xf794) .. ' [method]',
+  Function = utf8(0xf794) .. ' [function]',
+  Variable = utf8(0xf6a6) .. ' [variable]',
+  Field = utf8(0xf6a6) .. ' [field]',
+  Class = utf8(0xfb44) .. ' [class]',
+  Struct = utf8(0xfb44) .. ' [struct]',
+  Interface = utf8(0xf836) .. ' [interface]',
+  Module = utf8(0xf668) .. ' [module]',
+  Property = utf8(0xf0ad) .. ' [property]',
+  Value = utf8(0xf77a) .. ' [value]',
+  Enum = utf8(0xf77a) .. ' [enum]',
+  Operator = utf8(0xf055) .. ' [operator]',
+  Reference = utf8(0xf838) .. ' [reference]',
+  Keyword = utf8(0xf80a) .. ' [keyword]',
+  Color = utf8(0xe22b) .. ' [color]',
+  Unit = utf8(0xe3ce) .. ' [unit]',
+  ["snippets.nvim"] = utf8(0xf68e) .. ' [nsnip]',
+  Snippet = utf8(0xf68e) .. ' [snippet]',
+  Text = utf8(0xf52b) .. ' [text]',
+  Buffers = utf8(0xf64d) .. ' [buffers]',
+  TypeParameter = utf8(0xf635) .. ' [type]',
+}
+
+local on_attach = function(_, _)
+  require'completion'.on_attach({
+    chain_complete_list = chain_complete_list,
+    customize_lsp_label = customize_lsp_label,
+    enable_auto_popup = 1,
+    enable_auto_signature = 1,
+    auto_change_source = 1,
+    enable_auto_hover = 1,
+  })
+  vim.api.nvim_command('autocmd CursorHold <buffer> lua vim.lsp.diagnostic.show_line_diagnostics()')
+  if vim.api.nvim_buf_get_option(0, 'filetype') == 'rust' then
+    vim.api.nvim_command('autocmd InsertLeave,BufEnter,BufWinEnter,TabEnter,BufWritePost <buffer> lua require"lsp_extensions".inlay_hints{ prefix = " » ", highlight = "NonText" }')
+  end
+end
+
+require'lspconfig'.diagnosticls.setup{
+  cmd = { "diagnostic-languageserver", "--stdio" },
+  filetypes = { "sh" },
+  on_attach = on_attach,
+  init_options = {
+    filetypes = {
+      sh = "shellcheck",
+    },
+    linters = {
+      shellcheck = {
+        sourceName = "shellcheck",
+        command = "shellcheck",
+      },
+    },
+  }
+}
+
+local lspconfig = require'lspconfig'
+local servers = { 
+  "pyls", "tsserver", "rust_analyzer", "bashls", "jsonls", "yamlls", 
+  "html", "cmake", "dockerls", "sumneko_lua", 
+  "sqlls", "vuels", "vimls",
+}
+
+for _,name in pairs(servers) do
+  lspconfig[name].setup{ on_attach=on_attach }
+end
+
+lspconfig.clangd.setup{ 
+  on_attach=on_attach, 
+  cmd = { 
+    "/usr/local/opt/llvm/bin/clangd",
+    "--background-index"
+  } 
+}
+
+lspconfig.gopls.setup {
+    on_attach=on_attach,
     cmd = {"gopls", "--remote=auto"},
   }
 EOF
@@ -257,6 +358,15 @@ require'nvim-treesitter.configs'.setup {
   highlight = {
     enable = true
   },
+  incremental_selection = {
+    enable = true,
+    keymaps = {
+      init_selection = 'gnn',
+      node_incremental = "grn",
+      scope_incremental = "grc",
+      node_decremental = "grm",
+    }
+  },
 
   -- nvim-treesitter/nvim-treesitter-textobjects
   textobjects = {
@@ -264,10 +374,21 @@ require'nvim-treesitter.configs'.setup {
       enable = true,
       keymaps = {
         -- You can use the capture groups defined in textobjects.scm
-        ["af"] = "@function.outer",
+        ["ie"] = "@block.inner",
+        ["ae"] = "@block.outer",
+        ["im"] = "@call.inner",
+        ["am"] = "@call.outer",
+        ["iC"] = "@class.inner",
+        ["aC"] = "@class.outer",
+        ["ad"] = "@comment.outer",
+        ["ic"] = "@conditional.inner",
+        ["ac"] = "@conditional.outer",
         ["if"] = "@function.inner",
-        ["ac"] = "@class.outer",
-        ["ic"] = "@class.inner",
+        ["af"] = "@function.outer",
+        ["il"] = "@loop.inner",
+        ["al"] = "@loop.outer",
+        ["is"] = "@parameter.inner",
+        ["as"] = "@statement.outer",
       },
     },
     lsp_interop = {
@@ -298,10 +419,18 @@ require'nvim-treesitter.configs'.setup {
     },
   },
 }
+
+local parsers = require'nvim-treesitter.parsers'
+local configs = require'nvim-treesitter.parsers'.get_parser_configs()
+local ft_str = table.concat(vim.tbl_map(function(ft) return configs[ft].filetype or ft end, parsers.available_parsers()), ',')
+-- TODO: learn vim folder
+-- vim.cmd('autocmd Filetype ' .. ft_str .. ' setlocal foldmethod=expr foldexpr=nvim_treesitter#foldexpr()')
+vim.cmd('autocmd VimEnter * TSContextDisable')
 EOF
 
 lua <<EOF
 local actions = require('telescope.actions')
+local previewers = require('telescope.previewers')
 require('telescope').setup{
   defaults = {
     -- file_sorter = require('telescope.sorters').get_fzy_sorter,
@@ -312,7 +441,19 @@ require('telescope').setup{
         ["<esc>"] = actions.close,
       },
     },
-    preview_cutoff = 20,
+    layout_strategy = "flex",
+    scroll_strategy = 'cycle',
+    winblend = 5,
+    layout_defaults = {
+      horizontal = {
+        width_padding = 0.1,
+        height_padding = 0.1,
+        preview_width = 0.55,
+      },
+    },
+    file_previewer = previewers.vim_buffer_cat.new,
+    grep_previewer = previewers.vim_buffer_vimgrep.new,
+    qflist_previewer = previewers.vim_buffer_qflist.new,
   },
   extensions = {
       fzy_native = {
@@ -335,7 +476,7 @@ nnoremap <silent> <leader>rn :lua vim.lsp.buf.rename()<CR>
 nnoremap <silent> K :lua vim.lsp.buf.hover()<CR>
 " nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
 " nnoremap <silent> <leader>ca :lua vim.lsp.buf.code_action()<CR>
-nnoremap <silent> <leader>sd :lua vim.lsp.diagnostic.show_line_diagnostics()<CR>
+" nnoremap <silent> <leader>sd :lua vim.lsp.diagnostic.show_line_diagnostics()<CR>
 nnoremap <silent><leader>j <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
 nnoremap <silent><leader>k <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
 
@@ -379,12 +520,28 @@ augroup fmt
   autocmd BufWritePre * undojoin | Neoformat
 augroup END
 
-" Use <Tab> and <S-Tab> to navigate through popup menu
-" inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-" inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+let g:indicator_errors = "\uf05e "
+let g:indicator_warnings = "\uf071 "
+let g:indicator_infos = "\uf7fc "
+let g:indicator_hints = "\ufbe6 "
 
-let g:SuperTabDefaultCompletionType = "<c-n>"
-let g:UltiSnipsExpandTrigger="<tab>"
+call sign_define("LspDiagnosticsSignError", {"text" : g:indicator_errors, "texthl" : "LspDiagnosticsDefaultError"})
+call sign_define("LspDiagnosticsSignWarning", {"text" : g:indicator_warnings, "texthl" : "LspDiagnosticsDefaultWarning"})
+call sign_define("LspDiagnosticsSignInformation", {"text" : g:indicator_infos, "texthl" : "LspDiagnosticsDefaultInformation"})
+call sign_define("LspDiagnosticsSignHint", {"text" : g:indicator_hints, "texthl" : "LspDiagnosticsDefaultHint"})
+
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+inoremap <expr> <Up>   pumvisible() ? "\<C-p>" : "\<Up>"
+inoremap <expr> <Down> pumvisible() ? "\<C-n>" : "\<Down>"
+
+inoremap <silent> <C-Space> <cmd>lua require'completion'.triggerCompletion()<CR>
+inoremap <tab> <cmd>lua require'completion'.smart_tab()<CR>
+
+autocmd Filetype markdown,make lua require'completion'.on_attach()
+
+let g:UltiSnipsExpandTrigger="<c-l>"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 
@@ -410,3 +567,8 @@ augroup MyEchoDoc
 augroup END
 
 let g:go_gopls_enabled = 0
+
+" clever-f {{{
+map ; <Plug>(clever-f-repeat-forward)
+map , <Plug>(clever-f-repeat-back)
+" }}}
