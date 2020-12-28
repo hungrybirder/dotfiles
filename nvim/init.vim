@@ -225,14 +225,6 @@ let g:completion_enable_snippet = 'UltiSnips'
 let g:completion_confirm_key = "\<C-y>"
 let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
 let g:completion_matching_ignore_case = 1
-" let g:completion_chain_complete_list = {
-" \'default' : [
-" \    {'complete_items': ['lsp', 'snippet']},
-" \    {'mode': '<c-p>'},
-" \    {'mode': '<c-n>'}
-" \]
-" \}
-" autocmd bufenter * lua require'completion'.on_attach()
 
 lua <<EOF
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
@@ -346,7 +338,7 @@ require'lspconfig'.diagnosticls.setup{
 }
 
 local lspconfig = require'lspconfig'
-local servers = { 
+local servers = {
   "tsserver",
   "rust_analyzer",
   "bashls",
@@ -365,7 +357,7 @@ for _,name in pairs(servers) do
 end
 
 lspconfig.pyls.setup{
-  on_attach=on_attach, 
+  on_attach=on_attach,
   settings = {
     pyls = {
       plugins = {
@@ -382,12 +374,12 @@ lspconfig.pyls.setup{
   }
 }
 
-lspconfig.clangd.setup{ 
-  on_attach=on_attach, 
-  cmd = { 
+lspconfig.clangd.setup{
+  on_attach=on_attach,
+  cmd = {
     "/usr/local/opt/llvm/bin/clangd",
     "--background-index"
-  } 
+  }
 }
 
 lspconfig.gopls.setup {
@@ -637,6 +629,17 @@ endfun
 augroup MyEchoDoc
   autocmd!
   autocmd FileType go call EnableEchoDoc()
+augroup END
+
+fun! TrimWhitespace()
+    let l:save = winsaveview()
+    keeppatterns %s/\s\+$//e
+    call winrestview(l:save)
+endfun
+
+augroup THE_PRIMEAGEN
+    autocmd!
+    autocmd BufWritePre * :call TrimWhitespace()
 augroup END
 
 let g:go_gopls_enabled = 0
