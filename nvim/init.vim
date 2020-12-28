@@ -73,7 +73,7 @@ Plug 'nvim-lua/completion-nvim'
 Plug 'tjdevries/nlua.nvim'
 Plug 'tjdevries/lsp_extensions.nvim'
 Plug 'Shougo/echodoc.vim'
-" Plug 'steelsojka/completion-buffers'
+Plug 'steelsojka/completion-buffers'
 
 
 " nvim Tree Sitter NBNBNB
