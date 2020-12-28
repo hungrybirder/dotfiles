@@ -340,21 +340,47 @@ require'lspconfig'.diagnosticls.setup{
           error = "error",
           warning = "warning",
         }
-      }
+      },
     },
   }
 }
 
 local lspconfig = require'lspconfig'
 local servers = { 
-  "pyls", "tsserver", "rust_analyzer", "bashls", "jsonls", "yamlls", 
-  "html", "cmake", "dockerls", "sumneko_lua", 
-  "sqlls", "vuels", "vimls",
+  "tsserver",
+  "rust_analyzer",
+  "bashls",
+  "jsonls",
+  "yamlls",
+  "html",
+  "cmake",
+  "dockerls",
+  "sqlls",
+  "vuels",
+  "vimls",
 }
 
 for _,name in pairs(servers) do
   lspconfig[name].setup{ on_attach=on_attach }
 end
+
+lspconfig.pyls.setup{
+  on_attach=on_attach, 
+  settings = {
+    pyls = {
+      plugins = {
+        pyflakes = {enabled = false},
+        pylint = {
+          enabled = true,
+          executable = "pylint",
+        },
+        yapf = {
+          enabled = true,
+        }
+      }
+    }
+  }
+}
 
 lspconfig.clangd.setup{ 
   on_attach=on_attach, 
@@ -368,6 +394,35 @@ lspconfig.gopls.setup {
     on_attach=on_attach,
     cmd = {"gopls", "--remote=auto"},
   }
+
+local get_lua_runtime = function()
+  local result = {}
+  for _, path in pairs(vim.api.nvim_list_runtime_paths()) do
+    local lua_path = path .. "/lua"
+    if vim.fn.isdirectory(lua_path) == 1 then
+      result[lua_path] = true
+    end
+  end
+
+  result[vim.fn.expand("$VIMRUNTIME/lua")] = true
+  return result
+end
+
+lspconfig.sumneko_lua.setup{
+  on_attach = on_attach,
+  settings = {
+    Lua = {
+      runtime = { version = "LuaJIT" },
+      diagnostics = {
+        enable = true,
+        globals = { "vim" },
+      },
+      workspace = {
+        library = get_lua_runtime()
+      },
+    },
+  }
+}
 EOF
 
 lua<<EOF
