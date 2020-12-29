@@ -120,7 +120,7 @@ nnoremap <silent><leader>j <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
 nnoremap <silent><leader>k <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
 
 nnoremap <leader>f :lua require('telescope').extensions.fzf_writer.files()<CR>
-nnoremap <leader>o :Telescope tree-sitter<CR>
+nnoremap <leader>o :Telescope treesitter<CR>
 nnoremap <leader>r :Telescope lsp_references<CR>
 nnoremap <c-p> :Telescope git_files<CR>
 
