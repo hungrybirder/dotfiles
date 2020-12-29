@@ -86,6 +86,8 @@ Plug 'mbbill/undotree'
 Plug 'szw/vim-maximizer'
 Plug 'puremourning/vimspector'
 
+Plug 'tweekmonster/startuptime.vim'
+Plug 'kshenoy/vim-signature'
 Plug 'rhysd/clever-f.vim'
 call plug#end() " }}}
 
@@ -357,10 +359,10 @@ xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 " align }}}
 
-" autopairs {{{
+" auto-pairs {{{
 let g:AutoPairsFlyMode = 1
 let g:AutoPairsShortcutToggle = '<leader>3'
-" autopairs }}}
+" auto-pairs }}}
 
 " vim-bbye {{{
 noremap <space><BS> :Bdelete<cr>
