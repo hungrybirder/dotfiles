@@ -1,0 +1,4 @@
+*.pyc
+*/*.pyc
+undodir
+.netrwhist
