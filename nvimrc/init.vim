@@ -1,7 +1,7 @@
 set nocompatible
 
 " plugins {{{
-call plug#begin('~/.config/nvim/plugged')
+call plug#begin('~/cs/dotfiles/nvimrc/plugged')
 
 " deoplete framework {{{
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -95,11 +95,9 @@ call plug#end() " }}}
 syntax enable
 
 let mapleader = " "
-" let g:mapleader = ","
-" let maplocalleader = ","
-" let g:maplocalleader = ","
-nmap <silent> <leader>ev :e $MYVIMRC<CR>
-nmap <silent> <leader>sv :so $MYVIMRC<CR>
+nnoremap <silent><leader>sv :so ~/codes/dotfiles/nvimrc/init.vim<CR>
+nnoremap <silent><leader>ev :edit ~/codes/dotfiles/nvimrc/init.vim<CR>
+
 nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
 
 augroup line_return

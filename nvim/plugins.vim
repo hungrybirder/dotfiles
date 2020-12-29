@@ -123,8 +123,6 @@ nnoremap <leader>f :lua require('telescope').extensions.fzf_writer.files()<CR>
 nnoremap <leader>o :Telescope tree-sitter<CR>
 nnoremap <leader>r :Telescope lsp_references<CR>
 nnoremap <c-p> :Telescope git_files<CR>
-nnoremap <leader>sv :so ~/codes/dotfiles/nvim/init.vim<CR>
-nnoremap <leader>ev :edit ~/codes/dotfiles/nvim/init.vim<CR>
 
 nnoremap <leader>gh :diffget //3<CR>
 nnoremap <leader>gf :diffget //2<CR>

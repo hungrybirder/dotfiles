@@ -2,6 +2,9 @@ set nocompatible
 
 let mapleader = ' '
 
+nmap <silent> <leader>ev :e $MYVIMRC<CR>
+nmap <silent> <leader>sv :so $MYVIMRC<CR>
+
 source $HOME/.config/nvim/plugins.vim
 source $HOME/.config/nvim/general.vim
 " source $HOME/cs/dotfiles/nvim/colors.vim
