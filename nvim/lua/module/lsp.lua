@@ -192,7 +192,7 @@ local get_lua_runtime = function()
 
   result[vim.fn.expand("$VIMRUNTIME/lua")] = true
 
-  local user_paths = { "/usr/local/share/lua" }
+  local user_paths = { "/usr/local/share/lua", "/opt/homebrew/share/lua" }
   for _, path in pairs(user_paths) do
     if vim.fn.isdirectory(path) == 1 then
       result[path] = true
