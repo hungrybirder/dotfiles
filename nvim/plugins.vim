@@ -4,9 +4,13 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'kshenoy/vim-signature'
 Plug 'rhysd/clever-f.vim'
 Plug 'jiangmiao/auto-pairs'
+Plug 'moll/vim-bbye'
 
 Plug 'tweekmonster/startuptime.vim'
 Plug 'tpope/vim-surround'
+
+Plug 'preservim/nerdtree' | Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 
 " Neovim lsp Plugins
 Plug 'neovim/nvim-lspconfig'
@@ -51,6 +55,8 @@ Plug 'nvim-telescope/telescope-vimspector.nvim'
 " code snippets
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
+Plug 'preservim/tagbar'
+
 
 " auto format
 Plug 'sbdchd/neoformat'
@@ -108,6 +114,7 @@ nnoremap <leader>de :call vimspector#Reset()<CR>
 " <Plug>VimspectorAddFunctionBreakpoint
 
 nnoremap <silent> <leader>d :lua vim.lsp.buf.definition()<CR>
+nnoremap <silent> <c-]> :lua vim.lsp.buf.definition()<CR>
 nnoremap <silent> <leader>i :lua vim.lsp.buf.implementation()<CR>
 nnoremap <silent> <leader>sh :lua vim.lsp.buf.signature_help()<CR>
 nnoremap <silent> <leader>rr :lua vim.lsp.buf.references()<CR>
@@ -121,6 +128,7 @@ nnoremap <silent><leader>k <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
 
 nnoremap <leader>f :lua require('telescope').extensions.fzf_writer.files()<CR>
 nnoremap <leader>o :Telescope treesitter<CR>
+nnoremap <leader>b :Telescope buffers<CR>
 nnoremap <leader>r :Telescope lsp_references<CR>
 nnoremap <c-p> :Telescope git_files<CR>
 
@@ -207,3 +215,25 @@ let g:AutoPairsFlyMode = 1
 let g:AutoPairsShortcutToggle = '<leader>3'
 " auto-pairs }}}
 
+" vim-bbye {{{
+noremap <leader><BS> :Bdelete<cr>
+" vim-bbye }}}
+
+" nerdtree {{{
+let NERDTreeQuitOnOpen=1
+let g:NERDTreeMinimalUI=1
+map <leader><tab> :<c-u>NERDTreeToggle<CR>
+autocmd BufEnter * if bufname('#') =~# "^NERD_tree_" && winnr('$') > 1 | b# | endif
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+if exists('g:loaded_webdevicons')
+    call webdevicons#refresh()
+endif
+" nerdtree}}}
+
+" tagbar {{{
+nnoremap <silent> <leader>2 :TagbarToggle<CR>
+let tags = "./tags"
+let g:tagbar_autofocus = 1
+let g:tagbar_sort = 0
+"tagbar }}}

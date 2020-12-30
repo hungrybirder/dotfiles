@@ -1,3 +1,4 @@
+local lspconfig = require'lspconfig'
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   vim.lsp.diagnostic.on_publish_diagnostics, {
     underline = false,
@@ -74,7 +75,7 @@ local on_attach = function(_, _)
   end
 end
 
-require'lspconfig'.diagnosticls.setup{
+lspconfig.diagnosticls.setup{
   cmd = { "diagnostic-languageserver", "--stdio" },
   filetypes = { "sh", "markdown" },
   on_attach = on_attach,
@@ -130,7 +131,6 @@ require'lspconfig'.diagnosticls.setup{
   }
 }
 
-local lspconfig = require'lspconfig'
 local servers = {
   "tsserver",
   "rust_analyzer",
@@ -143,6 +143,7 @@ local servers = {
   "sqlls",
   "vuels",
   "vimls",
+  "jdtls",
 }
 
 for _,name in pairs(servers) do

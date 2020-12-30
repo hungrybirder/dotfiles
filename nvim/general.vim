@@ -62,6 +62,13 @@ nnoremap <c-h> :wincmd h<CR>
 nnoremap <c-j> :wincmd j<CR>
 nnoremap <c-k> :wincmd k<CR>
 nnoremap <c-l> :wincmd l<CR>
+
+" ctrl_e ctrl_y 3 lines
+nnoremap <c-e> 3<c-e>
+nnoremap <c-y> 3<c-y>
+vnoremap <c-e> 3<c-e>
+vnoremap <c-y> 3<c-y>
+
 nnoremap <leader>u :UndotreeShow<CR>
 nnoremap <Leader>+ :vertical resize +5<CR>
 nnoremap <Leader>- :vertical resize -5<CR>
