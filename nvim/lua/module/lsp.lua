@@ -183,19 +183,20 @@ lspconfig.gopls.setup {
 
 local get_lua_runtime = function()
   local result = {}
-  for _, path in pairs(vim.api.nvim_list_runtime_paths()) do
+  local rtps = vim.api.nvim_list_runtime_paths()
+  local extra_paths = {
+    vim.fn.expand("$VIMRUNTIME"),
+    "/usr/local/share",
+    "/opt/homebrew/share",
+  }
+  for _, path in pairs(extra_paths) do
+      rtps[#rtps+1] = path
+  end
+  -- for _, path in pairs(vim.api.nvim_list_runtime_paths()) do
+  for _, path in pairs(rtps) do
     local lua_path = path .. "/lua"
     if vim.fn.isdirectory(lua_path) == 1 then
       result[lua_path] = true
-    end
-  end
-
-  result[vim.fn.expand("$VIMRUNTIME/lua")] = true
-
-  local user_paths = { "/usr/local/share/lua", "/opt/homebrew/share/lua" }
-  for _, path in pairs(user_paths) do
-    if vim.fn.isdirectory(path) == 1 then
-      result[path] = true
     end
   end
   return result
