@@ -27,9 +27,10 @@ set signcolumn=yes
 
 " Give more space for displaying messages.
 set cmdheight=2
-" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
-" delays and poor user experience.
-set updatetime=50
+set timeout ttimeout
+set timeoutlen=500  " Time out on mappings
+set updatetime=50   " Idle time to write swap and trigger CursorHold
+set ttimeoutlen=10  " Time out on key codes
 
 " Don't pass messages to |ins-completion-menu|.
 set shortmess+=c
