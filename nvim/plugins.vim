@@ -70,6 +70,7 @@ Plug 'vim-airline/vim-airline-themes'
 " langs
 Plug 'rust-lang/rust.vim'
 Plug 'fatih/vim-go'
+Plug 'neoclide/jsonc.vim'
 call plug#end()
 
 
@@ -114,7 +115,6 @@ nnoremap <leader>de :call vimspector#Reset()<CR>
 " <Plug>VimspectorAddFunctionBreakpoint
 
 nnoremap <silent> <leader>d :lua vim.lsp.buf.definition()<CR>
-nnoremap <silent> <c-]> :lua vim.lsp.buf.definition()<CR>
 nnoremap <silent> <leader>i :lua vim.lsp.buf.implementation()<CR>
 nnoremap <silent> <leader>sh :lua vim.lsp.buf.signature_help()<CR>
 nnoremap <silent> <leader>rr :lua vim.lsp.buf.references()<CR>
@@ -123,6 +123,7 @@ nnoremap <silent> K :lua vim.lsp.buf.hover()<CR>
 " nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
 " nnoremap <silent> <leader>ca :lua vim.lsp.buf.code_action()<CR>
 nnoremap <silent> <leader>sd :lua vim.lsp.diagnostic.show_line_diagnostics()<CR>
+nnoremap <silent> <leader>cf :lua vim.lsp.buf.formatting()<CR>
 nnoremap <silent><leader>j <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
 nnoremap <silent><leader>k <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
 
