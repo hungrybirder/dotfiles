@@ -12,7 +12,26 @@ require'nvim-treesitter.configs'.setup {
       node_decremental = "grm",
     }
   },
-
+  refactor = {
+    highlight_definitions = { enable = true },
+    highlight_current_scope = { enable = false },
+    smart_rename = {
+      enable = true,
+      keymaps = {
+        smart_rename = "grr",
+      }
+    },
+    navigation = {
+      enable = true,
+      keymaps = {
+        goto_definition = "gnd",
+        list_definitions = "gnD",
+        list_definitions_toc = "gO",
+        goto_next_usage = "<a-*>",
+        goto_previous_usage = "<a-#>",
+      }
+    }
+  },
   -- nvim-treesitter/nvim-treesitter-textobjects
   textobjects = {
     select = {
@@ -63,11 +82,24 @@ require'nvim-treesitter.configs'.setup {
       },
     },
   },
+  playground = {
+    enable = true,
+    -- disable = {},
+    updatetime = 25, -- Debounced time for highlighting nodes in the playground from source code
+    persist_queries = false -- Whether the query persists across vim sessions
+  },
+  query_linter = {
+    enable = true,
+    use_virtual_text = true,
+    lint_events = {"BufWrite", "CursorHold"},
+  },
 }
 
-local parsers = require'nvim-treesitter.parsers'
-local configs = require'nvim-treesitter.parsers'.get_parser_configs()
-local ft_str = table.concat(vim.tbl_map(function(ft) return configs[ft].filetype or ft end, parsers.available_parsers()), ',')
+-- local parsers = require'nvim-treesitter.parsers'
+-- local configs = require'nvim-treesitter.parsers'.get_parser_configs()
+-- local ft_str = table.concat(vim.tbl_map(function(ft) return configs[ft].filetype or ft end, parsers.available_parsers()), ',')
 -- TODO: learn vim folder
 -- vim.cmd('autocmd Filetype ' .. ft_str .. ' setlocal foldmethod=expr foldexpr=nvim_treesitter#foldexpr()')
+
+-- tmp diable context
 vim.cmd('autocmd VimEnter * TSContextDisable')
