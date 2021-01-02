@@ -1,19 +1,30 @@
 call plug#begin('~/.config/nvim/plugged')
 
-" marks
-Plug 'kshenoy/vim-signature'
-Plug 'rhysd/clever-f.vim'
-Plug 'jiangmiao/auto-pairs'
+Plug 'airblade/vim-rooter'
+Plug 'tweekmonster/startuptime.vim'
+
+" theme
+Plug 'lifepillar/vim-gruvbox8'
+
+" statusline
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+
+" delete buffer without closing windows
 Plug 'moll/vim-bbye'
 
-Plug 'tweekmonster/startuptime.vim'
+" speedup editing
+Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-surround'
-Plug 'airblade/vim-rooter'
+Plug 'mg979/vim-visual-multi', {'branch': 'master'}
+Plug 'rhysd/clever-f.vim'
 
+" tagbar & nerdtree
+Plug 'preservim/tagbar'
 Plug 'preservim/nerdtree' | Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 
-" Neovim lsp Plugins
+" lsp
 Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-lua/completion-nvim'
 Plug 'tjdevries/nlua.nvim'
@@ -21,8 +32,7 @@ Plug 'tjdevries/lsp_extensions.nvim'
 Plug 'Shougo/echodoc.vim'
 Plug 'steelsojka/completion-buffers'
 
-
-" nvim Tree Sitter NBNBNB
+" tree sitter
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/completion-treesitter'
 Plug 'nvim-treesitter/playground'
@@ -30,21 +40,19 @@ Plug 'romgrk/nvim-treesitter-context'
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 Plug 'nvim-treesitter/nvim-treesitter-refactor'
 
+" sign marks
+Plug 'kshenoy/vim-signature'
 
+" git
 Plug 'tpope/vim-fugitive'
 Plug 'mhinz/vim-signify'
-Plug 'mbbill/undotree'
 
+" fzf
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'stsewd/fzf-checkout.vim'
-Plug 'lifepillar/vim-gruvbox8'
 
-" Debugger Plugins
-Plug 'puremourning/vimspector'
-Plug 'szw/vim-maximizer'
-
-" telescope requirements...
+" telescope
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/telescope.nvim'
@@ -53,25 +61,23 @@ Plug 'nvim-telescope/telescope-fzf-writer.nvim'
 Plug 'nvim-telescope/telescope-fzy-native.nvim'
 Plug 'nvim-telescope/telescope-vimspector.nvim'
 
-" code snippets
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
-Plug 'preservim/tagbar'
-
-
-" auto format
+" coding utils
 Plug 'sbdchd/neoformat'
-
-" comment
 Plug 'tomtom/tcomment_vim'
-
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+Plug 'mbbill/undotree'
 
 " langs
 Plug 'rust-lang/rust.vim'
 Plug 'fatih/vim-go'
 Plug 'neoclide/jsonc.vim'
+
+" debugger
+Plug 'puremourning/vimspector'
+Plug 'szw/vim-maximizer'
+
+" snippets
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 call plug#end()
 
 
@@ -89,7 +95,7 @@ let g:vimspector_sign_priority = {
   \    'vimspectorPC':         999,
   \ }
 
-nnoremap <leader>m :MaximizerToggle!<CR>
+nnoremap <leader>M :MaximizerToggle!<CR>
 nnoremap <leader>dd :call vimspector#Launch()<CR>
 " nnoremap <leader>dc :call GotoWindow(g:vimspector_session_windows.code)<CR>
 " nnoremap <leader>dt :call GotoWindow(g:vimspector_session_windows.tagpage)<CR>
@@ -209,21 +215,21 @@ augroup END
 
 let g:go_gopls_enabled = 0
 
-" clever-f {{{
+" clever-f
 map ; <Plug>(clever-f-repeat-forward)
 map , <Plug>(clever-f-repeat-back)
-" }}}
+" end
 
-" auto-pairs {{{
+" auto-pairs
 let g:AutoPairsFlyMode = 1
 let g:AutoPairsShortcutToggle = '<leader>3'
-" auto-pairs }}}
+" auto-pairs end
 
-" vim-bbye {{{
+" vim-bbye
 noremap <leader><BS> :Bdelete<cr>
-" vim-bbye }}}
+" vim-bbye end
 
-" nerdtree {{{
+" nerdtree
 let NERDTreeQuitOnOpen=1
 let g:NERDTreeMinimalUI=1
 map <leader><tab> :<c-u>NERDTreeToggle<CR>
@@ -233,11 +239,15 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 if exists('g:loaded_webdevicons')
     call webdevicons#refresh()
 endif
-" nerdtree}}}
+" nerdtreeend
 
-" tagbar {{{
+" tagbar
 nnoremap <silent> <leader>2 :TagbarToggle<CR>
 let tags = "./tags"
 let g:tagbar_autofocus = 1
 let g:tagbar_sort = 0
-"tagbar }}}
+"tagbar end
+
+" vim-visual-multi
+let g:VM_leader = '\\'
+" vim-visual-multi end

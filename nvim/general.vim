@@ -136,3 +136,11 @@ augroup THE_PRIMEAGEN
     autocmd BufWritePre * :call TrimWhitespace()
 augroup END
 
+" quickfix
+" https://github.com/fatih/vim-go/issues/108#issuecomment-47450678
+autocmd FileType qf wincmd J
+nnoremap <space>n :<C-U>cnext<CR>
+nnoremap <space>m :<C-U>cprevious<CR>
+" close quickfix
+noremap <silent> <space>c :<C-U>cclose<CR>
+" quickfix end

@@ -1,9 +1,9 @@
 set nocompatible
 
-" plugins {{{
+" plugins
 call plug#begin('~/cs/dotfiles/nvimrc/plugged')
 
-" deoplete framework {{{
+" deoplete framework
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'Shougo/neco-vim' " vimscripts for deoplete complete
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
@@ -20,7 +20,7 @@ Plug 'ncm2/float-preview.nvim'
 " Plug 'leafgarland/typescript-vim'
 " Plug 'HerringtonDarkholme/yats.vim' " for ts syntax file
 " Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
-" deoplete framework }}}
+" deoplete framework end
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -89,9 +89,9 @@ Plug 'puremourning/vimspector'
 Plug 'tweekmonster/startuptime.vim'
 Plug 'kshenoy/vim-signature'
 Plug 'rhysd/clever-f.vim'
-call plug#end() " }}}
+call plug#end() " end
 
-" general {{{
+" general
 syntax enable
 
 let mapleader = " "
@@ -107,10 +107,10 @@ augroup line_return
     \   execute 'normal! g`"zvzz' |
     \ endif
 augroup END
-" general }}}
+" general end
 
 
-" setting {{{
+" setting
 set list listchars=tab:› ,eol:¬,trail:•
 set backspace=indent,eol,start
 set laststatus=2
@@ -203,9 +203,9 @@ set scrolloff=7
 " terminal
 tnoremap <Esc> <C-\><C-n>
 
-" setting }}}
+" setting end
 
-" mappings {{{
+" mappings
 nnoremap <silent><leader>4 :let @/ = ""<CR>
 " Q: Closes the window
 nnoremap Q :q<cr>
@@ -305,9 +305,9 @@ noremap <Leader>pc :<c-u>PlugClean<CR>
 " using Block Hole Register
 " :help "_
 vnoremap <leader>p "_dP
-" mappings }}}
+" mappings end
 
-" supertab && snippets {{{
+" supertab && snippets
 let g:SuperTabDefaultCompletionType = "<c-n>"
 " tab 是非常重要的，即做补充选择又做ultisnip展开
 " 使用了 deoplete omni_patterns 不需要下面两行了
@@ -319,9 +319,9 @@ let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 " let g:UltiSnipsJumpForwardTrigger="<tab>"
 " let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-" supertab && snippets }}}
+" supertab && snippets end
 
-" lightline {{{
+" lightline
 let g:lightline = {'colorscheme': 'wombat'}
 let g:lightline.component_function = {'gitbranch':'FugitiveHead'}
 let g:lightline.active = {
@@ -350,31 +350,31 @@ let g:lightline#ale#indicator_warnings = "\uf071"
 let g:lightline#ale#indicator_errors = "\uf05e"
 let g:lightline#ale#indicator_ok = "\uf00c"
 " let g:lightline#bufferline#enable_devicons = 1
-" lightline}}}
+" lightlineend
 
-" align {{{
+" align
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
-" align }}}
+" align end
 
-" auto-pairs {{{
+" auto-pairs
 let g:AutoPairsFlyMode = 1
 let g:AutoPairsShortcutToggle = '<leader>3'
-" auto-pairs }}}
+" auto-pairs end
 
-" vim-bbye {{{
+" vim-bbye
 noremap <space><BS> :Bdelete<cr>
-" vim-bbye }}}
+" vim-bbye end
 
-" float-preview {{{
+" float-preview
 let g:float_preview#docked = 0
-"float-preview }}}
+"float-preview end
 
-" neoformat {{{
+" neoformat
 " let g:neoformat_enabled_python = ['yapf']
-" neoformat }}}
+" neoformat end
 
-" ale {{{
+" ale
 let g:ale_set_quickfix = 1
 let g:ale_open_list = 0
 let g:ale_linters = {
@@ -404,13 +404,13 @@ let g:ale_fix_on_save = 1
 let g:ale_completion_enabled = 0
 nmap <silent> <space>j <Plug>(ale_next_wrap)
 nmap <silent> <space>k <Plug>(ale_previous_wrap)
-" ale }}}
+" ale end
 
-" markdown {{{
+" markdown
 let g:vim_markdown_math = 1
 nmap <leader>md :MarkdownPreview<CR>
-" markdown }}}
-" deoplete {{{
+" markdown end
+" deoplete
 let g:deoplete#enable_at_startup = 1
 " 设置 omni_patterns, 这样deoplete=>go#complete#Complete(vim-go)=>gopls
 " 不再依赖deoplete-go(依赖gocode)
@@ -423,21 +423,21 @@ call deoplete#custom#option({
 \ 'smart_case': v:true,
 \ 'refresh_always': v:false,
 \ })
-" deoplete }}}
+" deoplete end
 
-" deoplete-jedi & jedi {{{
+" deoplete-jedi & jedi
 let g:jedi#completions_enabled = 0
 let g:jedi#auto_vim_configuration = 0
 let g:jedi#smart_auto_mappings = 0
 let g:jedi#show_call_signatures = 0
 let g:jedi#usages_command = "<space>r"
-" deoplete-jedi & jedi }}}
+" deoplete-jedi & jedi end
 
-" vim-visual-multi {{{
+" vim-visual-multi
 let g:VM_leader = '\\'
-" vim-visual-multi }}}
+" vim-visual-multi end
 
-" leaderf {{{
+" leaderf
 let g:Lf_StlColorscheme = 'gruvbox_material'
 let g:Lf_HideHelp = 1
 let g:Lf_UseCache = 0
@@ -473,9 +473,9 @@ noremap <silent> <space>a :<C-U><C-R>=printf("Leaderf rg %s", "")<CR><CR>
 " noremap <leader>fo :<C-U><C-R>=printf("Leaderf! gtags --recall %s", "")<CR><CR>
 " noremap <space>n :<C-U><C-R>=printf("Leaderf gtags --next %s", "")<CR><CR>
 " noremap <space>p :<C-U><C-R>=printf("Leaderf gtags --previous %s", "")<CR><CR>
-"leaderf }}}
+"leaderf end
 
-" fzf {{{
+" fzf
 " noremap <silent> <F1> :<C-U>Helptags<CR>
 let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.8 } }
 nnoremap <C-p> :GFiles<CR>
@@ -487,17 +487,17 @@ if has("nvim")
   au TermOpen * tnoremap <Esc> <c-\><c-n>
   au FileType fzf tunmap <Esc>
 endif
-" fzf }}}
+" fzf end
 
 
-" tagbar {{{
+" tagbar
 nnoremap <silent> <leader>2 :TagbarToggle<CR>
 let tags = "./tags"
 let g:tagbar_autofocus = 1
 let g:tagbar_sort = 0
-"tagbar }}}
+"tagbar end
 
-" nerdtree {{{
+" nerdtree
 let NERDTreeQuitOnOpen=1
 let g:NERDTreeMinimalUI=1
 map <leader><tab> :<c-u>NERDTreeToggle<CR>
@@ -507,9 +507,9 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 if exists('g:loaded_webdevicons')
     call webdevicons#refresh()
 endif
-" nerdtree}}}
+" nerdtreeend
 
-" easymotion {{{
+" easymotion
 let g:EasyMotion_smartcase = 1
 let g:incsearch#magic = '\v'
 nmap s <Plug>(easymotion-overwin-f)
@@ -518,9 +518,9 @@ nmap s <Plug>(easymotion-overwin-f)
 " nmap <Leader>w <Plug>(easymotion-overwin-w)
 " map  <Leader>f <Plug>(easymotion-bd-f)
 " nmap <Leader>f <Plug>(easymotion-overwin-f)
-" easymotion }}}
+" easymotion end
 
-" echodoc {{{
+" echodoc
 let g:echodoc_enable_at_startup = 1
 if has('nvim')
   let g:echodoc#type = "floating"
@@ -529,9 +529,9 @@ else
   let g:echodoc#type = "popup"
   highlight link EchoDocPopup Pmenu
 endif
-" echodoc }}}
+" echodoc end
 
-" fugitive {{{
+" fugitive
 nmap <leader>gh :diffget //3<CR>
 nmap <leader>gf :diffget //2<CR>
 nmap <leader>gs :G<CR>
@@ -605,9 +605,9 @@ let g:fzf_tag_actions = {
 \   'confirm': v:true,
 \ },
 \}
-" fugitive }}}
+" fugitive end
 
-" MyAutoCmd {{{
+" MyAutoCmd
 augroup MyAutoCmd
   au!
   filetype on
@@ -637,9 +637,9 @@ augroup MyAutoCmd
   " 中文排版
   autocmd BufWritePre *.markdown,*.md,*.text,*.txt,*.wiki,*.cnx call PanGuSpacing()
 augroup END
-" MyAutoCmd }}}
+" MyAutoCmd end
 
-" vim-go {{{
+" vim-go
 let g:go_test_prepend_name = 1
 let g:go_fmt_fail_silently = 1
 let g:go_fmt_command = "goimports"
@@ -684,14 +684,14 @@ function! s:build_go_files()
   endif
 endfunction
 
-" vim-go }}}
-" maximizer {{{
+" vim-go end
+" maximizer
 nnoremap <silent>,m :MaximizerToggle<CR>
 vnoremap <silent>,m :MaximizerToggle<CR>gv
 " inoremap <silent>,m <C-o>:MaximizerToggle<CR>
-" maximizer }}}
+" maximizer end
 
-" vimspector {{{
+" vimspector
 let g:vimspector_enable_mappings = 'HUMAN'
 let g:vimspector_sign_priority = {
   \    'vimspectorBP':         12,
@@ -740,9 +740,9 @@ nmap <leader>dcbp <Plug>VimspectorToggleConditionalBreakpoint
 " <Plug>VimspectorStop
 " <Plug>VimspectorPause
 " <Plug>VimspectorAddFunctionBreakpoint
-" vimspector }}}
+" vimspector end
 
-" autogroup go {{{
+" autogroup go
 augroup go
   autocmd!
   autocmd FileType go nmap <silent> <Leader>V <Plug>(go-def-vertical)
@@ -785,33 +785,34 @@ augroup go
   autocmd FileType go nmap <F12> :<C-u>GoDebugStepOut<CR>
 augroup END
 
-" autogroup go }}}
+" autogroup go end
 
 
-" vim-qf {{{
+" vim-qf
 " nmap <F9> <Plug>(qf_qf_previous)
 " nmap <F10>  <Plug>(qf_qf_next)
-" vim-qf }}}
+" vim-qf end
 
-" quickfix {{{
+" quickfix
+" https://github.com/fatih/vim-go/issues/108#issuecomment-47450678
 autocmd FileType qf wincmd J
 nnoremap <space>n :<C-U>cnext<CR>
 nnoremap <space>m :<C-U>cprevious<CR>
 " close quickfix
 noremap <silent> <space>c :<C-U>cclose<CR>
-" quickfix }}}
+" quickfix end
 
-" clever-f {{{
+" clever-f
 map ; <Plug>(clever-f-repeat-forward)
 map , <Plug>(clever-f-repeat-back)
-" }}}
+" end
 
-" autogroup es {{{
+" autogroup es
 " augroup typescript
 "   autocmd FileType typescript nmap <silent> <Leader>d :TSDef<cr>
 "   autocmd FileType typescript let g:ale_open_list = 1
 " augroup END
-" autogroup }}}
+" autogroup end
 
 " augroup my-glyph-palette
 "   autocmd! *

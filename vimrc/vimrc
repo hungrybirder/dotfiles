@@ -52,7 +52,7 @@ Plug 'ryanoasis/vim-devicons' | Plug 'lambdalisue/glyph-palette.vim'
 Plug 'rhysd/clever-f.vim'
 call plug#end()
 
-" general {{{
+" general
 syntax enable
 
 let mapleader = " "
@@ -67,10 +67,10 @@ augroup line_return
     \   execute 'normal! g`"zvzz' |
     \ endif
 augroup END
-" general }}}
+" general end
 
 
-" setting {{{
+" setting
 set hidden
 set wildmenu
 set nobackup
@@ -101,9 +101,9 @@ set undodir=~/.vim/undodir
 " set splitbelow
 set splitright
 set scrolloff=7
-" setting }}}
+" setting end
 
-" mapping {{{
+" mapping
 nnoremap Q :q<cr>
 nnoremap <leader>Q :qa!<cr>
 " Act like D and C
@@ -137,7 +137,7 @@ inoremap jk <esc>
 " using Block Hole Register
 " :help "_
 vnoremap <leader>p "_dP
-" mapping }}}
+" mapping end
 
 highlight ColorColumn ctermbg=0 guibg=lightgrey
 
@@ -294,21 +294,21 @@ augroup fmt
   autocmd BufWritePre *.cc,*.cpp undojoin | Neoformat
 augroup END
 
-" nerdtree {{{
+" nerdtree
 " let NERDTreeQuitOnOpen=1
 " let g:NERDTreeMinimalUI=1
 " map <leader><tab> :<c-u>NERDTreeToggle<CR>
 " autocmd BufEnter * if bufname('#') =~# "^NERD_tree_" && winnr('$') > 1 | b# | endif
 " autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-" nerdtree}}}
+" nerdtreeend
 
-" easymotion {{{
+" easymotion
 let g:EasyMotion_smartcase = 1
 let g:incsearch#magic = '\v'
 nmap s <Plug>(easymotion-overwin-f)
-" easymotion }}}
+" easymotion end
 
-" fzf {{{
+" fzf
 noremap <silent> <F1> :<C-U>Helptags<CR>
 let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.8 } }
 let g:fzf_action = {
@@ -316,38 +316,38 @@ let g:fzf_action = {
   \ 'ctrl-]': 'vsplit' }
 
 let g:fzf_preview_floating_window_rate = 0.8
-" fzf }}}
+" fzf end
 
-" markdown {{{
+" markdown
 let g:vim_markdown_math = 1
 nmap <leader>md :MarkdownPreview<CR>
-" markdown }}}
-" tagbar {{{
+" markdown end
+" tagbar
 nnoremap <silent> <leader>2 :TagbarToggle<CR>
 let tags = "./tags"
 let g:tagbar_autofocus = 1
 let g:tagbar_sort = 0
-"tagbar }}}
+"tagbar end
 
 " Sweet Sweet FuGITive
 nmap <leader>gh :diffget //3<CR>
 nmap <leader>gu :diffget //2<CR>
 nmap <leader>gs :G<CR>
 
-" autopairs {{{
+" autopairs
 let g:AutoPairsFlyMode = 1
 let g:AutoPairsShortcutToggle = '<leader>3'
-" autopairs }}}
+" autopairs end
 
-" vim-bbye {{{
+" vim-bbye
 noremap <space><BS> :Bdelete<cr>
-" vim-bbye }}}
+" vim-bbye end
 
-" vim-visual-multi {{{
+" vim-visual-multi
 let g:VM_leader = '\\'
-" vim-visual-multi }}}
+" vim-visual-multi end
 
-" fugitive {{{
+" fugitive
 nmap <leader>gh :diffget //3<CR>
 nmap <leader>gf :diffget //2<CR>
 nmap <leader>gs :G<CR>
@@ -421,15 +421,15 @@ let g:fzf_tag_actions = {
 \   'confirm': v:true,
 \ },
 \}
-" fugitive }}}
+" fugitive end
 
-" maximizer {{{
+" maximizer
 nnoremap <silent>,m :MaximizerToggle<CR>
 vnoremap <silent>,m :MaximizerToggle<CR>gv
 " inoremap <silent>,m <C-o>:MaximizerToggle<CR>
-" maximizer }}}
+" maximizer end
 
-" vimspector {{{
+" vimspector
 let g:vimspector_enable_mappings = 'HUMAN'
 " F5	When debugging, continue. Otherwise start debugging.	vimspector#Continue()
 " F3	Stop debugging.	vimspector#Stop()
@@ -470,12 +470,12 @@ nnoremap <leader>d<space> :call vimspector#Continue()<CR>
 nmap <leader>drc <Plug>VimspectorRunToCursor
 nmap <leader>dbp <Plug>VimspectorToggleBreakpoint
 nmap <leader>dcbp <Plug>VimspectorToggleConditionalBreakpoint
-" vimspector }}}
+" vimspector end
 
-" clever-f {{{
+" clever-f
 map ; <Plug>(clever-f-repeat-forward)
 map , <Plug>(clever-f-repeat-back)
-" }}}
+" end
 
 augroup my-glyph-palette
   autocmd! *
