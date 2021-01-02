@@ -8,6 +8,7 @@ Plug 'moll/vim-bbye'
 
 Plug 'tweekmonster/startuptime.vim'
 Plug 'tpope/vim-surround'
+Plug 'airblade/vim-rooter'
 
 Plug 'preservim/nerdtree' | Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
