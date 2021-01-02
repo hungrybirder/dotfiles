@@ -123,8 +123,9 @@ nnoremap <silent> <leader>rn :lua vim.lsp.buf.rename()<CR>
 nnoremap <silent> K :lua vim.lsp.buf.hover()<CR>
 " nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
 " nnoremap <silent> <leader>ca :lua vim.lsp.buf.code_action()<CR>
-nnoremap <silent> <leader>sd :lua vim.lsp.diagnostic.show_line_diagnostics()<CR>
-nnoremap <silent> <leader>cf :lua vim.lsp.buf.formatting()<CR>
+nnoremap <silent> <leader>sd <cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>
+nnoremap <silent> <leader>cf <cmd>lua vim.lsp.buf.formatting()<CR>
+nnoremap <silent> <leader>ca <cmd>lua vim.lsp.buf.code_action()<CR>
 nnoremap <silent><leader>j <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
 nnoremap <silent><leader>k <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
 
