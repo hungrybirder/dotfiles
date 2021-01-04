@@ -171,7 +171,6 @@ lspconfig.diagnosticls.setup{
 -- npm i -g vls
 -- ]]
 local servers = {
-  "jdtls",
   "rust_analyzer",
   "jsonls",
   "yamlls",
@@ -259,4 +258,13 @@ lspconfig.sumneko_lua.setup{
       },
     },
   }
+}
+
+-- on MacOS
+-- brew tap hungrybirder/homebrew-repo
+-- brew install jdt-language-server
+lspconfig.jdtls.setup{
+  on_attach=on_attach,
+  cmd = {"jdt-language-server"},
+  root_dir = util.root_pattern(".git", "pom.xml"),
 }
