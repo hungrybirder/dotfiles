@@ -5,6 +5,7 @@
 -- Install language server by myself.
 -- ]]
 
+local SEP = "/"
 local system_name
 if vim.fn.has("mac") == 1 then
   system_name = "macOS"
@@ -16,9 +17,11 @@ else
   print("Unsupported system")
 end
 
-local lsp_install_path = vim.fn.stdpath('cache')..'/lspconfig'
+local lsp_install_path = vim.fn.stdpath('cache')..SEP..'lspconfig'
 
 local lspconfig = require'lspconfig'
+local util      = require'lspconfig/util'
+
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   vim.lsp.diagnostic.on_publish_diagnostics, {
     underline = false,
@@ -39,6 +42,10 @@ local chain_complete_list = {
     {complete_items = {'buffers'}},
   },
   comment = {},
+  lua = {
+    {complete_items = {'lsp'}},
+    {complete_items = {'path'}, triggered_only = {'./', '/'}},
+  },
 }
 local utf8 = function(cp)
   if cp < 128 then
@@ -151,10 +158,21 @@ lspconfig.diagnosticls.setup{
   }
 }
 
+
+-- [[
+-- npm i -g typescript-language-server typescript
+-- npm i -g vim-language-server
+-- npm i -g bash-language-server
+-- npm i -g vscode-json-languageserver
+-- npm i -g yaml-language-server
+-- npm i -g vscode-html-languageserver-bin
+-- yarn global add diagnostic-languageserver
+-- npm i -g sql-language-server
+-- npm i -g vls
+-- ]]
 local servers = {
-  "tsserver",
+  "jdtls",
   "rust_analyzer",
-  "bashls",
   "jsonls",
   "yamlls",
   "html",
@@ -162,8 +180,9 @@ local servers = {
   "dockerls",
   "sqlls",
   "vuels",
+  "tsserver",
   "vimls",
-  "jdtls",
+  "bashls",
 }
 
 for _,name in pairs(servers) do
@@ -197,9 +216,9 @@ lspconfig.clangd.setup{
 }
 
 lspconfig.gopls.setup {
-    on_attach=on_attach,
-    cmd = {"gopls", "--remote=auto"},
-  }
+  on_attach=on_attach,
+  cmd = {"gopls", "--remote=auto"},
+}
 
 local get_lua_runtime = function()
   local result = {}
