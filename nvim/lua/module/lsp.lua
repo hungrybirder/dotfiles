@@ -1,3 +1,23 @@
+-- [[
+-- FROM https://github.com/neovim/neovim/wiki/Following-HEAD
+-- LspInstall LspInstallInfo is deprecated.
+-- FROM https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#sumneko_lua
+-- Install language server by myself.
+-- ]]
+
+local system_name
+if vim.fn.has("mac") == 1 then
+  system_name = "macOS"
+elseif vim.fn.has("unix") == 1 then
+  system_name = "Linux"
+elseif vim.fn.has('win32') == 1 then
+  system_name = "Windows"
+else
+  print("Unsupported system")
+end
+
+local lsp_install_path = vim.fn.stdpath('cache')..'/lspconfig'
+
 local lspconfig = require'lspconfig'
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   vim.lsp.diagnostic.on_publish_diagnostics, {
@@ -202,8 +222,11 @@ local get_lua_runtime = function()
   return result
 end
 
+local sumneko_root_path = lsp_install_path..'/sumneko_lua/lua-language-server'
+local sumneko_binary = sumneko_root_path.."/bin/"..system_name.."/lua-language-server"
 lspconfig.sumneko_lua.setup{
   on_attach = on_attach,
+  cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"},
   settings = {
     Lua = {
       -- runtime = { version = "LuaJIT" },
