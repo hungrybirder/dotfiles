@@ -9,6 +9,7 @@ Plug 'lifepillar/vim-gruvbox8'
 " statusline
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'akinsho/nvim-bufferline.lua'
 
 " delete buffer without closing windows
 Plug 'moll/vim-bbye'
@@ -251,3 +252,11 @@ let g:tagbar_sort = 0
 " vim-visual-multi
 let g:VM_leader = '\\'
 " vim-visual-multi end
+
+" bufferline
+set termguicolors
+lua require'bufferline'.setup()
+nnoremap <silent>]b :BufferLineCycleNext<CR>
+nnoremap <silent>[b :BufferLineCyclePrev<CR>
+nnoremap <silent>gb :BufferLinePick<CR>
+" bufferline end
