@@ -227,7 +227,7 @@ noremap <leader><BS> :Bdelete<cr>
 " vim-bbye end
 
 " nerdtree
-let NERDTreeQuitOnOpen=1
+let g:NERDTreeQuitOnOpen=0
 let g:NERDTreeMinimalUI=1
 map <leader><tab> :<c-u>NERDTreeToggle<CR>
 autocmd BufEnter * if bufname('#') =~# "^NERD_tree_" && winnr('$') > 1 | b# | endif

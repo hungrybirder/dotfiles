@@ -269,3 +269,11 @@ lspconfig.jdtls.setup{
   cmd = {"jdt-language-server"},
   root_dir = util.root_pattern(".git", "pom.xml"),
 }
+
+lspconfig.solargraph.setup{
+  on_attach=on_attach,
+  cmd = {
+    "/usr/local/lib/ruby/gems/3.0.0/bin/solargraph",
+    "stdio"
+  }
+}
