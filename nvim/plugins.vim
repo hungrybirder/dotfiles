@@ -215,8 +215,6 @@ augroup MyEchoDoc
   autocmd FileType go call EnableEchoDoc()
 augroup END
 
-let g:go_gopls_enabled = 0
-
 " clever-f
 map ; <Plug>(clever-f-repeat-forward)
 map , <Plug>(clever-f-repeat-back)
@@ -271,3 +269,21 @@ let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 let g:vim_markdown_math = 1
 nmap <leader>md :MarkdownPreview<CR>
 " markdown end
+
+" vim-go: 关闭大部分功能
+let g:go_addtags_transform = 'camelcase'
+let g:go_auto_type_info = 0
+let g:go_code_completion_enabled = 0
+let g:go_def_mapping_enabled = 0
+let g:go_doc_keywordprg_enabled = 0 "disabled, using K lsp hover()
+let g:go_doc_popup_window = 1
+let g:go_gopls_enabled = 0 "using lsp
+let g:go_list_type = "quickfix"
+let g:go_mod_fmt_autosave = 0
+let g:go_textobj_enabled = 0
+let g:go_metalinter_autosave_enabled = []
+let g:go_metalinter_enabled = []
+let g:go_fmt_command = "goimports"
+let g:go_fmt_autosave = 0
+let g:go_diagnostics_enabled = 0
+" vim-go end
