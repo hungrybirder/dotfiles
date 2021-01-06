@@ -44,6 +44,7 @@ local chain_complete_list = {
   comment = {},
   lua = {
     {complete_items = {'lsp'}},
+    {complete_items = {'buffers'}},
     {complete_items = {'path'}, triggered_only = {'./', '/'}},
   },
 }

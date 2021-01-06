@@ -189,10 +189,6 @@ inoremap <tab> <cmd>lua require'completion'.smart_tab()<CR>
 
 autocmd Filetype markdown,make lua require'completion'.on_attach()
 
-let g:UltiSnipsExpandTrigger="<c-l>"
-let g:UltiSnipsJumpForwardTrigger="<c-j>"
-let g:UltiSnipsJumpBackwardTrigger="<c-k>"
-
 noremap <Leader>pi :<c-u>PlugInstall<CR>
 noremap <Leader>pu :<c-u>PlugUpdate<CR>
 noremap <Leader>pc :<c-u>PlugClean<CR>
@@ -260,3 +256,9 @@ nnoremap <silent>]b :BufferLineCycleNext<CR>
 nnoremap <silent>[b :BufferLineCyclePrev<CR>
 nnoremap <silent>gb :BufferLinePick<CR>
 " bufferline end
+
+" snip
+let g:UltiSnipsExpandTrigger="<c-l>"
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+
