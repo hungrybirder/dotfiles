@@ -72,6 +72,11 @@ Plug 'rust-lang/rust.vim'
 Plug 'fatih/vim-go'
 Plug 'neoclide/jsonc.vim'
 
+" markdown
+Plug 'mzlogin/vim-markdown-toc'
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
+Plug 'iamcco/mathjax-support-for-mkdp'
+
 " debugger
 Plug 'puremourning/vimspector'
 Plug 'szw/vim-maximizer'
@@ -262,3 +267,7 @@ let g:UltiSnipsExpandTrigger="<c-l>"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 
+" markdown
+let g:vim_markdown_math = 1
+nmap <leader>md :MarkdownPreview<CR>
+" markdown end
