@@ -70,6 +70,17 @@ nnoremap <c-y> 3<c-y>
 vnoremap <c-e> 3<c-e>
 vnoremap <c-y> 3<c-y>
 
+" delete current line
+map <c-d> dd
+" delete current line in Insert Mode
+imap <c-d> <esc>ddi
+" exit insert mode
+inoremap jk <esc>
+
+" Keep search matches in the middle of the window.
+nnoremap n nzzzv
+nnoremap N Nzzzv
+
 nnoremap <leader>u :UndotreeShow<CR>
 nnoremap <Leader>+ :vertical resize +5<CR>
 nnoremap <Leader>- :vertical resize -5<CR>
