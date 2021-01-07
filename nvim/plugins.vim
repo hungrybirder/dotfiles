@@ -199,6 +199,7 @@ noremap <Leader>pu :<c-u>PlugUpdate<CR>
 noremap <Leader>pc :<c-u>PlugClean<CR>
 
 
+" echodoc
 func! EnableEchoDoc()
   call echodoc#enable()
   if has('nvim')
@@ -214,6 +215,7 @@ augroup MyEchoDoc
   autocmd!
   autocmd FileType go call EnableEchoDoc()
 augroup END
+" echodo end
 
 " clever-f
 map ; <Plug>(clever-f-repeat-forward)
