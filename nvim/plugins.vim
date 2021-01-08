@@ -63,7 +63,7 @@ Plug 'nvim-telescope/telescope-fzy-native.nvim'
 Plug 'nvim-telescope/telescope-vimspector.nvim'
 
 " coding utils
-Plug 'sbdchd/neoformat'
+Plug 'dense-analysis/ale'
 Plug 'tomtom/tcomment_vim'
 Plug 'mbbill/undotree'
 
@@ -160,14 +160,6 @@ fun! EmptyRegisters()
     endfor
 endfun
 
-let g:neoformat_enabled_python = ['yapf']
-let g:neoformat_enabled_go = ['goimports']
-let g:neoformat_enabled_ruby = ['']
-augroup fmt
-  autocmd!
-  autocmd BufWritePre * undojoin | Neoformat
-augroup END
-
 let g:completion_enable_snippet = 'UltiSnips'
 let g:completion_confirm_key = "\<C-y>"
 let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
@@ -257,9 +249,9 @@ let g:VM_leader = '\\'
 " bufferline
 set termguicolors
 lua require'bufferline'.setup()
-nnoremap <silent>]b :BufferLineCycleNext<CR>
-nnoremap <silent>[b :BufferLineCyclePrev<CR>
-nnoremap <silent>gb :BufferLinePick<CR>
+nnoremap <silent>]<space> <cmd>BufferLineCycleNext<CR>
+nnoremap <silent>[<space> <cmd>BufferLineCyclePrev<CR>
+nnoremap <silent>g<space> <cmd>BufferLinePick<CR>
 " bufferline end
 
 " snip
@@ -289,3 +281,31 @@ let g:go_fmt_command = "goimports"
 let g:go_fmt_autosave = 0
 let g:go_diagnostics_enabled = 0
 " vim-go end
+
+" ale
+let g:ale_set_quickfix = 0
+let g:ale_open_list = 0
+" let g:ale_linters = {
+" \ 'python':[],
+" \ 'java':[],
+" \ 'go': [],
+" \ 'markdown':[],
+" \ 'rst':['rstcheck'],
+" \ 'sh':['shellcheck'],
+" \ }
+let g:ale_linters = {}
+let g:ale_linters_explicit = 1
+let g:ale_fixers = {
+\ '*': ['remove_trailing_lines', 'trim_whitespace'],
+\ 'python': ['yapf'],
+\ 'go': ['goimports'],
+\ 'markdown':['remark-lint'],
+\ 'sh':['shfmt'],
+\ }
+let g:ale_lint_on_enter = 0
+let g:ale_fix_on_save = 1
+let g:ale_completion_enabled = 0
+" nmap <silent> <space>j <Plug>(ale_next_wrap)
+" nmap <silent> <space>k <Plug>(ale_previous_wrap)
+
+" ale end

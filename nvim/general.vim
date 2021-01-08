@@ -1,6 +1,7 @@
 syntax on
 filetype plugin indent on
 
+set list listchars=tab:› ,eol:¬,trail:•
 set exrc
 set guicursor=
 set number relativenumber
@@ -136,17 +137,6 @@ let g:fzf_branch_actions = {
       \ },
       \}
 
-fun! TrimWhitespace()
-    let l:save = winsaveview()
-    keeppatterns %s/\s\+$//e
-    call winrestview(l:save)
-endfun
-
-augroup THE_PRIMEAGEN
-    autocmd!
-    autocmd BufWritePre * :call TrimWhitespace()
-augroup END
-
 " quickfix
 " https://github.com/fatih/vim-go/issues/108#issuecomment-47450678
 autocmd FileType qf wincmd J
@@ -155,3 +145,18 @@ nnoremap <space>m :<C-U>cprevious<CR>
 " close quickfix
 noremap <silent> <space>c :<C-U>cclose<CR>
 " quickfix end
+
+fun! TrimWhitespace()
+    " 删除每行多余的空格
+    let l:save = winsaveview()
+    keeppatterns %s/\s\+$//e
+    call winrestview(l:save)
+endfun
+
+augroup MY_FILETYPE
+  au!
+  autocmd BufWritePre * :call TrimWhitespace()
+
+  autocmd FileType vim setlocal ts=2 sts=2 sw=2 et
+  autocmd FileType sh setlocal ts=4 sts=4 sw=4 et
+augroup end
