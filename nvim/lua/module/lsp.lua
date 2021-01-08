@@ -137,14 +137,16 @@ lspconfig.pyls.setup{
   settings = {
     pyls = {
       plugins = {
-        pyflakes = {enabled = false},
         pylint = {
           enabled = true,
           executable = "pylint",
         },
         yapf = {
           enabled = true,
-        }
+        },
+        pyflakes = {enabled = false},
+        pycodestyle = {enabled=false},
+        rope_completion = {enabled=false},
       }
     }
   }
