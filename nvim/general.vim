@@ -140,10 +140,10 @@ let g:fzf_branch_actions = {
 " quickfix
 " https://github.com/fatih/vim-go/issues/108#issuecomment-47450678
 autocmd FileType qf wincmd J
-nnoremap <space>n :<C-U>cnext<CR>
-nnoremap <space>m :<C-U>cprevious<CR>
+nnoremap ]q :<C-U>cnext<CR>
+nnoremap [q :<C-U>cprevious<CR>
 " close quickfix
-noremap <silent> <space>c :<C-U>cclose<CR>
+noremap <silent> <space>q :<C-U>cclose<CR>
 " quickfix end
 
 fun! TrimWhitespace()
