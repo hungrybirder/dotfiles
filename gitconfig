@@ -29,6 +29,8 @@
 	diffstat = diff --stat
 	st = status
 	clone = clone --recursive
+    co = checkout
+    br = branch
 [color "diff"]
 	meta = yellow
 	frag = magenta bold
