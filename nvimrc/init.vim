@@ -86,8 +86,8 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 Plug 'iamcco/mathjax-support-for-mkdp'
 
 " easymotion
-Plug 'easymotion/vim-easymotion'
-Plug 'haya14busa/incsearch.vim'
+" Plug 'easymotion/vim-easymotion'
+" Plug 'haya14busa/incsearch.vim'
 
 Plug 'liuchengxu/vim-which-key'
 Plug 'mbbill/undotree'
@@ -530,9 +530,9 @@ endif
 " nerdtreeend
 
 " easymotion
-let g:EasyMotion_smartcase = 1
-let g:incsearch#magic = '\v'
-nmap s <Plug>(easymotion-overwin-f)
+" let g:EasyMotion_smartcase = 1
+" let g:incsearch#magic = '\v'
+" nmap s <Plug>(easymotion-overwin-f)
 " nmap t <Plug>(easymotion-t2)
 " map  <Leader>w <Plug>(easymotion-bd-w)
 " nmap <Leader>w <Plug>(easymotion-overwin-w)
