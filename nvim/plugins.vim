@@ -260,6 +260,7 @@ let g:VM_leader = '\\'
 " bufferline
 set termguicolors
 lua require'bufferline'.setup()
+nnoremap <silent> gb :BufferLinePick<CR>
 " bufferline end
 
 " snip
