@@ -44,7 +44,6 @@ Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 
 Plug 'ervandew/supertab'
 
-Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'tomtom/tcomment_vim'
 " Plug 'gruvbox-community/gruvbox'
 Plug 'lifepillar/vim-gruvbox8'
@@ -55,20 +54,27 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'moll/vim-bbye'
 Plug 'junegunn/vim-easy-align'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-rhubarb'
 Plug 'junegunn/gv.vim'
-" 变更的跳转
-" ]c   Jump to next hunk.
-" [c   Jump to previous hunk.
-" ]C   Jump to last hunk.
-" [C   Jump to first hunk.
-Plug 'mhinz/vim-signify'
 Plug 'jamessan/vim-gnupg'
-Plug 'jiangmiao/auto-pairs'
 Plug 'cespare/vim-toml'
 Plug 'hotoo/pangu.vim' " 中文排版
 Plug 'avakhov/vim-yaml'
+
+" speedup editing
+Plug 'jiangmiao/auto-pairs'
+Plug 'mg979/vim-visual-multi', {'branch': 'master'}
+Plug 'rhysd/clever-f.vim'
+
+" powered by tpope
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-speeddating'
+Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-rhubarb'
+
+" git
+Plug 'tpope/vim-fugitive'
+Plug 'mhinz/vim-signify'
 
 " for markdown
 Plug 'plasticboy/vim-markdown'
@@ -88,7 +94,6 @@ Plug 'puremourning/vimspector'
 
 Plug 'tweekmonster/startuptime.vim'
 Plug 'kshenoy/vim-signature'
-Plug 'rhysd/clever-f.vim'
 call plug#end() " end
 
 " general
@@ -796,10 +801,10 @@ augroup END
 " quickfix
 " https://github.com/fatih/vim-go/issues/108#issuecomment-47450678
 autocmd FileType qf wincmd J
-nnoremap <space>n :<C-U>cnext<CR>
-nnoremap <space>m :<C-U>cprevious<CR>
 " close quickfix
-noremap <silent> <space>c :<C-U>cclose<CR>
+noremap <silent> <space>q :<C-U>cclose<CR>
+" close loclist
+noremap <silent> <space>l :<C-U>lclose<CR>
 " quickfix end
 
 " clever-f

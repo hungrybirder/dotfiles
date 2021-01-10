@@ -16,9 +16,19 @@ Plug 'moll/vim-bbye'
 
 " speedup editing
 Plug 'jiangmiao/auto-pairs'
-Plug 'tpope/vim-surround'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'rhysd/clever-f.vim'
+
+" powered by tpope
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-speeddating'
+Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-rhubarb'
+
+" git
+Plug 'tpope/vim-fugitive'
+Plug 'mhinz/vim-signify'
 
 " tagbar & nerdtree
 Plug 'preservim/tagbar'
@@ -43,10 +53,6 @@ Plug 'nvim-treesitter/nvim-treesitter-refactor'
 
 " sign marks
 Plug 'kshenoy/vim-signature'
-
-" git
-Plug 'tpope/vim-fugitive'
-Plug 'mhinz/vim-signify'
 
 " fzf
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -249,9 +255,6 @@ let g:VM_leader = '\\'
 " bufferline
 set termguicolors
 lua require'bufferline'.setup()
-nnoremap <silent>]<space> <cmd>BufferLineCycleNext<CR>
-nnoremap <silent>[<space> <cmd>BufferLineCyclePrev<CR>
-nnoremap <silent>g<space> <cmd>BufferLinePick<CR>
 " bufferline end
 
 " snip
