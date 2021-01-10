@@ -222,8 +222,8 @@ nnoremap <leader>Q :qa!<cr>
 " Act like D and C
 nnoremap Y y$
 " Keep search matches in the middle of the window.
-nnoremap n nzzzv
-nnoremap N Nzzzv
+" nnoremap n nzzzv
+" nnoremap N Nzzzv
 " easy move around windows
 nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
