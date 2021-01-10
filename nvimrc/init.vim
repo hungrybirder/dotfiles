@@ -76,6 +76,9 @@ Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-fugitive'
 Plug 'mhinz/vim-signify'
 
+" powered by svermeulen
+Plug 'svermeulen/vim-subversive'
+
 " for markdown
 Plug 'plasticboy/vim-markdown'
 Plug 'mzlogin/vim-markdown-toc'
@@ -410,6 +413,18 @@ let g:ale_completion_enabled = 0
 nmap <silent> <space>j <Plug>(ale_next_wrap)
 nmap <silent> <space>k <Plug>(ale_previous_wrap)
 " ale end
+
+" vim-subversive
+" s for substitute
+nmap s <plug>(SubversiveSubstitute)
+nmap ss <plug>(SubversiveSubstituteLine)
+nmap S <plug>(SubversiveSubstituteToEndOfLine)
+
+" <leader>s<motion1><motion2>
+nmap <leader>s <plug>(SubversiveSubstituteRange)
+xmap <leader>s <plug>(SubversiveSubstituteRange)
+nmap <leader>ss <plug>(SubversiveSubstituteWordRange)
+" vim-subversive end
 
 " markdown
 let g:vim_markdown_math = 1
