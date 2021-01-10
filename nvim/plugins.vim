@@ -32,6 +32,8 @@ Plug 'mhinz/vim-signify'
 
 " powered by svermeulen
 Plug 'svermeulen/vim-subversive'
+" Plug 'svermeulen/vim-cutlass'
+Plug 'svermeulen/vim-yoink'
 
 " tagbar & nerdtree
 Plug 'preservim/tagbar'
@@ -326,3 +328,8 @@ nmap <leader>s <plug>(SubversiveSubstituteRange)
 xmap <leader>s <plug>(SubversiveSubstituteRange)
 nmap <leader>ss <plug>(SubversiveSubstituteWordRange)
 " vim-subversive end
+
+" vim-yoink
+nmap [y <plug>(YoinkRotateBack)
+nmap ]y <plug>(YoinkRotateForward)
+" vim-yoink end
