@@ -97,6 +97,8 @@ Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 call plug#end()
 
+colorscheme gruvbox8
+highlight Normal guibg=none
 
 fun! GotoWindow(id)
     call win_gotoid(a:id)
@@ -151,6 +153,9 @@ nnoremap <silent> <leader>cf <cmd>lua vim.lsp.buf.formatting()<CR>
 nnoremap <silent> <leader>ca <cmd>lua vim.lsp.buf.code_action()<CR>
 nnoremap <silent><leader>j <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
 nnoremap <silent><leader>k <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
+
+" powered by ThePrimeagen
+nnoremap <leader>ps :lua require('telescope.builtin').grep_string({ search = vim.fn.input("Grep For > ") })<CR>
 
 nnoremap <leader>f :lua require('telescope').extensions.fzf_writer.files()<CR>
 nnoremap <leader>o :Telescope treesitter<CR>

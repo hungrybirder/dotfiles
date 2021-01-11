@@ -24,6 +24,7 @@ set termguicolors
 set scrolloff=8
 set noshowmode
 set completeopt=menuone,noinsert,noselect
+set colorcolumn=80
 set signcolumn=yes
 
 " Give more space for displaying messages.
@@ -35,8 +36,6 @@ set ttimeoutlen=10  " Time out on key codes
 
 " Don't pass messages to |ins-completion-menu|.
 set shortmess+=c
-
-set colorcolumn=80
 
 set clipboard& clipboard+=unnamed
 
@@ -109,8 +108,6 @@ augroup line_return
     \ endif
 augroup END
 
-
-colorscheme gruvbox8
 if executable('rg')
     let g:rg_derive_root='true'
 endif

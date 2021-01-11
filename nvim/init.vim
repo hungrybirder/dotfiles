@@ -5,11 +5,14 @@ let mapleader = ' '
 nmap <silent> <leader>ev :e $MYVIMRC<CR>
 nmap <silent> <leader>sv :so $MYVIMRC<CR>
 
-source $HOME/.config/nvim/plugins.vim
+" general setting
 source $HOME/.config/nvim/general.vim
+
+" load plugins
+source $HOME/.config/nvim/plugins.vim
+
 " source $HOME/cs/dotfiles/nvim/colors.vim
 
-" Load plugins config files
 for f in split(glob('~/.config/nvim/plugins.d/*.vim'), '\n')
 	exe 'source' f
 endfor
