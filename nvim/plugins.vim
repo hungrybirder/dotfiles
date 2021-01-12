@@ -1,5 +1,6 @@
 call plug#begin('~/.config/nvim/plugged')
 
+Plug 'liuchengxu/vim-which-key'
 Plug 'airblade/vim-rooter'
 Plug 'tweekmonster/startuptime.vim'
 
@@ -29,6 +30,7 @@ Plug 'tpope/vim-rhubarb'
 " git
 Plug 'tpope/vim-fugitive'
 Plug 'mhinz/vim-signify'
+Plug 'junegunn/gv.vim'
 
 " powered by svermeulen
 Plug 'svermeulen/vim-subversive'
@@ -100,6 +102,8 @@ call plug#end()
 colorscheme gruvbox8
 highlight Normal guibg=none
 
+nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
+
 fun! GotoWindow(id)
     call win_gotoid(a:id)
     MaximizerToggle
@@ -155,14 +159,15 @@ nnoremap <silent><leader>j <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
 nnoremap <silent><leader>k <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
 
 " powered by ThePrimeagen
-nnoremap <leader>ps :lua require('telescope.builtin').grep_string({ search = vim.fn.input("Grep For > ") })<CR>
+nnoremap <leader>ps <cmd>lua require('telescope.builtin').grep_string({ search = vim.fn.input("Grep For > ") })<CR>
 
-nnoremap <leader>f :lua require('telescope').extensions.fzf_writer.files()<CR>
-nnoremap <leader>o :Telescope treesitter<CR>
-nnoremap <leader>b :Telescope buffers<CR>
-nnoremap <leader>a :Telescope live_grep<CR>
-nnoremap <leader>r :Telescope lsp_references<CR>
-nnoremap <c-p> :Telescope git_files<CR>
+nnoremap <leader>f <cmd>lua require('telescope').extensions.fzf_writer.files()<CR>
+nnoremap <leader>o <cmd>Telescope treesitter<CR>
+nnoremap <leader>b <cmd>Telescope buffers<CR>
+nnoremap <leader>a <cmd>Telescope live_grep<CR>
+nnoremap <leader>pb <cmd>Telescope current_buffer_fuzzy_find<CR>
+nnoremap <leader>r <cmd>Telescope lsp_references<CR>
+nnoremap <c-p> <cmd>Telescope git_files<CR>
 
 nnoremap <leader>gh :diffget //3<CR>
 nnoremap <leader>gf :diffget //2<CR>
