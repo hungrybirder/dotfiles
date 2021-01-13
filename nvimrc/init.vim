@@ -507,7 +507,7 @@ endif
 " tagbar
 nnoremap <silent> <leader>2 :TagbarToggle<CR>
 let tags = "./tags"
-let g:tagbar_autofocus = 1
+let g:tagbar_autofocus = 0
 let g:tagbar_sort = 0
 "tagbar end
 
