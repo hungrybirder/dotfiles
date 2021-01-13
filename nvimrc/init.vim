@@ -296,12 +296,6 @@ nnoremap <c-s> :<c-u>update<cr>
 inoremap <c-s> <c-o>:update<cr>
 vnoremap <c-s> <esc>:update<cr>gv
 
-" disable F1
-noremap <Up> <Nop>
-noremap <Down> <Nop>
-noremap <Left> <Nop>
-noremap <Right> <Nop>
-
 nnoremap <Leader>+ :vertical resize +5<CR>
 nnoremap <Leader>- :vertical resize -5<CR>
 
@@ -321,7 +315,7 @@ let g:SuperTabDefaultCompletionType = "<c-n>"
 " 使用了 deoplete omni_patterns 不需要下面两行了
 " let g:SuperTabDefaultCompletionType = "context"
 " let g:SuperTabContextTextOmniPrecedence = ['&omnifunc', '&completefunc']
-let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsExpandTrigger="<c-l>"
 " 使用<c-j> <c-k> 做 Jump Forward Backward
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-k>"

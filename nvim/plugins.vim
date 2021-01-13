@@ -284,13 +284,15 @@ nmap <leader>md :MarkdownPreview<CR>
 " markdown end
 
 " vim-go: 关闭大部分功能
+" 还是vim-go功能更完善，暂时lsp&vim-go 都启动吧
+" lsp有diagnostic功能, 其他功能用vim-go
+let g:go_gopls_enabled = 1
 let g:go_addtags_transform = 'camelcase'
 let g:go_auto_type_info = 0
 let g:go_code_completion_enabled = 0
-let g:go_def_mapping_enabled = 0
+let g:go_def_mapping_enabled = 1
 let g:go_doc_keywordprg_enabled = 0 "disabled, using K lsp hover()
-let g:go_doc_popup_window = 1
-let g:go_gopls_enabled = 0 "using lsp
+let g:go_doc_popup_window = 0
 let g:go_list_type = "quickfix"
 let g:go_mod_fmt_autosave = 0
 let g:go_textobj_enabled = 0
