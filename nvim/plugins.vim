@@ -269,7 +269,7 @@ let g:VM_leader = '\\'
 
 " bufferline
 set termguicolors
-lua require'bufferline'.setup()
+lua require'bufferline'.setup{ options={diagnostics = "nvim_lsp"} }
 nnoremap <silent> gb :BufferLinePick<CR>
 " bufferline end
 
