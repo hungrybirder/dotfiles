@@ -227,6 +227,7 @@ endfun
 augroup MyEchoDoc
   autocmd!
   autocmd FileType go call EnableEchoDoc()
+  autocmd FileType java call EnableEchoDoc()
 augroup END
 " echodo end
 
@@ -236,8 +237,18 @@ map , <Plug>(clever-f-repeat-back)
 " end
 
 " auto-pairs
+" macos iTerm2 设置Meta key方法 Preferences=>Profiles=>Keys Left Option Key: Esc+
+"
+" toggle  <M-p>
+" fast wrap word <M-e>
+" --- How to insert parens purely? ---
+" There are 3 ways:
+"     1. Use Ctrl-V ) to insert paren without trigger the plugin.
+"     2. Use Alt-P to turn off the plugin.
+"     3. Use DEL or <C-O>x to delete the character insert by plugin.
 let g:AutoPairsFlyMode = 1
-let g:AutoPairsShortcutToggle = '<leader>3'
+" 禁止MapSpace
+let g:AutoPairsMapSpace = 0
 " auto-pairs end
 
 " vim-bbye
