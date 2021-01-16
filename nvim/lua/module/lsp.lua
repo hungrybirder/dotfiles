@@ -170,8 +170,8 @@ local get_lua_runtime = function()
   local rtps = vim.api.nvim_list_runtime_paths()
   local extra_paths = {
     vim.fn.expand("$VIMRUNTIME"),
-    "/usr/local/share",
-    "/opt/homebrew/share",
+    -- "/usr/local/share",
+    -- "/opt/homebrew/share",
   }
   for _, path in pairs(extra_paths) do
       rtps[#rtps+1] = path
@@ -182,6 +182,10 @@ local get_lua_runtime = function()
     if vim.fn.isdirectory(lua_path) == 1 then
       result[lua_path] = true
     end
+  end
+  local local_luarocks = require("os").getenv("HOME") .. "/" .. ".luarocks/share/lua/5.1"
+  if vim.fn.isdirectory(local_luarocks) == 1 then
+    result[local_luarocks] = true
   end
   return result
 end
