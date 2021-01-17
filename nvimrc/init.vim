@@ -2,7 +2,7 @@ set nocompatible
 
 " plugins
 call plug#begin('~/cs/dotfiles/nvimrc/plugged')
-
+Plug 'schickling/vim-bufonly'
 " deoplete framework
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'Shougo/neco-vim' " vimscripts for deoplete complete

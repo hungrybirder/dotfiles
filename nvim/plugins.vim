@@ -14,6 +14,8 @@ Plug 'akinsho/nvim-bufferline.lua'
 
 " delete buffer without closing windows
 Plug 'moll/vim-bbye'
+" Delete all the buffers except the current buffer.
+Plug 'schickling/vim-bufonly'
 
 " speedup editing
 Plug 'jiangmiao/auto-pairs'
@@ -76,9 +78,11 @@ Plug 'nvim-telescope/telescope-fzy-native.nvim'
 Plug 'nvim-telescope/telescope-vimspector.nvim'
 
 " coding utils
+" Plug 'editorconfig/editorconfig-vim'
 Plug 'dense-analysis/ale'
 Plug 'tomtom/tcomment_vim'
 Plug 'mbbill/undotree'
+Plug 'AndrewRadev/splitjoin.vim' "gS gJ
 
 " langs
 Plug 'rust-lang/rust.vim'
