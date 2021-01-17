@@ -172,6 +172,7 @@ nnoremap <leader>a <cmd>Telescope live_grep<CR>
 nnoremap <leader>pb <cmd>Telescope current_buffer_fuzzy_find<CR>
 nnoremap <leader>r <cmd>Telescope lsp_references<CR>
 nnoremap <c-p> <cmd>Telescope git_files<CR>
+nnoremap <leader>ws <cmd>lua require('telescope.builtin').lsp_workspace_symbols{query="*"}<CR>
 
 nnoremap <leader>gh :diffget //3<CR>
 nnoremap <leader>gf :diffget //2<CR>
