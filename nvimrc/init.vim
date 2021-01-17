@@ -414,8 +414,8 @@ let g:ale_echo_msg_format = '[%code%] %s [%severity%]'
 let g:ale_lint_on_enter = 1
 let g:ale_fix_on_save = 1
 let g:ale_completion_enabled = 0
-nmap <silent> <space>j <Plug>(ale_next_wrap)
-nmap <silent> <space>k <Plug>(ale_previous_wrap)
+nmap <silent> ]d <Plug>(ale_next_wrap)
+nmap <silent> [d <Plug>(ale_previous_wrap)
 " ale end
 
 " vim-subversive

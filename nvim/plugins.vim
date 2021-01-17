@@ -159,8 +159,8 @@ nnoremap <silent> K :lua vim.lsp.buf.hover()<CR>
 nnoremap <silent> <leader>sd <cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>
 nnoremap <silent> <leader>cf <cmd>lua vim.lsp.buf.formatting()<CR>
 nnoremap <silent> <leader>ca <cmd>lua vim.lsp.buf.code_action()<CR>
-nnoremap <silent><leader>j <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
-nnoremap <silent><leader>k <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
+nnoremap <silent> ]d <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
+nnoremap <silent> [d <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
 
 " powered by ThePrimeagen
 nnoremap <leader>ps <cmd>lua require('telescope.builtin').grep_string({ search = vim.fn.input("Grep For > ") })<CR>
