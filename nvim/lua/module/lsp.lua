@@ -207,7 +207,8 @@ lspconfig.sumneko_lua.setup{
         globals = { "vim" },
       },
       workspace = {
-        library = get_lua_runtime()
+        library = get_lua_runtime(),
+        preloadFileSize = 1024, -- KB
       },
     },
   }
