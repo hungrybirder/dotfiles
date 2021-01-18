@@ -290,6 +290,10 @@ let g:VM_leader = '\\'
 set termguicolors
 lua require'bufferline'.setup{ options={diagnostics = "nvim_lsp", sort_by="directory"} }
 nnoremap <silent> gb :BufferLinePick<CR>
+
+" overrite vim-vim-unimpaired ]b [b
+nnoremap <silent>]b :BufferLineCycleNext<CR>
+nnoremap <silent>[b :BufferLineCyclePrev<CR>
 " bufferline end
 
 " snip
