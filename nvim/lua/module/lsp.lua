@@ -121,7 +121,6 @@ local servers = {
   "html",
   "cmake",
   "dockerls",
-  "sqlls",
   "vuels",
   "tsserver",
   "vimls",
@@ -131,6 +130,10 @@ local servers = {
 for _,name in pairs(servers) do
   lspconfig[name].setup{ on_attach=on_attach }
 end
+
+lspconfig.sqlls.setup{
+  cmd = {"sql-language-server", "up", "--method", "stdio"};
+}
 
 lspconfig.pyls.setup{
   on_attach=on_attach,

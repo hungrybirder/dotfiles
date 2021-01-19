@@ -322,7 +322,7 @@ let g:go_textobj_enabled = 0
 let g:go_metalinter_autosave_enabled = []
 let g:go_metalinter_enabled = []
 let g:go_fmt_command = "goimports"
-let g:go_fmt_autosave = 0
+let g:go_fmt_autosave = 1
 let g:go_diagnostics_enabled = 0
 " vim-go end
 
