@@ -135,25 +135,46 @@ lspconfig.sqlls.setup{
   cmd = {"sql-language-server", "up", "--method", "stdio"};
 }
 
-lspconfig.pyls.setup{
+lspconfig.pyright.setup{
   on_attach=on_attach,
   settings = {
-    pyls = {
-      plugins = {
-        pylint = {
-          enabled = true,
-          executable = "pylint",
-        },
-        yapf = {
-          enabled = true,
-        },
-        pyflakes = {enabled = false},
-        pycodestyle = {enabled=false},
-        rope_completion = {enabled=false},
-      }
+    python = {
+      analysis = {
+        autoSearchPaths = true,
+        useLibraryCodeForTypes = true
+      },
+      linting = {
+        enable = true,
+        pylintEnabled = true,
+      },
+      formatting = {
+        provider = "yapf",
+      },
     }
   }
 }
+
+-- lspconfig.pyls.setup{
+--   on_attach=on_attach,
+--   settings = {
+--     pyls = {
+--       plugins = {
+--         pycodestyle = {
+--           enabled = false,
+--         },
+--         pylint = {
+--           enabled = true,
+--           executable = "pylint",
+--         },
+--         yapf = {
+--           enabled = true,
+--         },
+--         -- pyflakes = {enabled = false},
+--         -- rope_completion = {enabled=false},
+--       }
+--     }
+--   }
+-- }
 
 lspconfig.clangd.setup{
   on_attach=on_attach,

@@ -390,7 +390,7 @@ let g:float_preview#docked = 0
 let g:ale_set_quickfix = 1
 let g:ale_open_list = 0
 let g:ale_linters = {
-\ 'python':['pylint'],
+\ 'python':['pylint', 'pyright'],
 \ 'javascript':['eslint'],
 \ 'typescript':['eslint', 'tsserver'],
 \ 'java':[],
