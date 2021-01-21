@@ -21,6 +21,7 @@ Plug 'schickling/vim-bufonly'
 Plug 'jiangmiao/auto-pairs'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'rhysd/clever-f.vim'
+Plug 'easymotion/vim-easymotion'
 
 " powered by tpope
 Plug 'tpope/vim-repeat'
@@ -242,7 +243,12 @@ augroup END
 " clever-f
 map ; <Plug>(clever-f-repeat-forward)
 map , <Plug>(clever-f-repeat-back)
-" end
+" clever-fend
+
+" easymotion
+let g:EasyMotion_smartcase = 1
+nmap <leader>w <Plug>(easymotion-bd-w)
+" easymotion end
 
 " auto-pairs
 " macos iTerm2 设置Meta key方法 Preferences=>Profiles=>Keys Left Option Key: Esc+
