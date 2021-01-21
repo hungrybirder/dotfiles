@@ -225,10 +225,10 @@ nnoremap Y y$
 " nnoremap n nzzzv
 " nnoremap N Nzzzv
 " easy move around windows
-nnoremap <c-j> <c-w>j
-nnoremap <c-k> <c-w>k
-nnoremap <c-l> <c-w>l
-nnoremap <c-h> <c-w>h
+nnoremap <leader>h :wincmd h<CR>
+nnoremap <leader>j :wincmd j<CR>
+nnoremap <leader>k :wincmd k<CR>
+nnoremap <leader>l :wincmd l<CR>
 " ctrl_e ctrl_y 3 lines
 nnoremap <c-e> 3<c-e>
 nnoremap <c-y> 3<c-y>
@@ -477,7 +477,6 @@ let g:Lf_PreviewResult = {'Function': 0, 'BufTag': 0 }
 " <C-T> open in new tabpage
 noremap <silent> <space>f :<C-U>LeaderfFile<CR>
 noremap <silent> <space>M :<C-U>LeaderfMru<CR>
-noremap <silent> <space>l :<C-U>LeaderfLine<CR>
 noremap <silent> <space>o :<C-U>LeaderfFunction<CR>
 noremap <silent> <space>b :<C-U>LeaderfBuffer<CR>
 noremap <silent> <space>t :<C-U>LeaderfBufTagAll<CR>
@@ -823,7 +822,7 @@ autocmd FileType qf wincmd J
 " close quickfix
 noremap <silent> <space>q :<C-U>cclose<CR>
 " close loclist
-noremap <silent> <space>l :<C-U>lclose<CR>
+" noremap <silent> <space>l :<C-U>lclose<CR>
 " quickfix end
 
 " clever-f
