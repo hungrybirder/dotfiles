@@ -479,9 +479,9 @@ noremap <silent> <space>f :<C-U>LeaderfFile<CR>
 noremap <silent> <space>M :<C-U>LeaderfMru<CR>
 noremap <silent> <space>o :<C-U>LeaderfFunction<CR>
 noremap <silent> <space>b :<C-U>LeaderfBuffer<CR>
-noremap <silent> <space>t :<C-U>LeaderfBufTagAll<CR>
-noremap <silent> <space>T :<C-U>LeaderfTag<CR>
-noremap <silent> <space>w :<C-U>LeaderfWindow<CR>
+" noremap <silent> <space>t :<C-U>LeaderfBufTagAll<CR>
+" noremap <silent> <space>T :<C-U>LeaderfTag<CR>
+" noremap <silent> <space>w :<C-U>LeaderfWindow<CR>
 noremap <silent> <F1> :<C-U>LeaderfHelp<CR>
 noremap <silent> <F12> :<C-U>LeaderfFunctionAll<CR>
 noremap <silent> <space>a :<C-U><C-R>=printf("Leaderf rg %s", "")<CR><CR>
