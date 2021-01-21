@@ -140,7 +140,7 @@ autocmd FileType qf wincmd J
 " close quickfix
 noremap <silent> <space>q :<C-U>cclose<CR>
 " close loclist
-noremap <silent> <space>l :<C-U>lclose<CR>
+" noremap <silent> <space>l :<C-U>lclose<CR>
 " quickfix end
 
 fun! TrimWhitespace()
