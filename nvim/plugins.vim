@@ -337,11 +337,13 @@ let g:ale_open_list = 0
 " \ 'rst':['rstcheck'],
 " \ 'sh':['shellcheck'],
 " \ }
-let g:ale_linters = {}
+let g:ale_linters = {
+\ 'python': ['pylint', 'pyright'],
+\ }
 let g:ale_linters_explicit = 1
 let g:ale_fixers = {
 \ '*': ['remove_trailing_lines', 'trim_whitespace'],
-\ 'python': ['yapf'],
+\ 'python': ['yapf', 'pyright'],
 \ 'go': ['goimports'],
 \ 'markdown':['remark-lint'],
 \ 'sh':['shfmt'],
