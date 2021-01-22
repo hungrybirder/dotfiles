@@ -157,3 +157,15 @@ augroup MY_FILETYPE
   autocmd FileType vim setlocal ts=2 sts=2 sw=2 et
   autocmd FileType sh setlocal ts=4 sts=4 sw=4 et
 augroup end
+
+
+map <leader>z :call ToggleFold()<CR>
+func! ToggleFold()
+    if &foldlevel == 0
+        set foldlevel=99
+        echo 'unfold'
+    else
+        set foldlevel=0
+        echo 'fold'
+    endif
+endfunc
