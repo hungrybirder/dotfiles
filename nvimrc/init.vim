@@ -476,7 +476,7 @@ let g:Lf_PreviewResult = {'Function': 0, 'BufTag': 0 }
 " <C-]> open in vertical split window
 " <C-T> open in new tabpage
 noremap <silent> <space>f :<C-U>LeaderfFile<CR>
-noremap <silent> <space>M :<C-U>LeaderfMru<CR>
+noremap <silent> <space>m :<C-U>LeaderfMru<CR>
 noremap <silent> <space>o :<C-U>LeaderfFunction<CR>
 noremap <silent> <space>b :<C-U>LeaderfBuffer<CR>
 " noremap <silent> <space>t :<C-U>LeaderfBufTagAll<CR>
@@ -710,8 +710,8 @@ endfunction
 
 " vim-go end
 " maximizer
-nnoremap <silent>,m :MaximizerToggle<CR>
-vnoremap <silent>,m :MaximizerToggle<CR>gv
+nnoremap <silent> <leader>M :MaximizerToggle<CR>
+vnoremap <silent> <leader>M :MaximizerToggle<CR>gv
 " inoremap <silent>,m <C-o>:MaximizerToggle<CR>
 " maximizer end
 

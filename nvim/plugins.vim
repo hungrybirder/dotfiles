@@ -170,6 +170,7 @@ nnoremap <silent> [d <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
 nnoremap <leader>ps <cmd>lua require('telescope.builtin').grep_string({ search = vim.fn.input("Grep For > ") })<CR>
 
 nnoremap <leader>f <cmd>lua require('telescope').extensions.fzf_writer.files()<CR>
+nnoremap <leader>m <cmd>Telescope oldfiles<CR>
 nnoremap <leader>o <cmd>Telescope treesitter<CR>
 nnoremap <leader>b <cmd>Telescope buffers<CR>
 nnoremap <leader>a <cmd>Telescope live_grep<CR>
