@@ -247,6 +247,7 @@ map , <Plug>(clever-f-repeat-back)
 
 " easymotion
 let g:EasyMotion_smartcase = 1
+let g:EasyMotion_do_mapping = 0
 nmap <leader>w <Plug>(easymotion-bd-w)
 " easymotion end
 
