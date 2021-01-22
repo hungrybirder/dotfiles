@@ -257,87 +257,94 @@ lspconfig.solargraph.setup{
 
 
 -- diagnosticls setup
+--
+-- local markdown_linter = {
+--   sourceName = "markdownlint",
+--   command = 'markdownlint',
+--   rootPatterns = { '.git' },
+--   isStderr = true,
+--   debounce = 100,
+--   args = { '--stdin' },
+--   offsetLine = 0,
+--   offsetColumn = 0,
+--   securities = {
+--     undefined = 'hint'
+--   },
+--   formatLines = 1,
+--   formatPattern = {
+--     '^.*:(\\d+)\\s+(.*)$',
+--     {
+--       line = 1,
+--       column = -1,
+--       message = 2,
+--     }
+--   }
+-- }
+--
+-- local shell_linter = {
+--   sourceName = "shellcheck",
+--   command = "shellcheck",
+--   debounce = 100,
+--   isStdout = true,
+--   isStderr = false,
+--   args = { "--format=gcc", "-" },
+--   offsetLine = 0,
+--   offsetColumn = 0,
+--   formatLines = 1,
+--   formatPattern = {
+--     "^([^:]+):(\\d+):(\\d+):\\s+([^:]+):\\s+(.*)$",
+--     {
+--       sourceName = 1,
+--       sourceNameFilter = true,
+--       line = 2,
+--       column = 3,
+--       endLine = 2,
+--       endColumn = 3,
+--       message = {5},
+--       security = 4
+--     }
+--   },
+--   securities = {
+--     error = "error",
+--     warning = "warning",
+--     note = "info",
+--   }
+-- }
+--
+-- local diag_linters = {
+--     markdown = markdown_linter,
+--     sh = shell_linter,
+-- }
+--
+-- local diag_filetypes = {
+--   sh = "shellcheck",
+--   markdown = "markdownlint",
+-- }
+--
+-- local diag_format_filetypes = {
+--   markdown = 'remark',
+--   sh = 'shfmt',
+-- }
+--
+-- local diag_formatters = {
+--   remark = {
+--     command = 'remark',
+--   },
+--   shfmt = {
+--     command = 'shfmt',
+--     args = { "-i 4" }
+--   },
+-- }
 
-local markdown_linter = {
-  sourceName = "markdownlint",
-  command = 'markdownlint',
-  rootPatterns = { '.git' },
-  isStderr = true,
-  debounce = 100,
-  args = { '--stdin' },
-  offsetLine = 0,
-  offsetColumn = 0,
-  securities = {
-    undefined = 'hint'
-  },
-  formatLines = 1,
-  formatPattern = {
-    '^.*:(\\d+)\\s+(.*)$',
-    {
-      line = 1,
-      column = -1,
-      message = 2,
-    }
-  }
-}
-
-local shell_linter = {
-  sourceName = "shellcheck",
-  command = "shellcheck",
-  debounce = 100,
-  args = { "--format=gcc", "-" },
-  offsetLine = 0,
-  offsetColumn = 0,
-  formatLines = 1,
-  formatPattern = {
-    "^[^:]+:(\\d+):(\\d+):\\s+([^:]+):\\s+(.*)$",
-    {
-      line = 1,
-      column = 2,
-      message = 4,
-      security = 3
-    }
-  },
-  securities = {
-    error = "error",
-    warning = "warning",
-  }
-}
-
-local diag_linters = {
-    markdown = markdown_linter,
-    sh = shell_linter,
-}
-
-local diag_filetypes = {
-  sh = "shellcheck",
-  markdown = "markdownlint",
-}
-
-local diag_format_filetypes = {
-  markdown = 'remark',
-  sh = 'shfmt',
-}
-
-local diag_formatters = {
-  remark = {
-    command = 'remark',
-  },
-  shfmt = {
-    command = 'shfmt',
-    args = { "-i 4" }
-  },
-}
-
-lspconfig.diagnosticls.setup{
-  cmd = { "diagnostic-languageserver", "--stdio" },
-  filetypes = { "sh", "markdown" },
-  on_attach = on_attach,
-  init_options = {
-    filetypes = diag_filetypes,
-    linters = diag_linters,
-    formatFiletypes = diag_format_filetypes,
-    formatters = diag_formatters,
-  },
-}
+-- lspconfig.diagnosticls.setup{
+--   cmd = { "diagnostic-languageserver", "--stdio" },
+--   filetypes = { "sh", "markdown" },
+--   on_attach = on_attach,
+--   init_options = {
+--     filetypes = diag_filetypes,
+--     linters = diag_linters,
+--     formatFiletypes = diag_format_filetypes,
+--     formatters = diag_formatters,
+--   },
+-- }
 -- diagnosticls setup end

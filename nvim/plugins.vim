@@ -238,6 +238,7 @@ augroup MyEchoDoc
   autocmd!
   autocmd FileType go call EnableEchoDoc()
   autocmd FileType java call EnableEchoDoc()
+  " autocmd FileType python call EnableEchoDoc()
 augroup END
 " echodo end
 
@@ -347,6 +348,7 @@ let g:ale_open_list = 0
 " \ }
 let g:ale_linters = {
 \ 'python': ['pylint', 'pyright'],
+\ 'sh': ['shellcheck'],
 \ }
 let g:ale_linters_explicit = 1
 let g:ale_fixers = {
