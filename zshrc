@@ -63,7 +63,7 @@ alias pc="proxychains4"
 
 alias mvn="mvn -Denforcer.skip=true -DdownloadSources=true "
 
-export EDITOR="/usr/local/bin/vim"
+export EDITOR="nvim"
 
 disable_http_proxy() {
   unset http_proxy
