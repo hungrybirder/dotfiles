@@ -1,6 +1,6 @@
 call plug#begin('~/.config/nvim/plugged')
 
-Plug 'liuchengxu/vim-which-key'
+" Plug 'liuchengxu/vim-which-key'
 Plug 'airblade/vim-rooter'
 Plug 'tweekmonster/startuptime.vim'
 
@@ -108,7 +108,7 @@ call plug#end()
 colorscheme gruvbox8
 highlight Normal guibg=none
 
-nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
+" nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
 
 fun! GotoWindow(id)
     call win_gotoid(a:id)

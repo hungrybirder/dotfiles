@@ -89,7 +89,7 @@ Plug 'iamcco/mathjax-support-for-mkdp'
 Plug 'easymotion/vim-easymotion'
 " Plug 'haya14busa/incsearch.vim'
 
-Plug 'liuchengxu/vim-which-key'
+" Plug 'liuchengxu/vim-which-key'
 Plug 'mbbill/undotree'
 
 Plug 'szw/vim-maximizer'
@@ -106,7 +106,7 @@ let mapleader = " "
 nnoremap <silent><leader>sv :so ~/codes/dotfiles/nvimrc/init.vim<CR>
 nnoremap <silent><leader>ev :edit ~/codes/dotfiles/nvimrc/init.vim<CR>
 
-nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
+" nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
 
 augroup line_return
   au!
