@@ -140,9 +140,18 @@ autocmd FileType qf wincmd J
 " close quickfix
 noremap <silent> <space>q :<C-U>cclose<CR>
 " close loclist
-" noremap <silent> <space>l :<C-U>lclose<CR>
+noremap <silent> <space>l :<C-U>lclose<CR>
 " quickfix end
 
+" powered by ThePrimeagen
+fun! EmptyRegisters()
+    let regs=split('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789/-"', '\zs')
+    for r in regs
+        call setreg(r, [])
+    endfor
+endfun
+
+" powered by ThePrimeagen
 fun! TrimWhitespace()
     " 删除每行多余的空格
     let l:save = winsaveview()

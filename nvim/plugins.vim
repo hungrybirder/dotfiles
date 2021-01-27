@@ -151,45 +151,25 @@ nnoremap <leader>M :MaximizerToggle!<CR>
 " <Plug>VimspectorPause
 " <Plug>VimspectorAddFunctionBreakpoint
 
-nnoremap <silent> <leader>d :lua vim.lsp.buf.definition()<CR>
-nnoremap <silent> <leader>i :lua vim.lsp.buf.implementation()<CR>
-nnoremap <silent> <leader>sh :lua vim.lsp.buf.signature_help()<CR>
-nnoremap <silent> <leader>rr :lua vim.lsp.buf.references()<CR>
-nnoremap <silent> <leader>rn :lua vim.lsp.buf.rename()<CR>
-nnoremap <silent> K :lua vim.lsp.buf.hover()<CR>
-" nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
-" nnoremap <silent> <leader>ca :lua vim.lsp.buf.code_action()<CR>
-" nnoremap <silent> <leader>sd <cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>
-nnoremap <silent> <leader>cf <cmd>lua vim.lsp.buf.formatting()<CR>
-nnoremap <silent> <leader>ca <cmd>lua vim.lsp.buf.code_action()<CR>
-nnoremap <silent> <leader>cs <cmd>Telescope lsp_document_symbols<CR>
-nnoremap <silent> ]d <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
-nnoremap <silent> [d <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
-
 " powered by ThePrimeagen
 nnoremap <leader>ps <cmd>lua require('telescope.builtin').grep_string({ search = vim.fn.input("Grep For > ") })<CR>
 
-nnoremap <leader>f <cmd>lua require('telescope').extensions.fzf_writer.files()<CR>
-nnoremap <leader>m <cmd>Telescope oldfiles<CR>
-nnoremap <leader>o <cmd>Telescope treesitter<CR>
-nnoremap <leader>b <cmd>Telescope buffers<CR>
-nnoremap <leader>a <cmd>Telescope live_grep<CR>
-nnoremap <leader>pb <cmd>Telescope current_buffer_fuzzy_find<CR>
-nnoremap <leader>r <cmd>Telescope lsp_references<CR>
-nnoremap <c-p> <cmd>Telescope git_files<CR>
-nnoremap <leader>ws <cmd>lua require('telescope.builtin').lsp_workspace_symbols{query="*"}<CR>
+nnoremap <silent> <leader>f  <cmd>lua require('telescope').extensions.fzf_writer.files()<CR>
+nnoremap <silent> <leader>m  <cmd>Telescope oldfiles<CR>
+nnoremap <silent> <leader>o  <cmd>Telescope treesitter<CR>
+nnoremap <silent> <leader>b  <cmd>Telescope buffers<CR>
+nnoremap <silent> <leader>a  <cmd>Telescope live_grep<CR>
+nnoremap <silent> <leader>pb <cmd>Telescope current_buffer_fuzzy_find<CR>
+nnoremap <silent> <leader>r  <cmd>Telescope lsp_references<CR>
+nnoremap <silent> <leader>cs <cmd>Telescope lsp_document_symbols<CR>
+nnoremap <silent> <leader>ws <cmd>lua require('telescope.builtin').lsp_workspace_symbols{query="*"}<CR>
+nnoremap <silent> <c-p> <cmd>Telescope git_files<CR>
 
 nnoremap <leader>gh :diffget //3<CR>
 nnoremap <leader>gf :diffget //2<CR>
 nnoremap <leader>gs :G<CR>
 nnoremap <leader>gc :GBranches<CR>
 nnoremap <leader>ga :Git fetch --all<CR>
-fun! EmptyRegisters()
-    let regs=split('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789/-"', '\zs')
-    for r in regs
-        call setreg(r, [])
-    endfor
-endfun
 
 let g:completion_enable_snippet = 'UltiSnips'
 let g:completion_confirm_key = "\<C-y>"
