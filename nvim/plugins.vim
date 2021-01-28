@@ -103,6 +103,11 @@ Plug 'szw/vim-maximizer'
 " snippets
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
+
+" Terminal
+Plug 'kassio/neoterm'
+" tmux
+Plug 'christoomey/vim-tmux-navigator'
 call plug#end()
 
 colorscheme gruvbox8
@@ -361,3 +366,15 @@ nmap <leader>ss <plug>(SubversiveSubstituteWordRange)
 nmap [y <plug>(YoinkRotateBack)
 nmap ]y <plug>(YoinkRotateForward)
 " vim-yoink end
+
+" neoterm
+let g:neoterm_default_mod = 'vertical'
+let g:neoterm_size = 60
+let g:neoterm_autoinsert = 1
+nnoremap <c-q> <cmd>Ttoggle<CR>
+inoremap <c-q> <ESC>:Ttoggle<CR>
+tnoremap <c-q> <c-\><c-n>:Ttoggle<CR>
+let g:neoterm_term_per_tab = 1
+
+tnoremap <Esc> <C-\><C-n>
+"neoterm end
