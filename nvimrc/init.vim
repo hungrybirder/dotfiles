@@ -756,6 +756,7 @@ let g:vimspector_sign_priority = {
   \    'vimspectorPC':         999,
   \ }
 
+let g:vimspector_base_dir = expand('$HOME/.config/vimspector-config')
 nnoremap <leader>M :MaximizerToggle!<CR>
 nnoremap <leader>da :call vimspector#Launch()<CR>
 nnoremap <leader>dd :TestNearest -strategy=jest<CR>
@@ -772,7 +773,7 @@ nnoremap <M-k> :call vimspector#StepOut()<CR>
 nnoremap <M-l> :call vimspector#StepInto()<CR>
 nnoremap <M-j> :call vimspector#StepOver()<CR>
 nnoremap <leader>d_ :call vimspector#Restart()<CR>
-nnoremap <leader>dn :call vimspector#Continue()<CR
+nnoremap <leader>dn :call vimspector#Continue()<CR>
 nnoremap <leader>drc :call vimspector#RunToCursor()<CR>
 nnoremap <leader>dh :call vimspector#ToggleBreakpoint()<CR>
 nnoremap <leader>de :call vimspector#ToggleConditionalBreakpoint()<CR>
