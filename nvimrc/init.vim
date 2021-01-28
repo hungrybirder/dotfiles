@@ -454,7 +454,10 @@ let g:jedi#completions_enabled = 0
 let g:jedi#auto_vim_configuration = 0
 let g:jedi#smart_auto_mappings = 0
 let g:jedi#show_call_signatures = 0
-let g:jedi#usages_command = "<space>r"
+let g:jedi#usages_command = "gr"
+let g:jedi#goto_command  = "gd"
+let g:jedi#rename_command = '<space>rn'
+let g:jedi#usages_command = 'gr'
 " deoplete-jedi & jedi end
 
 " vim-visual-multi
