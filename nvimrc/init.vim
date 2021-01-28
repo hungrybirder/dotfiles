@@ -741,32 +741,41 @@ let g:vimspector_sign_priority = {
 fun GotoWindow(id)
     call win_gotoid(a:id)
     MaximizerToggle
-  endfun
+endfun
 
-" Debugger remaps
-nnoremap <leader>dd :call vimspector#Launch()<CR>
+func! AddToWatch()
+  let word = expand("<cexpr>")
+  call vimspector#AddWatch(word)
+endfun
+
+let g:vimspector_enable_mappings = 'HUMAN'
+let g:vimspector_sign_priority = {
+  \    'vimspectorBP':         12,
+  \    'vimspectorBPCond':     11,
+  \    'vimspectorBPDisabled': 10,
+  \    'vimspectorPC':         999,
+  \ }
+
+nnoremap <leader>M :MaximizerToggle!<CR>
+nnoremap <leader>da :call vimspector#Launch()<CR>
+nnoremap <leader>dd :TestNearest -strategy=jest<CR>
 nnoremap <leader>dc :call GotoWindow(g:vimspector_session_windows.code)<CR>
 nnoremap <leader>dt :call GotoWindow(g:vimspector_session_windows.tagpage)<CR>
 nnoremap <leader>dv :call GotoWindow(g:vimspector_session_windows.variables)<CR>
 nnoremap <leader>dw :call GotoWindow(g:vimspector_session_windows.watches)<CR>
 nnoremap <leader>ds :call GotoWindow(g:vimspector_session_windows.stack_trace)<CR>
 nnoremap <leader>do :call GotoWindow(g:vimspector_session_windows.output)<CR>
-nnoremap <leader>de :call vimspector#Reset()<CR>
-
-nnoremap <leader>dtcb :call vimspector#CleanLineBreakpoint()<CR>
-
-nmap <leader>dl <Plug>VimspectorStepInto
-nmap <leader>dj <Plug>VimspectorStepOver
-nmap <leader>dk <Plug>VimspectorStepOut
-nmap <leader>d_ <Plug>VimspectorRestart
-nnoremap <leader>d<space> :call vimspector#Continue()<CR>
-
-nmap <leader>drc <Plug>VimspectorRunToCursor
-nmap <leader>dbp <Plug>VimspectorToggleBreakpoint
-nmap <leader>dcbp <Plug>VimspectorToggleConditionalBreakpoint
-" <Plug>VimspectorStop
-" <Plug>VimspectorPause
-" <Plug>VimspectorAddFunctionBreakpoint
+nnoremap <leader>d? :call AddToWatch()<CR>
+nnoremap <leader>dx :call vimspector#Reset()<CR>
+nnoremap <leader>dX :call vimspector#ClearBreakpoints()<CR>
+nnoremap <M-k> :call vimspector#StepOut()<CR>
+nnoremap <M-l> :call vimspector#StepInto()<CR>
+nnoremap <M-j> :call vimspector#StepOver()<CR>
+nnoremap <leader>d_ :call vimspector#Restart()<CR>
+nnoremap <leader>dn :call vimspector#Continue()<CR
+nnoremap <leader>drc :call vimspector#RunToCursor()<CR>
+nnoremap <leader>dh :call vimspector#ToggleBreakpoint()<CR>
+nnoremap <leader>de :call vimspector#ToggleConditionalBreakpoint()<CR>
 " vimspector end
 
 " autogroup go
