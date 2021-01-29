@@ -95,6 +95,8 @@ Plug 'mbbill/undotree'
 
 Plug 'szw/vim-maximizer'
 Plug 'puremourning/vimspector'
+Plug 'sebdah/vim-delve' " for debug ut
+
 
 " unit test
 Plug 'vim-test/vim-test'
@@ -784,10 +786,18 @@ nnoremap <leader>dh :call vimspector#ToggleBreakpoint()<CR>
 " vimspector end
 
 " vim-test
+function! DebugNearest()
+  let g:test#go#runner = 'delve'
+  TestNearest
+  unlet g:test#go#runner
+endfunction
+
+nnoremap <silent> td :call DebugNearest()<CR>
 nnoremap <silent> tt :TestNearest<CR>
 nnoremap <silent> tf :TestFile<CR>
 nnoremap <silent> ts :TestSuite<CR>
 nnoremap <silent> t_ :TestLast<CR>
+
 let test#strategy = "neovim"
 let test#neovim#term_position = "rightbelow"
 

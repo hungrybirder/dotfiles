@@ -104,6 +104,7 @@ Plug 'iamcco/mathjax-support-for-mkdp'
 " debugger
 Plug 'puremourning/vimspector'
 Plug 'szw/vim-maximizer'
+Plug 'sebdah/vim-delve' " for debug ut
 
 " unit test
 Plug 'vim-test/vim-test'
@@ -162,10 +163,18 @@ nnoremap <leader>drc :call vimspector#RunToCursor()<CR>
 nnoremap <leader>dh :call vimspector#ToggleBreakpoint()<CR>
 
 " vim-test
+function! DebugNearest()
+  let g:test#go#runner = 'delve'
+  TestNearest
+  unlet g:test#go#runner
+endfunction
+
+nnoremap <silent> td :call DebugNearest()<CR>
 nnoremap <silent> tt :TestNearest<CR>
 nnoremap <silent> tf :TestFile<CR>
 nnoremap <silent> ts :TestSuite<CR>
 nnoremap <silent> t_ :TestLast<CR>
+
 let test#strategy = "neovim"
 let test#neovim#term_position = "rightbelow"
 
