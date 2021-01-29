@@ -70,7 +70,7 @@ Plug 'nvim-treesitter/nvim-treesitter-refactor'
 Plug 'kshenoy/vim-signature'
 
 " fzf
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'stsewd/fzf-checkout.vim'
 
@@ -178,10 +178,6 @@ nnoremap <silent> t_ :TestLast<CR>
 let test#strategy = "neovim"
 let test#neovim#term_position = "rightbelow"
 
-if has('nvim')
-  " 在UT nvim term windows 里按 <c-o> 切换成 Normal Mode
-  tmap <c-o> <c-\><c-n>
-endif
 
 function! JestStrategy(cmd)
   let testName = matchlist(a:cmd, '\v -t ''(.*)''')[1]
@@ -205,12 +201,6 @@ nnoremap <silent> <leader>r  <cmd>Telescope lsp_references<CR>
 nnoremap <silent> <leader>cs <cmd>Telescope lsp_document_symbols<CR>
 nnoremap <silent> <leader>ws <cmd>lua require('telescope.builtin').lsp_workspace_symbols{query="*"}<CR>
 nnoremap <silent> <c-p> <cmd>Telescope git_files<CR>
-
-nnoremap <leader>gh :diffget //3<CR>
-nnoremap <leader>gf :diffget //2<CR>
-nnoremap <leader>gs :G<CR>
-nnoremap <leader>gc :GBranches<CR>
-nnoremap <leader>ga :Git fetch --all<CR>
 
 let g:completion_enable_snippet = 'UltiSnips'
 let g:completion_confirm_key = "\<C-y>"
@@ -412,5 +402,94 @@ inoremap <c-q> <ESC>:Ttoggle<CR>
 tnoremap <c-q> <c-\><c-n>:Ttoggle<CR>
 let g:neoterm_term_per_tab = 1
 
-tnoremap <Esc> <C-\><C-n>
 "neoterm end
+
+" fzf
+let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.8 } }
+let g:fzf_action = {
+  \ 'ctrl-x': 'split',
+  \ 'ctrl-]': 'vsplit' }
+
+if has('nvim')
+  au! TermOpen * tnoremap <buffer> <Esc> <c-\><c-n>
+  au! FileType fzf tunmap <buffer> <Esc>
+endif
+" fzf end
+"
+" fugitive
+nnoremap <leader>gh :diffget //3<CR>
+nnoremap <leader>gf :diffget //2<CR>
+nnoremap <leader>gs :G<CR>
+nnoremap <silent> <leader>gc :GBranches<CR>
+nnoremap <leader>ga :Git fetch --all<CR>
+
+let g:fzf_branch_actions = {
+\ 'checkout': {
+\   'prompt': 'Checkout> ',
+\   'execute': 'echo system("{git} checkout {branch}")',
+\   'multiple': v:false,
+\   'keymap': 'enter',
+\   'required': ['branch'],
+\   'confirm': v:false,
+\ },
+\ 'track': {
+\   'prompt': 'Track> ',
+\   'execute': 'echo system("{git} checkout --track {branch}")',
+\   'multiple': v:false,
+\   'keymap': 'ctrl-t',
+\   'required': ['branch'],
+\   'confirm': v:false,
+\ },
+\ 'create': {
+\   'prompt': 'Create> ',
+\   'execute': 'echo system("{git} checkout -b {input}")',
+\   'multiple': v:false,
+\   'keymap': 'ctrl-n',
+\   'required': ['input'],
+\   'confirm': v:false,
+\ },
+\ 'delete': {
+\   'prompt': 'Delete> ',
+\   'execute': 'echo system("{git} branch -D {branch}")',
+\   'multiple': v:true,
+\   'keymap': 'ctrl-d',
+\   'required': ['branch'],
+\   'confirm': v:true,
+\ },
+\ 'merge':{
+\   'prompt': 'Merge> ',
+\   'execute': 'echo system("{git} merge {branch}")',
+\   'multiple': v:false,
+\   'keymap': 'ctrl-e',
+\   'required': ['branch'],
+\   'confirm': v:true,
+\ },
+\}
+
+let g:fzf_tag_actions = {
+\ 'checkout': {
+\   'prompt': 'Checkout> ',
+\   'execute': 'echo system("{git} checkout {tag}")',
+\   'multiple': v:false,
+\   'keymap': 'enter',
+\   'required': ['tag'],
+\   'confirm': v:false,
+\ },
+\ 'create': {
+\   'prompt': 'Create> ',
+\   'execute': 'echo system("{git} tag {input}")',
+\   'multiple': v:false,
+\   'keymap': 'ctrl-n',
+\   'required': ['input'],
+\   'confirm': v:false,
+\ },
+\ 'delete': {
+\   'prompt': 'Delete> ',
+\   'execute': 'echo system("{git} branch -D {tag}")',
+\   'multiple': v:true,
+\   'keymap': 'ctrl-d',
+\   'required': ['tag'],
+\   'confirm': v:true,
+\ },
+\}
+" fugitive end

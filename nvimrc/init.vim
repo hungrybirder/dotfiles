@@ -215,9 +215,6 @@ set shortmess=a
 set cmdheight=2
 set scrolloff=7
 
-" terminal
-tnoremap <Esc> <C-\><C-n>
-
 " setting end
 
 " mappings
@@ -516,9 +513,9 @@ let g:fzf_action = {
   \ 'ctrl-x': 'split',
   \ 'ctrl-]': 'vsplit' }
 
-if has("nvim")
-  au TermOpen * tnoremap <Esc> <c-\><c-n>
-  au FileType fzf tunmap <Esc>
+if has('nvim')
+  au! TermOpen * tnoremap <buffer> <Esc> <c-\><c-n>
+  au! FileType fzf tunmap <buffer> <Esc>
 endif
 " fzf end
 
@@ -800,11 +797,6 @@ nnoremap <silent> t_ :TestLast<CR>
 
 let test#strategy = "neovim"
 let test#neovim#term_position = "rightbelow"
-
-if has('nvim')
-  " 在UT nvim term windows 里按 <c-o> 切换成 Normal Mode
-  tmap <c-o> <c-\><c-n>
-endif
 
 function! JestStrategy(cmd)
   let testName = matchlist(a:cmd, '\v -t ''(.*)''')[1]
