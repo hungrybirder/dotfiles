@@ -95,6 +95,9 @@ Plug 'mbbill/undotree'
 Plug 'szw/vim-maximizer'
 Plug 'puremourning/vimspector'
 
+" unit test
+Plug 'vim-test/vim-test'
+
 Plug 'tweekmonster/startuptime.vim'
 Plug 'kshenoy/vim-signature'
 call plug#end() " end
@@ -777,6 +780,27 @@ nnoremap <leader>dn :call vimspector#Continue()<CR>
 nnoremap <leader>drc :call vimspector#RunToCursor()<CR>
 nnoremap <leader>dh :call vimspector#ToggleBreakpoint()<CR>
 " vimspector end
+
+" vim-test
+nnoremap <silent> tt :TestNearest<CR>
+nnoremap <silent> tf :TestFile<CR>
+nnoremap <silent> ts :TestSuite<CR>
+nnoremap <silent> t_ :TestLast<CR>
+let test#strategy = "neovim"
+let test#neovim#term_position = "rightbelow"
+
+if has('nvim')
+  " 在UT nvim term windows 里按 <c-o> 切换成 Normal Mode
+  tmap <c-o> <c-\><c-n>
+endif
+
+function! JestStrategy(cmd)
+  let testName = matchlist(a:cmd, '\v -t ''(.*)''')[1]
+  call vimspector#LaunchWithSettings( #{ configuration: 'jest', TestName: testName } )
+endfunction
+let g:test#custom_strategies = {'jest': function('JestStrategy')}
+
+" vim-test end
 
 " autogroup go
 augroup go

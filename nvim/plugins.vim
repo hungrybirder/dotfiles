@@ -4,6 +4,9 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'airblade/vim-rooter'
 Plug 'tweekmonster/startuptime.vim'
 
+" gnupg
+Plug 'jamessan/vim-gnupg'
+
 " theme
 Plug 'lifepillar/vim-gruvbox8'
 
@@ -99,7 +102,10 @@ Plug 'iamcco/mathjax-support-for-mkdp'
 " debugger
 Plug 'puremourning/vimspector'
 Plug 'szw/vim-maximizer'
-" Plug 'vim-test/vim-test'
+
+" unit test
+Plug 'vim-test/vim-test'
+" Plug 'tpope/vim-dispatch'
 
 " snippets
 Plug 'SirVer/ultisnips'
@@ -154,19 +160,25 @@ nnoremap <leader>dn :call vimspector#Continue()<CR>
 nnoremap <leader>drc :call vimspector#RunToCursor()<CR>
 nnoremap <leader>dh :call vimspector#ToggleBreakpoint()<CR>
 
-" function! JestStrategy(cmd)
-"   let testName = matchlist(a:cmd, '\v -t ''(.*)''')[1]
-"   call vimspector#LaunchWithSettings( #{ configuration: 'jest', TestName: testName } )
-" endfunction
-" let g:test#custom_strategies = {'jest': function('JestStrategy')}
+" vim-test
+nnoremap <silent> tt :TestNearest<CR>
+nnoremap <silent> tf :TestFile<CR>
+nnoremap <silent> ts :TestSuite<CR>
+nnoremap <silent> t_ :TestLast<CR>
+let test#strategy = "neovim"
+let test#neovim#term_position = "rightbelow"
 
-" janko/vim-test
-" nnoremap <silent> tt :TestNearest<CR>
-" nnoremap <silent> tf :TestFile<CR>
-" nnoremap <silent> ts :TestSuite<CR>
-" nnoremap <silent> t_ :TestLast<CR>
-" let test#strategy = "neovim"
-" let test#neovim#term_position = "vertical"
+if has('nvim')
+  " 在UT nvim term windows 里按 <c-o> 切换成 Normal Mode
+  tmap <c-o> <c-\><c-n>
+endif
+
+function! JestStrategy(cmd)
+  let testName = matchlist(a:cmd, '\v -t ''(.*)''')[1]
+  call vimspector#LaunchWithSettings( #{ configuration: 'jest', TestName: testName } )
+endfunction
+let g:test#custom_strategies = {'jest': function('JestStrategy')}
+
 " vim-test end
 
 
