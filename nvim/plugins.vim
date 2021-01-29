@@ -81,7 +81,7 @@ Plug 'nvim-lua/telescope.nvim'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'nvim-telescope/telescope-fzf-writer.nvim'
 Plug 'nvim-telescope/telescope-fzy-native.nvim'
-Plug 'nvim-telescope/telescope-vimspector.nvim'
+" Plug 'nvim-telescope/telescope-vimspector.nvim'
 Plug 'nvim-telescope/telescope-symbols.nvim'
 
 " coding utils
