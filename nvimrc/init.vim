@@ -3,6 +3,7 @@ set nocompatible
 " plugins
 call plug#begin('~/cs/dotfiles/nvimrc/plugged')
 Plug 'schickling/vim-bufonly'
+Plug 'tpope/vim-dispatch'
 " deoplete framework
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'Shougo/neco-vim' " vimscripts for deoplete complete
@@ -97,6 +98,7 @@ Plug 'puremourning/vimspector'
 
 " unit test
 Plug 'vim-test/vim-test'
+
 
 Plug 'tweekmonster/startuptime.vim'
 Plug 'kshenoy/vim-signature'

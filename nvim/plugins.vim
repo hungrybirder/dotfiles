@@ -1,5 +1,7 @@
 call plug#begin('~/.config/nvim/plugged')
 
+Plug 'tpope/vim-dispatch'
+
 " Plug 'liuchengxu/vim-which-key'
 Plug 'airblade/vim-rooter'
 Plug 'tweekmonster/startuptime.vim'
@@ -105,7 +107,6 @@ Plug 'szw/vim-maximizer'
 
 " unit test
 Plug 'vim-test/vim-test'
-" Plug 'tpope/vim-dispatch'
 
 " snippets
 Plug 'SirVer/ultisnips'
