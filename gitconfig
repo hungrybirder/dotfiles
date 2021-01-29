@@ -6,7 +6,6 @@
 	interactive = always
 	status = always
 	grep = always
-	pager = true
 	decorate = always
 	showbranch = always
 	added = green
@@ -59,11 +58,26 @@
 	newNormal = green bold
 	newHighlight = green bold 22
 [core]
-	pager = diff-so-fancy | less --tabs=4 -RFX
+	# pager = diff-so-fancy | less --tabs=4 -RFX
 	quotepath = false
+    pager = delta
 [merge]
 	tool = vimdiff
 [http]
 	sslVerify = false
 [pull]
 	rebase = true
+
+# MacOS: brew install git-delta
+# https://github.com/dandavison/delta
+[interactive]
+    diffFilter = delta --color-only
+
+[delta]
+    features = side-by-side line-numbers decorations
+    whitespace-error-style = 22 reverse
+
+[delta "decorations"]
+    commit-decoration-style = bold yellow box ul
+    file-style = bold yellow ul
+    file-decoration-style = none
