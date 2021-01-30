@@ -202,31 +202,37 @@ nnoremap <silent> <leader>cs <cmd>Telescope lsp_document_symbols<CR>
 nnoremap <silent> <leader>ws <cmd>lua require('telescope.builtin').lsp_workspace_symbols{query="*"}<CR>
 nnoremap <silent> <c-p> <cmd>Telescope git_files<CR>
 
+" completion-nvim
 let g:completion_enable_snippet = 'UltiSnips'
-let g:completion_confirm_key = "\<C-y>"
 let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
 let g:completion_matching_ignore_case = 1
+let g:completion_sorting = "length"
+let g:completion_enable_auto_paren = 1
+" let g:completion_confirm_key = "\<C-y>"
+let g:completion_confirm_key = ""
+imap <expr> <cr>  pumvisible() ? complete_info()["selected"] != "-1" ?
+    \ "\<Plug>(completion_confirm_completion)"  :
+    \ "\<c-e>\<CR>" : "\<CR>"
+
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <Up>   pumvisible() ? "\<C-p>" : "\<Up>"
+inoremap <expr> <Down> pumvisible() ? "\<C-n>" : "\<Down>"
+inoremap <silent> <C-Space> <cmd>lua require'completion'.triggerCompletion()<CR>
+inoremap <tab> <cmd>lua require'completion'.smart_tab()<CR>
+
+autocmd Filetype markdown,make lua require'completion'.on_attach()
 
 let g:indicator_errors = "\uf05e "
 let g:indicator_warnings = "\uf071 "
 let g:indicator_infos = "\uf7fc "
 let g:indicator_hints = "\ufbe6 "
-
 call sign_define("LspDiagnosticsSignError", {"text" : g:indicator_errors, "texthl" : "LspDiagnosticsDefaultError"})
 call sign_define("LspDiagnosticsSignWarning", {"text" : g:indicator_warnings, "texthl" : "LspDiagnosticsDefaultWarning"})
 call sign_define("LspDiagnosticsSignInformation", {"text" : g:indicator_infos, "texthl" : "LspDiagnosticsDefaultInformation"})
 call sign_define("LspDiagnosticsSignHint", {"text" : g:indicator_hints, "texthl" : "LspDiagnosticsDefaultHint"})
 
-inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-
-inoremap <expr> <Up>   pumvisible() ? "\<C-p>" : "\<Up>"
-inoremap <expr> <Down> pumvisible() ? "\<C-n>" : "\<Down>"
-
-inoremap <silent> <C-Space> <cmd>lua require'completion'.triggerCompletion()<CR>
-inoremap <tab> <cmd>lua require'completion'.smart_tab()<CR>
-
-autocmd Filetype markdown,make lua require'completion'.on_attach()
+" completion-nvim end
 
 noremap <Leader>pi :<c-u>PlugInstall<CR>
 noremap <Leader>pu :<c-u>PlugUpdate<CR>
