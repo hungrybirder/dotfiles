@@ -193,6 +193,7 @@ lspconfig.pyright.setup{
   settings = {
     python = {
       analysis = {
+        autoImportCompletions = true,
         autoSearchPaths = true,
         useLibraryCodeForTypes = true
       },
