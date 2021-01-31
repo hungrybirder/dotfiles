@@ -24,6 +24,11 @@ set termguicolors
 set scrolloff=8
 set noshowmode
 set completeopt=menuone,noinsert,noselect
+set mouse=a
+set splitright
+set splitbelow
+set nobackup
+set nowritebackup
 set colorcolumn=80
 set signcolumn=yes
 
@@ -31,7 +36,7 @@ set signcolumn=yes
 set cmdheight=2
 set timeout ttimeout
 set timeoutlen=500  " Time out on mappings
-set updatetime=50   " Idle time to write swap and trigger CursorHold
+set updatetime=100   " Idle time to write swap and trigger CursorHold
 set ttimeoutlen=10  " Time out on key codes
 
 " Don't pass messages to |ins-completion-menu|.
