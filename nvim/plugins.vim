@@ -371,7 +371,7 @@ let g:ale_linters = {
 let g:ale_linters_explicit = 1
 let g:ale_fixers = {
 \ '*': ['remove_trailing_lines', 'trim_whitespace'],
-\ 'python': ['yapf'],
+\ 'python': ['yapf', 'autoimport'],
 \ 'go': ['goimports'],
 \ 'markdown':['remark-lint'],
 \ 'sh':['shfmt'],
@@ -381,7 +381,7 @@ let g:ale_fix_on_save = 0
 let g:ale_completion_enabled = 0
 " nmap <silent> <space>j <Plug>(ale_next_wrap)
 " nmap <silent> <space>k <Plug>(ale_previous_wrap)
-" ale end
+"ale end
 
 " vim-subversive
 " s for substitute

@@ -7,5 +7,6 @@ pytest-cov
 pytest-ordering
 pytest-repeat
 tox
-isort==4.3.21 # pylint 2.5.3 requires isort<5,>=4.2.5
 yapf
+autoimport
+"python-language-server[all]"
