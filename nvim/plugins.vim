@@ -257,9 +257,9 @@ endfun
 
 augroup MyEchoDoc
   autocmd!
-  " autocmd FileType go call EnableEchoDoc()
+  autocmd FileType go call EnableEchoDoc()
   autocmd FileType java call EnableEchoDoc()
-  " autocmd FileType python call EnableEchoDoc()
+  autocmd FileType python call EnableEchoDoc()
 augroup END
 " echodo end
 
@@ -336,12 +336,12 @@ let g:vim_markdown_math = 1
 nmap <leader>md :MarkdownPreview<CR>
 " markdown end
 
-" vim-go: 关闭大部分功能
-" 还是vim-go功能更完善，暂时lsp&vim-go 都启动吧
-" lsp有diagnostic功能, 其他功能用vim-go
-let g:go_gopls_enabled = 1
+" vim-go
+" 使用vim-go功能 1. fmt autosave
+let g:go_gopls_enabled = 0
 let g:go_def_mapping_enabled = 1
 let g:go_fmt_autosave = 1
+let g:go_fmt_command = "goimports"
 let g:go_diagnostics_enabled = 0
 let g:go_auto_type_info = 0
 let g:go_code_completion_enabled = 0
@@ -351,7 +351,6 @@ let g:go_mod_fmt_autosave = 0
 let g:go_textobj_enabled = 0
 let g:go_metalinter_autosave_enabled = []
 let g:go_metalinter_enabled = []
-let g:go_fmt_command = "goimports"
 let g:go_addtags_transform = 'camelcase'
 let g:go_list_type = "quickfix"
 " vim-go end
@@ -370,7 +369,10 @@ let g:ale_open_list = 0
 let g:ale_linters = {
 \ 'python': ['pylint', 'pyright'],
 \ 'sh': ['shellcheck'],
+\ 'markdown':['remark-lint'],
+\ 'go': ['gofmt', 'golint', 'go vet'],
 \ }
+let g:ale_lint_on_enter = 0
 let g:ale_linters_explicit = 1
 let g:ale_fixers = {
 \ '*': ['remove_trailing_lines', 'trim_whitespace'],
@@ -379,11 +381,15 @@ let g:ale_fixers = {
 \ 'markdown':['remark-lint'],
 \ 'sh':['shfmt'],
 \ }
-let g:ale_lint_on_enter = 0
 let g:ale_fix_on_save = 0
 let g:ale_completion_enabled = 0
-" nmap <silent> <space>j <Plug>(ale_next_wrap)
 " nmap <silent> <space>k <Plug>(ale_previous_wrap)
+let g:ale_sign_error = '✘'
+let g:ale_sign_warning = '⚠'
+highlight ALEErrorSign ctermbg=NONE ctermfg=red
+highlight ALEWarningSign ctermbg=NONE ctermfg=yellow
+nnoremap <silent> ]s <Plug>(ale_next_wrap)
+nnoremap <silent> [s <Plug>(ale_previous_wrap)
 "ale end
 
 " vim-subversive
