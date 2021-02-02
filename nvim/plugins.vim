@@ -209,7 +209,10 @@ let g:completion_matching_ignore_case = 1
 let g:completion_matching_smart_case = 1
 let g:completion_sorting = "none"
 let g:completion_enable_auto_paren = 1
-" let g:completion_confirm_key = "\<C-y>"
+let g:completion_enable_auto_popup = 1
+let g:completion_enable_auto_signature = 1
+let g:completion_enable_auto_hover = 1
+let g:completion_auto_change_source = 1
 let g:completion_confirm_key = ""
 imap <expr> <cr>  pumvisible() ? complete_info()["selected"] != "-1" ?
     \ "\<Plug>(completion_confirm_completion)"  :

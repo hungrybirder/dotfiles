@@ -65,8 +65,8 @@ local utf8 = function(cp)
   end
 end
 local customize_lsp_label = {
-  Method = utf8(0xf794) .. ' [method]',
-  Function = utf8(0xf794) .. ' [function]',
+  Method = utf8(0xf794) .. ' [Method]',
+  Function = utf8(0xf794) .. ' [Function]',
   Variable = utf8(0xf6a6) .. ' [variable]',
   Field = utf8(0xf6a6) .. ' [field]',
   Class = utf8(0xfb44) .. ' [class]',
@@ -145,10 +145,6 @@ local on_attach = function(client, bufnr)
   require'completion'.on_attach({
     chain_complete_list = chain_complete_list,
     customize_lsp_label = customize_lsp_label,
-    enable_auto_popup = 1,
-    enable_auto_signature = 1,
-    auto_change_source = 1,
-    enable_auto_hover = 1,
   })
   -- vim.api.nvim_command('autocmd CursorHold <buffer> lua vim.lsp.diagnostic.show_line_diagnostics()')
   if vim.api.nvim_buf_get_option(0, 'filetype') == 'rust' then
