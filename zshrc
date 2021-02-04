@@ -272,3 +272,6 @@ export SSLKEYLOGFILE="${HOME}/tmp/ssl_key.log"
 
 
 [[ -f "$HOME/.cargo/env" ]] && source "$HOME/.cargo/env"
+
+# 使用nvim打开手册
+export MANPAGER='nvim +Man!'
