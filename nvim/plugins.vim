@@ -388,8 +388,8 @@ let g:ale_sign_error = '✘'
 let g:ale_sign_warning = '⚠'
 highlight ALEErrorSign ctermbg=NONE ctermfg=red
 highlight ALEWarningSign ctermbg=NONE ctermfg=yellow
-nnoremap <silent> ]s <Plug>(ale_next_wrap)
-nnoremap <silent> [s <Plug>(ale_previous_wrap)
+nmap <silent> ]s <Plug>(ale_next_wrap)
+nmap <silent> [s <Plug>(ale_previous_wrap)
 "ale end
 
 " vim-subversive
