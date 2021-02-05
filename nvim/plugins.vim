@@ -513,7 +513,3 @@ let g:fzf_tag_actions = {
 \ },
 \}
 " fugitive end
-
-" airline
-let g:airline#extensions#nvimlsp#enabled = 0
-" airline end
