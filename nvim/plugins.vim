@@ -190,6 +190,7 @@ let g:test#custom_strategies = {'jest': function('JestStrategy')}
 
 " powered by ThePrimeagen
 nnoremap <leader>ps <cmd>lua require('telescope.builtin').grep_string({ search = vim.fn.input("Grep For > ") })<CR>
+nnoremap <leader>pw <cmd>lua require('telescope.builtin').grep_string({ search = vim.fn.expand("<cword>") })<CR>
 
 nnoremap <silent> <leader>f  <cmd>lua require('telescope').extensions.fzf_writer.files()<CR>
 nnoremap <silent> <leader>m  <cmd>Telescope oldfiles<CR>
