@@ -514,3 +514,7 @@ let g:fzf_tag_actions = {
 \ },
 \}
 " fugitive end
+
+" airline
+let g:airline_theme = 'base16_solarized'
+" airline end
