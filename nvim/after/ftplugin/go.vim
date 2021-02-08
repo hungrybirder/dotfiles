@@ -1,3 +1,4 @@
+nnoremap <buffer> <c-]> <cmd>lua vim.lsp.buf.definition()<CR>
 nnoremap <leader>g :GoDeclsDir<cr>
 nnoremap <leader>o :GoDecls<cr>
 command! -bang A call go#alternate#Switch(<bang>0, 'edit')
