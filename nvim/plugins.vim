@@ -96,6 +96,8 @@ Plug 'rust-lang/rust.vim'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'neoclide/jsonc.vim'
 
+Plug 'mmarchini/bpftrace.vim'
+
 " markdown
 Plug 'mzlogin/vim-markdown-toc'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
