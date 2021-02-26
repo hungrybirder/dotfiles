@@ -86,6 +86,13 @@ inoremap jk <esc>
 " nnoremap n nzzzv
 " nnoremap N Nzzzv
 
+" 更新括号里的内容，非常有用
+onoremap in( :<c-u>normal! f(vi(<cr>
+onoremap il( :<c-u>normal! F)vi(<cr>
+onoremap in[ :<c-u>normal! f[vi[<cr>
+onoremap il[ :<c-u>normal! F]vi[<cr>
+
+
 nnoremap <leader>u :UndotreeShow<CR>
 nnoremap <Leader>+ :vertical resize +5<CR>
 nnoremap <Leader>- :vertical resize -5<CR>

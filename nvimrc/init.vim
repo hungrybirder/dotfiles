@@ -294,6 +294,8 @@ inoremap jk <esc>
 " 更新括号里的内容，非常有用
 onoremap in( :<c-u>normal! f(vi(<cr>
 onoremap il( :<c-u>normal! F)vi(<cr>
+onoremap in[ :<c-u>normal! f[vi[<cr>
+onoremap il[ :<c-u>normal! F]vi[<cr>
 
 " 保存
 nnoremap <c-s> :<c-u>update<cr>
