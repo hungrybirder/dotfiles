@@ -228,6 +228,7 @@ inoremap <silent> <C-Space> <cmd>lua require'completion'.triggerCompletion()<CR>
 inoremap <tab> <cmd>lua require'completion'.smart_tab()<CR>
 
 autocmd Filetype markdown,make lua require'completion'.on_attach()
+autocmd Filetype bpftrace lua require'completion'.on_attach()
 
 let g:indicator_errors = "\uf05e "
 let g:indicator_warnings = "\uf071 "
