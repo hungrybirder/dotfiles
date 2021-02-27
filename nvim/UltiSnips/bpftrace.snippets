@@ -12,3 +12,18 @@ snippet tm "time" b
 time("%H:%M:%S ");
 $0
 endsnippet
+
+snippet cl "clear map" b
+clear(@${1});
+$0
+endsnippet
+
+snippet port "convert tcp/udp port Big Endian to Little Endian" b
+\$${1:port} = (\$${2:s}->sin_port >> 8) | ((\$${3:s}->sin_port << 8) & 0xff00);
+$0
+endsnippet
+
+snippet port6 "convert tcp/udp port Big Endian to Little Endian" b
+\$${1:port} = (\$${2:s6}->sin6_port >> 8) | ((\$${3:s6}->sin6_port << 8) & 0xff00);
+$0
+endsnippet
