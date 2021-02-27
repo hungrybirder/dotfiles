@@ -91,6 +91,8 @@ onoremap in( :<c-u>normal! f(vi(<cr>
 onoremap il( :<c-u>normal! F)vi(<cr>
 onoremap in[ :<c-u>normal! f[vi[<cr>
 onoremap il[ :<c-u>normal! F]vi[<cr>
+onoremap in< :<c-u>normal! f<vi<<cr>
+onoremap il< :<c-u>normal! F>vi<<cr>
 
 
 nnoremap <leader>u :UndotreeShow<CR>
