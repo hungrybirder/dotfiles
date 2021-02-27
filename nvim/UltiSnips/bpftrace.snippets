@@ -27,3 +27,11 @@ snippet port6 "convert tcp/udp port Big Endian to Little Endian" b
 \$${1:port} = (\$${2:s6}->sin6_port >> 8) | ((\$${3:s6}->sin6_port << 8) & 0xff00);
 $0
 endsnippet
+
+snippet ntop "convert ipv4 addr to string" b
+ntop(AF_INET, \$${1:s}->sin_addr.s_addr)$0
+endsnippet
+
+snippet ntop6 "convert ipv4 addr to string" b
+ntop(AF_INET6, \$${1:s6}->sin6_addr.in6_u.u6_addr8)$0
+endsnippet
