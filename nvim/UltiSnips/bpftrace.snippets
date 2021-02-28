@@ -34,3 +34,8 @@ endsnippet
 snippet ntop6 "convert ipv4 addr to string" b
 ntop(AF_INET6, \$${1:s6}->sin6_addr.in6_u.u6_addr8)$0
 endsnippet
+
+snippet inc "include kernel header" b
+#include <${1:linux}/${2}>
+$0
+endsnippet
