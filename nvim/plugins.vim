@@ -144,7 +144,7 @@ let g:vimspector_sign_priority = {
   \    'vimspectorPC':         999,
   \ }
 let g:vimspector_base_dir = expand('$HOME/.config/vimspector-config')
-nnoremap < leader>M :MaximizerToggle!<CR>
+nnoremap <leader>M :MaximizerToggle!<CR>
 nnoremap <leader>da :call vimspector#Launch()<CR>
 nnoremap <leader>dc :call GotoWindow(g:vimspector_session_windows.code)<CR>
 nnoremap <leader>dt :call GotoWindow(g:vimspector_session_windows.tagpage)<CR>
@@ -163,11 +163,11 @@ nnoremap <leader>dn :call vimspector#Continue()<CR>
 nnoremap <leader>drc :call vimspector#RunToCursor()<CR>
 nnoremap <leader>dh :call vimspector#ToggleBreakpoint()<CR>
 
-function! JestStrategy(cmd)
-  let testName = matchlist(a:cmd, '\v -t ''(.*)''')[1]
-  call vimspector#LaunchWithSettings( #{ configuration: 'jest', TestName: testName } )
-endfunction
-let g:test#custom_strategies = {'jest': function('JestStrategy')}
+" function! JestStrategy(cmd)
+"   let testName = matchlist(a:cmd, '\v -t ''(.*)''')[1]
+"   call vimspector#LaunchWithSettings( #{ configuration: 'jest', TestName: testName } )
+" endfunction
+" let g:test#custom_strategies = {'jest': function('JestStrategy')}
 
 nnoremap <leader>dd :TestNearest -strategy=jest<CR>
 
