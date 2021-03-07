@@ -72,82 +72,89 @@
         }
       }
     },
-    "vscode-cpptools": {
-      "adapter": "vscode-cpptools",
+    "cpp-CodeLLDB": {
+      "adapter": "CodeLLDB",
       "configuration": {
         "request": "launch",
-        "program": "${workspaceRoot}/build/${fileBasenameNoExtension}",
-        "MIMode": "lldb",
-        "externalConsole": false,
-        "stopAtEntry": true,
-        "type": "cppdbg"
+        "program": "${workspaceRoot}/build/${fileBasenameNoExtension}"
       }
     },
-    "lldb-vscode": {
-      "adapter": "lldb-vscode",
-      "configuration": {
-        "request": "launch",
-        "program": "${workspaceRoot}/build/${fileBasenameNoExtension}",
-        "MIMode": "lldb",
-        "externalConsole": false,
-        "stopAtEntry": true,
-        "type": "lldb",
-        "breakpoints": {
-          "exception": {
-            "cpp_catch": "",
-            "cpp_throw": "",
-            "objc_catch": "",
-            "objc_throw": "",
-            "swift_catch": "",
-            "swift_throw": ""
-          }
-        }
-      }
-    },
-    "vsnode-node": {
-      "adapter": "vscode-node",
-      "default": true,
-      "breakpoints": {
-          "exception": {
-              "all": "N",
-              "uncaught": "N"
-          }
-      },
-      "configuration": {
-        "name": "Attach to Process",
-        "request": "attach",
-        "type": "node",
-        "skipFiles": ["<node_internals>/**/*.js"],
-        "processId": "${processId}"
-      }
-    },
-    "jest": {
-      "adapter": "vscode-node",
-      "breakpoints": {
-          "exception": {
-              "all": "N",
-              "uncaught": "N"
-          }
-      },
-      "configuration": {
-        "request": "launch",
-        "name": "Debug Jest Test",
-        "type": "node",
-        "runtimeArgs": [
-            "--inspect-brk",
-            "/usr/local/bin/jest",
-            "--no-coverage",
-            "-t",
-            "'${TestName}'",
-            "--",
-            "${file}"
-        ],
-        "console": "integratedTerminal",
-        "skipFiles": ["<node_internals>/**/*.js"],
-        "internalConsoleOptions": "neverOpen",
-        "port": 9229
-      }
-    },
+    //"vscode-cpptools": {
+    //  "adapter": "vscode-cpptools",
+    //  "configuration": {
+    //    "request": "launch",
+    //    "program": "${workspaceRoot}/build/${fileBasenameNoExtension}",
+    //    "MIMode": "lldb",
+    //    "externalConsole": false,
+    //    "stopAtEntry": true,
+    //    "type": "cppdbg"
+    //  }
+    //},
+    //"lldb-vscode": {
+    //  "adapter": "lldb-vscode",
+    //  "configuration": {
+    //    "request": "launch",
+    //    "program": "${workspaceRoot}/build/${fileBasenameNoExtension}",
+    //    "MIMode": "lldb",
+    //    "externalConsole": false,
+    //    "stopAtEntry": true,
+    //    "type": "lldb",
+    //    "breakpoints": {
+    //      "exception": {
+    //        "cpp_catch": "N",
+    //        "cpp_throw": "N",
+    //        "objc_catch": "N",
+    //        "objc_throw": "N",
+    //        "swift_catch": "N",
+    //        "swift_throw": "N"
+    //      }
+    //    }
+    //  }
+    //},
+    //"vsnode-node": {
+    //  "adapter": "vscode-node",
+    //  "default": true,
+    //  "breakpoints": {
+    //      "exception": {
+    //          "all": "N",
+    //          "uncaught": "N"
+    //      }
+    //  },
+    //  "configuration": {
+    //    "name": "Attach to Process",
+    //    "request": "attach",
+    //    "type": "node",
+    //    "skipFiles": ["<node_internals>/**/*.js"],
+    //    "processId": "${processId}"
+    //  }
+    //},
+    //"jest": {
+    //  "adapter": "vscode-node",
+    //  "breakpoints": {
+    //      "exception": {
+    //          "all": "N",
+    //          "uncaught": "N"
+    //      }
+    //  },
+    //  "configuration": {
+    //    "request": "launch",
+    //    "name": "Debug Jest Test",
+    //    "type": "node",
+    //    "runtimeArgs": [
+    //        "--inspect-brk",
+    //        "/usr/local/bin/jest",
+    //        "--no-coverage",
+    //        "-t",
+    //        "'${TestName}'",
+    //        "--",
+    //        "${file}"
+    //    ],
+    //    "console": "integratedTerminal",
+    //    "skipFiles": ["<node_internals>/**/*.js"],
+    //    "internalConsoleOptions": "neverOpen",
+    //    "port": 9229
+    //  }
+    //},
     "bash": {
       "adapter": "vscode-bash",
       "configuration": {
