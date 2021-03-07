@@ -1,5 +1,8 @@
 call plug#begin('~/.config/nvim/plugged')
 
+" 中英文排版
+Plug 'hotoo/pangu.vim'
+
 Plug 'tpope/vim-dispatch'
 
 " Plug 'liuchengxu/vim-which-key'
