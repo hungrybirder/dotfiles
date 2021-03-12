@@ -324,7 +324,17 @@ let g:VM_leader = '\\'
 
 " bufferline
 set termguicolors
-lua require'bufferline'.setup{ options={diagnostics = "nvim_lsp", sort_by="directory"} }
+lua <<EOF
+require'bufferline'.setup{
+  options={
+    diagnostics = "nvim_lsp",
+    sort_by="directory",
+    numbers = "buffer_id",
+    show_buffer_close_icons = false,
+    separator_style = "thin",
+  }
+}
+EOF
 nnoremap <silent> gb :BufferLinePick<CR>
 
 " overrite vim-vim-unimpaired ]b [b
