@@ -369,6 +369,7 @@ let g:go_metalinter_autosave_enabled = []
 let g:go_metalinter_enabled = []
 let g:go_addtags_transform = 'camelcase'
 let g:go_list_type = "quickfix"
+let g:go_echo_go_info = 0
 " vim-go end
 
 " ale
