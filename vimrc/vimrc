@@ -14,6 +14,8 @@ augroup END
 
 call plug#begin('~/.vim/plugged')
 
+Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
+
 Plug 'gruvbox-community/gruvbox'
 
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
