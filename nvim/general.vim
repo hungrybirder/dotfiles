@@ -128,10 +128,25 @@ endif
 let loaded_matchparen = 1
 
 " quickfix
-" https://github.com/fatih/vim-go/issues/108#issuecomment-47450678
+
+" https://github.com/tpope/vim-unimpaired/issues/97
+function! ToggleQuickfixWindow()
+  for i in range(1, winnr('$'))
+    let bnum = winbufnr(i)
+    if getbufvar(bnum, '&buftype') == 'quickfix'
+      cclose
+      return
+    endif
+  endfor
+  copen
+endfunction
+noremap <silent> <space>q :<C-U>call ToggleQuickfixWindow()<CR>
+
+"https://github.com/fatih/vim-go/issues/108#issuecomment-47450678
 autocmd FileType qf wincmd J
 " close quickfix
-noremap <silent> <space>q :<C-U>cclose<CR>
+" noremap <silent> <space>q :<C-U>cclose<CR>
+
 " close loclist
 noremap <silent> <space>l :<C-U>lclose<CR>
 " quickfix end
