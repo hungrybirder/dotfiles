@@ -236,7 +236,7 @@ lspconfig.clangd.setup{
 
 lspconfig.gopls.setup {
   on_attach=on_attach,
-  -- cmd = {"gopls", "--remote=auto"},
+  cmd = {"gopls", "--remote=auto"},
 }
 
 local get_lua_runtime = function()
