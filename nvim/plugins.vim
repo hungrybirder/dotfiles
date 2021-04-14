@@ -206,6 +206,7 @@ nnoremap <silent> <leader>r  <cmd>Telescope lsp_references<CR>
 nnoremap <silent> <leader>cs <cmd>Telescope lsp_document_symbols<CR>
 nnoremap <silent> <leader>ws <cmd>lua require('telescope.builtin').lsp_workspace_symbols{query="*"}<CR>
 nnoremap <silent> <c-p> <cmd>Telescope git_files<CR>
+nnoremap <silent> <leader>ts  <cmd>Telescope tagstack<CR>
 
 " completion-nvim
 let g:completion_enable_snippet = 'UltiSnips'
