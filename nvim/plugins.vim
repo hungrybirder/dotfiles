@@ -93,6 +93,7 @@ Plug 'dense-analysis/ale'
 Plug 'tomtom/tcomment_vim'
 Plug 'mbbill/undotree'
 Plug 'AndrewRadev/splitjoin.vim' "gS gJ
+" Plug 'ludovicchabant/vim-gutentags'
 
 " langs
 Plug 'rust-lang/rust.vim'
