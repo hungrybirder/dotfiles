@@ -61,6 +61,9 @@ Plug 'tjdevries/lsp_extensions.nvim'
 Plug 'Shougo/echodoc.vim'
 Plug 'steelsojka/completion-buffers'
 
+" lsp for performance UI.
+Plug 'glepnir/lspsaga.nvim'
+
 " tree sitter
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/completion-treesitter'
@@ -355,8 +358,10 @@ nmap <leader>md :MarkdownPreview<CR>
 " markdown end
 
 " vim-go
-" 使用vim-go功能 1. fmt autosave
-let g:go_gopls_enabled = 0
+" 使用vim-go功能
+" 1. fmt autosave
+" 2. 重新启动 vim-go gopls，vim-go 维护 tags 跳转更实用
+let g:go_gopls_enabled = 1
 let g:go_def_mapping_enabled = 1
 let g:go_fmt_autosave = 1
 let g:go_fmt_command = "goimports"
