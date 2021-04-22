@@ -200,7 +200,10 @@ let test#neovim#term_position = "rightbelow"
 nnoremap <leader>ps <cmd>lua require('telescope.builtin').grep_string({ search = vim.fn.input("Grep For > ") })<CR>
 nnoremap <leader>pw <cmd>lua require('telescope.builtin').grep_string({ search = vim.fn.expand("<cword>") })<CR>
 
-nnoremap <silent> <leader>f  <cmd>lua require('telescope').extensions.fzf_writer.files()<CR>
+" nnoremap <silent> <leader>f  <cmd>lua require('telescope').extensions.fzf_writer.files()<CR>
+" nnoremap <Leader>f :lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({}))<cr>
+nnoremap <Leader>f :lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ winblend = 10 }))<cr>
+
 nnoremap <silent> <leader>m  <cmd>Telescope oldfiles<CR>
 nnoremap <silent> <leader>o  <cmd>Telescope treesitter<CR>
 nnoremap <silent> <leader>b  <cmd>Telescope buffers<CR>
