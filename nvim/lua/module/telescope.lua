@@ -8,7 +8,12 @@ require('telescope').setup{
         ["<c-j>"] = actions.move_selection_next,
         ["<c-k>"] = actions.move_selection_previous,
         ["<esc>"] = actions.close,
-        ["c-q"] = actions.send_to_qflist,
+        ["<c-w>"] = actions.send_selected_to_qflist,
+        ["<c-q>"] = actions.send_selected_to_qflist,
+      },
+      n = {
+        ["<c-w>"] = actions.send_selected_to_qflist,
+        ["<c-q>"] = actions.send_to_qflist,
       },
     },
     layout_strategy = "flex",
