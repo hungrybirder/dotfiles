@@ -22,6 +22,19 @@ local lsp_install_path = vim.fn.stdpath('cache')..SEP..'lspconfig'
 local lspconfig = require'lspconfig'
 local util      = require'lspconfig/util'
 
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+
+-- lsp handlers are powered by nvim-lsputils
+vim.lsp.handlers['textDocument/codeAction'] = require'lsputil.codeAction'.code_action_handler
+vim.lsp.handlers['textDocument/references'] = require'lsputil.locations'.references_handler
+vim.lsp.handlers['textDocument/definition'] = require'lsputil.locations'.definition_handler
+vim.lsp.handlers['textDocument/declaration'] = require'lsputil.locations'.declaration_handler
+vim.lsp.handlers['textDocument/typeDefinition'] = require'lsputil.locations'.typeDefinition_handler
+vim.lsp.handlers['textDocument/implementation'] = require'lsputil.locations'.implementation_handler
+vim.lsp.handlers['textDocument/documentSymbol'] = require'lsputil.symbols'.document_handler
+vim.lsp.handlers['workspace/symbol'] = require'lsputil.symbols'.workspace_handler
+
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   vim.lsp.diagnostic.on_publish_diagnostics, {
     underline = false,
@@ -155,9 +168,9 @@ local on_attach = function(client, bufnr)
     customize_lsp_label = customize_lsp_label,
   })
   -- vim.api.nvim_command('autocmd CursorHold <buffer> lua vim.lsp.diagnostic.show_line_diagnostics()')
-  if vim.api.nvim_buf_get_option(0, 'filetype') == 'rust' then
-    vim.api.nvim_command('autocmd CursorMoved,InsertLeave,BufEnter,BufWinEnter,TabEnter,BufWritePost *.rs lua require"lsp_extensions".inlay_hints {prefix=" » ", highlight = "Comment", enabled = {"TypeHint","ChainingHint", "ParameterHint"}}')
-  end
+  -- if vim.api.nvim_buf_get_option(0, 'filetype') == 'rust' then
+  --   vim.api.nvim_command('autocmd CursorMoved,InsertLeave,BufEnter,BufWinEnter,TabEnter,BufWritePost *.rs lua require"lsp_extensions".inlay_hints {prefix=" » ", highlight = "Comment", enabled = {"TypeHint","ChainingHint", "ParameterHint"}}')
+  -- end
 end
 
 -- [[
@@ -172,7 +185,6 @@ end
 -- npm i -g vls
 -- ]]
 local servers = {
-  "rust_analyzer",
   "jsonls",
   "yamlls",
   "html",
@@ -185,7 +197,10 @@ local servers = {
 }
 
 for _,name in pairs(servers) do
-  lspconfig[name].setup{ on_attach=on_attach }
+  lspconfig[name].setup{
+    on_attach=on_attach,
+    -- capabilities = capabilities,
+  }
 end
 
 lspconfig.sqlls.setup{
@@ -211,28 +226,6 @@ lspconfig.pyright.setup{
     }
   }
 }
-
--- lspconfig.pyls.setup{
---   on_attach=on_attach,
---   settings = {
---     pyls = {
---       plugins = {
---         pycodestyle = {
---           enabled = false,
---         },
---         pylint = {
---           enabled = true,
---           executable = "pylint",
---         },
---         yapf = {
---           enabled = true,
---         },
---         -- pyflakes = {enabled = false},
---         -- rope_completion = {enabled=false},
---       }
---     }
---   }
--- }
 
 lspconfig.clangd.setup{
   on_attach=on_attach,
@@ -275,6 +268,7 @@ end
 local sumneko_root_path = lsp_install_path..'/sumneko_lua/lua-language-server'
 local sumneko_binary = sumneko_root_path.."/bin/"..system_name.."/lua-language-server"
 lspconfig.sumneko_lua.setup{
+  capabilities = capabilities,
   on_attach = on_attach,
   cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"},
   settings = {
@@ -313,96 +307,36 @@ lspconfig.solargraph.setup{
   }
 }
 
+-- setup rust-tools
+capabilities.experimental = {}
+capabilities.experimental.hoverActions = true
 
--- diagnosticls setup
---
--- local markdown_linter = {
---   sourceName = "markdownlint",
---   command = 'markdownlint',
---   rootPatterns = { '.git' },
---   isStderr = true,
---   debounce = 100,
---   args = { '--stdin' },
---   offsetLine = 0,
---   offsetColumn = 0,
---   securities = {
---     undefined = 'hint'
---   },
---   formatLines = 1,
---   formatPattern = {
---     '^.*:(\\d+)\\s+(.*)$',
---     {
---       line = 1,
---       column = -1,
---       message = 2,
---     }
---   }
--- }
---
--- local shell_linter = {
---   sourceName = "shellcheck",
---   command = "shellcheck",
---   debounce = 100,
---   isStdout = true,
---   isStderr = false,
---   args = { "--format=gcc", "-" },
---   offsetLine = 0,
---   offsetColumn = 0,
---   formatLines = 1,
---   formatPattern = {
---     "^([^:]+):(\\d+):(\\d+):\\s+([^:]+):\\s+(.*)$",
---     {
---       sourceName = 1,
---       sourceNameFilter = true,
---       line = 2,
---       column = 3,
---       endLine = 2,
---       endColumn = 3,
---       message = {5},
---       security = 4
---     }
---   },
---   securities = {
---     error = "error",
---     warning = "warning",
---     note = "info",
---   }
--- }
---
--- local diag_linters = {
---     markdown = markdown_linter,
---     sh = shell_linter,
--- }
---
--- local diag_filetypes = {
---   sh = "shellcheck",
---   markdown = "markdownlint",
--- }
---
--- local diag_format_filetypes = {
---   markdown = 'remark',
---   sh = 'shfmt',
--- }
---
--- local diag_formatters = {
---   remark = {
---     command = 'remark',
---   },
---   shfmt = {
---     command = 'shfmt',
---     args = { "-i 4" }
---   },
--- }
+capabilities.textDocument.completion.completionItem.resolveSupport = {
+    properties = {
+      'documentation',
+      'detail',
+      'additionalTextEdits',
+    }
+}
+local opts = {
+    tools = {
+        autoSetHints = true,
+        hover_with_actions = true,
+        runnables = {
+            use_telescope = true
+        },
+        inlay_hints = {
+            show_parameter_hints = true,
+            parameter_hints_prefix = "<-",
+            other_hints_prefix  = "=>",
+        },
+    },
+    server = { -- setup rust_analyzer
+      on_attach = on_attach,
+      capabilities = capabilities,
+    }
+}
 
--- lspconfig.diagnosticls.setup{
---   cmd = { "diagnostic-languageserver", "--stdio" },
---   filetypes = { "sh", "markdown" },
---   on_attach = on_attach,
---   init_options = {
---     filetypes = diag_filetypes,
---     linters = diag_linters,
---     formatFiletypes = diag_format_filetypes,
---     formatters = diag_formatters,
---   },
--- }
--- diagnosticls setup end
+require('rust-tools').setup(opts)
+require('rust-tools-debug').setup()
+-- setup rust-tools end

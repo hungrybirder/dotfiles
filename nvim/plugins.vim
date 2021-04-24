@@ -63,6 +63,8 @@ Plug 'steelsojka/completion-buffers'
 
 " lsp for performance UI.
 Plug 'glepnir/lspsaga.nvim'
+Plug 'RishabhRD/popfix'
+Plug 'RishabhRD/nvim-lsputils'
 
 " tree sitter
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
@@ -100,6 +102,7 @@ Plug 'AndrewRadev/splitjoin.vim' "gS gJ
 
 " langs
 Plug 'rust-lang/rust.vim'
+Plug 'simrat39/rust-tools.nvim'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'neoclide/jsonc.vim'
 
@@ -202,7 +205,7 @@ nnoremap <leader>pw <cmd>lua require('telescope.builtin').grep_string({ search =
 
 " nnoremap <silent> <leader>f  <cmd>lua require('telescope').extensions.fzf_writer.files()<CR>
 " nnoremap <Leader>f :lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({}))<cr>
-nnoremap <Leader>f :lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ winblend = 10 }))<cr>
+nnoremap <silent> <Leader>f :lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ winblend = 10 }))<cr>
 
 nnoremap <silent> <leader>m  <cmd>Telescope oldfiles<CR>
 nnoremap <silent> <leader>o  <cmd>Telescope treesitter<CR>
