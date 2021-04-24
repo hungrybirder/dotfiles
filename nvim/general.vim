@@ -98,9 +98,14 @@ onoremap in< :<c-u>normal! f<vi<<cr>
 onoremap il< :<c-u>normal! F>vi<<cr>
 
 
-nnoremap <leader>u :UndotreeShow<CR>
+nnoremap <leader>u :UndotreeToggle<CR>
 nnoremap <Leader>+ :vertical resize +5<CR>
 nnoremap <Leader>- :vertical resize -5<CR>
+" Use alt + hjkl to resize windows
+nnoremap <M-j>    :resize +2<CR>
+nnoremap <M-k>    :resize -2<CR>
+nnoremap <M-h>    :vertical resize +2<CR>
+nnoremap <M-l>    :vertical resize -2<CR>
 
 " greatest remap ever
 vnoremap <leader>p "_dP
