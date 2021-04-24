@@ -340,3 +340,8 @@ local opts = {
 require('rust-tools').setup(opts)
 require('rust-tools-debug').setup()
 -- setup rust-tools end
+
+-- setup outline
+require('symbols-outline').setup()
+-- setup outline end
+

@@ -60,6 +60,8 @@ Plug 'tjdevries/nlua.nvim'
 " Plug 'tjdevries/lsp_extensions.nvim'
 Plug 'Shougo/echodoc.vim'
 Plug 'steelsojka/completion-buffers'
+" outline from lsp
+Plug 'simrat39/symbols-outline.nvim'
 
 " lsp for performance UI.
 Plug 'glepnir/lspsaga.nvim'
@@ -547,3 +549,8 @@ let g:fzf_tag_actions = {
 " airline
 let g:airline_theme = 'base16_solarized'
 " airline end
+
+" symbols-outline
+nnoremap <silent> <leader>3 :SymbolsOutline<CR>
+" symbols-outline end
+
