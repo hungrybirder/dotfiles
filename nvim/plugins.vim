@@ -60,7 +60,7 @@ Plug 'tjdevries/nlua.nvim'
 " Plug 'tjdevries/lsp_extensions.nvim'
 Plug 'Shougo/echodoc.vim'
 Plug 'steelsojka/completion-buffers'
-" outline from lsp
+" outline powered by lsp
 Plug 'simrat39/symbols-outline.nvim'
 
 " lsp for performance UI.
