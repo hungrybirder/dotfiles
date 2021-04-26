@@ -58,7 +58,7 @@ Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-lua/completion-nvim'
 Plug 'tjdevries/nlua.nvim'
 " Plug 'tjdevries/lsp_extensions.nvim'
-Plug 'Shougo/echodoc.vim'
+" Plug 'Shougo/echodoc.vim'
 Plug 'steelsojka/completion-buffers'
 " outline powered by lsp
 Plug 'simrat39/symbols-outline.nvim'
@@ -263,23 +263,23 @@ noremap <Leader>pc :<c-u>PlugClean<CR>
 
 
 " echodoc
-func! EnableEchoDoc()
-  call echodoc#enable()
-  if has('nvim')
-    let g:echodoc#type = "floating"
-    highlight link EchoDocFloat Pmenu
-  else
-    let g:echodoc#type = "popup"
-    highlight link EchoDocPopup Pmenu
-  endif
-endfun
-
-augroup MyEchoDoc
-  autocmd!
-  autocmd FileType go call EnableEchoDoc()
-  autocmd FileType java call EnableEchoDoc()
-  autocmd FileType python call EnableEchoDoc()
-augroup END
+" func! EnableEchoDoc()
+"   call echodoc#enable()
+"   if has('nvim')
+"     let g:echodoc#type = "floating"
+"     highlight link EchoDocFloat Pmenu
+"   else
+"     let g:echodoc#type = "popup"
+"     highlight link EchoDocPopup Pmenu
+"   endif
+" endfun
+"
+" augroup MyEchoDoc
+"   autocmd!
+"   autocmd FileType go call EnableEchoDoc()
+"   autocmd FileType java call EnableEchoDoc()
+"   autocmd FileType python call EnableEchoDoc()
+" augroup END
 " echodo end
 
 " clever-f
