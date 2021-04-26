@@ -133,8 +133,8 @@ Plug 'kassio/neoterm'
 Plug 'christoomey/vim-tmux-navigator'
 call plug#end()
 
-colorscheme gruvbox8
-highlight Normal guibg=none
+colorscheme gruvbox8_hard
+" highlight Normal guibg=none
 
 " nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
 
