@@ -204,20 +204,18 @@ let test#neovim#term_position = "rightbelow"
 " powered by ThePrimeagen
 nnoremap <leader>ps <cmd>lua require('telescope.builtin').grep_string({ search = vim.fn.input("Grep For > ") })<CR>
 nnoremap <leader>pw <cmd>lua require('telescope.builtin').grep_string({ search = vim.fn.expand("<cword>") })<CR>
+nnoremap <silent> <Leader>pf :lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ winblend = 10 }))<cr>
+nnoremap <silent> <leader>pb <cmd>Telescope current_buffer_fuzzy_find<CR>
 
-" nnoremap <silent> <leader>f  <cmd>lua require('telescope').extensions.fzf_writer.files()<CR>
-" nnoremap <Leader>f :lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({}))<cr>
-nnoremap <silent> <Leader>f :lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ winblend = 10 }))<cr>
+nnoremap <silent> <c-p> <cmd>Telescope git_files<CR>
 
 nnoremap <silent> <leader>m  <cmd>Telescope oldfiles<CR>
 nnoremap <silent> <leader>o  <cmd>Telescope treesitter<CR>
 nnoremap <silent> <leader>b  <cmd>Telescope buffers<CR>
 nnoremap <silent> <leader>a  <cmd>Telescope live_grep<CR>
-nnoremap <silent> <leader>pb <cmd>Telescope current_buffer_fuzzy_find<CR>
 nnoremap <silent> <leader>r  <cmd>Telescope lsp_references<CR>
 nnoremap <silent> <leader>cs <cmd>Telescope lsp_document_symbols<CR>
 nnoremap <silent> <leader>ws <cmd>lua require('telescope.builtin').lsp_workspace_symbols{query="*"}<CR>
-nnoremap <silent> <c-p> <cmd>Telescope git_files<CR>
 nnoremap <silent> <leader>ts  <cmd>Telescope tagstack<CR>
 
 " completion-nvim
