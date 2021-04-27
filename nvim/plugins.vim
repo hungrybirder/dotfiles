@@ -83,6 +83,8 @@ Plug 'kshenoy/vim-signature'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'stsewd/fzf-checkout.vim'
+" better quickfix window
+Plug 'kevinhwang91/nvim-bqf'
 
 " telescope
 Plug 'nvim-lua/plenary.nvim'
@@ -114,6 +116,9 @@ Plug 'mmarchini/bpftrace.vim'
 Plug 'mzlogin/vim-markdown-toc'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 Plug 'iamcco/mathjax-support-for-mkdp'
+" MacOS: brew install glow
+" https://github.com/charmbracelet/glow
+Plug 'npxbr/glow.nvim', {'do': ':GlowInstall'}
 
 " debugger
 Plug 'puremourning/vimspector'
