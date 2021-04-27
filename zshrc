@@ -10,6 +10,12 @@ fi
 # /usr/bin/time zsh -i -c exit
 #
 OS_NAME=$(uname -s)
+BREW_PREFIX="/usr/local"
+if [[ $(uname -m) = "arm64" ]]; then
+  BREW_PREFIX="/opt/homebrew"
+fi
+
+[ -f ${BREW_PREFIX}/etc/profile.d/autojump.sh ] && . ${BREW_PREFIX}/etc/profile.d/autojump.sh
 
 export LC_ALL=en_US.utf-8
 export LANG=en_US.utf-8
@@ -17,6 +23,7 @@ export LANG=en_US.utf-8
 export ZSH=/Users/liyong/.oh-my-zsh
 # ZSH_THEME="agnoster"
 # git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
+POWERLEVEL9K_INSTANT_PROMPT=off
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
 
@@ -40,22 +47,28 @@ setopt HIST_BEEP                 # Beep when accessing nonexistent history.
 
 bindkey '^ ' autosuggest-accept
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#ff00ff,bg=cyan,bold,underline"
-source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source ${BREW_PREFIX}/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 #source /usr/local/share/zsh-history-substring-search/zsh-history-substring-search.zsh
-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source ${BREW_PREFIX}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # 启用的插件
-plugins=(pyenv git gpg-agent autojump jsontools vagrant docker osx pip golang z)
+if [[ $(uname -m) = "arm64" ]]; then
+  plugins=(pyenv git jsontools vagrant docker osx pip golang z)
+else
+  plugins=(pyenv git gpg-agent autojump jsontools vagrant docker osx pip golang z)
+fi
 source $ZSH/oh-my-zsh.sh
-export PATH="/usr/local/sbin:/usr/local/bin:$PATH"
+export PATH="/opt/homebrew/bin:/usr/local/sbin:/usr/local/bin:$PATH"
 
+if [[ $(uname -m) = "x86_64" ]]; then
 # 使用pyenv来管理多个版本的py py3
-export WORKON_HOME="${HOME}/.envs"
-export PYENV_VIRTUALENVWRAPPER_PREFER_PYVENV="true"
-export PYENV_VIRTUALENV_DISABLE_PROMPT=1
-export PYENV_ROOT=$HOME/.pyenv
+ export WORKON_HOME="${HOME}/.virtualenvs"
+ export PYENV_VIRTUALENVWRAPPER_PREFER_PYVENV="true"
+ export PYENV_VIRTUALENV_DISABLE_PROMPT=1
+ export PYENV_ROOT=$HOME/.pyenv
 # 运行workon, mkvirtualenv 命令之前，需要先运行: pyenv virtualenvwrapper
-eval "pyenv virtualenvwrapper"
+ eval "pyenv virtualenvwrapper"
+fi
 
 # 在 iTerm -> Preferences -> Profiles -> Keys 中，新建一个快捷键
 # 例如 ⌥ + a ，Action 选择 Send Hex Code，键值为 0x1 0x70 0x63 0x20 0xd，保存生效。
@@ -79,11 +92,9 @@ enable_http_proxy() {
 #Generic Colouriser
 if [[ "x${OS_NAME}" = "xDarwin" ]]; then
   # 为了减少session启动时间
-  # 将coreutils目录写死了
-  if [ -d /usr/local/Cellar/coreutils ]; then
-    # PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
-    alias ls='/usr/local/opt/coreutils/libexec/gnubin/ls --show-control-chars --color=auto'
-    eval `/usr/local/bin/gdircolors -b $HOME/.dir_colors`
+  if [ -d ${BREW_PREFIX}/Cellar/coreutils ]; then
+    alias ls="${BREW_PREFIX}/opt/coreutils/libexec/gnubin/ls --show-control-chars --color=auto"
+    eval `${BREW_PREFIX}/bin/gdircolors -b $HOME/.dir_colors`
   fi
 
 fi
@@ -249,7 +260,7 @@ export GIT_INTERNAL_GETTEXT_TEST_FALLBACKS=1
 [ -f /Users/liyong/.travis/travis.sh ] && source /Users/liyong/.travis/travis.sh
 
 # golang
-export PATH="$(go env GOBIN):${PATH}"
+# export PATH="$(go env GOBIN):${PATH}"
 # export GOPATH=$(go env GOPATH)
 
 # if [[ -d ${GOPATH}/bin ]]; then
