@@ -21,6 +21,7 @@ local lsp_install_path = vim.fn.stdpath('cache')..SEP..'lspconfig'
 
 local lspconfig = require'lspconfig'
 local util      = require'lspconfig/util'
+local lsp_status = require('lsp-status')
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
@@ -167,11 +168,23 @@ local on_attach = function(client, bufnr)
     chain_complete_list = chain_complete_list,
     customize_lsp_label = customize_lsp_label,
   })
+
+  lsp_status.on_attach(client, bufnr)
   -- vim.api.nvim_command('autocmd CursorHold <buffer> lua vim.lsp.diagnostic.show_line_diagnostics()')
   -- if vim.api.nvim_buf_get_option(0, 'filetype') == 'rust' then
   --   vim.api.nvim_command('autocmd CursorMoved,InsertLeave,BufEnter,BufWinEnter,TabEnter,BufWritePost *.rs lua require"lsp_extensions".inlay_hints {prefix=" » ", highlight = "Comment", enabled = {"TypeHint","ChainingHint", "ParameterHint"}}')
   -- end
 end
+
+lsp_status.register_progress()
+lsp_status.config({
+  status_symbol = '',
+  indicator_errors = 'e',
+  indicator_warnings = 'w',
+  indicator_info = 'i',
+  indicator_hint = 'h',
+  indicator_ok = 'ok',
+})
 
 -- [[
 -- npm i -g typescript-language-server typescript
@@ -200,6 +213,7 @@ for _,name in pairs(servers) do
   lspconfig[name].setup{
     on_attach=on_attach,
     -- capabilities = capabilities,
+    capabilities = lsp_status.capabilities,
   }
 end
 
@@ -209,6 +223,7 @@ lspconfig.sqlls.setup{
 
 lspconfig.pyright.setup{
   on_attach=on_attach,
+  capabilities = lsp_status.capabilities,
   settings = {
     python = {
       analysis = {
@@ -229,6 +244,7 @@ lspconfig.pyright.setup{
 
 lspconfig.clangd.setup{
   on_attach=on_attach,
+  capabilities = lsp_status.capabilities,
   cmd = {
     "/usr/local/opt/llvm/bin/clangd",
     "--background-index"
@@ -237,6 +253,7 @@ lspconfig.clangd.setup{
 
 lspconfig.gopls.setup {
   on_attach=on_attach,
+  capabilities = lsp_status.capabilities,
   cmd = {"gopls", "--remote=auto"},
 }
 

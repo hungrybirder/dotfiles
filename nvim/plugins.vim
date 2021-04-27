@@ -62,6 +62,8 @@ Plug 'tjdevries/nlua.nvim'
 Plug 'steelsojka/completion-buffers'
 " outline powered by lsp
 Plug 'simrat39/symbols-outline.nvim'
+" lsp status
+Plug 'nvim-lua/lsp-status.nvim'
 
 " lsp for performance UI.
 Plug 'glepnir/lspsaga.nvim'
@@ -557,3 +559,13 @@ let g:airline_theme = 'base16_solarized'
 nnoremap <silent> <leader>3 :SymbolsOutline<CR>
 " symbols-outline end
 
+
+" lsp-status.nvim
+function! LspStatus() abort
+  if luaeval('#vim.lsp.buf_get_clients() > 0')
+    return luaeval("require('lsp-status').status()")
+  endif
+  return ''
+endfunction
+set statusline+=\ %{LspStatus()}
+" lsp-status.nvim end
