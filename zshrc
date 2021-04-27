@@ -260,7 +260,7 @@ export GIT_INTERNAL_GETTEXT_TEST_FALLBACKS=1
 [ -f /Users/liyong/.travis/travis.sh ] && source /Users/liyong/.travis/travis.sh
 
 # golang
-# export PATH="$(go env GOBIN):${PATH}"
+export PATH="$(go env GOPATH)/bin:${PATH}"
 # export GOPATH=$(go env GOPATH)
 
 # if [[ -d ${GOPATH}/bin ]]; then
