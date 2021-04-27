@@ -59,6 +59,9 @@ Plug 'nvim-lua/completion-nvim'
 Plug 'tjdevries/nlua.nvim'
 " Plug 'tjdevries/lsp_extensions.nvim'
 " Plug 'Shougo/echodoc.vim'
+" Plug 'ray-x/lsp_signature.nvim'"
+" Plug 'hungrybirder/lsp_signature.nvim'
+Plug '/Users/liyong/codes/lsp_signature.nvim'
 Plug 'steelsojka/completion-buffers'
 " outline powered by lsp
 Plug 'simrat39/symbols-outline.nvim'
