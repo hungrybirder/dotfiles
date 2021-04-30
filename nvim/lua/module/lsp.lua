@@ -256,8 +256,9 @@ lspconfig.clangd.setup{
   on_attach=on_attach,
   capabilities = lsp_status.capabilities,
   cmd = {
-    "/usr/local/opt/llvm/bin/clangd",
-    "--background-index"
+    "clangd",
+    "--background-index",
+    "-j=8",
   }
 }
 

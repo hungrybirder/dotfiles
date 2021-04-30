@@ -286,3 +286,7 @@ export SSLKEYLOGFILE="${HOME}/tmp/ssl_key.log"
 
 # 使用nvim打开手册
 export MANPAGER='nvim +Man!'
+
+if [[ "${OS_NAME}" = "Darwin" ]]; then
+  alias clangd=$(xcrun -f clangd)
+fi
