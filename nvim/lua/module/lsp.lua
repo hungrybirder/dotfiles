@@ -176,8 +176,13 @@ local on_attach = function(client, bufnr)
   require "lsp_signature".on_attach({
       bind = true,
       handler_opts = {
-        border = "single"
-      }
+        border = "shadow"
+      },
+      doc_lines = 20,
+      hint_enable = true,
+      hint_prefix = "🐼 ",
+      hint_scheme = "String",
+      decorator = {"`", "`"},
   })
   -- vim.api.nvim_command('autocmd CursorHold <buffer> lua require"lspsaga.diagnostic".show_line_diagnostics()')
   -- vim.api.nvim_command('autocmd CursorHold <buffer> lua vim.lsp.diagnostic.show_line_diagnostics()')
