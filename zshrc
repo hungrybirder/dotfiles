@@ -288,5 +288,5 @@ export SSLKEYLOGFILE="${HOME}/tmp/ssl_key.log"
 export MANPAGER='nvim +Man!'
 
 if [[ "${OS_NAME}" = "Darwin" ]]; then
-  alias clangd=$(xcrun -f clangd)
+  alias clangd="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clangd"
 fi
