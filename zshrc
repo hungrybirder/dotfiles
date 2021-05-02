@@ -287,6 +287,6 @@ export SSLKEYLOGFILE="${HOME}/tmp/ssl_key.log"
 # 使用nvim打开手册
 export MANPAGER='nvim +Man!'
 
-if [[ "${OS_NAME}" = "Darwin" ]]; then
-  alias clangd="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clangd"
-fi
+# if [[ "${OS_NAME}" = "Darwin" ]]; then
+#   alias clangd="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clangd"
+# fi

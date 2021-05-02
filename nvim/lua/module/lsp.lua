@@ -253,10 +253,14 @@ lspconfig.pyright.setup{
 }
 
 lspconfig.clangd.setup{
+  handlers = lsp_status.extensions.clangd.setup(),
+  init_options = {
+    clangdFileStatus = true
+  },
   on_attach=on_attach,
   capabilities = lsp_status.capabilities,
   cmd = {
-    "clangd",
+    "/usr/local/opt/llvm/bin/clangd",
     "--background-index",
     "-j=8",
   }
