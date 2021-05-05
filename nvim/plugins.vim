@@ -42,6 +42,7 @@ Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-fugitive'
 Plug 'mhinz/vim-signify'
 Plug 'junegunn/gv.vim'
+Plug 'sindrets/diffview.nvim'
 
 " powered by svermeulen
 Plug 'svermeulen/vim-subversive'
