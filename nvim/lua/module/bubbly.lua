@@ -90,3 +90,8 @@ vim.g.bubbly_colors = {
     },
   },
 }
+
+vim.g.bubbly_inactive_color = {
+  background = 'darkgrey',
+  foreground = 'foreground',
+}
