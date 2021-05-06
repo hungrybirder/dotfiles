@@ -1,7 +1,7 @@
 vim.g.bubbly_statusline = {
   'mode',
-  'truncate',
   'path',
+  'truncate',
   'branch',
   'signify',
 

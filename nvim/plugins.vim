@@ -51,10 +51,15 @@ Plug 'svermeulen/vim-subversive'
 " Plug 'svermeulen/vim-cutlass'
 Plug 'svermeulen/vim-yoink'
 
-" tagbar & nerdtree
+" tagbar
 Plug 'preservim/tagbar'
-Plug 'preservim/nerdtree' | Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+" nvim-tree
+Plug 'kyazdani42/nvim-tree.lua'
+
+" nerdtree
+" Plug 'preservim/nerdtree' | Plug 'Xuyuanp/nerdtree-git-plugin'
+" Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+
 
 " lsp
 Plug 'neovim/nvim-lspconfig'
@@ -321,16 +326,16 @@ noremap <leader><BS> :Bdelete<cr>
 " vim-bbye end
 
 " nerdtree
-let g:NERDTreeQuitOnOpen=0
-let g:NERDTreeMinimalUI=1
-map <leader><tab> :<c-u>NERDTreeToggle<CR>
-autocmd BufEnter * if bufname('#') =~# "^NERD_tree_" && winnr('$') > 1 | b# | endif
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+" let g:NERDTreeQuitOnOpen=0
+" let g:NERDTreeMinimalUI=1
+" map <leader><tab> :<c-u>NERDTreeToggle<CR>
+" autocmd BufEnter * if bufname('#') =~# "^NERD_tree_" && winnr('$') > 1 | b# | endif
+" autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+" nerdtree end
 
 if exists('g:loaded_webdevicons')
     call webdevicons#refresh()
 endif
-" nerdtreeend
 
 " tagbar
 nnoremap <silent> <leader>2 :TagbarToggle<CR>
