@@ -244,7 +244,8 @@ lspconfig.pyright.setup{
       analysis = {
         autoImportCompletions = true,
         autoSearchPaths = true,
-        useLibraryCodeForTypes = true
+        useLibraryCodeForTypes = true,
+        diagnosticMode = 'workspace',
       },
       linting = {
         enable = true,
