@@ -16,9 +16,11 @@ Plug 'jamessan/vim-gnupg'
 Plug 'lifepillar/vim-gruvbox8'
 
 " statusline
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+" Plug 'vim-airline/vim-airline'
+" Plug 'vim-airline/vim-airline-themes'
+
 Plug 'akinsho/nvim-bufferline.lua'
+Plug 'datwaft/bubbly.nvim'
 
 " delete buffer without closing windows
 Plug 'moll/vim-bbye'
@@ -552,21 +554,21 @@ let g:fzf_tag_actions = {
 \}
 " fugitive end
 
-" airline
-let g:airline_theme = 'base16_solarized'
-" airline end
-
 " symbols-outline
 nnoremap <silent> <leader>3 :SymbolsOutline<CR>
 " symbols-outline end
 
 
+" airline
+" let g:airline_theme = 'base16_solarized'
+" airline end
+
 " lsp-status.nvim
-function! LspStatus() abort
-  if luaeval('#vim.lsp.buf_get_clients() > 0')
-    return luaeval("require('lsp-status').status()")
-  endif
-  return ''
-endfunction
-set statusline+=\ %{LspStatus()}
+" function! LspStatus() abort
+"   if luaeval('#vim.lsp.buf_get_clients() > 0')
+"     return luaeval("require('lsp-status').status()")
+"   endif
+"   return ''
+" endfunction
+" set statusline+=\ %{LspStatus()}
 " lsp-status.nvim end
