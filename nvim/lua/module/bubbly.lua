@@ -18,6 +18,18 @@ vim.g.bubbly_statusline = {
   -- 'total_buffer_number',
 }
 
+disable_bubbly_filetypes = { 'NvimTree', 'Outline', }
+
+vim.g.bubbly_filter = {
+  mode = disable_bubbly_filetypes,
+  path = disable_bubbly_filetypes,
+  branch = disable_bubbly_filetypes,
+  signify = disable_bubbly_filetypes,
+  progress = disable_bubbly_filetypes,
+  filetype = disable_bubbly_filetypes,
+  total_buffer_number = disable_bubbly_filetypes,
+}
+
 vim.g.bubbly_colors = {
   default = 'red',
 
