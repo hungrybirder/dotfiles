@@ -75,7 +75,7 @@ Plug 'RishabhRD/nvim-lsputils'
 
 " tree sitter
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-Plug 'nvim-treesitter/completion-treesitter'
+" Plug 'nvim-treesitter/completion-treesitter'
 Plug 'nvim-treesitter/playground'
 " Plug 'romgrk/nvim-treesitter-context'
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'
