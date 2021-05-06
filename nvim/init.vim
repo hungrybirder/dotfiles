@@ -17,5 +17,10 @@ for f in split(glob('~/.config/nvim/plugins.d/*.vim'), '\n')
 	exe 'source' f
 endfor
 
+" for lsp debug
+" lua << EOF
+" vim.lsp.set_log_level("debug")
+" EOF
+
 let s:load_dir = expand('<sfile>:p:h')
 exec printf('luafile %s/lua/init.lua', s:load_dir)
