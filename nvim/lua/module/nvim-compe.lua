@@ -24,38 +24,38 @@ require'compe'.setup {
 }
 
 local t = function(str)
-    return vim.api.nvim_replace_termcodes(str, true, true, true)
-  end
+  return vim.api.nvim_replace_termcodes(str, true, true, true)
+end
 
-  local check_back_space = function()
-    local col = vim.fn.col('.') - 1
-    return col == 0 or vim.fn.getline('.'):sub(col, col):match('%s')
-  end
+local check_back_space = function()
+  local col = vim.fn.col('.') - 1
+  return col == 0 or vim.fn.getline('.'):sub(col, col):match('%s')
+end
 
-  vim.api.nvim_set_keymap('i', '<C-Space>', [[compe#complete()]], {
-    expr = true,
-    silent = true,
-  })
+vim.api.nvim_set_keymap('i', '<C-Space>', [[compe#complete()]], {
+  expr = true,
+  silent = true,
+})
 
-  vim.api.nvim_set_keymap('i', '<C-e>', [[compe#close('<C-e>')]], {
-    expr = true,
-    silent = true,
-  })
+vim.api.nvim_set_keymap('i', '<C-e>', [[compe#close('<C-e>')]], {
+  expr = true,
+  silent = true,
+})
 
-  vim.api.nvim_set_keymap('i', '<CR>', [[compe#confirm('<CR>')]], {
-    expr = true,
-    silent = true,
-  })
+vim.api.nvim_set_keymap('i', '<CR>', [[compe#confirm('<CR>')]], {
+  expr = true,
+  silent = true,
+})
 
-  vim.api.nvim_set_keymap('i', '<C-f>', [[compe#scroll({ 'delta': +4 })]], {
-    expr = true,
-    silent = true,
-  })
+vim.api.nvim_set_keymap('i', '<C-f>', [[compe#scroll({ 'delta': +4 })]], {
+  expr = true,
+  silent = true,
+})
 
-  vim.api.nvim_set_keymap('i', '<C-b>', [[compe#scroll({ 'delta': -4 })]], {
-    expr = true,
-    silent = true,
-  })
+vim.api.nvim_set_keymap('i', '<C-b>', [[compe#scroll({ 'delta': -4 })]], {
+  expr = true,
+  silent = true,
+})
 
 _G.tab_complete = function()
   if vim.fn.pumvisible() == 1 then
