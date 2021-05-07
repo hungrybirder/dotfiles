@@ -19,7 +19,7 @@ vim.g.bubbly_statusline = {
   -- 'total_buffer_number',
 }
 
-disable_bubbly_filetypes = { 'NvimTree', 'Outline', 'vim-plug', }
+disable_bubbly_filetypes = { 'NvimTree', 'Outline', 'vim-plug', 'PopList', }
 
 vim.g.bubbly_filter = {
   mode = disable_bubbly_filetypes,
