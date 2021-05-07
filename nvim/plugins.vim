@@ -23,11 +23,12 @@ Plug 'moll/vim-bbye'
 " Delete all the buffers except the current buffer.
 Plug 'schickling/vim-bufonly'
 
-" speedup editing
+" speedup editing friendly
 Plug 'jiangmiao/auto-pairs'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'rhysd/clever-f.vim'
 Plug 'easymotion/vim-easymotion'
+Plug 'karb94/neoscroll.nvim'
 
 " powered by tpope
 Plug 'tpope/vim-repeat'

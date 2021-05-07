@@ -7,6 +7,7 @@ require('module/telescope')
 require('module/bubbly')
 require('module/nvim-tree')
 require('module/nvim-compe')
+require('module/misc')
 
 -- hb is a test.
 require('module/hb')
