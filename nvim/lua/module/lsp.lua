@@ -21,19 +21,11 @@ local lsp_install_path = vim.fn.stdpath('cache')..SEP..'lspconfig'
 
 local lspconfig = require'lspconfig'
 local util      = require'lspconfig/util'
-local lsp_status = require('lsp-status')
+
 local lspsaga = require 'lspsaga'
 
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.completion.completionItem.snippetSupport = true
-capabilities.textDocument.completion.completionItem.resolveSupport = {
-  properties = {
-    'documentation',
-    'detail',
-    'additionalTextEdits',
-  }
-}
-capabilities = vim.tbl_extend('keep', capabilities or {}, lsp_status.capabilities)
+local lsp_status = require('lsp-status')
+lsp_status.register_progress()
 
 -- lsp handlers are powered by nvim-lsputils
 vim.lsp.handlers['textDocument/codeAction'] = require'lsputil.codeAction'.code_action_handler
@@ -54,7 +46,7 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   }
 )
 
-local on_attach = function(client, bufnr)
+local lsp_on_attach = function(client, bufnr)
 
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
   local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
@@ -131,6 +123,19 @@ local on_attach = function(client, bufnr)
   })
 end
 
+-- lsp capabilities
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+capabilities.textDocument.completion.completionItem.resolveSupport = {
+  properties = {
+    'documentation',
+    'detail',
+    'additionalTextEdits',
+  }
+}
+capabilities = vim.tbl_extend('keep', capabilities or {}, lsp_status.capabilities)
+
+
 -- [[
 -- npm i -g typescript-language-server typescript
 -- npm i -g vim-language-server
@@ -156,7 +161,7 @@ local servers = {
 
 for _,name in pairs(servers) do
   lspconfig[name].setup{
-    on_attach=on_attach,
+    on_attach=lsp_on_attach,
     capabilities = capabilities,
   }
 end
@@ -166,7 +171,7 @@ lspconfig.sqlls.setup{
 }
 
 lspconfig.pyright.setup{
-  on_attach=on_attach,
+  on_attach=lsp_on_attach,
   capabilities = capabilities,
   settings = {
     python = {
@@ -192,7 +197,7 @@ lspconfig.clangd.setup{
   init_options = {
     clangdFileStatus = true
   },
-  on_attach=on_attach,
+  on_attach=lsp_on_attach,
   capabilities = capabilities,
   cmd = {
     "/usr/local/opt/llvm/bin/clangd",
@@ -202,7 +207,7 @@ lspconfig.clangd.setup{
 }
 
 lspconfig.gopls.setup {
-  on_attach=on_attach,
+  on_attach=lsp_on_attach,
   capabilities = capabilities,
   cmd = {"gopls", "--remote=auto"},
 }
@@ -236,7 +241,7 @@ local sumneko_root_path = lsp_install_path..'/sumneko_lua/lua-language-server'
 local sumneko_binary = sumneko_root_path.."/bin/"..system_name.."/lua-language-server"
 lspconfig.sumneko_lua.setup{
   capabilities = capabilities,
-  on_attach = on_attach,
+  on_attach = lsp_on_attach,
   cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"},
   settings = {
     Lua = {
@@ -262,14 +267,14 @@ lspconfig.sumneko_lua.setup{
 -- brew install jdt-language-server
 lspconfig.jdtls.setup{
   capabilities = capabilities,
-  on_attach=on_attach,
+  on_attach=lsp_on_attach,
   cmd = {"jdt-language-server"},
   root_dir = util.root_pattern(".git", "pom.xml"),
 }
 
 lspconfig.solargraph.setup{
   capabilities = capabilities,
-  on_attach=on_attach,
+  on_attach=lsp_on_attach,
   cmd = {
     "/usr/local/lib/ruby/gems/3.0.0/bin/solargraph",
     "stdio"
@@ -294,7 +299,7 @@ local opts = {
         },
     },
     server = { -- setup rust_analyzer
-      on_attach = on_attach,
+      on_attach = lsp_on_attach,
       capabilities = capabilities,
     }
 }
