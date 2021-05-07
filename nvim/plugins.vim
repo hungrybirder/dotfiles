@@ -5,7 +5,6 @@ Plug 'hotoo/pangu.vim'
 
 Plug 'tpope/vim-dispatch'
 
-" Plug 'liuchengxu/vim-which-key'
 Plug 'airblade/vim-rooter'
 Plug 'tweekmonster/startuptime.vim'
 
@@ -15,11 +14,8 @@ Plug 'jamessan/vim-gnupg'
 " theme
 Plug 'lifepillar/vim-gruvbox8'
 
-" statusline
-" Plug 'vim-airline/vim-airline'
-" Plug 'vim-airline/vim-airline-themes'
-
 Plug 'akinsho/nvim-bufferline.lua'
+" statusline
 Plug 'datwaft/bubbly.nvim'
 
 " delete buffer without closing windows
@@ -56,22 +52,26 @@ Plug 'preservim/tagbar'
 " nvim-tree
 Plug 'kyazdani42/nvim-tree.lua'
 
-" nerdtree
-" Plug 'preservim/nerdtree' | Plug 'Xuyuanp/nerdtree-git-plugin'
-" Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-
-
 " lsp
 Plug 'neovim/nvim-lspconfig'
-Plug 'nvim-lua/completion-nvim'
 Plug 'tjdevries/nlua.nvim'
 " Plug 'tjdevries/lsp_extensions.nvim'
 Plug 'ray-x/lsp_signature.nvim'
-Plug 'steelsojka/completion-buffers'
 " outline powered by lsp
 Plug 'simrat39/symbols-outline.nvim'
 " lsp status
 Plug 'nvim-lua/lsp-status.nvim'
+
+" auto completion
+" Plug 'nvim-lua/completion-nvim'
+" Plug 'steelsojka/completion-buffers'
+Plug 'hrsh7th/nvim-compe'
+Plug 'onsails/lspkind-nvim'
+
+" snippets
+Plug 'hrsh7th/vim-vsnip'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 
 " lsp for performance UI.
 Plug 'glepnir/lspsaga.nvim'
@@ -138,20 +138,17 @@ Plug 'sebdah/vim-delve' " for debug ut
 " unit test
 Plug 'vim-test/vim-test'
 
-" snippets
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
-
 " Terminal
 Plug 'kassio/neoterm'
 " tmux
 Plug 'christoomey/vim-tmux-navigator'
 call plug#end()
 
-colorscheme gruvbox8_hard
-" highlight Normal guibg=none
+noremap <Leader>pi :<c-u>PlugInstall<CR>
+noremap <Leader>pu :<c-u>PlugUpdate<CR>
+noremap <Leader>pc :<c-u>PlugClean<CR>
 
-" nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
+colorscheme gruvbox8_hard
 
 fun! GotoWindow(id)
     call win_gotoid(a:id)
@@ -233,68 +230,6 @@ nnoremap <silent> <leader>cs <cmd>Telescope lsp_document_symbols<CR>
 nnoremap <silent> <leader>ws <cmd>lua require('telescope.builtin').lsp_workspace_symbols{query="*"}<CR>
 nnoremap <silent> <leader>ts  <cmd>Telescope tagstack<CR>
 
-" completion-nvim
-let g:completion_enable_snippet = 'UltiSnips'
-let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
-let g:completion_matching_ignore_case = 1
-let g:completion_matching_smart_case = 1
-let g:completion_sorting = "none"
-let g:completion_enable_auto_paren = 1
-let g:completion_enable_auto_popup = 1
-let g:completion_enable_auto_signature = 1
-let g:completion_enable_auto_hover = 1
-let g:completion_auto_change_source = 1
-let g:completion_confirm_key = ""
-imap <expr> <cr>  pumvisible() ? complete_info()["selected"] != "-1" ?
-    \ "\<Plug>(completion_confirm_completion)"  :
-    \ "\<c-e>\<CR>" : "\<CR>"
-
-inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-inoremap <expr> <Up>   pumvisible() ? "\<C-p>" : "\<Up>"
-inoremap <expr> <Down> pumvisible() ? "\<C-n>" : "\<Down>"
-inoremap <silent> <C-Space> <cmd>lua require'completion'.triggerCompletion()<CR>
-inoremap <tab> <cmd>lua require'completion'.smart_tab()<CR>
-
-autocmd Filetype markdown,make lua require'completion'.on_attach()
-autocmd Filetype bpftrace lua require'completion'.on_attach()
-
-let g:indicator_errors = "\uf05e "
-let g:indicator_warnings = "\uf071 "
-let g:indicator_infos = "\uf7fc "
-let g:indicator_hints = "\ufbe6 "
-call sign_define("LspDiagnosticsSignError", {"text" : g:indicator_errors, "texthl" : "LspDiagnosticsDefaultError"})
-call sign_define("LspDiagnosticsSignWarning", {"text" : g:indicator_warnings, "texthl" : "LspDiagnosticsDefaultWarning"})
-call sign_define("LspDiagnosticsSignInformation", {"text" : g:indicator_infos, "texthl" : "LspDiagnosticsDefaultInformation"})
-call sign_define("LspDiagnosticsSignHint", {"text" : g:indicator_hints, "texthl" : "LspDiagnosticsDefaultHint"})
-
-" completion-nvim end
-
-noremap <Leader>pi :<c-u>PlugInstall<CR>
-noremap <Leader>pu :<c-u>PlugUpdate<CR>
-noremap <Leader>pc :<c-u>PlugClean<CR>
-
-
-" echodoc
-" func! EnableEchoDoc()
-"   call echodoc#enable()
-"   if has('nvim')
-"     let g:echodoc#type = "floating"
-"     highlight link EchoDocFloat Pmenu
-"   else
-"     let g:echodoc#type = "popup"
-"     highlight link EchoDocPopup Pmenu
-"   endif
-" endfun
-"
-" augroup MyEchoDoc
-"   autocmd!
-"   autocmd FileType go call EnableEchoDoc()
-"   autocmd FileType java call EnableEchoDoc()
-"   autocmd FileType python call EnableEchoDoc()
-" augroup END
-" echodo end
-
 " clever-f
 map ; <Plug>(clever-f-repeat-forward)
 map , <Plug>(clever-f-repeat-back)
@@ -324,14 +259,6 @@ let g:AutoPairsMapSpace = 0
 " vim-bbye
 noremap <leader><BS> :Bdelete<cr>
 " vim-bbye end
-
-" nerdtree
-" let g:NERDTreeQuitOnOpen=0
-" let g:NERDTreeMinimalUI=1
-" map <leader><tab> :<c-u>NERDTreeToggle<CR>
-" autocmd BufEnter * if bufname('#') =~# "^NERD_tree_" && winnr('$') > 1 | b# | endif
-" autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-" nerdtree end
 
 if exists('g:loaded_webdevicons')
     call webdevicons#refresh()
@@ -363,7 +290,7 @@ require'bufferline'.setup{
 EOF
 nnoremap <silent> gb :BufferLinePick<CR>
 
-" overrite vim-vim-unimpaired ]b [b
+" overrite vim-unimpaired ]b [b
 nnoremap <silent>]b :BufferLineCycleNext<CR>
 nnoremap <silent>[b :BufferLineCyclePrev<CR>
 " bufferline end
@@ -372,6 +299,7 @@ nnoremap <silent>[b :BufferLineCyclePrev<CR>
 let g:UltiSnipsExpandTrigger="<c-l>"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+" snip end
 
 " markdown
 let g:vim_markdown_math = 1
@@ -562,18 +490,3 @@ let g:fzf_tag_actions = {
 " symbols-outline
 nnoremap <silent> <leader>3 :SymbolsOutline<CR>
 " symbols-outline end
-
-
-" airline
-" let g:airline_theme = 'base16_solarized'
-" airline end
-
-" lsp-status.nvim
-" function! LspStatus() abort
-"   if luaeval('#vim.lsp.buf_get_clients() > 0')
-"     return luaeval("require('lsp-status').status()")
-"   endif
-"   return ''
-" endfunction
-" set statusline+=\ %{LspStatus()}
-" lsp-status.nvim end

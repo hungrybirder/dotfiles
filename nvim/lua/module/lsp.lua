@@ -26,6 +26,14 @@ local lspsaga = require 'lspsaga'
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
+capabilities.textDocument.completion.completionItem.resolveSupport = {
+  properties = {
+    'documentation',
+    'detail',
+    'additionalTextEdits',
+  }
+}
+capabilities = vim.tbl_extend('keep', capabilities or {}, lsp_status.capabilities)
 
 -- lsp handlers are powered by nvim-lsputils
 vim.lsp.handlers['textDocument/codeAction'] = require'lsputil.codeAction'.code_action_handler
@@ -45,64 +53,6 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     update_in_insert = false,
   }
 )
-
-local chain_complete_list = {
-  default = {
-    {complete_items = {'lsp'}},
-    {complete_items = {'buffers'}},
-    {complete_items = {'snippet'}},
-    {complete_items = {'path'}, triggered_only = {'./', '/'}},
-  },
-  string = {
-    {complete_items = {'path'}, triggered_only = {'./', '/'}},
-    {complete_items = {'buffers'}},
-  },
-  comment = {},
-  lua = {
-    {complete_items = {'lsp'}},
-    {complete_items = {'buffers'}},
-    {complete_items = {'path'}, triggered_only = {'./', '/'}},
-  },
-}
-local utf8 = function(cp)
-  if cp < 128 then
-    return string.char(cp)
-  end
-  local s = ""
-  local prefix_max = 32
-  while true do
-    local suffix = cp % 64
-    s = string.char(128 + suffix)..s
-    cp = (cp - suffix) / 64
-    if cp < prefix_max then
-      return string.char((256 - (2 * prefix_max)) + cp)..s
-    end
-    prefix_max = prefix_max / 2
-  end
-end
-local customize_lsp_label = {
-  Method = utf8(0xf794) .. ' [Method]',
-  Function = utf8(0xf794) .. ' [Function]',
-  Variable = utf8(0xf6a6) .. ' [variable]',
-  Field = utf8(0xf6a6) .. ' [field]',
-  Class = utf8(0xfb44) .. ' [class]',
-  Struct = utf8(0xfb44) .. ' [struct]',
-  Interface = utf8(0xf836) .. ' [interface]',
-  Module = utf8(0xf668) .. ' [module]',
-  Property = utf8(0xf0ad) .. ' [property]',
-  Value = utf8(0xf77a) .. ' [value]',
-  Enum = utf8(0xf77a) .. ' [enum]',
-  Operator = utf8(0xf055) .. ' [operator]',
-  Reference = utf8(0xf838) .. ' [reference]',
-  Keyword = utf8(0xf80a) .. ' [keyword]',
-  Color = utf8(0xe22b) .. ' [color]',
-  Unit = utf8(0xe3ce) .. ' [unit]',
-  ["snippets.nvim"] = utf8(0xf68e) .. ' [nsnip]',
-  Snippet = utf8(0xf68e) .. ' [snippet]',
-  Text = utf8(0xf52b) .. ' [text]',
-  Buffers = utf8(0xf64d) .. ' [buffers]',
-  TypeParameter = utf8(0xf635) .. ' [type]',
-}
 
 local on_attach = function(client, bufnr)
 
@@ -167,11 +117,6 @@ local on_attach = function(client, bufnr)
     ]], false)
   end
 
-  require'completion'.on_attach({
-    chain_complete_list = chain_complete_list,
-    customize_lsp_label = customize_lsp_label,
-  })
-
   lsp_status.on_attach(client)
   require "lsp_signature".on_attach({
       bind = true,
@@ -184,22 +129,7 @@ local on_attach = function(client, bufnr)
       hint_scheme = "String",
       decorator = {"`", "`"},
   })
-  -- vim.api.nvim_command('autocmd CursorHold <buffer> lua require"lspsaga.diagnostic".show_line_diagnostics()')
-  -- vim.api.nvim_command('autocmd CursorHold <buffer> lua vim.lsp.diagnostic.show_line_diagnostics()')
-  -- if vim.api.nvim_buf_get_option(0, 'filetype') == 'rust' then
-  --   vim.api.nvim_command('autocmd CursorMoved,InsertLeave,BufEnter,BufWinEnter,TabEnter,BufWritePost *.rs lua require"lsp_extensions".inlay_hints {prefix=" » ", highlight = "Comment", enabled = {"TypeHint","ChainingHint", "ParameterHint"}}')
-  -- end
 end
-
-lsp_status.register_progress()
-lsp_status.config({
-  status_symbol = '',
-  indicator_errors = 'e',
-  indicator_warnings = 'w',
-  indicator_info = 'i',
-  indicator_hint = 'h',
-  indicator_ok = 'ok',
-})
 
 -- [[
 -- npm i -g typescript-language-server typescript
@@ -227,8 +157,7 @@ local servers = {
 for _,name in pairs(servers) do
   lspconfig[name].setup{
     on_attach=on_attach,
-    -- capabilities = capabilities,
-    capabilities = lsp_status.capabilities,
+    capabilities = capabilities,
   }
 end
 
@@ -238,7 +167,7 @@ lspconfig.sqlls.setup{
 
 lspconfig.pyright.setup{
   on_attach=on_attach,
-  capabilities = lsp_status.capabilities,
+  capabilities = capabilities,
   settings = {
     python = {
       analysis = {
@@ -264,7 +193,7 @@ lspconfig.clangd.setup{
     clangdFileStatus = true
   },
   on_attach=on_attach,
-  capabilities = lsp_status.capabilities,
+  capabilities = capabilities,
   cmd = {
     "/usr/local/opt/llvm/bin/clangd",
     "--background-index",
@@ -274,7 +203,7 @@ lspconfig.clangd.setup{
 
 lspconfig.gopls.setup {
   on_attach=on_attach,
-  capabilities = lsp_status.capabilities,
+  capabilities = capabilities,
   cmd = {"gopls", "--remote=auto"},
 }
 
@@ -332,12 +261,14 @@ lspconfig.sumneko_lua.setup{
 -- brew tap hungrybirder/homebrew-repo
 -- brew install jdt-language-server
 lspconfig.jdtls.setup{
+  capabilities = capabilities,
   on_attach=on_attach,
   cmd = {"jdt-language-server"},
   root_dir = util.root_pattern(".git", "pom.xml"),
 }
 
 lspconfig.solargraph.setup{
+  capabilities = capabilities,
   on_attach=on_attach,
   cmd = {
     "/usr/local/lib/ruby/gems/3.0.0/bin/solargraph",
@@ -349,13 +280,6 @@ lspconfig.solargraph.setup{
 capabilities.experimental = {}
 capabilities.experimental.hoverActions = true
 
-capabilities.textDocument.completion.completionItem.resolveSupport = {
-    properties = {
-      'documentation',
-      'detail',
-      'additionalTextEdits',
-    }
-}
 local opts = {
     tools = {
         autoSetHints = true,
@@ -391,3 +315,5 @@ lspsaga.init_lsp_saga{
   },
 }
 -- lspsaga end
+
+require('lspkind').init()

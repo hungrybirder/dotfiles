@@ -28,6 +28,14 @@ vim.g.bubbly_filter = {
   progress = disable_bubbly_filetypes,
   filetype = disable_bubbly_filetypes,
   total_buffer_number = disable_bubbly_filetypes,
+  lsp_status = {
+    messages = disable_bubbly_filetypes,
+    diagnostics = disable_bubbly_filetypes,
+  },
+  builtinlsp = {
+    current_function = disable_bubbly_filetypes,
+    diagnostic_count = disable_bubbly_filetypes,
+  },
 }
 
 vim.g.bubbly_colors = {

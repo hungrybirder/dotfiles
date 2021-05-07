@@ -23,7 +23,8 @@ set incsearch
 set termguicolors
 set scrolloff=8
 set noshowmode
-set completeopt=menuone,noinsert,noselect
+" set completeopt=menuone,noinsert,noselect
+set completeopt=menuone,noselect
 " set mouse=a
 set splitright
 set splitbelow
