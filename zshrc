@@ -290,3 +290,5 @@ export MANPAGER='nvim +Man!'
 # if [[ "${OS_NAME}" = "Darwin" ]]; then
 #   alias clangd="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clangd"
 # fi
+
+alias luamake=/Users/liyong/.cache/nvim/lspconfig/sumneko_lua/lua-language-server/3rd/luamake/luamake

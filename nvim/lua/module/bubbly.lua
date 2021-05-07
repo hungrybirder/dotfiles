@@ -1,3 +1,4 @@
+---@diagnostic disable: lowercase-global
 vim.g.bubbly_statusline = {
   'mode',
 
