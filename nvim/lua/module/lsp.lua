@@ -247,7 +247,7 @@ lspconfig.sumneko_lua.setup{
     Lua = {
       runtime = {
         version = "LuaJIT",
-        -- path = vim.split(package.path, ";")
+        path = vim.split(package.path, ";")
       },
       -- runtime = { version = "Lua 5.4" },
       diagnostics = {
