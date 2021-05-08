@@ -73,8 +73,8 @@ Plug 'onsails/lspkind-nvim'
 " snippets
 Plug 'rafamadriz/friendly-snippets'
 Plug 'hrsh7th/vim-vsnip'
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
+" Plug 'SirVer/ultisnips'
+" Plug 'honza/vim-snippets'
 
 " lsp for performance UI.
 Plug 'glepnir/lspsaga.nvim'
@@ -300,9 +300,9 @@ nnoremap <silent>[b :BufferLineCyclePrev<CR>
 " bufferline end
 
 " snip
-let g:UltiSnipsExpandTrigger="<c-l>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+" let g:UltiSnipsExpandTrigger="<c-l>"
+" let g:UltiSnipsJumpForwardTrigger="<tab>"
+" let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 " snip end
 
 " markdown
