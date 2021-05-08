@@ -24,7 +24,8 @@ Plug 'moll/vim-bbye'
 Plug 'schickling/vim-bufonly'
 
 " speedup editing friendly
-Plug 'jiangmiao/auto-pairs'
+" Plug 'jiangmiao/auto-pairs'
+Plug 'windwp/nvim-autopairs'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'rhysd/clever-f.vim'
 Plug 'easymotion/vim-easymotion'
@@ -253,9 +254,8 @@ nmap <leader>w <Plug>(easymotion-bd-w)
 "     1. Use Ctrl-V ) to insert paren without trigger the plugin.
 "     2. Use Alt-P to turn off the plugin.
 "     3. Use DEL or <C-O>x to delete the character insert by plugin.
-let g:AutoPairsFlyMode = 1
-" 禁止MapSpace
-let g:AutoPairsMapSpace = 0
+" let g:AutoPairsFlyMode = 1
+" let g:AutoPairsMapSpace = 0 " 禁止MapSpace
 " auto-pairs end
 
 " vim-bbye

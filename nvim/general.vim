@@ -80,9 +80,9 @@ vnoremap <c-e> 3<c-e>
 vnoremap <c-y> 3<c-y>
 
 " delete current line
-map <c-d> dd
+" map <c-d> dd
 " delete current line in Insert Mode
-imap <c-d> <esc>ddi
+" imap <c-d> <esc>ddi
 " exit insert mode
 inoremap jk <esc>
 
