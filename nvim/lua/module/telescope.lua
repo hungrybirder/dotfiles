@@ -31,18 +31,22 @@ require('telescope').setup{
     qflist_previewer = previewers.vim_buffer_qflist.new,
   },
   extensions = {
-    fzf = {
-      override_generic_sorter = false, -- override the generic sorter
-      override_file_sorter = true,     -- override the file sorter
-      case_mode = "smart_case",        -- or "ignore_case" or "respect_case"
-                                       -- the default case_mode is "smart_case"
-    }
+    -- fzf = {
+    --   override_generic_sorter = false, -- override the generic sorter
+    --   override_file_sorter = true,     -- override the file sorter
+    --   case_mode = "smart_case",        -- or "ignore_case" or "respect_case"
+    --                                    -- the default case_mode is "smart_case"
+    -- },
+    fzy_native = {
+      override_generic_sorter = false,
+      override_file_sorter = true,
+    },
     -- fzf_writer = {
     --     use_highlighter = true,
     -- },
   }
 }
--- require('telescope').load_extension('fzy_native')
-require('telescope').load_extension('fzf')
+require('telescope').load_extension('fzy_native')
+-- require('telescope').load_extension('fzf')
 
 -- require'telescope.builtin'.symbol{ sources = {'emoji'} }
