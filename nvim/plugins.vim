@@ -219,7 +219,8 @@ let test#neovim#term_position = "rightbelow"
 " powered by ThePrimeagen
 nnoremap <leader>ps <cmd>lua require('telescope.builtin').grep_string({ search = vim.fn.input("Grep For > ") })<CR>
 nnoremap <leader>pw <cmd>lua require('telescope.builtin').grep_string({ search = vim.fn.expand("<cword>") })<CR>
-nnoremap <silent> <Leader>pf :lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ winblend = 10 }))<cr>
+" nnoremap <silent> <Leader>pf :lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ winblend = 10 }))<cr>
+nnoremap <silent> <Leader>pf :Telescope find_files<cr>
 nnoremap <silent> <leader>pb <cmd>Telescope current_buffer_fuzzy_find<CR>
 
 nnoremap <silent> <c-p> <cmd>Telescope git_files<CR>
