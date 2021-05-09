@@ -5,6 +5,8 @@
 -- Install language server by myself.
 -- ]]
 
+_M_LSP = {}
+
 local SEP = "/"
 local system_name
 if vim.fn.has("mac") == 1 then
@@ -322,3 +324,6 @@ lspsaga.init_lsp_saga{
 -- lspsaga end
 
 require('lspkind').init()
+
+_M_LSP.lsp_client_capabilities = capabilities
+return _M_LSP

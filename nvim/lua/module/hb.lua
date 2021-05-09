@@ -1,9 +1,9 @@
+-- my test lua
 
-M = {}
+_M_HB = {}
 
-function M.hello()
+function _M_HB.hello()
   print("hello hb")
 end
 
-
-return M
+return _M_HB
