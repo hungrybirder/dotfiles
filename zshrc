@@ -277,7 +277,7 @@ export PATH="$(go env GOPATH)/bin:${PATH}"
 
 alias nn="nvim"
 alias vn="nvim"
-alias nv="nvim -u ${HOME}/codes/dotfiles/nvimrc/init.vim"
+alias nv="nvim"
 
 export SSLKEYLOGFILE="${HOME}/tmp/ssl_key.log"
 
