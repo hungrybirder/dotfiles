@@ -94,7 +94,7 @@ local lsp_on_attach = function(client, bufnr)
   if client.resolved_capabilities.document_formatting then
     buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
   elseif client.resolved_capabilities.document_range_formatting then
-    buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+    buf_set_keymap("v", "<space>f", "<cmd>lua vim.lsp.buf.range_formatting()<CR>", opts)
   end
 
   -- Set autocommands conditional on server_capabilities
@@ -150,7 +150,6 @@ capabilities = vim.tbl_extend('keep', capabilities or {}, lsp_status.capabilitie
 -- npm i -g vls
 -- ]]
 local servers = {
-  "jsonls",
   "yamlls",
   "html",
   "cmake",
@@ -167,6 +166,24 @@ for _,name in pairs(servers) do
     capabilities = capabilities,
   }
 end
+
+require'lspconfig'.jsonls.setup {
+  commands = {
+    Format = {
+      function()
+        vim.lsp.buf.range_formatting({},
+          {0,0},
+          {
+            vim.fn.line("$"),
+            vim.fn.strwidth(vim.fn.getline("$")),
+          }
+        )
+      end
+    },
+  },
+  on_attach=lsp_on_attach,
+  capabilities = capabilities,
+}
 
 lspconfig.sqlls.setup{
   cmd = {"sql-language-server", "up", "--method", "stdio"};
