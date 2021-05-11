@@ -495,3 +495,7 @@ let g:fzf_tag_actions = {
 " symbols-outline
 nnoremap <silent> <leader>3 :SymbolsOutline<CR>
 " symbols-outline end
+
+" vim-vsnip
+let g:vsnip_snippet_dir = '~/.config/nvim/vsnip'
+" vim-vsnip end

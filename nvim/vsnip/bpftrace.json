@@ -1,0 +1,67 @@
+{
+    "#!": {
+        "prefix": "#!",
+        "body": [
+            "#!/usr/bin/env bpftrace",
+            "BEGIN",
+            "{\n\t$1\n}"
+        ],
+        "description": "header"
+    },
+    "tm": {
+        "prefix": "tm",
+        "body": [
+            "time(\"%H:%M:%S \");\n$1"
+        ],
+        "description": "time"
+    },
+    "cl": {
+        "prefix": "cl",
+        "body": [
+            "clear(@${1});$0"
+        ],
+        "description": "clear map"
+    },
+    "port4": {
+        "prefix": "port4",
+        "body": [
+            "${1:port} = (${2:s}->sin_port >> 8) | ((${3:s}->sin_port << 8) & 0xff00);"
+        ],
+        "description": "convert tcp/udp port Big Endian to Little Endian"
+    },
+    "port6": {
+        "prefix": "port6",
+        "body": [
+            "${1:port} = (${2:s6}->sin6_port >> 8) | ((${3:s6}->sin6_port << 8) & 0xff00);"
+        ],
+        "description": "convert tcp/udp port Big Endian to Little Endian"
+    },
+    "ntop": {
+        "prefix": "ntop",
+        "body": [
+            "ntop(AF_INET, ${1:s}->sin_addr.s_addr)$0"
+        ],
+        "description": "convert ipv4 addr to string"
+    },
+    "ntop6": {
+        "prefix": "ntop6",
+        "body": [
+            "ntop(AF_INET6, ${1:s6}->sin6_addr.n6_u.u6_addr8)$0"
+        ],
+        "description": "convert ipv6 addr to string"
+    },
+    "inc": {
+        "prefix": "inc",
+        "body": [
+            "#include <${1:linux}/${2}>\n$0"
+        ],
+        "description": "include kernel header"
+    },
+    "pf": {
+        "prefix": "pf",
+        "body": [
+            "printf(\"${1}\", ${2});\n$0"
+        ],
+        "description": "printf"
+    }
+}
