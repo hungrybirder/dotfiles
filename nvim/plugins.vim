@@ -56,7 +56,7 @@ Plug 'kyazdani42/nvim-tree.lua'
 
 " lsp
 Plug 'neovim/nvim-lspconfig'
-Plug 'tjdevries/nlua.nvim'
+" Plug 'tjdevries/nlua.nvim'
 " Plug 'tjdevries/lsp_extensions.nvim'
 Plug 'ray-x/lsp_signature.nvim'
 " outline powered by lsp
