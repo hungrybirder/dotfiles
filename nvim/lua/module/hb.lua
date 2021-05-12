@@ -1,9 +1,11 @@
--- my test lua
+-- future init.lua
+-- Highlight on yank
+vim.api.nvim_exec([[
+  augroup YankHighlight
+    autocmd!
+    autocmd TextYankPost * silent! lua vim.highlight.on_yank()
+  augroup end
+]], false)
 
-_M_HB = {}
-
-function _M_HB.hello()
-  print("hello hb")
-end
-
-return _M_HB
+-- Y yank until the end of line
+vim.api.nvim_set_keymap('n', 'Y', 'y$', { noremap = true})
