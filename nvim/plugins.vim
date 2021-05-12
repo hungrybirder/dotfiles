@@ -117,7 +117,7 @@ Plug 'tomtom/tcomment_vim'
 Plug 'mbbill/undotree'
 Plug 'AndrewRadev/splitjoin.vim' "gS gJ
 " Plug 'ludovicchabant/vim-gutentags'
-Plug 'lukas-reineke/indent-blankline.nvim', { 'branch': 'lua', 'for': 'python'}
+Plug 'lukas-reineke/indent-blankline.nvim', { 'branch': 'lua' }
 
 " langs
 Plug 'rust-lang/rust.vim'
@@ -499,3 +499,7 @@ nnoremap <silent> <leader>3 :SymbolsOutline<CR>
 " vim-vsnip
 let g:vsnip_snippet_dir = '~/.config/nvim/vsnip'
 " vim-vsnip end
+
+" indent-blankline
+let g:indent_blankline_filetype = ['vim', 'lua', 'python']
+" indent-blankline end
