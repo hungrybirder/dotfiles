@@ -1,6 +1,4 @@
-local remap = vim.api.nvim_set_keymap
-
-vim.api.nvim_command('set termguicolors')
+vim.o.termguicolors = true
 
 require'bufferline'.setup{
   options={
@@ -14,8 +12,8 @@ require'bufferline'.setup{
   }
 }
 
+local remap = vim.api.nvim_set_keymap
 remap('n', 'gb', '<cmd>BufferLinePick<CR>', { noremap = true, silent = true,})
-
 -- overrite vim-unimpaired ]b [b
 remap('n', ']b', '<cmd>BufferLineCycleNext<CR>', { noremap = true, silent = true,})
 remap('n', '[b', '<cmd>BufferLineCyclePrev<CR>', { noremap = true, silent = true,})
