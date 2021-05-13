@@ -50,7 +50,7 @@ Plug 'svermeulen/vim-subversive'
 Plug 'svermeulen/vim-yoink'
 
 " tagbar
-Plug 'preservim/tagbar'
+" Plug 'preservim/tagbar'
 " nvim-tree
 Plug 'kyazdani42/nvim-tree.lua'
 
@@ -270,35 +270,15 @@ if exists('g:loaded_webdevicons')
 endif
 
 " tagbar
-nnoremap <silent> <leader>2 :TagbarToggle<CR>
-let tags = "./tags"
-let g:tagbar_autofocus = 0
-let g:tagbar_sort = 0
+" nnoremap <silent> <leader>2 :TagbarToggle<CR>
+" let tags = "./tags"
+" let g:tagbar_autofocus = 0
+" let g:tagbar_sort = 0
 "tagbar end
 
 " vim-visual-multi
 let g:VM_leader = '\\'
 " vim-visual-multi end
-
-" bufferline
-set termguicolors
-lua <<EOF
-require'bufferline'.setup{
-  options={
-    diagnostics = "nvim_lsp",
-    sort_by="directory",
-    numbers = "buffer_id",
-    show_buffer_close_icons = false,
-    separator_style = "thin",
-  }
-}
-EOF
-nnoremap <silent> gb :BufferLinePick<CR>
-
-" overrite vim-unimpaired ]b [b
-nnoremap <silent>]b :BufferLineCycleNext<CR>
-nnoremap <silent>[b :BufferLineCyclePrev<CR>
-" bufferline end
 
 " snip
 " let g:UltiSnipsExpandTrigger="<c-l>"
@@ -334,24 +314,17 @@ let g:go_echo_go_info = 0
 " vim-go end
 
 " ale
+let g:ale_completion_enabled = 0
 let g:ale_set_quickfix = 0
 let g:ale_open_list = 0
-" let g:ale_linters = {
-" \ 'python':[],
-" \ 'java':[],
-" \ 'go': [],
-" \ 'markdown':[],
-" \ 'rst':['rstcheck'],
-" \ 'sh':['shellcheck'],
-" \ }
+let g:ale_lint_on_enter = 0
+let g:ale_linters_explicit = 1
 let g:ale_linters = {
 \ 'python': ['pylint', 'pyright'],
 \ 'sh': ['shellcheck'],
 \ 'markdown':['remark-lint'],
 \ 'go': ['gofmt', 'golint', 'go vet'],
 \ }
-let g:ale_lint_on_enter = 0
-let g:ale_linters_explicit = 1
 let g:ale_fixers = {
 \ '*': ['remove_trailing_lines', 'trim_whitespace'],
 \ 'python': ['yapf', 'autoimport'],
@@ -360,8 +333,6 @@ let g:ale_fixers = {
 \ 'sh':['shfmt'],
 \ }
 let g:ale_fix_on_save = 0
-let g:ale_completion_enabled = 0
-" nmap <silent> <space>k <Plug>(ale_previous_wrap)
 let g:ale_sign_error = '✘'
 let g:ale_sign_warning = '⚠'
 highlight ALEErrorSign ctermbg=NONE ctermfg=red
@@ -493,7 +464,7 @@ let g:fzf_tag_actions = {
 " fugitive end
 
 " symbols-outline
-nnoremap <silent> <leader>3 :SymbolsOutline<CR>
+nnoremap <silent> <leader>v :SymbolsOutline<CR>
 " symbols-outline end
 
 " vim-vsnip
