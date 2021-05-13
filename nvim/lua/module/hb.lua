@@ -7,5 +7,11 @@ vim.api.nvim_exec([[
   augroup end
 ]], false)
 
+local remap = vim.api.nvim_set_keymap
+
 -- Y yank until the end of line
-vim.api.nvim_set_keymap('n', 'Y', 'y$', { noremap = true})
+remap('n', 'Y', 'y$', { noremap = true})
+
+-- tab
+remap('n', ']<tab>', '<cmd>tabnext<cr>', { silent = true, noremap = true} )
+remap('n', '[<tab>', '<cmd>tabnext<cr>', { silent = true, noremap = true} )
