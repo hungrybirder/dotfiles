@@ -5,6 +5,7 @@ require('module/nvim-tree')
 require('module/bufferline')
 require('module/bubbly')
 require('module/neoscroll')
+require('module/nvim-bqf')
 require('module/telescope')
 
 require('module/treesitter')
