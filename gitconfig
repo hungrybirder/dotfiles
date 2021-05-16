@@ -25,6 +25,7 @@
 [alias]
 	fav = fetch --all --verbose
 	lgd = log --graph --decorate --show-signature
+	ldg = log --graph --decorate --show-signature
 	diffstat = diff --stat
 	st = status
 	clone = clone --recursive
