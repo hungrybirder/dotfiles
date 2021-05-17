@@ -24,20 +24,8 @@ local lsp_install_path = vim.fn.stdpath('cache')..SEP..'lspconfig'
 local lspconfig = require'lspconfig'
 local util      = require'lspconfig/util'
 
-local lspsaga = require 'lspsaga'
-
 local lsp_status = require('lsp-status')
 lsp_status.register_progress()
-
--- lsp handlers are powered by nvim-lsputils
-vim.lsp.handlers['textDocument/codeAction'] = require'lsputil.codeAction'.code_action_handler
-vim.lsp.handlers['textDocument/references'] = require'lsputil.locations'.references_handler
-vim.lsp.handlers['textDocument/definition'] = require'lsputil.locations'.definition_handler
-vim.lsp.handlers['textDocument/declaration'] = require'lsputil.locations'.declaration_handler
-vim.lsp.handlers['textDocument/typeDefinition'] = require'lsputil.locations'.typeDefinition_handler
-vim.lsp.handlers['textDocument/implementation'] = require'lsputil.locations'.implementation_handler
-vim.lsp.handlers['textDocument/documentSymbol'] = require'lsputil.symbols'.document_handler
-vim.lsp.handlers['workspace/symbol'] = require'lsputil.symbols'.workspace_handler
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   vim.lsp.diagnostic.on_publish_diagnostics, {
@@ -329,15 +317,6 @@ require('rust-tools-debug').setup()
 -- setup outline
 require('symbols-outline').setup()
 -- setup outline end
-
--- lspsaga
-lspsaga.init_lsp_saga{
-  code_action_keys = {
-    quit = '<esc>',
-    exec = '<CR>',
-  },
-}
--- lspsaga end
 
 require('lspkind').init()
 
