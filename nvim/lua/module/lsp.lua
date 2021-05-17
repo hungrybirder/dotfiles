@@ -110,6 +110,7 @@ local lsp_on_attach = function(client, bufnr)
       hint_prefix = "🐼 ",
       hint_scheme = "String",
       decorator = {"`", "`"},
+      use_lspsaga = true,
   })
 end
 
