@@ -147,6 +147,7 @@ local servers = {
   "tsserver",
   "vimls",
   "bashls",
+  "kotlin_language_server",
 }
 
 for _,name in pairs(servers) do
