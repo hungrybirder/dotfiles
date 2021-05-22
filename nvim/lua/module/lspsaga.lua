@@ -6,9 +6,9 @@ lspsaga.init_lsp_saga{
     exec = '<CR>',
   },
   code_action_prompt = {
-    enable = true,
-    sign = true,
-    sign_priority = 20,
-    virtual_text = false,
+    enable = false,
+    -- sign = true,
+    -- sign_priority = 20,
+    -- virtual_text = false,
   },
 }
