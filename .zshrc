@@ -1,3 +1,10 @@
+# zsh rc files, load order:
+# 1 .zprofile
+# 2 .zshrc
+# 3 .zlogin
+#
+# https://unix.stackexchange.com/questions/71253/what-should-shouldnt-go-in-zshenv-zshrc-zlogin-zprofile-zlogout
+#
 # vim: ts=2 sts=2 sw=2 et
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
