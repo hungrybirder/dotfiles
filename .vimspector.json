@@ -24,34 +24,40 @@
         }
       }
     },
-    "go_main": {
+    "Golang": {
       "adapter": "vscode-go",
       "configuration": {
+        "type": "go",
         "request": "launch",
-        "program": "${file}",
         "mode": "debug",
-        "dlvToolPath": "$HOME/go/bin/dlv",
+        "remotePath": "",
+        "program": "${file}",
         "trace": true,
         "env": {
           "GO111MODULE": "on"
         },
         "args": [
           "-stderrthreshold=info"
-        ]
+        ],
+        "showLog": true,
+        "dlvToolPath": "$HOME/go/bin/dlv"
       }
     },
-    "go_unit_test": {
+    "Golang_UnitTest": {
       "adapter": "vscode-go",
       "configuration": {
+        "type": "go",
         "request": "launch",
         "mode": "test",
-        "dlvToolPath": "$HOME/go/bin/dlv",
-        "program": "${relativeFile}",
+        "remotePath": "",
+        "program": "${file}",
         "trace": true,
         "args": [
-          "-test.v"
+          "-test.v",
+          "-test.run=${Test}"
         ],
-        "showLog": true
+        "showLog": true,
+        "dlvToolPath": "$HOME/go/bin/dlv"
       }
     },
     "debugy_python3": {
