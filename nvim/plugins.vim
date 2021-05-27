@@ -138,7 +138,12 @@ Plug 'npxbr/glow.nvim', {'do': ':GlowInstall'}
 " debugger
 Plug 'puremourning/vimspector'
 Plug 'szw/vim-maximizer'
-Plug 'sebdah/vim-delve' " for debug ut
+Plug 'sebdah/vim-delve'
+
+Plug 'mfussenegger/nvim-dap'
+Plug 'mfussenegger/nvim-dap-python'
+Plug 'theHamsta/nvim-dap-virtual-text'
+
 
 " unit test
 Plug 'vim-test/vim-test'

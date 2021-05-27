@@ -14,5 +14,7 @@ require('module/lsputils')
 require('module/lsp')
 require('module/nvim-compe')
 
+require('module/nvim-dap')
+
 -- hb is a test.
 require('module/hb')
