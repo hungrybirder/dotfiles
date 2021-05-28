@@ -144,9 +144,9 @@ Plug 'mfussenegger/nvim-dap'
 Plug 'mfussenegger/nvim-dap-python'
 Plug 'theHamsta/nvim-dap-virtual-text'
 
-
 " unit test
 Plug 'vim-test/vim-test'
+Plug 'rcarriga/vim-ultest', { 'do': ':UpdateRemotePlugins' }
 
 " Terminal
 Plug 'kassio/neoterm'
@@ -479,3 +479,10 @@ let g:vsnip_snippet_dir = '~/.config/nvim/vsnip'
 " indent-blankline
 let g:indent_blankline_filetype = ['vim', 'lua', 'python']
 " indent-blankline end
+
+" vim-ultest
+augroup UltestRunner
+    au!
+    au BufWritePost * UltestNearest
+augroup END
+" vim-ultest end
