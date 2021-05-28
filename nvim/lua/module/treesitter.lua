@@ -102,6 +102,10 @@ require'nvim-treesitter.configs'.setup {
     use_virtual_text = true,
     lint_events = {"BufWrite", "CursorHold"},
   },
+  matchup = {
+    enable = true,
+  },
+  autopairs = { enable = true },
 }
 
 -- TODO: learn vim folder

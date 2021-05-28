@@ -30,6 +30,7 @@ Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'rhysd/clever-f.vim'
 Plug 'easymotion/vim-easymotion'
 Plug 'karb94/neoscroll.nvim'
+Plug 'andymass/vim-matchup'
 
 " powered by tpope
 Plug 'tpope/vim-repeat'
@@ -486,3 +487,8 @@ augroup UltestRunner
     au BufWritePost * UltestNearest
 augroup END
 " vim-ultest end
+
+" vim-matchup
+let g:matchup_surround_enabled = 1
+let g:matchup_transmute_enabled = 1
+" vim-matchup end

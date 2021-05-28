@@ -2,6 +2,7 @@ local remap = vim.api.nvim_set_keymap
 local npairs = require('nvim-autopairs')
 
 npairs.setup({
+  check_ts = true,
   disable_filetype = { "TelescopePrompt" },
 })
 
