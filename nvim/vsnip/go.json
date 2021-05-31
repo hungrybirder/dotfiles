@@ -1,0 +1,7 @@
+{
+    "new assert": {
+        "prefix": "assert",
+        "body": "assert := assert.New(t)",
+        "description": "New assert for unittest"
+    }
+}
