@@ -2,6 +2,8 @@ vim.g.dap_virtual_text = true
 
 local dap = require('dap')
 dap.defaults.fallback.terminal_win_cmd = '5split new'
+vim.fn.sign_define('DapBreakpoint', {text='🟥', texthl='', linehl='', numhl=''})
+vim.fn.sign_define('DapStopped', {text='⭐️', texthl='', linehl='', numhl=''})
 
 dap.adapters.go = function(callback, config)
     local handle
