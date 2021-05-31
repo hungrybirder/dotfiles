@@ -50,3 +50,4 @@ require('telescope').load_extension('fzy_native')
 -- require('telescope').load_extension('fzf')
 
 -- require'telescope.builtin'.symbol{ sources = {'emoji'} }
+require('telescope').load_extension('dap')

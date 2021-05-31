@@ -34,7 +34,14 @@ dap.configurations.go = {
     name = "Debug",
     request = "launch",
     program = "${file}",
-  }
+  },
+  {
+    type = "go",
+    name = "Debug UnitTest",
+    mode = "test",
+    request = "launch",
+    program = "${file}",
+  },
 }
 
 vim.api.nvim_command("command! -nargs=0 DapToggleBreakpoint :lua require'dap'.toggle_breakpoint()<CR>")
