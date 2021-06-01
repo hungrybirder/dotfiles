@@ -2,6 +2,7 @@ RELOAD = require('plenary.reload').reload_module
 P = function(...) print(vim.inspect(...)) end
 
 require('module/nvim-tree')
+require('module/symbols-outline')
 require('module/bufferline')
 require('module/bubbly')
 require('module/neoscroll')
