@@ -32,6 +32,9 @@ require'compe'.setup {
     tags = true,
     snippets_nvim = true,
     ultisnips = true,
+    emoji = {
+      filetypes={"markdown", "text"},
+    },
   },
 }
 
