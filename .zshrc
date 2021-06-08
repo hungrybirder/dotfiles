@@ -33,10 +33,12 @@ export ZSH=/Users/liyong/.oh-my-zsh
 POWERLEVEL9K_INSTANT_PROMPT=off
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
-# Set Spaceship ZSH as a prompt
-autoload -U promptinit; promptinit
-prompt spaceship
-(( ! ${+functions[p10k]} )) || p10k finalize
+if [[ $(uname -m) = "x86_64" ]]; then
+  # Set Spaceship ZSH as a prompt
+  autoload -U promptinit; promptinit
+  prompt spaceship
+  (( ! ${+functions[p10k]} )) || p10k finalize
+fi
 
 # zsh history setting
 HISTSIZE=10000000
