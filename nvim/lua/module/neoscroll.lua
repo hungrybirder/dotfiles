@@ -1,4 +1,6 @@
+vim.opt_local.scrolloff = 0
 require('neoscroll').setup({
+    use_local_scrolloff = true,
     mappings = {'<C-u>', '<C-d>', '<C-b>', '<C-f>',
                 '<C-y>', '<C-e>', 'zt', 'zz', 'zb'},
     hide_cursor = true,          -- Hide cursor while scrolling
