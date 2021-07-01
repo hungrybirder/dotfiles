@@ -11,11 +11,11 @@ source $HOME/.config/nvim/general.vim
 " load plugins
 source $HOME/.config/nvim/plugins.vim
 
-" source $HOME/cs/dotfiles/nvim/colors.vim
-
 for f in split(glob('~/.config/nvim/plugins.d/*.vim'), '\n')
 	exe 'source' f
 endfor
+
+source $HOME/.config/nvim/colors.vim
 
 " for lsp debug
 " lua << EOF
