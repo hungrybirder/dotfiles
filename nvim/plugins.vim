@@ -120,7 +120,7 @@ Plug 'tomtom/tcomment_vim'
 Plug 'mbbill/undotree'
 Plug 'AndrewRadev/splitjoin.vim' "gS gJ
 " Plug 'ludovicchabant/vim-gutentags'
-Plug 'lukas-reineke/indent-blankline.nvim', { 'branch': 'lua' }
+Plug 'lukas-reineke/indent-blankline.nvim'
 
 " langs
 Plug 'rust-lang/rust.vim'
