@@ -103,14 +103,19 @@ local lsp_on_attach = function(client, bufnr)
   require "lsp_signature".on_attach({
       bind = true,
       handler_opts = {
-        border = "shadow"
+        border = "single"
       },
-      doc_lines = 20,
+      doc_lines = 2,
       hint_enable = true,
-      hint_prefix = "🐼 ",
+      hint_prefix = "🌟 ",
       hint_scheme = "String",
+      use_lspsaga = false,
       decorator = {"`", "`"},
-      use_lspsaga = true,
+      floating_window = true,
+      hi_parameter = "Search",
+      max_height = 12,
+      max_width = 120,
+      extra_trigger_chars = {},
   })
 end
 
