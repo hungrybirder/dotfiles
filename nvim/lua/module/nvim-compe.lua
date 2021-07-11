@@ -4,6 +4,7 @@ local npairs = require('nvim-autopairs')
 npairs.setup({
   check_ts = true,
   disable_filetype = { "TelescopePrompt" },
+  fast_wrap = {},
 })
 
 require'compe'.setup {
