@@ -3,6 +3,8 @@ call plug#begin('~/.config/nvim/plugged')
 " 中英文排版
 Plug 'hotoo/pangu.vim'
 
+Plug 'wfxr/minimap.vim', {'do': ':!cargo install --locked code-minimap'}
+
 Plug 'tpope/vim-dispatch'
 
 Plug 'airblade/vim-rooter'
@@ -494,3 +496,9 @@ augroup END
 let g:matchup_surround_enabled = 1
 let g:matchup_transmute_enabled = 1
 " vim-matchup end
+
+" minimap.vim
+let g:minimap_width = 10
+let g:minimap_auto_start = 1
+let g:minimap_auto_start_win_enter = 1
+" minimap.vim end
