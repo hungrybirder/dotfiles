@@ -17,8 +17,9 @@ Plug 'jamessan/vim-gnupg'
 Plug 'lifepillar/vim-gruvbox8'
 
 Plug 'akinsho/nvim-bufferline.lua'
+
 " statusline
-Plug 'datwaft/bubbly.nvim', {'commit':'d0d27b650b6a575cc250159db4249776379be686'}
+Plug 'datwaft/bubbly.nvim'
 
 " delete buffer without closing windows
 Plug 'moll/vim-bbye'

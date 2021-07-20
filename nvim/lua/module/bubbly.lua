@@ -1,4 +1,7 @@
 ---@diagnostic disable: lowercase-global
+-- disbale bubbly tabline for nvim-bufferline
+vim.g.bubbly_tabline = 0
+
 vim.g.bubbly_statusline = {
   'mode',
 
