@@ -158,6 +158,9 @@ Plug 'rcarriga/vim-ultest', { 'do': ':UpdateRemotePlugins' }
 Plug 'kassio/neoterm'
 " tmux
 Plug 'christoomey/vim-tmux-navigator'
+
+Plug 'norcalli/nvim-colorizer.lua'
+
 call plug#end()
 
 noremap <Leader>pi :<c-u>PlugInstall<CR>
