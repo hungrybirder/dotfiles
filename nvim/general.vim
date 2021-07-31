@@ -108,6 +108,7 @@ nnoremap <M-k>    :resize -2<CR>
 nnoremap <M-h>    :vertical resize +2<CR>
 nnoremap <M-l>    :vertical resize -2<CR>
 
+" Best remap by ThePrimeagen
 " greatest remap ever
 vnoremap <leader>p "_dP
 
@@ -115,6 +116,35 @@ vnoremap <leader>p "_dP
 nnoremap <leader>y "+y
 vnoremap <leader>y "+y
 nnoremap <leader>Y gg"+yG
+
+" Behave Vim
+nnoremap Y y$
+
+" Jumplist mutations
+nnoremap <expr> k (v:count > 5 ? "m'" . v:count : "") . 'k'
+nnoremap <expr> j (v:count > 5 ? "m'" . v:count : "") . 'j'
+
+" Keeping it centered
+nnoremap n nzzzv
+nnoremap N Nzzzv
+nnoremap J mzJ`z
+
+" Undo break points
+inoremap , ,<c-g>u
+inoremap . .<c-g>u
+inoremap ! !<c-g>u
+inoremap ? ?<c-g>u
+
+" Moving text
+" not pollute registers!
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
+inoremap <C-k> <esc>:m .-2<CR>==
+inoremap <C-j> <esc>:m .+1<CR>==
+nnoremap <leader>j :m .+1<CR>==
+nnoremap <leader>k :m .-2<CR>==
+
+" Best remap by ThePrimeagen Done
 
 inoremap <C-c> <esc>
 
