@@ -148,7 +148,6 @@ local servers = {
   "html",
   "cmake",
   "dockerls",
-  "vuels",
   "tsserver",
   "vimls",
   "bashls",
@@ -161,6 +160,18 @@ for _,name in pairs(servers) do
     capabilities = capabilities,
   }
 end
+
+lspconfig.vuels.setup {
+  on_attach=lsp_on_attach,
+  capabilities = capabilities,
+  settings = {
+    vetur = {
+      experimental = {
+        templateInterpolationService = true,
+      }
+    }
+  }
+}
 
 lspconfig.jsonls.setup {
   commands = {
