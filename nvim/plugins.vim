@@ -345,6 +345,7 @@ let g:ale_fixers = {
 \ 'go': ['goimports'],
 \ 'markdown':['remark-lint'],
 \ 'sh':['shfmt'],
+\ 'vue': ['prettier'],
 \ }
 let g:ale_fix_on_save = 0
 let g:ale_sign_error = '✘'
@@ -506,3 +507,8 @@ let g:minimap_width = 10
 let g:minimap_auto_start = 0
 let g:minimap_auto_start_win_enter = 0
 " minimap.vim end
+
+" vim-signify
+nnoremap <leader>sd :SignifyDisable<CR>
+" vim-signify end
+
