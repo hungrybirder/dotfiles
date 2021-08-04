@@ -18,11 +18,21 @@ vim.g.nvim_tree_hijack_netrw = 0
 vim.g.nvim_tree_add_trailing = 1
 vim.g.nvim_tree_group_empty = 1
 vim.g.nvim_tree_lsp_diagnostics = 1
-vim.g.nvim_tree_special_files = { 'README.md', 'Makefile', 'MAKEFILE' }
+vim.g.nvim_tree_disable_window_picker = 1
+vim.g.nvim_tree_special_files = {
+  ['README.md'] = true,
+  Makefile = true,
+  MAKEFILE = true,
+}
 vim.g.nvim_tree_show_icons = {
   git = 1,
   folders = 1,
   files = 1,
+}
+
+vim.g.nvim_tree_window_picker_exclude = {
+  filetype = { 'packer', 'qf' },
+  buftype = { 'terminal' },
 }
 
 -- mapping
