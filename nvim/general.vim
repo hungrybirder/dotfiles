@@ -146,6 +146,9 @@ nnoremap <leader>k :m .-2<CR>==
 
 " Best remap by ThePrimeagen Done
 
+" Switch to alternative buffer
+nnoremap <bs> <c-^>
+
 inoremap <C-c> <esc>
 
 " Q: Closes the window
