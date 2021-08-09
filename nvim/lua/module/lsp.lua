@@ -78,11 +78,25 @@ local lsp_on_attach = function(client, bufnr)
   buf_set_keymap('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
   buf_set_keymap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
 
-    -- Set some keybinds conditional on server capabilities
-  if client.resolved_capabilities.document_formatting then
-    buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
-  elseif client.resolved_capabilities.document_range_formatting then
-    buf_set_keymap("v", "<space>f", "<cmd>lua vim.lsp.buf.range_formatting()<CR>", opts)
+  local function use_ale_fixer(buf_filetype)
+    local ale_fixer_filetypes = { "vue", "javascript", "typescript" }
+    for _, val in ipairs(ale_fixer_filetypes) do
+      if buf_filetype == val then
+        return true
+      end
+    end
+    return false
+  end
+
+  local buf_ft = vim.api.nvim_buf_get_option(bufnr, 'filetype')
+  if use_ale_fixer(buf_ft) then
+    print("FileType:", buf_ft, " use ALE Fixer")
+  else
+    if client.resolved_capabilities.document_formatting then
+        buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+    elseif client.resolved_capabilities.document_range_formatting then
+        buf_set_keymap("v", "<space>f", "<cmd>lua vim.lsp.buf.range_formatting()<CR>", opts)
+    end
   end
 
   -- Set autocommands conditional on server_capabilities
