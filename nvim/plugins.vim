@@ -15,6 +15,7 @@ Plug 'jamessan/vim-gnupg'
 
 " theme
 Plug 'lifepillar/vim-gruvbox8'
+Plug 'EdenEast/nightfox.nvim'
 
 Plug 'akinsho/nvim-bufferline.lua'
 
@@ -167,7 +168,8 @@ noremap <Leader>pi :<c-u>PlugInstall<CR>
 noremap <Leader>pu :<c-u>PlugUpdate<CR>
 noremap <Leader>pc :<c-u>PlugClean<CR>
 
-colorscheme gruvbox8_hard
+" colorscheme gruvbox8_hard
+colorscheme nightfox
 
 fun! GotoWindow(id)
     call win_gotoid(a:id)
