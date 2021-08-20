@@ -1,5 +1,7 @@
 call plug#begin('~/.config/nvim/plugged')
 
+Plug 'folke/zen-mode.nvim'
+
 " 中英文排版
 Plug 'hotoo/pangu.vim'
 
@@ -514,3 +516,12 @@ let g:minimap_auto_start_win_enter = 0
 nnoremap <leader>sd :SignifyDisable<CR>
 " vim-signify end
 
+" zen-mode
+lua << EOF
+  require("zen-mode").setup {
+    -- your configuration comes here
+    -- or leave it empty to use the default settings
+    -- refer to the configuration section below
+  }
+EOF
+" zen-mode end
