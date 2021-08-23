@@ -8,7 +8,6 @@ require'bufferline'.setup{
     show_buffer_close_icons = false,
     separator_style = "thin",
     offsets = {{filetype = "NvimTree", text = "File Explorer", highlight = "Directory", text_align = "left"}},
-    mappings = true,
   }
 }
 
