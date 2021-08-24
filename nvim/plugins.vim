@@ -521,3 +521,10 @@ lua << EOF
   require("zen-mode").setup {}
 EOF
 " zen-mode end
+
+" vim-rooter
+let g:rooter_patterns = [
+\ '.git', '_darcs', '.hg', '.bzr', '.svn', 'Makefile', 'package.json',
+\ 'tox.ini'
+\]
+" vim-rooter end
