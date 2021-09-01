@@ -254,8 +254,8 @@ link_vimspector() {
 bindkey \^U backward-kill-line
 
 if [[ "Darwin" = ${OS_NAME} ]]; then
-  alias bu="all_proxy=socks5://localhost:7890 brew upgrade"
-  alias bubu="all_proxy=socks5://localhost:7890  brew upgrade --cask --greedy"
+  alias bu="brew upgrade"
+  alias bubu="brew upgrade && brew upgrade --cask --greedy"
 fi
 
 # 一些特殊的配置，或function
