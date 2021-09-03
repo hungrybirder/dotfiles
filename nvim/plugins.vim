@@ -342,7 +342,7 @@ let g:ale_linters = {
 \ 'python': ['pylint', 'pyright'],
 \ 'sh': ['shellcheck'],
 \ 'markdown':['remark-lint'],
-\ 'go': ['gofmt', 'golint', 'go vet'],
+\ 'go': ['gofmt', 'golint', 'go vet', 'staticcheck'],
 \ }
 let g:ale_fixers = {
 \ '*': ['remove_trailing_lines', 'trim_whitespace'],
