@@ -11,6 +11,7 @@ Plug 'tpope/vim-dispatch'
 
 Plug 'airblade/vim-rooter'
 Plug 'tweekmonster/startuptime.vim'
+" Plug 'dstein64/vim-startuptime'
 
 " gnupg
 Plug 'jamessan/vim-gnupg'
