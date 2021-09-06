@@ -4,7 +4,6 @@ local npairs = require('nvim-autopairs')
 npairs.setup({
   check_ts = true,
   disable_filetype = { "TelescopePrompt" },
-  fast_wrap = {},
 })
 
 require'compe'.setup {
@@ -41,28 +40,41 @@ require'compe'.setup {
 
 _G.MUtils= {}
 
-vim.g.completion_confirm_key = ""
-MUtils.completion_confirm=function()
-  if vim.fn.pumvisible() ~= 0  then
-    if vim.fn.complete_info()["selected"] ~= -1 then
-      return vim.fn["compe#confirm"](npairs.esc("<cr>"))
-    else
-      return npairs.esc("<cr>")
-    end
-  else
-    return npairs.autopairs_cr()
-  end
-end
 
+-- replace by nvim-autopairs compe config below.
+-- https://github.com/windwp/nvim-autopairs/blob/master/lua/nvim-autopairs/completion/compe.lua
+--
+-- vim.g.completion_confirm_key = ""
+-- MUtils.completion_confirm=function()
+--   if vim.fn.pumvisible() ~= 0  then
+--     if vim.fn.complete_info()["selected"] ~= -1 then
+--       return vim.fn["compe#confirm"](npairs.esc("<cr>"))
+--     else
+--       return npairs.esc("<cr>")
+--     end
+--   else
+--     return npairs.autopairs_cr()
+--   end
+-- end
+-- imap <CR>
 -- remap('i', '<CR>', [[compe#confirm('<CR>')]], {
 --   expr = true,
 --   silent = true,
 -- })
 --
-remap('i' , '<CR>','v:lua.MUtils.completion_confirm()', {
-    expr = true,
-    noremap = true,
+-- imap <CR> with auto-paires explicitly
+-- remap('i' , '<CR>','v:lua.MUtils.completion_confirm()', {
+--     expr = true,
+--     noremap = true,
+-- })
+
+--
+require("nvim-autopairs.completion.compe").setup({
+  map_cr = true, --  map <CR> on insert mode
+  map_complete = true, -- it will auto insert `(` after select function or method item
+  auto_select = false,  -- auto select first item
 })
+
 remap('i', '<C-Space>', [[compe#complete()]], {
     expr = true,
     silent = true,
