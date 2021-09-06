@@ -32,7 +32,6 @@ Plug 'schickling/vim-bufonly'
 
 " speedup editing friendly
 " Plug 'jiangmiao/auto-pairs'
-Plug 'windwp/nvim-autopairs'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'rhysd/clever-f.vim'
 Plug 'easymotion/vim-easymotion'
@@ -73,10 +72,19 @@ Plug 'simrat39/symbols-outline.nvim'
 Plug 'nvim-lua/lsp-status.nvim'
 
 " auto completion
-" Plug 'nvim-lua/completion-nvim'
-" Plug 'steelsojka/completion-buffers'
-Plug 'hrsh7th/nvim-compe'
+" Plug 'hrsh7th/nvim-compe'
+" using nvim-cmp instead of nvim-compe
+Plug 'hrsh7th/nvim-cmp'
+
+" nvim-cmp sources
+Plug 'hrsh7th/vim-vsnip'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'quangnguyen30192/cmp-nvim-tags'
+
 Plug 'onsails/lspkind-nvim'
+Plug 'windwp/nvim-autopairs'
+
 
 " snippets
 Plug 'rafamadriz/friendly-snippets'
