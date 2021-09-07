@@ -61,29 +61,27 @@ Plug 'svermeulen/vim-yoink'
 " nvim-tree
 Plug 'kyazdani42/nvim-tree.lua'
 
-" lsp
+" lsp config
 Plug 'neovim/nvim-lspconfig'
-" Plug 'tjdevries/nlua.nvim'
-" Plug 'tjdevries/lsp_extensions.nvim'
 Plug 'ray-x/lsp_signature.nvim'
 " outline powered by lsp
 Plug 'simrat39/symbols-outline.nvim'
 " lsp status
 Plug 'nvim-lua/lsp-status.nvim'
+" lsp icons
+Plug 'onsails/lspkind-nvim'
 
 " auto completion
-" Plug 'hrsh7th/nvim-compe'
-" using nvim-cmp instead of nvim-compe
 Plug 'hrsh7th/nvim-cmp'
-
-" nvim-cmp sources
 Plug 'hrsh7th/vim-vsnip'
 Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-vsnip'
+Plug 'hrsh7th/cmp-nvim-lua'
+" Plug 'kdheepak/cmp-latex-symbols'
 Plug 'quangnguyen30192/cmp-nvim-tags'
-
-Plug 'onsails/lspkind-nvim'
+" nvim-autopairs can set up <CR>
 Plug 'windwp/nvim-autopairs'
 
 

@@ -21,8 +21,9 @@ cmp.setup{
         nvim_lsp = "[LSP]",
         luasnip = "[LuaSnip]",
         nvim_lua = "[Lua]",
-        latex_symbols = "[Latex]",
+        -- latex_symbols = "[Latex]",
         vsnip = "[Vsnip]",
+        tags = "[Tag]",
       })[entry.source.name]
       return vim_item
     end
@@ -52,6 +53,17 @@ cmp.setup{
         fallback()
       end
     end,
+    ['<S-Tab>'] = function(fallback)
+      if vim.fn.pumvisible() == 1 then
+        vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<C-p>', true, true, true), 'n')
+      elseif check_back_space() then
+        vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<S-Tab>', true, true, true), 'n')
+      elseif vim.fn['vsnip#available']() == 1 then
+        vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<Plug>(vsnip-jump-prev)', true, true, true), '')
+      else
+        fallback()
+      end
+    end,
   },
   sources = {
     { name = 'nvim_lsp'},
@@ -61,6 +73,7 @@ cmp.setup{
     { name = 'calc'},
     { name = 'emoji'},
     { name = 'tags'},
+    { name = 'path'},
   },
 }
 
