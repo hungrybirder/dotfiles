@@ -73,23 +73,22 @@ Plug 'onsails/lspkind-nvim'
 
 " auto completion
 Plug 'hrsh7th/nvim-cmp'
-Plug 'hrsh7th/vim-vsnip'
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-nvim-lsp'
-Plug 'hrsh7th/cmp-vsnip'
 Plug 'hrsh7th/cmp-nvim-lua'
 " Plug 'kdheepak/cmp-latex-symbols'
 Plug 'quangnguyen30192/cmp-nvim-tags'
+
 " nvim-autopairs can set up <CR>
 Plug 'windwp/nvim-autopairs'
 
-
-" snippets
-Plug 'rafamadriz/friendly-snippets'
 Plug 'hrsh7th/vim-vsnip'
-" Plug 'SirVer/ultisnips'
-" Plug 'honza/vim-snippets'
+Plug 'hrsh7th/cmp-vsnip'
+" Plug 'L3MON4D3/LuaSnip'
+" Plug 'saadparwaiz1/cmp_luasnip'
+"
+Plug 'rafamadriz/friendly-snippets'
 
 " lsp for performance UI.
 Plug 'glepnir/lspsaga.nvim'
