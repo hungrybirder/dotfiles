@@ -297,6 +297,7 @@ lspconfig.sumneko_lua.setup{
       workspace = {
         library = get_lua_runtime(),
         preloadFileSize = 1024, -- KB
+        checkThirdParty = false,
       },
     },
   }
