@@ -333,6 +333,9 @@ local opts = {
         runnables = {
             use_telescope = true
         },
+        debuggables = {
+            use_telescope = true
+        },
         inlay_hints = {
             show_parameter_hints = true,
             parameter_hints_prefix = "<-",
@@ -346,7 +349,6 @@ local opts = {
 }
 
 require('rust-tools').setup(opts)
-require('rust-tools-debug').setup()
 -- setup rust-tools end
 
 -- setup outline
