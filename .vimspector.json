@@ -1,113 +1,113 @@
 {
-  "configurations": {
-    "lua": {
-      "adapter": "lua-local",
-      "configuration": {
-        "request": "launch",
-        "type": "lua-local",
-        "cwd": "${workspaceFolder}",
-        "program": {
-          "lua": "lua",
-          "file": "${file}"
-        }
-      }
-    },
-    "luajit": {
-      "adapter": "lua-local",
-      "configuration": {
-        "request": "launch",
-        "type": "lua-local",
-        "cwd": "${workspaceFolder}",
-        "program": {
-          "lua": "luajit",
-          "file": "${file}"
-        }
-      }
-    },
-    "Golang": {
-      "adapter": "vscode-go",
-      "configuration": {
-        "type": "go",
-        "request": "launch",
-        "mode": "debug",
-        "remotePath": "",
-        "program": "${file}",
-        "trace": true,
-        "env": {
-          "GO111MODULE": "on"
+    "configurations": {
+        "lua": {
+            "adapter": "lua-local",
+            "configuration": {
+                "request": "launch",
+                "type": "lua-local",
+                "cwd": "${workspaceFolder}",
+                "program": {
+                    "lua": "lua",
+                    "file": "${file}"
+                }
+            }
         },
-        "args": [
-          "-stderrthreshold=info"
-        ],
-        "showLog": true,
-        "dlvToolPath": "$HOME/go/bin/dlv"
-      }
-    },
-    "Golang_UnitTest": {
-      "adapter": "vscode-go",
-      "configuration": {
-        "type": "go",
-        "request": "launch",
-        "mode": "test",
-        "remotePath": "",
-        "program": "${file}",
-        "trace": true,
-        "args": [
-          "-test.v",
-          "-test.run=${Test}"
-        ],
-        "showLog": true,
-        "dlvToolPath": "$HOME/go/bin/dlv"
-      }
-    },
-    "debugy_python3": {
-      "adapter": "debugpy",
-      "configuration": {
-        "request": "launch",
-        "type": "python",
-        "cwd": "${workspaceRoot}",
-        "program": "${file}",
-        "stopOnEntry": false,
-        "console": "integratedTerminal"
-      },
-      "breakpoints": {
-        "exception": {
-          "raised": "N",
-          "uncaught": "",
-          "userUnhandled": ""
+        "luajit": {
+            "adapter": "lua-local",
+            "configuration": {
+                "request": "launch",
+                "type": "lua-local",
+                "cwd": "${workspaceFolder}",
+                "program": {
+                    "lua": "luajit",
+                    "file": "${file}"
+                }
+            }
+        },
+        "Golang": {
+            "adapter": "vscode-go",
+            "configuration": {
+                "type": "go",
+                "request": "launch",
+                "mode": "debug",
+                "remotePath": "",
+                "program": "${file}",
+                "trace": true,
+                "env": {
+                    "GO111MODULE": "on"
+                },
+                "args": [
+                    "-stderrthreshold=info"
+                ],
+                "showLog": true,
+                "dlvToolPath": "$HOME/go/bin/dlv"
+            }
+        },
+        "Golang_UnitTest": {
+            "adapter": "vscode-go",
+            "configuration": {
+                "type": "go",
+                "request": "launch",
+                "mode": "test",
+                "remotePath": "",
+                "program": "${file}",
+                "trace": true,
+                "args": [
+                    "-test.v",
+                    "-test.run=${Test}"
+                ],
+                "showLog": true,
+                "dlvToolPath": "$HOME/go/bin/dlv"
+            }
+        },
+        "debugy_python3": {
+            "adapter": "debugpy",
+            "configuration": {
+                "request": "launch",
+                "type": "python",
+                "cwd": "${workspaceRoot}",
+                "program": "${file}",
+                "stopOnEntry": false,
+                "console": "integratedTerminal"
+            },
+            "breakpoints": {
+                "exception": {
+                    "raised": "N",
+                    "uncaught": "",
+                    "userUnhandled": ""
+                }
+            }
+        },
+        "cpp-CodeLLDB": {
+            "adapter": "CodeLLDB",
+            "configuration": {
+                "request": "launch",
+                "program": "${workspaceRoot}/build/${fileBasenameNoExtension}"
+            }
+        },
+        "bash": {
+            "adapter": "vscode-bash",
+            "configuration": {
+                "request": "launch",
+                "program": "${file}"
+            }
+        },
+        "rust": {
+            "adapter": "CodeLLDB",
+            "configuration": {
+                "request": "launch",
+                "program": "${workspaceRoot}/target/debug/hello_cargo",
+                "breakpoints": {
+                    "exception": {
+                        "cpp_catch": "",
+                        "cpp_throw": "",
+                        "objc_catch": "",
+                        "objc_throw": "",
+                        "swift_catch": "",
+                        "swift_throw": ""
+                    }
+                }
+            }
         }
-      }
-    },
-    "cpp-CodeLLDB": {
-      "adapter": "CodeLLDB",
-      "configuration": {
-        "request": "launch",
-        "program": "${workspaceRoot}/build/${fileBasenameNoExtension}"
-      }
-    },
-    "bash": {
-      "adapter": "vscode-bash",
-      "configuration": {
-        "request": "launch",
-        "program": "${file}"
-      }
-    },
-    "rust": {
-      "adapter": "CodeLLDB",
-      "configuration": {
-        "request": "launch",
-        "program": "${workspaceRoot}/target/debug/hello_cargo",
-        "breakpoints": {
-          "exception": {
-            "cpp_catch": "",
-            "cpp_throw": "",
-            "objc_catch": "",
-            "objc_throw": "",
-            "swift_catch": "",
-            "swift_throw": ""
-          }
-        }
-      }
     }
-  }
 }
