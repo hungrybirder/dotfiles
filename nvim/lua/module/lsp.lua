@@ -328,24 +328,64 @@ capabilities.experimental.hoverActions = true
 
 local opts = {
     tools = {
-        autoSetHints = true,
-        hover_with_actions = true,
-        runnables = {
-            use_telescope = true
+      autoSetHints = true,
+      hover_with_actions = true,
+      runnables = {
+          use_telescope = true
+      },
+      debuggables = {
+          use_telescope = true
+      },
+      inlay_hints = {
+          show_parameter_hints = true,
+          parameter_hints_prefix = "<-",
+          other_hints_prefix  = "=>",
+      },
+      hover_actions = {
+        border = {
+          {"╭", "FloatBorder"}, {"─", "FloatBorder"},
+          {"╮", "FloatBorder"}, {"│", "FloatBorder"},
+          {"╯", "FloatBorder"}, {"─", "FloatBorder"},
+          {"╰", "FloatBorder"}, {"│", "FloatBorder"}
         },
-        debuggables = {
-            use_telescope = true
-        },
-        inlay_hints = {
-            show_parameter_hints = true,
-            parameter_hints_prefix = "<-",
-            other_hints_prefix  = "=>",
-        },
+        -- whether the hover action window gets automatically focused
+        auto_focus = true
+      },
+      crate_graph = {
+        -- Backend used for displaying the graph
+        -- see: https://graphviz.org/docs/outputs/
+        -- default: x11
+        backend = "x11",
+        -- where to store the output, nil for no output stored (relative
+        -- path from pwd)
+        -- default: nil
+        output = nil,
+        -- true for all crates.io and external crates, false only the local
+        -- crates
+        -- default: true
+        full = true,
+        -- enabled_graphviz_backends = {
+        --   "bmp", "cgimage", "canon", "dot", "gv", "xdot", "xdot1.2", "xdot1.4",
+        --   "eps", "exr", "fig", "gd", "gd2", "gif", "gtk", "ico", "cmap", "ismap",
+        --   "imap", "cmapx", "imap_np", "cmapx_np", "jpg", "jpeg", "jpe", "jp2",
+        --   "json", "json0", "dot_json", "xdot_json", "pdf", "pic", "pct", "pict",
+        --   "plain", "plain-ext", "png", "pov", "ps", "ps2", "psd", "sgi", "svg",
+        --   "svgz", "tga", "tiff", "tif", "tk", "vml", "vmlz", "wbmp", "webp", "xlib",
+        --   "x11"
+        -- }
+      }
     },
     server = { -- setup rust_analyzer
       on_attach = lsp_on_attach,
       capabilities = capabilities,
-    }
+    },
+    -- dap = {
+    --   adapter = {
+    --     type = 'executable',
+    --     command = 'lldb-vscode',
+    --     name = "rt_lldb"
+    --   }
+    -- }
 }
 
 require('rust-tools').setup(opts)
