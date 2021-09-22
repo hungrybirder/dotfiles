@@ -10,7 +10,7 @@ require('module/nvim-bqf')
 require('module/telescope')
 
 require('module/treesitter')
-require('module/lspsaga')
+-- require('module/lspsaga')
 require('module/lsputils')
 require('module/lsp')
 -- require('module/nvim-compe')
