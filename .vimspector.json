@@ -96,11 +96,11 @@
             "adapter": "CodeLLDB",
             "configuration": {
                 "request": "launch",
-                "program": "${workspaceRoot}/target/debug/hello_cargo",
+                "program": "${cwd}/target/debug/hello_cargo",
                 "breakpoints": {
                     "exception": {
-                        "cpp_catch": "",
-                        "cpp_throw": "",
+                        "cpp_catch": "Y",
+                        "cpp_throw": "Y",
                         "objc_catch": "",
                         "objc_throw": "",
                         "swift_catch": "",
