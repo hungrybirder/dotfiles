@@ -54,7 +54,9 @@ require'nvim-tree'.setup {
   open_on_tab         = false,
   hijack_cursor       = false,
   update_cwd          = false,
-  lsp_diagnostics     = true,
+  diagnostics = {
+    enable = true,
+  },
   -- update the focused file on `BufEnter`, un-collapses the folders recursively until it finds the file
   update_focused_file = {
     -- enables the feature
