@@ -19,8 +19,6 @@ else
   print("Unsupported system")
 end
 
-local lsp_install_path = vim.fn.stdpath('cache')..SEP..'lspconfig'
-
 local lspconfig = require'lspconfig'
 local util      = require'lspconfig/util'
 
@@ -277,8 +275,16 @@ local get_lua_runtime = function()
   return result
 end
 
-local sumneko_root_path = lsp_install_path..'/sumneko_lua/lua-language-server'
+-- local lsp_install_path = vim.fn.stdpath('cache')..SEP..'lspconfig'
+-- local sumneko_root_path = lsp_install_path..'/sumneko_lua/lua-language-server'
+-- local sumneko_binary = sumneko_root_path.."/bin/"..system_name.."/lua-language-server"
+local sumneko_root_path = vim.fn.stdpath('cache')..'/lspconfig/sumneko_lua/lua-language-server'
 local sumneko_binary = sumneko_root_path.."/bin/"..system_name.."/lua-language-server"
+
+local runtime_path = vim.split(package.path, ';')
+table.insert(runtime_path, "lua/?.lua")
+table.insert(runtime_path, "lua/?/init.lua")
+
 lspconfig.sumneko_lua.setup{
   capabilities = capabilities,
   on_attach = lsp_on_attach,
@@ -287,17 +293,21 @@ lspconfig.sumneko_lua.setup{
     Lua = {
       runtime = {
         version = "LuaJIT",
-        path = vim.split(package.path, ";")
+        path = runtime_path,
+        -- path = vim.split(package.path, ";")
       },
       -- runtime = { version = "Lua 5.4" },
       diagnostics = {
-        enable = true,
         globals = { "vim" },
       },
       workspace = {
-        library = get_lua_runtime(),
+        -- library = get_lua_runtime(),
+        library = vim.api.nvim_get_runtime_file("", true),
         preloadFileSize = 1024, -- KB
         checkThirdParty = false,
+      },
+      telemetry = {
+        enable = false,
       },
     },
   }
