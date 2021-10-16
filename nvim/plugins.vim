@@ -17,7 +17,7 @@ Plug 'tweekmonster/startuptime.vim'
 Plug 'jamessan/vim-gnupg'
 
 " theme
-Plug 'lifepillar/vim-gruvbox8'
+" Plug 'lifepillar/vim-gruvbox8'
 Plug 'EdenEast/nightfox.nvim'
 
 Plug 'akinsho/nvim-bufferline.lua'
