@@ -7,7 +7,7 @@
 
 _M_LSP = {}
 
-local SEP = "/"
+-- local SEP = "/"
 local system_name
 if vim.fn.has("mac") == 1 then
   system_name = "macOS"
@@ -133,22 +133,16 @@ local lsp_on_attach = function(client, bufnr)
   })
 end
 
+local make_lsp_client_capabilities = function()
+  -- cmp_nvim_lsp take care of snippetSupport and resolveSupport
+  -- lsp_status
+  local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+  capabilities = vim.tbl_extend('keep', capabilities or {}, lsp_status.capabilities)
+  return capabilities
+end
+
 -- lsp capabilities
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-
--- capabilities.textDocument.completion.completionItem.snippetSupport = true
--- capabilities.textDocument.completion.completionItem.resolveSupport = {
---   properties = {
---     'documentation',
---     'detail',
---     'additionalTextEdits',
---   }
--- }
-
--- cmp_nvim_lsp set snippetSupport and resolveSupport
-capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
-capabilities = vim.tbl_extend('keep', capabilities or {}, lsp_status.capabilities)
-
+local capabilities = make_lsp_client_capabilities()
 
 -- [[
 -- npm i -g typescript-language-server typescript
@@ -254,30 +248,30 @@ lspconfig.gopls.setup {
   capabilities = capabilities,
 }
 
-local get_lua_runtime = function()
-  local result = {}
-  local rtps = vim.api.nvim_list_runtime_paths()
-  local extra_paths = {
-    vim.fn.expand("$VIMRUNTIME"),
-    -- "/usr/local/share",
-    -- "/opt/homebrew/share",
-  }
-  for _, path in pairs(extra_paths) do
-      rtps[#rtps+1] = path
-  end
-  -- for _, path in pairs(vim.api.nvim_list_runtime_paths()) do
-  for _, path in pairs(rtps) do
-    local lua_path = path .. "/lua"
-    if vim.fn.isdirectory(lua_path) == 1 then
-      result[lua_path] = true
-    end
-  end
-  local local_luarocks = require("os").getenv("HOME") .. "/" .. ".luarocks/share/lua/5.1"
-  if vim.fn.isdirectory(local_luarocks) == 1 then
-    result[local_luarocks] = true
-  end
-  return result
-end
+-- local get_lua_runtime = function()
+--   local result = {}
+--   local rtps = vim.api.nvim_list_runtime_paths()
+--   local extra_paths = {
+--     vim.fn.expand("$VIMRUNTIME"),
+--     -- "/usr/local/share",
+--     -- "/opt/homebrew/share",
+--   }
+--   for _, path in pairs(extra_paths) do
+--       rtps[#rtps+1] = path
+--   end
+--   -- for _, path in pairs(vim.api.nvim_list_runtime_paths()) do
+--   for _, path in pairs(rtps) do
+--     local lua_path = path .. "/lua"
+--     if vim.fn.isdirectory(lua_path) == 1 then
+--       result[lua_path] = true
+--     end
+--   end
+--   local local_luarocks = require("os").getenv("HOME") .. "/" .. ".luarocks/share/lua/5.1"
+--   if vim.fn.isdirectory(local_luarocks) == 1 then
+--     result[local_luarocks] = true
+--   end
+--   return result
+-- end
 
 -- local lsp_install_path = vim.fn.stdpath('cache')..SEP..'lspconfig'
 -- local sumneko_root_path = lsp_install_path..'/sumneko_lua/lua-language-server'
