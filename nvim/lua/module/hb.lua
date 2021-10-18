@@ -13,9 +13,8 @@ local remap = vim.api.nvim_set_keymap
 -- remap('n', 'Y', 'y$', { noremap = true})
 
 -- tab
-remap('n', ']<tab>', '<cmd>tabnext<cr>', { silent = true, noremap = true} )
-remap('n', '[<tab>', '<cmd>tabnext<cr>', { silent = true, noremap = true} )
-
+remap('n', ']<tab>', '<cmd>tabnext<cr>', {silent = true, noremap = true})
+remap('n', '[<tab>', '<cmd>tabnext<cr>', {silent = true, noremap = true})
 
 -- colorizer
 require'colorizer'.setup()

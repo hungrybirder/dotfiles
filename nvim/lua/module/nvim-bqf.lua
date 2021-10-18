@@ -6,11 +6,7 @@ require('bqf').setup({
         delay_syntax = 80,
         border_chars = {'┃', '┃', '━', '━', '┏', '┓', '┗', '┛', '█'}
     },
-    filter = {
-        fzf = {
-            extra_opts = {'--bind', 'ctrl-o:toggle-all', '--prompt', '> '}
-        }
-    }
+    filter = {fzf = {extra_opts = {'--bind', 'ctrl-o:toggle-all', '--prompt', '> '}}}
 })
 
 vim.api.nvim_exec([[

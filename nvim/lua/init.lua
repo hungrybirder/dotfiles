@@ -13,6 +13,7 @@ require('module/treesitter')
 -- require('module/lspsaga')
 require('module/lsputils')
 require('module/lsp')
+require('module/efm')
 -- require('module/nvim-compe')
 require('module/nvim-cmp')
 
