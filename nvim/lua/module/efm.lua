@@ -12,7 +12,7 @@ require"lspconfig".efm.setup {
         languages = {
             lua = {
                 {
-                    formatCommand = "lua-format -i --column-limit=120 --no-keep-simple-function-one-line",
+                    formatCommand = "lua-format -i --column-limit=120 --no-keep-simple-function-one-line --no-keep-simple-control-block-one-line --no-align-table-field --spaces-inside-table-braces",
                     formatStdin = true
                 }
             }
