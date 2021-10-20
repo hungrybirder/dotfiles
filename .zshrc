@@ -66,9 +66,9 @@ source ${BREW_PREFIX}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # 启用的插件
 if [[ $(uname -m) = "arm64" ]]; then
-  plugins=(pyenv git jsontools vagrant docker osx pip golang z)
+  plugins=(pyenv git jsontools vagrant docker osx pip golang z cargo)
 else
-  plugins=(pyenv git gpg-agent autojump jsontools vagrant docker osx pip golang z)
+  plugins=(pyenv git gpg-agent autojump jsontools vagrant docker osx pip golang z cargo)
 fi
 source $ZSH/oh-my-zsh.sh
 export PATH="/opt/homebrew/sbin:/opt/homebrew/bin:/usr/local/sbin:/usr/local/bin:$PATH"
@@ -294,9 +294,6 @@ alias nv="nvim"
 
 export SSLKEYLOGFILE="${HOME}/tmp/ssl_key.log"
 
-
-[[ -f "$HOME/.cargo/env" ]] && source "$HOME/.cargo/env"
-
 # 使用nvim打开手册
 export MANPAGER='nvim +Man!'
 
@@ -315,3 +312,6 @@ reddit() {
     open "https://www.reddit.com$url"
   fi
 }
+
+# rust
+[[ -f "$HOME/.cargo/env" ]] && source "$HOME/.cargo/env"
