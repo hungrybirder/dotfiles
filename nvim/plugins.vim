@@ -262,6 +262,7 @@ nnoremap <silent> <leader>r  <cmd>Telescope lsp_references<CR>
 nnoremap <silent> <leader>cs <cmd>Telescope lsp_document_symbols<CR>
 nnoremap <silent> <leader>ws <cmd>lua require('telescope.builtin').lsp_workspace_symbols{query="*"}<CR>
 nnoremap <silent> <leader>ts  <cmd>Telescope tagstack<CR>
+nnoremap <silent> <leader>jl  <cmd>Telescope jumplist<CR>
 
 " clever-f
 map ; <Plug>(clever-f-repeat-forward)

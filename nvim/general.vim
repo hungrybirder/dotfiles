@@ -138,10 +138,10 @@ inoremap ? ?<c-g>u
 " not pollute registers!
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
-inoremap <C-k> <esc>:m .-2<CR>==
-inoremap <C-j> <esc>:m .+1<CR>==
-nnoremap <leader>j :m .+1<CR>==
-nnoremap <leader>k :m .-2<CR>==
+" inoremap <C-k> <esc>:m .-2<CR>==
+" inoremap <C-j> <esc>:m .+1<CR>==
+" nnoremap <leader>j :m .+1<CR>==
+" nnoremap <leader>k :m .-2<CR>==
 
 " Best remap by ThePrimeagen Done
 
