@@ -1,5 +1,5 @@
 local npairs = require('nvim-autopairs')
-npairs.setup({check_ts = true, disable_filetype = {"TelescopePrompt"}})
+npairs.setup({ check_ts = true, disable_filetype = { "TelescopePrompt" } })
 
 -- From: https://github.com/hrsh7th/nvim-cmp/wiki/Example-mappings
 local has_words_before = function()
@@ -18,10 +18,10 @@ cmp.setup {
             vim.fn["vsnip#anonymous"](args.body)
         end
     },
-    sources = {
-        {name = 'nvim_lsp'}, {name = 'path'}, {name = 'nvim_lua'}, {name = 'vsnip'}, -- { name = 'luasnip'},
-        {name = 'calc'}, {name = 'emoji'}, {name = 'tags'}, {name = 'path'}
-    },
+    sources = cmp.config.sources({
+        { name = 'nvim_lsp' }, { name = 'path' }, { name = 'emoji' }, { name = 'vsnip' }, { name = 'nvim_lua' },
+        { name = 'calc' }, { name = 'tags' }
+    }, { { name = 'buffer' } }),
     formatting = {
         format = require("lspkind").cmp_format({
             with_text = false,
@@ -53,14 +53,14 @@ cmp.setup {
             else
                 fallback() -- The fallback function sends a already mapped key. In this case, it's probably `<Tab>`.
             end
-        end, {"i", "s"}),
+        end, { "i", "s" }),
         ["<S-Tab>"] = cmp.mapping(function()
             if cmp.visible() then
                 cmp.select_prev_item()
             elseif vim.fn["vsnip#jumpable"](-1) == 1 then
                 feedkey("<Plug>(vsnip-jump-prev)", "")
             end
-        end, {"i", "s"})
+        end, { "i", "s" })
     }
 }
 
