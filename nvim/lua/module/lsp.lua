@@ -192,7 +192,7 @@ lspconfig.clangd.setup {
     init_options = {clangdFileStatus = true},
     on_attach = lsp_on_attach,
     capabilities = capabilities,
-    cmd = {"/usr/local/opt/llvm/bin/clangd", "--background-index", "-j=8"}
+    cmd = {"clangd", "--background-index", "-j=8"}
 }
 
 lspconfig.gopls.setup {on_attach = lsp_on_attach, capabilities = capabilities}
