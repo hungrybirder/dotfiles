@@ -43,7 +43,7 @@ local lsp_on_attach = function(client, bufnr)
     buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
 
     -- Mappings.
-    local opts = {noremap = true, silent = true}
+    local opts = { noremap = true, silent = true }
     buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
     buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
     buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
@@ -77,8 +77,12 @@ local lsp_on_attach = function(client, bufnr)
     buf_set_keymap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
 
     local function use_ale_fixer(buf_filetype)
-        local ale_fixer_filetypes = {"vue", "javascript", "typescript"}
-        for _, val in ipairs(ale_fixer_filetypes) do if buf_filetype == val then return true end end
+        local ale_fixer_filetypes = { "vue", "javascript", "typescript", "python" }
+        for _, val in ipairs(ale_fixer_filetypes) do
+            if buf_filetype == val then
+                return true
+            end
+        end
         return false
     end
 
@@ -107,13 +111,13 @@ local lsp_on_attach = function(client, bufnr)
     lsp_status.on_attach(client)
     require"lsp_signature".on_attach({
         bind = true,
-        handler_opts = {border = "single"},
+        handler_opts = { border = "single" },
         doc_lines = 2,
         hint_enable = true,
         hint_prefix = "🌟 ",
         hint_scheme = "String",
         use_lspsaga = false,
-        decorator = {"`", "`"},
+        decorator = { "`", "`" },
         -- floating_window = false,
         floating_window = true,
         zindex = 50,
@@ -146,21 +150,23 @@ local capabilities = make_lsp_client_capabilities()
 -- npm i -g sql-language-server
 -- npm i -g vls
 -- ]]
-local servers = {"yamlls", "html", "cmake", "dockerls", "tsserver", "vimls", "bashls", "kotlin_language_server"}
+local servers = { "yamlls", "html", "cmake", "dockerls", "tsserver", "vimls", "bashls", "kotlin_language_server" }
 
-for _, name in pairs(servers) do lspconfig[name].setup {on_attach = lsp_on_attach, capabilities = capabilities} end
+for _, name in pairs(servers) do
+    lspconfig[name].setup { on_attach = lsp_on_attach, capabilities = capabilities }
+end
 
 lspconfig.vuels.setup {
     on_attach = lsp_on_attach,
     capabilities = capabilities,
-    settings = {vetur = {experimental = {templateInterpolationService = true}}}
+    settings = { vetur = { experimental = { templateInterpolationService = true } } }
 }
 
 lspconfig.jsonls.setup {
     commands = {
         Format = {
             function()
-                vim.lsp.buf.range_formatting({}, {0, 0}, {vim.fn.line("$"), vim.fn.strwidth(vim.fn.getline("$"))})
+                vim.lsp.buf.range_formatting({}, { 0, 0 }, { vim.fn.line("$"), vim.fn.strwidth(vim.fn.getline("$")) })
             end
         }
     },
@@ -168,7 +174,7 @@ lspconfig.jsonls.setup {
     capabilities = capabilities
 }
 
-lspconfig.sqlls.setup {cmd = {"sql-language-server", "up", "--method", "stdio"}}
+lspconfig.sqlls.setup { cmd = { "sql-language-server", "up", "--method", "stdio" } }
 
 lspconfig.pyright.setup {
     on_attach = lsp_on_attach,
@@ -179,23 +185,23 @@ lspconfig.pyright.setup {
                 autoImportCompletions = true,
                 autoSearchPaths = true,
                 useLibraryCodeForTypes = true,
-                diagnosticMode = 'workspace'
+                diagnosticMode = 'workspace',
+                typeCheckingMode = 'basic'
             },
-            linting = {enable = true, pylintEnabled = true},
-            formatting = {provider = "yapf"}
+            venvPath = require("os").getenv("HOME") .. "/" .. ".virtualenvs"
         }
     }
 }
 
 lspconfig.clangd.setup {
     handlers = lsp_status.extensions.clangd.setup(),
-    init_options = {clangdFileStatus = true},
+    init_options = { clangdFileStatus = true },
     on_attach = lsp_on_attach,
     capabilities = capabilities,
-    cmd = {"clangd", "--background-index", "-j=8"}
+    cmd = { "clangd", "--background-index", "-j=8" }
 }
 
-lspconfig.gopls.setup {on_attach = lsp_on_attach, capabilities = capabilities}
+lspconfig.gopls.setup { on_attach = lsp_on_attach, capabilities = capabilities }
 
 -- local get_lua_runtime = function()
 --   local result = {}
@@ -235,7 +241,7 @@ table.insert(runtime_path, "lua/?/init.lua")
 lspconfig.sumneko_lua.setup {
     capabilities = capabilities,
     on_attach = lsp_on_attach,
-    cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"},
+    cmd = { sumneko_binary, "-E", sumneko_root_path .. "/main.lua" },
     settings = {
         Lua = {
             runtime = {
@@ -244,14 +250,14 @@ lspconfig.sumneko_lua.setup {
                 -- path = vim.split(package.path, ";")
             },
             -- runtime = { version = "Lua 5.4" },
-            diagnostics = {globals = {"vim"}},
+            diagnostics = { globals = { "vim" } },
             workspace = {
                 -- library = get_lua_runtime(),
                 library = vim.api.nvim_get_runtime_file("", true),
                 preloadFileSize = 1024, -- KB
                 checkThirdParty = false
             },
-            telemetry = {enable = false}
+            telemetry = { enable = false }
         }
     }
 }
@@ -262,14 +268,14 @@ lspconfig.sumneko_lua.setup {
 lspconfig.jdtls.setup {
     capabilities = capabilities,
     on_attach = lsp_on_attach,
-    cmd = {"jdt-language-server"},
+    cmd = { "jdt-language-server" },
     root_dir = util.root_pattern(".git", "pom.xml")
 }
 
 lspconfig.solargraph.setup {
     capabilities = capabilities,
     on_attach = lsp_on_attach,
-    cmd = {"/usr/local/lib/ruby/gems/3.0.0/bin/solargraph", "stdio"}
+    cmd = { "/usr/local/lib/ruby/gems/3.0.0/bin/solargraph", "stdio" }
 }
 
 -- setup rust-tools
@@ -280,9 +286,9 @@ local opts = {
     tools = {
         autoSetHints = true,
         hover_with_actions = true,
-        runnables = {use_telescope = true},
-        debuggables = {use_telescope = true},
-        inlay_hints = {show_parameter_hints = true, parameter_hints_prefix = "<-", other_hints_prefix = "=>"},
+        runnables = { use_telescope = true },
+        debuggables = { use_telescope = true },
+        inlay_hints = { show_parameter_hints = true, parameter_hints_prefix = "<-", other_hints_prefix = "=>" },
         hover_actions = {
             -- whether the hover action window gets automatically focused
             auto_focus = true
