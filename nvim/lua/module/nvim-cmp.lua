@@ -37,8 +37,6 @@ cmp.setup {
         })
     },
     mapping = {
-        -- ['<C-p>'] = cmp.mapping.select_prev_item(),
-        -- ['<C-n>'] = cmp.mapping.select_next_item(),
         ['<C-d>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
         ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
         ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
@@ -53,32 +51,22 @@ cmp.setup {
             else
                 fallback() -- The fallback function sends a already mapped key. In this case, it's probably `<Tab>`.
             end
-        end, { "i", "s" }),
+        end, { "i", "s", "c" }),
         ["<S-Tab>"] = cmp.mapping(function()
             if cmp.visible() then
                 cmp.select_prev_item()
             elseif vim.fn["vsnip#jumpable"](-1) == 1 then
                 feedkey("<Plug>(vsnip-jump-prev)", "")
             end
-        end, { "i", "s" })
+        end, { "i", "s", "c" })
     }
 }
 
 -- Use buffer source for `/`.
-cmp.setup.cmdline('/', {
-  sources = {
-    { name = 'buffer' }
-  }
-})
+cmp.setup.cmdline('/', { sources = { { name = 'buffer' } } })
 
 -- Use cmdline & path source for ':'.
-cmp.setup.cmdline(':', {
-  sources = cmp.config.sources({
-    { name = 'path' }
-  }, {
-    { name = 'cmdline' }
-  })
-})
+cmp.setup.cmdline(':', { sources = cmp.config.sources({ { name = 'path' } }, { { name = 'cmdline' } }) })
 
 -- From: https://github.com/windwp/nvim-autopairs
 -- you need setup cmp first put this after cmp.setup()
