@@ -1,6 +1,7 @@
 call plug#begin('~/.config/nvim/plugged')
 
 Plug 'folke/zen-mode.nvim'
+Plug 'norcalli/nvim-colorizer.lua'
 
 " 中英文排版
 Plug 'hotoo/pangu.vim'
@@ -10,31 +11,28 @@ Plug 'wfxr/minimap.vim', {'do': ':!cargo install --locked code-minimap'}
 Plug 'tpope/vim-dispatch'
 
 Plug 'airblade/vim-rooter'
-Plug 'tweekmonster/startuptime.vim'
-" Plug 'dstein64/vim-startuptime'
+" Plug 'tweekmonster/startuptime.vim'
 
 " gnupg
 Plug 'jamessan/vim-gnupg'
 
 " theme
-" Plug 'lifepillar/vim-gruvbox8'
 Plug 'EdenEast/nightfox.nvim'
 
+" buffer line at the top of window
 Plug 'akinsho/nvim-bufferline.lua'
-
-" statusline
-Plug 'datwaft/bubbly.nvim'
-
 " delete buffer without closing windows
 Plug 'moll/vim-bbye'
 " Delete all the buffers except the current buffer.
 Plug 'schickling/vim-bufonly'
+" statusline
+Plug 'datwaft/bubbly.nvim'
 
 " speedup editing friendly
 " Plug 'jiangmiao/auto-pairs'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'rhysd/clever-f.vim'
-Plug 'easymotion/vim-easymotion'
+" Plug 'easymotion/vim-easymotion'
 Plug 'karb94/neoscroll.nvim'
 Plug 'andymass/vim-matchup'
 
@@ -56,8 +54,6 @@ Plug 'svermeulen/vim-subversive'
 " Plug 'svermeulen/vim-cutlass'
 Plug 'svermeulen/vim-yoink'
 
-" tagbar
-" Plug 'preservim/tagbar'
 " nvim-tree
 Plug 'kyazdani42/nvim-tree.lua'
 
@@ -100,9 +96,7 @@ Plug 'RishabhRD/nvim-lsputils'
 
 " tree sitter
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-" Plug 'nvim-treesitter/completion-treesitter'
 Plug 'nvim-treesitter/playground'
-" Plug 'romgrk/nvim-treesitter-context'
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 Plug 'nvim-treesitter/nvim-treesitter-refactor'
 
@@ -171,9 +165,6 @@ Plug 'rcarriga/vim-ultest', { 'do': ':UpdateRemotePlugins' }
 Plug 'kassio/neoterm'
 " tmux
 Plug 'christoomey/vim-tmux-navigator'
-
-Plug 'norcalli/nvim-colorizer.lua'
-
 call plug#end()
 
 noremap <Leader>pi :<c-u>PlugInstall<CR>
@@ -271,9 +262,9 @@ map , <Plug>(clever-f-repeat-back)
 " clever-fend
 
 " easymotion
-let g:EasyMotion_smartcase = 1
-let g:EasyMotion_do_mapping = 0
-nmap <leader>w <Plug>(easymotion-bd-w)
+" let g:EasyMotion_smartcase = 1
+" let g:EasyMotion_do_mapping = 0
+" nmap <leader>w <Plug>(easymotion-bd-w)
 " easymotion end
 
 " auto-pairs
