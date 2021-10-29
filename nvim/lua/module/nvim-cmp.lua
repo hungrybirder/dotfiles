@@ -1,6 +1,3 @@
-local npairs = require('nvim-autopairs')
-npairs.setup({ check_ts = true, disable_filetype = { "TelescopePrompt" } })
-
 -- From: https://github.com/hrsh7th/nvim-cmp/wiki/Example-mappings
 local has_words_before = function()
     local line, col = unpack(vim.api.nvim_win_get_cursor(0))
@@ -41,6 +38,7 @@ cmp.setup {
         ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
         ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
         ['<C-e>'] = cmp.mapping({ i = cmp.mapping.abort(), c = cmp.mapping.close() }),
+        ['<CR>'] = cmp.mapping.confirm({ select = true }),
         ["<Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
                 cmp.select_next_item()
@@ -64,14 +62,10 @@ cmp.setup {
 
 -- Use buffer source for `/`.
 cmp.setup.cmdline('/', { sources = { { name = 'buffer' } } })
-
 -- Use cmdline & path source for ':'.
 cmp.setup.cmdline(':', { sources = cmp.config.sources({ { name = 'path' } }, { { name = 'cmdline' } }) })
 
--- From: https://github.com/windwp/nvim-autopairs
--- you need setup cmp first put this after cmp.setup()
-require("nvim-autopairs.completion.cmp").setup({
-    map_cr = true, --  map <CR> on insert mode
-    map_complete = true, -- it will auto insert `(` after select function or method item
-    auto_select = true -- automatically select the first item
-})
+local npairs = require('nvim-autopairs')
+npairs.setup({ check_ts = true, disable_filetype = { "TelescopePrompt" } })
+local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done())
