@@ -14,7 +14,6 @@ require('module/treesitter')
 require('module/lsputils')
 require('module/lsp')
 require('module/efm')
--- require('module/nvim-compe')
 require('module/nvim-cmp')
 
 require('module/nvim-dap')
