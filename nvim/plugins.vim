@@ -154,6 +154,7 @@ Plug 'szw/vim-maximizer'
 Plug 'sebdah/vim-delve'
 
 Plug 'mfussenegger/nvim-dap'
+Plug 'rcarriga/nvim-dap-ui'
 Plug 'mfussenegger/nvim-dap-python'
 Plug 'theHamsta/nvim-dap-virtual-text'
 
