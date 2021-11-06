@@ -1,5 +1,7 @@
 call plug#begin('~/.config/nvim/plugged')
 
+Plug 'rcarriga/nvim-notify'
+
 Plug 'folke/zen-mode.nvim'
 Plug 'norcalli/nvim-colorizer.lua'
 
@@ -7,8 +9,6 @@ Plug 'norcalli/nvim-colorizer.lua'
 Plug 'hotoo/pangu.vim'
 
 Plug 'wfxr/minimap.vim', {'do': ':!cargo install --locked code-minimap'}
-
-Plug 'tpope/vim-dispatch'
 
 Plug 'airblade/vim-rooter'
 " Plug 'tweekmonster/startuptime.vim'
@@ -42,6 +42,9 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-speeddating'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-rhubarb'
+Plug 'tpope/vim-dispatch'
+" Plug 'tpope/vim-scriptease'
+
 
 " git
 Plug 'tpope/vim-fugitive'
@@ -157,6 +160,7 @@ Plug 'mfussenegger/nvim-dap'
 Plug 'rcarriga/nvim-dap-ui'
 Plug 'mfussenegger/nvim-dap-python'
 Plug 'theHamsta/nvim-dap-virtual-text'
+Plug 'jbyuki/one-small-step-for-vimkind'
 
 " unit test
 Plug 'vim-test/vim-test'

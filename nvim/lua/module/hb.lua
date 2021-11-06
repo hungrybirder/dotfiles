@@ -18,3 +18,7 @@ remap('n', '[<tab>', '<cmd>tabnext<cr>', {silent = true, noremap = true})
 
 -- colorizer
 require'colorizer'.setup()
+
+
+vim.notify = require("notify")
+vim.notify.setup()
