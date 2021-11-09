@@ -89,5 +89,5 @@ dap_py.setup('~/.virtualenvs/debugpy/bin/python')
 
 -- nvim-dap-ui
 require("dapui").setup()
-vim.api.nvim_command("command! -nargs=0 DapUIStart :lua require'dapui'.open()<CR> require'dap'.continue()<CR>")
-vim.api.nvim_command("command! -nargs=0 DapUIStop :lua require'dapui'.close()<CR> require'dap'.close()<CR>")
+vim.api.nvim_command("command! -nargs=0 DapUIStart :lua require'dapui'.open()<CR>")
+vim.api.nvim_command("command! -nargs=0 DapUIStop :lua require'dapui'.close()<CR>")

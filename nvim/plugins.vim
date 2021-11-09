@@ -141,6 +141,8 @@ Plug 'simrat39/rust-tools.nvim'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'neoclide/jsonc.vim'
 
+Plug 'mfussenegger/nvim-jdtls'
+
 Plug 'mmarchini/bpftrace.vim'
 
 " markdown
@@ -535,3 +537,10 @@ let g:rooter_patterns = [
 \ 'tox.ini'
 \]
 " vim-rooter end
+
+" nvim-jdtls
+augroup jdtls_lsp
+    autocmd!
+    autocmd FileType java lua require'module/nvim-jdtls'.setup()
+augroup end
+" nvim-jdtls end
