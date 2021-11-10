@@ -154,14 +154,15 @@ Plug 'iamcco/mathjax-support-for-mkdp'
 Plug 'npxbr/glow.nvim', {'do': ':GlowInstall'}
 
 " debugger
-Plug 'puremourning/vimspector'
+" Plug 'puremourning/vimspector'
 Plug 'szw/vim-maximizer'
 Plug 'sebdah/vim-delve'
 
 Plug 'mfussenegger/nvim-dap'
 Plug 'rcarriga/nvim-dap-ui'
-Plug 'mfussenegger/nvim-dap-python'
 Plug 'theHamsta/nvim-dap-virtual-text'
+Plug 'mfussenegger/nvim-dap-python'
+Plug 'leoluz/nvim-dap-go'
 Plug 'jbyuki/one-small-step-for-vimkind'
 
 " unit test
@@ -181,42 +182,42 @@ noremap <Leader>pc :<c-u>PlugClean<CR>
 " colorscheme gruvbox8_hard
 colorscheme nightfox
 
-fun! GotoWindow(id)
-    call win_gotoid(a:id)
-    MaximizerToggle
-endfun
-
-func! AddToWatch()
-  let word = expand("<cexpr>")
-  call vimspector#AddWatch(word)
-endfun
-
-let g:vimspector_enable_mappings = 'HUMAN'
-let g:vimspector_sign_priority = {
-  \    'vimspectorBP':         12,
-  \    'vimspectorBPCond':     11,
-  \    'vimspectorBPDisabled': 10,
-  \    'vimspectorPC':         999,
-  \ }
-let g:vimspector_base_dir = expand('$HOME/.config/vimspector-config')
-nnoremap <leader>M :MaximizerToggle!<CR>
-nnoremap <leader>da :call vimspector#Launch()<CR>
-nnoremap <leader>dc :call GotoWindow(g:vimspector_session_windows.code)<CR>
-nnoremap <leader>dt :call GotoWindow(g:vimspector_session_windows.tagpage)<CR>
-nnoremap <leader>dv :call GotoWindow(g:vimspector_session_windows.variables)<CR>
-nnoremap <leader>dw :call GotoWindow(g:vimspector_session_windows.watches)<CR>
-nnoremap <leader>ds :call GotoWindow(g:vimspector_session_windows.stack_trace)<CR>
-nnoremap <leader>do :call GotoWindow(g:vimspector_session_windows.output)<CR>
-nnoremap <leader>d? :call AddToWatch()<CR>
-nnoremap <leader>dx :call vimspector#Reset()<CR>
-nnoremap <leader>dX :call vimspector#ClearBreakpoints()<CR>
+" fun! GotoWindow(id)
+"     call win_gotoid(a:id)
+"     MaximizerToggle
+" endfun
+"
+" func! AddToWatch()
+"   let word = expand("<cexpr>")
+"   call vimspector#AddWatch(word)
+" endfun
+"
+" let g:vimspector_enable_mappings = 'HUMAN'
+" let g:vimspector_sign_priority = {
+"   \    'vimspectorBP':         12,
+"   \    'vimspectorBPCond':     11,
+"   \    'vimspectorBPDisabled': 10,
+"   \    'vimspectorPC':         999,
+"   \ }
+" let g:vimspector_base_dir = expand('$HOME/.config/vimspector-config')
+" nnoremap <leader>M :MaximizerToggle!<CR>
+" nnoremap <leader>da :call vimspector#Launch()<CR>
+" nnoremap <leader>dc :call GotoWindow(g:vimspector_session_windows.code)<CR>
+" nnoremap <leader>dt :call GotoWindow(g:vimspector_session_windows.tagpage)<CR>
+" nnoremap <leader>dv :call GotoWindow(g:vimspector_session_windows.variables)<CR>
+" nnoremap <leader>dw :call GotoWindow(g:vimspector_session_windows.watches)<CR>
+" nnoremap <leader>ds :call GotoWindow(g:vimspector_session_windows.stack_trace)<CR>
+" nnoremap <leader>do :call GotoWindow(g:vimspector_session_windows.output)<CR>
+" nnoremap <leader>d? :call AddToWatch()<CR>
+" nnoremap <leader>dx :call vimspector#Reset()<CR>
+" nnoremap <leader>dX :call vimspector#ClearBreakpoints()<CR>
 " nnoremap <S-k> :call vimspector#StepOut()<CR>
 " nnoremap <S-l> :call vimspector#StepInto()<CR>
 " nnoremap <S-j> :call vimspector#StepOver()<CR>
-nnoremap <leader>d_ :call vimspector#Restart()<CR>
-nnoremap <leader>dn :call vimspector#Continue()<CR>
-nnoremap <leader>drc :call vimspector#RunToCursor()<CR>
-nnoremap <leader>dh :call vimspector#ToggleBreakpoint()<CR>
+" nnoremap <leader>d_ :call vimspector#Restart()<CR>
+" nnoremap <leader>dn :call vimspector#Continue()<CR>
+" nnoremap <leader>drc :call vimspector#RunToCursor()<CR>
+" nnoremap <leader>dh :call vimspector#ToggleBreakpoint()<CR>
 
 " function! JestStrategy(cmd)
 "   let testName = matchlist(a:cmd, '\v -t ''(.*)''')[1]
@@ -224,7 +225,7 @@ nnoremap <leader>dh :call vimspector#ToggleBreakpoint()<CR>
 " endfunction
 " let g:test#custom_strategies = {'jest': function('JestStrategy')}
 
-nnoremap <leader>dd :TestNearest -strategy=jest<CR>
+" nnoremap <leader>dd :TestNearest -strategy=jest<CR>
 
 " vim-test
 function! DebugNearest()
