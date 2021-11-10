@@ -1,0 +1,51 @@
+-- Dap commands
+vim.api.nvim_command("command! -nargs=0 DapToggleBreakpoint :lua require'dap'.toggle_breakpoint()<CR>")
+vim.api.nvim_command("command! -nargs=0 DapToggleRepl :lua require'dap'.repl.toggle()<CR>")
+vim.api.nvim_command("command! -nargs=0 DapRunLast :lua require'dap'.run_last()<CR>")
+vim.api.nvim_command("command! -nargs=0 DapContinue :lua require'dap'.continue()<CR>")
+vim.api.nvim_command("command! -nargs=0 DapNext :lua require'dap'.step_over()<CR>")
+vim.api.nvim_command("command! -nargs=0 DapStepInto :lua require'dap'.step_into()<CR>")
+vim.api.nvim_command("command! -nargs=0 DapStepOut :lua require'dap'.step_out()<CR>")
+vim.api.nvim_command("command! -nargs=0 DapStop :lua require'dap'.close()<CR>")
+vim.api.nvim_command(
+    "command! -nargs=0 DapCondition :lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>")
+
+local mapper = function(mode, key, result)
+    vim.api.nvim_set_keymap(mode, key, result, { noremap = true, silent = true })
+end
+
+
+-- mapper('n', '<c-k>', ':lua require"dap".step_out()<CR>')
+-- mapper('n', '<c-l>', ':lua require"dap".step_into()<CR>')
+-- mapper('n', '<c-j>', ':lua require"dap".step_over()<CR>')
+-- mapper('n', '<c-h>', ':lua require"dap".continue()<CR>')
+mapper('n', '<F4>', '<cmd>lua require"dapui".toggle()<CR>')
+mapper('n', '<F5>', '<cmd>lua require"dap".continue()<CR>')
+mapper('n', '<F10>', '<cmd>lua require"dap".step_over()<CR>')
+mapper('n', '<F11>', '<cmd>lua require"dap".step_into()<CR>')
+mapper('n', '<F12>', '<cmd>lua require"dap".step_out()<CR>')
+mapper('n', '<F9>', '<cmd>lua require"dap".toggle_breakpoint()<CR>')
+mapper('n', '<leader>dh', '<cmd>lua require"dap".toggle_breakpoint()<CR>')
+mapper('n', '<leader>dH', ":lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>")
+-- mapper('n', '<leader>dl','<cmd>lua require"dap".toggle_breakpoint(nil, nil, vim.fn.input(\'Log point message: \'), true)<CR>')
+mapper('n', '<leader>dr', '<cmd>lua require"dap".repl.toggle({height=15})<CR>')
+vim.cmd('command! -nargs=0 DapBreakpoints :lua require"dap".list_breakpoints()')
+mapper('n', '<leader>dk', ':lua require"dap".up()<CR>')
+mapper('n', '<leader>dj', ':lua require"dap".down()<CR>')
+-- mapper('n', '<leader>dc', ':lua require"dap".disconnect({ terminateDebuggee = true });require"dap".close()<CR>')
+mapper('n', '<leader>dc', ':lua require"dap".disconnect();require"dap".close()<CR>')
+mapper('n', '<leader>dr', ':lua require"dap".repl.toggle({}, "vsplit")<CR><C-w>l')
+mapper('n', '<leader>di', ':lua require"dap.ui.variables".hover()<CR>')
+mapper('n', '<leader>di', ':lua require"dap.ui.variables".visual_hover()<CR>')
+mapper('n', '<leader>d?', ':lua require"dap.ui.variables".scopes()<CR>')
+mapper('n', '<leader>de', ':lua require"dap".set_exception_breakpoints({"all"})<CR>')
+mapper('n', '<leader>da', ':lua require"debugHelper".attach()<CR>')
+mapper('n', '<leader>dA', ':lua require"debugHelper".attachToRemote()<CR>')
+mapper('n', '<leader>di', ':lua require"dap.ui.widgets".hover()<CR>')
+mapper('n', '<leader>d?', ':lua local widgets=require"dap.ui.widgets";widgets.centered_float(widgets.scopes)<CR>')
+
+-- nvim-telescope/telescope-dap.nvim
+require('telescope').load_extension('dap')
+mapper('n', '<leader>ds', ':Telescope dap frames<CR>')
+mapper('n', '<leader>db', ':Telescope dap list_breakpoints<CR>')
+
