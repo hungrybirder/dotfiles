@@ -88,20 +88,7 @@ local function setup_lsp_keymaps(client, bufnr)
     end
 end
 
-local function setup_java_lsp_keymaps(client, bufnr)
-    setup_lsp_keymaps(client, bufnr)
-    local opts = { noremap = true, silent = true }
-    -- Java specific
-    buf_set_keymap("n", "<leader>ji", "<Cmd>lua require'jdtls'.organize_imports()<CR>", opts)
-    buf_set_keymap("n", "<leader>jt", "<Cmd>lua require'jdtls'.test_class()<CR>", opts)
-    buf_set_keymap("n", "<leader>jn", "<Cmd>lua require'jdtls'.test_nearest_method()<CR>", opts)
-    buf_set_keymap("v", "<leader>je", "<Esc><Cmd>lua require('jdtls').extract_variable(true)<CR>", opts)
-    buf_set_keymap("n", "<leader>je", "<Cmd>lua require('jdtls').extract_variable()<CR>", opts)
-    buf_set_keymap("v", "<leader>jm", "<Esc><Cmd>lua require('jdtls').extract_method(true)<CR>", opts)
-end
-
 return {
     --
-    setup_lsp_keymaps = setup_lsp_keymaps,
-    setup_java_lsp_keymaps = setup_java_lsp_keymaps
+    setup_lsp_keymaps = setup_lsp_keymaps
 }
