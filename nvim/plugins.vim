@@ -27,6 +27,7 @@ Plug 'moll/vim-bbye'
 Plug 'schickling/vim-bufonly'
 " statusline
 Plug 'datwaft/bubbly.nvim'
+" Plug 'nvim-lualine/lualine.nvim'
 
 " speedup editing friendly
 " Plug 'jiangmiao/auto-pairs'
