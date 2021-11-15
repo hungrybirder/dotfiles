@@ -22,3 +22,5 @@ require'colorizer'.setup()
 
 vim.notify = require("notify")
 vim.notify.setup()
+
+require('gitsigns').setup()

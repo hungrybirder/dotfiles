@@ -49,9 +49,10 @@ Plug 'tpope/vim-dispatch'
 
 " git
 Plug 'tpope/vim-fugitive'
-Plug 'mhinz/vim-signify'
 Plug 'junegunn/gv.vim'
 Plug 'sindrets/diffview.nvim'
+" Plug 'mhinz/vim-signify'
+Plug 'lewis6991/gitsigns.nvim'
 
 " powered by svermeulen
 Plug 'svermeulen/vim-subversive'
@@ -522,10 +523,6 @@ let g:minimap_width = 10
 let g:minimap_auto_start = 0
 let g:minimap_auto_start_win_enter = 0
 " minimap.vim end
-
-" vim-signify
-nnoremap <leader>sd :SignifyDisable<CR>
-" vim-signify end
 
 " zen-mode
 lua << EOF

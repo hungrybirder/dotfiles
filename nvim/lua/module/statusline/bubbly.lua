@@ -2,25 +2,35 @@
 -- disbale bubbly tabline for nvim-bufferline
 vim.g.bubbly_tabline = 0
 
+-- LuaFormatter off
 vim.g.bubbly_statusline = {
-    'mode', 'truncate', 'path', 'branch', 'signify', 'divisor', 'lsp_status.messages', 'lsp_status.diagnostics',
-    'builtinlsp.current_function', -- 'builtinlsp.diagnostic_count',
-    'progress', 'filetype'
-    -- 'total_buffer_number',
+    'mode',
+    'truncate',
+    'path',
+    'branch',
+    'gitsigns',
+    'divisor',
+    'lsp_status.messages',
+    'lsp_status.diagnostics',
+    'builtinlsp.current_function',
+    'progress',
+    'filetype'
 }
+-- LuaFormatter on
 
-disable_bubbly_filetypes = {'NvimTree', 'Outline', 'vim-plug', 'PopList', 'minimap'}
+disable_bubbly_filetypes = { 'NvimTree', 'Outline', 'vim-plug', 'PopList', 'minimap' }
 
 vim.g.bubbly_filter = {
     mode = disable_bubbly_filetypes,
     path = disable_bubbly_filetypes,
     branch = disable_bubbly_filetypes,
     signify = disable_bubbly_filetypes,
+    gitsigns = disable_bubbly_filetypes,
     progress = disable_bubbly_filetypes,
     filetype = disable_bubbly_filetypes,
     total_buffer_number = disable_bubbly_filetypes,
-    lsp_status = {messages = disable_bubbly_filetypes, diagnostics = disable_bubbly_filetypes},
-    builtinlsp = {current_function = disable_bubbly_filetypes, diagnostic_count = disable_bubbly_filetypes}
+    lsp_status = { messages = disable_bubbly_filetypes, diagnostics = disable_bubbly_filetypes },
+    builtinlsp = { current_function = disable_bubbly_filetypes, diagnostic_count = disable_bubbly_filetypes }
 }
 
 vim.g.bubbly_colors = {
@@ -37,28 +47,32 @@ vim.g.bubbly_colors = {
         default = 'white'
     },
     path = {
-        readonly = {background = 'lightgrey', foreground = 'foreground'},
-        unmodifiable = {background = 'darkgrey', foreground = 'foreground'},
+        readonly = { background = 'lightgrey', foreground = 'foreground' },
+        unmodifiable = { background = 'darkgrey', foreground = 'foreground' },
         path = 'white',
-        modified = {background = 'lightgrey', foreground = 'foreground'}
+        modified = { background = 'lightgrey', foreground = 'foreground' }
     },
     -- branch = 'purple',
     branch = 'cyan',
-    signify = {added = 'green', modified = 'blue', removed = 'red'},
+    signify = { added = 'green', modified = 'blue', removed = 'red' },
+    gitsigns = { added = 'green', modified = 'blue', removed = 'red' },
     paste = 'red',
-    coc = {error = 'red', warning = 'yellow', status = {background = 'lightgrey', foreground = 'foreground'}},
-    builtinlsp = {diagnostic_count = {error = 'red', warning = 'yellow'}, current_function = 'purple'},
+    coc = { error = 'red', warning = 'yellow', status = { background = 'lightgrey', foreground = 'foreground' } },
+    builtinlsp = { diagnostic_count = { error = 'red', warning = 'yellow' }, current_function = 'purple' },
     filetype = 'blue',
     progress = {
-        rowandcol = {background = 'darkgrey', foreground = 'foreground'},
-        percentage = {background = 'darkgrey', foreground = 'foreground'}
+        rowandcol = { background = 'darkgrey', foreground = 'foreground' },
+        percentage = { background = 'darkgrey', foreground = 'foreground' }
     },
-    tabline = {active = 'blue', inactive = 'white', close = 'darkgrey'},
+    tabline = { active = 'blue', inactive = 'white', close = 'darkgrey' },
     total_buffer_number = 'cyan',
-    lsp_status = {messages = 'white', diagnostics = {error = 'red', warning = 'yellow', hint = 'white', info = 'blue'}}
+    lsp_status = {
+        messages = 'white',
+        diagnostics = { error = 'red', warning = 'yellow', hint = 'white', info = 'blue' }
+    }
 }
 
-vim.g.bubbly_inactive_color = {background = 'darkgrey', foreground = 'foreground'}
+vim.g.bubbly_inactive_color = { background = 'darkgrey', foreground = 'foreground' }
 
 vim.g.bubbly_palette = {
     background = "#34343c",
