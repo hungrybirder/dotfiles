@@ -141,7 +141,6 @@ Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'rust-lang/rust.vim'
 Plug 'simrat39/rust-tools.nvim'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-Plug 'neoclide/jsonc.vim'
 
 Plug 'mfussenegger/nvim-jdtls'
 
@@ -153,7 +152,7 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 Plug 'iamcco/mathjax-support-for-mkdp'
 " MacOS: brew install glow
 " https://github.com/charmbracelet/glow
-Plug 'npxbr/glow.nvim', {'do': ':GlowInstall'}
+" Plug 'npxbr/glow.nvim', {'do': ':GlowInstall'}
 
 " debugger
 " Plug 'puremourning/vimspector'
