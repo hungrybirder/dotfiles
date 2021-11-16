@@ -262,11 +262,6 @@ fi
 SPECIAL_SH="${HOME}/Dropbox/snippet/special.sh"
 test -f ${SPECIAL_SH} && source ${SPECIAL_SH}
 
-# go
-# eval "$(goenv init -)"
-# go end
-
-
 export GIT_INTERNAL_GETTEXT_TEST_FALLBACKS=1
 
 # added by travis gem
@@ -274,13 +269,6 @@ export GIT_INTERNAL_GETTEXT_TEST_FALLBACKS=1
 
 # golang
 export PATH="$(go env GOPATH)/bin:${PATH}"
-# export GOPATH=$(go env GOPATH)
-
-# if [[ -d ${GOPATH}/bin ]]; then
-#     export GOBIN="${GOPATH}/bin"
-#     export PATH="${GOBIN}:${PATH}"
-#     export GO111MODULE=auto
-# fi
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
@@ -297,12 +285,6 @@ export SSLKEYLOGFILE="${HOME}/tmp/ssl_key.log"
 # 使用nvim打开手册
 export MANPAGER='nvim +Man!'
 
-# if [[ "${OS_NAME}" = "Darwin" ]]; then
-#   alias clangd="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clangd"
-# fi
-
-alias luamake=/Users/liyong/.cache/nvim/lspconfig/sumneko_lua/lua-language-server/3rd/luamake/luamake
-
 reddit() {
   local json
   local url
@@ -315,3 +297,7 @@ reddit() {
 
 # rust
 [[ -f "$HOME/.cargo/env" ]] && source "$HOME/.cargo/env"
+
+# direnv
+eval "$(direnv hook zsh)"
+
