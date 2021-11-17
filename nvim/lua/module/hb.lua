@@ -20,6 +20,6 @@ remap('n', '[<tab>', '<cmd>tabnext<cr>', { silent = true, noremap = true })
 require'colorizer'.setup()
 
 vim.notify = require("notify")
-vim.notify.setup({ render = "fade" })
+vim.notify.setup()
 
 require('gitsigns').setup()

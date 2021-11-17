@@ -52,8 +52,4 @@ telescope.setup {
 }
 
 telescope.load_extension('fzy_native')
-
-vim.notify = require("notify")
-vim.notify.setup({ render = "fade" })
-
 -- require'telescope.builtin'.symbol{ sources = {'emoji'} }
