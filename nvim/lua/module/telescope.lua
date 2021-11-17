@@ -1,7 +1,8 @@
 local actions = require('telescope.actions')
 local previewers = require('telescope.previewers')
+local telescope = require('telescope')
 
-require('telescope').setup {
+telescope.setup {
     defaults = {
         mappings = {
             i = {
@@ -50,6 +51,9 @@ require('telescope').setup {
     extensions = { fzy_native = { override_generic_sorter = false, override_file_sorter = true } }
 }
 
-require('telescope').load_extension('fzy_native')
+telescope.load_extension('fzy_native')
+
+vim.notify = require("notify")
+vim.notify.setup({ render = "fade" })
 
 -- require'telescope.builtin'.symbol{ sources = {'emoji'} }
