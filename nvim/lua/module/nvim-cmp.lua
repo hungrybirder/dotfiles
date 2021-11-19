@@ -69,5 +69,9 @@ local cmp_autopairs = require('nvim-autopairs.completion.cmp')
 cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done())
 
 local npairs = require('nvim-autopairs')
-npairs.setup()
+npairs.setup({
+    -- enable fast_wrap
+    -- <M-e>
+    fast_wrap = {}
+})
 npairs.remove_rule('`')
