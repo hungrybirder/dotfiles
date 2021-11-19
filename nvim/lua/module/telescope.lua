@@ -53,3 +53,24 @@ telescope.setup {
 
 telescope.load_extension('fzy_native')
 -- require'telescope.builtin'.symbol{ sources = {'emoji'} }
+
+-- LuaFormatter off
+-- telescope mappings
+local opts = { noremap = true, silent = true }
+local set_keymap = vim.api.nvim_set_keymap
+set_keymap('n', '<c-p>', '<cmd>Telescope git_files<CR>', opts)
+set_keymap('n', '<leader>m',  '<cmd>Telescope oldfiles<CR>', opts)
+set_keymap('n', '<leader>o',  '<cmd>Telescope treesitter<CR>', opts)
+set_keymap('n', '<leader>b',  '<cmd>Telescope buffers<CR>', opts)
+set_keymap('n', '<leader>a',  '<cmd>Telescope live_grep<CR>', opts)
+set_keymap('n', '<leader>r',  '<cmd>Telescope lsp_references<CR>', opts)
+set_keymap('n', '<leader>ts', '<cmd>Telescope tagstack<CR>', opts)
+set_keymap('n', '<leader>tc', '<cmd>Telescope commands<CR>', opts)
+set_keymap('n', '<leader>jl', '<cmd>Telescope jumplist<CR>', opts)
+set_keymap('n', '<Leader>pf', '<cmd>Telescope find_files<CR>', opts)
+set_keymap('n', '<leader>pb', '<cmd>Telescope current_buffer_fuzzy_find<CR>', opts)
+set_keymap('n', '<leader>cs', '<cmd>Telescope lsp_document_symbols<CR>', opts)
+set_keymap('n', '<leader>ws', '<cmd>lua require("telescope.builtin").lsp_workspace_symbols{query="*"}<CR>', opts)
+set_keymap('n', '<leader>ps', '<cmd>lua require("telescope.builtin").grep_string({ search = vim.fn.input("Grep For > ") })<CR>', opts)
+set_keymap('n', '<leader>pw', '<cmd>lua require("telescope.builtin").grep_string({ search = vim.fn.expand("<cword>") })<CR>', opts)
+-- LuaFormatter on
