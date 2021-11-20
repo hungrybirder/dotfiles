@@ -1,6 +1,7 @@
 local actions = require('telescope.actions')
 local previewers = require('telescope.previewers')
 local telescope = require('telescope')
+local action_layout = require('telescope.actions.layout')
 
 telescope.setup {
     defaults = {
@@ -10,13 +11,15 @@ telescope.setup {
                 ["<c-k>"] = actions.move_selection_previous,
                 ["<esc>"] = actions.close,
                 ["<c-w>"] = actions.send_selected_to_qflist,
-                ["<c-q>"] = actions.send_to_qflist
+                ["<c-q>"] = actions.send_to_qflist,
+                ['<M-p>'] = action_layout.toggle_preview
             },
             n = {
                 -- send selected to quickfix
                 ["<c-w>"] = actions.send_selected_to_qflist,
                 -- send all to quickfix
-                ["<c-q>"] = actions.send_to_qflist
+                ["<c-q>"] = actions.send_to_qflist,
+                ['<M-p>'] = action_layout.toggle_preview
             }
         },
         vimgrep_arguments = {
@@ -48,7 +51,8 @@ telescope.setup {
         -- Developer configurations: Not meant for general override
         buffer_previewer_maker = previewers.buffer_previewer_maker
     },
-    extensions = { fzy_native = { override_generic_sorter = false, override_file_sorter = true } }
+    extensions = { fzy_native = { override_generic_sorter = false, override_file_sorter = true } },
+    pickers = { lsp_document_symbols = { theme = "dropdown" }, lsp_workspace_symbols = { theme = "dropdown" } }
 }
 
 telescope.load_extension('fzy_native')
@@ -60,7 +64,6 @@ local opts = { noremap = true, silent = true }
 local set_keymap = vim.api.nvim_set_keymap
 set_keymap('n', '<c-p>', '<cmd>Telescope git_files<CR>', opts)
 set_keymap('n', '<leader>m',  '<cmd>Telescope oldfiles<CR>', opts)
-set_keymap('n', '<leader>o',  '<cmd>Telescope treesitter<CR>', opts)
 set_keymap('n', '<leader>b',  '<cmd>Telescope buffers<CR>', opts)
 set_keymap('n', '<leader>a',  '<cmd>Telescope live_grep<CR>', opts)
 set_keymap('n', '<leader>r',  '<cmd>Telescope lsp_references<CR>', opts)
@@ -73,4 +76,8 @@ set_keymap('n', '<leader>cs', '<cmd>Telescope lsp_document_symbols<CR>', opts)
 set_keymap('n', '<leader>ws', '<cmd>lua require("telescope.builtin").lsp_workspace_symbols{query="*"}<CR>', opts)
 set_keymap('n', '<leader>ps', '<cmd>lua require("telescope.builtin").grep_string({ search = vim.fn.input("Grep For > ") })<CR>', opts)
 set_keymap('n', '<leader>pw', '<cmd>lua require("telescope.builtin").grep_string({ search = vim.fn.expand("<cword>") })<CR>', opts)
+
+-- show method/function
+-- set_keymap('n', '<leader>o',  '<cmd>Telescope treesitter<CR>', opts)
+set_keymap('n', '<leader>o',  '<cmd>Telescope lsp_document_symbols symbols=["method","function","module","interface"]<CR>', opts)
 -- LuaFormatter on
