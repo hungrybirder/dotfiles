@@ -22,10 +22,9 @@ telescope.setup {
                 ['<M-p>'] = action_layout.toggle_preview
             }
         },
-        -- layout_strategy = "flex",
-        -- layout_config = { horizontal = { mirror = false }, vertical = { mirror = true } },
+        layout_strategy = "flex",
         file_sorter = require'telescope.sorters'.get_fuzzy_file,
-        file_ignore_patterns = {},
+        file_ignore_patterns = { ".clang" },
         generic_sorter = require'telescope.sorters'.get_generic_fuzzy_sorter,
         path_display = { "truncate" },
         winblend = 5
@@ -37,29 +36,46 @@ telescope.setup {
         -- Developer configurations: Not meant for general override
         -- buffer_previewer_maker = previewers.buffer_previewer_maker
     },
-    extensions = { fzy_native = { override_generic_sorter = false, override_file_sorter = true } },
     pickers = { --
         lsp_range_code_actions = { theme = "cursor" },
         lsp_code_actions = { theme = "cursor" },
-        buffers = { theme = "ivy" },
-        commands = { theme = "ivy" },
-        current_buffer_fuzzy_find = { theme = "ivy" },
-        find_files = { theme = "ivy" },
-        git_files = { theme = "ivy" },
-        grep_string = { theme = "ivy" },
-        jumplist = { theme = "ivy" },
-        live_grep = { theme = "ivy" },
-        lsp_document_symbols = { theme = "ivy" },
-        lsp_references = { theme = "ivy" },
-        lsp_workspace_symbols = { theme = "ivy" },
-        oldfiles = { theme = "ivy" },
-        tagstack = { theme = "ivy" },
-        treesitter = { theme = "ivy" },
-        git_branches = { theme = "ivy" }
+        commands = { theme = "dropdown" },
+        current_buffer_fuzzy_find = { theme = "dropdown" },
+        grep_string = { theme = "dropdown" },
+        jumplist = { theme = "dropdown" },
+        live_grep = { theme = "dropdown" },
+        man_pages = { sections = { "2", "3" } },
+        lsp_references = { path_display = { "shorten" } },
+        lsp_document_symbols = { path_display = { "hidden" } },
+        lsp_workspace_symbols = { path_display = { "shorten" } },
+        oldfiles = { theme = "dropdown" },
+        tagstack = { theme = "dropdown" },
+        treesitter = { theme = "dropdown" },
+        git_branches = { theme = "dropdown" },
+
+        git_files = { theme = "dropdown", previewer = false },
+        find_files = { theme = "dropdown", previewer = false },
+        file_browser = { theme = "dropdown", previewer = false },
+        buffers = {
+            sort_mru = true,
+            theme = "dropdown",
+            selection_strategy = "closest",
+            previewer = false,
+            mappings = { i = { ["<c-d>"] = actions.delete_buffer } }
+        },
+        current_buffer_fuzzy_find = { theme = "dropdown" }
+    },
+    extensions = {
+        fzy_native = { override_generic_sorter = false, override_file_sorter = true }
+        -- ["ui-select"] = {
+        --     require("telescope.themes").get_dropdown {
+        --     }
+        -- }
     }
 }
 
 telescope.load_extension('fzy_native')
+-- telescope.load_extension('ui-select')
 -- require'telescope.builtin'.symbol{ sources = {'emoji'} }
 
 -- LuaFormatter off
@@ -81,4 +97,5 @@ set_keymap('n', '<leader>ws', '<cmd>lua require("telescope.builtin").lsp_workspa
 set_keymap('n', '<leader>ps', '<cmd>lua require("telescope.builtin").grep_string({ search = vim.fn.input("Grep For > ")})<CR>', opts)
 set_keymap('n', '<leader>pw', '<cmd>lua require("telescope.builtin").grep_string({ search = vim.fn.expand("<cword>") })<CR>', opts)
 set_keymap('n', '<leader>o',  '<cmd>Telescope lsp_document_symbols symbols=["method","function","module","interface"]<CR>', opts)
+set_keymap('n', '<leader>gc',  '<cmd>Telescope git_branches<CR>', opts)
 -- LuaFormatter on
