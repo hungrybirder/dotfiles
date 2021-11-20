@@ -52,7 +52,24 @@ telescope.setup {
         buffer_previewer_maker = previewers.buffer_previewer_maker
     },
     extensions = { fzy_native = { override_generic_sorter = false, override_file_sorter = true } },
-    pickers = { lsp_document_symbols = { theme = "dropdown" }, lsp_workspace_symbols = { theme = "dropdown" } }
+    pickers = { --
+        lsp_range_code_actions = { theme = "cursor" },
+        lsp_code_actions = { theme = "cursor" },
+        buffers = { theme = "ivy" },
+        commands = { theme = "ivy" },
+        current_buffer_fuzzy_find = { theme = "ivy" },
+        find_files = { theme = "ivy" },
+        git_files = { theme = "ivy" },
+        grep_string = { theme = "ivy" },
+        jumplist = { theme = "ivy" },
+        live_grep = { theme = "ivy" },
+        lsp_document_symbols = { theme = "ivy" },
+        lsp_references = { theme = "ivy" },
+        lsp_workspace_symbols = { theme = "ivy" },
+        oldfiles = { theme = "ivy" },
+        tagstack = { theme = "ivy" },
+        treesitter = { theme = "ivy" },
+    }
 }
 
 telescope.load_extension('fzy_native')
@@ -74,10 +91,7 @@ set_keymap('n', '<Leader>pf', '<cmd>Telescope find_files<CR>', opts)
 set_keymap('n', '<leader>pb', '<cmd>Telescope current_buffer_fuzzy_find<CR>', opts)
 set_keymap('n', '<leader>cs', '<cmd>Telescope lsp_document_symbols<CR>', opts)
 set_keymap('n', '<leader>ws', '<cmd>lua require("telescope.builtin").lsp_workspace_symbols{query="*"}<CR>', opts)
-set_keymap('n', '<leader>ps', '<cmd>lua require("telescope.builtin").grep_string({ search = vim.fn.input("Grep For > ") })<CR>', opts)
+set_keymap('n', '<leader>ps', '<cmd>lua require("telescope.builtin").grep_string({ search = vim.fn.input("Grep For > ")})<CR>', opts)
 set_keymap('n', '<leader>pw', '<cmd>lua require("telescope.builtin").grep_string({ search = vim.fn.expand("<cword>") })<CR>', opts)
-
--- show method/function
--- set_keymap('n', '<leader>o',  '<cmd>Telescope treesitter<CR>', opts)
 set_keymap('n', '<leader>o',  '<cmd>Telescope lsp_document_symbols symbols=["method","function","module","interface"]<CR>', opts)
 -- LuaFormatter on
