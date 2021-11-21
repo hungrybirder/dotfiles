@@ -32,8 +32,8 @@ require('lualine').setup {
         lualine_x = { 'lsp_progress' },
         lualine_y = { 'location', 'progress' },
         lualine_z = {
-            { 'fileformat', icons_enabled = false }, 'encoding',
-            { 'filetype', separator = { right = '' }, left_padding = 2 }
+            'filesize', { 'fileformat', icons_enabled = false }, 'encoding',
+            { 'filetype', icon_only = true, separator = { right = '' }, left_padding = 2 }
         }
     },
     inactive_sections = {
