@@ -24,7 +24,7 @@ telescope.setup {
         },
         layout_strategy = "flex",
         file_sorter = require'telescope.sorters'.get_fuzzy_file,
-        file_ignore_patterns = { ".clang" },
+        file_ignore_patterns = { ".clang", ".trash" },
         generic_sorter = require'telescope.sorters'.get_generic_fuzzy_sorter,
         path_display = { "truncate" },
         winblend = 5
