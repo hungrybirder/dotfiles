@@ -26,8 +26,9 @@ Plug 'moll/vim-bbye'
 " Delete all the buffers except the current buffer.
 Plug 'schickling/vim-bufonly'
 " statusline
-Plug 'datwaft/bubbly.nvim'
-" Plug 'nvim-lualine/lualine.nvim'
+" Plug 'datwaft/bubbly.nvim'
+Plug 'nvim-lualine/lualine.nvim'
+Plug 'arkav/lualine-lsp-progress'
 
 " speedup editing friendly
 " Plug 'jiangmiao/auto-pairs'

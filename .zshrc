@@ -301,3 +301,5 @@ reddit() {
 # direnv
 eval "$(direnv hook zsh)"
 
+
+alias luamake=/Users/liyong/.cache/nvim/lspconfig/sumneko_lua/lua-language-server/3rd/luamake/luamake

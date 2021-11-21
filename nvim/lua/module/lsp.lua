@@ -195,7 +195,8 @@ lspconfig.sumneko_lua.setup {
                 -- library = get_lua_runtime(),
                 library = vim.api.nvim_get_runtime_file("", true),
                 preloadFileSize = 1024, -- KB
-                checkThirdParty = false
+                checkThirdParty = false,
+                maxPreload = 2000
             },
             telemetry = { enable = false }
         }
