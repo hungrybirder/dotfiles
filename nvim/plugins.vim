@@ -153,7 +153,7 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 Plug 'iamcco/mathjax-support-for-mkdp'
 " MacOS: brew install glow
 " https://github.com/charmbracelet/glow
-" Plug 'npxbr/glow.nvim', {'do': ':GlowInstall'}
+Plug 'npxbr/glow.nvim', {'do': ':GlowInstall'}
 
 " debugger
 " Plug 'puremourning/vimspector'
