@@ -25,10 +25,19 @@ require('lualine').setup {
     sections = {
         lualine_a = { { 'mode', separator = { left = '' }, right_padding = 2 } },
         lualine_b = {
-            { 'filename', color = { gui = 'bold' } }, { 'branch', color = { fg = colors.green, gui = 'bold' } }, 'diff',
+            { 'filename', color = { gui = 'bold' } }, { 'branch', color = { fg = colors.green, gui = 'bold' } }, {
+                'diff',
+                diff_color = {
+                    added = { fg = colors.green, bg = colors.bg },
+                    modified = { fg = colors.yellow, bg = colors.bg },
+                    removed = { fg = colors.red, bg = colors.bg }
+                }
+            }
+        },
+        lualine_c = {
+            { 'b:lsp_current_function', color = { gui = 'bold', fg = colors.magenta, bg = colors.bg } },
             { 'diagnostics', sources = { 'nvim_lsp' } }
         },
-        lualine_c = {},
         lualine_x = { 'lsp_progress' },
         lualine_y = { 'location', 'progress' },
         lualine_z = {
