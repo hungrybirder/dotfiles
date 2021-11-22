@@ -97,8 +97,8 @@ Plug 'rafamadriz/friendly-snippets'
 " lsp for performance UI.
 " Plug 'glepnir/lspsaga.nvim'
 " Plug 'https://github.com/rinx/lspsaga.nvim'
-Plug 'RishabhRD/popfix'
-Plug 'RishabhRD/nvim-lsputils'
+" Plug 'RishabhRD/popfix'
+" Plug 'RishabhRD/nvim-lsputils'
 
 " tree sitter
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
