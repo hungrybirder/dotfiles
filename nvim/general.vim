@@ -42,7 +42,7 @@ set ttimeoutlen=10  " Time out on key codes
 " Don't pass messages to |ins-completion-menu|.
 set shortmess+=c
 
-set clipboard& clipboard+=unnamed
+set clipboard=unnamedplus
 
 if executable("rg")
     set grepprg=rg\ --vimgrep\ --no-heading
