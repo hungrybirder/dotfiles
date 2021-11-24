@@ -81,6 +81,7 @@ Plug 'hrsh7th/cmp-cmdline'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-nvim-lua'
 Plug 'hrsh7th/cmp-emoji'
+Plug 'hrsh7th/cmp-nvim-lsp-document-symbol'
 " Plug 'kdheepak/cmp-latex-symbols'
 Plug 'quangnguyen30192/cmp-nvim-tags'
 
