@@ -23,9 +23,7 @@ telescope.setup {
             }
         },
         layout_strategy = "flex",
-        file_sorter = require'telescope.sorters'.get_fuzzy_file,
         file_ignore_patterns = { ".clang", ".trash" },
-        generic_sorter = require'telescope.sorters'.get_generic_fuzzy_sorter,
         path_display = { "truncate" },
         winblend = 5
         -- set_env = { ['COLORTERM'] = 'truecolor' }, -- default = nil,
@@ -66,7 +64,14 @@ telescope.setup {
         current_buffer_fuzzy_find = { theme = "dropdown" }
     },
     extensions = {
-        fzy_native = { override_generic_sorter = false, override_file_sorter = true }
+        -- fzy_native = { override_generic_sorter = false, override_file_sorter = true }
+        fzf = {
+            fuzzy = true,
+            override_generic_sorter = true,
+            override_file_sorter = true,
+            case_mode = "smart_case" -- or "ignore_case" or "respect_case"
+            -- the default case_mode is "smart_case"
+        }
         -- ["ui-select"] = {
         --     require("telescope.themes").get_dropdown {
         --     }
@@ -74,7 +79,8 @@ telescope.setup {
     }
 }
 
-telescope.load_extension('fzy_native')
+telescope.load_extension('fzf')
+-- telescope.load_extension('fzy_native')
 -- telescope.load_extension('ui-select')
 -- require'telescope.builtin'.symbol{ sources = {'emoji'} }
 
