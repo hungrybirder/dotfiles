@@ -256,3 +256,7 @@ func! ToggleFold()
         echo 'fold'
     endif
 endfunc
+
+" Nvim specifics
+" Shows realtime changes with :s/
+set inccommand=split
