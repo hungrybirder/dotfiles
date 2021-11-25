@@ -260,3 +260,7 @@ endfunc
 " Nvim specifics
 " Shows realtime changes with :s/
 set inccommand=split
+
+" Disable F1
+nmap <F1> <nop>
+imap <F1> <nop>
