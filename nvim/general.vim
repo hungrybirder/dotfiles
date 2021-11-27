@@ -1,6 +1,7 @@
 syntax on
 filetype plugin indent on
 
+set inccommand=nosplit
 set list listchars=tab:› ,eol:¬,trail:•
 set exrc
 set guicursor=
@@ -256,10 +257,6 @@ func! ToggleFold()
         echo 'fold'
     endif
 endfunc
-
-" Nvim specifics
-" Shows realtime changes with :s/
-set inccommand=split
 
 " Disable F1
 nmap <F1> <nop>
