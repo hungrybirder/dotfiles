@@ -54,5 +54,5 @@ require('lualine').setup {
         lualine_z = { 'location' }
     },
     tabline = {},
-    extensions = { 'quickfix', 'nvim-tree', 'toggleterm' }
+    extensions = { 'quickfix', 'nvim-tree', 'toggleterm', 'symbols-outline' }
 }
