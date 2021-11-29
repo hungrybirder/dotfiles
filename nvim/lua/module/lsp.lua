@@ -56,7 +56,6 @@ local lsp_on_attach = function(client, bufnr)
         hint_scheme = "String",
         use_lspsaga = false,
         decorator = { "`", "`" },
-        -- floating_window = false,
         floating_window = true,
         zindex = 50,
         hi_parameter = "Search",
@@ -143,65 +142,31 @@ lspconfig.clangd.setup {
 
 lspconfig.gopls.setup { on_attach = lsp_on_attach, capabilities = capabilities }
 
--- local get_lua_runtime = function()
---   local result = {}
---   local rtps = vim.api.nvim_list_runtime_paths()
---   local extra_paths = {
---     vim.fn.expand("$VIMRUNTIME"),
---     -- "/usr/local/share",
---     -- "/opt/homebrew/share",
---   }
---   for _, path in pairs(extra_paths) do
---       rtps[#rtps+1] = path
---   end
---   -- for _, path in pairs(vim.api.nvim_list_runtime_paths()) do
---   for _, path in pairs(rtps) do
---     local lua_path = path .. "/lua"
---     if vim.fn.isdirectory(lua_path) == 1 then
---       result[lua_path] = true
---     end
---   end
---   local local_luarocks = require("os").getenv("HOME") .. "/" .. ".luarocks/share/lua/5.1"
---   if vim.fn.isdirectory(local_luarocks) == 1 then
---     result[local_luarocks] = true
---   end
---   return result
--- end
-
--- local lsp_install_path = vim.fn.stdpath('cache')..SEP..'lspconfig'
--- local sumneko_root_path = lsp_install_path..'/sumneko_lua/lua-language-server'
--- local sumneko_binary = sumneko_root_path.."/bin/"..system_name.."/lua-language-server"
 local sumneko_root_path = vim.fn.stdpath('cache') .. '/lspconfig/sumneko_lua/lua-language-server'
 local sumneko_binary = sumneko_root_path .. "/bin/" .. system_name .. "/lua-language-server"
 
-local runtime_path = vim.split(package.path, ';')
-table.insert(runtime_path, "lua/?.lua")
-table.insert(runtime_path, "lua/?/init.lua")
-
-lspconfig.sumneko_lua.setup {
-    capabilities = capabilities,
-    on_attach = lsp_on_attach,
-    cmd = { sumneko_binary, "-E", sumneko_root_path .. "/main.lua" },
-    settings = {
-        Lua = {
-            runtime = {
-                version = "LuaJIT",
-                path = runtime_path
-                -- path = vim.split(package.path, ";")
-            },
-            -- runtime = { version = "Lua 5.4" },
-            diagnostics = { globals = { "vim" } },
-            workspace = {
-                -- library = get_lua_runtime(),
-                library = vim.api.nvim_get_runtime_file("", true),
-                preloadFileSize = 1024, -- KB
-                checkThirdParty = false,
-                maxPreload = 2000
-            },
-            telemetry = { enable = false }
+local luadev = require("lua-dev").setup({
+    lspconfig = {
+        capabilities = capabilities,
+        on_attach = lsp_on_attach,
+        cmd = { sumneko_binary, "-E", sumneko_root_path .. "/main.lua" },
+        settings = {
+            Lua = {
+                runtime = { version = "LuaJIT", path = vim.split(package.path, ';') },
+                diagnostics = { globals = { "vim" } },
+                workspace = {
+                    library = vim.api.nvim_get_runtime_file("", true),
+                    preloadFileSize = 1024, -- KB
+                    checkThirdParty = false,
+                    maxPreload = 2000
+                },
+                telemetry = { enable = false }
+            }
         }
     }
-}
+})
+
+lspconfig.sumneko_lua.setup(luadev)
 
 lspconfig.solargraph.setup {
     capabilities = capabilities,

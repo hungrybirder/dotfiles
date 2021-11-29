@@ -142,6 +142,9 @@ Plug 'rust-lang/rust.vim'
 Plug 'simrat39/rust-tools.nvim'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
+" for lua develop
+Plug 'folke/lua-dev.nvim'
+
 Plug 'mfussenegger/nvim-jdtls'
 
 Plug 'mmarchini/bpftrace.vim'
@@ -174,6 +177,8 @@ Plug 'rcarriga/vim-ultest', { 'do': ':UpdateRemotePlugins' }
 Plug 'kassio/neoterm'
 " tmux
 Plug 'christoomey/vim-tmux-navigator'
+
+Plug 'antoinemadec/FixCursorHold.nvim'
 call plug#end()
 
 noremap <Leader>pi :<c-u>PlugInstall<CR>
@@ -451,3 +456,7 @@ augroup jdtls_lsp
     autocmd FileType java lua require'module/nvim-jdtls'.setup()
 augroup end
 " nvim-jdtls end
+
+" FixCursorHold.nvim
+let g:cursorhold_updatetime = 100
+" FixCursorHold.nvim end
