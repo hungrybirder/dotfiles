@@ -67,8 +67,7 @@ Plug 'kyazdani42/nvim-tree.lua'
 Plug 'neovim/nvim-lspconfig'
 Plug 'ray-x/lsp_signature.nvim'
 " outline powered by lsp
-" Plug 'simrat39/symbols-outline.nvim', { 'commit': '552b67993ed959993279e0b0f8a1da9f3c5e6fc0'}
-Plug '~/codes/symbols-outline.nvim'
+Plug 'simrat39/symbols-outline.nvim', { 'commit': '552b67993ed959993279e0b0f8a1da9f3c5e6fc0'}
 " lsp status
 Plug 'nvim-lua/lsp-status.nvim'
 " lsp icons
