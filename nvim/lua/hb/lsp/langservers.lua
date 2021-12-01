@@ -45,8 +45,9 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagn
 })
 
 local lsp_on_attach = function(client, bufnr)
-    require'module/_lsp-keymap'.setup_lsp_keymaps(client, bufnr)
+    require'hb/lsp/keymap'.setup_lsp_keymaps(client, bufnr)
     lsp_status.on_attach(client)
+    require'lspsaga'.init_lsp_saga { code_action_keys = { quit = '<esc>', exec = '<CR>' } }
     require'lsp_signature'.on_attach({
         bind = true,
         handler_opts = { border = "single" },

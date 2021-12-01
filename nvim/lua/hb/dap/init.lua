@@ -20,9 +20,8 @@ require("nvim-dap-virtual-text").setup {
 }
 
 
-require('module/nvim-dap/dap-keymaps')
-
-require('module/nvim-dap/dap-cpp')
-require('module/nvim-dap/dap-go')
-require('module/nvim-dap/dap-lua')
-require('module/nvim-dap/dap-py')
+require('hb/dap/dap-keymaps')
+require('hb/dap/dap-cpp')
+require('hb/dap/dap-go')
+require('hb/dap/dap-lua')
+require('hb/dap/dap-py')

@@ -67,7 +67,8 @@ Plug 'kyazdani42/nvim-tree.lua'
 Plug 'neovim/nvim-lspconfig'
 Plug 'ray-x/lsp_signature.nvim'
 " outline powered by lsp
-Plug 'simrat39/symbols-outline.nvim', { 'commit': '552b67993ed959993279e0b0f8a1da9f3c5e6fc0'}
+" Plug 'simrat39/symbols-outline.nvim', { 'commit': '552b67993ed959993279e0b0f8a1da9f3c5e6fc0'}
+Plug '~/codes/symbols-outline.nvim'
 " lsp status
 Plug 'nvim-lua/lsp-status.nvim'
 " lsp icons
@@ -96,10 +97,8 @@ Plug 'hrsh7th/cmp-vsnip'
 Plug 'rafamadriz/friendly-snippets'
 
 " lsp for performance UI.
-" Plug 'glepnir/lspsaga.nvim'
-" Plug 'https://github.com/rinx/lspsaga.nvim'
-" Plug 'RishabhRD/popfix'
-" Plug 'RishabhRD/nvim-lsputils'
+" https://github.com/glepnir/lspsaga.nvim/issues/267
+Plug 'tami5/lspsaga.nvim'
 
 " tree sitter
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}

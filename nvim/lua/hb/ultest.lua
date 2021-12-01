@@ -1,6 +1,6 @@
 local builders = {
     python = function(cmd)
-        local non_modules = {"python", "pipenv", "poetry"}
+        local non_modules = { "python", "pipenv", "poetry" }
 
         local module_index
         if vim.tbl_contains(non_modules, cmd[1]) then
@@ -27,7 +27,9 @@ local builders = {
 
         for i = 3, #cmd - 1, 1 do
             local arg = cmd[i]
-            if vim.startswith(arg, "-") then arg = "-test." .. string.sub(arg, 2) end
+            if vim.startswith(arg, "-") then
+                arg = "-test." .. string.sub(arg, 2)
+            end
             args[#args + 1] = arg
         end
         return {
@@ -45,4 +47,5 @@ local builders = {
         }
     end
 }
-require("ultest").setup({builders = builders})
+
+require("ultest").setup({ builders = builders })

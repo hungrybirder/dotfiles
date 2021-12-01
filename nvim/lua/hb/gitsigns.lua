@@ -56,4 +56,3 @@ require('gitsigns').setup {
     },
     yadm = { enable = false }
 }
-

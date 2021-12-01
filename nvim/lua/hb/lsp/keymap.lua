@@ -1,23 +1,13 @@
-local function buf_set_keymap(...)
-    vim.api.nvim_buf_set_keymap(bufnr, ...)
-end
-local function buf_set_option(...)
-    vim.api.nvim_buf_set_option(bufnr, ...)
-end
+local M = {}
 
--- local function setup_lsp_handlers()
---     vim.lsp.handlers['textDocument/codeAction'] = require'lsputil.codeAction'.code_action_handler
---     vim.lsp.handlers['textDocument/references'] = require'lsputil.locations'.references_handler
---     vim.lsp.handlers['textDocument/definition'] = require'lsputil.locations'.definition_handler
---     vim.lsp.handlers['textDocument/declaration'] = require'lsputil.locations'.declaration_handler
---     vim.lsp.handlers['textDocument/typeDefinition'] = require'lsputil.locations'.typeDefinition_handler
---     vim.lsp.handlers['textDocument/implementation'] = require'lsputil.locations'.implementation_handler
---     vim.lsp.handlers['textDocument/documentSymbol'] = require'lsputil.symbols'.document_handler
---     vim.lsp.handlers['workspace/symbol'] = require'lsputil.symbols'.workspace_handler
--- end
+M.setup_lsp_keymaps = function(client, bufnr)
 
-local function setup_lsp_keymaps(client, bufnr)
-    -- setup_lsp_handlers()
+    local function buf_set_keymap(...)
+        vim.api.nvim_buf_set_keymap(bufnr, ...)
+    end
+    local function buf_set_option(...)
+        vim.api.nvim_buf_set_option(bufnr, ...)
+    end
 
     buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
 
@@ -30,26 +20,16 @@ local function setup_lsp_keymaps(client, bufnr)
     buf_set_keymap('n', '<space>i', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
     buf_set_keymap('n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
     buf_set_keymap('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-    buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
-    buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
-    -- buf_set_keymap('n', '[d', '<cmd>lua require"lspsaga.diagnostic".lsp_jump_diagnostic_prev()<CR>', opts)
-    -- buf_set_keymap('n', ']d', '<cmd>lua require"lspsaga.diagnostic".lsp_jump_diagnostic_next()<CR>', opts)
-    -- buf_set_keymap('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-    -- buf_set_keymap('v', '<space>ca', ':lua vim.lsp.buf.code_action()<CR>', opts)
+    buf_set_keymap('n', '[d', '<cmd>Lspsaga diagnostic_jump_prev<CR>', opts)
+    buf_set_keymap('n', ']d', '<cmd>Lspsaga diagnostic_jump_next<CR>', opts)
     buf_set_keymap('n', '<space>ca', '<cmd>Telescope lsp_code_actions<CR>', opts)
     buf_set_keymap('v', '<space>ca', ':Telescope lsp_code_actions<CR>', opts)
-    -- buf_set_keymap('n', '<space>ca', '<cmd>lua require("lspsaga.codeaction").code_action()<CR>', opts)
-    -- buf_set_keymap('v', '<space>ca', ':<C-U>lua require("lspsaga.codeaction").range_code_action()<CR>', opts)
-    buf_set_keymap('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-    -- buf_set_keymap('n', 'gs', '<cmd>lua require("lspsaga.signaturehelp").signature_help()<CR>', opts)
-
+    buf_set_keymap('n', 'gs', '<cmd>Lspsaga signature_help<CR>', opts)
     buf_set_keymap('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
-    -- buf_set_keymap('n', 'K', '<Cmd>lua require("lspsaga.hover").render_hover_doc()<CR>', opts)
-    -- buf_set_keymap('n', '<c-f>', '<Cmd>lua require("lspsaga.action").smart_scroll_with_saga(1)<CR>', opts)
-    -- buf_set_keymap('n', '<c-b>', '<Cmd>lua require("lspsaga.action").smart_scroll_with_saga(-1)<CR>', opts)
+    buf_set_keymap('n', '<c-f>', '<Cmd>lua require("lspsaga.action").smart_scroll_with_saga(1)<CR>', opts)
+    buf_set_keymap('n', '<c-b>', '<Cmd>lua require("lspsaga.action").smart_scroll_with_saga(-1)<CR>', opts)
 
     -- peek definition for saving one buffer.
-    -- buf_set_keymap('n', '<space>h', '<cmd>lua require("lsp-ext").peek_definition()<CR>', opts)
     buf_set_keymap('n', '<space>h', '<cmd>lua require("lspsaga.provider").preview_definition()<CR>', opts)
 
     -- TODO: learn workspace
@@ -90,7 +70,4 @@ local function setup_lsp_keymaps(client, bufnr)
     end
 end
 
-return {
-    --
-    setup_lsp_keymaps = setup_lsp_keymaps
-}
+return M
