@@ -93,11 +93,16 @@ local capabilities = make_lsp_client_capabilities()
 local servers = { "yamlls", "html", "cmake", "dockerls", "tsserver", "vimls", "bashls", "kotlin_language_server" }
 
 for _, name in pairs(servers) do
-    lspconfig[name].setup { on_attach = lsp_on_attach, capabilities = capabilities }
+    lspconfig[name].setup {
+        on_attach = lsp_on_attach,
+        flags = { debounce_text_changes = 150 },
+        capabilities = capabilities
+    }
 end
 
 lspconfig.vuels.setup {
     on_attach = lsp_on_attach,
+    flags = { debounce_text_changes = 150 },
     capabilities = capabilities,
     settings = { vetur = { experimental = { templateInterpolationService = true } } }
 }
@@ -111,13 +116,18 @@ lspconfig.jsonls.setup {
         }
     },
     on_attach = lsp_on_attach,
+    flags = { debounce_text_changes = 150 },
     capabilities = capabilities
 }
 
-lspconfig.sqlls.setup { cmd = { "sql-language-server", "up", "--method", "stdio" } }
+lspconfig.sqlls.setup {
+    cmd = { "sql-language-server", "up", "--method", "stdio" },
+    flags = { debounce_text_changes = 150 }
+}
 
 lspconfig.pyright.setup {
     on_attach = lsp_on_attach,
+    flags = { debounce_text_changes = 150 },
     capabilities = capabilities,
     settings = {
         python = {
@@ -137,11 +147,12 @@ lspconfig.clangd.setup {
     handlers = lsp_status.extensions.clangd.setup(),
     init_options = { clangdFileStatus = true },
     on_attach = lsp_on_attach,
+    flags = { debounce_text_changes = 150 },
     capabilities = capabilities,
     cmd = { "clangd", "--background-index", "-j=8" }
 }
 
-lspconfig.gopls.setup { on_attach = lsp_on_attach, capabilities = capabilities }
+lspconfig.gopls.setup { on_attach = lsp_on_attach, flags = { debounce_text_changes = 150 }, capabilities = capabilities }
 
 local sumneko_root_path = vim.fn.stdpath('cache') .. '/lspconfig/sumneko_lua/lua-language-server'
 local sumneko_binary = sumneko_root_path .. "/bin/" .. system_name .. "/lua-language-server"
@@ -153,6 +164,7 @@ local luadev = require("lua-dev").setup({
     lspconfig = {
         capabilities = capabilities,
         on_attach = lsp_on_attach,
+        flags = { debounce_text_changes = 150 },
         cmd = { sumneko_binary, "-E", sumneko_root_path .. "/main.lua" },
         settings = {
             Lua = {
@@ -175,6 +187,7 @@ lspconfig.sumneko_lua.setup(luadev)
 lspconfig.solargraph.setup {
     capabilities = capabilities,
     on_attach = lsp_on_attach,
+    flags = { debounce_text_changes = 150 },
     cmd = { "/usr/local/lib/ruby/gems/3.0.0/bin/solargraph", "stdio" }
 }
 
@@ -219,6 +232,7 @@ local opts = {
     },
     server = { -- setup rust_analyzer
         on_attach = lsp_on_attach,
+        flags = { debounce_text_changes = 150 },
         capabilities = capabilities
     }
     -- dap = {
