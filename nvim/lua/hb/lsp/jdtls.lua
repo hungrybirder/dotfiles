@@ -5,7 +5,7 @@ function M.setup()
         require'jdtls.setup'.add_commands()
         require('jdtls').setup_dap({ hotcodereplace = 'auto' })
         require'lsp-status'.on_attach(client)
-        require'hb/_lsp-keymap'.setup_lsp_keymaps(client, bufnr)
+        require'hb/lsp/keymap'.setup_lsp_keymaps(client, bufnr)
 
         -- TODO?
         -- require'formatter'.setup{

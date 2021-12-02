@@ -59,8 +59,7 @@ telescope.setup {
             selection_strategy = "closest",
             previewer = false,
             mappings = { i = { ["<c-d>"] = actions.delete_buffer } }
-        },
-        current_buffer_fuzzy_find = { theme = "dropdown" }
+        }
     },
     extensions = {
         -- fzy_native = { override_generic_sorter = false, override_file_sorter = true }
