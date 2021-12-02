@@ -105,10 +105,10 @@ function M.setup()
         extendedClientCapabilities = extendedClientCapabilities
     }
 
-    local jdtls_ui = require 'jdtls.ui'
-    function jdtls_ui.pick_one_async(items, _, _, cb)
-        require'lsputil.codeAction'.code_action_handler(nil, items, nil, nil, cb)
-    end
+    -- local jdtls_ui = require 'jdtls.ui'
+    -- function jdtls_ui.pick_one_async(items, _, _, cb)
+    --     require'lsputil.codeAction'.code_action_handler(nil, items, nil, nil, cb)
+    -- end
 
     -- start server
     require('jdtls').start_or_attach(config)
