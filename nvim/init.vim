@@ -15,8 +15,6 @@ for f in split(glob('~/.config/nvim/plugins.d/*.vim'), '\n')
 	exe 'source' f
 endfor
 
-source $HOME/.config/nvim/colors.vim
-
 " for lsp debug
 " lua << EOF
 " vim.lsp.set_log_level("debug")
