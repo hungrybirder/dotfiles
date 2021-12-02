@@ -38,7 +38,31 @@ require('lualine').setup {
             { 'b:lsp_current_function', color = { gui = 'bold', fg = colors.magenta, bg = colors.bg } },
             { 'diagnostics', sources = { 'nvim_lsp' } }
         },
-        lualine_x = { 'lsp_progress' },
+        lualine_x = {
+            {
+                'lsp_progress',
+                colors = {
+                    percentage = colors.blue,
+                    title = colors.blue,
+                    message = colors.blue,
+                    spinner = colors.blue,
+                    lsp_client_name = colors.magenta,
+                    use = true
+                },
+                separators = {
+                    component = ' ',
+                    progress = ' | ',
+                    percentage = { pre = '', post = '%% ' },
+                    title = { pre = '', post = ': ' },
+                    lsp_client_name = { pre = '[', post = ']' },
+                    spinner = { pre = '', post = '' },
+                    message = { pre = '(', post = ')', commenced = 'In Progress', completed = 'Completed' }
+                },
+                display_components = { 'lsp_client_name', 'spinner', { 'title', 'percentage', 'message' } },
+                timer = { progress_enddelay = 500, spinner = 1000, lsp_client_name_enddelay = 1000 },
+                spinner_symbols = { '🌑 ', '🌒 ', '🌓 ', '🌔 ', '🌕 ', '🌖 ', '🌗 ', '🌘 ' }
+            }
+        },
         lualine_y = { 'location', 'progress' },
         lualine_z = {
             'filesize', { 'fileformat', icons_enabled = false }, 'encoding',
