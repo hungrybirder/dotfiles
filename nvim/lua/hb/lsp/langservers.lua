@@ -64,7 +64,6 @@ local lsp_on_attach = function(client, bufnr)
         max_width = 120,
         extra_trigger_chars = {}
     })
-    require('symbols-outline').setup()
     require('lspkind').init()
 end
 
