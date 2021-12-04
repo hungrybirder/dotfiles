@@ -19,7 +19,6 @@ else
 end
 
 local lspconfig = require 'lspconfig'
-local util = require 'lspconfig/util'
 
 local lsp_status = require('lsp-status')
 lsp_status.config {
