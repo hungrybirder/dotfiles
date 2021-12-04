@@ -78,7 +78,7 @@ vim.cmd([[
 vim.g.symbols_outline = {
     -- right, 25%, disable auto preview
     relative_width = true,
-    width = 25,
+    width = 35,
     auto_preview = false,
     position = 'right'
 }

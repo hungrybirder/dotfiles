@@ -168,7 +168,7 @@ local luadev = require("lua-dev").setup({
         settings = {
             Lua = {
                 runtime = { version = "LuaJIT", path = runtime_path },
-                diagnostics = { globals = { "vim" } },
+                diagnostics = { globals = { "vim" }, workspaceDelay = 5000 },
                 workspace = {
                     -- library = vim.api.nvim_get_runtime_file("", true),
                     preloadFileSize = 1024, -- KB
@@ -177,7 +177,7 @@ local luadev = require("lua-dev").setup({
                 },
                 telemetry = { enable = false }
             }
-        }
+        },
     }
 })
 
