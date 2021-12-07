@@ -84,6 +84,7 @@ Plug 'hrsh7th/cmp-emoji'
 Plug 'hrsh7th/cmp-nvim-lsp-document-symbol'
 " Plug 'kdheepak/cmp-latex-symbols'
 Plug 'quangnguyen30192/cmp-nvim-tags'
+Plug 'lukas-reineke/cmp-rg'
 
 " nvim-autopairs can set up <CR>
 Plug 'windwp/nvim-autopairs'
