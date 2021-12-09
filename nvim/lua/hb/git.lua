@@ -1,3 +1,16 @@
+local opts = { noremap = true, silent = true }
+local set_keymap = vim.api.nvim_set_keymap
+
+-- vim-fugtive
+set_keymap('n', '<leader>gh', '<cmd>diffget //2<CR>', opts)
+set_keymap('n', '<leader>gf', '<cmd>diffget //3<CR>', opts)
+set_keymap('n', '<leader>gs', '<cmd>G<CR>', opts)
+set_keymap('n', '<leader>ga', '<cmd>Git fetch --all<CR>', opts)
+
+-- gitlinker
+require"gitlinker".setup()
+
+-- gitsigns
 require('gitsigns').setup {
     signs = {
         add = { hl = 'GitSignsAdd', text = '│', numhl = 'GitSignsAddNr', linehl = 'GitSignsAddLn' },

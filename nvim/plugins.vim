@@ -13,7 +13,6 @@ Plug 'hotoo/pangu.vim'
 Plug 'wfxr/minimap.vim', {'do': ':!cargo install --locked code-minimap'}
 
 Plug 'airblade/vim-rooter'
-" Plug 'tweekmonster/startuptime.vim'
 
 " gnupg
 Plug 'jamessan/vim-gnupg'
@@ -54,8 +53,8 @@ Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-fugitive'
 Plug 'junegunn/gv.vim'
 Plug 'sindrets/diffview.nvim'
-" Plug 'mhinz/vim-signify'
 Plug 'lewis6991/gitsigns.nvim'
+Plug 'ruifm/gitlinker.nvim'
 
 " powered by svermeulen
 Plug 'svermeulen/vim-subversive'
@@ -323,12 +322,6 @@ if has('nvim')
 endif
 " fzf end
 "
-" fugitive
-nnoremap <leader>gh :diffget //3<CR>
-nnoremap <leader>gf :diffget //2<CR>
-nnoremap <leader>gs :G<CR>
-nnoremap <leader>ga :Git fetch --all<CR>
-" fugitive end
 
 " symbols-outline
 nnoremap <silent> <leader>v :SymbolsOutline<CR>
