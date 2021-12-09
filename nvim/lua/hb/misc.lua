@@ -82,3 +82,6 @@ vim.g.symbols_outline = {
     auto_preview = false,
     position = 'right'
 }
+
+-- zen-mode
+require("zen-mode").setup {}

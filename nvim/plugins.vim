@@ -3,6 +3,8 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'rcarriga/nvim-notify'
 
 Plug 'folke/zen-mode.nvim'
+Plug 'folke/twilight.nvim'
+
 Plug 'norcalli/nvim-colorizer.lua'
 
 " 中英文排版
@@ -187,51 +189,6 @@ noremap <Leader>pc :<c-u>PlugClean<CR>
 " colorscheme gruvbox8_hard
 colorscheme nightfox
 
-" fun! GotoWindow(id)
-"     call win_gotoid(a:id)
-"     MaximizerToggle
-" endfun
-"
-" func! AddToWatch()
-"   let word = expand("<cexpr>")
-"   call vimspector#AddWatch(word)
-" endfun
-"
-" let g:vimspector_enable_mappings = 'HUMAN'
-" let g:vimspector_sign_priority = {
-"   \    'vimspectorBP':         12,
-"   \    'vimspectorBPCond':     11,
-"   \    'vimspectorBPDisabled': 10,
-"   \    'vimspectorPC':         999,
-"   \ }
-" let g:vimspector_base_dir = expand('$HOME/.config/vimspector-config')
-" nnoremap <leader>M :MaximizerToggle!<CR>
-" nnoremap <leader>da :call vimspector#Launch()<CR>
-" nnoremap <leader>dc :call GotoWindow(g:vimspector_session_windows.code)<CR>
-" nnoremap <leader>dt :call GotoWindow(g:vimspector_session_windows.tagpage)<CR>
-" nnoremap <leader>dv :call GotoWindow(g:vimspector_session_windows.variables)<CR>
-" nnoremap <leader>dw :call GotoWindow(g:vimspector_session_windows.watches)<CR>
-" nnoremap <leader>ds :call GotoWindow(g:vimspector_session_windows.stack_trace)<CR>
-" nnoremap <leader>do :call GotoWindow(g:vimspector_session_windows.output)<CR>
-" nnoremap <leader>d? :call AddToWatch()<CR>
-" nnoremap <leader>dx :call vimspector#Reset()<CR>
-" nnoremap <leader>dX :call vimspector#ClearBreakpoints()<CR>
-" nnoremap <S-k> :call vimspector#StepOut()<CR>
-" nnoremap <S-l> :call vimspector#StepInto()<CR>
-" nnoremap <S-j> :call vimspector#StepOver()<CR>
-" nnoremap <leader>d_ :call vimspector#Restart()<CR>
-" nnoremap <leader>dn :call vimspector#Continue()<CR>
-" nnoremap <leader>drc :call vimspector#RunToCursor()<CR>
-" nnoremap <leader>dh :call vimspector#ToggleBreakpoint()<CR>
-
-" function! JestStrategy(cmd)
-"   let testName = matchlist(a:cmd, '\v -t ''(.*)''')[1]
-"   call vimspector#LaunchWithSettings( #{ configuration: 'jest', TestName: testName } )
-" endfunction
-" let g:test#custom_strategies = {'jest': function('JestStrategy')}
-
-" nnoremap <leader>dd :TestNearest -strategy=jest<CR>
-
 " vim-test
 function! DebugNearest()
   let g:test#go#runner = 'delve'
@@ -254,26 +211,6 @@ map ; <Plug>(clever-f-repeat-forward)
 map , <Plug>(clever-f-repeat-back)
 " clever-fend
 
-" easymotion
-" let g:EasyMotion_smartcase = 1
-" let g:EasyMotion_do_mapping = 0
-" nmap <leader>w <Plug>(easymotion-bd-w)
-" easymotion end
-
-" auto-pairs
-" macos iTerm2 设置Meta key方法 Preferences=>Profiles=>Keys Left Option Key: Esc+
-"
-" toggle  <M-p>
-" fast wrap word <M-e>
-" --- How to insert parens purely? ---
-" There are 3 ways:
-"     1. Use Ctrl-V ) to insert paren without trigger the plugin.
-"     2. Use Alt-P to turn off the plugin.
-"     3. Use DEL or <C-O>x to delete the character insert by plugin.
-" let g:AutoPairsFlyMode = 1
-" let g:AutoPairsMapSpace = 0 " 禁止MapSpace
-" auto-pairs end
-
 " vim-bbye
 noremap <leader><BS> :Bdelete<cr>
 " vim-bbye end
@@ -282,22 +219,9 @@ if exists('g:loaded_webdevicons')
     call webdevicons#refresh()
 endif
 
-" tagbar
-" nnoremap <silent> <leader>2 :TagbarToggle<CR>
-" let tags = "./tags"
-" let g:tagbar_autofocus = 0
-" let g:tagbar_sort = 0
-"tagbar end
-
 " vim-visual-multi
 let g:VM_leader = '\\'
 " vim-visual-multi end
-
-" snip
-" let g:UltiSnipsExpandTrigger="<c-l>"
-" let g:UltiSnipsJumpForwardTrigger="<tab>"
-" let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-" snip end
 
 " markdown
 let g:vim_markdown_math = 1
@@ -418,13 +342,6 @@ let g:vsnip_snippet_dir = '~/.config/nvim/vsnip'
 let g:indent_blankline_filetype = ['vim', 'lua', 'python']
 " indent-blankline end
 
-" vim-ultest
-" augroup UltestRunner
-"     au!
-"     au BufWritePost * UltestNearest
-" augroup END
-" vim-ultest end
-
 " vim-matchup
 let g:matchup_surround_enabled = 1
 let g:matchup_transmute_enabled = 1
@@ -435,12 +352,6 @@ let g:minimap_width = 10
 let g:minimap_auto_start = 0
 let g:minimap_auto_start_win_enter = 0
 " minimap.vim end
-
-" zen-mode
-lua << EOF
-  require("zen-mode").setup {}
-EOF
-" zen-mode end
 
 " vim-rooter
 let g:rooter_patterns = [
