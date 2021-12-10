@@ -36,7 +36,7 @@ require('lualine').setup {
         },
         lualine_c = {
             { 'b:lsp_current_function', color = { gui = 'bold', fg = colors.magenta, bg = colors.bg } },
-            { 'diagnostics', sources = { 'nvim_lsp' } }
+            { 'diagnostics', sources = { 'nvim_diagnostic' } }
         },
         lualine_x = {
             {
