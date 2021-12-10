@@ -64,10 +64,11 @@ source ${BREW_PREFIX}/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 #source /usr/local/share/zsh-history-substring-search/zsh-history-substring-search.zsh
 source ${BREW_PREFIX}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
+export PATH="${BREW_PREFIX}/bin:$PATH"
+
 # 启用的插件
 plugins=(pyenv git autojump jsontools docker macos pip golang z cargo thefuck)
 source $ZSH/oh-my-zsh.sh
-export PATH="/opt/homebrew/sbin:/opt/homebrew/bin:/usr/local/sbin:/usr/local/bin:$PATH"
 
 if [[ $(uname -m) = "x86_64" ]]; then
 # 使用pyenv来管理多个版本的py py3
