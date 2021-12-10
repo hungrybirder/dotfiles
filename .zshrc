@@ -65,11 +65,7 @@ source ${BREW_PREFIX}/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source ${BREW_PREFIX}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # 启用的插件
-if [[ $(uname -m) = "arm64" ]]; then
-  plugins=(pyenv git jsontools vagrant docker macos pip golang z cargo)
-else
-  plugins=(pyenv git autojump jsontools vagrant docker macos pip golang z cargo)
-fi
+plugins=(pyenv git autojump jsontools docker macos pip golang z cargo thefuck)
 source $ZSH/oh-my-zsh.sh
 export PATH="/opt/homebrew/sbin:/opt/homebrew/bin:/usr/local/sbin:/usr/local/bin:$PATH"
 
