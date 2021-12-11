@@ -49,7 +49,7 @@ local lsp_on_attach = function(client, bufnr)
     require'lspsaga'.init_lsp_saga { code_action_keys = { quit = '<esc>', exec = '<CR>' } }
     require'lsp_signature'.on_attach({
         bind = true,
-        handler_opts = { border = "single" },
+        handler_opts = { border = "rounded" },
         doc_lines = 2,
         hint_enable = true,
         hint_prefix = "🌟 ",
@@ -58,10 +58,17 @@ local lsp_on_attach = function(client, bufnr)
         decorator = { "`", "`" },
         floating_window = true,
         zindex = 50,
-        hi_parameter = "Search",
         max_height = 12,
         max_width = 120,
-        extra_trigger_chars = {}
+        fix_pos = function(signatures, lspclient)
+            if signatures[1].activeParameter >= 0 and #signatures[1].parameters == 1 then
+                return false
+            end
+            if lspclient.name == 'sumneko_lua' then
+                return true
+            end
+            return false
+        end
     })
     require('lspkind').init()
 end
@@ -176,7 +183,7 @@ local luadev = require("lua-dev").setup({
                 },
                 telemetry = { enable = false }
             }
-        },
+        }
     }
 })
 
