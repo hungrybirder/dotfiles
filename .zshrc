@@ -67,7 +67,20 @@ source ${BREW_PREFIX}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 export PATH="${BREW_PREFIX}/bin:$PATH"
 
 # 启用的插件
-plugins=(pyenv git autojump jsontools docker macos pip golang z cargo thefuck)
+plugins=(
+  pyenv
+  git
+  autojump
+  jsontools
+  docker
+  macos
+  pip
+  golang
+  z
+  cargo
+  thefuck
+  poetry # https://github.com/python-poetry/poetry#enable-tab-completion-for-bash-fish-or-zsh
+)
 source $ZSH/oh-my-zsh.sh
 
 if [[ $(uname -m) = "x86_64" ]]; then
