@@ -6,18 +6,6 @@
 -- ]]
 _M_LSP = {}
 
--- local SEP = "/"
-local system_name
-if vim.fn.has("mac") == 1 then
-    system_name = "macOS"
-elseif vim.fn.has("unix") == 1 then
-    system_name = "Linux"
-elseif vim.fn.has('win32') == 1 then
-    system_name = "Windows"
-else
-    print("Unsupported system")
-end
-
 local lspconfig = require 'lspconfig'
 
 local lsp_status = require('lsp-status')
@@ -160,7 +148,7 @@ lspconfig.clangd.setup {
 lspconfig.gopls.setup { on_attach = lsp_on_attach, flags = { debounce_text_changes = 150 }, capabilities = capabilities }
 
 local sumneko_root_path = vim.fn.stdpath('cache') .. '/lspconfig/sumneko_lua/lua-language-server'
-local sumneko_binary = sumneko_root_path .. "/bin/" .. system_name .. "/lua-language-server"
+local sumneko_binary = sumneko_root_path .. "/bin/lua-language-server"
 local runtime_path = vim.split(package.path, ';')
 table.insert(runtime_path, "lua/?.lua")
 table.insert(runtime_path, "lua/?/init.lua")
@@ -170,7 +158,7 @@ local luadev = require("lua-dev").setup({
         capabilities = capabilities,
         on_attach = lsp_on_attach,
         flags = { debounce_text_changes = 150 },
-        cmd = { sumneko_binary, "-E", sumneko_root_path .. "/main.lua" },
+        cmd = { sumneko_binary },
         settings = {
             Lua = {
                 runtime = { version = "LuaJIT", path = runtime_path },
