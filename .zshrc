@@ -64,7 +64,7 @@ source ${BREW_PREFIX}/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 #source /usr/local/share/zsh-history-substring-search/zsh-history-substring-search.zsh
 source ${BREW_PREFIX}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-export PATH="${BREW_PREFIX}/bin:$PATH"
+# export PATH="${BREW_PREFIX}/bin:$PATH"
 
 # 启用的插件
 plugins=(
@@ -82,16 +82,6 @@ plugins=(
   poetry # https://github.com/python-poetry/poetry#enable-tab-completion-for-bash-fish-or-zsh
 )
 source $ZSH/oh-my-zsh.sh
-
-if [[ $(uname -m) = "x86_64" ]]; then
-# 使用pyenv来管理多个版本的py py3
- export WORKON_HOME="${HOME}/.virtualenvs"
- export PYENV_VIRTUALENVWRAPPER_PREFER_PYVENV="true"
- export PYENV_VIRTUALENV_DISABLE_PROMPT=1
- export PYENV_ROOT=$HOME/.pyenv
-# 运行workon, mkvirtualenv 命令之前，需要先运行: pyenv virtualenvwrapper
- eval "pyenv virtualenvwrapper"
-fi
 
 # 在 iTerm -> Preferences -> Profiles -> Keys 中，新建一个快捷键
 # 例如 ⌥ + a ，Action 选择 Send Hex Code，键值为 0x1 0x70 0x63 0x20 0xd，保存生效。
@@ -313,3 +303,10 @@ eval "$(direnv hook zsh)"
 
 
 alias luamake=/Users/liyong/.cache/nvim/lspconfig/sumneko_lua/lua-language-server/3rd/luamake/luamake
+
+# pyenv settings
+export PYENV_VIRTUALENVWRAPPER_PREFER_PYVENV="true"
+export PYENV_VIRTUALENV_DISABLE_PROMPT=1
+# 运行workon, mkvirtualenv 命令之前，需要先运行: pyenv virtualenvwrapper
+ eval "pyenv virtualenvwrapper"
+
