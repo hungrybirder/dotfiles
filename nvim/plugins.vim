@@ -108,6 +108,7 @@ Plug 'nvim-treesitter/playground'
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 Plug 'nvim-treesitter/nvim-treesitter-refactor'
 Plug 'JoosepAlviste/nvim-ts-context-commentstring'
+Plug 'stsewd/sphinx.nvim', { 'do': ':UpdateRemotePlugins' }
 
 " sign marks
 Plug 'kshenoy/vim-signature'
