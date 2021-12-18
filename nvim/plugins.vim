@@ -47,6 +47,7 @@ Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-dispatch'
 " Plug 'tpope/vim-scriptease'
+Plug 'tpope/vim-commentary'
 
 
 " git
@@ -106,6 +107,7 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/playground'
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 Plug 'nvim-treesitter/nvim-treesitter-refactor'
+Plug 'JoosepAlviste/nvim-ts-context-commentstring'
 
 " sign marks
 Plug 'kshenoy/vim-signature'
@@ -131,7 +133,7 @@ Plug 'nvim-telescope/telescope-dap.nvim'
 " coding utils
 " Plug 'editorconfig/editorconfig-vim'
 Plug 'dense-analysis/ale'
-Plug 'tomtom/tcomment_vim'
+" Plug 'tomtom/tcomment_vim'
 Plug 'mbbill/undotree'
 Plug 'AndrewRadev/splitjoin.vim' "gS gJ
 " Plug 'ludovicchabant/vim-gutentags'
