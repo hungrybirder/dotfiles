@@ -253,6 +253,12 @@ link_vimspector() {
 # 改成与bash <c-u>一样，从光标处删除至行首
 bindkey \^U backward-kill-line
 
+# ctrl+left go back one word
+# ctrl+right go next one word
+bindkey -e
+bindkey "\e\e[D" backward-word
+bindkey "\e\e[C" forward-word
+
 if [[ "Darwin" = ${OS_NAME} ]]; then
   alias bu="brew upgrade"
   alias bubu="brew upgrade && brew upgrade --cask --greedy"
