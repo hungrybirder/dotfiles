@@ -21,7 +21,7 @@ local under_comparator = function(entry1, entry2)
     end
 end
 
-local cmp = require 'cmp'
+local cmp = require('cmp')
 cmp.setup {
     -- LuaFormatter off
     sorting = {
@@ -42,9 +42,9 @@ cmp.setup {
             vim.fn["vsnip#anonymous"](args.body)
         end
     },
-    sources = cmp.config.sources({
-        { name = 'nvim_lsp' }, { name = 'path' }, { name = 'vsnip' }, { name = 'nvim_lua' }, { name = 'tags' }
-    }, { { name = 'buffer' } }, { { name = 'calc' }, { name = 'emoji' }, { name = 'rg' } }),
+    sources = cmp.config.sources({ { name = 'nvim_lsp' }, { name = 'vsnip' }, { name = 'buffer' }, { name = 'tags' } },
+                                 { { name = 'nvim_lua' }, { name = 'path' }, { name = 'rg' } },
+                                 { { name = 'calc' }, { name = 'emoji' } }),
     formatting = {
         format = require("lspkind").cmp_format({
             with_text = false,
@@ -73,7 +73,7 @@ cmp.setup {
             elseif has_words_before() then
                 cmp.complete()
             else
-                fallback() -- The fallback function sends a already mapped key. In this case, it's probably `<Tab>`.
+                fallback()
             end
         end, { "i", "s", "c" }),
         ["<S-Tab>"] = cmp.mapping(function()
