@@ -14,14 +14,14 @@ remap('n', ']<tab>', '<cmd>tabnext<cr>', { silent = true, noremap = true })
 remap('n', '[<tab>', '<cmd>tabnext<cr>', { silent = true, noremap = true })
 
 -- colorizer
-require'colorizer'.setup()
-vim.notify = require("notify")
+require"colorizer".setup()
+vim.notify = require "notify"
 vim.notify.setup()
 
 -- bufferline
 vim.o.termguicolors = true
 
-require'bufferline'.setup {
+require"bufferline".setup {
     options = {
         diagnostics = "nvim_lsp",
         sort_by = "directory",
@@ -37,7 +37,7 @@ remap('n', ']b', '<cmd>BufferLineCycleNext<CR>', { noremap = true, silent = true
 remap('n', '[b', '<cmd>BufferLineCyclePrev<CR>', { noremap = true, silent = true })
 
 -- neoscroll
-require('neoscroll').setup({
+require"neoscroll".setup({
     mappings = { '<C-u>', '<C-d>', '<C-b>', '<C-f>', '<C-y>', '<C-e>', 'zt', 'zz', 'zb' },
     hide_cursor = true, -- Hide cursor while scrolling
     stop_eof = true, -- Stop at <EOF> when scrolling downwards
@@ -60,10 +60,10 @@ t['<C-e>'] = { 'scroll', { '0.10', 'false', '20' } }
 t['zt'] = { 'zt', { '7' } }
 t['zz'] = { 'zz', { '7' } }
 t['zb'] = { 'zb', { '7' } }
-require('neoscroll.config').set_mappings(t)
+require"neoscroll.config".set_mappings(t)
 
 -- nvim-bqf
-require('bqf').setup({
+require"bqf".setup({
     auto_enable = true,
     preview = { win_height = 12, win_vheight = 12, delay_syntax = 80 },
     filter = { fzf = { extra_opts = { '--bind', 'ctrl-o:toggle-all', '--prompt', '> ' } } }

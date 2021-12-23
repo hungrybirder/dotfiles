@@ -23,7 +23,7 @@ vim.g.nvim_tree_special_files = { ['README.md'] = true, Makefile = true, MAKEFIL
 
 vim.g.nvim_tree_show_icons = { git = 1, folders = 1, files = 1 }
 
-require'nvim-tree'.setup {
+require"nvim-tree".setup {
     disable_netrw = false,
     hijack_netrw = true,
     open_on_setup = false,
@@ -75,4 +75,4 @@ require'nvim-tree'.setup {
 }
 
 -- mapping
-vim.api.nvim_set_keymap('n', '<leader><tab>', '<cmd>NvimTreeToggle<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader><tab>", "<cmd>NvimTreeToggle<CR>", { noremap = true, silent = true })

@@ -21,7 +21,7 @@ local under_comparator = function(entry1, entry2)
     end
 end
 
-local cmp = require('cmp')
+local cmp = require "cmp"
 cmp.setup {
     -- LuaFormatter off
     sorting = {
