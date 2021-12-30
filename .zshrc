@@ -77,7 +77,7 @@ plugins=(
   pip
   golang
   z
-  cargo
+  rust
   thefuck
   poetry # https://github.com/python-poetry/poetry#enable-tab-completion-for-bash-fish-or-zsh
 )
