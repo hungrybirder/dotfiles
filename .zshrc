@@ -123,7 +123,7 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 fs() {
-  host=$(awk '{print $1}' $HOME/.ssh/known_hosts | gsed "s/^\[//;s/\].*$//;s/,.*//" | fzf)
+  host=$(awk '{print $1}' $HOME/.ssh/known_hosts | gsed "s/^\[//;s/\].*$//;s/,.*//" | sort | uniq | fzf)
   if [ "x$host" != "x" ]
   then
     echo "ssh $host"
