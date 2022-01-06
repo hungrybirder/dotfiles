@@ -32,9 +32,8 @@ require"bufferline".setup {
     }
 }
 remap('n', 'gb', '<cmd>BufferLinePick<CR>', { noremap = true, silent = true })
--- overrite vim-unimpaired ]b [b
-remap('n', ']b', '<cmd>BufferLineCycleNext<CR>', { noremap = true, silent = true })
-remap('n', '[b', '<cmd>BufferLineCyclePrev<CR>', { noremap = true, silent = true })
+remap('n', 'H', '<cmd>BufferLineCyclePrev<CR>', { noremap = true, silent = true })
+remap('n', 'L', '<cmd>BufferLineCycleNext<CR>', { noremap = true, silent = true })
 
 -- neoscroll
 require"neoscroll".setup({
