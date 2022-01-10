@@ -80,6 +80,7 @@ plugins=(
   rust
   thefuck
   poetry # https://github.com/python-poetry/poetry#enable-tab-completion-for-bash-fish-or-zsh
+  kubectl
 )
 source $ZSH/oh-my-zsh.sh
 
