@@ -36,7 +36,7 @@ remap('n', 'H', '<cmd>BufferLineCyclePrev<CR>', { noremap = true, silent = true 
 remap('n', 'L', '<cmd>BufferLineCycleNext<CR>', { noremap = true, silent = true })
 
 -- neoscroll
-require"neoscroll".setup{}
+require"neoscroll".setup {}
 
 -- nvim-bqf
 require"bqf".setup({
@@ -57,10 +57,14 @@ vim.cmd([[
 vim.g.symbols_outline = {
     -- right, 25%, disable auto preview
     relative_width = true,
-    width = 35,
+    width = 50,
     auto_preview = false,
     position = 'right'
 }
 
 -- zen-mode
 require("zen-mode").setup {}
+
+-- litee
+require"litee.lib".setup { panel = { orientation = "right", panel_size = 45 } }
+require"litee.calltree".setup { on_open = "panel" }

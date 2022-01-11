@@ -65,6 +65,9 @@ Plug 'svermeulen/vim-yoink'
 " nvim-tree
 Plug 'kyazdani42/nvim-tree.lua'
 
+Plug 'ldelossa/litee.nvim'
+Plug 'ldelossa/litee-calltree.nvim'
+
 " lsp config
 Plug 'neovim/nvim-lspconfig'
 Plug 'ray-x/lsp_signature.nvim'
