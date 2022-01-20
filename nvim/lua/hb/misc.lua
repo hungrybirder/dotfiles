@@ -41,7 +41,7 @@ require"neoscroll".setup {}
 -- nvim-bqf
 require"bqf".setup({
     auto_enable = true,
-    preview = { win_height = 12, win_vheight = 12, delay_syntax = 80 },
+    auto_resize_height = true,
     filter = {
         fzf = { action_for = { ['ctrl-s'] = 'split' } },
         extra_opts = { '--bind', 'ctrl-o:toggle-all', '--prompt', '> ' }
