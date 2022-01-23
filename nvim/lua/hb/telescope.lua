@@ -91,12 +91,12 @@ set_keymap("n", "<c-p>",      "<cmd>lua RTELE(); require'telescope.builtin'.git_
 set_keymap("n", "<leader>m",  "<cmd>lua RTELE(); require'telescope.builtin'.oldfiles{}<CR>", opts)
 set_keymap("n", "<leader>b",  "<cmd>lua RTELE(); require'telescope.builtin'.buffers{}<CR>", opts)
 set_keymap("n", "<leader>a",  "<cmd>lua RTELE(); require'telescope.builtin'.live_grep{}<CR>", opts)
+set_keymap("n", "<leader>F", "<cmd>lua RTELE(); require'telescope.builtin'.current_buffer_fuzzy_find{}<CR>", opts)
 set_keymap("n", "<leader>ts", "<cmd>lua RTELE(); require'telescope.builtin'.tagstack{}<CR>", opts)
 set_keymap("n", "<leader>tc", "<cmd>lua RTELE(); require'telescope.builtin'.commands{}<CR>", opts)
 set_keymap("n", "<leader>jl", "<cmd>lua RTELE(); require'telescope.builtin'.jumplist{}<CR>", opts)
 
 set_keymap("n", "<leader>pf", "<cmd>lua RTELE(); require'telescope.builtin'.find_files{}<CR>", opts)
-set_keymap("n", "<leader>pb", "<cmd>lua RTELE(); require'telescope.builtin'.current_buffer_fuzzy_find{}<CR>", opts)
 set_keymap("n", "<leader>ps", "<cmd>lua RTELE(); require'telescope.builtin'.grep_string({ search = vim.fn.input('Grep For > ')})<CR>", opts)
 set_keymap("n", "<leader>pw", "<cmd>lua RTELE(); require'telescope.builtin'.grep_string({ search = vim.fn.expand('<cword>') })<CR>", opts)
 
