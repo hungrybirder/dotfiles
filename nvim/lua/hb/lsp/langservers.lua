@@ -60,7 +60,7 @@ local lsp_on_attach = function(client, bufnr)
         --     return false
         -- end
     })
-    require('lspkind').init()
+    require"lspkind".init({})
 end
 
 local make_lsp_client_capabilities = function()
