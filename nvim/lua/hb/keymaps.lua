@@ -8,12 +8,7 @@ endfor
 " let s:load_dir = expand('<sfile>:p:h')
 " exec printf('luafile %s/lua/init.lua', s:load_dir)
 
-set nocompatible
-
-let mapleader = ' '
-
-nmap <silent> <leader>ev :e $MYVIMRC<CR>
-nmap <silent> <leader>sv :so $MYVIMRC<CR>
+" set nocompatible
 
 " for lsp debug
 " lua << EOF
@@ -288,11 +283,6 @@ imap <F1> <nop>
 
 " plugin mappings
 
-noremap <Leader>pi :<c-u>PlugInstall<CR>
-noremap <Leader>pu :<c-u>PlugUpdate<CR>
-noremap <Leader>pc :<c-u>PlugClean<CR>
-
-
 " vim-test
 function! DebugNearest()
   let g:test#go#runner = 'delve'
@@ -400,17 +390,6 @@ nmap [y <plug>(YoinkRotateBack)
 nmap ]y <plug>(YoinkRotateForward)
 " vim-yoink end
 
-" neoterm
-let g:neoterm_default_mod = 'vertical'
-let g:neoterm_size = 60
-let g:neoterm_autoinsert = 1
-nnoremap <c-q> <cmd>Ttoggle<CR>
-inoremap <c-q> <ESC>:Ttoggle<CR>
-tnoremap <c-q> <c-\><c-n>:Ttoggle<CR>
-let g:neoterm_term_per_tab = 1
-
-"neoterm end
-
 " fzf
 let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.8 } }
 let g:fzf_action = {
@@ -470,3 +449,27 @@ let g:cursorhold_updatetime = 100
 " FixCursorHold.nvim end
 
 ]]
+
+local remap = vim.api.nvim_set_keymap
+local opts = { noremap = true, silent = true }
+local noremap_opt = { noremap = true, silent = false }
+
+vim.g.mapleader = ' '
+
+remap('n', '<leader>ev', '<cmd>e $MYVIMRC<CR>', noremap_opt)
+remap('n', '<leader>sv', '<cmd>so $MYVIMRC<CR>', noremap_opt)
+
+remap('n', '<leader>pi', '<cmd>PackerSync<CR>', noremap_opt)
+remap('n', '<leader>pu', '<cmd>PackerUpdate<CR>', noremap_opt)
+remap('n', '<leader>pc', '<cmd>PackerClean<CR>', noremap_opt)
+
+-- neoterm
+vim.g.neoterm_default_mod = 'vertical'
+vim.g.neoterm_size = 60
+vim.g.neoterm_autoinsert = 1
+vim.g.neoterm_term_per_tab = 1
+vim.g.neoterm_repl_python = "ipython3"
+
+remap('n', '<c-q>', '<cmd>Ttoggle<CR>', opts)
+remap('i', '<c-q>', '<ESC>:Ttoggle<CR>', opts)
+remap('t', '<c-q>', '<c-\\><c-n>:Ttoggle<CR>', opts)
