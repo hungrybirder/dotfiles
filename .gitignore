@@ -1,3 +1,4 @@
 .python-version
 vimrc/plugged/*
 *.swp
+.luarc.json

@@ -3,3 +3,4 @@
 undodir
 .netrwhist
 plugged/*
+plugin/packer_compiled.lua

@@ -1,3 +1,9 @@
+RELOAD = require("plenary.reload").reload_module
+RTELE = function()
+    RELOAD "hb.telescope"
+    RELOAD "telescope"
+end
+
 local actions = require "telescope.actions"
 local telescope = require "telescope"
 local action_layout = require "telescope.actions.layout"
