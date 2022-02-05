@@ -18,13 +18,13 @@ if not status_ok then
     return
 end
 
-packer.init {
-    display = {
-        open_fn = function()
-            return require"packer.util".float { border = "rounded" }
-        end
-    }
-}
+-- packer.init {
+--     display = {
+--         open_fn = function()
+--             return require"packer.util".float { border = "rounded" }
+--         end
+--     }
+-- }
 
 -- MacOS: ulimit -S -n 200048
 return packer.startup(function(use)
@@ -68,6 +68,13 @@ return packer.startup(function(use)
     use 'rhysd/clever-f.vim'
     use 'karb94/neoscroll.nvim'
     use 'andymass/vim-matchup'
+    use {
+        "folke/todo-comments.nvim",
+        requires = "nvim-lua/plenary.nvim",
+        config = function()
+            require("todo-comments").setup {}
+        end
+    }
 
     -- powered by tpope
     use 'tpope/vim-repeat'
