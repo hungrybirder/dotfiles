@@ -1,3 +1,15 @@
+" Learn from https://github.com/Conni2461/dotfiles
+" Install vimplug
+if ! filereadable(expand('~/.config/nvim/autoload/plug.vim'))
+  echo 'Downloading junegunn/vim-plug to manage plugins...'
+  silent !mkdir -p ~/.config/nvim/autoload/
+  silent !curl "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim" > ~/.config/nvim/autoload/plug.vim
+  augroup plug
+    au!
+    au VimEnter * PlugInstall
+  augroup END
+endif
+
 call plug#begin('~/.config/nvim/plugged')
 
 Plug 'rcarriga/nvim-notify'
