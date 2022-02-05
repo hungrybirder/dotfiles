@@ -317,3 +317,5 @@ export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 # 运行workon, mkvirtualenv 命令之前，需要先运行: pyenv virtualenvwrapper
  eval "pyenv virtualenvwrapper"
 
+# 增加 MacOS open files
+[[ "${OS_NAME}" = "Darwin" ]] && ulimit -S -n 200048
