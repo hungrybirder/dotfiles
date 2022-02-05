@@ -317,11 +317,6 @@ endif
 let g:VM_leader = '\\'
 " vim-visual-multi end
 
-" markdown
-let g:vim_markdown_math = 1
-nmap <leader>md :MarkdownPreview<CR>
-" markdown end
-
 " vim-go
 " 使用vim-go功能
 " 1. fmt autosave
@@ -473,3 +468,7 @@ vim.g.neoterm_repl_python = "ipython3"
 remap('n', '<c-q>', '<cmd>Ttoggle<CR>', opts)
 remap('i', '<c-q>', '<ESC>:Ttoggle<CR>', opts)
 remap('t', '<c-q>', '<c-\\><c-n>:Ttoggle<CR>', opts)
+
+vim.g.vim_markdown_math = true
+remap('n', '<leader>md', '<cmd>MarkdownPreview<CR>', opts)
+

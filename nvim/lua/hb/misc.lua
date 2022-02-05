@@ -68,3 +68,9 @@ require("zen-mode").setup {}
 -- litee
 require"litee.lib".setup { panel = { orientation = "right", panel_size = 45 } }
 require"litee.calltree".setup { on_open = "panel" }
+
+-- indent_blankline
+require("indent_blankline").setup {
+    show_current_context = true,
+    show_current_context_start = true,
+}
