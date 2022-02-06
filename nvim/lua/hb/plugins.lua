@@ -28,8 +28,8 @@ end
 
 -- MacOS: ulimit -S -n 200048
 return packer.startup(function(use)
-    -- My plugins here
-    use 'wbthomason/packer.nvim' -- Have packer manage itself
+
+    use 'wbthomason/packer.nvim'
 
     use 'rcarriga/nvim-notify'
 
@@ -206,7 +206,6 @@ return packer.startup(function(use)
     use { 'rcarriga/vim-ultest', run = ':UpdateRemotePlugins' }
 
     -- Terminal
-    -- use 'kassio/neoterm'
     use 'akinsho/toggleterm.nvim'
 
     -- tmux
