@@ -402,10 +402,6 @@ endif
 " fzf end
 "
 
-" symbols-outline
-nnoremap <silent> <leader>v :SymbolsOutline<CR>
-" symbols-outline end
-
 " vim-vsnip
 let g:vsnip_snippet_dir = '~/.config/nvim/vsnip'
 " vim-vsnip end

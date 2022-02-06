@@ -7,11 +7,13 @@ vim.api.nvim_exec([[
   augroup end
 ]], false)
 
-local remap = require"hb/utils".remap
+local hb_utils = require "hb/utils"
+local remap = hb_utils.remap
+local opts = hb_utils.opt_noremap_silent
 
 -- tab
-remap('n', ']<tab>', '<cmd>tabnext<cr>', { silent = true, noremap = true })
-remap('n', '[<tab>', '<cmd>tabnext<cr>', { silent = true, noremap = true })
+remap('n', ']<tab>', '<cmd>tabnext<cr>', opts)
+remap('n', '[<tab>', '<cmd>tabnext<cr>', opts)
 
 vim.notify = require "notify"
 vim.notify.setup()
@@ -57,6 +59,8 @@ vim.g.symbols_outline = {
     position = 'right'
 }
 
+remap('n', '<leader>v', '<cmd>SymbolsOutline<CR>', opts)
+
 -- litee
 require"litee.lib".setup { panel = { orientation = "right", panel_size = 45 } }
 require"litee.calltree".setup { on_open = "panel" }
@@ -75,6 +79,6 @@ require'toggleterm'.setup {
     end
 }
 
-remap('n', '<c-q>', '<cmd>exe v:count1 . "ToggleTerm direction=vertical"<CR>', { silent = true, noremap = true })
-remap('i', '<c-q>', '<ESC><cmd>exe v:count1 . "ToggleTerm direction=vertical"<CR>', { silent = true, noremap = true })
-remap('t', '<c-q>', '<c-\\><c-n>:ToggleTerm direction=vertical<CR>', { silent = true, noremap = true })
+remap('n', '<c-q>', '<cmd>exe v:count1 . "ToggleTerm direction=vertical"<CR>', opts)
+remap('i', '<c-q>', '<ESC><cmd>exe v:count1 . "ToggleTerm direction=vertical"<CR>', opts)
+remap('t', '<c-q>', '<c-\\><c-n>:ToggleTerm direction=vertical<CR>', opts)
