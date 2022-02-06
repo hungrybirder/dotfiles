@@ -70,7 +70,19 @@ require"litee.lib".setup { panel = { orientation = "right", panel_size = 45 } }
 require"litee.calltree".setup { on_open = "panel" }
 
 -- indent_blankline
-require("indent_blankline").setup {
-    show_current_context = true,
-    show_current_context_start = true,
+require("indent_blankline").setup { show_current_context = true, show_current_context_start = true }
+
+-- toggleterm
+require'toggleterm'.setup {
+    size = function(term)
+        if term.direction == "horizontal" then
+            return 15
+        elseif term.direction == "vertical" then
+            return vim.o.columns * 0.4
+        end
+    end
 }
+
+remap('n', '<c-q>', '<cmd>exe v:count1 . "ToggleTerm direction=vertical"<CR>', { silent = true, noremap = true })
+remap('i', '<c-q>', '<ESC><cmd>exe v:count1 . "ToggleTerm direction=vertical"<CR>', { silent = true, noremap = true })
+remap('t', '<c-q>', '<c-\\><c-n>:ToggleTerm direction=vertical<CR>', { silent = true, noremap = true })

@@ -206,7 +206,9 @@ return packer.startup(function(use)
     use { 'rcarriga/vim-ultest', run = ':UpdateRemotePlugins' }
 
     -- Terminal
-    use 'kassio/neoterm'
+    -- use 'kassio/neoterm'
+    use 'akinsho/toggleterm.nvim'
+
     -- tmux
     use 'christoomey/vim-tmux-navigator'
 
