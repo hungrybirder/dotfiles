@@ -155,6 +155,7 @@ return packer.startup(function(use)
     use 'nvim-treesitter/playground'
     use 'nvim-treesitter/nvim-treesitter-textobjects'
     use 'nvim-treesitter/nvim-treesitter-refactor'
+    use 'RRethy/nvim-treesitter-endwise'
     use 'JoosepAlviste/nvim-ts-context-commentstring'
     use { 'stsewd/sphinx.nvim', run = ':UpdateRemotePlugins' }
 
