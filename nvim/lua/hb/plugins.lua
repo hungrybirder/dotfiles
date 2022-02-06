@@ -33,10 +33,20 @@ return packer.startup(function(use)
 
     use 'rcarriga/nvim-notify'
 
-    use 'folke/zen-mode.nvim'
+    use {
+        'folke/zen-mode.nvim',
+        config = function()
+            require("zen-mode").setup {}
+        end
+    }
     use 'folke/twilight.nvim'
 
-    use 'norcalli/nvim-colorizer.lua'
+    use {
+        'norcalli/nvim-colorizer.lua',
+        config = function()
+            require"colorizer".setup()
+        end
+    }
 
     -- 中英文排版
     use 'hotoo/pangu.vim'
@@ -66,7 +76,12 @@ return packer.startup(function(use)
     -- speedup editing friendly
     use { 'mg979/vim-visual-multi', branch = 'master' }
     use 'rhysd/clever-f.vim'
-    use 'karb94/neoscroll.nvim'
+    use {
+        'karb94/neoscroll.nvim',
+        config = function()
+            require"neoscroll".setup {}
+        end
+    }
     use 'andymass/vim-matchup'
     use {
         "folke/todo-comments.nvim",
@@ -89,10 +104,7 @@ return packer.startup(function(use)
     use 'tpope/vim-fugitive'
     use 'junegunn/gv.vim'
     use 'sindrets/diffview.nvim'
-    use {
-        'lewis6991/gitsigns.nvim',
-        requires = { 'nvim-lua/plenary.nvim' },
-    }
+    use { 'lewis6991/gitsigns.nvim', requires = { 'nvim-lua/plenary.nvim' } }
     use { 'ruifm/gitlinker.nvim', requires = 'nvim-lua/plenary.nvim' }
 
     -- powered by svermeulen

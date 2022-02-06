@@ -90,25 +90,26 @@ telescope.load_extension('fzf')
 
 -- LuaFormatter off
 -- telescope mappings
-local opts = { noremap = true, silent = true }
-local set_keymap = vim.api.nvim_set_keymap
+local hb_utils = require "hb/utils"
+local remap = hb_utils.remap
+local opts = hb_utils.opt_noremap_silent
 
-set_keymap("n", "<c-p>",      "<cmd>lua RTELE(); require'telescope.builtin'.git_files{}<CR>", opts)
-set_keymap("n", "<leader>m",  "<cmd>lua RTELE(); require'telescope.builtin'.oldfiles{}<CR>", opts)
-set_keymap("n", "<leader>b",  "<cmd>lua RTELE(); require'telescope.builtin'.buffers{}<CR>", opts)
-set_keymap("n", "<leader>a",  "<cmd>lua RTELE(); require'telescope.builtin'.live_grep{}<CR>", opts)
-set_keymap("n", "<leader>F", "<cmd>lua RTELE(); require'telescope.builtin'.current_buffer_fuzzy_find{}<CR>", opts)
-set_keymap("n", "<leader>ts", "<cmd>lua RTELE(); require'telescope.builtin'.tagstack{}<CR>", opts)
-set_keymap("n", "<leader>tc", "<cmd>lua RTELE(); require'telescope.builtin'.commands{}<CR>", opts)
-set_keymap("n", "<leader>jl", "<cmd>lua RTELE(); require'telescope.builtin'.jumplist{}<CR>", opts)
+remap("n", "<c-p>",      "<cmd>lua RTELE(); require'telescope.builtin'.git_files{}<CR>", opts)
+remap("n", "<leader>m",  "<cmd>lua RTELE(); require'telescope.builtin'.oldfiles{}<CR>", opts)
+remap("n", "<leader>b",  "<cmd>lua RTELE(); require'telescope.builtin'.buffers{}<CR>", opts)
+remap("n", "<leader>a",  "<cmd>lua RTELE(); require'telescope.builtin'.live_grep{}<CR>", opts)
+remap("n", "<leader>F", "<cmd>lua RTELE(); require'telescope.builtin'.current_buffer_fuzzy_find{}<CR>", opts)
+remap("n", "<leader>ts", "<cmd>lua RTELE(); require'telescope.builtin'.tagstack{}<CR>", opts)
+remap("n", "<leader>tc", "<cmd>lua RTELE(); require'telescope.builtin'.commands{}<CR>", opts)
+remap("n", "<leader>jl", "<cmd>lua RTELE(); require'telescope.builtin'.jumplist{}<CR>", opts)
 
-set_keymap("n", "<leader>pf", "<cmd>lua RTELE(); require'telescope.builtin'.find_files{}<CR>", opts)
-set_keymap("n", "<leader>ps", "<cmd>lua RTELE(); require'telescope.builtin'.grep_string({ search = vim.fn.input('Grep For > ')})<CR>", opts)
-set_keymap("n", "<leader>pw", "<cmd>lua RTELE(); require'telescope.builtin'.grep_string({ search = vim.fn.expand('<cword>') })<CR>", opts)
+remap("n", "<leader>pf", "<cmd>lua RTELE(); require'telescope.builtin'.find_files{}<CR>", opts)
+remap("n", "<leader>ps", "<cmd>lua RTELE(); require'telescope.builtin'.grep_string({ search = vim.fn.input('Grep For > ')})<CR>", opts)
+remap("n", "<leader>pw", "<cmd>lua RTELE(); require'telescope.builtin'.grep_string({ search = vim.fn.expand('<cword>') })<CR>", opts)
 
-set_keymap("n", "<leader>r",  "<cmd>lua RTELE(); require'telescope.builtin'.lsp_references{}<CR>", opts)
-set_keymap("n", "<leader>ws", "<cmd>lua RTELE(); require'telescope.builtin'.lsp_workspace_symbols{ query = '*' }<CR>", opts)
-set_keymap("n", "<leader>cs", "<cmd>lua RTELE(); require'telescope.builtin'.lsp_document_symbols{}<CR>", opts)
-set_keymap("n", "<leader>o",  "<cmd>lua RTELE(); require'telescope.builtin'.lsp_document_symbols{ symbols = {'method', 'function', 'module', 'interface' } }<CR>", opts)
-set_keymap("n", "<leader>gc", "<cmd>lua RTELE(); require'telescope.builtin'.git_branches{}<CR>", opts)
+remap("n", "<leader>r",  "<cmd>lua RTELE(); require'telescope.builtin'.lsp_references{}<CR>", opts)
+remap("n", "<leader>ws", "<cmd>lua RTELE(); require'telescope.builtin'.lsp_workspace_symbols{ query = '*' }<CR>", opts)
+remap("n", "<leader>cs", "<cmd>lua RTELE(); require'telescope.builtin'.lsp_document_symbols{}<CR>", opts)
+remap("n", "<leader>o",  "<cmd>lua RTELE(); require'telescope.builtin'.lsp_document_symbols{ symbols = {'method', 'function', 'module', 'interface' } }<CR>", opts)
+remap("n", "<leader>gc", "<cmd>lua RTELE(); require'telescope.builtin'.git_branches{}<CR>", opts)
 -- LuaFormatter on

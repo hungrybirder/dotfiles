@@ -445,18 +445,19 @@ let g:cursorhold_updatetime = 100
 
 ]]
 
-local remap = vim.api.nvim_set_keymap
-local opts = { noremap = true, silent = true }
-local noremap_opt = { noremap = true, silent = false }
+local hb_utils = require "hb/utils"
+local remap = hb_utils.remap
+local opts = hb_utils.opt_noremap_silent
+local opt_noremap = hb_utils.opt_noremap
 
 vim.g.mapleader = ' '
 
-remap('n', '<leader>ev', '<cmd>e $MYVIMRC<CR>', noremap_opt)
-remap('n', '<leader>sv', '<cmd>so $MYVIMRC<CR>', noremap_opt)
+remap('n', '<leader>ev', '<cmd>e $MYVIMRC<CR>', opt_noremap)
+remap('n', '<leader>sv', '<cmd>so $MYVIMRC<CR>', opt_noremap)
 
-remap('n', '<leader>pi', '<cmd>PackerSync<CR>', noremap_opt)
-remap('n', '<leader>pu', '<cmd>PackerUpdate<CR>', noremap_opt)
-remap('n', '<leader>pc', '<cmd>PackerClean<CR>', noremap_opt)
+remap('n', '<leader>pi', '<cmd>PackerSync<CR>', opt_noremap)
+remap('n', '<leader>pu', '<cmd>PackerUpdate<CR>', opt_noremap)
+remap('n', '<leader>pc', '<cmd>PackerClean<CR>', opt_noremap)
 
 -- neoterm
 -- vim.g.neoterm_default_mod = 'vertical'
@@ -470,4 +471,3 @@ remap('n', '<leader>pc', '<cmd>PackerClean<CR>', noremap_opt)
 
 vim.g.vim_markdown_math = true
 remap('n', '<leader>md', '<cmd>MarkdownPreview<CR>', opts)
-

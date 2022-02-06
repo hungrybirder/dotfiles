@@ -75,4 +75,7 @@ require"nvim-tree".setup {
 }
 
 -- mapping
-vim.api.nvim_set_keymap("n", "<leader><tab>", "<cmd>NvimTreeToggle<CR>", { noremap = true, silent = true })
+local hb_utils = require "hb/utils"
+local remap = hb_utils.remap
+local opts = hb_utils.opt_noremap_silent
+remap("n", "<leader><tab>", "<cmd>NvimTreeToggle<CR>", opts)

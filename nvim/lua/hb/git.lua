@@ -1,11 +1,12 @@
-local opts = { noremap = true, silent = true }
-local set_keymap = vim.api.nvim_set_keymap
+local hb_utils = require "hb/utils"
+local remap = hb_utils.remap
+local opts = hb_utils.opt_noremap_silent
 
 -- vim-fugtive
-set_keymap('n', '<leader>gh', '<cmd>diffget //2<CR>', opts)
-set_keymap('n', '<leader>gf', '<cmd>diffget //3<CR>', opts)
-set_keymap('n', '<leader>gs', '<cmd>G<CR>', opts)
-set_keymap('n', '<leader>ga', '<cmd>Git fetch --all<CR>', opts)
+remap('n', '<leader>gh', '<cmd>diffget //2<CR>', opts)
+remap('n', '<leader>gf', '<cmd>diffget //3<CR>', opts)
+remap('n', '<leader>gs', '<cmd>G<CR>', opts)
+remap('n', '<leader>ga', '<cmd>Git fetch --all<CR>', opts)
 
 -- gitlinker
 require"gitlinker".setup {}

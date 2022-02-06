@@ -7,14 +7,12 @@ vim.api.nvim_exec([[
   augroup end
 ]], false)
 
-local remap = vim.api.nvim_set_keymap
+local remap = require"hb/utils".remap
 
 -- tab
 remap('n', ']<tab>', '<cmd>tabnext<cr>', { silent = true, noremap = true })
 remap('n', '[<tab>', '<cmd>tabnext<cr>', { silent = true, noremap = true })
 
--- colorizer
-require"colorizer".setup()
 vim.notify = require "notify"
 vim.notify.setup()
 
@@ -34,9 +32,6 @@ require"bufferline".setup {
 remap('n', 'gb', '<cmd>BufferLinePick<CR>', { noremap = true, silent = true })
 remap('n', 'H', '<cmd>BufferLineCyclePrev<CR>', { noremap = true, silent = true })
 remap('n', 'L', '<cmd>BufferLineCycleNext<CR>', { noremap = true, silent = true })
-
--- neoscroll
-require"neoscroll".setup {}
 
 -- nvim-bqf
 require"bqf".setup({
@@ -61,9 +56,6 @@ vim.g.symbols_outline = {
     auto_preview = false,
     position = 'right'
 }
-
--- zen-mode
-require("zen-mode").setup {}
 
 -- litee
 require"litee.lib".setup { panel = { orientation = "right", panel_size = 45 } }
