@@ -17,14 +17,16 @@ telescope.setup {
                 ["<esc>"] = actions.close,
                 ["<c-w>"] = actions.send_selected_to_qflist,
                 ["<c-q>"] = actions.send_to_qflist,
-                ['<M-p>'] = action_layout.toggle_preview
+                ["<c-l>"] = actions.add_selected_to_loclist,
+                ["<c-h>"] = actions.send_to_loclist,
+                ["<M-p>"] = action_layout.toggle_preview
             },
             n = {
-                -- send selected to quickfix
                 ["<c-w>"] = actions.send_selected_to_qflist,
-                -- send all to quickfix
                 ["<c-q>"] = actions.send_to_qflist,
-                ['<M-p>'] = action_layout.toggle_preview
+                ["<c-l>"] = actions.add_selected_to_loclist,
+                ["<c-h>"] = actions.send_to_loclist,
+                ["<M-p>"] = action_layout.toggle_preview
             }
         },
         layout_strategy = "flex",

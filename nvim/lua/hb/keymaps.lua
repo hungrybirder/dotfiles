@@ -208,8 +208,28 @@ autocmd FileType qf wincmd J
 " close quickfix
 " noremap <silent> <space>q :<C-U>cclose<CR>
 
-" close loclist
-noremap <silent> <space>l :<C-U>lclose<CR>
+function! s:BufferCount() abort
+    return len(filter(range(1, bufnr('$')), 'buflisted(v:val)'))
+endfunction
+
+" Location list
+" Toggle Location List window
+function! ToggleLocationList()
+  " https://github.com/Valloric/ListToggle/blob/master/plugin/listtoggle.vim
+  let buffer_count_before = s:BufferCount()
+
+  " Location list can't be closed if there's cursor in it, so we need
+  " to call lclose twice to move cursor to the main pane
+  silent! lclose
+  silent! lclose
+
+  if s:BufferCount() == buffer_count_before
+    lopen
+  endif
+endfunction
+
+nnoremap <silent> <space>l :call ToggleLocationList()<cr>
+
 " quickfix end
 
 " powered by ThePrimeagen
