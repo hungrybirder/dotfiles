@@ -325,10 +325,6 @@ map ; <Plug>(clever-f-repeat-forward)
 map , <Plug>(clever-f-repeat-back)
 " clever-fend
 
-" vim-bbye
-noremap <leader><BS> :Bdelete<cr>
-" vim-bbye end
-
 if exists('g:loaded_webdevicons')
     call webdevicons#refresh()
 endif
@@ -487,3 +483,6 @@ remap('n', '<leader>pc', '<cmd>PackerClean<CR>', opt_noremap)
 
 vim.g.vim_markdown_math = true
 remap('n', '<leader>md', '<cmd>MarkdownPreview<CR>', opts)
+
+-- vim-bbye
+remap('n', '<leader><BS>', '<cmd>Bdelete<CR>', opts)
