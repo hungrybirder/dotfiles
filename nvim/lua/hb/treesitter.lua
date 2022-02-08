@@ -77,3 +77,11 @@ local ft_str = table.concat(vim.tbl_map(function(ft)
     return configs[ft].filetype or ft
 end, parsers.available_parsers()), ',')
 vim.cmd('autocmd Filetype ' .. ft_str .. ' setlocal foldmethod=expr foldexpr=nvim_treesitter#foldexpr()')
+
+require'treesitter-context'.setup {
+    enable = true,
+    throttle = true,
+    max_lines = 0,
+    patterns = { default = { 'class', 'function', 'method' } }
+}
+vim.cmd 'highlight FidgetTitle ctermfg=110 guifg=#6cb6eb'

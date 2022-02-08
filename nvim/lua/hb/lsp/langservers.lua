@@ -8,22 +8,6 @@ _M_LSP = {}
 
 local lspconfig = require 'lspconfig'
 
-local lsp_status = require('lsp-status')
-lsp_status.config {
-    select_symbol = function(cursor_pos, symbol)
-        if symbol.valueRange then
-            local value_range = {
-                ["start"] = { character = 0, line = vim.fn.byte2line(symbol.valueRange[1]) },
-                ["end"] = { character = 0, line = vim.fn.byte2line(symbol.valueRange[2]) }
-            }
-
-            return require("lsp-status.util").in_range(cursor_pos, value_range)
-        end
-    end,
-    current_function = true
-}
-lsp_status.register_progress()
-
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
     underline = false,
     virtual_text = false,
@@ -33,7 +17,6 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagn
 
 local lsp_on_attach = function(client, bufnr)
     require'hb/lsp/keymap'.setup_lsp_keymaps(client, bufnr)
-    lsp_status.on_attach(client)
     require'lspsaga'.init_lsp_saga { code_action_keys = { quit = '<esc>', exec = '<CR>' } }
     require'lsp_signature'.on_attach({
         bind = true,
@@ -65,9 +48,7 @@ end
 
 local make_lsp_client_capabilities = function()
     -- cmp_nvim_lsp take care of snippetSupport and resolveSupport
-    -- lsp_status
     local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-    capabilities = vim.tbl_extend('keep', capabilities or {}, lsp_status.capabilities)
     return capabilities
 end
 
@@ -139,7 +120,6 @@ lspconfig.pyright.setup {
 }
 
 lspconfig.clangd.setup {
-    handlers = lsp_status.extensions.clangd.setup(),
     init_options = { clangdFileStatus = true },
     on_attach = lsp_on_attach,
     flags = { debounce_text_changes = 150 },

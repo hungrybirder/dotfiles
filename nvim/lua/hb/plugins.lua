@@ -71,8 +71,6 @@ return packer.startup(function(use)
     -- statusline
     use 'nvim-lualine/lualine.nvim'
 
-    use 'arkav/lualine-lsp-progress'
-
     -- speedup editing friendly
     use { 'mg979/vim-visual-multi', branch = 'master' }
     use 'rhysd/clever-f.vim'
@@ -123,8 +121,12 @@ return packer.startup(function(use)
     use 'ray-x/lsp_signature.nvim'
     -- outline powered by lsp
     use 'simrat39/symbols-outline.nvim'
-    -- lsp status
-    use 'nvim-lua/lsp-status.nvim'
+    use {
+        'j-hui/fidget.nvim',
+        config = function()
+            require"fidget".setup {}
+        end
+    }
     -- lsp icons
     use 'onsails/lspkind-nvim'
 
@@ -155,6 +157,7 @@ return packer.startup(function(use)
     use 'nvim-treesitter/playground'
     use 'nvim-treesitter/nvim-treesitter-textobjects'
     use 'nvim-treesitter/nvim-treesitter-refactor'
+    use 'romgrk/nvim-treesitter-context'
     use 'RRethy/nvim-treesitter-endwise'
     use 'JoosepAlviste/nvim-ts-context-commentstring'
     use { 'stsewd/sphinx.nvim', run = ':UpdateRemotePlugins' }

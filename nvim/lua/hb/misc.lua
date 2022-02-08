@@ -1,4 +1,3 @@
--- future init.lua
 -- Highlight on yank
 vim.api.nvim_exec([[
   augroup YankHighlight
