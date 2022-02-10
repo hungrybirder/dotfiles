@@ -69,16 +69,6 @@ if executable("rg")
     set grepformat=%f:%l:%c:%m,%f:%l:%m
 endif
 
-vnoremap < <gv
-vnoremap > >gv
-
-"inoremap maps a key combination for insert mode
-"<C-e> is the keybinding I am creating.
-"<C-o> is a command that switches vim to normal mode for one command.
-"$ jumps to the end of the line and we are switched back to insert mode.
-inoremap <C-e> <C-o>$
-inoremap <C-a> <C-o>0
-
 " Navigating in Command Mode
 cnoremap <C-a> <Home>
 cnoremap <C-e> <End>
@@ -87,27 +77,6 @@ cnoremap <C-b> <Left>
 cnoremap <Esc>b <S-Left>
 cnoremap <Esc>f <S-Right>
 
-nnoremap <c-h> :wincmd h<CR>
-nnoremap <c-j> :wincmd j<CR>
-nnoremap <c-k> :wincmd k<CR>
-nnoremap <c-l> :wincmd l<CR>
-
-" ctrl_e ctrl_y 3 lines
-nnoremap <c-e> 3<c-e>
-nnoremap <c-y> 3<c-y>
-vnoremap <c-e> 3<c-e>
-vnoremap <c-y> 3<c-y>
-
-" delete current line
-" map <c-d> dd
-" delete current line in Insert Mode
-" imap <c-d> <esc>ddi
-" exit insert mode
-inoremap jk <esc>
-
-" Keep search matches in the middle of the window.
-" nnoremap n nzzzv
-" nnoremap N Nzzzv
 
 " 更新括号里的内容，非常有用
 onoremap in( :<c-u>normal! f(vi(<cr>
@@ -117,63 +86,11 @@ onoremap il[ :<c-u>normal! F]vi[<cr>
 onoremap in< :<c-u>normal! f<vi<<cr>
 onoremap il< :<c-u>normal! F>vi<<cr>
 
-
 nnoremap <leader>u :UndotreeToggle<CR>
-nnoremap <Leader>+ :vertical resize +5<CR>
-nnoremap <Leader>- :vertical resize -5<CR>
-" Use alt + hjkl to resize windows
-nnoremap <M-j>    :resize +2<CR>
-nnoremap <M-k>    :resize -2<CR>
-nnoremap <M-h>    :vertical resize +2<CR>
-nnoremap <M-l>    :vertical resize -2<CR>
-
-" Best remap by ThePrimeagen
-" greatest remap ever
-vnoremap <leader>p "_dP
-
-" next greatest remap ever : asbjornHaland
-nnoremap <leader>y "+y
-vnoremap <leader>y "+y
-nnoremap <leader>Y gg"+yG
-
-" Behave Vim
-nnoremap Y y$
 
 " Jumplist mutations
 nnoremap <expr> k (v:count > 5 ? "m'" . v:count : "") . 'k'
 nnoremap <expr> j (v:count > 5 ? "m'" . v:count : "") . 'j'
-
-" Keeping it centered
-nnoremap n nzzzv
-nnoremap N Nzzzv
-nnoremap J mzJ`z
-
-" Undo break points
-inoremap , ,<c-g>u
-inoremap . .<c-g>u
-inoremap ! !<c-g>u
-inoremap ? ?<c-g>u
-
-" Moving text
-" not pollute registers!
-vnoremap J :m '>+1<CR>gv=gv
-vnoremap K :m '<-2<CR>gv=gv
-" inoremap <C-k> <esc>:m .-2<CR>==
-" inoremap <C-j> <esc>:m .+1<CR>==
-" nnoremap <leader>j :m .+1<CR>==
-" nnoremap <leader>k :m .-2<CR>==
-
-" Best remap by ThePrimeagen Done
-
-" Switch to alternative buffer
-nnoremap <bs> <c-^>
-
-inoremap <C-c> <esc>
-
-" Q: Closes the window
-nnoremap Q :q<cr>
-" close all windows
-nnoremap <leader>Q :qa!<cr>
 
 augroup line_return
   au!
@@ -486,3 +403,83 @@ remap('n', '<leader>md', '<cmd>MarkdownPreview<CR>', opts)
 
 -- vim-bbye
 remap('n', '<leader><BS>', '<cmd>Bdelete<CR>', opts)
+
+-- Best remap by ThePrimeagen
+-- greatest remap ever
+remap('v', '<leader>p', '"_dP', opts)
+
+remap('v', '<', '<gv', opts)
+remap('v', '>', '>gv', opts)
+
+-- inoremap maps a key combination for insert mode
+-- <C-e> is the keybinding I am creating.
+-- <C-o> is a command that switches vim to normal mode for one command.
+-- $ jumps to the end of the line and we are switched back to insert mode.
+remap('i', '<C-e>', '<C-o>$', opts)
+remap('i', '<C-a>', '<C-o>0', opts)
+
+
+
+-- next greatest remap ever : asbjornHaland
+remap('n', '<leader>y', '"+y', opts)
+remap('v', '<leader>y', '"+y', opts)
+remap('n', '<leader>Y', 'gg"+yG', opts)
+
+-- Behave Vim
+remap('n', 'Y', 'y$', opts)
+
+-- Moving text
+-- not pollute registers!
+remap('v', 'J', ":m '>+1<CR>gv=gv", opts)
+remap('v', 'K', ":m '<-2<CR>gv=gv", opts)
+-- inoremap <C-k> <esc>:m .-2<CR>==
+-- inoremap <C-j> <esc>:m .+1<CR>==
+-- nnoremap <leader>j :m .+1<CR>==
+-- nnoremap <leader>k :m .-2<CR>==
+
+-- Switch to alternative buffer
+remap('n', '<bs>', '<c-^>', opts)
+
+remap('n', '<C-c>', '<esc>', opts)
+
+-- Q: Closes the window
+remap('n', 'Q', '<cmd>q<CR>', opts)
+-- close all windows
+remap('n', '<leader>Q', '<cmd>qa!<CR>', opts)
+
+-- Undo break points
+remap('i', ',', ',<c-g>u', opts)
+remap('i', '.', '.<c-g>u', opts)
+remap('i', '!', '!<c-g>u', opts)
+remap('i', '?', '?<c-g>u', opts)
+
+-- Keeping it centered
+remap('n', 'n', 'nzzzv', opts)
+remap('n', 'N', 'Nzzzv', opts)
+remap('n', 'J', 'mzJ`z', opts)
+
+-- Use alt + hjkl to resize windows
+remap('n', '<M-j>', ':resize +2<CR>', opts)
+remap('n', '<M-k>', ':resize -2<CR>', opts)
+remap('n', '<M-h>', ':vertical resize +2<CR>', opts)
+remap('n', '<M-l>', ':vertical resize -2<CR>', opts)
+
+-- delete current line
+-- map <c-d> dd
+-- delete current line in Insert Mode
+-- imap <c-d> <esc>ddi
+-- exit insert mode
+-- inoremap jk <esc>
+remap('i', 'jk', '<esc>', opts)
+
+-- Move to window
+remap('n', '<c-h>', '<cmd>wincmd h<CR>', opts)
+remap('n', '<c-j>', '<cmd>wincmd j<CR>', opts)
+remap('n', '<c-k>', '<cmd>wincmd k<CR>', opts)
+remap('n', '<c-l>', '<cmd>wincmd l<CR>', opts)
+--
+-- ctrl_e ctrl_y 3 lines
+remap('n', '<c-e>', '3<c-e>', opts)
+remap('n', '<c-y>', '3<c-y>', opts)
+remap('v', '<c-e>', '3<c-e>', opts)
+remap('v', '<c-y>', '3<c-y>', opts)
