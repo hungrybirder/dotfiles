@@ -121,7 +121,8 @@ endfunction
 noremap <silent> <space>q :<C-U>call ToggleQuickfixWindow()<CR>
 
 "https://github.com/fatih/vim-go/issues/108#issuecomment-47450678
-autocmd FileType qf wincmd J
+" autocmd FileType qf wincmd J
+autocmd FileType qf if (getwininfo(win_getid())[0].loclist != 1) | wincmd J | endif
 " close quickfix
 " noremap <silent> <space>q :<C-U>cclose<CR>
 
