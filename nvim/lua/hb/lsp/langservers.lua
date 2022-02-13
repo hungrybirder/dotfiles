@@ -15,6 +15,12 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagn
     update_in_insert = false
 })
 
+local on_references = vim.lsp.handlers["textDocument/references"]
+vim.lsp.handlers["textDocument/references"] = vim.lsp.with(on_references, {
+    -- Use location list instead of quickfix list
+    loclist = true
+})
+
 local lsp_on_attach = function(client, bufnr)
     require'hb/lsp/keymap'.setup_lsp_keymaps(client, bufnr)
     require'lspsaga'.init_lsp_saga { code_action_keys = { quit = '<esc>', exec = '<CR>' } }
