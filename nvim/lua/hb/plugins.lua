@@ -171,6 +171,8 @@ return packer.startup(function(use)
 
     -- sign marks
     use 'kshenoy/vim-signature'
+    -- registers
+    use 'tversteeg/registers.nvim'
 
     -- fzf
     use { 'junegunn/fzf', dir = '~/.fzf', run = './install --all' }
