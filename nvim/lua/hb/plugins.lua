@@ -36,7 +36,7 @@ return packer.startup(function(use)
     use {
         'folke/zen-mode.nvim',
         config = function()
-            require("zen-mode").setup {}
+            require"zen-mode".setup {}
         end
     }
     use 'folke/twilight.nvim'
@@ -85,7 +85,7 @@ return packer.startup(function(use)
         "folke/todo-comments.nvim",
         requires = "nvim-lua/plenary.nvim",
         config = function()
-            require("todo-comments").setup {}
+            require"todo-comments".setup {}
         end
     }
 
@@ -145,7 +145,15 @@ return packer.startup(function(use)
         'petertriho/cmp-git',
         requires = "nvim-lua/plenary.nvim",
         config = function()
-            require("cmp_git").setup {}
+            require"cmp_git".setup {}
+        end
+    }
+
+    use {
+        'folke/trouble.nvim',
+        requires = 'kyazdani42/nvim-web-devicons',
+        config = function()
+            require"trouble".setup {}
         end
     }
 
@@ -236,7 +244,7 @@ return packer.startup(function(use)
     use 'antoinemadec/FixCursorHold.nvim'
 
     if PACKER_BOOTSTRAP then
-        require('packer').sync()
+        require"packer".sync()
     end
 
 end)

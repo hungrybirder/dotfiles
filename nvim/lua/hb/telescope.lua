@@ -7,6 +7,7 @@ end
 local actions = require "telescope.actions"
 local telescope = require "telescope"
 local action_layout = require "telescope.actions.layout"
+local trouble = require "trouble.providers.telescope"
 
 telescope.setup {
     defaults = {
@@ -19,14 +20,16 @@ telescope.setup {
                 ["<c-q>"] = actions.send_to_qflist,
                 ["<c-l>"] = actions.add_selected_to_loclist,
                 ["<c-h>"] = actions.send_to_loclist,
-                ["<M-p>"] = action_layout.toggle_preview
+                ["<M-p>"] = action_layout.toggle_preview,
+                ["<c-t>"] = trouble.open_with_trouble
             },
             n = {
                 ["<c-w>"] = actions.send_selected_to_qflist,
                 ["<c-q>"] = actions.send_to_qflist,
                 ["<c-l>"] = actions.add_selected_to_loclist,
                 ["<c-h>"] = actions.send_to_loclist,
-                ["<M-p>"] = action_layout.toggle_preview
+                ["<M-p>"] = action_layout.toggle_preview,
+                ["<c-t>"] = trouble.open_with_trouble
             }
         },
         layout_strategy = "flex",
