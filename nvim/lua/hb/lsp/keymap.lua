@@ -16,7 +16,7 @@ M.setup_lsp_keymaps = function(client, bufnr)
     buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
     buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
 
-    buf_set_keymap('n', 'vgd', '<cmd>vsplit<CR> | <cmd>wincmd h<CR> | <cmd>lua vim.lsp.buf.definition()<CR>', opts)
+    buf_set_keymap('n', 'vgd', ':vsplit | wincmd h | lua vim.lsp.buf.definition()<CR>', opts)
 
     buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
     buf_set_keymap('n', 'gl', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
