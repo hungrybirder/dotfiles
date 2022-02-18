@@ -37,7 +37,7 @@ set ignorecase
 set smartcase
 set noswapfile
 set nobackup
-set undodir=~/.config/nvim/undodir
+set undodir=~/.config/nvim_undodir
 set undofile
 set incsearch
 set termguicolors
