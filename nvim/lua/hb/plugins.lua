@@ -187,6 +187,7 @@ return packer.startup(function(use)
     use 'RRethy/nvim-treesitter-endwise'
     use 'JoosepAlviste/nvim-ts-context-commentstring'
     use { 'stsewd/sphinx.nvim', run = ':UpdateRemotePlugins' }
+    use 'theprimeagen/jvim.nvim'
 
     -- sign marks
     use 'kshenoy/vim-signature'
