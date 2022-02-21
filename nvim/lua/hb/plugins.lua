@@ -226,7 +226,14 @@ return packer.startup(function(use)
 
     -- markdown
     use 'mzlogin/vim-markdown-toc'
-    use { 'iamcco/markdown-preview.nvim', run = 'cd app & yarn install', cmd = 'MarkdownPreview' }
+    use({ -- https://github.com/iamcco/markdown-preview.nvim/issues/354
+        'iamcco/markdown-preview.nvim',
+        run = 'cd app && npm install',
+        setup = function()
+            vim.g.mkdp_filetypes = { 'markdown' }
+        end,
+        ft = { 'markdown' }
+    })
     use 'iamcco/mathjax-support-for-mkdp'
     -- MacOS: brew install glow
     -- https://github.com/charmbracelet/glow
