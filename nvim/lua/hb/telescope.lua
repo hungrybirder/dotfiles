@@ -1,15 +1,15 @@
 RELOAD = require("plenary.reload").reload_module
 RTELE = function()
-    RELOAD "hb.telescope"
-    RELOAD "telescope"
+    RELOAD("hb.telescope")
+    RELOAD("telescope")
 end
 
-local actions = require "telescope.actions"
-local telescope = require "telescope"
-local action_layout = require "telescope.actions.layout"
-local trouble = require "trouble.providers.telescope"
+local actions = require("telescope.actions")
+local telescope = require("telescope")
+local action_layout = require("telescope.actions.layout")
+local trouble = require("trouble.providers.telescope")
 
-telescope.setup {
+telescope.setup({
     defaults = {
         mappings = {
             i = {
@@ -21,7 +21,7 @@ telescope.setup {
                 ["<c-l>"] = actions.add_selected_to_loclist,
                 ["<c-h>"] = actions.send_to_loclist,
                 ["<M-p>"] = action_layout.toggle_preview,
-                ["<c-t>"] = trouble.open_with_trouble
+                ["<c-t>"] = trouble.open_with_trouble,
             },
             n = {
                 ["<c-w>"] = actions.send_selected_to_qflist,
@@ -29,13 +29,13 @@ telescope.setup {
                 ["<c-l>"] = actions.add_selected_to_loclist,
                 ["<c-h>"] = actions.send_to_loclist,
                 ["<M-p>"] = action_layout.toggle_preview,
-                ["<c-t>"] = trouble.open_with_trouble
-            }
+                ["<c-t>"] = trouble.open_with_trouble,
+            },
         },
         layout_strategy = "flex",
         file_ignore_patterns = { ".clang", ".trash" },
         path_display = { "truncate" },
-        winblend = 5
+        winblend = 5,
         -- set_env = { ['COLORTERM'] = 'truecolor' }, -- default = nil,
         -- file_previewer = previewers.vim_buffer_cat.new,
         -- grep_previewer = previewers.vim_buffer_vimgrep.new,
@@ -69,8 +69,8 @@ telescope.setup {
             theme = "dropdown",
             selection_strategy = "closest",
             previewer = false,
-            mappings = { i = { ["<c-d>"] = actions.delete_buffer } }
-        }
+            mappings = { i = { ["<c-d>"] = actions.delete_buffer } },
+        },
     },
     extensions = {
         -- fzy_native = { override_generic_sorter = false, override_file_sorter = true }
@@ -78,44 +78,59 @@ telescope.setup {
             fuzzy = true,
             override_generic_sorter = true,
             override_file_sorter = true,
-            case_mode = "smart_case" -- or "ignore_case" or "respect_case"
+            case_mode = "smart_case", -- or "ignore_case" or "respect_case"
             -- the default case_mode is "smart_case"
-        }
+        },
         -- ["ui-select"] = {
         --     require("telescope.themes").get_dropdown {
         --     }
         -- }
-    }
-}
+    },
+})
 
-telescope.load_extension('fzf')
-telescope.load_extension('notify')
+telescope.load_extension("fzf")
+telescope.load_extension("notify")
 -- telescope.load_extension('fzy_native')
 -- telescope.load_extension('ui-select')
 -- require'telescope.builtin'.symbol{ sources = {'emoji'} }
 
 -- LuaFormatter off
 -- telescope mappings
-local hb_utils = require "hb/utils"
+local hb_utils = require("hb/utils")
 local remap = hb_utils.remap
 local opts = hb_utils.opt_noremap_silent
 
-remap("n", "<c-p>",      "<cmd>lua RTELE(); require'telescope.builtin'.git_files{}<CR>", opts)
-remap("n", "<leader>m",  "<cmd>lua RTELE(); require'telescope.builtin'.oldfiles{}<CR>", opts)
-remap("n", "<leader>b",  "<cmd>lua RTELE(); require'telescope.builtin'.buffers{}<CR>", opts)
-remap("n", "<leader>a",  "<cmd>lua RTELE(); require'telescope.builtin'.live_grep{}<CR>", opts)
+remap("n", "<c-p>", "<cmd>lua RTELE(); require'telescope.builtin'.git_files{}<CR>", opts)
+remap("n", "<leader>m", "<cmd>lua RTELE(); require'telescope.builtin'.oldfiles{}<CR>", opts)
+remap("n", "<leader>b", "<cmd>lua RTELE(); require'telescope.builtin'.buffers{}<CR>", opts)
+remap("n", "<leader>a", "<cmd>lua RTELE(); require'telescope.builtin'.live_grep{}<CR>", opts)
 remap("n", "<leader>F", "<cmd>lua RTELE(); require'telescope.builtin'.current_buffer_fuzzy_find{}<CR>", opts)
 remap("n", "<leader>ts", "<cmd>lua RTELE(); require'telescope.builtin'.tagstack{}<CR>", opts)
 remap("n", "<leader>tc", "<cmd>lua RTELE(); require'telescope.builtin'.commands{}<CR>", opts)
 remap("n", "<leader>jl", "<cmd>lua RTELE(); require'telescope.builtin'.jumplist{}<CR>", opts)
 
 remap("n", "<leader>pf", "<cmd>lua RTELE(); require'telescope.builtin'.find_files{}<CR>", opts)
-remap("n", "<leader>ps", "<cmd>lua RTELE(); require'telescope.builtin'.grep_string({ search = vim.fn.input('Grep For > ')})<CR>", opts)
-remap("n", "<leader>pw", "<cmd>lua RTELE(); require'telescope.builtin'.grep_string({ search = vim.fn.expand('<cword>') })<CR>", opts)
+remap(
+    "n",
+    "<leader>ps",
+    "<cmd>lua RTELE(); require'telescope.builtin'.grep_string({ search = vim.fn.input('Grep For > ')})<CR>",
+    opts
+)
+remap(
+    "n",
+    "<leader>pw",
+    "<cmd>lua RTELE(); require'telescope.builtin'.grep_string({ search = vim.fn.expand('<cword>') })<CR>",
+    opts
+)
 
-remap("n", "<leader>r",  "<cmd>lua RTELE(); require'telescope.builtin'.lsp_references{}<CR>", opts)
+remap("n", "<leader>r", "<cmd>lua RTELE(); require'telescope.builtin'.lsp_references{}<CR>", opts)
 remap("n", "<leader>ws", "<cmd>lua RTELE(); require'telescope.builtin'.lsp_workspace_symbols{ query = '*' }<CR>", opts)
 remap("n", "<leader>cs", "<cmd>lua RTELE(); require'telescope.builtin'.lsp_document_symbols{}<CR>", opts)
-remap("n", "<leader>o",  "<cmd>lua RTELE(); require'telescope.builtin'.lsp_document_symbols{ symbols = {'method', 'function', 'module', 'interface' } }<CR>", opts)
+remap(
+    "n",
+    "<leader>o",
+    "<cmd>lua RTELE(); require'telescope.builtin'.lsp_document_symbols{ symbols = {'method', 'function', 'module', 'interface' } }<CR>",
+    opts
+)
 remap("n", "<leader>gc", "<cmd>lua RTELE(); require'telescope.builtin'.git_branches{}<CR>", opts)
 -- LuaFormatter on

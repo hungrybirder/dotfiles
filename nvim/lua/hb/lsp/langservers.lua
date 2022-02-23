@@ -6,25 +6,25 @@
 -- ]]
 _M_LSP = {}
 
-local lspconfig = require 'lspconfig'
+local lspconfig = require("lspconfig")
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
     underline = false,
     virtual_text = false,
     signs = true,
-    update_in_insert = false
+    update_in_insert = false,
 })
 
 local on_references = vim.lsp.handlers["textDocument/references"]
 vim.lsp.handlers["textDocument/references"] = vim.lsp.with(on_references, {
     -- Use location list instead of quickfix list
-    loclist = true
+    loclist = true,
 })
 
 local lsp_on_attach = function(client, bufnr)
-    require'hb/lsp/keymap'.setup_lsp_keymaps(client, bufnr)
-    require'lspsaga'.init_lsp_saga { code_action_keys = { quit = '<esc>', exec = '<CR>' } }
-    require'lsp_signature'.on_attach({
+    require("hb/lsp/keymap").setup_lsp_keymaps(client, bufnr)
+    require("lspsaga").init_lsp_saga({ code_action_keys = { quit = "<esc>", exec = "<CR>" } })
+    require("lsp_signature").on_attach({
         bind = true,
         handler_opts = { border = "rounded" },
         doc_lines = 2,
@@ -37,7 +37,7 @@ local lsp_on_attach = function(client, bufnr)
         zindex = 50,
         max_height = 12,
         max_width = 120,
-        fix_pos = false
+        fix_pos = false,
         -- fix_pos = function(signatures, lspclient)
         --     print(vim.inspect(signatures))
         --     if signatures.activeParameter >= 0 and #signatures['signatures'][1].parameters == 1 then
@@ -49,12 +49,12 @@ local lsp_on_attach = function(client, bufnr)
         --     return false
         -- end
     })
-    require"lspkind".init({})
+    require("lspkind").init({})
 end
 
 local make_lsp_client_capabilities = function()
     -- cmp_nvim_lsp take care of snippetSupport and resolveSupport
-    local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+    local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
     return capabilities
 end
 
@@ -75,39 +75,39 @@ local capabilities = make_lsp_client_capabilities()
 local servers = { "yamlls", "html", "cmake", "dockerls", "tsserver", "vimls", "bashls", "kotlin_language_server" }
 
 for _, name in pairs(servers) do
-    lspconfig[name].setup {
+    lspconfig[name].setup({
         on_attach = lsp_on_attach,
         flags = { debounce_text_changes = 150 },
-        capabilities = capabilities
-    }
+        capabilities = capabilities,
+    })
 end
 
-lspconfig.vuels.setup {
+lspconfig.vuels.setup({
     on_attach = lsp_on_attach,
     flags = { debounce_text_changes = 150 },
     capabilities = capabilities,
-    settings = { vetur = { experimental = { templateInterpolationService = true } } }
-}
+    settings = { vetur = { experimental = { templateInterpolationService = true } } },
+})
 
-lspconfig.jsonls.setup {
+lspconfig.jsonls.setup({
     commands = {
         Format = {
             function()
                 vim.lsp.buf.range_formatting({}, { 0, 0 }, { vim.fn.line("$"), vim.fn.strwidth(vim.fn.getline("$")) })
-            end
-        }
+            end,
+        },
     },
     on_attach = lsp_on_attach,
     flags = { debounce_text_changes = 150 },
-    capabilities = capabilities
-}
+    capabilities = capabilities,
+})
 
-lspconfig.sqlls.setup {
+lspconfig.sqlls.setup({
     cmd = { "sql-language-server", "up", "--method", "stdio" },
-    flags = { debounce_text_changes = 150 }
-}
+    flags = { debounce_text_changes = 150 },
+})
 
-lspconfig.pyright.setup {
+lspconfig.pyright.setup({
     on_attach = lsp_on_attach,
     flags = { debounce_text_changes = 150 },
     capabilities = capabilities,
@@ -117,27 +117,31 @@ lspconfig.pyright.setup {
                 autoImportCompletions = true,
                 autoSearchPaths = true,
                 useLibraryCodeForTypes = true,
-                diagnosticMode = 'workspace',
-                typeCheckingMode = 'basic'
+                diagnosticMode = "workspace",
+                typeCheckingMode = "basic",
             },
-            venvPath = require("os").getenv("HOME") .. "/" .. ".virtualenvs"
-        }
-    }
-}
+            venvPath = require("os").getenv("HOME") .. "/" .. ".virtualenvs",
+        },
+    },
+})
 
-lspconfig.clangd.setup {
+lspconfig.clangd.setup({
     init_options = { clangdFileStatus = true },
     on_attach = lsp_on_attach,
     flags = { debounce_text_changes = 150 },
     capabilities = capabilities,
-    cmd = { "clangd", "--background-index", "-j=8" }
-}
+    cmd = { "clangd", "--background-index", "-j=8" },
+})
 
-lspconfig.gopls.setup { on_attach = lsp_on_attach, flags = { debounce_text_changes = 150 }, capabilities = capabilities }
+lspconfig.gopls.setup({
+    on_attach = lsp_on_attach,
+    flags = { debounce_text_changes = 150 },
+    capabilities = capabilities,
+})
 
-local sumneko_root_path = vim.fn.stdpath('cache') .. '/lspconfig/sumneko_lua/lua-language-server'
+local sumneko_root_path = vim.fn.stdpath("cache") .. "/lspconfig/sumneko_lua/lua-language-server"
 local sumneko_binary = sumneko_root_path .. "/bin/lua-language-server"
-local runtime_path = vim.split(package.path, ';')
+local runtime_path = vim.split(package.path, ";")
 table.insert(runtime_path, "lua/?.lua")
 table.insert(runtime_path, "lua/?/init.lua")
 
@@ -155,22 +159,22 @@ local luadev = require("lua-dev").setup({
                     -- library = vim.api.nvim_get_runtime_file("", true),
                     preloadFileSize = 1024, -- KB
                     checkThirdParty = false,
-                    maxPreload = 2000
+                    maxPreload = 2000,
                 },
-                telemetry = { enable = false }
-            }
-        }
-    }
+                telemetry = { enable = false },
+            },
+        },
+    },
 })
 
 lspconfig.sumneko_lua.setup(luadev)
 
-lspconfig.solargraph.setup {
+lspconfig.solargraph.setup({
     capabilities = capabilities,
     on_attach = lsp_on_attach,
     flags = { debounce_text_changes = 150 },
-    cmd = { "/usr/local/lib/ruby/gems/3.0.0/bin/solargraph", "stdio" }
-}
+    cmd = { "/usr/local/lib/ruby/gems/3.0.0/bin/solargraph", "stdio" },
+})
 
 -- setup rust-tools
 capabilities.experimental = {}
@@ -185,7 +189,7 @@ local opts = {
         inlay_hints = { show_parameter_hints = true, parameter_hints_prefix = "<-", other_hints_prefix = "=>" },
         hover_actions = {
             -- whether the hover action window gets automatically focused
-            auto_focus = true
+            auto_focus = true,
         },
         crate_graph = {
             -- Backend used for displaying the graph
@@ -199,7 +203,7 @@ local opts = {
             -- true for all crates.io and external crates, false only the local
             -- crates
             -- default: true
-            full = true
+            full = true,
             -- enabled_graphviz_backends = {
             --   "bmp", "cgimage", "canon", "dot", "gv", "xdot", "xdot1.2", "xdot1.4",
             --   "eps", "exr", "fig", "gd", "gd2", "gif", "gtk", "ico", "cmap", "ismap",
@@ -209,13 +213,13 @@ local opts = {
             --   "svgz", "tga", "tiff", "tif", "tk", "vml", "vmlz", "wbmp", "webp", "xlib",
             --   "x11"
             -- }
-        }
+        },
     },
     server = { -- setup rust_analyzer
         on_attach = lsp_on_attach,
         flags = { debounce_text_changes = 150 },
-        capabilities = capabilities
-    }
+        capabilities = capabilities,
+    },
     -- dap = {
     --   adapter = {
     --     type = 'executable',
@@ -225,7 +229,7 @@ local opts = {
     -- }
 }
 
-require('rust-tools').setup(opts)
+require("rust-tools").setup(opts)
 -- setup rust-tools end
 --
 _M_LSP.lsp_client_capabilities = capabilities

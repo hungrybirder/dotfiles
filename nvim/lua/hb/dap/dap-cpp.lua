@@ -8,19 +8,19 @@
 --   - ${relativeFileDirname}: The current file's dirname relative to getcwd()
 --   - ${workspaceFolder}: The current working directory of Neovim
 --   - ${workspaceFolderBasename}: The name of the folder opened in Neovim
-local dap = require('dap')
+local dap = require("dap")
 
 dap.adapters.cpp = {
-    type = 'executable',
+    type = "executable",
     attach = { pidProperty = "pid", pidSelect = "ask" },
-    command = 'lldb-vscode',
+    command = "lldb-vscode",
     env = { LLDB_LAUNCH_FLAG_LAUNCH_IN_TTY = "YES" },
-    name = "lldb"
+    name = "lldb",
 }
 
 dap.configurations.cpp = {
     {
-        type = 'cpp',
+        type = "cpp",
         name = "Launch",
         request = "launch",
         program = "${workspaceFolder}/${relativeFileDirname}/build/${fileBasenameNoExtension}",
@@ -29,8 +29,6 @@ dap.configurations.cpp = {
         environment = {},
         externalConsole = true,
         MIMode = mi_mode or "lldb",
-        MIDebuggerPath = mi_debugger_path
-    }
+        MIDebuggerPath = mi_debugger_path,
+    },
 }
-
-

@@ -1,5 +1,5 @@
 -- temp file
-vim.cmd [[
+vim.cmd([[
 
 for f in split(glob('~/.config/nvim/plugins.d/*.vim'), '\n')
 	exe 'source' f
@@ -282,14 +282,12 @@ let g:ale_linters_explicit = 1
 let g:ale_linters = {
 \ 'python': ['pylint', 'pyright'],
 \ 'sh': ['shellcheck'],
-\ 'markdown':['remark-lint'],
 \ 'go': ['gofmt', 'golint', 'go vet', 'staticcheck'],
 \ }
 let g:ale_fixers = {
 \ '*': ['remove_trailing_lines', 'trim_whitespace'],
 \ 'python': ['yapf', 'autoimport'],
 \ 'go': ['goimports'],
-\ 'markdown':['remark-lint'],
 \ 'sh':['shfmt'],
 \ 'vue': ['prettier'],
 \ }
@@ -373,21 +371,21 @@ augroup end
 let g:cursorhold_updatetime = 100
 " FixCursorHold.nvim end
 
-]]
+]])
 
-local hb_utils = require "hb/utils"
+local hb_utils = require("hb/utils")
 local remap = hb_utils.remap
 local opts = hb_utils.opt_noremap_silent
 local opt_noremap = hb_utils.opt_noremap
 
-vim.g.mapleader = ' '
+vim.g.mapleader = " "
 
-remap('n', '<leader>ev', '<cmd>e $MYVIMRC<CR>', opt_noremap)
-remap('n', '<leader>sv', '<cmd>so $MYVIMRC<CR>', opt_noremap)
+remap("n", "<leader>ev", "<cmd>e $MYVIMRC<CR>", opt_noremap)
+remap("n", "<leader>sv", "<cmd>so $MYVIMRC<CR>", opt_noremap)
 
-remap('n', '<leader>pi', '<cmd>PackerSync<CR>', opt_noremap)
-remap('n', '<leader>pu', '<cmd>PackerUpdate<CR>', opt_noremap)
-remap('n', '<leader>pc', '<cmd>PackerClean<CR>', opt_noremap)
+remap("n", "<leader>pi", "<cmd>PackerSync<CR>", opt_noremap)
+remap("n", "<leader>pu", "<cmd>PackerUpdate<CR>", opt_noremap)
+remap("n", "<leader>pc", "<cmd>PackerClean<CR>", opt_noremap)
 
 -- neoterm
 -- vim.g.neoterm_default_mod = 'vertical'
@@ -400,70 +398,68 @@ remap('n', '<leader>pc', '<cmd>PackerClean<CR>', opt_noremap)
 -- remap('t', '<c-q>', '<c-\\><c-n>:Ttoggle<CR>', opts)
 
 vim.g.vim_markdown_math = true
-remap('n', '<leader>md', '<cmd>MarkdownPreview<CR>', opts)
+remap("n", "<leader>md", "<cmd>MarkdownPreview<CR>", opts)
 
 -- vim-bbye
-remap('n', '<leader><BS>', '<cmd>Bdelete<CR>', opts)
+remap("n", "<leader><BS>", "<cmd>Bdelete<CR>", opts)
 
 -- Best remap by ThePrimeagen
 -- greatest remap ever
-remap('v', '<leader>p', '"_dP', opts)
+remap("v", "<leader>p", '"_dP', opts)
 
-remap('v', '<', '<gv', opts)
-remap('v', '>', '>gv', opts)
+remap("v", "<", "<gv", opts)
+remap("v", ">", ">gv", opts)
 
 -- inoremap maps a key combination for insert mode
 -- <C-e> is the keybinding I am creating.
 -- <C-o> is a command that switches vim to normal mode for one command.
 -- $ jumps to the end of the line and we are switched back to insert mode.
-remap('i', '<C-e>', '<C-o>$', opts)
-remap('i', '<C-a>', '<C-o>0', opts)
-
-
+remap("i", "<C-e>", "<C-o>$", opts)
+remap("i", "<C-a>", "<C-o>0", opts)
 
 -- next greatest remap ever : asbjornHaland
-remap('n', '<leader>y', '"+y', opts)
-remap('v', '<leader>y', '"+y', opts)
-remap('n', '<leader>Y', 'gg"+yG', opts)
+remap("n", "<leader>y", '"+y', opts)
+remap("v", "<leader>y", '"+y', opts)
+remap("n", "<leader>Y", 'gg"+yG', opts)
 
 -- Behave Vim
-remap('n', 'Y', 'y$', opts)
+remap("n", "Y", "y$", opts)
 
 -- Moving text
 -- not pollute registers!
-remap('v', 'J', ":m '>+1<CR>gv=gv", opts)
-remap('v', 'K', ":m '<-2<CR>gv=gv", opts)
+remap("v", "J", ":m '>+1<CR>gv=gv", opts)
+remap("v", "K", ":m '<-2<CR>gv=gv", opts)
 -- inoremap <C-k> <esc>:m .-2<CR>==
 -- inoremap <C-j> <esc>:m .+1<CR>==
 -- nnoremap <leader>j :m .+1<CR>==
 -- nnoremap <leader>k :m .-2<CR>==
 
 -- Switch to alternative buffer
-remap('n', '<bs>', '<c-^>', opts)
+remap("n", "<bs>", "<c-^>", opts)
 
-remap('n', '<C-c>', '<esc>', opts)
+remap("n", "<C-c>", "<esc>", opts)
 
 -- Q: Closes the window
-remap('n', 'Q', '<cmd>q<CR>', opts)
+remap("n", "Q", "<cmd>q<CR>", opts)
 -- close all windows
-remap('n', '<leader>Q', '<cmd>qa!<CR>', opts)
+remap("n", "<leader>Q", "<cmd>qa!<CR>", opts)
 
 -- Undo break points
-remap('i', ',', ',<c-g>u', opts)
-remap('i', '.', '.<c-g>u', opts)
-remap('i', '!', '!<c-g>u', opts)
-remap('i', '?', '?<c-g>u', opts)
+remap("i", ",", ",<c-g>u", opts)
+remap("i", ".", ".<c-g>u", opts)
+remap("i", "!", "!<c-g>u", opts)
+remap("i", "?", "?<c-g>u", opts)
 
 -- Keeping it centered
-remap('n', 'n', 'nzzzv', opts)
-remap('n', 'N', 'Nzzzv', opts)
-remap('n', 'J', 'mzJ`z', opts)
+remap("n", "n", "nzzzv", opts)
+remap("n", "N", "Nzzzv", opts)
+remap("n", "J", "mzJ`z", opts)
 
 -- Use alt + hjkl to resize windows
-remap('n', '<M-j>', ':resize +2<CR>', opts)
-remap('n', '<M-k>', ':resize -2<CR>', opts)
-remap('n', '<M-h>', ':vertical resize +2<CR>', opts)
-remap('n', '<M-l>', ':vertical resize -2<CR>', opts)
+remap("n", "<M-j>", ":resize +2<CR>", opts)
+remap("n", "<M-k>", ":resize -2<CR>", opts)
+remap("n", "<M-h>", ":vertical resize +2<CR>", opts)
+remap("n", "<M-l>", ":vertical resize -2<CR>", opts)
 
 -- delete current line
 -- map <c-d> dd
@@ -471,16 +467,16 @@ remap('n', '<M-l>', ':vertical resize -2<CR>', opts)
 -- imap <c-d> <esc>ddi
 -- exit insert mode
 -- inoremap jk <esc>
-remap('i', 'jk', '<esc>', opts)
+remap("i", "jk", "<esc>", opts)
 
 -- Move to window
-remap('n', '<c-h>', '<cmd>wincmd h<CR>', opts)
-remap('n', '<c-j>', '<cmd>wincmd j<CR>', opts)
-remap('n', '<c-k>', '<cmd>wincmd k<CR>', opts)
-remap('n', '<c-l>', '<cmd>wincmd l<CR>', opts)
+remap("n", "<c-h>", "<cmd>wincmd h<CR>", opts)
+remap("n", "<c-j>", "<cmd>wincmd j<CR>", opts)
+remap("n", "<c-k>", "<cmd>wincmd k<CR>", opts)
+remap("n", "<c-l>", "<cmd>wincmd l<CR>", opts)
 --
 -- ctrl_e ctrl_y 3 lines
-remap('n', '<c-e>', '3<c-e>', opts)
-remap('n', '<c-y>', '3<c-y>', opts)
-remap('v', '<c-e>', '3<c-e>', opts)
-remap('v', '<c-y>', '3<c-y>', opts)
+remap("n", "<c-e>", "3<c-e>", opts)
+remap("n", "<c-y>", "3<c-y>", opts)
+remap("v", "<c-e>", "3<c-e>", opts)
+remap("v", "<c-y>", "3<c-y>", opts)

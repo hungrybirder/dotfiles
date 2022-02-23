@@ -18,8 +18,8 @@ local builders = {
                 request = "launch",
                 module = cmd[module_index],
                 args = args,
-                justMyCode = false
-            }
+                justMyCode = false,
+            },
         }
     end,
     ["go#gotest"] = function(cmd)
@@ -39,13 +39,13 @@ local builders = {
                 mode = "test",
                 program = "${workspaceFolder}",
                 dlvToolPath = vim.fn.exepath("dlv"),
-                args = args
+                args = args,
             },
             parse_result = function(lines)
                 return lines[#lines] == "FAIL" and 1 or 0
-            end
+            end,
         }
-    end
+    end,
 }
 
 require("ultest").setup({ builders = builders })

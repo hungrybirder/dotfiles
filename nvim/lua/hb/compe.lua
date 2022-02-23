@@ -10,8 +10,8 @@ end
 
 -- Copy from https://github.com/lukas-reineke/cmp-under-comparator
 local under_comparator = function(entry1, entry2)
-    local _, entry1_under = entry1.completion_item.label:find "^_+"
-    local _, entry2_under = entry2.completion_item.label:find "^_+"
+    local _, entry1_under = entry1.completion_item.label:find("^_+")
+    local _, entry2_under = entry2.completion_item.label:find("^_+")
     entry1_under = entry1_under or 0
     entry2_under = entry2_under or 0
     if entry1_under > entry2_under then
@@ -21,8 +21,8 @@ local under_comparator = function(entry1, entry2)
     end
 end
 
-local cmp = require "cmp"
-cmp.setup {
+local cmp = require("cmp")
+cmp.setup({
     -- LuaFormatter off
     sorting = {
         comparators = {
@@ -41,31 +41,33 @@ cmp.setup {
     snippet = {
         expand = function(args)
             vim.fn["vsnip#anonymous"](args.body)
-        end
+        end,
     },
-    sources = cmp.config.sources({ { name = 'nvim_lsp' }, { name = 'vsnip' }, { name = 'buffer' }, { name = 'tags' } },
-                                 { { name = 'nvim_lua' }, { name = 'path' }, { name = 'rg' } },
-                                 { { name = 'calc' }, { name = 'emoji' } }),
+    sources = cmp.config.sources(
+        { { name = "nvim_lsp" }, { name = "vsnip" }, { name = "buffer" }, { name = "tags" } },
+        { { name = "nvim_lua" }, { name = "path" }, { name = "rg" } },
+        { { name = "calc" }, { name = "emoji" } }
+    ),
     formatting = {
         format = require("lspkind").cmp_format({
             with_text = false,
-            menu = ({
+            menu = {
                 buffer = "[Buffer]",
                 nvim_lsp = "[LSP]",
                 luasnip = "[LuaSnip]",
                 nvim_lua = "[Lua]",
                 latex_symbols = "[Latex]",
                 vsnip = "[Vsnip]",
-                tags = "[Tag]"
-            })
-        })
+                tags = "[Tag]",
+            },
+        }),
     },
     mapping = {
-        ['<C-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
-        ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
-        ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
-        ['<C-e>'] = cmp.mapping({ i = cmp.mapping.abort(), c = cmp.mapping.close() }),
-        ['<CR>'] = cmp.mapping.confirm({ select = true }),
+        ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
+        ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
+        ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
+        ["<C-e>"] = cmp.mapping({ i = cmp.mapping.abort(), c = cmp.mapping.close() }),
+        ["<CR>"] = cmp.mapping.confirm({ select = true }),
         ["<Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
                 cmp.select_next_item()
@@ -83,25 +85,27 @@ cmp.setup {
             elseif vim.fn["vsnip#jumpable"](-1) == 1 then
                 feedkey("<Plug>(vsnip-jump-prev)", "")
             end
-        end, { "i", "s", "c" })
-    }
-}
+        end, { "i", "s", "c" }),
+    },
+})
 
-cmp.setup.filetype('gitcommit', { sources = cmp.config.sources({ { name = 'cmp_git' } }, { { name = 'buffer' } }) })
+cmp.setup.filetype("gitcommit", { sources = cmp.config.sources({ { name = "cmp_git" } }, { { name = "buffer" } }) })
 
 -- Use buffer source for `/`.
-cmp.setup.cmdline('/',
-                  { sources = cmp.config.sources({ { name = 'nvim_lsp_document_symbol' } }, { { name = 'buffer' } }) })
+cmp.setup.cmdline(
+    "/",
+    { sources = cmp.config.sources({ { name = "nvim_lsp_document_symbol" } }, { { name = "buffer" } }) }
+)
 -- Use cmdline & path source for ':'.
-cmp.setup.cmdline(':', { sources = cmp.config.sources({ { name = 'path' } }, { { name = 'cmdline' } }) })
+cmp.setup.cmdline(":", { sources = cmp.config.sources({ { name = "path" } }, { { name = "cmdline" } }) })
 
-local cmp_autopairs = require('nvim-autopairs.completion.cmp')
-cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done())
+local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
 
-local npairs = require('nvim-autopairs')
+local npairs = require("nvim-autopairs")
 npairs.setup({
     -- enable fast_wrap
     -- <M-e>
-    fast_wrap = {}
+    fast_wrap = {},
 })
-npairs.remove_rule('`')
+npairs.remove_rule("`")
