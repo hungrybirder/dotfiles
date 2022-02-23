@@ -1,5 +1,7 @@
 local null_ls = require("null-ls")
 local formatting = null_ls.builtins.formatting
+-- local code_actions = null_ls.builtins.code_actions
+local diagnostics = null_ls.builtins.diagnostics
 
 null_ls.setup({
     debug = false,
@@ -8,6 +10,11 @@ null_ls.setup({
         formatting.remark,
         formatting.shfmt,
         formatting.yapf,
+        formatting.trim_whitespace,
+
+        diagnostics.shellcheck, -- sh
+        diagnostics.staticcheck, -- Go
+        diagnostics.pylint, -- python
     },
     on_attach = function(client)
         if client.supports_method("textDocument/formatting") then
