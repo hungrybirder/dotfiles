@@ -38,16 +38,6 @@ local lsp_on_attach = function(client, bufnr)
         max_height = 12,
         max_width = 120,
         fix_pos = false,
-        -- fix_pos = function(signatures, lspclient)
-        --     print(vim.inspect(signatures))
-        --     if signatures.activeParameter >= 0 and #signatures['signatures'][1].parameters == 1 then
-        --         return false
-        --     end
-        --     if lspclient.name == 'sumneko_lua' then
-        --         return true
-        --     end
-        --     return false
-        -- end
     })
     require("lspkind").init({})
 end

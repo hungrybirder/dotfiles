@@ -10,7 +10,9 @@ null_ls.setup({
         formatting.remark,
         formatting.shfmt,
         formatting.yapf,
-        formatting.trim_whitespace,
+        formatting.trim_whitespace.with({
+            disabled_filetypes = { "go" },
+        }),
 
         diagnostics.shellcheck, -- sh
         diagnostics.staticcheck, -- Go
@@ -18,7 +20,6 @@ null_ls.setup({
     },
     on_attach = function(client)
         if client.supports_method("textDocument/formatting") then
-            -- wrap in an augroup to prevent duplicate autocmds
             vim.cmd([[
             augroup LspFormatting
                 autocmd! * <buffer>
