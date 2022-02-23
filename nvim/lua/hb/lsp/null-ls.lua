@@ -11,7 +11,7 @@ null_ls.setup({
         formatting.shfmt,
         formatting.yapf,
         formatting.trim_whitespace.with({
-            disabled_filetypes = { "go" },
+            disabled_filetypes = { "go" , "c", "cpp"},
         }),
 
         diagnostics.shellcheck, -- sh
