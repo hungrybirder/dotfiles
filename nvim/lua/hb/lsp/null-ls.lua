@@ -10,8 +10,11 @@ null_ls.setup({
         formatting.remark,
         formatting.shfmt,
         formatting.yapf,
-        formatting.trim_whitespace.with({
-            disabled_filetypes = { "go" , "c", "cpp"},
+        formatting.trim_whitespace,
+        formatting.goimports,
+        formatting.rustfmt,
+        formatting.clang_format.with({
+            filetypes = { "c", "cpp" },
         }),
 
         diagnostics.shellcheck, -- sh

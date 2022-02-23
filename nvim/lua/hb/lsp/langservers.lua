@@ -22,6 +22,10 @@ vim.lsp.handlers["textDocument/references"] = vim.lsp.with(on_references, {
 })
 
 local lsp_on_attach = function(client, bufnr)
+    -- using null-ls for formatting...
+    client.resolved_capabilities.document_formatting = false
+    client.resolved_capabilities.document_range_formatting = false
+
     require("hb/lsp/keymap").setup_lsp_keymaps(client, bufnr)
     require("lspsaga").init_lsp_saga({ code_action_keys = { quit = "<esc>", exec = "<CR>" } })
     require("lsp_signature").on_attach({
@@ -115,11 +119,14 @@ lspconfig.pyright.setup({
     },
 })
 
+-- https://github.com/jose-elias-alvarez/null-ls.nvim/issues/428
+local capabilities_for_clangd = make_lsp_client_capabilities()
+capabilities_for_clangd.offsetEncoding = { "utf-16" }
 lspconfig.clangd.setup({
     init_options = { clangdFileStatus = true },
     on_attach = lsp_on_attach,
     flags = { debounce_text_changes = 150 },
-    capabilities = capabilities,
+    capabilities = capabilities_for_clangd,
     cmd = { "clangd", "--background-index", "-j=8" },
 })
 
