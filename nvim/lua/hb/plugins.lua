@@ -115,7 +115,7 @@ return packer.startup(function(use)
     use({
         "ldelossa/litee.nvim",
         config = function()
-            require("litee.lib").setup({ on_open = "popout" })
+            require("litee.lib").setup({ on_open = "popout", tree = { icon_set = "codicons" } })
         end,
     })
     use({
