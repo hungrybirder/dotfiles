@@ -62,7 +62,9 @@ require("nvim-tree").setup({
             -- if true, it will only use your list to set the mappings
             custom_only = false,
             -- list of mappings to set on the tree manually
-            list = {},
+            list = {
+                { key = "<C-e>", action = "" }, -- disable edit_in_place
+            },
         },
     },
     filters = {
