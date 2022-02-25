@@ -27,7 +27,6 @@ M.setup_lsp_keymaps = function(client, bufnr)
     buf_set_keymap("v", "<space>ca", ":Telescope lsp_code_actions<CR>", opts)
     buf_set_keymap("n", "K", "<Cmd>lua vim.lsp.buf.hover()<CR>", opts)
 
-    -- incoming_calls & outgoing_calls, powered by litee-calltree.nvim
     buf_set_keymap("n", "gic", "<cmd>lua vim.lsp.buf.incoming_calls()<CR>", opts)
     buf_set_keymap("n", "goc", "<cmd>lua vim.lsp.buf.outgoing_calls()<CR>", opts)
 
