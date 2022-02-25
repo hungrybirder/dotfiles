@@ -44,9 +44,9 @@ cmp.setup({
         end,
     },
     sources = cmp.config.sources(
-        { { name = "nvim_lsp" }, { name = "vsnip" }, { name = "buffer" }, { name = "tags" } },
-        { { name = "nvim_lua" }, { name = "path" }, { name = "rg" } },
-        { { name = "calc" }, { name = "emoji" } }
+        { { name = "nvim_lsp" }, { name = "vsnip" }, { name = "buffer" } },
+        { { name = "tags" }, { name = "nvim_lua" } },
+        { { name = "emoji" }, { name = "path" } }
     ),
     formatting = {
         format = require("lspkind").cmp_format({

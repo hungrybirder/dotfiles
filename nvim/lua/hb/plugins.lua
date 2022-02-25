@@ -157,7 +157,7 @@ return packer.startup(function(use)
     use("hrsh7th/cmp-emoji")
     use("hrsh7th/cmp-nvim-lsp-document-symbol")
     use("quangnguyen30192/cmp-nvim-tags")
-    use("lukas-reineke/cmp-rg")
+    -- use("lukas-reineke/cmp-rg")
     use({
         "petertriho/cmp-git",
         requires = "nvim-lua/plenary.nvim",
