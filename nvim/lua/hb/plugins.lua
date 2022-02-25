@@ -233,7 +233,7 @@ return packer.startup(function(use)
     use("mmarchini/bpftrace.vim")
 
     -- markdown
-    use("mzlogin/vim-markdown-toc")
+    use({'preservim/vim-markdown', requires = {'godlygeek/tabular'}})
     use({ -- https://github.com/iamcco/markdown-preview.nvim/issues/354
         "iamcco/markdown-preview.nvim",
         run = "cd app && npm install",

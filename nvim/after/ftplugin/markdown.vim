@@ -8,3 +8,5 @@
 
 nnoremap <silent> <space>f :lua vim.lsp.buf.formatting()<CR>
 vnoremap <silent> <space>f :lua vim.lsp.buf.range_formatting()<CR>
+
+nnoremap <silent> <space>o :Toc<CR>
