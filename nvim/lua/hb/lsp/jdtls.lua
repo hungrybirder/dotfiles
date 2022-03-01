@@ -4,7 +4,6 @@ function M.setup()
     local on_attach = function(client, bufnr)
         require("jdtls.setup").add_commands()
         require("jdtls").setup_dap({ hotcodereplace = "auto" })
-        require("lsp-status").on_attach(client)
         require("hb/lsp/keymap").setup_lsp_keymaps(client, bufnr)
 
         -- TODO?
