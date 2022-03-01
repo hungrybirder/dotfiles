@@ -106,7 +106,7 @@ remap("n", "<leader>b", "<cmd>lua RTELE(); require'telescope.builtin'.buffers{}<
 remap("n", "<leader>a", "<cmd>lua RTELE(); require'telescope.builtin'.live_grep{}<CR>", opts)
 remap("n", "<leader>F", "<cmd>lua RTELE(); require'telescope.builtin'.current_buffer_fuzzy_find{}<CR>", opts)
 remap("n", "<leader>ts", "<cmd>lua RTELE(); require'telescope.builtin'.tagstack{}<CR>", opts)
-remap("n", "<leader>tc", "<cmd>lua RTELE(); require'telescope.builtin'.commands{}<CR>", opts)
+remap("n", "<leader>cc", "<cmd>lua RTELE(); require'telescope.builtin'.commands{}<CR>", opts)
 remap("n", "<leader>jl", "<cmd>lua RTELE(); require'telescope.builtin'.jumplist{}<CR>", opts)
 
 remap("n", "<leader>pf", "<cmd>lua RTELE(); require'telescope.builtin'.find_files{}<CR>", opts)
