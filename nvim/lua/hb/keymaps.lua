@@ -21,7 +21,7 @@ syntax on
 filetype plugin indent on
 
 set inccommand=nosplit
-set list listchars=tab:› ,eol:↴,trail:•
+" set list listchars=tab:› ,eol:↴,trail:•
 set exrc
 set guicursor=
 set number relativenumber
