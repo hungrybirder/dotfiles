@@ -146,6 +146,9 @@ return packer.startup(function(use)
     })
     -- lsp icons
     use("onsails/lspkind-nvim")
+    -- lsp for performance UI.
+    -- https://github.com/glepnir/lspsaga.nvim/issues/267
+    use("tami5/lspsaga.nvim")
 
     -- auto completion
     use("hrsh7th/nvim-cmp")
@@ -180,9 +183,6 @@ return packer.startup(function(use)
     use("hrsh7th/vim-vsnip")
     use("hrsh7th/cmp-vsnip")
     use("rafamadriz/friendly-snippets")
-    -- lsp for performance UI.
-    -- https://github.com/glepnir/lspsaga.nvim/issues/267
-    use("tami5/lspsaga.nvim")
 
     -- tree sitter
     use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
@@ -195,17 +195,41 @@ return packer.startup(function(use)
     use({ "stsewd/sphinx.nvim", run = ":UpdateRemotePlugins" })
     use("theprimeagen/jvim.nvim")
 
+    -- better quickfix window
+    use("kevinhwang91/nvim-bqf")
+
     -- sign marks
+    -- mx           Toggle mark 'x' and display it in the leftmost column
+    -- dmx          Remove mark 'x' where x is a-zA-Z
+    -- m,           Place the next available mark
+    -- m.           If no mark on line, place the next available mark. Otherwise, remove (first) existing mark.
+    -- m-           Delete all marks from the current line
+    -- m<Space>     Delete all marks from the current buffer
+    -- ]`           Jump to next mark
+    -- [`           Jump to prev mark
+    -- ]'           Jump to start of next line containing a mark
+    -- ['           Jump to start of prev line containing a mark
+    -- `]           Jump by alphabetical order to next mark
+    -- `[           Jump by alphabetical order to prev mark
+    -- ']           Jump by alphabetical order to start of next line having a mark
+    -- '[           Jump by alphabetical order to start of prev line having a mark
+    -- m/           Open location list and display marks from current buffer
+    -- m[0-9]       Toggle the corresponding marker !@#$%^&*()
+    -- m<S-[0-9]>   Remove all markers of the same type
+    -- ]-           Jump to next line having a marker of the same type
+    -- [-           Jump to prev line having a marker of the same type
+    -- ]=           Jump to next line having a marker of any type
+    -- [=           Jump to prev line having a marker of any type
+    -- m?           Open location list and display markers from current buffer
+    -- m<BS>        Remove all markers
     use("kshenoy/vim-signature")
+
     -- registers
     use("tversteeg/registers.nvim")
 
     -- fzf
     use({ "junegunn/fzf", dir = "~/.fzf", run = "./install --all" })
     use("junegunn/fzf.vim")
-
-    -- better quickfix window
-    use("kevinhwang91/nvim-bqf")
 
     -- telescope
     use("nvim-lua/popup.nvim")

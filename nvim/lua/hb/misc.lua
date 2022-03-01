@@ -88,3 +88,6 @@ remap("n", "<leader>xd", "<cmd>Trouble document_diagnostics<cr>", opts)
 remap("n", "<leader>xl", "<cmd>Trouble loclist<cr>", opts)
 remap("n", "<leader>xq", "<cmd>Trouble quickfix<cr>", opts)
 remap("n", "gR", "<cmd>Trouble lsp_references<cr>", opts)
+
+-- Disable vim-dispatch mappings
+vim.g.dispatch_no_maps = 1
