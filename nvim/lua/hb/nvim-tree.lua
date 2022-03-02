@@ -1,21 +1,17 @@
 vim.o.termguicolors = true
 vim.api.nvim_exec([[highlight NvimTreeFolderIcon guibg=blue]], false)
 
-vim.g.nvim_tree_quit_on_open = 0
 vim.g.nvim_tree_indent_markers = 1
 vim.g.nvim_tree_git_hl = 1
 vim.g.nvim_tree_highlight_opened_files = 1
 vim.g.nvim_tree_root_folder_modifier = ":~"
 vim.g.nvim_tree_add_trailing = 1
 vim.g.nvim_tree_group_empty = 1
-vim.g.nvim_tree_disable_window_picker = 1
 vim.g.nvim_tree_icon_padding = " "
 vim.g.nvim_tree_symlink_arrow = " >> "
 vim.g.nvim_tree_respect_buf_cwd = 1
 vim.g.nvim_tree_create_in_closed_folder = 0
 vim.g.nvim_tree_refresh_wait = 500
-
-vim.g.nvim_tree_window_picker_exclude = { filetype = { "packer", "qf" }, buftype = { "terminal" } }
 
 vim.g.nvim_tree_special_files = { ["README.md"] = true, Makefile = true, MAKEFILE = true }
 
