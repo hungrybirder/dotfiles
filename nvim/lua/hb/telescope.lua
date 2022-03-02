@@ -60,6 +60,7 @@ telescope.setup({
         tagstack = { theme = "dropdown" },
         treesitter = { theme = "dropdown" },
         git_branches = { theme = "dropdown" },
+        marks = { theme = "ivy", previewer = false },
 
         git_files = { theme = "dropdown", previewer = false },
         find_files = { theme = "dropdown", previewer = false },
@@ -102,6 +103,7 @@ local opts = hb_utils.opt_noremap_silent
 
 remap("n", "<c-p>", "<cmd>lua RTELE(); require'telescope.builtin'.git_files{}<CR>", opts)
 remap("n", "<leader>m", "<cmd>lua RTELE(); require'telescope.builtin'.oldfiles{}<CR>", opts)
+remap("n", "<leader>n", "<cmd>lua RTELE(); require'telescope.builtin'.marks{}<CR>", opts)
 remap("n", "<leader>b", "<cmd>lua RTELE(); require'telescope.builtin'.buffers{}<CR>", opts)
 remap("n", "<leader>a", "<cmd>lua RTELE(); require'telescope.builtin'.live_grep{}<CR>", opts)
 remap("n", "<leader>F", "<cmd>lua RTELE(); require'telescope.builtin'.current_buffer_fuzzy_find{}<CR>", opts)
