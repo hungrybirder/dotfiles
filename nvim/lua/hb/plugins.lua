@@ -194,6 +194,13 @@ return packer.startup(function(use)
     use("JoosepAlviste/nvim-ts-context-commentstring")
     use({ "stsewd/sphinx.nvim", run = ":UpdateRemotePlugins" })
     use("theprimeagen/jvim.nvim")
+    use({
+        "SmiteshP/nvim-gps",
+        requires = "nvim-treesitter/nvim-treesitter",
+        config = function()
+            require("nvim-gps").setup()
+        end,
+    })
 
     -- better quickfix window
     use("kevinhwang91/nvim-bqf")

@@ -14,6 +14,9 @@ local colors = {
     lightgrey = "#57595e",
     darkgrey = "#404247",
 }
+
+local gps = require("nvim-gps")
+
 require("lualine").setup({
     options = {
         icons_enabled = true,
@@ -35,9 +38,10 @@ require("lualine").setup({
                     removed = { fg = colors.red, bg = colors.bg },
                 },
             },
+            { "diagnostics", sources = { "nvim_diagnostic" } },
         },
         lualine_c = {
-            { "diagnostics", sources = { "nvim_diagnostic" } },
+            { gps.get_location, cond = gps.is_available, color = { bg = colors.bg, fg = colors.blue, gui = "bold" } },
         },
         lualine_x = {},
         lualine_y = { "location", "progress" },
