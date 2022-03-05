@@ -453,3 +453,6 @@ remap("n", "<c-e>", "3<c-e>", opts)
 remap("n", "<c-y>", "3<c-y>", opts)
 remap("v", "<c-e>", "3<c-e>", opts)
 remap("v", "<c-y>", "3<c-y>", opts)
+
+vim.o.hlsearch = true
+remap("n", "<esc><esc>", "<cmd>nohlsearch<CR>", opts)
