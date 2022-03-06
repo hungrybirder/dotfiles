@@ -49,7 +49,7 @@ telescope.setup({
         lsp_code_actions = { theme = "cursor" },
         commands = { theme = "dropdown" },
         current_buffer_fuzzy_find = { theme = "dropdown" },
-        grep_string = { theme = "dropdown" },
+        grep_string = { theme = "ivy" },
         jumplist = { theme = "ivy", previewer = false },
         loclist = { theme = "ivy", previewer = false },
         live_grep = { theme = "dropdown" },
