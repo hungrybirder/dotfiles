@@ -344,6 +344,14 @@ augroup end
 let g:cursorhold_updatetime = 100
 " FixCursorHold.nvim end
 
+function! ToggleNumber()
+    if(&number == 1 || &relativenumber == 1)
+        set nonumber norelativenumber
+    else
+        set number relativenumber
+    endif
+endfunction
+
 ]])
 
 local hb_utils = require("hb/utils")
@@ -456,3 +464,6 @@ remap("v", "<c-y>", "3<c-y>", opts)
 
 vim.o.hlsearch = true
 remap("n", "<esc><esc>", "<cmd>nohlsearch<CR>", opts)
+
+-- map toggle number
+remap("n", "<leader>N", "<cmd>call ToggleNumber()<CR>", opts)
