@@ -112,25 +112,10 @@ return packer.startup(function(use)
     -- nvim-tree
     use({ "kyazdani42/nvim-tree.lua", requires = { "kyazdani42/nvim-web-devicons" } })
 
-    use({
-        "ldelossa/litee.nvim",
-        config = function()
-            require("litee.lib").setup({
-                on_open = "popout",
-                panel = {
-                    orientation = "right",
-                    panel_size = 30,
-                },
-                tree = { icon_set = "codicons" },
-            })
-        end,
-    })
+    use("ldelossa/litee.nvim")
     use({
         "ldelossa/litee-calltree.nvim",
         requires = { "ldelossa/litee.nvim" },
-        config = function()
-            require("litee.calltree").setup({})
-        end,
     })
 
     -- lsp config

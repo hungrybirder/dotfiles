@@ -89,3 +89,14 @@ remap("n", "gR", "<cmd>Trouble lsp_references<cr>", opts)
 
 -- Disable vim-dispatch mappings
 vim.g.dispatch_no_maps = 1
+
+-- litee
+require("litee.lib").setup({
+    on_open = "popout",
+    panel = {
+        orientation = "right",
+        panel_size = 30,
+    },
+    tree = { icon_set = "codicons" },
+})
+require("litee.calltree").setup({})
