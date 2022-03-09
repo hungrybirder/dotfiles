@@ -73,12 +73,12 @@ return packer.startup(function(use)
     -- speedup editing friendly
     use({ "mg979/vim-visual-multi", branch = "master" })
     use("rhysd/clever-f.vim")
-    use({
-        "karb94/neoscroll.nvim",
-        config = function()
-            require("neoscroll").setup({})
-        end,
-    })
+    -- use({
+    --     "karb94/neoscroll.nvim",
+    --     config = function()
+    --         require("neoscroll").setup({})
+    --     end,
+    -- })
     use("andymass/vim-matchup")
     use({
         "folke/todo-comments.nvim",
