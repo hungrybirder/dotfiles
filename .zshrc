@@ -118,7 +118,7 @@ fi
 # 依赖ag，Mac安装方法: brew install the_silver_searcher
 # export FZF_DEFAULT_COMMAND='ag --ignore="*.pyc" -g ""'
 # 依赖rg，Mac安装方法: brew install riggrep
-export FZF_DEFAULT_OPTS='--color fg+:italic,hl:-1:underline,hl+:-1:reverse:underline'
+export FZF_DEFAULT_OPTS='--color fg+:italic,hl:#a0c980:underline,hl+:#a0c980:reverse:underline'
 export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git/*" --glob "!*.pyc" --glob "!*.swp"'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
