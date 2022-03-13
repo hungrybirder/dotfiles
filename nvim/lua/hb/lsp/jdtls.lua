@@ -2,6 +2,10 @@ local M = {}
 
 function M.setup()
     local on_attach = function(client, bufnr)
+        -- using null-ls for formatting...
+        client.resolved_capabilities.document_formatting = false
+        client.resolved_capabilities.document_range_formatting = false
+
         require("jdtls.setup").add_commands()
         require("jdtls").setup_dap({ hotcodereplace = "auto" })
         require("hb/lsp/keymap").setup_lsp_keymaps(client, bufnr)
