@@ -66,20 +66,7 @@ return packer.startup(function(use)
     -- Delete all the buffers except the current buffer
     use("schickling/vim-bufonly")
 
-    use({
-        "mvllow/modes.nvim",
-        config = function()
-            vim.opt.cursorline = true
-            require("modes").setup({
-                colors = {
-                    copy = "#deb974",
-                    delete = "#c75c6a",
-                    insert = "#78ccc5",
-                    visual = "#c678dd",
-                },
-            })
-        end,
-    })
+    use("mvllow/modes.nvim")
 
     -- statusline
     use("nvim-lualine/lualine.nvim")
