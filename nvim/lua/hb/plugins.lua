@@ -32,20 +32,10 @@ return packer.startup(function(use)
 
     use("rcarriga/nvim-notify")
 
-    use({
-        "folke/zen-mode.nvim",
-        config = function()
-            require("zen-mode").setup({})
-        end,
-    })
+    use("folke/zen-mode.nvim")
     use("folke/twilight.nvim")
 
-    use({
-        "norcalli/nvim-colorizer.lua",
-        config = function()
-            require("colorizer").setup()
-        end,
-    })
+    use("norcalli/nvim-colorizer.lua")
 
     -- 中英文排版
     use("hotoo/pangu.vim")
@@ -84,9 +74,6 @@ return packer.startup(function(use)
     use({
         "folke/todo-comments.nvim",
         requires = "nvim-lua/plenary.nvim",
-        config = function()
-            require("todo-comments").setup({})
-        end,
     })
 
     -- powered by tpope
@@ -145,17 +132,11 @@ return packer.startup(function(use)
     use({
         "petertriho/cmp-git",
         requires = "nvim-lua/plenary.nvim",
-        config = function()
-            require("cmp_git").setup({})
-        end,
     })
 
     use({
         "folke/trouble.nvim",
         requires = "kyazdani42/nvim-web-devicons",
-        config = function()
-            require("trouble").setup({})
-        end,
     })
 
     -- nvim-autopairs can set up <CR>

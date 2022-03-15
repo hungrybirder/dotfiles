@@ -114,3 +114,18 @@ require("modes").setup({
 
 -- j-hui/fidget.nvim
 require("fidget").setup({})
+
+-- zen-mode
+require("zen-mode").setup({})
+
+-- nvim-colorizer
+require("colorizer").setup()
+
+-- todo
+require("todo-comments").setup({})
+
+-- cmp_git
+require("cmp_git").setup({})
+
+-- trouble
+require("trouble").setup({})
