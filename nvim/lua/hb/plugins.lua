@@ -124,12 +124,7 @@ return packer.startup(function(use)
     use("ray-x/lsp_signature.nvim")
     -- outline powered by lsp
     use("simrat39/symbols-outline.nvim")
-    use({
-        "j-hui/fidget.nvim",
-        config = function()
-            require("fidget").setup({})
-        end,
-    })
+    use("j-hui/fidget.nvim")
     -- lsp icons
     use("onsails/lspkind-nvim")
     -- lsp for performance UI.

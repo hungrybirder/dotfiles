@@ -111,3 +111,6 @@ require("modes").setup({
         visual = "#c678dd",
     },
 })
+
+-- j-hui/fidget.nvim
+require("fidget").setup({})
