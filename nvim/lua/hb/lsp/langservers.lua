@@ -152,8 +152,6 @@ local luadev = require("lua-dev").setup({
                     preloadFileSize = 1024, -- KB
                     checkThirdParty = false,
                     maxPreload = 2000,
-                    [vim.fn.expand("$VIMRUNTIME/lua")] = true,
-                    [vim.fn.stdpath("config") .. "/lua"] = true,
                 },
                 telemetry = { enable = false },
             },
