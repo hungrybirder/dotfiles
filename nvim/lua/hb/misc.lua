@@ -103,14 +103,7 @@ require("litee.calltree").setup({})
 
 -- modes
 vim.opt.cursorline = true
-require("modes").setup({
-    colors = {
-        copy = "#deb974",
-        delete = "#c75c6a",
-        insert = "#78ccc5",
-        visual = "#c678dd",
-    },
-})
+require("modes").setup({})
 
 -- j-hui/fidget.nvim
 require("fidget").setup({})
