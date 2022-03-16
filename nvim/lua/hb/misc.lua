@@ -102,8 +102,8 @@ require("litee.lib").setup({
 require("litee.calltree").setup({})
 
 -- modes
-vim.opt.cursorline = true
-require("modes").setup({})
+-- vim.opt.cursorline = true
+-- require("modes").setup({})
 
 -- j-hui/fidget.nvim
 require("fidget").setup({})

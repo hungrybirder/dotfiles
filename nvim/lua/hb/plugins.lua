@@ -56,7 +56,7 @@ return packer.startup(function(use)
     -- Delete all the buffers except the current buffer
     use("schickling/vim-bufonly")
 
-    use("mvllow/modes.nvim")
+    -- use("mvllow/modes.nvim")
 
     -- statusline
     use("nvim-lualine/lualine.nvim")
