@@ -22,7 +22,7 @@ require("lualine").setup({
     options = {
         icons_enabled = true,
         always_divide_middle = true,
-        theme = "material",
+        theme = "nightfox",
         normal = { c = { fg = colors.fg, bg = colors.bg } },
         inactive = { c = { fg = colors.fg, bg = colors.darkgrey } },
     },
