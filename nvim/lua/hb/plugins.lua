@@ -56,20 +56,13 @@ return packer.startup(function(use)
     -- Delete all the buffers except the current buffer
     use("schickling/vim-bufonly")
 
-    -- use("mvllow/modes.nvim")
-
     -- statusline
     use("nvim-lualine/lualine.nvim")
 
     -- speedup editing friendly
+    use("szw/vim-maximizer")
     use({ "mg979/vim-visual-multi", branch = "master" })
     use("rhysd/clever-f.vim")
-    -- use({
-    --     "karb94/neoscroll.nvim",
-    --     config = function()
-    --         require("neoscroll").setup({})
-    --     end,
-    -- })
     use("andymass/vim-matchup")
     use({
         "folke/todo-comments.nvim",
@@ -81,8 +74,6 @@ return packer.startup(function(use)
     use("tpope/vim-surround")
     use("tpope/vim-speeddating")
     use("tpope/vim-unimpaired")
-    use("tpope/vim-rhubarb")
-    use("tpope/vim-dispatch")
     use("tpope/vim-commentary")
 
     -- git
@@ -95,7 +86,6 @@ return packer.startup(function(use)
     -- powered by svermeulen
     use("svermeulen/vim-subversive")
     use("svermeulen/vim-yoink")
-    -- use 'svermeulen/vim-cutlass'
 
     -- nvim-tree
     use({ "kyazdani42/nvim-tree.lua", requires = { "kyazdani42/nvim-web-devicons" } })
@@ -127,8 +117,6 @@ return packer.startup(function(use)
     use("hrsh7th/cmp-nvim-lua")
     use("hrsh7th/cmp-emoji")
     use("hrsh7th/cmp-nvim-lsp-document-symbol")
-    -- use("quangnguyen30192/cmp-nvim-tags")
-    -- use("lukas-reineke/cmp-rg")
     use({
         "petertriho/cmp-git",
         requires = "nvim-lua/plenary.nvim",
@@ -155,7 +143,7 @@ return packer.startup(function(use)
     use("RRethy/nvim-treesitter-endwise")
     use("JoosepAlviste/nvim-ts-context-commentstring")
     use({ "stsewd/sphinx.nvim", run = ":UpdateRemotePlugins" })
-    use("theprimeagen/jvim.nvim")
+    use("theprimeagen/jvim.nvim") -- for json
     use({
         "SmiteshP/nvim-gps",
         requires = "nvim-treesitter/nvim-treesitter",
@@ -198,12 +186,8 @@ return packer.startup(function(use)
     use("junegunn/fzf.vim")
 
     -- telescope
-    use("nvim-lua/popup.nvim")
     use({ "nvim-telescope/telescope.nvim", requires = { { "nvim-lua/plenary.nvim" } } })
-    -- use 'nvim-telescope/telescope-ui-select.nvim'
-    use("nvim-telescope/telescope-fzf-writer.nvim")
     use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
-    use("nvim-telescope/telescope-symbols.nvim")
     use("nvim-telescope/telescope-dap.nvim")
 
     -- coding utils
@@ -240,7 +224,6 @@ return packer.startup(function(use)
     use("npxbr/glow.nvim")
 
     -- debugger
-    use("szw/vim-maximizer")
     use("sebdah/vim-delve")
     use("mfussenegger/nvim-dap")
     use("rcarriga/nvim-dap-ui")
@@ -255,7 +238,6 @@ return packer.startup(function(use)
 
     -- Terminal
     use("akinsho/toggleterm.nvim")
-
     -- tmux
     use("christoomey/vim-tmux-navigator")
 
