@@ -319,3 +319,6 @@ export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 
 # 增加 MacOS open files
 [[ "${OS_NAME}" = "Darwin" ]] && ulimit -S -n 200048
+
+alias g="git"
+alias cl="clear"
