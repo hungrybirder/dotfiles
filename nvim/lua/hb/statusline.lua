@@ -27,7 +27,8 @@ require("lualine").setup({
         inactive = { c = { fg = colors.fg, bg = colors.darkgrey } },
     },
     sections = {
-        lualine_a = { { "mode", separator = { left = "" }, right_padding = 2 } },
+        -- lualine_a = { { "mode", separator = { left = "" }, right_padding = 2 } },
+        lualine_a = { { "mode",  right_padding = 2 } },
         lualine_b = {
             { "filename", color = { gui = "bold" } },
             { "branch", color = { fg = colors.green, gui = "bold" } },
@@ -48,9 +49,10 @@ require("lualine").setup({
         lualine_y = { "location", "progress" },
         lualine_z = {
             "filesize",
-            { "fileformat", icons_enabled = false },
+            -- { "fileformat", icons_enabled = true },
             "encoding",
-            { "filetype", icon_only = true, separator = { right = "" }, left_padding = 2 },
+            { "filetype", icon_only = true, left_padding = 2 },
+            -- { "filetype", icon_only = true, separator = { right = "" }, left_padding = 2 },
         },
     },
     inactive_sections = {
