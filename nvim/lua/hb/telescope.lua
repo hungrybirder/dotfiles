@@ -99,7 +99,7 @@ remap("n", "<c-p>", "<cmd>lua RTELE(); require'telescope.builtin'.git_files{}<CR
 remap("n", "<leader>m", "<cmd>lua RTELE(); require'telescope.builtin'.oldfiles{}<CR>", opts)
 remap("n", "<leader>n", "<cmd>lua RTELE(); require'telescope.builtin'.marks{}<CR>", opts)
 remap("n", "<leader>b", "<cmd>lua RTELE(); require'telescope.builtin'.buffers{}<CR>", opts)
-remap("n", "<leader>a", "<cmd>lua RTELE(); require'telescope.builtin'.live_grep{}<CR>", opts)
+-- remap("n", "<leader>a", "<cmd>lua RTELE(); require'telescope.builtin'.live_grep{}<CR>", opts)
 remap("n", "<leader>F", "<cmd>lua RTELE(); require'telescope.builtin'.current_buffer_fuzzy_find{}<CR>", opts)
 remap("n", "<leader>ts", "<cmd>lua RTELE(); require'telescope.builtin'.tagstack{}<CR>", opts)
 remap("n", "<leader>cc", "<cmd>lua RTELE(); require'telescope.builtin'.commands{}<CR>", opts)
