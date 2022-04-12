@@ -122,3 +122,6 @@ require("cmp_git").setup({})
 
 -- trouble
 require("trouble").setup({})
+
+-- dressing
+require('dressing').setup({})

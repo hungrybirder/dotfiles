@@ -31,6 +31,7 @@ return packer.startup(function(use)
     use("wbthomason/packer.nvim")
 
     use("rcarriga/nvim-notify")
+    use({ "stevearc/dressing.nvim" })
 
     use("folke/zen-mode.nvim")
     use("folke/twilight.nvim")
