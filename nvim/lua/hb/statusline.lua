@@ -15,8 +15,35 @@ local colors = {
     darkgrey = "#404247",
 }
 
-local gps = require("nvim-gps")
-gps.setup()
+require("nvim-gps").setup({})
+
+local function min_window_width(width)
+    return function()
+        return vim.fn.winwidth(0) > width
+    end
+end
+
+-- Customize statusline components
+local custom_components = {
+    -- Override 'encoding': Don't display if encoding is UTF-8.
+    encoding = function()
+        local ret, _ = (vim.bo.fenc or vim.go.enc):gsub("^utf%-8$", "") -- Note: '-' is a magic character
+        return ret
+    end,
+    -- fileformat: Don't display if &ff is unix.
+    fileformat = function()
+        local ret, _ = vim.bo.fileformat:gsub("^unix$", "")
+        return ret
+    end,
+    -- GPS (https://github.com/SmiteshP/nvim-gps)
+    treesitter_context = function()
+        local ok, gps = pcall(require, "nvim-gps")
+        if ok and gps.is_available() then
+            return gps.get_location()
+        end
+        return ""
+    end,
+}
 
 require("lualine").setup({
     options = {
@@ -27,11 +54,12 @@ require("lualine").setup({
         inactive = { c = { fg = colors.fg, bg = colors.darkgrey } },
     },
     sections = {
-        -- lualine_a = { { "mode", separator = { left = "" }, right_padding = 2 } },
-        lualine_a = { { "mode",  right_padding = 2 } },
+        lualine_a = {
+            { "mode", right_padding = 2, cond = min_window_width(40) },
+        },
         lualine_b = {
             { "filename", color = { gui = "bold" } },
-            { "branch", color = { fg = colors.green, gui = "bold" } },
+            { "branch", color = { fg = colors.green, gui = "bold" }, cond = min_window_width(120) },
             {
                 "diff",
                 diff_color = {
@@ -43,16 +71,21 @@ require("lualine").setup({
             { "diagnostics", sources = { "nvim_diagnostic" } },
         },
         lualine_c = {
-            { gps.get_location, cond = gps.is_available, color = { bg = colors.bg, fg = colors.blue, gui = "bold" } },
+            {
+                custom_components.treesitter_context,
+                color = { bg = colors.bg, fg = colors.blue, gui = "bold" },
+            },
         },
         lualine_x = {},
-        lualine_y = { "location", "progress" },
+        lualine_y = {
+            { "location", cond = min_window_width(90) },
+            "progress",
+        },
         lualine_z = {
             "filesize",
-            -- { "fileformat", icons_enabled = true },
-            "encoding",
+            custom_components.fileformat,
+            custom_components.encoding,
             { "filetype", icon_only = true, left_padding = 2 },
-            -- { "filetype", icon_only = true, separator = { right = "" }, left_padding = 2 },
         },
     },
     inactive_sections = {
