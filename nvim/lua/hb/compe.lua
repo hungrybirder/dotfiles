@@ -23,7 +23,6 @@ end
 
 local cmp = require("cmp")
 cmp.setup({
-    -- LuaFormatter off
     sorting = {
         comparators = {
             cmp.config.compare.offset,
@@ -37,22 +36,19 @@ cmp.setup({
             cmp.config.compare.order,
         },
     },
-    -- LuaFormatter on
     snippet = {
         expand = function(args)
             vim.fn["vsnip#anonymous"](args.body)
         end,
     },
-    sources = cmp.config.sources(
-        {
-            { name = "nvim_lsp" },
-            { name = "nvim_lua" },
-            { name = "vsnip" },
-            { name = "buffer" },
-            { name = "path" },
-            { name = "emoji" },
-        }
-    ),
+    sources = cmp.config.sources({
+        { name = "nvim_lsp" },
+        { name = "nvim_lua" },
+        { name = "vsnip" },
+        { name = "buffer" },
+        { name = "path" },
+        { name = "emoji" },
+    }),
     formatting = {
         format = require("lspkind").cmp_format({
             with_text = false,
