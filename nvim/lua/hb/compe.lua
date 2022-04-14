@@ -51,7 +51,7 @@ cmp.setup({
     }),
     formatting = {
         format = require("lspkind").cmp_format({
-            with_text = false,
+            with_text = true,
             menu = {
                 buffer = "[Buffer]",
                 nvim_lsp = "[LSP]",
