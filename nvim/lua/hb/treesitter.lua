@@ -51,7 +51,7 @@ require("nvim-treesitter.configs").setup({
         },
         lsp_interop = {
             enable = true,
-            peek_definition_code = { ["df"] = "@function.outer", ["dF"] = "@class.outer" },
+            peek_definition_code = { ["<leader>df"] = "@function.outer", ["<leader>dF"] = "@class.outer" },
         },
         move = {
             enable = true,
