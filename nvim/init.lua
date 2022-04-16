@@ -2,6 +2,7 @@ P = function(...)
     print(vim.inspect(...))
 end
 
+require("hb/options")
 require("hb/plugins")
 require("hb/keymaps")
 require("hb/colorscheme")

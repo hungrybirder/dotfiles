@@ -47,6 +47,7 @@ local custom_components = {
 
 require("lualine").setup({
     options = {
+        globalstatus = true,
         icons_enabled = true,
         always_divide_middle = true,
         theme = "nightfox",
