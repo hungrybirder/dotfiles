@@ -241,6 +241,7 @@ return packer.startup(function(use)
     use("akinsho/toggleterm.nvim")
     -- tmux
     use("christoomey/vim-tmux-navigator")
+    use("shivamashtikar/tmuxjump.vim")
 
     use("antoinemadec/FixCursorHold.nvim")
 

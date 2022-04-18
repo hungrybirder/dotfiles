@@ -467,3 +467,7 @@ remap("n", "<esc><esc>", "<cmd>nohlsearch<CR>", opts)
 
 -- map toggle number
 remap("n", "<leader>N", "<cmd>call ToggleNumber()<CR>", opts)
+
+-- tmuxjump
+vim.g.tmuxjump_telescope = 1
+remap("n", "<leader>ft", "<cmd>TmuxJumpFile<CR>", opts)
