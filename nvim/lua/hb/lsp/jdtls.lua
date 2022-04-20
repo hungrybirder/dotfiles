@@ -5,32 +5,9 @@ function M.setup()
         -- using null-ls for formatting...
         client.resolved_capabilities.document_formatting = false
         client.resolved_capabilities.document_range_formatting = false
-
         require("jdtls.setup").add_commands()
         require("jdtls").setup_dap({ hotcodereplace = "auto" })
         require("hb/lsp/keymap").setup_lsp_keymaps(client, bufnr)
-
-        -- TODO?
-        -- require'formatter'.setup{
-        --     filetype = {
-        --         java = {
-        --             function()
-        --                 return {
-        --                     exe = 'java',
-        --                     args = { '-jar', os.getenv('HOME') .. '/.local/jars/google-java-format.jar', vim.api.nvim_buf_get_name(0) },
-        --                     stdin = true
-        --                 }
-        --             end
-        --         }
-        --     }
-        -- }
-
-        -- vim.api.nvim_exec([[
-        --   augroup FormatAutogroup
-        --     autocmd!
-        --     autocmd BufWritePost *.java FormatWrite
-        --   augroup end
-        -- ]], true)
     end
 
     local root_markers = { "gradlew", "pom.xml" }
@@ -66,13 +43,6 @@ function M.setup()
             codeGeneration = {
                 toString = { template = "${object.className}{${member.name()}=${member.value}, ${otherMembers}}" },
             },
-            -- configuration = {
-            --     runtimes = {
-            --         { name = "OpenJDK", path = "/usr/local/opt/openjdk11" },
-            --         { name = "Oracle-JDK17", path = "/Library/Java/JavaVirtualMachines/jdk-17.0.1.jdk/Contents/Home" }
-            --         { name = "Oracle-JDK8", path = "/Library/Java/JavaVirtualMachines/jdk1.8.0_202.jdk/Contents/Home" }
-            --     }
-            -- }
         },
     }
 
