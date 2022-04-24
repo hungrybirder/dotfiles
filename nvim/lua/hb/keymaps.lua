@@ -92,10 +92,10 @@ nnoremap <leader>u :UndotreeToggle<CR>
 nnoremap <expr> k (v:count > 5 ? "m'" . v:count : "") . 'k'
 nnoremap <expr> j (v:count > 5 ? "m'" . v:count : "") . 'j'
 
-augroup line_return
+augroup last_cursor_position
   au!
   au BufReadPost *
-    \ if line("'\"") > 0 && line("'\"") <= line("$") |
+    \ if line("'\"") > 1 && line("'\"") <= line("$") && &ft !~# 'commit' |
     \   execute 'normal! g`"zvzz' |
     \ endif
 augroup END
