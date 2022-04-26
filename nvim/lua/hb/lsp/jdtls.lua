@@ -26,7 +26,6 @@ function M.setup()
     local config = {
         flags = { allow_incremental_sync = true },
         capabilities = extendedClientCapabilities,
-        on_attach = on_attach,
     }
 
     config.settings = {
@@ -88,28 +87,31 @@ function M.setup()
         client.notify("workspace/didChangeConfiguration", { settings = config.settings })
     end
 
-    local jar_patterns = {
-        -- cd ~/.config
-        -- git clone https://github.com/microsoft/java-debug.git && java-debug
-        -- ./mvnw clean install
-        "/.config/java-debug/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-*.jar",
-        -- cd ~/.config
-        -- git clone https://github.com/dgileadi/vscode-java-decompiler.git
-        "/.config/vscode-java-decompiler/server/*.jar", -- cd ~/.config
-        -- git clone https://github.com/microsoft/vscode-java-test.git && vscode-java-test
-        -- npm install
-        -- npm run build-plugin
-        "/.config/vscode-java-test/server/*.jar",
+    -- local jar_patterns = {
+    --     -- cd ~/.config
+    --     -- git clone https://github.com/microsoft/java-debug.git && java-debug
+    --     -- ./mvnw clean install
+    --     "/.config/java-debug/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-*.jar",
+    --     -- cd ~/.config
+    --     -- git clone https://github.com/dgileadi/vscode-java-decompiler.git
+    --     "/.config/vscode-java-decompiler/server/*.jar", -- cd ~/.config
+    --     -- git clone https://github.com/microsoft/vscode-java-test.git && vscode-java-test
+    --     -- npm install
+    --     -- npm run build-plugin
+    --     "/.config/vscode-java-test/server/*.jar",
+    -- }
+
+    local bundles = {
+        vim.fn.glob(
+            home .. "/.config/java-debug/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-*.jar"
+        ),
     }
-    local bundles = {}
-    for _, jar_pattern in ipairs(jar_patterns) do
-        for _, bundle in ipairs(vim.split(vim.fn.glob(home .. jar_pattern), "\n")) do
-            table.insert(bundles, bundle)
-            -- if not vim.endswith(bundle, "com.microsoft.java.test.runner.jar") then
-            --     table.insert(bundles, bundle)
-            -- end
-        end
-    end
+
+    vim.list_extend(bundles, vim.split(vim.fn.glob(home .. "/.config/vscode-java-test/server/*.jar"), "\n"))
+
+    config["init_options"] = {
+        bundles = bundles,
+    }
 
     config.init_options = {
         bundles = bundles,
