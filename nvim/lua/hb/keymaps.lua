@@ -332,6 +332,11 @@ augroup jdtls_lsp
 augroup end
 " nvim-jdtls end
 
+augroup codelens
+  autocmd!
+  autocmd BufWritePost *.java lua vim.lsp.codelens.refresh()
+augroup END
+
 " FixCursorHold.nvim
 let g:cursorhold_updatetime = 100
 " FixCursorHold.nvim end
