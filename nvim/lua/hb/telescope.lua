@@ -45,8 +45,6 @@ telescope.setup({
         -- buffer_previewer_maker = previewers.buffer_previewer_maker
     },
     pickers = { --
-        lsp_range_code_actions = { theme = "cursor" },
-        lsp_code_actions = { theme = "cursor" },
         commands = { theme = "dropdown" },
         current_buffer_fuzzy_find = { theme = "ivy" },
         grep_string = { theme = "ivy" },
