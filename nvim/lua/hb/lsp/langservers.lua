@@ -12,7 +12,7 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagn
     underline = false,
     virtual_text = true,
     signs = true,
-    update_in_insert = true,
+    update_in_insert = false,
 })
 
 local on_references = vim.lsp.handlers["textDocument/references"]
