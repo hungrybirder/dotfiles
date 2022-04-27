@@ -193,6 +193,7 @@ return packer.startup(function(use)
     use("nvim-telescope/telescope-dap.nvim")
 
     -- coding utils
+    use("Valloric/ListToggle")
     use("jose-elias-alvarez/null-ls.nvim") -- for formatters and linters
 
     use("mbbill/undotree")

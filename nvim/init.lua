@@ -3,7 +3,7 @@
 -- end
 P = vim.pretty_print
 
-require("hb/options")
+require("hb/autocmds")
 require("hb/plugins")
 require("hb/keymaps")
 require("hb/colorscheme")

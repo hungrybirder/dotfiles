@@ -97,50 +97,11 @@ if executable('rg')
 endif
 let loaded_matchparen = 1
 
-" quickfix
-
-" https://github.com/tpope/vim-unimpaired/issues/97
-function! ToggleQuickfixWindow()
-  for i in range(1, winnr('$'))
-    let bnum = winbufnr(i)
-    if getbufvar(bnum, '&buftype') == 'quickfix'
-      cclose
-      return
-    endif
-  endfor
-  copen
-endfunction
-noremap <silent> <space>q :<C-U>call ToggleQuickfixWindow()<CR>
-
 "https://github.com/fatih/vim-go/issues/108#issuecomment-47450678
 " autocmd FileType qf wincmd J
 autocmd FileType qf if (getwininfo(win_getid())[0].loclist != 1) | wincmd J | endif
 " close quickfix
 " noremap <silent> <space>q :<C-U>cclose<CR>
-
-function! s:BufferCount() abort
-    return len(filter(range(1, bufnr('$')), 'buflisted(v:val)'))
-endfunction
-
-" Location list
-" Toggle Location List window
-function! ToggleLocationList()
-  " https://github.com/Valloric/ListToggle/blob/master/plugin/listtoggle.vim
-  let buffer_count_before = s:BufferCount()
-
-  " Location list can't be closed if there's cursor in it, so we need
-  " to call lclose twice to move cursor to the main pane
-  silent! lclose
-  silent! lclose
-
-  if s:BufferCount() == buffer_count_before
-    lopen
-  endif
-endfunction
-
-nnoremap <silent> <space>l :call ToggleLocationList()<cr>
-
-" quickfix end
 
 " powered by ThePrimeagen
 fun! EmptyRegisters()

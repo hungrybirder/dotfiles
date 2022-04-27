@@ -2,6 +2,13 @@ vim.opt.laststatus = 3
 
 fn = vim.fn
 
+vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+    pattern = { "*.java" },
+    callback = function()
+        vim.lsp.codelens.refresh()
+    end,
+})
+
 vim.api.nvim_create_augroup("bufcheck", { clear = true })
 
 vim.api.nvim_create_autocmd("BufWritePost", {

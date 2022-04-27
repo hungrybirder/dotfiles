@@ -1,3 +1,5 @@
+set nobuflisted
+
 function! CloseQuickfixOrLocationListWindow()
   if getwininfo(win_getid())[0]['quickfix'] == 1
     if getwininfo(win_getid())[0]['loclist'] == 1
