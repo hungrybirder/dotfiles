@@ -1,6 +1,7 @@
-P = function(...)
-    print(vim.inspect(...))
-end
+-- P = function(...)
+-- print(vim.inspect(...))
+-- end
+P = vim.pretty_print
 
 require("hb/options")
 require("hb/plugins")
