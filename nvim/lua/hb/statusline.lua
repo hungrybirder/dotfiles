@@ -79,14 +79,21 @@ require("lualine").setup({
         },
         lualine_x = {},
         lualine_y = {
-            { "location", cond = min_window_width(90) },
-            "progress",
+            {
+                "location",
+                cond = min_window_width(90),
+                color = { fg = colors.blue, gui = "bold" },
+            },
+            {
+                "progress",
+                color = { fg = colors.blue, gui = "bold" },
+            },
         },
         lualine_z = {
-            "filesize",
+            { "filesize", color = { bg = colors.bg, fg = colors.blue } },
             custom_components.fileformat,
             custom_components.encoding,
-            { "filetype", icon_only = true, left_padding = 2 },
+            { "filetype", icon_only = true, left_padding = 2, color = { bg = colors.bg } },
         },
     },
     inactive_sections = {
