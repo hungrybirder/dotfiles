@@ -18,16 +18,19 @@ dapui.setup({
     },
     sidebar = {
         elements = {
-            { id = "scopes", size = 0.25 },
-            { id = "breakpoints", size = 0.25 },
             { id = "stacks", size = 0.25 },
+            { id = "breakpoints", size = 0.25 },
             { id = "watches", size = 0.25 },
         },
         size = 40,
         position = "right",
     },
     tray = {
-        elements = {},
+        elements = {
+            { id = "scopes", size = 1 },
+        },
+        size = 15,
+        position = "bottom",
         -- elements = { "repl" },
         -- size = 10,
         -- position = "bottom", -- Can be "left", "right", "top", "bottom"
