@@ -81,6 +81,10 @@ plugins=(
   thefuck
   poetry # https://github.com/python-poetry/poetry#enable-tab-completion-for-bash-fish-or-zsh
   kubectl
+  httpie
+  python
+  copybuffer # ctrl-o, copy cli to clipboard
+  mvn
 )
 source $ZSH/oh-my-zsh.sh
 
@@ -88,19 +92,9 @@ source $ZSH/oh-my-zsh.sh
 # 例如 ⌥ + a ，Action 选择 Send Hex Code，键值为 0x1 0x70 0x63 0x20 0xd，保存生效。
 alias pc="proxychains4"
 
-alias mvn="mvn -Denforcer.skip=true -DdownloadSources=true "
+# alias mvn="mvn -Denforcer.skip=true -DdownloadSources=true "
 
 export EDITOR="nvim"
-
-disable_http_proxy() {
-  unset http_proxy
-  unset https_proxy
-}
-
-enable_http_proxy() {
-  export http_proxy="http://127.0.0.1:7890"
-  export https_proxy="http://127.0.0.1:7890"
-}
 
 # colors 设置
 #Generic Colouriser
@@ -108,9 +102,10 @@ if [[ "x${OS_NAME}" = "xDarwin" ]]; then
   # 为了减少session启动时间
   if [ -d ${BREW_PREFIX}/Cellar/coreutils ]; then
     alias ls="${BREW_PREFIX}/opt/coreutils/libexec/gnubin/ls --show-control-chars --color=auto"
-    eval `${BREW_PREFIX}/bin/gdircolors -b $HOME/.dir_colors`
+    if [[ -f $HOME/.dir_colors ]]; then
+        eval `${BREW_PREFIX}/bin/gdircolors -b $HOME/.dir_colors`
+    fi
   fi
-
 fi
 
 # fzf
