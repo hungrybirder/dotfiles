@@ -30,14 +30,15 @@ vim.api.nvim_create_autocmd("BufReadPost", {
     group = "bufcheck",
     pattern = "*",
     callback = function()
-        if vim.bo.filetype == "gitcommit" then
+        local ft = vim.opt_local.filetype:get()
+        if ft:match("commit") or ft:match("rebase") or ft:match("fugitive") then
             return
         end
-        if vim.bo.filetype == "fugitive" then
-            return
-        end
-        if fn.line("'\"") > 0 and fn.line("'\"") <= fn.line("$") then
-            fn.setpos(".", fn.getpos("'\""))
+        local markpos = vim.api.nvim_buf_get_mark(0, '"')
+        local line = markpos[1]
+        local col = markpos[2]
+        if (line > 1) and (line <= vim.api.nvim_buf_line_count(0)) then
+            vim.api.nvim_win_set_cursor(0, { line, col })
             vim.api.nvim_feedkeys("zvzz", "n", true)
         end
     end,
