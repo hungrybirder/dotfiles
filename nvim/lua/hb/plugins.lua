@@ -100,7 +100,7 @@ return packer.startup(function(use)
 
     -- lsp config
     use("neovim/nvim-lspconfig")
-    use("ray-x/lsp_signature.nvim")
+    -- use("ray-x/lsp_signature.nvim")
     -- outline powered by lsp
     use("simrat39/symbols-outline.nvim")
     use("j-hui/fidget.nvim")
@@ -119,6 +119,7 @@ return packer.startup(function(use)
     use("hrsh7th/cmp-nvim-lua")
     use("hrsh7th/cmp-emoji")
     use("hrsh7th/cmp-nvim-lsp-document-symbol")
+    use("hrsh7th/cmp-nvim-lsp-signature-help")
     use({
         "petertriho/cmp-git",
         requires = "nvim-lua/plenary.nvim",

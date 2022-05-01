@@ -1,3 +1,4 @@
+---@diagnostic disable: missing-parameter
 local M = {}
 
 M.setup_lsp_keymaps = function(client, bufnr)

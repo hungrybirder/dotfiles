@@ -28,21 +28,21 @@ local lsp_on_attach = function(client, bufnr)
 
     require("hb/lsp/keymap").setup_lsp_keymaps(client, bufnr)
     require("lspsaga").init_lsp_saga({ code_action_keys = { quit = "<esc>", exec = "<CR>" } })
-    require("lsp_signature").on_attach({
-        bind = true,
-        handler_opts = { border = "rounded" },
-        doc_lines = 2,
-        hint_enable = true,
-        hint_prefix = "🌟 ",
-        hint_scheme = "String",
-        use_lspsaga = false,
-        floating_window = false,
-        floating_window_above_cur_line = true,
-        max_height = 12,
-        max_width = 120,
-        fix_pos = false,
-    })
     require("lspkind").init({})
+    -- require("lsp_signature").on_attach({
+    --     bind = true,
+    --     handler_opts = { border = "rounded" },
+    --     doc_lines = 2,
+    --     hint_enable = true,
+    --     hint_prefix = "🌟 ",
+    --     hint_scheme = "String",
+    --     use_lspsaga = false,
+    --     floating_window = false,
+    --     floating_window_above_cur_line = true,
+    --     max_height = 12,
+    --     max_width = 120,
+    --     fix_pos = false,
+    -- })
 end
 
 local make_lsp_client_capabilities = function()

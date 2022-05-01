@@ -6,11 +6,14 @@ function M.setup()
         client.resolved_capabilities.document_formatting = false
         client.resolved_capabilities.document_range_formatting = false
 
-        -- require("jdtls.setup").add_commands()
+        require("hb/lsp/keymap").setup_lsp_keymaps(client, bufnr)
+        require("lspsaga").init_lsp_saga({ code_action_keys = { quit = "<esc>", exec = "<CR>" } })
+        require("lspkind").init({})
+
+        require("jdtls.setup").add_commands()
         require("jdtls").setup_dap({ hotcodereplace = "auto" })
         require("jdtls.dap").setup_dap_main_class_configs()
         vim.lsp.codelens.refresh()
-        require("hb/lsp/keymap").setup_lsp_keymaps(client, bufnr)
     end
 
     local root_markers = { "gradlew", "pom.xml" }
