@@ -90,7 +90,7 @@ source $ZSH/oh-my-zsh.sh
 
 # 在 iTerm -> Preferences -> Profiles -> Keys 中，新建一个快捷键
 # 例如 ⌥ + a ，Action 选择 Send Hex Code，键值为 0x1 0x70 0x63 0x20 0xd，保存生效。
-alias pc="proxychains4"
+# alias pc="proxychains4"
 
 # alias mvn="mvn -Denforcer.skip=true -DdownloadSources=true "
 
@@ -255,11 +255,6 @@ bindkey -e
 bindkey "\e\e[D" backward-word
 bindkey "\e\e[C" forward-word
 
-if [[ "Darwin" = ${OS_NAME} ]]; then
-  alias bu="brew upgrade"
-  alias bubu="brew upgrade && brew upgrade --cask --greedy"
-fi
-
 # 一些特殊的配置，或function
 SPECIAL_SH="${HOME}/Dropbox/snippet/special.sh"
 test -f ${SPECIAL_SH} && source ${SPECIAL_SH}
@@ -278,9 +273,6 @@ export PATH="$(go env GOPATH)/bin:${PATH}"
 # LESS
 # export LESS="-C -M -I -j 10 -# 4"
 
-alias nn="nvim"
-alias vn="nvim"
-alias nv="nvim"
 
 export SSLKEYLOGFILE="${HOME}/tmp/ssl_key.log"
 
@@ -303,9 +295,6 @@ reddit() {
 # direnv
 eval "$(direnv hook zsh)"
 
-
-alias luamake=/Users/liyong/.cache/nvim/lspconfig/sumneko_lua/lua-language-server/3rd/luamake/luamake
-
 # pyenv settings
 export PYENV_VIRTUALENVWRAPPER_PREFER_PYVENV="true"
 export PYENV_VIRTUALENV_DISABLE_PROMPT=1
@@ -315,5 +304,16 @@ export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 # 增加 MacOS open files
 [[ "${OS_NAME}" = "Darwin" ]] && ulimit -S -n 200048
 
+# alias
+alias nn="nvim"
+alias vn="nvim"
+alias nv="nvim"
 alias g="git"
 alias cl="clear"
+alias zrc="[[ -f ~/.zshrc ]] && (source ~/.zshrc && echo 'Reloaded ~/.zshrc') || (echo 'not found ~/.zshrc' && exit 1)"
+
+if [[ "Darwin" = ${OS_NAME} ]]; then
+  alias bu="brew upgrade"
+  alias bubu="brew upgrade && brew upgrade --cask --greedy"
+fi
+# alias end
