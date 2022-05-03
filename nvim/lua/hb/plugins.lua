@@ -228,7 +228,7 @@ return packer.startup(function(use)
     use("npxbr/glow.nvim")
 
     -- debugger
-    use("sebdah/vim-delve")
+    -- use("sebdah/vim-delve")
     use("mfussenegger/nvim-dap")
     use("rcarriga/nvim-dap-ui")
     use("theHamsta/nvim-dap-virtual-text")
