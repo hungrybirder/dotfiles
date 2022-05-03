@@ -326,16 +326,6 @@ remap("n", "<leader>pi", "<cmd>PackerSync<CR>", opt_noremap)
 remap("n", "<leader>pu", "<cmd>PackerUpdate<CR>", opt_noremap)
 remap("n", "<leader>pc", "<cmd>PackerClean<CR>", opt_noremap)
 
--- neoterm
--- vim.g.neoterm_default_mod = 'vertical'
--- vim.g.neoterm_size = 60
--- vim.g.neoterm_autoinsert = 1
--- vim.g.neoterm_term_per_tab = 1
--- vim.g.neoterm_repl_python = "ipython3"
--- remap('n', '<c-q>', '<cmd>Ttoggle<CR>', opts)
--- remap('i', '<c-q>', '<ESC>:Ttoggle<CR>', opts)
--- remap('t', '<c-q>', '<c-\\><c-n>:Ttoggle<CR>', opts)
-
 vim.g.vim_markdown_math = true
 remap("n", "<leader>md", "<cmd>MarkdownPreview<CR>", opts)
 

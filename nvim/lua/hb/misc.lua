@@ -78,6 +78,7 @@ require("toggleterm").setup({
 remap("n", "<c-q>", '<cmd>exe v:count1 . "ToggleTerm direction=vertical"<CR>', opts)
 remap("i", "<c-q>", '<ESC><cmd>exe v:count1 . "ToggleTerm direction=vertical"<CR>', opts)
 remap("t", "<c-q>", "<c-\\><c-n>:ToggleTerm direction=vertical<CR>", opts)
+remap("n", "<leader>th", '<cmd>exe v:count1 . "ToggleTerm direction=horizontal"<CR>', opts)
 
 -- trouble.nvim mappings
 remap("n", "<leader>xx", "<cmd>TroubleToggle<cr>", opts)
