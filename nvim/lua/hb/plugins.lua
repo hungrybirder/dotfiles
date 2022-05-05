@@ -50,7 +50,7 @@ return packer.startup(function(use)
 
     use("EdenEast/nightfox.nvim")
     -- buffer line at the top of window
-    use("akinsho/nvim-bufferline.lua")
+    use({ "akinsho/bufferline.nvim", tag = "v2.*", requires = "kyazdani42/nvim-web-devicons" })
 
     -- delete buffer without closing windows
     use("moll/vim-bbye")
