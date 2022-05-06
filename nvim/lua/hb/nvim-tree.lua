@@ -62,3 +62,7 @@ require("nvim-tree").setup({
 })
 
 vim.keymap.set("n", "<leader><tab>", "<cmd>NvimTreeToggle<CR>")
+
+vim.cmd([[
+    autocmd BufEnter * ++nested if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif
+]])
