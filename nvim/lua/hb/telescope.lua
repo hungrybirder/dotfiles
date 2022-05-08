@@ -36,16 +36,9 @@ telescope.setup({
         file_ignore_patterns = { ".clang", ".trash" },
         path_display = { "truncate" },
         winblend = 5,
-        -- set_env = { ['COLORTERM'] = 'truecolor' }, -- default = nil,
-        -- file_previewer = previewers.vim_buffer_cat.new,
-        -- grep_previewer = previewers.vim_buffer_vimgrep.new,
-        -- qflist_previewer = previewers.vim_buffer_qflist.new,
-
-        -- Developer configurations: Not meant for general override
-        -- buffer_previewer_maker = previewers.buffer_previewer_maker
     },
     pickers = { --
-        commands = { theme = "dropdown" },
+        commands = { theme = "ivy", previewer = false },
         current_buffer_fuzzy_find = { theme = "ivy" },
         grep_string = { theme = "ivy" },
         jumplist = { theme = "ivy", previewer = false },
@@ -55,21 +48,24 @@ telescope.setup({
         lsp_references = { path_display = { "shorten" } },
         lsp_document_symbols = { path_display = { "hidden" }, theme = "ivy" },
         lsp_workspace_symbols = { path_display = { "shorten" }, theme = "ivy" },
-        oldfiles = { theme = "dropdown" },
+        oldfiles = { theme = "ivy", previewer = false },
         tagstack = { theme = "ivy" },
         treesitter = { theme = "ivy" },
         git_branches = { theme = "ivy" },
         marks = { theme = "ivy", previewer = false },
-
-        git_files = { theme = "dropdown", previewer = false },
-        find_files = { theme = "dropdown", previewer = false },
-        file_browser = { theme = "dropdown", previewer = false },
+        git_files = { theme = "ivy" },
+        find_files = { theme = "ivy" },
+        file_browser = { theme = "ivy" },
         buffers = {
             sort_mru = true,
-            theme = "dropdown",
+            theme = "ivy",
             selection_strategy = "closest",
             previewer = false,
-            mappings = { i = { ["<c-d>"] = actions.delete_buffer } },
+            mappings = {
+                i = {
+                    ["<c-d>"] = actions.delete_buffer,
+                },
+            },
         },
     },
     extensions = {
