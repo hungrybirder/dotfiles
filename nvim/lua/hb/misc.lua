@@ -9,13 +9,9 @@ vim.api.nvim_exec(
     false
 )
 
-local hb_utils = require("hb/utils")
-local remap = hb_utils.remap
-local opts = hb_utils.opt_noremap_silent
-
 -- tab
-remap("n", "]<tab>", "<cmd>tabnext<cr>", opts)
-remap("n", "[<tab>", "<cmd>tabnext<cr>", opts)
+vim.keymap.set("n", "]<tab>", "<cmd>tabnext<cr>")
+vim.keymap.set("n", "[<tab>", "<cmd>tabnext<cr>")
 
 vim.notify = require("notify")
 vim.notify.setup()
@@ -33,9 +29,9 @@ require("bufferline").setup({
         offsets = { { filetype = "NvimTree", text = "File Explorer", highlight = "Directory", text_align = "left" } },
     },
 })
-remap("n", "gb", "<cmd>BufferLinePick<CR>", { noremap = true, silent = true })
-remap("n", "H", "<cmd>BufferLineCyclePrev<CR>", { noremap = true, silent = true })
-remap("n", "L", "<cmd>BufferLineCycleNext<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "gb", "<cmd>BufferLinePick<CR>")
+vim.keymap.set("n", "H", "<cmd>BufferLineCyclePrev<CR>")
+vim.keymap.set("n", "L", "<cmd>BufferLineCycleNext<CR>")
 
 -- nvim-bqf
 require("bqf").setup({
@@ -59,7 +55,7 @@ vim.g.symbols_outline = {
     position = "right",
 }
 
-remap("n", "<leader>v", "<cmd>SymbolsOutline<CR>", opts)
+vim.keymap.set("n", "<leader>v", "<cmd>SymbolsOutline<CR>")
 
 -- indent_blankline
 require("indent_blankline").setup({ show_current_context = true, show_current_context_start = true })
@@ -75,18 +71,18 @@ require("toggleterm").setup({
     end,
 })
 
-remap("n", "<c-q>", '<cmd>exe v:count1 . "ToggleTerm direction=vertical"<CR>', opts)
-remap("i", "<c-q>", '<ESC><cmd>exe v:count1 . "ToggleTerm direction=vertical"<CR>', opts)
-remap("t", "<c-q>", "<c-\\><c-n>:ToggleTerm direction=vertical<CR>", opts)
-remap("n", "<leader>th", '<cmd>exe v:count1 . "ToggleTerm direction=horizontal"<CR>', opts)
+vim.keymap.set("n", "<c-q>", '<cmd>exe v:count1 . "ToggleTerm direction=vertical"<CR>')
+vim.keymap.set("i", "<c-q>", '<ESC><cmd>exe v:count1 . "ToggleTerm direction=vertical"<CR>')
+vim.keymap.set("t", "<c-q>", "<c-\\><c-n>:ToggleTerm direction=vertical<CR>")
+vim.keymap.set("n", "<leader>th", '<cmd>exe v:count1 . "ToggleTerm direction=horizontal"<CR>')
 
 -- trouble.nvim mappings
-remap("n", "<leader>xx", "<cmd>TroubleToggle<cr>", opts)
-remap("n", "<leader>xw", "<cmd>Trouble workspace_diagnostics<cr>", opts)
-remap("n", "<leader>xd", "<cmd>Trouble document_diagnostics<cr>", opts)
-remap("n", "<leader>xl", "<cmd>Trouble loclist<cr>", opts)
-remap("n", "<leader>xq", "<cmd>Trouble quickfix<cr>", opts)
-remap("n", "gR", "<cmd>Trouble lsp_references<cr>", opts)
+vim.keymap.set("n", "<leader>xx", "<cmd>TroubleToggle<cr>")
+vim.keymap.set("n", "<leader>xw", "<cmd>Trouble workspace_diagnostics<cr>")
+vim.keymap.set("n", "<leader>xd", "<cmd>Trouble document_diagnostics<cr>")
+vim.keymap.set("n", "<leader>xl", "<cmd>Trouble loclist<cr>")
+vim.keymap.set("n", "<leader>xq", "<cmd>Trouble quickfix<cr>")
+vim.keymap.set("n", "gR", "<cmd>Trouble lsp_references<cr>")
 
 -- Disable vim-dispatch mappings
 vim.g.dispatch_no_maps = 1
@@ -125,7 +121,7 @@ require("cmp_git").setup({})
 require("trouble").setup({})
 
 -- dressing
-require('dressing').setup({})
+require("dressing").setup({})
 
 -- which-key
 require("which-key").setup({})

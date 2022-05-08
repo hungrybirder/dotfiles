@@ -312,83 +312,79 @@ endfunction
 
 ]])
 
-local hb_utils = require("hb/utils")
-local remap = hb_utils.remap
-local opts = hb_utils.opt_noremap_silent
-local opt_noremap = hb_utils.opt_noremap
-
 vim.g.mapleader = " "
+vim.api.nvim_set_keymap("n", "<leader>ev", "<cmd>e $MYVIMRC<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader>sv", "<cmd>so $MYVIMRC<CR>", { noremap = true, silent = true })
 
-remap("n", "<leader>ev", "<cmd>e $MYVIMRC<CR>", opt_noremap)
-remap("n", "<leader>sv", "<cmd>so $MYVIMRC<CR>", opt_noremap)
-
-remap("n", "<leader>pi", "<cmd>PackerSync<CR>", opt_noremap)
-remap("n", "<leader>pu", "<cmd>PackerUpdate<CR>", opt_noremap)
-remap("n", "<leader>pc", "<cmd>PackerClean<CR>", opt_noremap)
+-- packer
+vim.api.nvim_set_keymap("n", "<leader>pi", "<cmd>PackerSync<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader>pu", "<cmd>PackerUpdate<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader>pc", "<cmd>PackerClean<CR>", { noremap = true, silent = true })
 
 vim.g.vim_markdown_math = true
-remap("n", "<leader>md", "<cmd>MarkdownPreview<CR>", opts)
+vim.keymap.set("n", "<leader>md", "<cmd>MarkdownPreview<CR>")
 
 -- vim-bbye
-remap("n", "<leader><BS>", "<cmd>Bdelete<CR>", opts)
+vim.keymap.set("n", "<leader><BS>", "<cmd>Bdelete<CR>")
 
 -- Best remap by ThePrimeagen
 -- greatest remap ever
-remap("v", "<leader>p", '"_dP', opts)
+vim.keymap.set("v", "<leader>p", '"_dP')
 
-remap("v", "<", "<gv", opts)
-remap("v", ">", ">gv", opts)
+vim.keymap.set("v", "<", "<gv")
+vim.keymap.set("v", ">", ">gv")
 
 -- inoremap maps a key combination for insert mode
 -- <C-e> is the keybinding I am creating.
 -- <C-o> is a command that switches vim to normal mode for one command.
 -- $ jumps to the end of the line and we are switched back to insert mode.
-remap("i", "<C-e>", "<C-o>$", opts)
-remap("i", "<C-a>", "<C-o>0", opts)
+vim.keymap.set("i", "<C-e>", "<C-o>$")
+vim.keymap.set("i", "<C-a>", "<C-o>0")
 
 -- next greatest remap ever : asbjornHaland
-remap("n", "<leader>y", '"+y', opts)
-remap("v", "<leader>y", '"+y', opts)
-remap("n", "<leader>Y", 'gg"+yG', opts)
+vim.keymap.set("n", "<leader>y", '"+y')
+vim.keymap.set("v", "<leader>y", '"+y')
+vim.keymap.set("n", "<leader>Y", 'gg"+yG')
 
 -- Behave Vim
-remap("n", "Y", "y$", opts)
+vim.keymap.set("n", "Y", "y$")
 
 -- Moving text
 -- not pollute registers!
-remap("v", "J", ":m '>+1<CR>gv=gv", opts)
-remap("v", "K", ":m '<-2<CR>gv=gv", opts)
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 -- inoremap <C-k> <esc>:m .-2<CR>==
 -- inoremap <C-j> <esc>:m .+1<CR>==
 -- nnoremap <leader>j :m .+1<CR>==
 -- nnoremap <leader>k :m .-2<CR>==
 
 -- Switch to alternative buffer
-remap("n", "<bs>", "<c-^>", opts)
+vim.keymap.set("n", "<bs>", "<c-^>")
 
-remap("n", "<C-c>", "<esc>", opts)
+vim.keymap.set("n", "<C-c>", "<esc>")
 
 -- Q: Closes the window
-remap("n", "Q", "<cmd>q<CR>", opts)
+-- remap("n", "Q", "<cmd>q<CR>", opts)
+vim.keymap.set("n", "Q", "<cmd>q<CR>")
 -- close all windows
-remap("n", "<leader>Q", "<cmd>qa!<CR>", opts)
+vim.keymap.set("n", "<leader>Q", "<cmd>qa!<CR>")
 
 -- Undo break points
-remap("i", ",", ",<c-g>u", opts)
-remap("i", ".", ".<c-g>u", opts)
-remap("i", "!", "!<c-g>u", opts)
-remap("i", "?", "?<c-g>u", opts)
+vim.keymap.set("i", ",", ",<c-g>u")
+vim.keymap.set("i", ".", ".<c-g>u")
+vim.keymap.set("i", "!", "!<c-g>u")
+vim.keymap.set("i", "?", "?<c-g>u")
 
 -- Keeping it centered
-remap("n", "n", "nzzzv", opts)
-remap("n", "N", "Nzzzv", opts)
-remap("n", "J", "mzJ`z", opts)
+vim.keymap.set("n", "n", "nzzzv")
+vim.keymap.set("n", "N", "Nzzzv")
+vim.keymap.set("n", "J", "mzJ`z")
 
 -- Use alt + hjkl to resize windows
-remap("n", "<M-j>", ":resize +2<CR>", opts)
-remap("n", "<M-k>", ":resize -2<CR>", opts)
-remap("n", "<M-h>", ":vertical resize +2<CR>", opts)
-remap("n", "<M-l>", ":vertical resize -2<CR>", opts)
+vim.keymap.set("n", "<M-j>", ":resize +2<CR>")
+vim.keymap.set("n", "<M-k>", ":resize -2<CR>")
+vim.keymap.set("n", "<M-h>", ":vertical resize +2<CR>")
+vim.keymap.set("n", "<M-l>", ":vertical resize -2<CR>")
 
 -- delete current line
 -- map <c-d> dd
@@ -396,26 +392,26 @@ remap("n", "<M-l>", ":vertical resize -2<CR>", opts)
 -- imap <c-d> <esc>ddi
 -- exit insert mode
 -- inoremap jk <esc>
-remap("i", "jk", "<esc>", opts)
+vim.keymap.set("i", "jk", "<esc>")
 
 -- Move to window
-remap("n", "<c-h>", "<cmd>wincmd h<CR>", opts)
-remap("n", "<c-j>", "<cmd>wincmd j<CR>", opts)
-remap("n", "<c-k>", "<cmd>wincmd k<CR>", opts)
-remap("n", "<c-l>", "<cmd>wincmd l<CR>", opts)
+vim.keymap.set("n", "<c-h>", "<cmd>wincmd h<CR>")
+vim.keymap.set("n", "<c-j>", "<cmd>wincmd j<CR>")
+vim.keymap.set("n", "<c-k>", "<cmd>wincmd k<CR>")
+vim.keymap.set("n", "<c-l>", "<cmd>wincmd l<CR>")
 --
 -- ctrl_e ctrl_y 3 lines
-remap("n", "<c-e>", "3<c-e>", opts)
-remap("n", "<c-y>", "3<c-y>", opts)
-remap("v", "<c-e>", "3<c-e>", opts)
-remap("v", "<c-y>", "3<c-y>", opts)
+vim.keymap.set("n", "<c-e>", "3<c-e>")
+vim.keymap.set("n", "<c-y>", "3<c-y>")
+vim.keymap.set("v", "<c-e>", "3<c-e>")
+vim.keymap.set("v", "<c-y>", "3<c-y>")
 
 vim.o.hlsearch = true
-remap("n", "<esc><esc>", "<cmd>nohlsearch<CR>", opts)
+vim.keymap.set("n", "<esc><esc>", "<cmd>nohlsearch<CR>")
 
 -- map toggle number
-remap("n", "<leader>N", "<cmd>call ToggleNumber()<CR>", opts)
+vim.keymap.set("n", "<leader>N", "<cmd>call ToggleNumber()<CR>")
 
 -- tmuxjump
 vim.g.tmuxjump_telescope = 1
-remap("n", "<leader>ft", "<cmd>TmuxJumpFile<CR>", opts)
+vim.keymap.set("n", "<leader>ft", "<cmd>TmuxJumpFile<CR>")

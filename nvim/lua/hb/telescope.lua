@@ -89,40 +89,37 @@ telescope.load_extension("notify")
 -- require'telescope.builtin'.symbol{ sources = {'emoji'} }
 
 -- telescope mappings
-local hb_utils = require("hb/utils")
-local remap = hb_utils.remap
-local opts = hb_utils.opt_noremap_silent
-
-remap("n", "<c-p>", "<cmd>lua RTELE(); require'telescope.builtin'.git_files{}<CR>", opts)
-remap("n", "<leader>m", "<cmd>lua RTELE(); require'telescope.builtin'.oldfiles{}<CR>", opts)
-remap("n", "<leader>n", "<cmd>lua RTELE(); require'telescope.builtin'.marks{}<CR>", opts)
-remap("n", "<leader>b", "<cmd>lua RTELE(); require'telescope.builtin'.buffers{}<CR>", opts)
+vim.keymap.set("n", "<c-p>", "<cmd>lua RTELE(); require'telescope.builtin'.git_files{}<CR>")
+vim.keymap.set("n", "<leader>m", "<cmd>lua RTELE(); require'telescope.builtin'.oldfiles{}<CR>")
+vim.keymap.set("n", "<leader>n", "<cmd>lua RTELE(); require'telescope.builtin'.marks{}<CR>")
+vim.keymap.set("n", "<leader>b", "<cmd>lua RTELE(); require'telescope.builtin'.buffers{}<CR>")
 -- remap("n", "<leader>a", "<cmd>lua RTELE(); require'telescope.builtin'.live_grep{}<CR>", opts)
-remap("n", "<leader>F", "<cmd>lua RTELE(); require'telescope.builtin'.current_buffer_fuzzy_find{}<CR>", opts)
-remap("n", "<leader>ts", "<cmd>lua RTELE(); require'telescope.builtin'.tagstack{}<CR>", opts)
-remap("n", "<leader>cc", "<cmd>lua RTELE(); require'telescope.builtin'.commands{}<CR>", opts)
-remap("n", "<leader>jl", "<cmd>lua RTELE(); require'telescope.builtin'.jumplist{}<CR>", opts)
-remap("n", "<F2>", "<cmd>Telescope resume<CR>", opts)
-remap("n", "<leader>pf", "<cmd>lua RTELE(); require'telescope.builtin'.find_files{}<CR>", opts)
-remap(
+vim.keymap.set("n", "<leader>F", "<cmd>lua RTELE(); require'telescope.builtin'.current_buffer_fuzzy_find{}<CR>")
+vim.keymap.set("n", "<leader>ts", "<cmd>lua RTELE(); require'telescope.builtin'.tagstack{}<CR>")
+vim.keymap.set("n", "<leader>cc", "<cmd>lua RTELE(); require'telescope.builtin'.commands{}<CR>")
+vim.keymap.set("n", "<leader>jl", "<cmd>lua RTELE(); require'telescope.builtin'.jumplist{}<CR>")
+vim.keymap.set("n", "<F2>", "<cmd>Telescope resume<CR>")
+vim.keymap.set("n", "<leader>pf", "<cmd>lua RTELE(); require'telescope.builtin'.find_files{}<CR>")
+vim.keymap.set(
     "n",
     "<leader>ps",
-    "<cmd>lua RTELE(); require'telescope.builtin'.grep_string({ search = vim.fn.input('Grep For > ')})<CR>",
-    opts
+    "<cmd>lua RTELE(); require'telescope.builtin'.grep_string({ search = vim.fn.input('Grep For > ')})<CR>"
 )
-remap(
+vim.keymap.set(
     "n",
     "<leader>pw",
-    "<cmd>lua RTELE(); require'telescope.builtin'.grep_string({ search = vim.fn.expand('<cword>') })<CR>",
-    opts
+    "<cmd>lua RTELE(); require'telescope.builtin'.grep_string({ search = vim.fn.expand('<cword>') })<CR>"
 )
-remap("n", "<leader>r", "<cmd>lua RTELE(); require'telescope.builtin'.lsp_references{}<CR>", opts)
-remap("n", "<leader>ws", "<cmd>lua RTELE(); require'telescope.builtin'.lsp_workspace_symbols{ query = '*' }<CR>", opts)
-remap("n", "<leader>cs", "<cmd>lua RTELE(); require'telescope.builtin'.lsp_document_symbols{}<CR>", opts)
-remap(
+vim.keymap.set("n", "<leader>r", "<cmd>lua RTELE(); require'telescope.builtin'.lsp_references{}<CR>")
+vim.keymap.set(
+    "n",
+    "<leader>ws",
+    "<cmd>lua RTELE(); require'telescope.builtin'.lsp_workspace_symbols{ query = '*' }<CR>"
+)
+vim.keymap.set("n", "<leader>cs", "<cmd>lua RTELE(); require'telescope.builtin'.lsp_document_symbols{}<CR>")
+vim.keymap.set(
     "n",
     "<leader>o",
-    "<cmd>lua RTELE(); require'telescope.builtin'.lsp_document_symbols{ symbols = {'method', 'function', 'module', 'interface' } }<CR>",
-    opts
+    "<cmd>lua RTELE(); require'telescope.builtin'.lsp_document_symbols{ symbols = {'method', 'function', 'module', 'interface' } }<CR>"
 )
-remap("n", "<leader>gc", "<cmd>lua RTELE(); require'telescope.builtin'.git_branches{}<CR>", opts)
+vim.keymap.set("n", "<leader>gc", "<cmd>lua RTELE(); require'telescope.builtin'.git_branches{}<CR>")
