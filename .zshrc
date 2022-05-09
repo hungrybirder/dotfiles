@@ -9,7 +9,7 @@ OS_NAME=$(uname -s)
 BREW_PREFIX=$(brew --prefix)
 
 # use antigen manage zsh plugin, theme ...
-source /usr/local/share/antigen/antigen.zsh
+source $BREW_PREFIX/share/antigen/antigen.zsh
 antigen use oh-my-zsh
 
 # zsh rc files, load order:
