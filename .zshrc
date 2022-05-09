@@ -1,11 +1,23 @@
+# vim: ts=2 sts=2 sw=2 et
+
+export LC_ALL=en_US.utf-8
+export LANG=en_US.utf-8
+
+# 测试zsh启动时间的方法
+# /usr/bin/time zsh -i -c exit
+OS_NAME=$(uname -s)
+BREW_PREFIX=$(brew --prefix)
+
+# use antigen manage zsh plugin, theme ...
+source /usr/local/share/antigen/antigen.zsh
+antigen use oh-my-zsh
+
 # zsh rc files, load order:
 # 1 .zprofile
 # 2 .zshrc
 # 3 .zlogin
 #
 # https://unix.stackexchange.com/questions/71253/what-should-shouldnt-go-in-zshenv-zshrc-zlogin-zprofile-zlogout
-#
-# vim: ts=2 sts=2 sw=2 et
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block, everything else may go below.
@@ -13,32 +25,9 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# 测试zsh启动时间的方法
-# /usr/bin/time zsh -i -c exit
-#
-OS_NAME=$(uname -s)
-BREW_PREFIX="/usr/local"
-if [[ $(uname -m) = "arm64" ]]; then
-  BREW_PREFIX="/opt/homebrew"
-fi
 
-[ -f ${BREW_PREFIX}/etc/profile.d/autojump.sh ] && . ${BREW_PREFIX}/etc/profile.d/autojump.sh
-
-export LC_ALL=en_US.utf-8
-export LANG=en_US.utf-8
-
-export ZSH=/Users/liyong/.oh-my-zsh
-# ZSH_THEME="agnoster"
-# git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
 POWERLEVEL9K_INSTANT_PROMPT=off
-ZSH_THEME="powerlevel10k/powerlevel10k"
-
-if [[ $(uname -m) = "x86_64" ]]; then
-  # Set Spaceship ZSH as a prompt
-  autoload -U promptinit; promptinit
-  prompt spaceship
-  (( ! ${+functions[p10k]} )) || p10k finalize
-fi
+antigen theme romkatv/powerlevel10k
 
 # zsh history setting
 HISTSIZE=10000000
@@ -58,43 +47,37 @@ setopt HIST_VERIFY               # Don't execute immediately upon history expans
 setopt HIST_BEEP                 # Beep when accessing nonexistent history.
 # zsh history setting end
 
-bindkey '^ ' autosuggest-accept
+antigen bundle pyenv
+antigen bundle git
+antigen bundle autojump
+antigen bundle jsontools
+antigen bundle docker
+antigen bundle macos
+antigen bundle pip
+antigen bundle golang
+antigen bundle z
+antigen bundle thefuck
+# https://github.com/python-poetry/poetry#enable-tab-completion-for-bash-fish-or-zsh
+antigen bundle darvid/zsh-poetry
+# antigen bundle kubectl # TODO
+antigen bundle httpie
+antigen bundle python
+antigen bundle copybuffer # ctrl-o, copy cli to clipboard
+antigen bundle mvn
+antigen bundle autojump
+
+antigen bundle zsh-users/zsh-syntax-highlighting
+antigen bundle zsh-users/zsh-autosuggestions
+zle-line-init() {
+    zle autosuggest-start
+}
+zle -N zle-line-init
+
+# !! APPLY ANTIGEN !!
+antigen apply
+
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#ff00ff,bg=cyan,bold,underline"
-source ${BREW_PREFIX}/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-#source /usr/local/share/zsh-history-substring-search/zsh-history-substring-search.zsh
-source ${BREW_PREFIX}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
-# export PATH="${BREW_PREFIX}/bin:$PATH"
-
-# 启用的插件
-plugins=(
-  pyenv
-  git
-  autojump
-  jsontools
-  docker
-  macos
-  pip
-  golang
-  z
-  rust
-  thefuck
-  poetry # https://github.com/python-poetry/poetry#enable-tab-completion-for-bash-fish-or-zsh
-  kubectl
-  httpie
-  python
-  copybuffer # ctrl-o, copy cli to clipboard
-  mvn
-)
-source $ZSH/oh-my-zsh.sh
-
-# 在 iTerm -> Preferences -> Profiles -> Keys 中，新建一个快捷键
-# 例如 ⌥ + a ，Action 选择 Send Hex Code，键值为 0x1 0x70 0x63 0x20 0xd，保存生效。
-# alias pc="proxychains4"
-
-# alias mvn="mvn -Denforcer.skip=true -DdownloadSources=true "
-
-export EDITOR="nvim"
+bindkey '^ ' autosuggest-accept
 
 # colors 设置
 #Generic Colouriser
@@ -270,14 +253,11 @@ export PATH="$(go env GOPATH)/bin:${PATH}"
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-# LESS
-# export LESS="-C -M -I -j 10 -# 4"
-
-
 export SSLKEYLOGFILE="${HOME}/tmp/ssl_key.log"
 
 # 使用nvim打开手册
 export MANPAGER='nvim +Man!'
+export EDITOR="nvim"
 
 reddit() {
   local json
@@ -317,5 +297,3 @@ if [[ "Darwin" = ${OS_NAME} ]]; then
   alias bubu="brew upgrade && brew upgrade --cask --greedy"
 fi
 # alias end
-
-alias luamake=/Users/liyong/.cache/nvim/lspconfig/sumneko_lua/lua-language-server/3rd/luamake/luamake
