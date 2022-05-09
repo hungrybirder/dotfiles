@@ -415,3 +415,7 @@ vim.keymap.set("n", "<leader>N", "<cmd>call ToggleNumber()<CR>")
 -- tmuxjump
 vim.g.tmuxjump_telescope = 1
 vim.keymap.set("n", "<leader>ft", "<cmd>TmuxJumpFile<CR>")
+
+-- Reselect pasted text
+-- From https://vimtricks.com/p/reselect-pasted-text/
+vim.keymap.set("n", "gp", "`[v`]")
