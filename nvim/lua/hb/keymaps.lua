@@ -313,13 +313,13 @@ endfunction
 ]])
 
 vim.g.mapleader = " "
-vim.api.nvim_set_keymap("n", "<leader>ev", "<cmd>e $MYVIMRC<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<leader>sv", "<cmd>so $MYVIMRC<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>ev", "<cmd>e $MYVIMRC<CR>")
+vim.keymap.set("n", "<leader>sv", "<cmd>so $MYVIMRC<CR>")
 
 -- packer
-vim.api.nvim_set_keymap("n", "<leader>pi", "<cmd>PackerSync<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<leader>pu", "<cmd>PackerUpdate<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<leader>pc", "<cmd>PackerClean<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>pi", "<cmd>PackerSync<CR>")
+vim.keymap.set("n", "<leader>pu", "<cmd>PackerUpdate<CR>")
+vim.keymap.set("n", "<leader>pc", "<cmd>PackerClean<CR>")
 
 vim.g.vim_markdown_math = true
 vim.keymap.set("n", "<leader>md", "<cmd>MarkdownPreview<CR>")
