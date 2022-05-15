@@ -151,6 +151,7 @@ return packer.startup(function(use)
         "SmiteshP/nvim-gps",
         requires = "nvim-treesitter/nvim-treesitter",
     })
+    use("haringsrob/nvim_context_vt")
 
     -- better quickfix window
     use("kevinhwang91/nvim-bqf")
