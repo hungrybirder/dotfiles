@@ -1,6 +1,3 @@
--- P = function(...)
--- print(vim.inspect(...))
--- end
 P = vim.pretty_print
 
 require("hb/autocmds")
