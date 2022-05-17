@@ -133,8 +133,10 @@ return packer.startup(function(use)
     -- nvim-autopairs can set up <CR>
     use("windwp/nvim-autopairs")
 
-    use("hrsh7th/vim-vsnip")
-    use("hrsh7th/cmp-vsnip")
+    -- use("hrsh7th/vim-vsnip")
+    -- use("hrsh7th/cmp-vsnip")
+    use('L3MON4D3/LuaSnip')
+    use('saadparwaiz1/cmp_luasnip')
     use("rafamadriz/friendly-snippets")
 
     -- tree sitter
