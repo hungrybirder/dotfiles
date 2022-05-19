@@ -17,7 +17,7 @@ vim.notify = require("notify")
 vim.notify.setup()
 
 -- bufferline
-vim.o.termguicolors = true
+vim.opt.termguicolors = true
 
 require("bufferline").setup({
     options = {
