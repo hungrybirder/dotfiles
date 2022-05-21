@@ -75,6 +75,8 @@ vim.keymap.set("n", "<c-q>", '<cmd>exe v:count1 . "ToggleTerm direction=vertical
 vim.keymap.set("i", "<c-q>", '<ESC><cmd>exe v:count1 . "ToggleTerm direction=vertical"<CR>')
 vim.keymap.set("t", "<c-q>", "<c-\\><c-n>:ToggleTerm direction=vertical<CR>")
 vim.keymap.set("n", "<leader>th", '<cmd>exe v:count1 . "ToggleTerm direction=horizontal"<CR>')
+vim.keymap.set("i", "<leader>th", '<cmd>exe v:count1 . "ToggleTerm direction=horizontal"<CR>')
+vim.keymap.set("t", "<leader>th", '<cmd>exe v:count1 . "ToggleTerm direction=horizontal"<CR>')
 
 -- trouble.nvim mappings
 vim.keymap.set("n", "<leader>xx", "<cmd>TroubleToggle<cr>")

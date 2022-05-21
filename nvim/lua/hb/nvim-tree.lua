@@ -1,4 +1,3 @@
-vim.o.termguicolors = true
 -- vim.api.nvim_exec([[highlight NvimTreeFolderIcon guibg=blue]], false)
 
 vim.g.nvim_tree_git_hl = 1
