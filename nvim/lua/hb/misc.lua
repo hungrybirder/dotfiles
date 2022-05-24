@@ -126,4 +126,4 @@ require("trouble").setup({})
 require("dressing").setup({})
 
 -- which-key
-require("which-key").setup({})
+-- require("which-key").setup({})
