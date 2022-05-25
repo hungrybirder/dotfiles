@@ -135,8 +135,8 @@ return packer.startup(function(use)
 
     -- use("hrsh7th/vim-vsnip")
     -- use("hrsh7th/cmp-vsnip")
-    use('L3MON4D3/LuaSnip')
-    use('saadparwaiz1/cmp_luasnip')
+    use("L3MON4D3/LuaSnip")
+    use("saadparwaiz1/cmp_luasnip")
     use("rafamadriz/friendly-snippets")
 
     -- tree sitter
@@ -206,6 +206,14 @@ return packer.startup(function(use)
     -- langs
     use("rust-lang/rust.vim")
     use("simrat39/rust-tools.nvim")
+    use({
+        "saecki/crates.nvim",
+        event = { "BufRead Cargo.toml" },
+        requires = { { "nvim-lua/plenary.nvim" } },
+        config = function()
+            require("crates").setup()
+        end,
+    })
     use({ "fatih/vim-go", run = ":GoUpdateBinaries" })
     -- for lua develop
     use("folke/lua-dev.nvim")

@@ -1,6 +1,20 @@
 ---@diagnostic disable: missing-parameter, unused-local
 local M = {}
 
+function show_documentation()
+    local filetype = vim.bo.filetype
+    if vim.tbl_contains({ "vim", "help" }, filetype) then
+        vim.cmd("h " .. vim.fn.expand("<cword>"))
+    elseif vim.tbl_contains({ "man" }, filetype) then
+        vim.cmd("Man " .. vim.fn.expand("<cword>"))
+    elseif vim.fn.expand("%:t") == "Cargo.toml" then
+        require("crates").show_popup()
+    else
+        vim.lsp.buf.hover()
+    end
+end
+vim.keymap.set("n", "K", "<cmd>lua show_documentation()<CR>")
+
 M.setup_lsp_keymaps = function(client, bufnr)
     vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
@@ -19,7 +33,7 @@ M.setup_lsp_keymaps = function(client, bufnr)
     vim.api.nvim_buf_set_keymap(bufnr, "v", "<space>ca", ":Lspsaga range_code_action<CR>", opts)
     vim.api.nvim_buf_set_keymap(bufnr, "n", "<space>cl", "<cmd>lua vim.lsp.codelens.run()<CR>", opts)
     vim.api.nvim_buf_set_keymap(bufnr, "n", "<space>cr", "<cmd>lua vim.lsp.codelens.refresh()<CR>", opts)
-    vim.api.nvim_buf_set_keymap(bufnr, "n", "K", "<Cmd>lua vim.lsp.buf.hover()<CR>", opts)
+    -- vim.api.nvim_buf_set_keymap(bufnr, "n", "K", "<Cmd>lua vim.lsp.buf.hover()<CR>", opts)
     vim.api.nvim_buf_set_keymap(bufnr, "n", "gic", "<cmd>lua vim.lsp.buf.incoming_calls()<CR>", opts)
     vim.api.nvim_buf_set_keymap(bufnr, "n", "goc", "<cmd>lua vim.lsp.buf.outgoing_calls()<CR>", opts)
     vim.api.nvim_buf_set_keymap(bufnr, "n", "gs", "<cmd>Lspsaga signature_help<CR>", opts)
@@ -28,7 +42,13 @@ M.setup_lsp_keymaps = function(client, bufnr)
     vim.api.nvim_buf_set_keymap(bufnr, "n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
     vim.api.nvim_buf_set_keymap(bufnr, "n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
     vim.api.nvim_buf_set_keymap(bufnr, "v", "<space>f", "<cmd>lua vim.lsp.buf.range_formatting()<CR>", opts)
-    vim.api.nvim_buf_set_keymap(bufnr, "n", "<space>h", '<cmd>lua require("lspsaga.provider").preview_definition()<CR>', opts)
+    vim.api.nvim_buf_set_keymap(
+        bufnr,
+        "n",
+        "<space>h",
+        '<cmd>lua require("lspsaga.provider").preview_definition()<CR>',
+        opts
+    )
     vim.api.nvim_buf_set_keymap(bufnr, "n", "<space>wa", "<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>", opts)
     vim.api.nvim_buf_set_keymap(bufnr, "n", "<space>wr", "<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>", opts)
     vim.api.nvim_buf_set_keymap(
