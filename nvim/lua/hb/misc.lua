@@ -127,3 +127,5 @@ require("dressing").setup({})
 
 -- which-key
 -- require("which-key").setup({})
+
+require("crates").setup()

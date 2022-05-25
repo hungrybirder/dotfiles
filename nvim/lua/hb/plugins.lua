@@ -208,11 +208,7 @@ return packer.startup(function(use)
     use("simrat39/rust-tools.nvim")
     use({
         "saecki/crates.nvim",
-        event = { "BufRead Cargo.toml" },
         requires = { { "nvim-lua/plenary.nvim" } },
-        config = function()
-            require("crates").setup()
-        end,
     })
     use({ "fatih/vim-go", run = ":GoUpdateBinaries" })
     -- for lua develop
