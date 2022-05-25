@@ -4,8 +4,6 @@
 -- FROM https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#sumneko_lua
 -- Install language server by myself.
 -- ]]
-_M_LSP = {}
-
 local lspconfig = require("lspconfig")
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
@@ -173,56 +171,19 @@ capabilities.experimental = {}
 capabilities.experimental.hoverActions = true
 
 local opts = {
-    tools = {
-        autoSetHints = true,
-        hover_with_actions = true,
-        runnables = { use_telescope = true },
-        debuggables = { use_telescope = true },
-        inlay_hints = { show_parameter_hints = true, parameter_hints_prefix = "<-", other_hints_prefix = "=>" },
-        hover_actions = {
-            -- whether the hover action window gets automatically focused
-            auto_focus = true,
-        },
-        crate_graph = {
-            -- Backend used for displaying the graph
-            -- see: https://graphviz.org/docs/outputs/
-            -- default: x11
-            backend = "x11",
-            -- where to store the output, nil for no output stored (relative
-            -- path from pwd)
-            -- default: nil
-            output = nil,
-            -- true for all crates.io and external crates, false only the local
-            -- crates
-            -- default: true
-            full = true,
-            -- enabled_graphviz_backends = {
-            --   "bmp", "cgimage", "canon", "dot", "gv", "xdot", "xdot1.2", "xdot1.4",
-            --   "eps", "exr", "fig", "gd", "gd2", "gif", "gtk", "ico", "cmap", "ismap",
-            --   "imap", "cmapx", "imap_np", "cmapx_np", "jpg", "jpeg", "jpe", "jp2",
-            --   "json", "json0", "dot_json", "xdot_json", "pdf", "pic", "pct", "pict",
-            --   "plain", "plain-ext", "png", "pov", "ps", "ps2", "psd", "sgi", "svg",
-            --   "svgz", "tga", "tiff", "tif", "tk", "vml", "vmlz", "wbmp", "webp", "xlib",
-            --   "x11"
-            -- }
-        },
-    },
     server = { -- setup rust_analyzer
         on_attach = lsp_on_attach,
         flags = { debounce_text_changes = 150 },
         capabilities = capabilities,
     },
-    -- dap = {
-    --   adapter = {
-    --     type = 'executable',
-    --     command = 'lldb-vscode',
-    --     name = "rt_lldb"
-    --   }
-    -- }
+    dap = {
+        adapter = {
+            type = "executable",
+            command = "lldb-vscode",
+            name = "rt_lldb",
+        },
+    },
 }
 
 require("rust-tools").setup(opts)
 -- setup rust-tools end
---
-_M_LSP.lsp_client_capabilities = capabilities
-return _M_LSP
