@@ -128,4 +128,9 @@ require("dressing").setup({})
 -- which-key
 -- require("which-key").setup({})
 
-require("crates").setup()
+require("crates").setup({
+    null_ls = {
+        enabled = true,
+        name = "crates.nvim",
+    },
+})
