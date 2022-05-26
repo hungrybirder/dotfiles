@@ -289,7 +289,7 @@ let g:rooter_patterns = [
 " nvim-jdtls
 augroup jdtls_lsp
     autocmd!
-    autocmd FileType java lua require'hb/lsp/jdtls'.setup()
+    autocmd FileType java lua require'hb/lsp/langservers'.setup_jdtls()
 augroup end
 " nvim-jdtls end
 
