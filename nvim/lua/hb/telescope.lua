@@ -54,7 +54,7 @@ telescope.setup({
         loclist = { theme = "ivy", previewer = false },
         live_grep = { theme = "ivy" },
         man_pages = { sections = { "2", "3" } },
-        lsp_references = { path_display = { "shorten" }, theme="ivy" },
+        lsp_references = { path_display = { "shorten" }, theme = "ivy" },
         lsp_document_symbols = { path_display = { "hidden" }, theme = "ivy" },
         lsp_workspace_symbols = { path_display = { "shorten" }, theme = "ivy" },
         oldfiles = { theme = "ivy", previewer = false },
