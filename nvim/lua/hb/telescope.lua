@@ -125,6 +125,6 @@ vim.keymap.set("n", "<leader>cs", "<cmd>lua RTELE(); require'telescope.builtin'.
 vim.keymap.set(
     "n",
     "<leader>o",
-    "<cmd>lua RTELE(); require'telescope.builtin'.lsp_document_symbols{ symbols = {'method', 'function', 'module', 'interface' } }<CR>"
+    "<cmd>lua RTELE(); require'telescope.builtin'.lsp_document_symbols{ symbols = {'method', 'function', 'module', 'interface', 'class', 'struct' } }<CR>"
 )
 vim.keymap.set("n", "<leader>gc", "<cmd>lua RTELE(); require'telescope.builtin'.git_branches{}<CR>")
