@@ -294,6 +294,6 @@ alias zrc="[[ -f ~/.zshrc ]] && (source ~/.zshrc && echo 'Reloaded ~/.zshrc') ||
 
 if [[ "Darwin" = ${OS_NAME} ]]; then
   alias bu="brew upgrade"
-  alias bubu="brew upgrade && brew upgrade --cask --greedy"
+  alias bubu="brew upgrade && brew upgrade --cask"
 fi
 # alias end
