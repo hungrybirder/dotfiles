@@ -30,19 +30,21 @@ end
 return packer.startup(function(use)
     use("wbthomason/packer.nvim")
 
+    use("antoinemadec/FixCursorHold.nvim")
+
     -- use("folke/which-key.nvim")
     use("rcarriga/nvim-notify")
     use({ "stevearc/dressing.nvim" })
 
-    use("folke/zen-mode.nvim")
-    use("folke/twilight.nvim")
+    -- use("folke/zen-mode.nvim")
+    -- use("folke/twilight.nvim")
 
     use("norcalli/nvim-colorizer.lua")
 
     -- 中英文排版
     use("hotoo/pangu.vim")
 
-    use({ "wfxr/minimap.vim", run = "cargo install --locked code-minimap" })
+    -- use({ "wfxr/minimap.vim", run = "cargo install --locked code-minimap" })
 
     use("airblade/vim-rooter")
 
@@ -100,7 +102,6 @@ return packer.startup(function(use)
 
     -- lsp config
     use("neovim/nvim-lspconfig")
-    -- use("ray-x/lsp_signature.nvim")
     -- outline powered by lsp
     use("simrat39/symbols-outline.nvim")
     use("j-hui/fidget.nvim")
@@ -251,8 +252,6 @@ return packer.startup(function(use)
     -- tmux
     use("christoomey/vim-tmux-navigator")
     use("shivamashtikar/tmuxjump.vim")
-
-    use("antoinemadec/FixCursorHold.nvim")
 
     if PACKER_BOOTSTRAP then
         require("packer").sync()

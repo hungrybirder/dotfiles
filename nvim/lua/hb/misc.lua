@@ -107,7 +107,7 @@ require("litee.calltree").setup({})
 require("fidget").setup({})
 
 -- zen-mode
-require("zen-mode").setup({})
+-- require("zen-mode").setup({})
 
 -- nvim-colorizer
 require("colorizer").setup()
