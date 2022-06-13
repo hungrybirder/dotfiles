@@ -148,7 +148,7 @@ return packer.startup(function(use)
     use("romgrk/nvim-treesitter-context")
     use("RRethy/nvim-treesitter-endwise")
     use("JoosepAlviste/nvim-ts-context-commentstring")
-    use({ "stsewd/sphinx.nvim", run = ":UpdateRemotePlugins" })
+    -- use({ "stsewd/sphinx.nvim", run = ":UpdateRemotePlugins" })
     use("theprimeagen/jvim.nvim") -- for json
     use({
         "SmiteshP/nvim-gps",
