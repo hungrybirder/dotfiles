@@ -245,7 +245,6 @@ return packer.startup(function(use)
 
     -- unit test
     use("vim-test/vim-test")
-    use({ "rcarriga/vim-ultest", run = ":UpdateRemotePlugins" })
 
     -- Terminal
     use("akinsho/toggleterm.nvim")
