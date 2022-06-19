@@ -16,24 +16,26 @@ dapui.setup({
         repl = "r",
         toggle = "t",
     },
-    sidebar = {
-        elements = {
-            { id = "stacks", size = 0.25 },
-            { id = "breakpoints", size = 0.25 },
-            { id = "watches", size = 0.25 },
+    expand_lines = vim.fn.has("nvim-0.7"),
+    layouts = {
+        {
+            elements = {
+                { id = "scopes", size = 0.25 },
+                "breakpoints",
+                "stacks",
+                "watches",
+            },
+            size = 40,
+            position = "left",
         },
-        size = 40,
-        position = "right",
-    },
-    tray = {
-        elements = {
-            { id = "scopes", size = 1 },
+        {
+            elements = {
+                "repl",
+                "console",
+            },
+            size = 10,
+            position = "bottom",
         },
-        size = 15,
-        position = "bottom",
-        -- elements = { "repl" },
-        -- size = 10,
-        -- position = "bottom", -- Can be "left", "right", "top", "bottom"
     },
     floating = {
         max_height = nil, -- These can be integers or a float between 0 and 1.
