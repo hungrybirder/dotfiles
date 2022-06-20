@@ -245,6 +245,18 @@ return packer.startup(function(use)
 
     -- unit test
     use("vim-test/vim-test")
+    use({
+        "nvim-neotest/neotest",
+        requires = {
+            "nvim-lua/plenary.nvim",
+            "nvim-treesitter/nvim-treesitter",
+            "antoinemadec/FixCursorHold.nvim",
+            "nvim-neotest/neotest-plenary",
+            "nvim-neotest/neotest-python",
+            "nvim-neotest/neotest-go",
+            "nvim-neotest/neotest-vim-test",
+        },
+    })
 
     -- Terminal
     use("akinsho/toggleterm.nvim")

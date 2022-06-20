@@ -1,53 +1,25 @@
--- local builders = {
---     python = function(cmd)
---         local non_modules = { "python", "pipenv", "poetry" }
+require("neotest").setup({
+    adapters = {
+        require("neotest-plenary"),
+        require("neotest-python")({
+            dap = { justMyCode = false },
+        }),
+        require("neotest-go"),
+        require("neotest-vim-test")({
+            ignore_file_types = { "python", "vim", "lua", "go" },
+        }),
+    },
+})
 
---         local module_index
---         if vim.tbl_contains(non_modules, cmd[1]) then
---             module_index = 3
---         else
---             module_index = 1
---         end
-
---         local args = vim.list_slice(cmd, module_index + 1)
-
---         return {
---             dap = {
---                 type = "python",
---                 name = "Ultest Debugger",
---                 request = "launch",
---                 module = cmd[module_index],
---                 args = args,
---                 justMyCode = false,
---             },
---         }
---     end,
---     ["go#gotest"] = function(cmd)
---         local args = {}
-
---         for i = 3, #cmd - 1, 1 do
---             local arg = cmd[i]
---             if vim.startswith(arg, "-") then
---                 arg = "-test." .. string.sub(arg, 2)
---             end
---             args[#args + 1] = arg
---         end
---         return {
---             dap = {
---                 type = "go",
---                 request = "launch",
---                 mode = "test",
---                 program = "${workspaceFolder}",
---                 dlvToolPath = vim.fn.exepath("dlv"),
---                 args = args,
---             },
---             parse_result = function(lines)
---                 return lines[#lines] == "FAIL" and 1 or 0
---             end,
---         }
---     end,
--- }
-
--- require("ultest").setup({ builders = builders })
-
--- TODO https://github.com/nvim-neotest/neotest
+vim.api.nvim_command("command! -nargs=0 NeotestRun :lua require('neotest').run.run()<CR>")
+vim.api.nvim_command("command! -nargs=0 NeotestStop :lua require('neotest').run.stop()<CR>")
+vim.api.nvim_command("command! -nargs=0 NeotestAttach :lua require('neotest').run.attach()<CR>")
+vim.api.nvim_command("command! -nargs=0 NeotestDebugNearest :lua require('neotest').run.run({strategy = 'dap'})<CR>")
+vim.api.nvim_command("command! -nargs=0 NeotestRunFile :lua require('neotest').run.run(vim.fn.expand('%'))<CR>")
+vim.api.nvim_command("command! -nargs=0 NeotestToggleSummary :lua require('neotest').summary.toggle()<CR>")
+vim.api.nvim_command(
+    "command! -nargs=0 NeotestJumpPrevFailed :lua require('neotest').jump.prev({ status = 'failed' })<CR>"
+)
+vim.api.nvim_command(
+    "command! -nargs=0 NeotestJumpnextFailed :lua require('neotest').jump.next({ status = 'failed' })<CR>"
+)
