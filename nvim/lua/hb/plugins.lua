@@ -1,5 +1,6 @@
 local INSTALL_PATH = vim.fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
 
+---@diagnostic disable-next-line: missing-parameter
 if vim.fn.empty(vim.fn.glob(INSTALL_PATH)) > 0 then
     PACKER_BOOTSTRAP = vim.fn.system({ "git", "clone", "https://github.com/wbthomason/packer.nvim", INSTALL_PATH })
     print("Installing packer close and reopen Neovim...")
