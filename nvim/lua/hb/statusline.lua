@@ -23,28 +23,26 @@ local function min_window_width(width)
     end
 end
 
--- Customize statusline components
-local custom_components = {
-    -- Override 'encoding': Don't display if encoding is UTF-8.
-    encoding = function()
-        local ret, _ = (vim.bo.fenc or vim.go.enc):gsub("^utf%-8$", "") -- Note: '-' is a magic character
-        return ret
-    end,
-    -- fileformat: Don't display if &ff is unix.
-    fileformat = function()
-        local ret, _ = vim.bo.fileformat:gsub("^unix$", "")
-        return ret
-    end,
-    -- GPS (https://github.com/SmiteshP/nvim-gps)
-    treesitter_context = function()
-        local ok, gps = pcall(require, "nvim-gps")
-        if ok and gps.is_available() then
-            return gps.get_location()
-        end
-        return ""
-    end,
-}
+-- Override 'encoding': Don't display if encoding is UTF-8.
+local function custom_encoding()
+    local ret, _ = (vim.bo.fenc or vim.go.enc):gsub("^utf%-8$", "") -- Note: '-' is a magic character
+    return ret
+end
 
+-- fileformat: Don't display if &ff is unix.
+local function custom_fileformat()
+    local ret, _ = vim.bo.fileformat:gsub("^unix$", "")
+    return ret
+end
+
+-- GPS (https://github.com/SmiteshP/nvim-gps)
+local function custom_treesitter_context()
+    local ok, gps = pcall(require, "nvim-gps")
+    if ok and gps.is_available() then
+        return gps.get_location()
+    end
+    return ""
+end
 require("lualine").setup({
     options = {
         globalstatus = true,
@@ -73,7 +71,7 @@ require("lualine").setup({
         },
         lualine_c = {
             {
-                custom_components.treesitter_context,
+                custom_treesitter_context,
                 color = { bg = colors.bg, fg = colors.blue, gui = "bold" },
             },
         },
@@ -91,8 +89,8 @@ require("lualine").setup({
         },
         lualine_z = {
             { "filesize", color = { bg = colors.bg, fg = colors.blue } },
-            custom_components.fileformat,
-            custom_components.encoding,
+            custom_fileformat,
+            custom_encoding,
             { "filetype", icon_only = true, left_padding = 2, color = { bg = colors.bg } },
         },
     },
