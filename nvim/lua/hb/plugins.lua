@@ -55,6 +55,8 @@ return packer.startup(function(use)
     -- buffer line at the top of window
     use({ "akinsho/bufferline.nvim", tag = "v2.*", requires = "kyazdani42/nvim-web-devicons" })
 
+    use 'sunjon/shade.nvim'
+
     -- delete buffer without closing windows
     use("moll/vim-bbye")
 
