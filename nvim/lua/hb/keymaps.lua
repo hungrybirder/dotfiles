@@ -155,9 +155,8 @@ function! MyFoldText()
   return str
 endfunction
 set foldtext=MyFoldText()
-nnoremap <s-tab> za
-
-map <leader>z :call ToggleFold()<CR>
+" nnoremap <s-tab> za
+" nnoremap <leader>z :call ToggleFold()<CR>
 func! ToggleFold()
     if &foldlevel == 0
         set foldlevel=99
@@ -419,3 +418,7 @@ vim.keymap.set("n", "<leader>ft", "<cmd>TmuxJumpFile<CR>")
 -- Reselect pasted text
 -- From https://vimtricks.com/p/reselect-pasted-text/
 vim.keymap.set("n", "gp", "`[v`]")
+
+-- folder mappings
+vim.keymap.set("n", "<leader>z", ":call ToggleFold()<CR>")
+vim.keymap.set("n", "<s-tab>", "za")
