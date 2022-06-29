@@ -13,6 +13,8 @@ telescope.setup({
     defaults = {
         mappings = {
             i = {
+                ["<c-s>"] = actions.select_horizontal,
+                ["<c-v>"] = actions.select_vertical,
                 ["<c-j>"] = actions.move_selection_next,
                 ["<c-k>"] = actions.move_selection_previous,
                 ["<esc>"] = actions.close,
@@ -24,6 +26,8 @@ telescope.setup({
                 ["<c-t>"] = trouble.open_with_trouble,
             },
             n = {
+                ["<c-s>"] = actions.select_horizontal,
+                ["<c-v>"] = actions.select_vertical,
                 ["<c-w>"] = actions.send_selected_to_qflist,
                 ["<c-q>"] = actions.send_to_qflist,
                 ["<c-l>"] = actions.add_selected_to_loclist,
