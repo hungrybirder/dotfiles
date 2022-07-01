@@ -61,6 +61,8 @@ telescope.setup({
         lsp_references = { path_display = { "shorten" }, theme = "ivy" },
         lsp_document_symbols = { path_display = { "hidden" }, theme = "ivy" },
         lsp_workspace_symbols = { path_display = { "shorten" }, theme = "ivy" },
+        lsp_incoming_calls = { theme = "ivy" },
+        lsp_outgoing_calls = { theme = "ivy" },
         oldfiles = { theme = "ivy", previewer = false },
         tagstack = { theme = "ivy" },
         treesitter = { theme = "ivy" },
