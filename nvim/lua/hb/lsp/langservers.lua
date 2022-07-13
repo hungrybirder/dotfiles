@@ -62,7 +62,17 @@ local capabilities = make_lsp_client_capabilities()
 -- npm i -g sql-language-server
 -- npm i -g vls
 -- ]]
-local servers = { "yamlls", "html", "cmake", "dockerls", "tsserver", "vimls", "bashls", "kotlin_language_server" }
+local servers = {
+    "yamlls",
+    "html",
+    "cmake",
+    "dockerls",
+    "tsserver",
+    "vimls",
+    "bashls",
+    "kotlin_language_server",
+    "texlab",
+}
 
 for _, name in pairs(servers) do
     lspconfig[name].setup({
