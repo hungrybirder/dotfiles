@@ -100,6 +100,10 @@ return packer.startup(function(use)
         "ldelossa/litee-calltree.nvim",
         requires = { "ldelossa/litee.nvim" },
     })
+    use {
+    'ldelossa/gh.nvim',
+    requires = { { 'ldelossa/litee.nvim' } }
+  }
 
     -- lsp config
     use("neovim/nvim-lspconfig")

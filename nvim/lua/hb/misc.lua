@@ -98,6 +98,7 @@ require("litee.lib").setup({
     tree = { icon_set = "codicons" },
 })
 require("litee.calltree").setup({})
+require("litee.gh").setup({})
 
 -- modes
 -- vim.opt.cursorline = true
