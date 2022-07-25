@@ -100,13 +100,17 @@ return packer.startup(function(use)
         "ldelossa/litee-calltree.nvim",
         requires = { "ldelossa/litee.nvim" },
     })
-    use {
-    'ldelossa/gh.nvim',
-    requires = { { 'ldelossa/litee.nvim' } }
-  }
 
+    use({
+        "pwntester/octo.nvim",
+        requires = {
+            "nvim-lua/plenary.nvim",
+            "nvim-telescope/telescope.nvim",
+            "kyazdani42/nvim-web-devicons",
+        },
+    })
     -- lsp config
-    use { "williamboman/mason.nvim" }
+    use({ "williamboman/mason.nvim" })
     use("neovim/nvim-lspconfig")
     -- outline powered by lsp
     use("simrat39/symbols-outline.nvim")

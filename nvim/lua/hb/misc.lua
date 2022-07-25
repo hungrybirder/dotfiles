@@ -98,7 +98,6 @@ require("litee.lib").setup({
     tree = { icon_set = "codicons" },
 })
 require("litee.calltree").setup({})
-require("litee.gh").setup({})
 
 -- modes
 -- vim.opt.cursorline = true
@@ -141,7 +140,10 @@ require("mason").setup({
         icons = {
             package_installed = "✓",
             package_pending = "➜",
-            package_uninstalled = "✗"
-        }
-    }
+            package_uninstalled = "✗",
+        },
+    },
 })
+
+-- octo.nvim
+require("octo").setup({})
