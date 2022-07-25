@@ -106,6 +106,7 @@ return packer.startup(function(use)
   }
 
     -- lsp config
+    use { "williamboman/mason.nvim" }
     use("neovim/nvim-lspconfig")
     -- outline powered by lsp
     use("simrat39/symbols-outline.nvim")

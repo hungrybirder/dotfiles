@@ -142,14 +142,14 @@ lspconfig.gopls.setup({
     capabilities = capabilities,
 })
 
-local lua_lsp_bin = vim.fn.stdpath("cache") .. "/lspconfig/sumneko_lua/lua-language-server/bin/lua-language-server"
+-- local lua_lsp_bin = vim.fn.stdpath("cache") .. "/lspconfig/sumneko_lua/lua-language-server/bin/lua-language-server"
 
 local luadev = require("lua-dev").setup({
     lspconfig = {
         capabilities = capabilities,
         on_attach = lsp_on_attach,
         flags = { debounce_text_changes = 150 },
-        cmd = { lua_lsp_bin },
+        -- cmd = { lua_lsp_bin },
         settings = {
             Lua = {
                 runtime = { version = "LuaJIT" },
