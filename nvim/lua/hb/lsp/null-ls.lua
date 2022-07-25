@@ -16,6 +16,7 @@ null_ls.setup({
         formatting.clang_format.with({
             filetypes = { "c", "cpp" },
         }),
+        formatting.sql_formatter,
         -- formatting.google_java_format,
 
         diagnostics.shellcheck, -- sh
