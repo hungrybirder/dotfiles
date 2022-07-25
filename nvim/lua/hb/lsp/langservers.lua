@@ -51,17 +51,6 @@ end
 -- lsp capabilities
 local capabilities = make_lsp_client_capabilities()
 
--- [[
--- npm i -g typescript-language-server typescript
--- npm i -g vim-language-server
--- npm i -g bash-language-server
--- npm i -g vscode-json-languageserver
--- npm i -g yaml-language-server
--- npm i -g vscode-html-languageserver-bin
--- yarn global add diagnostic-languageserver
--- npm i -g sql-language-server
--- npm i -g vls
--- ]]
 local servers = {
     "yamlls",
     "html",
