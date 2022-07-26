@@ -135,7 +135,7 @@ require("crates").setup({
 })
 
 -- mason.nvim
--- MasonInstall yaml-language-server html-lsp dockerfile-language-server typescript-language-server vim-language-server bash-language-server kotlin-language-server texlab vls sqlls clangd pyright cmake-language-server
+-- MasonInstall ansible-language-server awk-language-server bash-language-server clangd cmake-language-server codelldb debugpy dockerfile-language-server go-debug-adapter gopls html-lsp json-lsp kotlin-language-server lua-language-server prettier pyright rust-analyzer shellcheck shfmt solargraph sql-formatter sqlls stylua texlab typescript-language-server vim-language-server vls yaml-language-server
 require("mason").setup({
     ui = {
         icons = {
