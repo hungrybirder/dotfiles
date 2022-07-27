@@ -160,7 +160,6 @@ lspconfig.solargraph.setup({
     capabilities = capabilities,
     on_attach = lsp_on_attach,
     flags = { debounce_text_changes = 150 },
-    cmd = { "/usr/local/lib/ruby/gems/3.0.0/bin/solargraph", "stdio" },
 })
 
 -- setup rust-tools
