@@ -73,6 +73,7 @@ return packer.startup(function(use)
         "folke/todo-comments.nvim",
         requires = "nvim-lua/plenary.nvim",
     })
+    use("romainl/vim-cool")
 
     -- powered by tpope
     use("tpope/vim-repeat")
