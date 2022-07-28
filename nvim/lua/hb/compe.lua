@@ -89,7 +89,14 @@ cmp.setup({
     },
 })
 
-cmp.setup.filetype("gitcommit", { sources = cmp.config.sources({ { name = "cmp_git" } }, { { name = "buffer" } }) })
+require("cmp_git").setup()
+cmp.setup.filetype("gitcommit", {
+    sources = cmp.config.sources({
+        { name = "git" },
+    }, {
+        { name = "buffer" },
+    }),
+})
 
 -- Use buffer source for `/`.
 cmp.setup.cmdline("/", {
