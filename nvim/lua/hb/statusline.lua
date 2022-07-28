@@ -43,6 +43,20 @@ local function custom_treesitter_context()
     end
     return ""
 end
+
+-- https://github.com/nvim-lualine/lualine.nvim/issues/186#issuecomment-1170637440
+vim.o.shortmess = vim.o.shortmess .. "S"
+local function search_count()
+    if vim.api.nvim_get_vvar("hlsearch") == 1 then
+        local res = vim.fn.searchcount({ maxcount = 999, timeout = 500 })
+
+        if res.total > 0 then
+            return string.format("%d/%d", res.current, res.total)
+        end
+    end
+    return ""
+end
+
 require("lualine").setup({
     options = {
         globalstatus = true,
@@ -57,6 +71,7 @@ require("lualine").setup({
             { "mode", right_padding = 2, cond = min_window_width(40) },
         },
         lualine_b = {
+            { search_count, type = "lua_expr" },
             { "filename", color = { gui = "bold" } },
             { "branch", color = { fg = colors.green, gui = "bold" }, cond = min_window_width(120) },
             {
@@ -96,7 +111,7 @@ require("lualine").setup({
     },
     inactive_sections = {
         lualine_a = { "filename" },
-        lualine_b = {},
+        lualine_b = { search_count },
         lualine_c = {},
         lualine_x = {},
         lualine_y = {},
