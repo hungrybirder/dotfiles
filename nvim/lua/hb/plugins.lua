@@ -73,7 +73,8 @@ return packer.startup(function(use)
         "folke/todo-comments.nvim",
         requires = "nvim-lua/plenary.nvim",
     })
-    use('junegunn/vim-slash')
+    -- use('junegunn/vim-slash')
+    use({ "kevinhwang91/nvim-hlslens" })
 
     -- powered by tpope
     use("tpope/vim-repeat")
