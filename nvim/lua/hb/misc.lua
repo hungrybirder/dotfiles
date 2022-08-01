@@ -160,3 +160,11 @@ vim.keymap.set("n", "g#", [[g#<Cmd>lua require('hlslens').start()<CR>]])
 require("hlslens").setup({
     calm_down = true,
 })
+
+vim.cmd([[
+    aug VMlens
+        au!
+        au User visual_multi_start lua require("hb/vmlens").start()
+        au User visual_multi_exit lua require("hb/vmlens").exit()
+    aug END
+]])
