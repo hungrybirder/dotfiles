@@ -23,23 +23,8 @@ local lsp_on_attach = function(client, bufnr)
     -- using null-ls for formatting...
     client.resolved_capabilities.document_formatting = false
     client.resolved_capabilities.document_range_formatting = false
-
     require("hb/lsp/keymap").setup_lsp_keymaps(client, bufnr)
     require("lspkind").init({})
-    -- require("lsp_signature").on_attach({
-    --     bind = true,
-    --     handler_opts = { border = "rounded" },
-    --     doc_lines = 2,
-    --     hint_enable = true,
-    --     hint_prefix = "🌟 ",
-    --     hint_scheme = "String",
-    --     use_lspsaga = false,
-    --     floating_window = false,
-    --     floating_window_above_cur_line = true,
-    --     max_height = 12,
-    --     max_width = 120,
-    --     fix_pos = false,
-    -- })
 end
 
 local make_lsp_client_capabilities = function()
@@ -167,8 +152,16 @@ capabilities.experimental = {}
 capabilities.experimental.hoverActions = true
 
 local opts = {
-    server = { -- setup rust_analyzer
-        on_attach = lsp_on_attach,
+    server = {
+        -- on_attach = lsp_on_attach,
+        on_attach = function(client, bufnr)
+            local rt = require("rust-tools")
+            -- Hover actions
+            vim.keymap.set("n", "<C-space>", rt.hover_actions.hover_actions, { buffer = bufnr })
+            -- Code action groups
+            -- vim.keymap.set("n", "<Leader>a", rt.code_action_group.code_action_group, { buffer = bufnr })
+            lsp_on_attach(client, bufnr)
+        end,
         flags = { debounce_text_changes = 150 },
         capabilities = capabilities,
     },

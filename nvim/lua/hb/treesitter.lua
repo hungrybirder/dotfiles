@@ -71,15 +71,15 @@ require("nvim-treesitter.configs").setup({
             goto_previous_start = { ["[m"] = "@function.outer", ["[["] = "@class.outer" },
             goto_previous_end = { ["[M"] = "@function.outer", ["[]"] = "@class.outer" },
         },
-        swap = {
-            enable = true,
-            swap_next = {
-                ["<leader>a"] = "@parameter.inner",
-            },
-            swap_previous = {
-                ["<leader>A"] = "@parameter.inner",
-            },
-        },
+        -- swap = {
+        --     enable = true,
+        --     swap_next = {
+        --         ["<leader>a"] = "@parameter.inner",
+        --     },
+        --     swap_previous = {
+        --         ["<leader>A"] = "@parameter.inner",
+        --     },
+        -- },
     },
     playground = {
         enable = true,
