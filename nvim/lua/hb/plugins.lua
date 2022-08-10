@@ -74,7 +74,8 @@ return packer.startup(function(use)
         requires = "nvim-lua/plenary.nvim",
     })
     -- use('junegunn/vim-slash')
-    use({ "kevinhwang91/nvim-hlslens" })
+    use("kevinhwang91/nvim-hlslens")
+    use("Pocco81/HighStr.nvim")
 
     -- powered by tpope
     use("tpope/vim-repeat")
