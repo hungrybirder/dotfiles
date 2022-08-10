@@ -107,7 +107,7 @@ lspconfig.clangd.setup({
     on_attach = lsp_on_attach,
     flags = { debounce_text_changes = 150 },
     capabilities = capabilities_for_clangd,
-    cmd = { "clangd", "--background-index", "-j=8" },
+    cmd = { "clangd", "--background-index"},
 })
 
 lspconfig.gopls.setup({
