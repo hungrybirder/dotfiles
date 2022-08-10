@@ -259,10 +259,6 @@ endif
 " fzf end
 "
 
-" vim-vsnip
-let g:vsnip_snippet_dir = '~/.config/nvim/vsnip'
-" vim-vsnip end
-
 " indent-blankline
 let g:indent_blankline_filetype = ['vim', 'lua', 'python']
 " indent-blankline end
@@ -271,12 +267,6 @@ let g:indent_blankline_filetype = ['vim', 'lua', 'python']
 let g:matchup_surround_enabled = 1
 let g:matchup_transmute_enabled = 1
 " vim-matchup end
-
-" minimap.vim
-let g:minimap_width = 10
-let g:minimap_auto_start = 0
-let g:minimap_auto_start_win_enter = 0
-" minimap.vim end
 
 " vim-rooter
 let g:rooter_patterns = [
