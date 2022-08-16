@@ -79,7 +79,11 @@ return packer.startup(function(use)
 
     -- powered by tpope
     use("tpope/vim-repeat")
-    use("tpope/vim-surround")
+    -- use("tpope/vim-surround")
+    use({
+    "kylechui/nvim-surround",
+    tag = "*", -- Use for stability; omit for the latest features
+})
     use("tpope/vim-speeddating")
     use("tpope/vim-unimpaired")
     use("tpope/vim-commentary")

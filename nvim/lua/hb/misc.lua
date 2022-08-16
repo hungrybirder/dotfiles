@@ -172,3 +172,6 @@ vim.cmd([[
 -- HighStr.nvim
 vim.keymap.set("v", "<F6>", ":<c-u>HSHighlight 1<CR>")
 vim.keymap.set("v", "<F7>", ":<c-u>HSRmHighlight<CR>")
+
+-- nvim-surround
+require("nvim-surround").setup({})
