@@ -49,13 +49,12 @@ vim.cmd([[
 ]])
 
 -- symbols-outline
-vim.g.symbols_outline = {
+vim.keymap.set("n", "<leader>v", "<cmd>SymbolsOutline<CR>")
+require("symbols-outline").setup({
     relative_width = true,
     auto_preview = false,
     position = "right",
-}
-
-vim.keymap.set("n", "<leader>v", "<cmd>SymbolsOutline<CR>")
+})
 
 -- indent_blankline
 require("indent_blankline").setup({ show_current_context = true, show_current_context_start = true })
