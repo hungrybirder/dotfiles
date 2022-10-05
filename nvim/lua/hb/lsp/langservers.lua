@@ -21,8 +21,8 @@ vim.lsp.handlers["textDocument/references"] = vim.lsp.with(on_references, {
 
 local lsp_on_attach = function(client, bufnr)
     -- using null-ls for formatting...
-    client.resolved_capabilities.document_formatting = false
-    client.resolved_capabilities.document_range_formatting = false
+    client.server_capabilities.document_formatting = false
+    client.server_capabilities.document_range__formatting = false
     require("hb/lsp/keymap").setup_lsp_keymaps(client, bufnr)
     require("lspkind").init({})
 end
@@ -107,7 +107,7 @@ lspconfig.clangd.setup({
     on_attach = lsp_on_attach,
     flags = { debounce_text_changes = 150 },
     capabilities = capabilities_for_clangd,
-    cmd = { "clangd", "--background-index"},
+    cmd = { "clangd", "--background-index" },
 })
 
 lspconfig.gopls.setup({
@@ -181,8 +181,8 @@ require("rust-tools").setup(opts)
 setup_jdtls = function()
     local on_attach = function(client, bufnr)
         -- using null-ls for formatting...
-        client.resolved_capabilities.document_formatting = false
-        client.resolved_capabilities.document_range_formatting = false
+        client.server_capabilities.document_formatting = false
+        client.server_capabilities.document_range_formatting = false
 
         require("hb/lsp/keymap").setup_lsp_keymaps(client, bufnr)
         require("lspkind").init({})
