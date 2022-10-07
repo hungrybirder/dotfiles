@@ -13,8 +13,9 @@ vim.api.nvim_exec(
 vim.keymap.set("n", "]<tab>", "<cmd>tabnext<cr>")
 vim.keymap.set("n", "[<tab>", "<cmd>tabnext<cr>")
 
-vim.notify = require("notify")
-vim.notify.setup()
+notify = require("notify")
+notify.setup({})
+vim.notify = notify
 
 -- bufferline
 vim.opt.termguicolors = true
