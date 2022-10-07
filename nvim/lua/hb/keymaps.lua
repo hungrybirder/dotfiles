@@ -287,10 +287,6 @@ augroup codelens
   autocmd BufWritePost *.java lua vim.lsp.codelens.refresh()
 augroup END
 
-" FixCursorHold.nvim
-let g:cursorhold_updatetime = 100
-" FixCursorHold.nvim end
-
 function! ToggleNumber()
     if(&number == 1 || &relativenumber == 1)
         set nonumber norelativenumber

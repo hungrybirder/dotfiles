@@ -31,8 +31,6 @@ end
 return packer.startup(function(use)
     use("wbthomason/packer.nvim")
 
-    use("antoinemadec/FixCursorHold.nvim")
-
     -- use("folke/which-key.nvim")
     use("rcarriga/nvim-notify")
     use({ "stevearc/dressing.nvim" })
