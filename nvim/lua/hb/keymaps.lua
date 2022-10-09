@@ -44,7 +44,7 @@ set termguicolors
 set scrolloff=8
 set noshowmode
 set completeopt=menu,menuone,noselect
-" set mouse=a
+set mouse=
 set splitright
 set splitbelow
 set nobackup
