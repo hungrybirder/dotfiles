@@ -41,6 +41,7 @@ require("nvim-treesitter.configs").setup({
     textobjects = {
         select = {
             enable = true,
+            lookahead = true,
             keymaps = {
                 -- You can use the capture groups defined in textobjects.scm
                 ["ie"] = "@block.inner",
@@ -62,14 +63,29 @@ require("nvim-treesitter.configs").setup({
         },
         lsp_interop = {
             enable = true,
-            peek_definition_code = { ["<leader>df"] = "@function.outer", ["<leader>dF"] = "@class.outer" },
+            peek_definition_code = {
+                ["<leader>df"] = "@function.outer",
+                ["<leader>dF"] = "@class.outer",
+            },
         },
         move = {
             enable = true,
-            goto_next_start = { ["]m"] = "@function.outer", ["]]"] = "@class.outer" },
-            goto_next_end = { ["]M"] = "@function.outer", ["]["] = "@class.outer" },
-            goto_previous_start = { ["[m"] = "@function.outer", ["[["] = "@class.outer" },
-            goto_previous_end = { ["[M"] = "@function.outer", ["[]"] = "@class.outer" },
+            goto_next_start = {
+                ["]m"] = "@function.outer",
+                ["]]"] = "@class.outer",
+            },
+            goto_next_end = {
+                ["]M"] = "@function.outer",
+                ["]["] = "@class.outer",
+            },
+            goto_previous_start = {
+                ["[m"] = "@function.outer",
+                ["[["] = "@class.outer",
+            },
+            goto_previous_end = {
+                ["[M"] = "@function.outer",
+                ["[]"] = "@class.outer",
+            },
         },
         -- swap = {
         --     enable = true,
