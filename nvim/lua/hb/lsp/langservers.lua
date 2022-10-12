@@ -19,7 +19,7 @@ vim.lsp.handlers["textDocument/references"] = vim.lsp.with(on_references, {
     loclist = true,
 })
 
-local lsp_on_attach = function(client, bufnr)
+local function lsp_on_attach(client, bufnr)
     -- using null-ls for formatting...
     client.server_capabilities.document_formatting = false
     client.server_capabilities.document_range__formatting = false
@@ -27,7 +27,7 @@ local lsp_on_attach = function(client, bufnr)
     require("lspkind").init({})
 end
 
-local make_lsp_client_capabilities = function()
+local function make_lsp_client_capabilities()
     -- cmp_nvim_lsp take care of snippetSupport and resolveSupport
     local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
     return capabilities

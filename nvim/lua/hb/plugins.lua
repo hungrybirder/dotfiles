@@ -226,7 +226,7 @@ return packer.startup(function(use)
         "saecki/crates.nvim",
         requires = { { "nvim-lua/plenary.nvim" } },
     })
-    -- use({ "fatih/vim-go", run = ":GoUpdateBinaries" })
+
     -- for lua develop
     use("folke/lua-dev.nvim")
     use("mfussenegger/nvim-jdtls")

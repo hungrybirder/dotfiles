@@ -12,6 +12,7 @@ null_ls.setup({
         formatting.yapf,
         formatting.trim_whitespace,
         formatting.goimports,
+        formatting.gofmt,
         formatting.rustfmt,
         formatting.clang_format.with({
             filetypes = { "c", "cpp" },

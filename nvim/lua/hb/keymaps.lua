@@ -203,28 +203,6 @@ endif
 let g:VM_leader = '\\'
 " vim-visual-multi end
 
-" vim-go
-" 使用vim-go功能
-" 1. fmt autosave
-" 2. 重新启动 vim-go gopls，vim-go 维护 tags 跳转更实用
-" let g:go_gopls_enabled = 1
-" let g:go_def_mapping_enabled = 0
-" let g:go_fmt_autosave = 1
-" let g:go_fmt_command = "goimports"
-" let g:go_diagnostics_enabled = 0
-" let g:go_auto_type_info = 0
-" let g:go_code_completion_enabled = 0
-" let g:go_doc_keywordprg_enabled = 0 "disabled, using K lsp hover()
-" let g:go_doc_popup_window = 1
-" let g:go_mod_fmt_autosave = 0
-" let g:go_textobj_enabled = 0
-" let g:go_metalinter_autosave_enabled = []
-" let g:go_metalinter_enabled = []
-" let g:go_addtags_transform = 'camelcase'
-" let g:go_list_type = "quickfix"
-" let g:go_echo_go_info = 0
-" vim-go end
-
 " vim-subversive
 " s for substitute
 nmap s <plug>(SubversiveSubstitute)
