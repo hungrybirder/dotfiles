@@ -79,9 +79,9 @@ return packer.startup(function(use)
     use("tpope/vim-repeat")
     -- use("tpope/vim-surround")
     use({
-    "kylechui/nvim-surround",
-    tag = "*", -- Use for stability; omit for the latest features
-})
+        "kylechui/nvim-surround",
+        tag = "*", -- Use for stability; omit for the latest features
+    })
     use("tpope/vim-speeddating")
     use("tpope/vim-unimpaired")
     use("tpope/vim-commentary")
@@ -226,6 +226,8 @@ return packer.startup(function(use)
         "saecki/crates.nvim",
         requires = { { "nvim-lua/plenary.nvim" } },
     })
+
+    use("ray-x/go.nvim")
 
     -- for lua develop
     use("folke/lua-dev.nvim")
