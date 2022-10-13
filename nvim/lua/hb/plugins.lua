@@ -227,7 +227,7 @@ return packer.startup(function(use)
         requires = { { "nvim-lua/plenary.nvim" } },
     })
 
-    use("ray-x/go.nvim")
+    use({"ray-x/go.nvim", requires = {"ray-x/guihua.lua"}})
 
     -- for lua develop
     use("folke/lua-dev.nvim")
