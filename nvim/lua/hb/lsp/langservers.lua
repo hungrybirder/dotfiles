@@ -36,6 +36,11 @@ end
 -- lsp capabilities
 local capabilities = make_lsp_client_capabilities()
 
+local lsp_flags = {
+    -- This is the default in Nvim 0.7+
+    debounce_text_changes = 150,
+}
+
 local servers = {
     "yamlls",
     "html",
@@ -51,14 +56,14 @@ local servers = {
 for _, name in pairs(servers) do
     lspconfig[name].setup({
         on_attach = lsp_on_attach,
-        flags = { debounce_text_changes = 150 },
+        flags = lsp_flags,
         capabilities = capabilities,
     })
 end
 
 lspconfig.vuels.setup({
     on_attach = lsp_on_attach,
-    flags = { debounce_text_changes = 150 },
+    flags = lsp_flags,
     capabilities = capabilities,
     settings = { vetur = { experimental = { templateInterpolationService = true } } },
 })
@@ -72,18 +77,18 @@ lspconfig.jsonls.setup({
         },
     },
     on_attach = lsp_on_attach,
-    flags = { debounce_text_changes = 150 },
+    flags = lsp_flags,
     capabilities = capabilities,
 })
 
 lspconfig.sqlls.setup({
     cmd = { "sql-language-server", "up", "--method", "stdio" },
-    flags = { debounce_text_changes = 150 },
+    flags = lsp_flags,
 })
 
 lspconfig.pyright.setup({
     on_attach = lsp_on_attach,
-    flags = { debounce_text_changes = 150 },
+    flags = lsp_flags,
     capabilities = capabilities,
     settings = {
         python = {
@@ -105,14 +110,14 @@ capabilities_for_clangd.offsetEncoding = { "utf-16" }
 lspconfig.clangd.setup({
     init_options = { clangdFileStatus = true },
     on_attach = lsp_on_attach,
-    flags = { debounce_text_changes = 150 },
+    flags = lsp_flags,
     capabilities = capabilities_for_clangd,
     cmd = { "clangd", "--background-index" },
 })
 
 lspconfig.gopls.setup({
     on_attach = lsp_on_attach,
-    flags = { debounce_text_changes = 150 },
+    flags = lsp_flags,
     capabilities = capabilities,
 })
 
@@ -122,7 +127,7 @@ local luadev = require("lua-dev").setup({
     lspconfig = {
         capabilities = capabilities,
         on_attach = lsp_on_attach,
-        flags = { debounce_text_changes = 150 },
+        flags = lsp_flags,
         -- cmd = { lua_lsp_bin },
         settings = {
             Lua = {
@@ -144,7 +149,7 @@ lspconfig.sumneko_lua.setup(luadev)
 lspconfig.solargraph.setup({
     capabilities = capabilities,
     on_attach = lsp_on_attach,
-    flags = { debounce_text_changes = 150 },
+    flags = lsp_flags,
 })
 
 -- setup rust-tools
@@ -162,7 +167,7 @@ local opts = {
             -- vim.keymap.set("n", "<Leader>a", rt.code_action_group.code_action_group, { buffer = bufnr })
             lsp_on_attach(client, bufnr)
         end,
-        flags = { debounce_text_changes = 150 },
+        flags = lsp_flags,
         capabilities = capabilities,
     },
     dap = {
