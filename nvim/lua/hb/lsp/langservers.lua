@@ -121,30 +121,28 @@ lspconfig.gopls.setup({
     capabilities = capabilities,
 })
 
--- local lua_lsp_bin = vim.fn.stdpath("cache") .. "/lspconfig/sumneko_lua/lua-language-server/bin/lua-language-server"
-
-local luadev = require("lua-dev").setup({
-    lspconfig = {
-        capabilities = capabilities,
-        on_attach = lsp_on_attach,
-        flags = lsp_flags,
-        -- cmd = { lua_lsp_bin },
-        settings = {
-            Lua = {
-                runtime = { version = "LuaJIT" },
-                diagnostics = { globals = { "vim" }, workspaceDelay = 5000 },
-                workspace = {
-                    preloadFileSize = 1024, -- KB
-                    checkThirdParty = false,
-                    maxPreload = 2000,
-                },
-                telemetry = { enable = false },
+-- IMPORTANT: make sure to setup neodev BEFORE lspconfig
+require("neodev").setup({})
+lspconfig.sumneko_lua.setup({
+    capabilities = capabilities,
+    on_attach = lsp_on_attach,
+    flags = lsp_flags,
+    settings = {
+        Lua = {
+            runtime = { version = "LuaJIT" },
+            diagnostics = { globals = { "vim" }, workspaceDelay = 5000 },
+            workspace = {
+                preloadFileSize = 1024, -- KB
+                checkThirdParty = false,
+                maxPreload = 2000,
+            },
+            telemetry = { enable = false },
+            completion = {
+                callSnippet = "Replace",
             },
         },
     },
 })
-
-lspconfig.sumneko_lua.setup(luadev)
 
 lspconfig.solargraph.setup({
     capabilities = capabilities,
