@@ -19,12 +19,32 @@ vim.lsp.handlers["textDocument/references"] = vim.lsp.with(on_references, {
     loclist = true,
 })
 
+local lsp_formatting = function(bufnr)
+    vim.lsp.buf.format({
+        filter = function(client)
+            return client.name == "null-ls"
+        end,
+        bufnr = bufnr,
+    })
+end
+
+-- if you want to set up formatting on save, you can use this as a callback
+local lsp_fmt_augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+
 local function lsp_on_attach(client, bufnr)
-    -- using null-ls for formatting...
-    client.server_capabilities.document_formatting = false
-    client.server_capabilities.document_range__formatting = false
     require("hb/lsp/keymap").setup_lsp_keymaps(client, bufnr)
     require("lspkind").init({})
+    -- using null-ls for formatting...
+    if client.supports_method("textDocument/formatting") then
+        vim.api.nvim_clear_autocmds({ group = lsp_fmt_augroup, buffer = bufnr })
+        vim.api.nvim_create_autocmd("BufWritePre", {
+            group = lsp_fmt_augroup,
+            buffer = bufnr,
+            callback = function()
+                lsp_formatting(bufnr)
+            end,
+        })
+    end
 end
 
 local function make_lsp_client_capabilities()
@@ -184,8 +204,16 @@ require("rust-tools").setup(opts)
 setup_jdtls = function()
     local on_attach = function(client, bufnr)
         -- using null-ls for formatting...
-        client.server_capabilities.document_formatting = false
-        client.server_capabilities.document_range_formatting = false
+        if client.supports_method("textDocument/formatting") then
+            vim.api.nvim_clear_autocmds({ group = lsp_fmt_augroup, buffer = bufnr })
+            vim.api.nvim_create_autocmd("BufWritePre", {
+                group = lsp_fmt_augroup,
+                buffer = bufnr,
+                callback = function()
+                    lsp_formatting(bufnr)
+                end,
+            })
+        end
 
         require("hb/lsp/keymap").setup_lsp_keymaps(client, bufnr)
         require("lspkind").init({})
