@@ -1,9 +1,7 @@
--- [[
--- FROM https://github.com/neovim/neovim/wiki/Following-HEAD
--- LspInstall LspInstallInfo is deprecated.
--- FROM https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#sumneko_lua
--- Install language server by myself.
--- ]]
+-- https://github.com/folke/neodev.nvim#-setup
+-- IMPORTANT: make sure to setup neodev BEFORE lspconfig
+require("neodev").setup({})
+
 local lspconfig = require("lspconfig")
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
@@ -141,8 +139,6 @@ lspconfig.gopls.setup({
     capabilities = capabilities,
 })
 
--- IMPORTANT: make sure to setup neodev BEFORE lspconfig
-require("neodev").setup({})
 lspconfig.sumneko_lua.setup({
     capabilities = capabilities,
     on_attach = lsp_on_attach,

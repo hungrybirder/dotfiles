@@ -23,7 +23,6 @@ filetype plugin indent on
 set inccommand=nosplit
 " set list listchars=tab:› ,eol:↴,trail:•
 set exrc
-set guicursor=
 set number relativenumber
 set nohlsearch
 set hidden

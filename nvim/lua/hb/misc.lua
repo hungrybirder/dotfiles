@@ -104,7 +104,7 @@ require("litee.calltree").setup({})
 -- require("modes").setup({})
 
 -- j-hui/fidget.nvim
-require("fidget").setup({})
+-- require("fidget").setup({})
 
 -- zen-mode
 -- require("zen-mode").setup({})
