@@ -313,8 +313,8 @@ vim.keymap.set("n", "Y", "y$")
 
 -- Moving text
 -- not pollute registers!
-vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
-vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { silent = true })
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { silent = true })
 -- inoremap <C-k> <esc>:m .-2<CR>==
 -- inoremap <C-j> <esc>:m .+1<CR>==
 -- nnoremap <leader>j :m .+1<CR>==
