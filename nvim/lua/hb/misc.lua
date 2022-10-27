@@ -103,9 +103,6 @@ require("litee.calltree").setup({})
 -- vim.opt.cursorline = true
 -- require("modes").setup({})
 
--- j-hui/fidget.nvim
--- require("fidget").setup({})
-
 -- zen-mode
 -- require("zen-mode").setup({})
 
@@ -175,3 +172,7 @@ vim.keymap.set("v", "<F7>", ":<c-u>HSRmHighlight<CR>")
 
 -- nvim-surround
 require("nvim-surround").setup({})
+
+-- j-hui/fidget.nvim
+require("fidget").setup({})
+

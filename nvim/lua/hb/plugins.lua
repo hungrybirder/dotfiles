@@ -32,39 +32,41 @@ return packer.startup(function(use)
     use("wbthomason/packer.nvim")
 
     -- use("folke/which-key.nvim")
-    use({
-        "folke/noice.nvim",
-        event = "VimEnter",
-        config = function()
-            require("noice").setup({
-                popupmenu = {
-                    enabled = true,
-                    backend = "cmp",
-                },
-                routes = {
-                    {
-                        filter = {
-                            event = "msg_show",
-                            kind = "",
-                            find = "written",
-                        },
-                        opts = { skip = true },
-                    },
-                    {
-                        filter = {
-                            event = "msg_show",
-                            kind = "search_count",
-                        },
-                        opts = { skip = true },
-                    },
-                },
-            })
-        end,
-        requires = {
-            "MunifTanjim/nui.nvim",
-            "rcarriga/nvim-notify",
-        },
-    })
+    use("rcarriga/nvim-notify")
+
+    -- use({
+    --     "folke/noice.nvim",
+    --     event = "VimEnter",
+    --     config = function()
+    --         require("noice").setup({
+    --             popupmenu = {
+    --                 enabled = true,
+    --                 backend = "cmp",
+    --             },
+    --             routes = {
+    --                 {
+    --                     filter = {
+    --                         event = "msg_show",
+    --                         kind = "",
+    --                         find = "written",
+    --                     },
+    --                     opts = { skip = true },
+    --                 },
+    --                 {
+    --                     filter = {
+    --                         event = "msg_show",
+    --                         kind = "search_count",
+    --                     },
+    --                     opts = { skip = true },
+    --                 },
+    --             },
+    --         })
+    --     end,
+    --     requires = {
+    --         "MunifTanjim/nui.nvim",
+    --         "rcarriga/nvim-notify",
+    --     },
+    -- })
     use({ "stevearc/dressing.nvim" })
 
     -- use("folke/zen-mode.nvim")
@@ -151,7 +153,7 @@ return packer.startup(function(use)
     use("neovim/nvim-lspconfig")
     -- outline powered by lsp
     use("simrat39/symbols-outline.nvim")
-    -- use("j-hui/fidget.nvim")
+    use("j-hui/fidget.nvim")
     -- lsp icons
     use("onsails/lspkind-nvim")
     -- lsp for performance UI.
