@@ -127,7 +127,11 @@ return packer.startup(function(use)
     use("schickling/vim-bufonly")
 
     -- statusline
-    use("nvim-lualine/lualine.nvim")
+    use({
+        "nvim-lualine/lualine.nvim",
+        requires = "SmiteshP/nvim-gps",
+        config = [[require("hb/statusline")]],
+    })
 
     -- speedup editing friendly
     use("szw/vim-maximizer")
@@ -204,7 +208,11 @@ return packer.startup(function(use)
     use("svermeulen/vim-yoink")
 
     -- nvim-tree
-    use({ "kyazdani42/nvim-tree.lua", requires = { "kyazdani42/nvim-web-devicons" } })
+    use({
+        "kyazdani42/nvim-tree.lua",
+        requires = { "kyazdani42/nvim-web-devicons" },
+        config = [[require("hb/nvim-tree")]],
+    })
 
     use({
         "ldelossa/litee.nvim",
