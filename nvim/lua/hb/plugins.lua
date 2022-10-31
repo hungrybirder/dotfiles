@@ -19,13 +19,14 @@ if not status_ok then
     return
 end
 
--- packer.init {
+packer.init({
+    max_jobs = 23,
 --     display = {
 --         open_fn = function()
 --             return require"packer.util".float { border = "rounded" }
 --         end
 --     }
--- }
+})
 
 -- MacOS: ulimit -S -n 200048
 return packer.startup(function(use)
