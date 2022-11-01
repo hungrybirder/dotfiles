@@ -21,11 +21,11 @@ end
 
 packer.init({
     max_jobs = 23,
---     display = {
---         open_fn = function()
---             return require"packer.util".float { border = "rounded" }
---         end
---     }
+    --     display = {
+    --         open_fn = function()
+    --             return require"packer.util".float { border = "rounded" }
+    --         end
+    --     }
 })
 
 -- MacOS: ulimit -S -n 200048
@@ -116,6 +116,17 @@ return packer.startup(function(use)
                     offsets = {
                         { filetype = "NvimTree", text = "File Explorer", highlight = "Directory", text_align = "left" },
                     },
+                },
+            })
+        end,
+    })
+
+    use({
+        "nvim-zh/colorful-winsep.nvim",
+        config = function()
+            require("colorful-winsep").setup({
+                highlight = {
+                    guifg = "#a9a1e1",
                 },
             })
         end,
