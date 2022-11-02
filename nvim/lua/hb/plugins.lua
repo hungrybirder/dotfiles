@@ -121,16 +121,16 @@ return packer.startup(function(use)
         end,
     })
 
-    use({
-        "nvim-zh/colorful-winsep.nvim",
-        config = function()
-            require("colorful-winsep").setup({
-                highlight = {
-                    guifg = "#a9a1e1",
-                },
-            })
-        end,
-    })
+    -- use({
+    --     "nvim-zh/colorful-winsep.nvim",
+    --     config = function()
+    --         require("colorful-winsep").setup({
+    --             highlight = {
+    --                 guifg = "#a9a1e1",
+    --             },
+    --         })
+    --     end,
+    -- })
 
     -- delete buffer without closing windows
     use("moll/vim-bbye")
