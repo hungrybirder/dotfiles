@@ -20,7 +20,7 @@ if not status_ok then
 end
 
 packer.init({
-    max_jobs = 23,
+    max_jobs = 99,
     --     display = {
     --         open_fn = function()
     --             return require"packer.util".float { border = "rounded" }
