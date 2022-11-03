@@ -51,8 +51,7 @@ set nowritebackup
 set colorcolumn=80
 set signcolumn=yes
 
-" Give more space for displaying messages.
-set cmdheight=2
+set cmdheight=1
 set timeout ttimeout
 set timeoutlen=500  " Time out on mappings
 set updatetime=100   " Idle time to write swap and trigger CursorHold
