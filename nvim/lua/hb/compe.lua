@@ -59,7 +59,7 @@ cmp.setup({
             },
         }),
     },
-    mapping = {
+    mapping = cmp.mapping.preset.insert({
         ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
         ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
         ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
@@ -86,7 +86,7 @@ cmp.setup({
                 fallback()
             end
         end, { "i", "s" }),
-    },
+    }),
 })
 
 cmp.setup.filetype("gitcommit", {
