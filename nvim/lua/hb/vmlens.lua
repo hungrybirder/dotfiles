@@ -23,14 +23,14 @@ function M.start()
         config = require("hlslens.config")
         lensBak = config.override_lens
         config.override_lens = overrideLens
-        hlslens.start(true)
+        hlslens.start()
     end
 end
 
 function M.exit()
     if hlslens then
         config.override_lens = lensBak
-        hlslens.start(true)
+        hlslens.start()
     end
 end
 
