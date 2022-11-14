@@ -48,7 +48,7 @@ set splitright
 set splitbelow
 set nobackup
 set nowritebackup
-set colorcolumn=80
+" set colorcolumn=80
 set signcolumn=yes
 
 set cmdheight=1
