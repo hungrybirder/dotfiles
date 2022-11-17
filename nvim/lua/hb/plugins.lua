@@ -95,6 +95,20 @@ return packer.startup(function(use)
     use("jamessan/vim-gnupg")
 
     use("EdenEast/nightfox.nvim")
+    use("ellisonleao/gruvbox.nvim")
+    use({ "catppuccin/nvim", as = "catppuccin" })
+    use({
+        "folke/styler.nvim",
+        config = function()
+            require("styler").setup({
+                themes = {
+                    markdown = { colorscheme = "gruvbox" },
+                    help = { colorscheme = "catppuccin-mocha", background = "dark" },
+                },
+            })
+        end,
+    })
+
     -- buffer line at the top of window
     use({
         "akinsho/bufferline.nvim",
