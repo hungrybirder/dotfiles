@@ -478,7 +478,12 @@ return packer.startup(function(use)
     use({ "ray-x/go.nvim", requires = { "ray-x/guihua.lua" } })
 
     -- for lua develop
-    use("folke/neodev.nvim")
+    use({
+        "folke/neodev.nvim",
+        config = function()
+            library = { plugins = { "nvim-dap-ui" }, types = true }
+        end,
+    })
 
     use("mfussenegger/nvim-jdtls")
     use("mmarchini/bpftrace.vim")
@@ -504,7 +509,7 @@ return packer.startup(function(use)
     -- debugger
     -- use("sebdah/vim-delve")
     use("mfussenegger/nvim-dap")
-    use("rcarriga/nvim-dap-ui")
+    use({ "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } })
     use("theHamsta/nvim-dap-virtual-text")
     use("mfussenegger/nvim-dap-python")
     use("leoluz/nvim-dap-go")

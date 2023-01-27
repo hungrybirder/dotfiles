@@ -5,7 +5,6 @@ vim.fn.sign_define("DapStopped", { text = "⭐️", texthl = "", linehl = "", nu
 local dap, dapui = require("dap"), require("dapui")
 dap.defaults.fallback.terminal_win_cmd = "50vsplit new"
 
--- dapui.setup()
 dapui.setup({
     icons = { expanded = "▾", collapsed = "▸" },
     mappings = {
@@ -16,7 +15,7 @@ dapui.setup({
         repl = "r",
         toggle = "t",
     },
-    expand_lines = vim.fn.has("nvim-0.7"),
+    expand_lines = true,
     layouts = {
         {
             elements = {
@@ -105,7 +104,7 @@ local function update_spinner(client_id, token)
         local new_spinner = (notif_data.spinner + 1) % #spinner_frames
         notif_data.spinner = new_spinner
 
-        notif_data.notification = vim.notify(nil, nil, {
+        notif_data.notification = vim.notify("", nil, {
             hide_from_history = true,
             icon = spinner_frames[new_spinner],
             replace = notif_data.notification,
