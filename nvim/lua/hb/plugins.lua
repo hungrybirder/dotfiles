@@ -33,7 +33,14 @@ return packer.startup(function(use)
     use("wbthomason/packer.nvim")
 
     -- use("folke/which-key.nvim")
-    use("rcarriga/nvim-notify")
+    use({
+        "rcarriga/nvim-notify",
+        config = function()
+            notify = require("notify")
+            notify.setup({})
+            vim.notify = notify
+        end,
+    })
 
     -- use({
     --     "folke/noice.nvim",
@@ -322,14 +329,14 @@ return packer.startup(function(use)
     use({
         "hrsh7th/nvim-cmp",
         requires = {
-            { "hrsh7th/cmp-buffer", after = "nvim-cmp" },
+            { "hrsh7th/cmp-buffer",                   after = "nvim-cmp" },
             "hrsh7th/cmp-nvim-lsp",
             "onsails/lspkind.nvim",
-            { "hrsh7th/cmp-nvim-lsp-signature-help", after = "nvim-cmp" },
-            { "hrsh7th/cmp-path", after = "nvim-cmp" },
-            { "hrsh7th/cmp-nvim-lua", after = "nvim-cmp" },
-            { "saadparwaiz1/cmp_luasnip", after = "nvim-cmp" },
-            { "hrsh7th/cmp-cmdline", after = "nvim-cmp" },
+            { "hrsh7th/cmp-nvim-lsp-signature-help",  after = "nvim-cmp" },
+            { "hrsh7th/cmp-path",                     after = "nvim-cmp" },
+            { "hrsh7th/cmp-nvim-lua",                 after = "nvim-cmp" },
+            { "saadparwaiz1/cmp_luasnip",             after = "nvim-cmp" },
+            { "hrsh7th/cmp-cmdline",                  after = "nvim-cmp" },
             { "hrsh7th/cmp-nvim-lsp-document-symbol", after = "nvim-cmp" },
             {
                 "petertriho/cmp-git",
@@ -491,7 +498,8 @@ return packer.startup(function(use)
     -- markdown
     use("mzlogin/vim-markdown-toc")
     use({ "preservim/vim-markdown", requires = { "godlygeek/tabular" } })
-    use({ -- https://github.com/iamcco/markdown-preview.nvim/issues/354
+    use({
+        -- https://github.com/iamcco/markdown-preview.nvim/issues/354
         "iamcco/markdown-preview.nvim",
         run = "cd app && npm install",
         setup = function()

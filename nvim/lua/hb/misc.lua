@@ -13,9 +13,5 @@ vim.api.nvim_exec(
 vim.keymap.set("n", "]<tab>", "<cmd>tabnext<cr>")
 vim.keymap.set("n", "[<tab>", "<cmd>tabnext<cr>")
 
-notify = require("notify")
-notify.setup({})
-vim.notify = notify
-
 -- which-key
 -- require("which-key").setup({})
