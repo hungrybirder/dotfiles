@@ -1,4 +1,4 @@
-P = vim.pretty_print
+P = vim.print
 
 require("hb/autocmds")
 require("hb/plugins")
