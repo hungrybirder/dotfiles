@@ -512,7 +512,12 @@ return packer.startup(function(use)
     use("iamcco/mathjax-support-for-mkdp")
     -- MacOS: brew install glow
     -- https://github.com/charmbracelet/glow
-    use("npxbr/glow.nvim")
+    use({
+        "ellisonleao/glow.nvim",
+        config = function()
+            require("glow").setup()
+        end,
+    })
 
     -- debugger
     -- use("sebdah/vim-delve")
