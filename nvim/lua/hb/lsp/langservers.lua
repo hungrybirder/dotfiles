@@ -29,6 +29,8 @@ end
 -- if you want to set up formatting on save, you can use this as a callback
 local lsp_fmt_augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
+local navic = require("nvim-navic")
+
 local function lsp_on_attach(client, bufnr)
     require("hb/lsp/keymap").setup_lsp_keymaps(client, bufnr)
     require("lspkind").init({})
@@ -42,6 +44,9 @@ local function lsp_on_attach(client, bufnr)
                 lsp_formatting(bufnr)
             end,
         })
+    end
+    if client.server_capabilities.documentSymbolProvider then
+        navic.attach(client, bufnr)
     end
 end
 
@@ -218,6 +223,9 @@ setup_jdtls = function()
         require("jdtls").setup_dap({ hotcodereplace = "auto" })
         require("jdtls.dap").setup_dap_main_class_configs()
         vim.lsp.codelens.refresh()
+        if client.server_capabilities.documentSymbolProvider then
+            navic.attach(client, bufnr)
+        end
     end
 
     local root_markers = { "gradlew", "pom.xml" }

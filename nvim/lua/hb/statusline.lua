@@ -15,8 +15,6 @@ local colors = {
     darkgrey = "#404247",
 }
 
-require("nvim-gps").setup({})
-
 local function min_window_width(width)
     return function()
         return vim.fn.winwidth(0) > width
@@ -35,11 +33,10 @@ local function custom_fileformat()
     return ret
 end
 
--- GPS (https://github.com/SmiteshP/nvim-gps)
 local function custom_treesitter_context()
-    local ok, gps = pcall(require, "nvim-gps")
-    if ok and gps.is_available() then
-        return gps.get_location()
+    local ok, navic = pcall(require, "nvim-navic")
+    if ok and navic.is_available() then
+        return navic.get_location()
     end
     return ""
 end
