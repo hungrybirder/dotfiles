@@ -3,6 +3,7 @@
 export LC_ALL=en_US.utf-8
 export LANG=en_US.utf-8
 
+export PATH="/opt/homebrew/bin:$PATH"
 # 测试zsh启动时间的方法
 # /usr/bin/time zsh -i -c exit
 OS_NAME=$(uname -s)
@@ -232,6 +233,8 @@ link_vimspector() {
 # 改成与bash <c-u>一样，从光标处删除至行首
 bindkey \^U backward-kill-line
 
+# From https://unix.stackexchange.com/questions/58870/ctrl-left-right-arrow-keys-issue
+# Turns out ctrl+Left and ctrl+Right are set as Keyboard shortcuts for mission control.
 # ctrl+left go back one word
 # ctrl+right go next one word
 bindkey -e
