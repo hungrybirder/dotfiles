@@ -62,6 +62,7 @@
 	# pager = diff-so-fancy | less --tabs=4 -RFX
 	quotepath = false
     pager = delta
+	editor = nvim
 [merge]
 	tool = vimdiff
 [http]
@@ -96,3 +97,8 @@
 [oh-my-zsh]
 	hide-status = 1
 	hide-dirty = 1
+[filter "lfs"]
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
