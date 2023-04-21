@@ -315,24 +315,14 @@ setup_jdtls = function()
     -- npm run build-plugin
     -- "/.config/vscode-java-test/server/*.jar",
 
+    local mason_package_path = vim.fn.stdpath("data") .. "/mason/packages/"
     local bundles = {
-        ---@diagnostic disable-next-line: missing-parameter
-        vim.fn.glob(
-            home .. "/.config/java-debug/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-*.jar"
-        ),
+        vim.fn.glob(mason_package_path .. "/java-debug-adapter/extension/server/com.microsoft.java.debug.plugin-*.jar"),
+        vim.fn.glob(mason_package_path .. "/java-test/extension/server/*.jar"),
     }
-
-    ---@diagnostic disable-next-line: missing-parameter
-    vim.list_extend(bundles, vim.split(vim.fn.glob(home .. "/.config/vscode-java-test/server/*.jar"), "\n"))
-
-    config["init_options"] = {
-        bundles = bundles,
-    }
-
     config.init_options = {
         bundles = bundles,
     }
-
     require("jdtls").start_or_attach(config)
 end
 
