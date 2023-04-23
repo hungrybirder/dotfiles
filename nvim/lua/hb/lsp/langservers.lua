@@ -18,31 +18,58 @@ vim.lsp.handlers["textDocument/references"] = vim.lsp.with(on_references, {
     loclist = true,
 })
 
--- Use location list instead of quickfix list
-local function on_location_list(options)
-    vim.fn.setloclist(0, {}, " ", options)
-    vim.api.nvim_command("lopen")
+local lsp_util = require("vim.lsp.util")
+local lsp_log = require("vim.lsp.log")
+
+-- Ref1: Copy From https://github.com/neovim/neovim/pull/17339/files
+-- Ref2: https://github.com/neovim/neovim/blob/release-0.9/runtime/lua/vim/lsp/handlers.lua#L378-L423
+-- 要时刻关注 neovim location_handler 的实现，避免错误使用 loclist
+local function my_location_handler(_, result, ctx, config)
+    if result == nil or vim.tbl_isempty(result) then
+        local _ = lsp_log.info() and lsp_log.info(ctx.method, "No location found")
+        return nil
+    end
+    local client = vim.lsp.get_client_by_id(ctx.client_id)
+
+    if #result == 1 then
+        lsp_util.jump_to_location(result[1], client.offset_encoding)
+    else
+        config = config or {}
+        if config.loclist then
+            vim.fn.setloclist(0, {}, " ", {
+                title = "LSP locations",
+                items = lsp_util.locations_to_items(result, client.offset_encoding),
+            })
+            vim.api.nvim_command("botright lopen")
+        elseif config.on_list then
+            assert(type(config.on_list) == "function", "on_list is not a function")
+            config.on_list({ title = title, items = items })
+        else
+            vim.fn.setqflist({}, " ", {
+                title = "LSP locations",
+                items = lsp_util.locations_to_items(result, client.offset_encoding),
+            })
+            vim.api.nvim_command("botright copen")
+        end
+    end
 end
 
--- local on_declaration = vim.lsp.handlers["textDocument/declaration"]
--- vim.lsp.handlers["textDocument/declaration"] = vim.lsp.with(on_declaration, {
---     on_list = on_location_list,
--- })
-
--- local on_definition = vim.lsp.handlers["textDocument/definition"]
--- vim.lsp.handlers["textDocument/definition"] = vim.lsp.with(on_definition, {
---     on_list = on_location_list,
--- })
-
--- local on_typeDefinition = vim.lsp.handlers["textDocument/typeDefinition"]
--- vim.lsp.handlers["textDocument/typeDefinition"] = vim.lsp.with(on_typeDefinition, {
---     on_list = on_location_list,
--- })
-
-local on_implementation = vim.lsp.handlers["textDocument/implementation"]
-vim.lsp.handlers["textDocument/implementation"] = vim.lsp.with(on_implementation, {
-    on_list = on_location_list,
+vim.lsp.handlers["textDocument/declaration"] = vim.lsp.with(my_location_handler, {
+    loclist = true,
 })
+vim.lsp.handlers["textDocument/definition"] = vim.lsp.with(my_location_handler, {
+    loclist = true,
+})
+vim.lsp.handlers["textDocument/typeDefinition"] = vim.lsp.with(my_location_handler, {
+    loclist = true,
+})
+vim.lsp.handlers["textDocument/implementation"] = vim.lsp.with(my_location_handler, {
+    loclist = true,
+})
+-- local on_declaration = vim.lsp.handlers["textDocument/declaration"]
+-- local on_definition = vim.lsp.handlers["textDocument/definition"]
+-- local on_typeDefinition = vim.lsp.handlers["textDocument/typeDefinition"]
+-- local on_implementation = vim.lsp.handlers["textDocument/implementation"]
 
 local lsp_formatting = function(bufnr)
     vim.lsp.buf.format({
