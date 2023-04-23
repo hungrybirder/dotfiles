@@ -4,7 +4,8 @@ require("neodev").setup({})
 
 local lspconfig = require("lspconfig")
 
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+local on_publish_diagnostics = vim.lsp.handlers["textDocument/publishDiagnostics"]
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(on_publish_diagnostics, {
     underline = false,
     virtual_text = true,
     signs = true,
@@ -15,6 +16,32 @@ local on_references = vim.lsp.handlers["textDocument/references"]
 vim.lsp.handlers["textDocument/references"] = vim.lsp.with(on_references, {
     -- Use location list instead of quickfix list
     loclist = true,
+})
+
+-- Use location list instead of quickfix list
+local function on_location_list(options)
+    vim.fn.setloclist(0, {}, " ", options)
+    vim.api.nvim_command("lopen")
+end
+
+-- local on_declaration = vim.lsp.handlers["textDocument/declaration"]
+-- vim.lsp.handlers["textDocument/declaration"] = vim.lsp.with(on_declaration, {
+--     on_list = on_location_list,
+-- })
+
+-- local on_definition = vim.lsp.handlers["textDocument/definition"]
+-- vim.lsp.handlers["textDocument/definition"] = vim.lsp.with(on_definition, {
+--     on_list = on_location_list,
+-- })
+
+-- local on_typeDefinition = vim.lsp.handlers["textDocument/typeDefinition"]
+-- vim.lsp.handlers["textDocument/typeDefinition"] = vim.lsp.with(on_typeDefinition, {
+--     on_list = on_location_list,
+-- })
+
+local on_implementation = vim.lsp.handlers["textDocument/implementation"]
+vim.lsp.handlers["textDocument/implementation"] = vim.lsp.with(on_implementation, {
+    on_list = on_location_list,
 })
 
 local lsp_formatting = function(bufnr)
