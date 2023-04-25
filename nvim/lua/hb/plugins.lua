@@ -246,26 +246,26 @@ return packer.startup(function(use)
         config = [[require("hb/nvim-tree")]],
     })
 
-    use({
-        "ldelossa/litee.nvim",
-        config = function()
-            require("litee.lib").setup({
-                on_open = "popout",
-                panel = {
-                    orientation = "right",
-                    panel_size = 30,
-                },
-                tree = { icon_set = "codicons" },
-            })
-        end,
-    })
-    use({
-        "ldelossa/litee-calltree.nvim",
-        requires = { "ldelossa/litee.nvim" },
-        config = function()
-            require("litee.calltree").setup({})
-        end,
-    })
+    -- use({
+    --     "ldelossa/litee.nvim",
+    --     config = function()
+    --         require("litee.lib").setup({
+    --             on_open = "popout",
+    --             panel = {
+    --                 orientation = "right",
+    --                 panel_size = 30,
+    --             },
+    --             tree = { icon_set = "codicons" },
+    --         })
+    --     end,
+    -- })
+    -- use({
+    --     "ldelossa/litee-calltree.nvim",
+    --     requires = { "ldelossa/litee.nvim" },
+    --     config = function()
+    --         require("litee.calltree").setup()
+    --     end,
+    -- })
 
     use({
         "pwntester/octo.nvim",
@@ -316,8 +316,59 @@ return packer.startup(function(use)
         end,
     })
     -- lsp for performance UI.
-    -- https://github.com/glepnir/lspsaga.nvim/issues/267
-    use("tami5/lspsaga.nvim")
+    use({
+        "glepnir/lspsaga.nvim",
+        opt = true,
+        branch = "main",
+        event = "LspAttach",
+        config = function()
+            require("lspsaga").setup({
+                lightbulb = {
+                    enable = false,
+                    enable_in_insert = false,
+                    -- sign = true,
+                    -- sign_priority = 40,
+                    -- virtual_text = true,
+                },
+                callhierarchy = {
+                    show_detail = false,
+                    keys = {
+                        edit = "e",
+                        vsplit = "s",
+                        split = "i",
+                        tabe = "t",
+                        jump = "o",
+                        quit = "q",
+                        expand_collapse = "u",
+                    },
+                },
+                beacon = {
+                    enable = true,
+                    frequency = 7,
+                },
+                finder = {
+                    max_height = 0.5,
+                    min_width = 30,
+                    force_max_height = false,
+                    keys = {
+                        jump_to = "p",
+                        expand_or_jump = "o",
+                        vsplit = "s",
+                        split = "i",
+                        tabe = "t",
+                        tabnew = "r",
+                        quit = { "q", "<ESC>" },
+                        close_in_preview = "<ESC>",
+                    },
+                },
+            })
+        end,
+        requires = {
+            { "nvim-tree/nvim-web-devicons" },
+            --Please make sure you install markdown and markdown_inline parser
+            { "nvim-treesitter/nvim-treesitter" },
+        },
+    })
 
     -- snippets
     use("L3MON4D3/LuaSnip")
@@ -330,12 +381,12 @@ return packer.startup(function(use)
         requires = {
             "hrsh7th/cmp-nvim-lsp",
             "onsails/lspkind.nvim",
-            { "hrsh7th/cmp-buffer",                   after = "nvim-cmp" },
-            { "hrsh7th/cmp-nvim-lsp-signature-help",  after = "nvim-cmp" },
-            { "hrsh7th/cmp-path",                     after = "nvim-cmp" },
-            { "hrsh7th/cmp-nvim-lua",                 after = "nvim-cmp" },
-            { "saadparwaiz1/cmp_luasnip",             after = "nvim-cmp" },
-            { "hrsh7th/cmp-cmdline",                  after = "nvim-cmp" },
+            { "hrsh7th/cmp-buffer", after = "nvim-cmp" },
+            { "hrsh7th/cmp-nvim-lsp-signature-help", after = "nvim-cmp" },
+            { "hrsh7th/cmp-path", after = "nvim-cmp" },
+            { "hrsh7th/cmp-nvim-lua", after = "nvim-cmp" },
+            { "saadparwaiz1/cmp_luasnip", after = "nvim-cmp" },
+            { "hrsh7th/cmp-cmdline", after = "nvim-cmp" },
             { "hrsh7th/cmp-nvim-lsp-document-symbol", after = "nvim-cmp" },
             {
                 "petertriho/cmp-git",

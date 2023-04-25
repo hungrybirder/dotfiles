@@ -10,7 +10,8 @@ function show_documentation()
     elseif vim.fn.expand("%:t") == "Cargo.toml" then
         require("crates").show_popup()
     else
-        vim.lsp.buf.hover()
+        require("lspsaga.hover"):render_hover_doc()
+        -- vim.lsp.buf.hover()
     end
 end
 
@@ -40,14 +41,17 @@ M.setup_lsp_keymaps = function(client, bufnr)
     vim.keymap.set("n", "<space>cl", "<cmd>lua vim.lsp.codelens.run()<CR>", bufopts)
     vim.keymap.set("n", "<space>cr", "<cmd>lua vim.lsp.codelens.refresh()<CR>", bufopts)
     -- vim.keymap.set("n", "K", "<Cmd>lua vim.lsp.buf.hover()<CR>", opts)
-    vim.keymap.set("n", "gic", "<cmd>lua vim.lsp.buf.incoming_calls()<CR>", bufopts)
-    vim.keymap.set("n", "goc", "<cmd>lua vim.lsp.buf.outgoing_calls()<CR>", bufopts)
+    -- vim.keymap.set("n", "gic", "<cmd>lua vim.lsp.buf.incoming_calls()<CR>", bufopts)
+    -- vim.keymap.set("n", "goc", "<cmd>lua vim.lsp.buf.outgoing_calls()<CR>", bufopts)
+    vim.keymap.set("n", "gic", "<cmd>Lspsaga incoming_calls<CR>", bufopts)
+    vim.keymap.set("n", "goc", "<cmd>Lspsaga outgoing_calls<CR>", bufopts)
     vim.keymap.set("n", "gs", "<cmd>Lspsaga signature_help<CR>", bufopts)
+    vim.keymap.set("n", "<space>wf", "<cmd>Lspsaga lsp_finder<CR>", bufopts)
     vim.keymap.set("n", "<space>f", "<cmd>lua vim.lsp.buf.format({ async = true})<CR>", bufopts)
-    vim.keymap.set("n", "<space>h", '<cmd>lua require("lspsaga.provider").preview_definition()<CR>', bufopts)
+    vim.keymap.set("n", "<space>h", "<cmd>Lspsaga peek_definition<CR>", bufopts)
     vim.keymap.set("n", "<space>wa", "<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>", bufopts)
     vim.keymap.set("n", "<space>wr", "<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>", bufopts)
-    vim.keymap.set("n", "<space>wl", "<cmd>lua vim.pretty_print(vim.lsp.buf.list_workspace_folders())<CR>", bufopts)
+    vim.keymap.set("n", "<space>wl", "<cmd>lua vim.print(vim.lsp.buf.list_workspace_folders())<CR>", bufopts)
 
     -- Set autocommands conditional on server_capabilities
     if client.server_capabilities.document_highlight then
