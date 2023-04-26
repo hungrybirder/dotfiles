@@ -21,6 +21,7 @@ null_ls.setup({
         }),
         formatting.sql_formatter,
         -- formatting.google_java_format,
+        formatting.protolint,
 
         diagnostics.shellcheck, -- sh
         diagnostics.staticcheck, -- Go

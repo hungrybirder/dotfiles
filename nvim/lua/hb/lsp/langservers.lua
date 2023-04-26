@@ -190,6 +190,7 @@ lspconfig.clangd.setup({
     flags = lsp_flags,
     capabilities = capabilities_for_clangd,
     cmd = { "clangd", "--background-index" },
+    filetypes = { "c", "cpp" },
 })
 
 lspconfig.gopls.setup({
