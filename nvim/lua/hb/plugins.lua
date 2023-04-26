@@ -334,8 +334,8 @@ return packer.startup(function(use)
                     show_detail = false,
                     keys = {
                         edit = "e",
-                        vsplit = "s",
-                        split = "i",
+                        vsplit = "v",
+                        split = "s",
                         tabe = "t",
                         jump = "o",
                         quit = "q",
