@@ -119,7 +119,7 @@ return packer.startup(function(use)
     -- buffer line at the top of window
     use({
         "akinsho/bufferline.nvim",
-        tag = "v2.*",
+        tag = "*",
         requires = "kyazdani42/nvim-web-devicons",
         config = function()
             vim.opt.termguicolors = true
