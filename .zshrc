@@ -8,6 +8,7 @@ export PATH="/opt/homebrew/bin:$PATH"
 # /usr/bin/time zsh -i -c exit
 OS_NAME=$(uname -s)
 BREW_PREFIX=$(brew --prefix)
+export HOMEBREW_NO_INSTALL_CLEANUP=1
 
 # use antigen manage zsh plugin, theme ...
 source $BREW_PREFIX/share/antigen/antigen.zsh
