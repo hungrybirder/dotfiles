@@ -114,8 +114,7 @@ end
 local capabilities = make_lsp_client_capabilities()
 
 local lsp_flags = {
-    -- This is the default in Nvim 0.7+
-    debounce_text_changes = 150,
+    debounce_text_changes = 200,
 }
 
 local servers = {
@@ -197,6 +196,36 @@ lspconfig.gopls.setup({
     on_attach = lsp_on_attach,
     flags = lsp_flags,
     capabilities = capabilities,
+    settings = {
+        gopls = {
+            usePlaceholders = false,
+            analyses = {
+                nilness = true,
+                unusedparams = true,
+                unusedwrite = true,
+                useany = true,
+            },
+            codelenses = {
+                gc_details = false,
+                generate = true,
+                regenerate_cgo = true,
+                run_govulncheck = true,
+                test = true,
+                tidy = true,
+                upgrade_dependency = true,
+                vendor = true,
+            },
+            hints = {
+                assignVariableTypes = true,
+                compositeLiteralFields = true,
+                compositeLiteralTypes = true,
+                constantValues = true,
+                functionTypeParameters = true,
+                parameterNames = true,
+                rangeVariableTypes = true,
+            },
+        },
+    },
 })
 
 lspconfig.lua_ls.setup({
@@ -214,7 +243,9 @@ lspconfig.lua_ls.setup({
             },
             telemetry = { enable = false },
             completion = {
-                callSnippet = "Replace",
+                -- callSnippet = "Replace",
+                -- callSnippet = "Both",
+                callSnippet = "Disable",
             },
         },
     },
