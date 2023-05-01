@@ -12,6 +12,7 @@ require("nvim-treesitter.configs").setup({
         "rust",
         "regex",
         "markdown",
+        "markdown_inline",
         "bash",
     },
     indent = { enable = false },

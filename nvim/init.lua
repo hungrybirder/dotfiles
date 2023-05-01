@@ -1,5 +1,6 @@
 P = vim.print
 
+require("hb/settings")
 require("hb/autocmds")
 require("hb/plugins")
 require("hb/keymaps")
