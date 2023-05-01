@@ -187,18 +187,9 @@ let test#strategy = "neovim"
 let test#neovim#term_position = "rightbelow"
 " vim-test end
 
-" clever-f
-map ; <Plug>(clever-f-repeat-forward)
-map , <Plug>(clever-f-repeat-back)
-" clever-fend
-
 if exists('g:loaded_webdevicons')
     call webdevicons#refresh()
 endif
-
-" vim-visual-multi
-let g:VM_leader = '\\'
-" vim-visual-multi end
 
 " vim-subversive
 " s for substitute

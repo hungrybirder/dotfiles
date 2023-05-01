@@ -109,8 +109,20 @@ require("lazy").setup({
 
     -- speedup editing friendly
     { "szw/vim-maximizer" },
-    { "mg979/vim-visual-multi", branch = "master" },
-    { "rhysd/clever-f.vim" },
+    {
+        "mg979/vim-visual-multi",
+        branch = "master",
+        config = function()
+            vim.g["VM_leader"] = "\\"
+        end,
+    },
+    {
+        "rhysd/clever-f.vim",
+        keys = {
+            { ";", "<Plug>(clever-f-repeat-forward)" },
+            { ",", "<Plug>(clever-f-repeat-back)" },
+        },
+    },
     { "andymass/vim-matchup" },
     {
         "folke/todo-comments.nvim",
