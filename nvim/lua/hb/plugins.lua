@@ -11,6 +11,8 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+vim.keymap.set("n", "<leader>pu", "<cmd>Lazy sync<CR>")
+
 require("lazy").setup({
 
     -- save my last cursor position
