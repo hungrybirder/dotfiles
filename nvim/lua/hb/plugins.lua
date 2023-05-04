@@ -9,9 +9,41 @@ if not vim.loop.fs_stat(lazypath) then
         lazypath,
     })
 end
+
+vim.keymap.set("n", "<leader>pu", "<cmd>Lazy sync<CR>")
+
+local lazy_options = {
+    ui = {
+        size = { width = 1.0, height = 1.0 },
+    },
+    diff = {
+        cmd = "diffview.nvim",
+    },
+}
+
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+    vim.fn.system({
+        "git",
+        "clone",
+        "--filter=blob:none",
+        "https://github.com/folke/lazy.nvim.git",
+        "--branch=stable", -- latest stable release
+        lazypath,
+    })
+end
 vim.opt.rtp:prepend(lazypath)
 
 vim.keymap.set("n", "<leader>pu", "<cmd>Lazy sync<CR>")
+
+local lazy_options = {
+    ui = {
+        size = { width = 1.0, height = 1.0 },
+    },
+    diff = {
+        cmd = "diffview.nvim",
+    },
+}
 
 require("lazy").setup({
 
@@ -193,7 +225,251 @@ require("lazy").setup({
     -- git
     { "tpope/vim-fugitive" },
     { "junegunn/gv.vim" },
-    { "sindrets/diffview.nvim" },
+    {
+        "sindrets/diffview.nvim",
+        config = function()
+            require("diffview").setup({
+                default_args = {
+                    DiffviewOpen = { "--imply-local" },
+                },
+                keymaps = {
+                    file_panel = {
+                        {
+                            "n",
+                            "cc",
+                            "<Cmd>Git commit <bar> wincmd J<CR>",
+                            { desc = "Commit staged changes" },
+                        },
+                        {
+                            "n",
+                            "ca",
+                            "<Cmd>Git commit --amend <bar> wincmd J<CR>",
+                            { desc = "Amend the last commit" },
+                        },
+                    },
+                },
+            })
+        end,
+    },
+
+    -- save my last cursor position
+    {
+        "ethanholz/nvim-lastplace",
+        config = function()
+            require("nvim-lastplace").setup({
+                lastplace_ignore_buftype = { "quickfix", "nofile", "help" },
+                lastplace_ignore_filetype = { "gitcommit", "gitrebase", "svn", "hgcommit" },
+                lastplace_open_folds = true,
+            })
+        end,
+    },
+
+    {
+        "rcarriga/nvim-notify",
+        config = function()
+            notify = require("notify")
+            notify.setup({})
+            vim.notify = notify
+        end,
+    },
+    {
+        "stevearc/dressing.nvim",
+        config = function()
+            require("dressing").setup({})
+        end,
+    },
+    {
+        "norcalli/nvim-colorizer.lua",
+        config = function()
+            require("colorizer").setup()
+        end,
+    },
+    { "hotoo/pangu.vim" },
+    { "airblade/vim-rooter" },
+    { "jamessan/vim-gnupg" },
+    { "EdenEast/nightfox.nvim" },
+    { "ellisonleao/gruvbox.nvim" },
+    { "catppuccin/nvim", name = "catppuccin" },
+    {
+        "folke/styler.nvim",
+        config = function()
+            require("styler").setup({
+                themes = {
+                    markdown = { colorscheme = "gruvbox" },
+                    help = { colorscheme = "catppuccin-mocha", background = "dark" },
+                },
+            })
+        end,
+    },
+
+    -- buffer line at the top of window
+    {
+        "akinsho/bufferline.nvim",
+        version = "*",
+        dependencies = { "nvim-tree/nvim-web-devicons" },
+        config = function()
+            vim.opt.termguicolors = true
+            vim.keymap.set("n", "gb", "<cmd>BufferLinePick<CR>")
+            vim.keymap.set("n", "H", "<cmd>BufferLineCyclePrev<CR>")
+            vim.keymap.set("n", "L", "<cmd>BufferLineCycleNext<CR>")
+
+            require("bufferline").setup({
+                options = {
+                    diagnostics = "nvim_lsp",
+                    sort_by = "directory",
+                    numbers = "buffer_id",
+                    show_buffer_close_icons = false,
+                    separator_style = "thin",
+                    offsets = {
+                        { filetype = "NvimTree", text = "File Explorer", highlight = "Directory", text_align = "left" },
+                    },
+                },
+            })
+        end,
+    },
+    -- delete buffer without closing windows
+    {
+        "moll/vim-bbye",
+        keys = {
+            { "<leader><BS>", "<cmd>Bdelete<CR>" },
+        },
+    },
+
+    -- Delete all the buffers except the current buffer
+    { "schickling/vim-bufonly" },
+
+    -- statusline
+    {
+        "nvim-lualine/lualine.nvim",
+        config = function()
+            require("hb/statusline")
+        end,
+    },
+
+    -- speedup editing friendly
+    { "szw/vim-maximizer" },
+    {
+        "mg979/vim-visual-multi",
+        branch = "master",
+        config = function()
+            vim.g["VM_leader"] = "\\"
+        end,
+    },
+    {
+        "rhysd/clever-f.vim",
+        keys = {
+            { ";", "<Plug>(clever-f-repeat-forward)" },
+            { ",", "<Plug>(clever-f-repeat-back)" },
+        },
+    },
+    { "andymass/vim-matchup" },
+    {
+        "folke/todo-comments.nvim",
+        dependencies = { "nvim-lua/plenary.nvim" },
+        config = function()
+            require("todo-comments").setup({})
+        end,
+    },
+
+    {
+        "kevinhwang91/nvim-hlslens",
+        config = function()
+            require("hlslens").setup({ calm_down = true })
+            vim.cmd([[
+                aug VMlens
+                    au!
+                    au User visual_multi_start lua require("hb/vmlens").start()
+                    au User visual_multi_exit lua require("hb/vmlens").exit()
+                aug END
+            ]])
+            local kopts = { noremap = true, silent = true }
+            vim.api.nvim_set_keymap(
+                "n",
+                "n",
+                [[<Cmd>execute('normal! ' . v:count1 . 'n')<CR><Cmd>lua require('hlslens').start()<CR>]],
+                kopts
+            )
+            vim.api.nvim_set_keymap(
+                "n",
+                "N",
+                [[<Cmd>execute('normal! ' . v:count1 . 'N')<CR><Cmd>lua require('hlslens').start()<CR>]],
+                kopts
+            )
+            vim.api.nvim_set_keymap("n", "*", [[*<Cmd>lua require('hlslens').start()<CR>]], kopts)
+            vim.api.nvim_set_keymap("n", "#", [[#<Cmd>lua require('hlslens').start()<CR>]], kopts)
+            vim.api.nvim_set_keymap("n", "g*", [[g*<Cmd>lua require('hlslens').start()<CR>]], kopts)
+            vim.api.nvim_set_keymap("n", "g#", [[g#<Cmd>lua require('hlslens').start()<CR>]], kopts)
+
+            -- vim.api.nvim_set_keymap("n", "<Leader>l", "<Cmd>noh<CR>", kopts)
+        end,
+    },
+    {
+        "Pocco81/HighStr.nvim",
+        config = function()
+            vim.keymap.set("v", "<F6>", ":<c-u>HSHighlight 1<CR>")
+            vim.keymap.set("v", "<F7>", ":<c-u>HSRmHighlight<CR>")
+        end,
+    },
+
+    -- powered by tpope
+    { "tpope/vim-repeat" },
+    {
+        "kylechui/nvim-surround",
+        version = "*", -- Use for stability; omit to use `main` branch for the latest features
+        event = "VeryLazy",
+        config = function()
+            require("nvim-surround").setup({
+                -- Configuration here, or leave empty to use defaults
+            })
+        end,
+    },
+    { "tpope/vim-speeddating" },
+    { "tpope/vim-unimpaired" },
+    { "tpope/vim-commentary" },
+
+    -- git
+    { "tpope/vim-fugitive" },
+    { "junegunn/gv.vim" },
+    {
+        "sindrets/diffview.nvim",
+        config = function()
+            require("diffview").setup({
+                default_args = {
+                    DiffviewOpen = { "--imply-local" },
+                },
+                keymaps = {
+                    file_panel = {
+                        {
+                            "n",
+                            "cc",
+                            "<Cmd>Git commit <bar> wincmd J<CR>",
+                            { desc = "Commit staged changes" },
+                        },
+                        -- {
+                        --     "n",
+                        --     "ca",
+                        --     "<Cmd>Git commit --amend <bar> wincmd J<CR>",
+                        --     { desc = "Amend the last commit" },
+                        -- },
+                        -- {
+                        --     "n",
+                        --     "c<space>",
+                        --     ":Git commit ",
+                        --     { desc = 'Populate command line with ":Git commit "' },
+                        -- },
+                    },
+                },
+            })
+        end,
+        keys = {
+            { "<leader>vc", "<cmd>DiffviewClose<CR>" },
+            { "<leader>vo", "<cmd>DiffviewOpen<CR>" },
+            { "<leader>vr", "<cmd>DiffviewRefresh<CR>" },
+            { "<leader>vt", "<cmd>DiffviewToggleFiles<CR>" },
+            { "<leader>vf", "<cmd>DiffviewFocusFiles<CR>" },
+        },
+        lazy = false,
+    },
     { "lewis6991/gitsigns.nvim", dependencies = { "nvim-lua/plenary.nvim" } },
     { "ruifm/gitlinker.nvim", dependencies = "nvim-lua/plenary.nvim" },
 
@@ -584,4 +860,4 @@ require("lazy").setup({
     -- tmux
     { "christoomey/vim-tmux-navigator" },
     { "shivamashtikar/tmuxjump.vim" },
-})
+}, lazy_options)
