@@ -728,25 +728,26 @@ require("lazy").setup({
     { "jose-elias-alvarez/null-ls.nvim" }, -- for formatters and linters
 
     { "mbbill/undotree" },
-    {
-        "bennypowers/splitjoin.nvim",
-        keys = {
-            {
-                "gJ",
-                function()
-                    require("splitjoin").join()
-                end,
-                desc = "Join the object under cursor",
-            },
-            {
-                "gS",
-                function()
-                    require("splitjoin").split()
-                end,
-                desc = "Split the object under cursor",
-            },
-        },
-    },
+    { "AndrewRadev/splitjoin.vim"},
+    -- {
+    --     "bennypowers/splitjoin.nvim",
+    --     keys = {
+    --         {
+    --             "gJ",
+    --             function()
+    --                 require("splitjoin").join()
+    --             end,
+    --             desc = "Join the object under cursor",
+    --         },
+    --         {
+    --             "gS",
+    --             function()
+    --                 require("splitjoin").split()
+    --             end,
+    --             desc = "Split the object under cursor",
+    --         },
+    --     },
+    -- },
     {
         "lukas-reineke/indent-blankline.nvim",
         config = function()
