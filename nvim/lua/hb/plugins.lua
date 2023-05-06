@@ -530,7 +530,39 @@ require("lazy").setup({
         end,
     },
 
-    -- langs
+    -- dev languages
+    -- Alternate between files, such as foo.go and foo_test.go
+    {
+        "rgroli/other.nvim",
+        config = function()
+            require("other-nvim").setup({
+                mappings = {
+                    {
+                        pattern = "(.*).go$",
+                        target = "%1_test.go",
+                        context = "test",
+                    },
+                    {
+                        pattern = "(.*)_test.go$",
+                        target = "%1.go",
+                        context = "file",
+                    },
+                },
+            })
+
+            vim.api.nvim_create_user_command("A", function(opts)
+                require("other-nvim").open(opts.fargs[1])
+            end, { nargs = "*" })
+
+            vim.api.nvim_create_user_command("AV", function(opts)
+                require("other-nvim").openVSplit(opts.fargs[1])
+            end, { nargs = "*" })
+
+            vim.api.nvim_create_user_command("AS", function(opts)
+                require("other-nvim").openSplit(opts.fargs[1])
+            end, { nargs = "*" })
+        end,
+    },
     { "rust-lang/rust.vim" },
     { "simrat39/rust-tools.nvim" },
     {
@@ -565,7 +597,9 @@ require("lazy").setup({
     {
         -- https://github.com/iamcco/markdown-preview.nvim/issues/354
         "iamcco/markdown-preview.nvim",
-        build = "cd app && npm install",
+        build = function()
+            vim.fn["mkdp#util#install"]()
+        end,
         keys = {
             { "<leader>md", "<cmd>MarkdownPreview<CR>" },
         },
