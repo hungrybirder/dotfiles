@@ -288,6 +288,22 @@ require("lazy").setup({
             })
         end,
     },
+    {
+        "williamboman/mason-lspconfig.nvim",
+        config = function()
+            require("mason-lspconfig").setup({
+                ensure_installed = {
+                    -- https://github.com/williamboman/mason-lspconfig.nvim/blob/main/doc/server-mapping.md
+                    "rust_analyzer",
+                    "pyright",
+                    "gopls",
+                    "vimls",
+                    "bashls",
+                    "lua_ls",
+                },
+            })
+        end,
+    },
     { "neovim/nvim-lspconfig" },
     -- outline powered by lsp
     {
