@@ -166,7 +166,7 @@ require("lazy").setup({
         config = function()
             require("styler").setup({
                 themes = {
-                    markdown = { colorscheme = "gruvbox" },
+                    markdown = { colorscheme = "catppuccin-mocha", background = "dark" },
                     help = { colorscheme = "catppuccin-mocha", background = "dark" },
                 },
             })
