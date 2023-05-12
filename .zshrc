@@ -301,5 +301,3 @@ if [[ "Darwin" = ${OS_NAME} ]]; then
   alias bubu="brew upgrade && brew upgrade --cask"
 fi
 # alias end
-
-alias luamake=/Users/liyong/.cache/nvim/lspconfig/sumneko_lua/lua-language-server/3rd/luamake/luamake
