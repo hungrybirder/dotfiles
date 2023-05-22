@@ -69,10 +69,6 @@ require("lazy").setup({
                 cmdline = {
                     -- view = "cmdline_popup",
                     view = "cmdline",
-                    format = {
-                        search_down = { icon = "🔍⌄" },
-                        search_up = { icon = "🔍⌃" },
-                    },
                 },
             })
         end,
