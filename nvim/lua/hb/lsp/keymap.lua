@@ -10,7 +10,7 @@ function show_documentation()
     elseif vim.fn.expand("%:t") == "Cargo.toml" then
         require("crates").show_popup()
     else
-        require("lspsaga.hover"):render_hover_doc()
+        require("lspsaga.hover"):render_hover_doc({})
         -- vim.lsp.buf.hover()
     end
 end
