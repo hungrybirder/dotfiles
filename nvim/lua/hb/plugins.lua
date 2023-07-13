@@ -23,7 +23,16 @@ local lazy_options = {
 vim.keymap.set("n", "<leader>pu", "<cmd>Lazy sync<CR>")
 
 require("lazy").setup({
-
+    {
+        "glepnir/dashboard-nvim",
+        event = "VimEnter",
+        config = function()
+            require("dashboard").setup({
+                theme = "hyper"
+            })
+        end,
+        dependencies = { { "nvim-tree/nvim-web-devicons" } },
+    },
     {
         "folke/noice.nvim",
         event = "VimEnter",
