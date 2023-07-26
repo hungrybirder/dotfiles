@@ -60,9 +60,9 @@
 	newHighlight = green bold 22
 [core]
 	# pager = diff-so-fancy | less --tabs=4 -RFX
-	quotepath = false
+    quotepath = false
     pager = delta
-	editor = vim
+	editor = nvim
 [merge]
 	tool = vimdiff
 [http]
