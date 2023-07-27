@@ -28,7 +28,7 @@ require("lazy").setup({
         event = "VimEnter",
         config = function()
             require("dashboard").setup({
-                theme = "hyper"
+                theme = "hyper",
             })
         end,
         dependencies = { { "nvim-tree/nvim-web-devicons" } },
