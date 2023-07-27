@@ -305,7 +305,10 @@ setup_jdtls = function()
         require("hb/lsp/keymap").setup_lsp_keymaps(client, bufnr)
         require("lspkind").init({})
 
-        require("jdtls").setup_dap({ hotcodereplace = "auto" })
+        require("jdtls").setup_dap({
+            hotcodereplace = "auto",
+            config_overrides = {},
+        })
         require("jdtls.dap").setup_dap_main_class_configs()
         vim.lsp.codelens.refresh()
         if client.server_capabilities.documentSymbolProvider then
@@ -315,14 +318,14 @@ setup_jdtls = function()
 
     local root_markers = { "gradlew", "pom.xml" }
     local root_dir = require("jdtls.setup").find_root(root_markers)
-    local home = os.getenv("HOME")
+    local home_dir = os.getenv("HOME")
 
     local extendedClientCapabilities = require("jdtls").extendedClientCapabilities
     extendedClientCapabilities.resolveAdditionalTextEditsSupport = true
     extendedClientCapabilities.workspace = { configuration = true }
     extendedClientCapabilities.textDocument = { completion = { completionItem = { snippetSupport = true } } }
 
-    local workspace_folder = home .. "/workspace/" .. vim.fn.fnamemodify(root_dir, ":p:h:t")
+    local workspace_folder = home_dir .. "/workspace/" .. vim.fn.fnamemodify(root_dir, ":p:h:t")
     local config = {
         flags = { allow_incremental_sync = true },
         capabilities = extendedClientCapabilities,
@@ -381,7 +384,47 @@ setup_jdtls = function()
         },
     }
 
-    config.cmd = { "java-lsp", workspace_folder }
+    local mason_package_path = vim.fn.stdpath("data") .. "/mason/packages"
+    local os_name = "mac"
+    if jit.os ~= "OSX" then
+        os_name = "linux"
+    end
+    -- JDT_LS_HOME="/opt/homebrew/Cellar/jdt-language-server/1.26.0-202307200157/libexec"
+    -- JDT_LS_LAUNCHER=$(find $JDT_LS_HOME -name "org.eclipse.equinox.launcher_*.jar")
+    -- JDT_LS_HEAP_SIZE=${JDT_LS_HEAP_SIZE:=-Xmx12G}
+    -- JAVA_BIN="java"
+    -- GRADLE_HOME="$(brew --prefix)/opt/gradle"
+    -- export GRADLE_HOME
+    -- exec $JAVA_BIN   -Declipse.application=org.eclipse.jdt.ls.core.id1
+    -- -Dosgi.bundles.defaultStartLevel=4
+    -- -Declipse.product=org.eclipse.jdt.ls.core.product
+    -- -Dlog.protocol=true
+    -- -Dlog.level=ALL
+    -- $JDT_LS_HEAP_SIZE
+    -- -jar "$JDT_LS_LAUNCHER"
+    -- -configuration "$JDT_LS_HOME/config_mac"
+    -- -data "$1"
+    -- config.cmd = { "java-lsp", workspace_folder }
+    config.cmd = {
+        "java",
+        "-Declipse.application=org.eclipse.jdt.ls.core.id1",
+        "-Dosgi.bundles.defaultStartLevel=4",
+        "-Declipse.product=org.eclipse.jdt.ls.core.product",
+        "-Dlog.protocol=true",
+        "-Dlog.level=ALL",
+        "-Xmx16g",
+        "--add-modules=ALL-SYSTEM",
+        "--add-opens",
+        "java.base/java.util=ALL-UNNAMED",
+        "--add-opens",
+        "java.base/java.lang=ALL-UNNAMED",
+        "-jar",
+        vim.fn.glob(mason_package_path .. "/jdtls/plugins/org.eclipse.equinox.launcher_*.jar"),
+        "-configuration",
+        vim.fn.glob(mason_package_path .. "/jdtls/config_" .. os_name),
+        "-data",
+        workspace_folder,
+    }
     config.on_attach = on_attach
     config.on_init = function(client, _)
         client.notify("workspace/didChangeConfiguration", { settings = config.settings })
@@ -400,7 +443,6 @@ setup_jdtls = function()
     -- npm run build-plugin
     -- "/.config/vscode-java-test/server/*.jar",
 
-    local mason_package_path = vim.fn.stdpath("data") .. "/mason/packages"
     local bundles = {
         vim.fn.glob(
             mason_package_path .. "/java-debug-adapter/extension/server/com.microsoft.java.debug.plugin-*.jar",
