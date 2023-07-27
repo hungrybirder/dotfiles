@@ -305,7 +305,6 @@ setup_jdtls = function()
         require("hb/lsp/keymap").setup_lsp_keymaps(client, bufnr)
         require("lspkind").init({})
 
-        require("jdtls.setup").add_commands()
         require("jdtls").setup_dap({ hotcodereplace = "auto" })
         require("jdtls.dap").setup_dap_main_class_configs()
         vim.lsp.codelens.refresh()
@@ -401,11 +400,17 @@ setup_jdtls = function()
     -- npm run build-plugin
     -- "/.config/vscode-java-test/server/*.jar",
 
-    local mason_package_path = vim.fn.stdpath("data") .. "/mason/packages/"
+    local mason_package_path = vim.fn.stdpath("data") .. "/mason/packages"
     local bundles = {
-        vim.fn.glob(mason_package_path .. "/java-debug-adapter/extension/server/com.microsoft.java.debug.plugin-*.jar"),
-        vim.fn.glob(mason_package_path .. "/java-test/extension/server/*.jar"),
+        vim.fn.glob(
+            mason_package_path .. "/java-debug-adapter/extension/server/com.microsoft.java.debug.plugin-*.jar",
+            true
+        ),
     }
+    vim.list_extend(
+        bundles,
+        vim.split(vim.fn.glob(mason_package_path .. "/java-test/extension/server/*.jar", true), "\n")
+    )
     config.init_options = {
         bundles = bundles,
     }
