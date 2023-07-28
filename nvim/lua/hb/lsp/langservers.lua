@@ -335,6 +335,22 @@ setup_jdtls = function()
         -- ['java.format.settings.url'] = home .. "/.config/nvim/language-servers/java-google-formatter.xml",
         -- ['java.format.settings.profile'] = "GoogleStyle",
         java = {
+            contentProvider = { preferred = "fernflower" },
+            sources = {
+                organizeImports = {
+                    starThreshold = 9999,
+                    staticStarThreshold = 9999,
+                },
+            },
+            codeGeneration = {
+                toString = {
+                    template = "${object.className}{${member.name()}=${member.value}, ${otherMembers}}",
+                },
+                hashCodeEquals = {
+                    useJava7Objects = true,
+                },
+                useBlocks = true,
+            },
             eclipse = {
                 downloadSources = true,
             },
@@ -344,43 +360,45 @@ setup_jdtls = function()
             maven = {
                 downloadSources = true,
             },
-            implementationsCodeLens = {
-                enabled = true,
+            inlayHints = {
+                parameterNames = {
+                    enabled = "all",
+                },
             },
-            referencesCodeLens = {
+            implementationsCodeLens = {
                 enabled = true,
             },
             references = {
                 includeDecompiledSources = true,
             },
-        },
-        signatureHelp = { enabled = true },
-        referencesCodeLens = {
-            enabled = true,
-        },
-        completion = {
-            favoriteStaticMembers = {
-                "org.hamcrest.MatcherAssert.assertThat",
-                "org.hamcrest.Matchers.*",
-                "org.hamcrest.CoreMatchers.*",
-                "org.junit.jupiter.api.Assertions.*",
-                "java.util.Objects.requireNonNull",
-                "java.util.Objects.requireNonNullElse",
-                "org.mockito.Mockito.*",
+            referencesCodeLens = {
+                enabled = true,
             },
-        },
-        contentProvider = { preferred = "fernflower" },
-        sources = {
-            organizeImports = {
-                starThreshold = 9999,
-                staticStarThreshold = 9999,
+            signatureHelp = { enabled = true },
+            flags = {
+                server_side_fuzzy_completion = true,
             },
-        },
-        codeGeneration = {
-            toString = {
-                template = "${object.className}{${member.name()}=${member.value}, ${otherMembers}}",
+            saveActions = {
+                organizeImports = true,
             },
-            useBlocks = true,
+            completion = {
+                favoriteStaticMembers = {
+                    "org.hamcrest.MatcherAssert.assertThat",
+                    "org.hamcrest.Matchers.*",
+                    "org.hamcrest.CoreMatchers.*",
+                    "org.junit.jupiter.api.Assertions.*",
+                    "java.util.Objects.requireNonNull",
+                    "java.util.Objects.requireNonNullElse",
+                    "org.mockito.Mockito.*",
+                },
+                filteredTypes = {
+                    "com.sun.*",
+                    "io.micrometer.shaded.*",
+                    "java.awt.*",
+                    "jdk.*",
+                    "sun.*",
+                },
+            },
         },
     }
 
