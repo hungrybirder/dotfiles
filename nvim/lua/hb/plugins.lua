@@ -508,10 +508,10 @@ require("lazy").setup({
     { "RRethy/nvim-treesitter-endwise" },
     { "JoosepAlviste/nvim-ts-context-commentstring" },
     { "theprimeagen/jvim.nvim" }, -- for json
-    {
-        "SmiteshP/nvim-navic",
-        dependencies = "neovim/nvim-lspconfig",
-    },
+    -- {
+    --     "SmiteshP/nvim-navic",
+    --     dependencies = "neovim/nvim-lspconfig",
+    -- },
 
     -- better quickfix window
     {

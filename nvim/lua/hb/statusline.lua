@@ -33,13 +33,13 @@ local function custom_fileformat()
     return ret
 end
 
-local function custom_treesitter_context()
-    local ok, navic = pcall(require, "nvim-navic")
-    if ok and navic.is_available() then
-        return navic.get_location()
-    end
-    return ""
-end
+-- local function custom_treesitter_context()
+--     local ok, navic = pcall(require, "nvim-navic")
+--     if ok and navic.is_available() then
+--         return navic.get_location()
+--     end
+--     return ""
+-- end
 
 -- https://github.com/nvim-lualine/lualine.nvim/issues/186#issuecomment-1170637440
 vim.o.shortmess = vim.o.shortmess .. "S"
@@ -79,13 +79,13 @@ require("lualine").setup({
                     removed = { fg = colors.red, bg = colors.bg },
                 },
             },
-            { "diagnostics", sources = { "nvim_diagnostic" } },
         },
         lualine_c = {
-            {
-                custom_treesitter_context,
-                color = { bg = colors.bg, fg = colors.blue, gui = "bold" },
-            },
+            { "diagnostics", sources = { "nvim_diagnostic" } },
+            -- {
+            --     custom_treesitter_context,
+            --     color = { bg = colors.bg, fg = colors.blue, gui = "bold" },
+            -- },
         },
         lualine_x = {},
         lualine_y = {
