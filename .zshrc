@@ -53,7 +53,7 @@ antigen bundle pyenv
 antigen bundle git
 antigen bundle autojump
 antigen bundle jsontools
-antigen bundle docker
+# antigen bundle docker
 antigen bundle macos
 antigen bundle pip
 antigen bundle golang
