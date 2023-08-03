@@ -7,7 +7,8 @@ local lspconfig = require("lspconfig")
 local on_publish_diagnostics = vim.lsp.handlers["textDocument/publishDiagnostics"]
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(on_publish_diagnostics, {
     underline = false,
-    virtual_text = true,
+    -- virtual_text = true,
+    virtual_text = false,
     signs = true,
     update_in_insert = false,
 })
