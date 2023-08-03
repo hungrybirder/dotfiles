@@ -1,3 +1,5 @@
+---@diagnostic disable: missing-fields
+
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
     vim.fn.system({
@@ -484,7 +486,10 @@ require("lazy").setup({
         "folke/trouble.nvim",
         dependencies = "nvim-tree/nvim-web-devicons",
         config = function()
-            require("trouble").setup({})
+            require("trouble").setup({
+                mode = "document_diagnostics",
+                use_diagnostic_signs = true,
+            })
             vim.keymap.set("n", "<leader>xx", "<cmd>TroubleToggle<cr>")
             vim.keymap.set("n", "<leader>xw", "<cmd>Trouble workspace_diagnostics<cr>")
             vim.keymap.set("n", "<leader>xd", "<cmd>Trouble document_diagnostics<cr>")
