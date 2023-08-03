@@ -5,7 +5,6 @@ for f in split(glob('~/.config/nvim/plugins.d/*.vim'), '\n')
 	exe 'source' f
 endfor
 
-" settings
 syntax on
 filetype plugin indent on
 
@@ -172,7 +171,6 @@ nnoremap <silent> t_ :TestLast<CR>
 
 let test#strategy = "neovim"
 let test#neovim#term_position = "rightbelow"
-" vim-test end
 
 if exists('g:loaded_webdevicons')
     call webdevicons#refresh()
@@ -188,14 +186,10 @@ nmap S <plug>(SubversiveSubstituteToEndOfLine)
 nmap <leader>s <plug>(SubversiveSubstituteRange)
 xmap <leader>s <plug>(SubversiveSubstituteRange)
 nmap <leader>ss <plug>(SubversiveSubstituteWordRange)
-" vim-subversive end
 
-" vim-yoink
 nmap [y <plug>(YoinkRotateBack)
 nmap ]y <plug>(YoinkRotateForward)
-" vim-yoink end
 
-" fzf
 let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.8 } }
 let g:fzf_action = {
   \ 'ctrl-x': 'split',
@@ -209,36 +203,16 @@ if has('nvim')
   au! TermOpen * tnoremap <buffer> <Esc> <c-\><c-n>
   au! FileType fzf tunmap <buffer> <Esc>
 endif
-" fzf end
-"
 
-" indent-blankline
 let g:indent_blankline_filetype = ['vim', 'lua', 'python']
-" indent-blankline end
 
-" vim-matchup
 let g:matchup_surround_enabled = 1
 let g:matchup_transmute_enabled = 1
-" vim-matchup end
 
-" vim-rooter
 let g:rooter_patterns = [
 \ '.git', '_darcs', '.hg', '.bzr', '.svn', 'Makefile', 'package.json',
 \ 'tox.ini'
 \]
-" vim-rooter end
-
-" nvim-jdtls
-augroup jdtls_lsp
-    autocmd!
-    autocmd FileType java lua require'hb/lsp/langservers'.setup_jdtls()
-augroup end
-" nvim-jdtls end
-
-augroup codelens
-  autocmd!
-  autocmd BufWritePost *.java lua vim.lsp.codelens.refresh()
-augroup END
 
 function! ToggleNumber()
     if(&number == 1 || &relativenumber == 1)

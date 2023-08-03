@@ -2,10 +2,23 @@ vim.opt.laststatus = 3
 
 fn = vim.fn
 
+vim.api.nvim_create_augroup("codelens", { clear = true })
+
 vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+    group = "codelens",
     pattern = { "*.java" },
     callback = function()
         vim.lsp.codelens.refresh()
+    end,
+})
+
+vim.api.nvim_create_augroup("jdtls_lsp", { clear = true })
+
+vim.api.nvim_create_autocmd({ "FileType" }, {
+    group = "jdtls_lsp",
+    pattern = { "java" },
+    callback = function()
+        require("hb/lsp/langservers").setup_jdtls()
     end,
 })
 
