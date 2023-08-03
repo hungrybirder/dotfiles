@@ -22,6 +22,7 @@ null_ls.setup({
         formatting.sql_formatter,
         -- formatting.google_java_format,
         formatting.protolint,
+        formatting.yamlfmt,
 
         diagnostics.shellcheck, -- sh
         diagnostics.staticcheck, -- Go
