@@ -50,34 +50,35 @@ end
 local dap = require("dap")
 
 dap.listeners.before["event_progressStart"]["progress-notifications"] = function(session, body)
-    local notify_data = get_notify_data("dap", body.progressId)
+    local notif_data = get_notif_data("dap", body.progressId)
 
     local message = format_message(body.message, body.percentage)
-    notify_data.notification = vim.notify(message, "info", {
+    notif_data.notification = vim.notify(message, vim.log.levels.INFO, {
         title = format_title(body.title, session.config.type),
         icon = spinner_frames[1],
         timeout = false,
-        hide_form_history = false,
+        hide_from_history = false,
     })
 
-    notify_data.notification.spinner = 1
+    notif_data.notification.spinner = 1
     update_spinner("dap", body.progressId)
 end
 
 dap.listeners.before["event_progressUpdate"]["progress-notifications"] = function(session, body)
-    local notify_data = get_notify_data("dap", body.progressId)
-    notify_data.notification = vim.notify(format_message(body.message, body.percentage), "info", {
-        replace = notify_data.notification,
-        hide_form_history = false,
+    local notif_data = get_notif_data("dap", body.progressId)
+    notif_data.notification = vim.notify(format_message(body.message, body.percentage), vim.log.levels.INFO, {
+        replace = notif_data.notification,
+        hide_from_history = false,
     })
 end
 
 dap.listeners.before["event_progressEnd"]["progress-notifications"] = function(session, body)
-    local notify_data = client_notifs["dap"][body.progressId]
-    notify_data.notification = vim.notify(body.message and format_message(body.message) or "Complete", "info", {
-        icon = "",
-        replace = notify_data.notification,
-        timeout = 3000,
-    })
-    notify_data.spinner = nil
+    local notif_data = client_notifs["dap"][body.progressId]
+    notif_data.notification =
+        vim.notify(body.message and format_message(body.message) or "Complete", vim.log.levels.INFO, {
+            icon = "",
+            replace = notif_data.notification,
+            timeout = 3000,
+        })
+    notif_data.spinner = nil
 end
