@@ -1,3 +1,4 @@
+# vim: ft=git_config
 # ln -s `pwd`/gitconfig ~/.gitconfig
 [color]
 	ui = always
