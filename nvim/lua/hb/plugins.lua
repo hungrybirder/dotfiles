@@ -555,12 +555,12 @@ require("lazy").setup({
                 callhierarchy = {
                     show_detail = false,
                     keys = {
-                        edit = "e",
+                        edit = { "e", "<CR>" },
                         vsplit = "v",
                         split = "s",
                         tabe = "t",
                         jump = "o",
-                        quit = "q",
+                        quit = { "q", "<ESC>" },
                         expand_collapse = "u",
                     },
                 },
