@@ -541,7 +541,7 @@ require("lazy").setup({
                     left_width = 0.3,
                     keys = {
                         toggle_or_jump = { "<CR>", "o" },
-                        quit = "q",
+                        quit = { "q", "<ESC>" },
                         jump = "e",
                     },
                 },
@@ -583,6 +583,26 @@ require("lazy").setup({
                         close_in_preview = "<ESC>",
                     },
                 },
+            })
+            vim.api.nvim_create_augroup("lspsaga_filetypes", { clear = true })
+            vim.api.nvim_create_autocmd("FileType", {
+                group = "lspsaga_filetypes",
+                pattern = {
+                    "LspsagaCodeAction",
+                    "LspsagaDiagnostic",
+                    "LspsagaFinder",
+                    "LspsagaFloaterm",
+                    "LspsagaHover",
+                    "LspsagaRename",
+                    "LspsagaSignatureHelp",
+                },
+                callback = function()
+                    vim.api.nvim_set_keymap("n", "<ESC>", "<cmd>close!<CR>", {
+                        buffer = true,
+                        nowait = true,
+                        silent = true,
+                    })
+                end,
             })
         end,
         dependencies = {
