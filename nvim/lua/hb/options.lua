@@ -32,4 +32,4 @@ vim.o.mouse = ""
 vim.o.splitright = true
 vim.o.splitbelow = true
 vim.o.cmdheight = 1
-vim.o.shortmess = "filnxtToOFSc"
+vim.o.shortmess = vim.o.shortmess .. "c"
