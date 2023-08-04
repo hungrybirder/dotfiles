@@ -165,3 +165,18 @@ vim.keymap.set("o", "in<", " :<c-u>normal! f<vi<<cr>")
 vim.keymap.set("o", "il<", " :<c-u>normal! F>vi<<cr>")
 
 vim.keymap.set({ "n", "i" }, "<F1>", "<nop>")
+
+-- tab
+vim.keymap.set("n", "]<tab>", "<cmd>tabnext<cr>")
+vim.keymap.set("n", "[<tab>", "<cmd>tabnext<cr>")
+
+-- Highlight on yank
+vim.api.nvim_exec(
+    [[
+  augroup YankHighlight
+    autocmd!
+    autocmd TextYankPost * silent! lua vim.highlight.on_yank()
+  augroup end
+]],
+    false
+)
