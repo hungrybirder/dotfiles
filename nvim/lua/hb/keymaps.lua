@@ -8,68 +8,10 @@ endfor
 syntax on
 filetype plugin indent on
 
-set exrc
-set number relativenumber
-set hidden
-set noerrorbells
-set tabstop=4 softtabstop=4
-set shiftwidth=4
-set expandtab
-set smartindent
-set nowrap
-set ignorecase
-set smartcase
-set noswapfile
-set nobackup
-set undodir=~/.config/nvim_undodir
-set undofile
-set incsearch
-set termguicolors
-set scrolloff=8
-set noshowmode
-set completeopt=menu,menuone,noselect
-set mouse=
-set splitright
-set splitbelow
-set nobackup
-set nowritebackup
-" set colorcolumn=80
-set signcolumn=yes
-
-set cmdheight=1
-set timeout ttimeout
-set timeoutlen=500  " Time out on mappings
-set updatetime=100   " Idle time to write swap and trigger CursorHold
-set ttimeoutlen=10  " Time out on key codes
-
-" Don't pass messages to |ins-completion-menu|.
-set shortmess+=c
-
-set clipboard=unnamedplus
-
 if executable("rg")
     set grepprg=rg\ --vimgrep\ --no-heading
     set grepformat=%f:%l:%c:%m,%f:%l:%m
 endif
-
-" Navigating in Command Mode
-cnoremap <C-a> <Home>
-cnoremap <C-e> <End>
-cnoremap <C-f> <Right>
-cnoremap <C-b> <Left>
-cnoremap <Esc>b <S-Left>
-cnoremap <Esc>f <S-Right>
-
-
-" 更新括号里的内容，非常有用
-onoremap in( :<c-u>normal! f(vi(<cr>
-onoremap il( :<c-u>normal! F)vi(<cr>
-onoremap in[ :<c-u>normal! f[vi[<cr>
-onoremap il[ :<c-u>normal! F]vi[<cr>
-onoremap in< :<c-u>normal! f<vi<<cr>
-onoremap il< :<c-u>normal! F>vi<<cr>
-
-nnoremap <leader>u :UndotreeToggle<CR>
 
 " Jumplist mutations
 nnoremap <expr> k (v:count > 5 ? "m'" . v:count : "") . 'k'
@@ -150,12 +92,6 @@ func! ToggleFold()
     endif
 endfunc
 
-" Disable F1
-nmap <F1> <nop>
-imap <F1> <nop>
-
-" plugin mappings
-
 " vim-test
 function! DebugNearest()
   let g:test#go#runner = 'delve'
@@ -171,10 +107,6 @@ nnoremap <silent> t_ :TestLast<CR>
 
 let test#strategy = "neovim"
 let test#neovim#term_position = "rightbelow"
-
-if exists('g:loaded_webdevicons')
-    call webdevicons#refresh()
-endif
 
 " vim-subversive
 " s for substitute
@@ -203,11 +135,6 @@ if has('nvim')
   au! TermOpen * tnoremap <buffer> <Esc> <c-\><c-n>
   au! FileType fzf tunmap <buffer> <Esc>
 endif
-
-let g:indent_blankline_filetype = ['vim', 'lua', 'python']
-
-let g:matchup_surround_enabled = 1
-let g:matchup_transmute_enabled = 1
 
 let g:rooter_patterns = [
 \ '.git', '_darcs', '.hg', '.bzr', '.svn', 'Makefile', 'package.json',

@@ -1,6 +1,53 @@
-vim.opt.termguicolors = true
-
 vim.g.mapleader = " "
+vim.g.maplocalleader = " "
+
+vim.o.clipboard = "unnamedplus"
+
+vim.o.number = true
+vim.o.relativenumber = true
+
+vim.o.timeout = true
+vim.o.ttimeout = true
+vim.o.timeoutlen = 500 -- Time out on mappings
+vim.o.updatetime = 100 -- Idle time to write swap and trigger CursorHold
+vim.o.ttimeoutlen = 10 -- Time out on key codes
+
+vim.o.exrc = true
+vim.o.hidden = true
+
+vim.o.tabstop = 4
+vim.o.softtabstop = 4
+vim.o.shiftwidth = 4
+vim.o.expandtab = true
+
+vim.o.smartindent = true
+vim.o.wrap = false
+
+vim.o.smartcase = true
+vim.o.ignorecase = true
+vim.o.swapfile = false
+vim.o.backup = false
+vim.o.writebackup = false
+vim.o.undodir = os.getenv("HOME") .. "/.config/nvim_undir"
+vim.o.undofile = true
+
+vim.o.incsearch = true
+vim.o.termguicolors = true
+vim.o.scrolloff = 8
+vim.o.showmode = false
+
+vim.o.signcolumn = "yes"
+
+vim.o.completeopt = "menu,menuone,noselect"
+vim.o.mouse = ""
+
+vim.o.splitright = true
+vim.o.splitbelow = true
+
+vim.o.cmdheight = 1
+vim.o.shortmess = "filnxtToOFSc"
+
+----------
 
 vim.keymap.set("n", "<leader>ev", "<cmd>e $MYVIMRC<CR>")
 vim.keymap.set("n", "<leader>sv", "<cmd>so $MYVIMRC<CR>")
@@ -100,3 +147,21 @@ vim.keymap.set("n", "gp", "`[v`]")
 -- folder mappings
 vim.keymap.set("n", "<leader>z", ":call ToggleFold()<CR>")
 vim.keymap.set("n", "<s-tab>", "za")
+
+-- Naviagting in command mode
+vim.keymap.set("c", "<C-a>", "<Home>")
+vim.keymap.set("c", "<C-e>", "<End>")
+vim.keymap.set("c", "<C-f>", "<Right>")
+vim.keymap.set("c", "<C-b>", "<Left>")
+vim.keymap.set("c", "<Esc>b", "<S-Left>")
+vim.keymap.set("c", "<Esc>f", "<S-Right>")
+
+-- 更新括号里的内容，非常有用
+vim.keymap.set("o", "in(", ":<c-u>normal! f(vi(<cr>")
+vim.keymap.set("o", "il(", " :<c-u>normal! F)vi(<cr>")
+vim.keymap.set("o", "in[", " :<c-u>normal! f[vi[<cr>")
+vim.keymap.set("o", "il[", " :<c-u>normal! F]vi[<cr>")
+vim.keymap.set("o", "in<", " :<c-u>normal! f<vi<<cr>")
+vim.keymap.set("o", "il<", " :<c-u>normal! F>vi<<cr>")
+
+vim.keymap.set({ "n", "i" }, "<F1>", "<nop>")

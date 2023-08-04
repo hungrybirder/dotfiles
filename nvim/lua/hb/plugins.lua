@@ -152,7 +152,12 @@ require("lazy").setup({
             { ",", "<Plug>(clever-f-repeat-back)" },
         },
     },
-    { "andymass/vim-matchup" },
+    {
+        "andymass/vim-matchup",
+        config = function()
+            vim.g.matchup_matchparen_offscreen = { method = "popup" }
+        end,
+    },
     {
         "folke/todo-comments.nvim",
         dependencies = { "nvim-lua/plenary.nvim" },
@@ -587,7 +592,12 @@ require("lazy").setup({
     { "Valloric/ListToggle" },
     { "jose-elias-alvarez/null-ls.nvim" }, -- for formatters and linters
 
-    { "mbbill/undotree" },
+    {
+        "mbbill/undotree",
+        config = function()
+            vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
+        end,
+    },
     { "AndrewRadev/splitjoin.vim" },
     -- {
     --     "bennypowers/splitjoin.nvim",
@@ -615,6 +625,7 @@ require("lazy").setup({
                 show_current_context = true,
                 show_current_context_start = true,
             })
+            vim.g.indent_blankline_filetype = { "vim", "lua", "python" }
         end,
     },
 
@@ -741,6 +752,7 @@ require("lazy").setup({
             "nvim-neotest/neotest-python",
             "nvim-neotest/neotest-go",
             "nvim-neotest/neotest-vim-test",
+            "mfussenegger/nvim-dap",
         },
     },
 
