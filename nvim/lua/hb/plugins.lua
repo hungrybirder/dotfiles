@@ -529,6 +529,21 @@ require("lazy").setup({
         config = function()
             vim.keymap.set("n", "<leader>v", "<cmd>Lspsaga outline<CR>")
             require("lspsaga").setup({
+                diagnostic = {
+                    keys = {
+                        exec_action = "o",
+                        quit = { "q", "<ESC>" },
+                        toggle_or_jump = "<CR>",
+                        quit_in_show = { "q", "<ESC>" },
+                    },
+                },
+
+                code_action = {
+                    keys = {
+                        quit = { "q", "<ESC>" },
+                        exec = "<CR>",
+                    },
+                },
                 outline = {
                     win_position = "right",
                     win_width = 33,

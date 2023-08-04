@@ -21,5 +21,6 @@ dap.configurations.lua = {
 }
 
 dap.adapters.nlua = function(callback, config)
+    ---@diagnostic disable-next-line: undefined-field
     callback({ type = "server", host = config.host, port = config.port })
 end
