@@ -133,12 +133,4 @@ let g:rooter_patterns = [
 \ 'tox.ini'
 \]
 
-function! ToggleNumber()
-    if(&number == 1 || &relativenumber == 1)
-        set nonumber norelativenumber
-    else
-        set number relativenumber
-    endif
-endfunction
-
 ]])

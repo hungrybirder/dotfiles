@@ -82,8 +82,7 @@ vim.keymap.set("v", "<c-y>", "3<c-y>")
 
 vim.keymap.set("n", "<esc><esc>", "<cmd>nohlsearch<CR>")
 
--- map toggle number
-vim.keymap.set("n", "<leader>N", "<cmd>call ToggleNumber()<CR>")
+vim.keymap.set("n", "<leader>N", "<cmd>lua require('hb/functions').toggle_number()<CR>")
 
 -- tmuxjump
 vim.g.tmuxjump_telescope = 1
