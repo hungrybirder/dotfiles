@@ -540,7 +540,7 @@ require("lazy").setup({
                     max_height = 0.5,
                     left_width = 0.3,
                     keys = {
-                        toggle_or_jump = "<CR>",
+                        toggle_or_jump = { "<CR>", "o" },
                         quit = "q",
                         jump = "e",
                     },
