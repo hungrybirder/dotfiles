@@ -501,17 +501,17 @@ require("lazy").setup({
     },
     { "neovim/nvim-lspconfig" },
     -- outline powered by lsp
-    {
-        "simrat39/symbols-outline.nvim",
-        config = function()
-            require("symbols-outline").setup({
-                relative_width = true,
-                auto_preview = false,
-                position = "right",
-            })
-            vim.keymap.set("n", "<leader>v", "<cmd>SymbolsOutline<CR>")
-        end,
-    },
+    -- {
+    --     "simrat39/symbols-outline.nvim",
+    --     config = function()
+    --         require("symbols-outline").setup({
+    --             relative_width = true,
+    --             auto_preview = false,
+    --             position = "right",
+    --         })
+    --         vim.keymap.set("n", "<leader>v", "<cmd>SymbolsOutline<CR>")
+    --     end,
+    -- },
     {
         "j-hui/fidget.nvim",
         tag = "legacy",
@@ -527,7 +527,24 @@ require("lazy").setup({
         "nvimdev/lspsaga.nvim",
         event = "LspAttach",
         config = function()
+            vim.keymap.set("n", "<leader>v", "<cmd>Lspsaga outline<CR>")
             require("lspsaga").setup({
+                outline = {
+                    win_position = "right",
+                    win_width = 33,
+                    auto_preview = false,
+                    detail = true,
+                    auto_close = true,
+                    close_after_jump = false,
+                    layout = "normal",
+                    max_height = 0.5,
+                    left_width = 0.3,
+                    keys = {
+                        toggle_or_jump = "<CR>",
+                        quit = "q",
+                        jump = "e",
+                    },
+                },
                 lightbulb = {
                     enable = false,
                     enable_in_insert = false,
