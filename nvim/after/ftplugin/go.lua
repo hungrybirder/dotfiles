@@ -15,3 +15,7 @@ local status, go = pcall(require, "go")
 if status then
     go.setup()
 end
+
+
+vim.keymap.set("n", "<leader>dt", "<cmd>lua require('dap-go').debug_test()<CR>")
+vim.keymap.set("n", "<leader>dlt", "<cmd>lua require('dap-go').debug_last_test()<CR>")

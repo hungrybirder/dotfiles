@@ -734,15 +734,20 @@ require("lazy").setup({
 
     -- debugger
     -- use("sebdah/vim-delve")
-    { "mfussenegger/nvim-dap" },
+    -- { "mfussenegger/nvim-dap" },
     { "rcarriga/nvim-dap-ui", dependencies = { "mfussenegger/nvim-dap" } },
-    { "theHamsta/nvim-dap-virtual-text" },
-    { "mfussenegger/nvim-dap-python" },
-    { "leoluz/nvim-dap-go" },
-    { "jbyuki/one-small-step-for-vimkind" },
+    {
+        "mfussenegger/nvim-dap",
+        dependencies = {
+            "theHamsta/nvim-dap-virtual-text",
+            "mfussenegger/nvim-dap-python",
+            "leoluz/nvim-dap-go",
+            "jbyuki/one-small-step-for-vimkind",
+        },
+    },
 
     -- unit test
-    { "vim-test/vim-test" },
+    -- { "vim-test/vim-test" },
     {
         "nvim-neotest/neotest",
         dependencies = {
@@ -751,9 +756,37 @@ require("lazy").setup({
             "nvim-neotest/neotest-plenary",
             "nvim-neotest/neotest-python",
             "nvim-neotest/neotest-go",
-            "nvim-neotest/neotest-vim-test",
+            -- "nvim-neotest/neotest-vim-test",
             "mfussenegger/nvim-dap",
         },
+        config = function()
+            require("neotest").setup({
+                adapters = {
+                    require("neotest-plenary"),
+                    require("neotest-python")({
+                        dap = { justMyCode = false },
+                    }),
+                    require("neotest-go"),
+                },
+            })
+
+            vim.api.nvim_command("command! -nargs=0 NeotestRun :lua require('neotest').run.run()<CR>")
+            vim.api.nvim_command("command! -nargs=0 NeotestStop :lua require('neotest').run.stop()<CR>")
+            vim.api.nvim_command("command! -nargs=0 NeotestAttach :lua require('neotest').run.attach()<CR>")
+            vim.api.nvim_command(
+                "command! -nargs=0 NeotestDebugNearest :lua require('neotest').run.run({strategy = 'dap'})<CR>"
+            )
+            vim.api.nvim_command(
+                "command! -nargs=0 NeotestRunFile :lua require('neotest').run.run(vim.fn.expand('%'))<CR>"
+            )
+            vim.api.nvim_command("command! -nargs=0 NeotestToggleSummary :lua require('neotest').summary.toggle()<CR>")
+            vim.api.nvim_command(
+                "command! -nargs=0 NeotestJumpPrevFailed :lua require('neotest').jump.prev({ status = 'failed' })<CR>"
+            )
+            vim.api.nvim_command(
+                "command! -nargs=0 NeotestJumpnextFailed :lua require('neotest').jump.next({ status = 'failed' })<CR>"
+            )
+        end,
     },
 
     -- Terminal
