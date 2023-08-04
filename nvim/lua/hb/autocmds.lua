@@ -30,6 +30,16 @@ vim.api.nvim_create_autocmd("BufWritePost", {
     command = "silent source %",
 })
 
+vim.api.nvim_create_augroup("YankHighlight", { clear = true })
+
+vim.api.nvim_create_autocmd("TextYankPost",{
+    group = "YankHighlight",
+    pattern = {"*"},
+    callback = function()
+        vim.highlight.on_yank()
+    end,
+})
+
 -- Return to last edit position when opening files, feedkeys zz centers the buffer, I wonder if there is a better way
 -- augroup last_cursor_position
 --   au!
