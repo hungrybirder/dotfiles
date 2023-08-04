@@ -1,3 +1,5 @@
+---@diagnostic disable: missing-fields
+
 -- From: https://github.com/hrsh7th/nvim-cmp/wiki/Example-mappings
 local has_words_before = function()
     local line, col = unpack(vim.api.nvim_win_get_cursor(0))
