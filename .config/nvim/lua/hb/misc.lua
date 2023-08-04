@@ -114,23 +114,18 @@ nmap <leader>ss <plug>(SubversiveSubstituteWordRange)
 nmap [y <plug>(YoinkRotateBack)
 nmap ]y <plug>(YoinkRotateForward)
 
-let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.8 } }
-let g:fzf_action = {
-  \ 'ctrl-x': 'split',
-  \ 'ctrl-]': 'vsplit' }
+" let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.8 } }
+" let g:fzf_action = {
+"   \ 'ctrl-x': 'split',
+"   \ 'ctrl-]': 'vsplit' }
 
-inoremap <expr> <c-x><c-f> fzf#vim#complete#path(
-      \ "find . -path '*/\.*' -prune -o -print \| sed '1d;s:^..::'",
-      \ fzf#wrap({'dir': expand('%:p:h')}))
+" inoremap <expr> <c-x><c-f> fzf#vim#complete#path(
+"       \ "find . -path '*/\.*' -prune -o -print \| sed '1d;s:^..::'",
+"       \ fzf#wrap({'dir': expand('%:p:h')}))
 
-if has('nvim')
-  au! TermOpen * tnoremap <buffer> <Esc> <c-\><c-n>
-  au! FileType fzf tunmap <buffer> <Esc>
-endif
-
-let g:rooter_patterns = [
-\ '.git', '_darcs', '.hg', '.bzr', '.svn', 'Makefile', 'package.json',
-\ 'tox.ini'
-\]
+" if has('nvim')
+"   " au! TermOpen * tnoremap <buffer> <Esc> <c-\><c-n>
+"   au! FileType fzf tunmap <buffer> <Esc>
+" endif
 
 ]])

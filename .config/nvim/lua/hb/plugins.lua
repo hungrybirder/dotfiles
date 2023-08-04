@@ -98,7 +98,21 @@ require("lazy").setup({
         end,
     },
     { "hotoo/pangu.vim" },
-    { "airblade/vim-rooter" },
+    {
+        "airblade/vim-rooter",
+        config = function()
+            vim.g.root_pattern = {
+                ".git",
+                "_darcs",
+                ".hg",
+                ".bzr",
+                ".svn",
+                "Makefile",
+                "package.json",
+                "tox.ini",
+            }
+        end,
+    },
     { "jamessan/vim-gnupg" },
     { "EdenEast/nightfox.nvim" },
     { "ellisonleao/gruvbox.nvim" },
@@ -227,7 +241,7 @@ require("lazy").setup({
             require("colorizer").setup()
         end,
     },
-    { "catppuccin/nvim", name = "catppuccin" },
+    { "catppuccin/nvim",  name = "catppuccin" },
     {
         "folke/styler.nvim",
         config = function()
@@ -824,7 +838,7 @@ require("lazy").setup({
                 playground = {
                     enable = true,
                     -- disable = {},
-                    updatetime = 25, -- Debounced time for highlighting nodes in the playground from source code
+                    updatetime = 25,         -- Debounced time for highlighting nodes in the playground from source code
                     persist_queries = false, -- Whether the query persists across vim sessions
                 },
                 query_linter = { enable = true, use_virtual_text = true, lint_events = { "BufWrite", "CursorHold" } },
@@ -899,7 +913,9 @@ require("lazy").setup({
     { "tversteeg/registers.nvim" },
 
     -- fzf
-    { "junegunn/fzf", dir = "~/.fzf", build = "./install --all" },
+    { "junegunn/fzf",
+    dir = "~/.fzf",
+    build = "./install --all" },
     { "junegunn/fzf.vim" },
 
     -- telescope
@@ -1031,7 +1047,7 @@ require("lazy").setup({
 
     -- markdown
     { "mzlogin/vim-markdown-toc" },
-    { "preservim/vim-markdown", dependencies = { "godlygeek/tabular" } },
+    { "preservim/vim-markdown",  dependencies = { "godlygeek/tabular" } },
     {
         -- https://github.com/iamcco/markdown-preview.nvim/issues/354
         "iamcco/markdown-preview.nvim",
@@ -1062,7 +1078,7 @@ require("lazy").setup({
     -- debugger
     -- use("sebdah/vim-delve")
     -- { "mfussenegger/nvim-dap" },
-    { "rcarriga/nvim-dap-ui", dependencies = { "mfussenegger/nvim-dap" } },
+    { "rcarriga/nvim-dap-ui",           dependencies = { "mfussenegger/nvim-dap" } },
     {
         "mfussenegger/nvim-dap",
         dependencies = {
@@ -1135,8 +1151,8 @@ require("lazy").setup({
             vim.keymap.set("n", "<c-q>", '<cmd>exe v:count1 . "ToggleTerm direction=vertical"<CR>')
             vim.keymap.set("i", "<c-q>", '<ESC><cmd>exe v:count1 . "ToggleTerm direction=vertical"<CR>')
             vim.keymap.set("t", "<c-q>", "<c-\\><c-n>:ToggleTerm direction=vertical<CR>")
-            vim.keymap.set("n", "<leader>th", '<cmd>exe v:count1 . "ToggleTerm direction=horizontal"<CR>')
-            vim.keymap.set("t", "<leader>th", '<cmd>exe v:count1 . "ToggleTerm direction=horizontal"<CR>')
+            vim.keymap.set("n", "<leader>T", '<cmd>exe v:count1 . "ToggleTerm direction=horizontal"<CR>')
+            vim.keymap.set("t", "<leader>T", '<cmd>exe v:count1 . "ToggleTerm direction=horizontal"<CR>')
         end,
     },
     -- tmux
