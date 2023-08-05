@@ -241,7 +241,7 @@ require("lazy").setup({
             require("colorizer").setup()
         end,
     },
-    { "catppuccin/nvim",  name = "catppuccin" },
+    { "catppuccin/nvim", name = "catppuccin" },
     {
         "folke/styler.nvim",
         config = function()
@@ -838,7 +838,7 @@ require("lazy").setup({
                 playground = {
                     enable = true,
                     -- disable = {},
-                    updatetime = 25,         -- Debounced time for highlighting nodes in the playground from source code
+                    updatetime = 25, -- Debounced time for highlighting nodes in the playground from source code
                     persist_queries = false, -- Whether the query persists across vim sessions
                 },
                 query_linter = { enable = true, use_virtual_text = true, lint_events = { "BufWrite", "CursorHold" } },
@@ -867,6 +867,14 @@ require("lazy").setup({
     -- better quickfix window
     {
         "kevinhwang91/nvim-bqf",
+        dependencies = {
+            {
+                "junegunn/fzf",
+                build = function()
+                    vim.fn["fzf#install"]()
+                end,
+            },
+        },
         config = function()
             require("bqf").setup({
                 auto_enable = true,
@@ -911,12 +919,6 @@ require("lazy").setup({
 
     -- registers
     { "tversteeg/registers.nvim" },
-
-    -- fzf
-    { "junegunn/fzf",
-    dir = "~/.fzf",
-    build = "./install --all" },
-    { "junegunn/fzf.vim" },
 
     -- telescope
     {
@@ -1047,7 +1049,7 @@ require("lazy").setup({
 
     -- markdown
     { "mzlogin/vim-markdown-toc" },
-    { "preservim/vim-markdown",  dependencies = { "godlygeek/tabular" } },
+    { "preservim/vim-markdown", dependencies = { "godlygeek/tabular" } },
     {
         -- https://github.com/iamcco/markdown-preview.nvim/issues/354
         "iamcco/markdown-preview.nvim",
@@ -1078,7 +1080,7 @@ require("lazy").setup({
     -- debugger
     -- use("sebdah/vim-delve")
     -- { "mfussenegger/nvim-dap" },
-    { "rcarriga/nvim-dap-ui",           dependencies = { "mfussenegger/nvim-dap" } },
+    { "rcarriga/nvim-dap-ui", dependencies = { "mfussenegger/nvim-dap" } },
     {
         "mfussenegger/nvim-dap",
         dependencies = {
