@@ -101,7 +101,7 @@ require("lazy").setup({
     {
         "airblade/vim-rooter",
         config = function()
-            vim.g.root_pattern = {
+            vim.g.root_patterns = {
                 ".git",
                 "_darcs",
                 ".hg",
@@ -110,7 +110,11 @@ require("lazy").setup({
                 "Makefile",
                 "package.json",
                 "tox.ini",
+                "pom.xml",
             }
+            vim.g.rooter_cd_cmd = "lcd"
+            vim.g.rooter_silent_chdir = 1
+            vim.g.rooter_resolve_links = 1
         end,
     },
     { "jamessan/vim-gnupg" },
