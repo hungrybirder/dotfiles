@@ -39,10 +39,9 @@ cmp.setup({
         { name = "nvim_lsp" },
         { name = "luasnip" },
         { name = "buffer" },
-        { name = "nvim_lua" },
-        { name = "path" },
-        { name = "emoji" },
         { name = "nvim_lsp_signature_help" },
+        { name = "path" },
+        { name = "nvim_lua" },
         { name = "crates" },
     }),
     formatting = {
@@ -106,14 +105,19 @@ cmp.setup.cmdline("/", {
     }),
 })
 -- Use cmdline & path source for ':'.
-cmp.setup.cmdline(":", {
-    mapping = cmp.mapping.preset.cmdline(),
-    sources = cmp.config.sources({
-        { name = "path" },
-    }, {
-        { name = "cmdline" },
-    }),
-})
+-- cmp.setup.cmdline(":", {
+--     mapping = cmp.mapping.preset.cmdline(),
+--     sources = cmp.config.sources({
+--         { name = "path" },
+--     }, {
+--         {
+--             name = "cmdline",
+--             option = {
+--                 ignore_cmds = { "Man", "!" },
+--             },
+--         },
+--     }),
+-- })
 
 local cmp_autopairs = require("nvim-autopairs.completion.cmp")
 cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
