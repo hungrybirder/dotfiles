@@ -18,6 +18,14 @@ vim.lsp.handlers["textDocument/references"] = vim.lsp.with(on_references, {
     -- Use location list instead of quickfix list
     loclist = true,
 })
+local on_document_symbol = vim.lsp.handlers["textDocument/documentSymbol"]
+vim.lsp.handlers["textDocument/documentSymbol"] = vim.lsp.with(on_document_symbol, {
+    loclist = true,
+})
+local on_workspace_symbol = vim.lsp.handlers["workspace/symbol"]
+vim.lsp.handlers['workspace/symbol'] = vim.lsp.with(on_workspace_symbol, {
+    loclist = true,
+})
 
 local lsp_util = require("vim.lsp.util")
 local lsp_log = require("vim.lsp.log")
