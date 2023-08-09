@@ -245,7 +245,7 @@ require("lazy").setup({
             require("colorizer").setup()
         end,
     },
-    { "catppuccin/nvim", name = "catppuccin" },
+    { "catppuccin/nvim",  name = "catppuccin" },
     {
         "folke/styler.nvim",
         config = function()
@@ -848,7 +848,7 @@ require("lazy").setup({
                 playground = {
                     enable = true,
                     -- disable = {},
-                    updatetime = 25, -- Debounced time for highlighting nodes in the playground from source code
+                    updatetime = 25,         -- Debounced time for highlighting nodes in the playground from source code
                     persist_queries = false, -- Whether the query persists across vim sessions
                 },
                 query_linter = { enable = true, use_virtual_text = true, lint_events = { "BufWrite", "CursorHold" } },
@@ -945,8 +945,55 @@ require("lazy").setup({
 
     -- coding utils
     { "Valloric/ListToggle" },
-    { "jose-elias-alvarez/null-ls.nvim" }, -- for formatters and linters
+    {
+        "jose-elias-alvarez/null-ls.nvim",
+        config = function()
+            local null_ls = require("null-ls")
+            local formatting = null_ls.builtins.formatting
+            local code_actions = null_ls.builtins.code_actions
+            local diagnostics = null_ls.builtins.diagnostics
+            null_ls.setup({
+                debug = false,
+                sources = {
+                    formatting.stylua,
+                    formatting.remark,
+                    formatting.shfmt,
+                    -- formatting.yapf,
+                    -- formatting.isort,
+                    formatting.black,
+                    formatting.trim_whitespace,
+                    formatting.goimports,
+                    formatting.gofmt,
+                    formatting.rustfmt,
+                    formatting.clang_format.with({
+                        filetypes = { "c", "cpp" },
+                    }),
+                    formatting.sql_formatter,
+                    -- formatting.google_java_format,
+                    formatting.protolint,
+                    formatting.yamlfmt,
+                    formatting.beautysh,
 
+                    diagnostics.shellcheck,  -- sh
+                    diagnostics.staticcheck, -- Go
+                    diagnostics.pylint,      -- python
+
+                    -- code_actions
+                    code_actions.gitsigns,
+                },
+                on_attach = function(client)
+                    if client.supports_method("textDocument/formatting") then
+                        vim.cmd([[
+                            augroup LspFormatting
+                                autocmd! * <buffer>
+                                autocmd BufWritePost <buffer> lua vim.lsp.buf.format({ async=false })
+                            augroup END
+                        ]])
+                    end
+                end,
+            })
+        end,
+    },
     {
         "mbbill/undotree",
         config = function()
@@ -1059,7 +1106,7 @@ require("lazy").setup({
 
     -- markdown
     { "mzlogin/vim-markdown-toc" },
-    { "preservim/vim-markdown", dependencies = { "godlygeek/tabular" } },
+    { "preservim/vim-markdown",  dependencies = { "godlygeek/tabular" } },
     {
         -- https://github.com/iamcco/markdown-preview.nvim/issues/354
         "iamcco/markdown-preview.nvim",
@@ -1090,7 +1137,7 @@ require("lazy").setup({
     -- debugger
     -- use("sebdah/vim-delve")
     -- { "mfussenegger/nvim-dap" },
-    { "rcarriga/nvim-dap-ui", dependencies = { "mfussenegger/nvim-dap" } },
+    { "rcarriga/nvim-dap-ui",           dependencies = { "mfussenegger/nvim-dap" } },
     {
         "mfussenegger/nvim-dap",
         dependencies = {
