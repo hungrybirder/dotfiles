@@ -23,6 +23,7 @@ null_ls.setup({
         -- formatting.google_java_format,
         formatting.protolint,
         formatting.yamlfmt,
+        formatting.beautysh,
 
         diagnostics.shellcheck, -- sh
         diagnostics.staticcheck, -- Go
