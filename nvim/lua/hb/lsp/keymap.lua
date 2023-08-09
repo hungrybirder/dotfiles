@@ -22,15 +22,21 @@ M.setup_lsp_keymaps = function(client, bufnr)
 
     local opts = { noremap = true, silent = true }
     vim.keymap.set("n", "<space>e", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
-    vim.keymap.set("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
-    vim.keymap.set("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
+    -- vim.keymap.set("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
+    -- vim.keymap.set("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
+    vim.keymap.set("n", "[d", "<cmd>Lspsaga diagnostic_jump_prev<CR>", opts)
+    vim.keymap.set("n", "]d", "<cmd>Lspsaga diagnostic_jump_next<CR>", opts)
 
     local bufopts = { noremap = true, silent = true, buffer = bufnr }
-    vim.keymap.set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", bufopts)
-    vim.keymap.set("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", bufopts)
+    -- vim.keymap.set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", bufopts)
+    -- vim.keymap.set("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", bufopts)
+    vim.keymap.set("n", "gd", "<cmd>Lspsaga goto_definition<CR>", bufopts)
+    vim.keymap.set("n", "gD", "<cmd>Lspsaga goto_type_definition<CR>", bufopts)
 
-    vim.keymap.set("n", "vgd", ":vsplit | wincmd h | lua vim.lsp.buf.definition()<CR>", bufopts)
-    vim.keymap.set("n", "sgd", ":split | wincmd k | lua vim.lsp.buf.definition()<CR>", bufopts)
+    -- vim.keymap.set("n", "vgd", ":vsplit | wincmd h | lua vim.lsp.buf.definition()<CR>", bufopts)
+    -- vim.keymap.set("n", "sgd", ":split | wincmd k | lua vim.lsp.buf.definition()<CR>", bufopts)
+    vim.keymap.set("n", "vgd", ":vsplit | wincmd h | Lspsaga goto_definition<CR>", bufopts)
+    vim.keymap.set("n", "sgd", ":split | wincmd k | Lspsaga goto_type_definition<CR>", bufopts)
 
     vim.keymap.set("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", bufopts)
     vim.keymap.set("n", "gl", "<cmd>lua vim.diagnostic.set_loclist()<CR>", bufopts)
