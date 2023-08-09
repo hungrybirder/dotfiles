@@ -80,7 +80,7 @@ vim.keymap.set("n", "<c-y>", "3<c-y>")
 vim.keymap.set("v", "<c-e>", "3<c-e>")
 vim.keymap.set("v", "<c-y>", "3<c-y>")
 
-vim.keymap.set("n", "<esc><esc>", "<cmd>nohlsearch<CR>")
+-- vim.keymap.set("n", "<esc><esc>", "<cmd>nohlsearch<CR>")
 
 vim.keymap.set("n", "<leader>N", "<cmd>lua require('hb/functions').toggle_number()<CR>")
 
