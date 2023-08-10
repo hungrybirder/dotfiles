@@ -597,7 +597,7 @@ require("lazy").setup({
                         expand_collapse = "u",
                     },
                 },
-                beacon = {
+                beacon = { --winbar
                     enable = true,
                     frequency = 7,
                 },
