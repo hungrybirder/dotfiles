@@ -243,7 +243,6 @@ require("lazy").setup({
             require("colorizer").setup()
         end,
     },
-    { "EdenEast/nightfox.nvim" },
     {
         "folke/styler.nvim",
         config = function()
@@ -255,7 +254,11 @@ require("lazy").setup({
             })
         end,
         dependencies = {
-            { "catppuccin/nvim", name = "catppuccin" },
+            {
+                "catppuccin/nvim",
+                name = "catppuccin",
+            },
+            { "EdenEast/nightfox.nvim" },
         },
     },
 
