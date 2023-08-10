@@ -33,14 +33,6 @@ local function custom_fileformat()
     return ret
 end
 
--- local function custom_treesitter_context()
---     local ok, navic = pcall(require, "nvim-navic")
---     if ok and navic.is_available() then
---         return navic.get_location()
---     end
---     return ""
--- end
-
 -- https://github.com/nvim-lualine/lualine.nvim/issues/186#issuecomment-1170637440
 vim.o.shortmess = vim.o.shortmess .. "S"
 local function search_count()
@@ -65,45 +57,75 @@ require("lualine").setup({
     },
     sections = {
         lualine_a = {
-            { "mode", right_padding = 2, cond = min_window_width(40) },
+            {
+                "mode",
+                right_padding = 2,
+                cond = min_window_width(40),
+            },
         },
         lualine_b = {
             { search_count, type = "lua_expr" },
-            { "filename", color = { gui = "bold" } },
-            { "branch", color = { fg = colors.green, gui = "bold" }, cond = min_window_width(120) },
+            { "filename" },
+            {
+                "branch",
+                cond = min_window_width(120),
+            },
             {
                 "diff",
                 diff_color = {
-                    added = { fg = colors.green, bg = colors.bg },
-                    modified = { fg = colors.yellow, bg = colors.bg },
-                    removed = { fg = colors.red, bg = colors.bg },
+                    added = {
+                        fg = colors.green,
+                        bg = colors.bg,
+                        gui = "bold",
+                    },
+                    modified = {
+                        fg = colors.yellow,
+                        bg = colors.bg,
+                        gui = "bold",
+                    },
+                    removed = {
+                        fg = colors.red,
+                        bg = colors.bg,
+                        gui = "bold",
+                    },
                 },
             },
         },
         lualine_c = {
             { "diagnostics", sources = { "nvim_diagnostic" } },
-            -- {
-            --     custom_treesitter_context,
-            --     color = { bg = colors.bg, fg = colors.blue, gui = "bold" },
-            -- },
         },
         lualine_x = {},
         lualine_y = {
             {
                 "location",
                 cond = min_window_width(90),
-                color = { fg = colors.blue, gui = "bold" },
+                -- color = {
+                --     fg = colors.blue,
+                -- },
             },
             {
                 "progress",
-                color = { fg = colors.blue, gui = "bold" },
+                -- color = {
+                --     fg = colors.blue,
+                -- },
             },
         },
         lualine_z = {
-            { "filesize", color = { bg = colors.bg, fg = colors.blue } },
+            -- {
+            --     "filesize",
+            --     color = {
+            --         -- bg = colors.bg,
+            --         -- fg = colors.blue,
+            --     },
+            -- },
             custom_fileformat,
             custom_encoding,
-            { "filetype", icon_only = true, left_padding = 2, color = { bg = colors.bg } },
+            {
+                "filetype",
+                icon_only = true,
+                left_padding = 2,
+                color = { bg = colors.bg },
+            },
         },
     },
     inactive_sections = {
