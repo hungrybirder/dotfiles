@@ -118,8 +118,6 @@ require("lazy").setup({
         end,
     },
     { "jamessan/vim-gnupg" },
-    { "EdenEast/nightfox.nvim" },
-    { "ellisonleao/gruvbox.nvim" },
     -- buffer line at the top of window
     {
         "akinsho/bufferline.nvim",
@@ -245,7 +243,7 @@ require("lazy").setup({
             require("colorizer").setup()
         end,
     },
-    { "catppuccin/nvim",  name = "catppuccin" },
+    { "EdenEast/nightfox.nvim" },
     {
         "folke/styler.nvim",
         config = function()
@@ -256,6 +254,9 @@ require("lazy").setup({
                 },
             })
         end,
+        dependencies = {
+            { "catppuccin/nvim", name = "catppuccin" },
+        },
     },
 
     -- speedup editing friendly
