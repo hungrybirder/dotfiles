@@ -218,8 +218,14 @@ require("lazy").setup({
     { "tpope/vim-repeat" },
     { "tpope/vim-speeddating" },
     { "tpope/vim-unimpaired" },
-    { "tpope/vim-commentary" },
-
+    -- { "tpope/vim-commentary" },
+    {
+        "numToStr/Comment.nvim",
+        config = function()
+            require("Comment").setup()
+        end,
+        lazy = false,
+    },
     -- save my last cursor position
     {
         "ethanholz/nvim-lastplace",
@@ -870,7 +876,7 @@ require("lazy").setup({
                 playground = {
                     enable = true,
                     -- disable = {},
-                    updatetime = 25,         -- Debounced time for highlighting nodes in the playground from source code
+                    updatetime = 25, -- Debounced time for highlighting nodes in the playground from source code
                     persist_queries = false, -- Whether the query persists across vim sessions
                 },
                 query_linter = { enable = true, use_virtual_text = true, lint_events = { "BufWrite", "CursorHold" } },
@@ -996,9 +1002,9 @@ require("lazy").setup({
                     formatting.yamlfmt,
                     formatting.beautysh,
 
-                    diagnostics.shellcheck,  -- sh
+                    diagnostics.shellcheck, -- sh
                     diagnostics.staticcheck, -- Go
-                    diagnostics.pylint,      -- python
+                    diagnostics.pylint, -- python
 
                     -- code_actions
                     code_actions.gitsigns,
@@ -1128,7 +1134,7 @@ require("lazy").setup({
 
     -- markdown
     { "mzlogin/vim-markdown-toc" },
-    { "preservim/vim-markdown",  dependencies = { "godlygeek/tabular" } },
+    { "preservim/vim-markdown", dependencies = { "godlygeek/tabular" } },
     {
         -- https://github.com/iamcco/markdown-preview.nvim/issues/354
         "iamcco/markdown-preview.nvim",
@@ -1159,7 +1165,7 @@ require("lazy").setup({
     -- debugger
     -- use("sebdah/vim-delve")
     -- { "mfussenegger/nvim-dap" },
-    { "rcarriga/nvim-dap-ui",           dependencies = { "mfussenegger/nvim-dap" } },
+    { "rcarriga/nvim-dap-ui", dependencies = { "mfussenegger/nvim-dap" } },
     {
         "mfussenegger/nvim-dap",
         dependencies = {
