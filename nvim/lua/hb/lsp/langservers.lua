@@ -23,7 +23,7 @@ vim.lsp.handlers["textDocument/documentSymbol"] = vim.lsp.with(on_document_symbo
     loclist = true,
 })
 local on_workspace_symbol = vim.lsp.handlers["workspace/symbol"]
-vim.lsp.handlers['workspace/symbol'] = vim.lsp.with(on_workspace_symbol, {
+vim.lsp.handlers["workspace/symbol"] = vim.lsp.with(on_workspace_symbol, {
     loclist = true,
 })
 
@@ -116,6 +116,10 @@ end
 local function make_lsp_client_capabilities()
     -- cmp_nvim_lsp take care of snippetSupport and resolveSupport
     local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
+    capabilities.textDocument.foldingRange = { -- for nvim-ufo
+        dynamicRegistration = false,
+        lineFoldingOnly = true,
+    }
     return capabilities
 end
 

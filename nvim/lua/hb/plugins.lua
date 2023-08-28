@@ -887,7 +887,7 @@ require("lazy").setup({
                 playground = {
                     enable = true,
                     -- disable = {},
-                    updatetime = 25, -- Debounced time for highlighting nodes in the playground from source code
+                    updatetime = 25,         -- Debounced time for highlighting nodes in the playground from source code
                     persist_queries = false, -- Whether the query persists across vim sessions
                 },
                 query_linter = { enable = true, use_virtual_text = true, lint_events = { "BufWrite", "CursorHold" } },
@@ -897,15 +897,16 @@ require("lazy").setup({
                 endwise = { enable = true },
             })
 
-            local parsers = require("nvim-treesitter.parsers")
-            local configs = parsers.get_parser_configs()
-            local ft_str = table.concat(
-                vim.tbl_map(function(ft)
-                    return configs[ft].filetype or ft
-                end, parsers.available_parsers()),
-                ","
-            )
-            vim.cmd("autocmd Filetype " .. ft_str .. " setlocal foldmethod=expr foldexpr=nvim_treesitter#foldexpr()")
+            -- use nvim-ufo
+            -- local parsers = require("nvim-treesitter.parsers")
+            -- local configs = parsers.get_parser_configs()
+            -- local ft_str = table.concat(
+            --     vim.tbl_map(function(ft)
+            --         return configs[ft].filetype or ft
+            --     end, parsers.available_parsers()),
+            --     ","
+            -- )
+            -- vim.cmd("autocmd Filetype " .. ft_str .. " setlocal foldmethod=expr foldexpr=nvim_treesitter#foldexpr()")
         end,
     },
     -- {
@@ -913,6 +914,53 @@ require("lazy").setup({
     --     dependencies = "neovim/nvim-lspconfig",
     -- },
 
+    -- folder
+    {
+        "kevinhwang91/nvim-ufo",
+        dependencies = {
+            "kevinhwang91/promise-async",
+        },
+        config = function()
+            -- require("ufo").setup({
+            --     provider_selector = function(bufnr, filetype, buftype)
+            --         return { "treesitter", "indent" }
+            --     end,
+            -- })
+            require("ufo").setup({
+                fold_virt_text_handler = function(virtText, lnum, endLnum, width, truncate)
+                    local newVirtText = {}
+                    local suffix = (" 󰁂 %d "):format(endLnum - lnum)
+                    local sufWidth = vim.fn.strdisplaywidth(suffix)
+                    local targetWidth = width - sufWidth
+                    local curWidth = 0
+                    for _, chunk in ipairs(virtText) do
+                        local chunkText = chunk[1]
+                        local chunkWidth = vim.fn.strdisplaywidth(chunkText)
+                        if targetWidth > curWidth + chunkWidth then
+                            table.insert(newVirtText, chunk)
+                        else
+                            chunkText = truncate(chunkText, targetWidth - curWidth)
+                            local hlGroup = chunk[2]
+                            table.insert(newVirtText, { chunkText, hlGroup })
+                            chunkWidth = vim.fn.strdisplaywidth(chunkText)
+                            -- str width returned from truncate() may less than 2nd argument, need padding
+                            if curWidth + chunkWidth < targetWidth then
+                                suffix = suffix .. (" "):rep(targetWidth - curWidth - chunkWidth)
+                            end
+                            break
+                        end
+                        curWidth = curWidth + chunkWidth
+                    end
+                    table.insert(newVirtText, { suffix, "MoreMsg" })
+                    return newVirtText
+                end,
+            })
+            vim.keymap.set("n", "zR", require("ufo").openAllFolds)
+            vim.keymap.set("n", "zM", require("ufo").closeAllFolds)
+            vim.keymap.set("n", "zr", require("ufo").openFoldsExceptKinds)
+            vim.keymap.set("n", "zm", require("ufo").closeFoldsWith)
+        end,
+    },
     -- better quickfix window
     {
         "kevinhwang91/nvim-bqf",
@@ -1012,9 +1060,9 @@ require("lazy").setup({
                     formatting.yamlfmt,
                     formatting.beautysh,
 
-                    diagnostics.shellcheck, -- sh
+                    diagnostics.shellcheck,  -- sh
                     diagnostics.staticcheck, -- Go
-                    diagnostics.pylint, -- python
+                    diagnostics.pylint,      -- python
 
                     -- code_actions
                     code_actions.gitsigns,
@@ -1144,7 +1192,7 @@ require("lazy").setup({
 
     -- markdown
     { "mzlogin/vim-markdown-toc" },
-    { "preservim/vim-markdown", dependencies = { "godlygeek/tabular" } },
+    { "preservim/vim-markdown",  dependencies = { "godlygeek/tabular" } },
     {
         -- https://github.com/iamcco/markdown-preview.nvim/issues/354
         "iamcco/markdown-preview.nvim",
@@ -1175,7 +1223,7 @@ require("lazy").setup({
     -- debugger
     -- use("sebdah/vim-delve")
     -- { "mfussenegger/nvim-dap" },
-    { "rcarriga/nvim-dap-ui", dependencies = { "mfussenegger/nvim-dap" } },
+    { "rcarriga/nvim-dap-ui",           dependencies = { "mfussenegger/nvim-dap" } },
     {
         "mfussenegger/nvim-dap",
         dependencies = {
