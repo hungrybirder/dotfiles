@@ -921,12 +921,12 @@ require("lazy").setup({
             "kevinhwang91/promise-async",
         },
         config = function()
-            -- require("ufo").setup({
-            --     provider_selector = function(bufnr, filetype, buftype)
-            --         return { "treesitter", "indent" }
-            --     end,
-            -- })
             require("ufo").setup({
+                preview = {
+                    mappings = {
+                        close = "<ESC>",
+                    },
+                },
                 fold_virt_text_handler = function(virtText, lnum, endLnum, width, truncate)
                     local newVirtText = {}
                     local suffix = (" 󰁂 %d "):format(endLnum - lnum)
