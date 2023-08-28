@@ -887,7 +887,7 @@ require("lazy").setup({
                 playground = {
                     enable = true,
                     -- disable = {},
-                    updatetime = 25,         -- Debounced time for highlighting nodes in the playground from source code
+                    updatetime = 25, -- Debounced time for highlighting nodes in the playground from source code
                     persist_queries = false, -- Whether the query persists across vim sessions
                 },
                 query_linter = { enable = true, use_virtual_text = true, lint_events = { "BufWrite", "CursorHold" } },
@@ -940,31 +940,30 @@ require("lazy").setup({
         end,
     },
 
-    -- sign marks
-    -- mx           Toggle mark 'x' and display it in the leftmost column
-    -- dmx          Remove mark 'x' where x is a-zA-Z
-    -- m,           Place the next available mark
-    -- m.           If no mark on line, place the next available mark. Otherwise, remove (first) existing mark.
-    -- m-           Delete all marks from the current line
-    -- m<Space>     Delete all marks from the current buffer
-    -- ]`           Jump to next mark
-    -- [`           Jump to prev mark
-    -- ]'           Jump to start of next line containing a mark
-    -- ['           Jump to start of prev line containing a mark
-    -- `]           Jump by alphabetical order to next mark
-    -- `[           Jump by alphabetical order to prev mark
-    -- ']           Jump by alphabetical order to start of next line having a mark
-    -- '[           Jump by alphabetical order to start of prev line having a mark
-    -- m/           Open location list and display marks from current buffer
-    -- m[0-9]       Toggle the corresponding marker !@#$%^&*()
-    -- m<S-[0-9]>   Remove all markers of the same type
-    -- ]-           Jump to next line having a marker of the same type
-    -- [-           Jump to prev line having a marker of the same type
-    -- ]=           Jump to next line having a marker of any type
-    -- [=           Jump to prev line having a marker of any type
-    -- m?           Open location list and display markers from current buffer
-    -- m<BS>        Remove all markers
-    { "kshenoy/vim-signature" },
+    -- mx              Set mark x
+    -- m,              Set the next available alphabetical (lowercase) mark
+    -- m;              Toggle the next available mark at the current line
+    -- dmx             Delete mark x
+    -- dm-             Delete all marks on the current line
+    -- dm<space>       Delete all marks in the current buffer
+    -- m]              Move to next mark
+    -- m[              Move to previous mark
+    -- m:              Preview mark. This will prompt you for a specific mark to
+    --                 preview; press <cr> to preview the next mark.
+    --
+    -- m[0-9]          Add a bookmark from bookmark group[0-9].
+    -- dm[0-9]         Delete all bookmarks from bookmark group[0-9].
+    -- m}              Move to the next bookmark having the same type as the bookmark under
+    --                 the cursor. Works across buffers.
+    -- m{              Move to the previous bookmark having the same type as the bookmark under
+    --                 the cursor. Works across buffers.
+    -- dm=             Delete the bookmark under the cursor.
+    {
+        "chentoast/marks.nvim",
+        config = function()
+            require("marks").setup()
+        end,
+    },
 
     -- registers
     { "tversteeg/registers.nvim" },
@@ -1013,9 +1012,9 @@ require("lazy").setup({
                     formatting.yamlfmt,
                     formatting.beautysh,
 
-                    diagnostics.shellcheck,  -- sh
+                    diagnostics.shellcheck, -- sh
                     diagnostics.staticcheck, -- Go
-                    diagnostics.pylint,      -- python
+                    diagnostics.pylint, -- python
 
                     -- code_actions
                     code_actions.gitsigns,
@@ -1145,7 +1144,7 @@ require("lazy").setup({
 
     -- markdown
     { "mzlogin/vim-markdown-toc" },
-    { "preservim/vim-markdown",  dependencies = { "godlygeek/tabular" } },
+    { "preservim/vim-markdown", dependencies = { "godlygeek/tabular" } },
     {
         -- https://github.com/iamcco/markdown-preview.nvim/issues/354
         "iamcco/markdown-preview.nvim",
@@ -1176,7 +1175,7 @@ require("lazy").setup({
     -- debugger
     -- use("sebdah/vim-delve")
     -- { "mfussenegger/nvim-dap" },
-    { "rcarriga/nvim-dap-ui",           dependencies = { "mfussenegger/nvim-dap" } },
+    { "rcarriga/nvim-dap-ui", dependencies = { "mfussenegger/nvim-dap" } },
     {
         "mfussenegger/nvim-dap",
         dependencies = {
