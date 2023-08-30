@@ -37,7 +37,17 @@ cmp.setup({
     },
     sources = cmp.config.sources({
         { name = "nvim_lsp" },
-        { name = "luasnip" },
+        -- { name = "luasnip" },
+        {
+            name = "luasnip",
+            option = { use_show_condition = true },
+            entry_filter = function()
+                local context = require("cmp.config.context")
+                local string_ctx = context.in_treesitter_capture("string") or context.in_syntax_group("String")
+                local comment_ctx = context.in_treesitter_capture("comment") or context.in_syntax_group("Comment")
+                return not string_ctx and not comment_ctx
+            end,
+        },
         { name = "buffer" },
         { name = "nvim_lsp_signature_help" },
         { name = "path" },
