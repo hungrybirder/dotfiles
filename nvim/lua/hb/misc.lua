@@ -22,28 +22,28 @@ autocmd FileType qf if (getwininfo(win_getid())[0].loclist != 1) | wincmd J | en
 " noremap <silent> <space>q :<C-U>cclose<CR>
 
 " powered by ThePrimeagen
-fun! EmptyRegisters()
-    let regs=split('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789/-"', '\zs')
-    for r in regs
-        call setreg(r, [])
-    endfor
-endfun
+"fun! EmptyRegisters()
+"    let regs=split('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789/-"', '\zs')
+"    for r in regs
+"        call setreg(r, [])
+"    endfor
+"endfun
 
 " powered by ThePrimeagen
-fun! TrimWhitespace()
-    " 删除每行多余的空格
-    let l:save = winsaveview()
-    keeppatterns %s/\s\+$//e
-    call winrestview(l:save)
-endfun
-
-augroup MY_FILETYPE
-  au!
-  autocmd BufWritePre * :call TrimWhitespace()
-
-  autocmd FileType vim setlocal ts=2 sts=2 sw=2 et
-  autocmd FileType sh setlocal ts=4 sts=4 sw=4 et
-augroup end
+"fun! TrimWhitespace()
+"    " 删除每行多余的空格
+"    let l:save = winsaveview()
+"    keeppatterns %s/\s\+$//e
+"    call winrestview(l:save)
+"endfun
+"
+"augroup MY_FILETYPE
+"  au!
+"  autocmd BufWritePre * :call TrimWhitespace()
+"
+"  autocmd FileType vim setlocal ts=2 sts=2 sw=2 et
+"  autocmd FileType sh setlocal ts=4 sts=4 sw=4 et
+"augroup end
 
 
 " Folding setup
