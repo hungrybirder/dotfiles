@@ -432,8 +432,25 @@ require("lazy").setup({
     },
 
     -- powered by svermeulen
-    { "svermeulen/vim-subversive" },
-    { "svermeulen/vim-yoink" },
+    {
+        "svermeulen/vim-subversive",
+        config = function()
+            -- s for substitue
+            vim.keymap.set("n", "s", "<plug>(SubversiveSubstitute)", { noremap = true, silent = true })
+            vim.keymap.set("n", "ss", "<plug>(SubversiveSubstituteLine)", { noremap = true, silent = true })
+            vim.keymap.set("n", "S", "<plug>(SubversiveSubstituteToEndOfLine)", { noremap = true, silent = true })
+            -- <leader>s<motion1><motion2>
+            vim.keymap.set({ "n", "x" }, "<leader>s", "<plug>(SubversiveSubstituteRange)", { noremap = true })
+            vim.keymap.set("n", "<leader>ss", "<plug>(SubversiveSubstituteWordRange)", { noremap = true })
+        end,
+    },
+    {
+        "svermeulen/vim-yoink",
+        config = function()
+            vim.keymap.set("n", "[y", "<plug>(YoinkRotateBack)")
+            vim.keymap.set("n", "]y", "<plug>(YoinkRotateForward)")
+        end,
+    },
 
     -- nvim-tree
     {
@@ -920,22 +937,19 @@ require("lazy").setup({
         dependencies = {
             "kevinhwang91/promise-async",
             {
-          "luukvbaal/statuscol.nvim",
-          config = function()
-            local builtin = require("statuscol.builtin")
-            require("statuscol").setup(
-              {
-                relculright = true,
-                segments = {
-                  {text = {builtin.foldfunc}, click = "v:lua.ScFa"},
-                  {text = {"%s"}, click = "v:lua.ScSa"},
-                  {text = {builtin.lnumfunc, " "}, click = "v:lua.ScLa"}
-                }
-              }
-            )
-          end
-
-        }
+                "luukvbaal/statuscol.nvim",
+                config = function()
+                    local builtin = require("statuscol.builtin")
+                    require("statuscol").setup({
+                        relculright = true,
+                        segments = {
+                            { text = { builtin.foldfunc },      click = "v:lua.ScFa" },
+                            { text = { "%s" },                  click = "v:lua.ScSa" },
+                            { text = { builtin.lnumfunc, " " }, click = "v:lua.ScLa" },
+                        },
+                    })
+                end,
+            },
         },
         config = function()
             require("ufo").setup({

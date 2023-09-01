@@ -17,7 +17,7 @@ nnoremap <expr> j (v:count > 5 ? "m'" . v:count : "") . 'j'
 
 "https://github.com/fatih/vim-go/issues/108#issuecomment-47450678
 " autocmd FileType qf wincmd J
-autocmd FileType qf if (getwininfo(win_getid())[0].loclist != 1) | wincmd J | endif
+" autocmd FileType qf if (getwininfo(win_getid())[0].loclist != 1) | wincmd J | endif
 " close quickfix
 " noremap <silent> <space>q :<C-U>cclose<CR>
 
@@ -102,17 +102,17 @@ autocmd FileType qf if (getwininfo(win_getid())[0].loclist != 1) | wincmd J | en
 
 " vim-subversive
 " s for substitute
-nmap s <plug>(SubversiveSubstitute)
-nmap ss <plug>(SubversiveSubstituteLine)
-nmap S <plug>(SubversiveSubstituteToEndOfLine)
+" nmap s <plug>(SubversiveSubstitute)
+" nmap ss <plug>(SubversiveSubstituteLine)
+" nmap S <plug>(SubversiveSubstituteToEndOfLine)
 
 " <leader>s<motion1><motion2>
-nmap <leader>s <plug>(SubversiveSubstituteRange)
-xmap <leader>s <plug>(SubversiveSubstituteRange)
-nmap <leader>ss <plug>(SubversiveSubstituteWordRange)
+" nmap <leader>s <plug>(SubversiveSubstituteRange)
+" xmap <leader>s <plug>(SubversiveSubstituteRange)
+" nmap <leader>ss <plug>(SubversiveSubstituteWordRange)
 
-nmap [y <plug>(YoinkRotateBack)
-nmap ]y <plug>(YoinkRotateForward)
+" nmap [y <plug>(YoinkRotateBack)
+" nmap ]y <plug>(YoinkRotateForward)
 
 " let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.8 } }
 " let g:fzf_action = {
