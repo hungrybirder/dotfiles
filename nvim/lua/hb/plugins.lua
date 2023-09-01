@@ -444,13 +444,13 @@ require("lazy").setup({
             vim.keymap.set("n", "<leader>ss", "<plug>(SubversiveSubstituteWordRange)", { noremap = true })
         end,
     },
-    {
-        "svermeulen/vim-yoink",
-        config = function()
-            vim.keymap.set("n", "[y", "<plug>(YoinkRotateBack)")
-            vim.keymap.set("n", "]y", "<plug>(YoinkRotateForward)")
-        end,
-    },
+    -- {
+    --     "svermeulen/vim-yoink",
+    --     config = function()
+    --         vim.keymap.set("n", "[y", "<plug>(YoinkRotateBack)")
+    --         vim.keymap.set("n", "]y", "<plug>(YoinkRotateForward)")
+    --     end,
+    -- },
 
     -- nvim-tree
     {
