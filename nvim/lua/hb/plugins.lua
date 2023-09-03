@@ -764,7 +764,11 @@ require("lazy").setup({
     },
 
     -- nvim-autopairs can set up <CR>
-    { "windwp/nvim-autopairs" },
+    {
+        "windwp/nvim-autopairs",
+        event = "InsertEnter",
+        opts = {}, -- this is equalent to setup({}) function
+    },
 
     -- tree sitter
     {
