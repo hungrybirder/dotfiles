@@ -1091,7 +1091,7 @@ require("lazy").setup({
                     }),
                     formatting.sql_formatter,
                     -- formatting.google_java_format,
-                    formatting.protolint,
+                    -- formatting.protolint,
                     formatting.yamlfmt,
                     formatting.beautysh,
 
