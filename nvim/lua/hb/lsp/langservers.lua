@@ -140,6 +140,7 @@ local servers = {
     "bashls",
     "kotlin_language_server",
     "texlab",
+    "bufls",
 }
 
 for _, name in pairs(servers) do
