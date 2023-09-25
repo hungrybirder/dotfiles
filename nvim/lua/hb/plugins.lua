@@ -363,7 +363,11 @@ require("lazy").setup({
             "sindrets/diffview.nvim", -- optional
             "ibhagwan/fzf-lua", -- optional
         },
-        config = true,
+        config = function()
+            require("neogit").setup({})
+            vim.keymap.set("n", "<leader>g", "<cmd>Neogit<cr>")
+            vim.keymap.set("n", "<leader>gv", "<cmd>lua require('neogit').open({'log'})<cr>")
+        end,
     },
     {
         "tpope/vim-fugitive",
@@ -374,7 +378,7 @@ require("lazy").setup({
             vim.keymap.set("n", "<leader>ga", "<cmd>Git fetch --all<CR>")
         end,
     },
-    { "junegunn/gv.vim" },
+    -- { "junegunn/gv.vim" },
     {
         "lewis6991/gitsigns.nvim",
         dependencies = { "nvim-lua/plenary.nvim" },
