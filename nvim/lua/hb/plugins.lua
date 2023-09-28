@@ -931,7 +931,7 @@ require("lazy").setup({
                 playground = {
                     enable = true,
                     -- disable = {},
-                    updatetime = 25, -- Debounced time for highlighting nodes in the playground from source code
+                    updatetime = 25,         -- Debounced time for highlighting nodes in the playground from source code
                     persist_queries = false, -- Whether the query persists across vim sessions
                 },
                 query_linter = { enable = true, use_virtual_text = true, lint_events = { "BufWrite", "CursorHold" } },
@@ -970,8 +970,8 @@ require("lazy").setup({
                     require("statuscol").setup({
                         relculright = true,
                         segments = {
-                            { text = { builtin.foldfunc }, click = "v:lua.ScFa" },
-                            { text = { "%s" }, click = "v:lua.ScSa" },
+                            { text = { builtin.foldfunc },      click = "v:lua.ScFa" },
+                            { text = { "%s" },                  click = "v:lua.ScSa" },
                             { text = { builtin.lnumfunc, " " }, click = "v:lua.ScLa" },
                         },
                     })
@@ -1118,9 +1118,9 @@ require("lazy").setup({
                     formatting.yamlfmt,
                     formatting.beautysh,
 
-                    diagnostics.shellcheck, -- sh
+                    diagnostics.shellcheck,  -- sh
                     diagnostics.staticcheck, -- Go
-                    diagnostics.pylint, -- python
+                    diagnostics.pylint,      -- python
 
                     -- code_actions
                     code_actions.gitsigns,
@@ -1167,11 +1167,17 @@ require("lazy").setup({
     {
         "lukas-reineke/indent-blankline.nvim",
         config = function()
-            require("indent_blankline").setup({
-                show_current_context = true,
-                show_current_context_start = true,
+            require("ibl").setup({
+                exclude = {
+                    filetypes = {
+                        "vim",
+                        "lua",
+                        "python",
+                        "dashboard",
+                        "go",
+                    },
+                },
             })
-            vim.g.indent_blankline_filetype = { "vim", "lua", "python" }
         end,
     },
 
@@ -1289,7 +1295,7 @@ require("lazy").setup({
     -- debugger
     -- use("sebdah/vim-delve")
     -- { "mfussenegger/nvim-dap" },
-    { "rcarriga/nvim-dap-ui", dependencies = { "mfussenegger/nvim-dap" } },
+    { "rcarriga/nvim-dap-ui",           dependencies = { "mfussenegger/nvim-dap" } },
     {
         "mfussenegger/nvim-dap",
         dependencies = {
