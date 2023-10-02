@@ -931,8 +931,8 @@ require("lazy").setup({
                 playground = {
                     enable = true,
                     -- disable = {},
-                    updatetime = 25,         -- Debounced time for highlighting nodes in the playground from source code
-                    persist_queries = false, -- Whether the query persists across vim sessions
+                    updatetime = 25,
+                    persist_queries = false,
                 },
                 query_linter = { enable = true, use_virtual_text = true, lint_events = { "BufWrite", "CursorHold" } },
                 matchup = { enable = true },
@@ -970,9 +970,18 @@ require("lazy").setup({
                     require("statuscol").setup({
                         relculright = true,
                         segments = {
-                            { text = { builtin.foldfunc },      click = "v:lua.ScFa" },
-                            { text = { "%s" },                  click = "v:lua.ScSa" },
-                            { text = { builtin.lnumfunc, " " }, click = "v:lua.ScLa" },
+                            {
+                                text = { builtin.foldfunc },
+                                click = "v:lua.ScFa",
+                            },
+                            {
+                                text = { "%s" },
+                                click = "v:lua.ScSa",
+                            },
+                            {
+                                text = { builtin.lnumfunc, " " },
+                                click = "v:lua.ScLa",
+                            },
                         },
                     })
                 end,
@@ -1090,7 +1099,7 @@ require("lazy").setup({
     -- coding utils
     { "Valloric/ListToggle" },
     {
-        "jose-elias-alvarez/null-ls.nvim",
+        "nvimtools/none-ls.nvim",
         config = function()
             local null_ls = require("null-ls")
             local formatting = null_ls.builtins.formatting
@@ -1118,9 +1127,9 @@ require("lazy").setup({
                     formatting.yamlfmt,
                     formatting.beautysh,
 
-                    diagnostics.shellcheck,  -- sh
-                    diagnostics.staticcheck, -- Go
-                    diagnostics.pylint,      -- python
+                    diagnostics.shellcheck,
+                    diagnostics.staticcheck,
+                    diagnostics.pylint,
 
                     -- code_actions
                     code_actions.gitsigns,
