@@ -543,6 +543,14 @@ require("lazy").setup({
     },
 
     {
+        "Bekaboo/dropbar.nvim",
+        -- optional, but required for fuzzy finder support
+        dependencies = {
+            "nvim-telescope/telescope-fzf-native.nvim",
+        },
+    },
+
+    {
         "pwntester/octo.nvim",
         dependencies = {
             "nvim-lua/plenary.nvim",
@@ -677,8 +685,9 @@ require("lazy").setup({
                     },
                 },
                 beacon = { --winbar
-                    enable = true,
-                    frequency = 7,
+                    enable = false,
+                    -- enable = true,
+                    -- frequency = 7,
                 },
                 finder = {
                     max_height = 0.5,
@@ -1026,6 +1035,7 @@ require("lazy").setup({
             vim.keymap.set("n", "zM", require("ufo").closeAllFolds)
             vim.keymap.set("n", "zr", require("ufo").openFoldsExceptKinds)
             vim.keymap.set("n", "zm", require("ufo").closeFoldsWith)
+            vim.keymap.set("n", "<s-tab>", "za")
         end,
     },
     -- better quickfix window

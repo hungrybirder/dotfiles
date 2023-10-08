@@ -93,8 +93,7 @@ vim.keymap.set("n", "<leader>ft", "<cmd>TmuxJumpFile<CR>")
 vim.keymap.set("n", "gp", "`[v`]")
 
 -- folder mappings
-vim.keymap.set("n", "<leader>z", ":call ToggleFold()<CR>")
-vim.keymap.set("n", "<s-tab>", "za")
+-- vim.keymap.set("n", "<leader>z", ":call ToggleFold()<CR>")
 
 -- Naviagting in command mode
 vim.keymap.set("c", "<C-a>", "<Home>")
