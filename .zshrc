@@ -3,7 +3,7 @@
 export LC_ALL=en_US.utf-8
 export LANG=en_US.utf-8
 
-export PATH="/opt/homebrew/bin:$PATH"
+export PATH="/opt/homebrew/sbin:/opt/homebrew/bin:$PATH"
 # 测试zsh启动时间的方法
 # /usr/bin/time zsh -i -c exit
 OS_NAME=$(uname -s)
