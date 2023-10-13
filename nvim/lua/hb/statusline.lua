@@ -52,8 +52,6 @@ require("lualine").setup({
         icons_enabled = true,
         always_divide_middle = true,
         theme = "nightfox",
-        normal = { c = { fg = colors.fg, bg = colors.bg } },
-        inactive = { c = { fg = colors.fg, bg = colors.darkgrey } },
     },
     sections = {
         lualine_a = {
@@ -93,6 +91,11 @@ require("lualine").setup({
         },
         lualine_c = {
             { "diagnostics", sources = { "nvim_diagnostic" } },
+            {
+                "aerial",
+                cond = min_window_width(40),
+                color = { gui = "bold", fg = colors.blue },
+            },
         },
         lualine_x = {},
         lualine_y = {
