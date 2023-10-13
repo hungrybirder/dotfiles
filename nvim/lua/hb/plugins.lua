@@ -475,6 +475,10 @@ require("lazy").setup({
     --     end,
     -- },
 
+    {
+        "stevearc/stickybuf.nvim",
+        opts = {},
+    },
     -- nvim-tree
     {
         "nvim-tree/nvim-tree.lua",
@@ -594,18 +598,6 @@ require("lazy").setup({
         end,
     },
     { "neovim/nvim-lspconfig" },
-    -- outline powered by lsp
-    -- {
-    --     "simrat39/symbols-outline.nvim",
-    --     config = function()
-    --         require("symbols-outline").setup({
-    --             relative_width = true,
-    --             auto_preview = false,
-    --             position = "right",
-    --         })
-    --         vim.keymap.set("n", "<leader>v", "<cmd>SymbolsOutline<CR>")
-    --     end,
-    -- },
     {
         "j-hui/fidget.nvim",
         tag = "legacy",
@@ -621,7 +613,7 @@ require("lazy").setup({
         "nvimdev/lspsaga.nvim",
         event = "LspAttach",
         config = function()
-            vim.keymap.set("n", "<leader>v", "<cmd>Lspsaga outline<CR>")
+            -- vim.keymap.set("n", "<leader>v", "<cmd>Lspsaga outline<CR>")
             require("lspsaga").setup({
                 diagnostic = {
                     show_code_action = true,
@@ -735,6 +727,32 @@ require("lazy").setup({
         dependencies = {
             { "nvim-tree/nvim-web-devicons" },
             { "nvim-treesitter/nvim-treesitter" },
+        },
+    },
+    {
+        "stevearc/aerial.nvim",
+        opts = {
+            on_attach = function(bufnr)
+                -- Jump forwards/backwards with '{' and '}'
+                vim.keymap.set("n", "{", "<cmd>AerialPrev<CR>", { buffer = bufnr })
+                vim.keymap.set("n", "}", "<cmd>AerialNext<CR>", { buffer = bufnr })
+            end,
+            keymaps = {
+                ["<ESC>"] = "actions.close",
+            },
+            layout = {
+                max_width = { 40, 0.3 },
+                min_width = { 25, 0.2 },
+                default_direction = "prefer_right",
+            },
+            autojump = false,
+        },
+        keys = {
+            { "<leader>v", "<cmd>AerialToggle!<CR>" },
+        },
+        dependencies = {
+            "nvim-treesitter/nvim-treesitter",
+            "nvim-tree/nvim-web-devicons",
         },
     },
 
@@ -1280,7 +1298,7 @@ require("lazy").setup({
         "preservim/vim-markdown",
         dependencies = { "godlygeek/tabular" },
         config = function()
-            vim.keymap.set("n", "<leader>o", "<cmd>Toc<CR>", { buffer = true, remap = false })
+            -- vim.keymap.set("n", "<leader>o", "<cmd>Toc<CR>", { buffer = true, remap = false })
             vim.keymap.set("n", "<leader>tf", "<cmd>TableFormat<CR>", { buffer = true, remap = false })
         end,
         ft = { "markdown" },

@@ -95,6 +95,7 @@ telescope.setup({
 
 telescope.load_extension("fzf")
 telescope.load_extension("notify")
+telescope.load_extension("aerial")
 -- telescope.load_extension('fzy_native')
 -- telescope.load_extension('ui-select')
 -- require'telescope.builtin'.symbol{ sources = {'emoji'} }
@@ -131,6 +132,7 @@ vim.keymap.set("n", "<leader>cs", "<cmd>lua RTELE(); require'telescope.builtin'.
 vim.keymap.set(
     "n",
     "<leader>o",
-    "<cmd>lua RTELE(); require'telescope.builtin'.lsp_document_symbols{ symbols = {'method', 'function', 'module', 'interface', 'class', 'struct' } }<CR>"
+    "<cmd>Telescope aerial theme=ivy<CR>"
+-- "<cmd>lua RTELE(); require'telescope.builtin'.lsp_document_symbols{ symbols = {'method', 'function', 'module', 'interface', 'class', 'struct' } }<CR>"
 )
 vim.keymap.set("n", "<leader>gc", "<cmd>lua RTELE(); require'telescope.builtin'.git_branches{}<CR>")
