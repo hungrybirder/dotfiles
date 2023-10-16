@@ -97,7 +97,7 @@ require("lualine").setup({
                 color = { gui = "bold", fg = colors.blue },
             },
         },
-        lualine_x = {},
+        lualine_x = { { "overseer" } },
         lualine_y = {
             {
                 "location",
