@@ -188,13 +188,13 @@ require("lazy").setup({
     },
     -- save my last cursor position
     {
-        "ethanholz/nvim-lastplace",
+        "farmergreg/vim-lastplace",
         config = function()
-            require("nvim-lastplace").setup({
-                lastplace_ignore_buftype = { "quickfix", "nofile", "help" },
-                lastplace_ignore_filetype = { "gitcommit", "gitrebase", "svn", "hgcommit" },
-                lastplace_open_folds = true,
-            })
+            -- vim.g.lastplace_ignore = { "gitcommit", "gitrebase", "svn", "hgcommit" }
+            -- vim.g.lastplace_ignore_buftype = { "quickfix", "nofile", "help" }
+            vim.g.lastplace_ignore = "gitcommit, gitrebase, svn, hgcommit"
+            vim.g.lastplace_ignore_buftype = "quickfix, nofile, help"
+            vim.g.lastplace_open_folds = 1
         end,
     },
     {
