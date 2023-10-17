@@ -1159,24 +1159,24 @@ require("lazy").setup({
     --         },
     --     },
     -- },
-    {
-        "lukas-reineke/indent-blankline.nvim",
-        main = "ibl",
-        config = function()
-            require("ibl").setup({
-                exclude = {
-                    filetypes = {
-                        "vim",
-                        "lua",
-                        "python",
-                        "dashboard",
-                        "go",
-                        "java",
-                    },
-                },
-            })
-        end,
-    },
+    -- {
+    --     "lukas-reineke/indent-blankline.nvim",
+    --     main = "ibl",
+    --     config = function()
+    --         require("ibl").setup({
+    --             exclude = {
+    --                 filetypes = {
+    --                     "vim",
+    --                     "lua",
+    --                     "python",
+    --                     "dashboard",
+    --                     "go",
+    --                     "java",
+    --                 },
+    --             },
+    --         })
+    --     end,
+    -- },
 
     -- dev languages
     -- Alternate between files, such as foo.go and foo_test.go
