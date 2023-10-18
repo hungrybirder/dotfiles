@@ -1112,6 +1112,9 @@ require("lazy").setup({
                     -- formatting.protolint,
                     formatting.yamlfmt,
                     formatting.beautysh,
+                    formatting.prettier.with({
+                        filetypes = { "javascript", "typescript" },
+                    }),
 
                     diagnostics.shellcheck,
                     diagnostics.staticcheck,
