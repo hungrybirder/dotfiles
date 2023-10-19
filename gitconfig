@@ -42,7 +42,7 @@
 [github]
 	user = hungrybirder@gmail.com
 [gpg]
-	program = /usr/local/bin/gpg
+	program = gpg
 [commit]
 	gpgsign = false
 [format]
