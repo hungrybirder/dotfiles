@@ -67,6 +67,7 @@ antigen bundle python
 antigen bundle copybuffer # ctrl-o, copy cli to clipboard
 antigen bundle mvn
 antigen bundle autojump
+antigen bundle kubectl
 
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-autosuggestions
