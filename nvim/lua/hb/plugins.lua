@@ -207,24 +207,25 @@ require("lazy").setup({
             require("colorizer").setup()
         end,
     },
-    {
-        "folke/styler.nvim",
-        config = function()
-            require("styler").setup({
-                themes = {
-                    markdown = { colorscheme = "catppuccin-mocha", background = "dark" },
-                    help = { colorscheme = "catppuccin-mocha", background = "dark" },
-                },
-            })
-        end,
-        dependencies = {
-            {
-                "catppuccin/nvim",
-                name = "catppuccin",
-            },
-            { "EdenEast/nightfox.nvim" },
-        },
-    },
+    -- {
+    --     "folke/styler.nvim",
+    --     config = function()
+    --         require("styler").setup({
+    --             themes = {
+    --                 markdown = { colorscheme = "catppuccin-mocha", background = "dark" },
+    --                 help = { colorscheme = "catppuccin-mocha", background = "dark" },
+    --             },
+    --         })
+    --     end,
+    --     dependencies = {
+    --         {
+    --             "catppuccin/nvim",
+    --             name = "catppuccin",
+    --         },
+    --         { "EdenEast/nightfox.nvim" },
+    --     },
+    -- },
+    { "EdenEast/nightfox.nvim" },
 
     -- speedup editing friendly
     { "szw/vim-maximizer" },
