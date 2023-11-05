@@ -1121,6 +1121,7 @@ require("lazy").setup({
                     diagnostics.shellcheck,
                     diagnostics.staticcheck,
                     diagnostics.pylint,
+                    diagnostics.ansiblelint,
 
                     -- code_actions
                     code_actions.gitsigns,
