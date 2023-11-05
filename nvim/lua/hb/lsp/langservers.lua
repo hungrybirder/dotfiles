@@ -136,6 +136,7 @@ local servers = {
     "kotlin_language_server",
     "texlab",
     "bufls",
+    "ansiblels",
 }
 
 for _, name in pairs(servers) do

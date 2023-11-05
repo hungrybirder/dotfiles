@@ -552,6 +552,7 @@ require("lazy").setup({
                     "vimls",
                     "bashls",
                     "lua_ls",
+                    "ansiblels",
                 },
             })
         end,
