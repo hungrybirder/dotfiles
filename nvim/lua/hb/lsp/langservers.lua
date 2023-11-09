@@ -126,7 +126,6 @@ local lsp_flags = {
 }
 
 local servers = {
-    "yamlls",
     "html",
     "cmake",
     "dockerls",
@@ -188,6 +187,20 @@ lspconfig.pyright.setup({
             venvPath = require("os").getenv("HOME") .. "/" .. ".virtualenvs",
         },
     },
+})
+
+lspconfig.yamlls.setup({
+    on_attach = lsp_on_attach,
+    flags = lsp_flags,
+    capabilities = capabilities,
+    -- TODO: schemas
+    -- settings = {
+    --     yaml = {
+    --         schemas = {
+    --             ["https://raw.githubusercontent.com/instrumenta/kubernetes-json-schema/master/v1.18.0-standalone-strict/all.json"] = "/*.k8s.yaml",
+    --         },
+    --     },
+    -- },
 })
 
 -- https://github.com/jose-elias-alvarez/null-ls.nvim/issues/428
