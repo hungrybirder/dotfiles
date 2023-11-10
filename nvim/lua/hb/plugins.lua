@@ -552,6 +552,7 @@ require("lazy").setup({
                     "bashls",
                     "lua_ls",
                     "ansiblels",
+                    "yamlls",
                 },
             })
         end,
