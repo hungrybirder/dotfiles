@@ -266,9 +266,9 @@ lspconfig.lua_ls.setup({
             },
             telemetry = { enable = false },
             completion = {
-                -- callSnippet = "Replace",
+                callSnippet = "Replace",
                 -- callSnippet = "Both",
-                callSnippet = "Disable",
+                -- callSnippet = "Disable",
             },
         },
     },

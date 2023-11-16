@@ -1122,6 +1122,7 @@ require("lazy").setup({
                     diagnostics.staticcheck,
                     diagnostics.pylint,
                     diagnostics.ansiblelint,
+                    -- diagnostics.luacheck,
 
                     -- code_actions
                     code_actions.gitsigns,
@@ -1248,9 +1249,20 @@ require("lazy").setup({
 
     -- for lua develop
     {
+        "folke/neoconf.nvim",
+        config = function()
+            require("neoconf").setup({})
+        end,
+    },
+    {
         "folke/neodev.nvim",
         config = function()
-            library = { plugins = { "nvim-dap-ui" }, types = true }
+            require("neodev").setup({
+                library = {
+                    plugins = { "nvim-dap-ui" },
+                    types = true,
+                },
+            })
         end,
     },
 
