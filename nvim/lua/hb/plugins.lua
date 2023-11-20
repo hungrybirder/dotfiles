@@ -789,7 +789,6 @@ require("lazy").setup({
             "nvim-treesitter/nvim-treesitter-textobjects",
             "nvim-treesitter/nvim-treesitter-refactor",
             "RRethy/nvim-treesitter-endwise",
-            "JoosepAlviste/nvim-ts-context-commentstring",
             "theprimeagen/jvim.nvim", -- for json
         },
         config = function()
@@ -921,31 +920,18 @@ require("lazy").setup({
                     updatetime = 25,
                     persist_queries = false,
                 },
-                query_linter = { enable = true, use_virtual_text = true, lint_events = { "BufWrite", "CursorHold" } },
+                query_linter = {
+                    enable = true,
+                    use_virtual_text = true,
+                    lint_events = { "BufWrite", "CursorHold" },
+                },
                 matchup = { enable = true },
                 autopairs = { enable = true },
-                context_commentstring = { enable = true },
                 endwise = { enable = true },
             })
-
-            -- use nvim-ufo
-            -- local parsers = require("nvim-treesitter.parsers")
-            -- local configs = parsers.get_parser_configs()
-            -- local ft_str = table.concat(
-            --     vim.tbl_map(function(ft)
-            --         return configs[ft].filetype or ft
-            --     end, parsers.available_parsers()),
-            --     ","
-            -- )
-            -- vim.cmd("autocmd Filetype " .. ft_str .. " setlocal foldmethod=expr foldexpr=nvim_treesitter#foldexpr()")
         end,
     },
-    -- {
-    --     "SmiteshP/nvim-navic",
-    --     dependencies = "neovim/nvim-lspconfig",
-    -- },
-
-    -- folder
+    -- best folder plugin nvim-ufo
     {
         "kevinhwang91/nvim-ufo",
         dependencies = {
