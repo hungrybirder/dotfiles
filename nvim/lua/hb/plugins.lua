@@ -134,6 +134,14 @@ require("lazy").setup({
             vim.g.matchup_matchparen_offscreen = { method = "popup" }
         end,
     },
+    -- FIX:
+    -- FIXME:
+    -- TODO:
+    -- PERF:
+    -- HACK:
+    -- INFO:
+    -- WARNING:
+    -- NOTE:
     {
         "folke/todo-comments.nvim",
         dependencies = { "nvim-lua/plenary.nvim" },
