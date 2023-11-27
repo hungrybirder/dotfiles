@@ -17,6 +17,8 @@ dap.listeners.before.event_exited["dapui_config"] = function()
     dapui.close()
 end
 
+-- dap.set_log_level("DEBUG")
+
 dapui.setup({
     icons = { expanded = "▾", collapsed = "▸" },
     mappings = {
