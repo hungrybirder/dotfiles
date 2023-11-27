@@ -450,6 +450,7 @@ require("lazy").setup({
     {
         "nvim-tree/nvim-tree.lua",
         version = "*",
+        lazy = false,
         dependencies = {
             "nvim-tree/nvim-web-devicons",
         },
@@ -938,6 +939,18 @@ require("lazy").setup({
                 endwise = { enable = true },
             })
         end,
+    },
+
+    -- code injections
+    {
+        "Dronakurl/injectme.nvim",
+        dependencies = {
+            "nvim-treesitter/nvim-treesitter",
+            "nvim-lua/plenary.nvim",
+            "nvim-telescope/telescope.nvim",
+        },
+        -- This is for lazy load and more performance on startup only
+        cmd = { "InjectmeToggle", "InjectmeSave", "InjectmeInfo", "InjectmeLeave" },
     },
     -- best folder plugin nvim-ufo
     {
