@@ -545,10 +545,10 @@ require("lazy").setup({
                         package_uninstalled = "✗",
                     },
                 },
-                    registries = {
-                        "github:nvim-java/mason-registry",
-                        "github:mason-org/mason-registry",
-                    },
+                registries = {
+                    "github:nvim-java/mason-registry",
+                    "github:mason-org/mason-registry",
+                },
             })
         end,
     },
@@ -1146,6 +1146,7 @@ require("lazy").setup({
                     formatting.prettier.with({
                         filetypes = { "javascript", "typescript" },
                     }),
+                    formatting.xmlformat,
 
                     diagnostics.shellcheck,
                     diagnostics.staticcheck,
