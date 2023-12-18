@@ -68,6 +68,7 @@ antigen bundle copybuffer # ctrl-o, copy cli to clipboard
 antigen bundle mvn
 antigen bundle autojump
 antigen bundle kubectl
+antigen bundle nvm
 
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-autosuggestions
@@ -302,3 +303,7 @@ if [[ "Darwin" = ${OS_NAME} ]]; then
     alias bubu="brew upgrade && brew upgrade --cask"
 fi
 # alias end
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
