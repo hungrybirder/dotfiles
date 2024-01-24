@@ -106,6 +106,9 @@ local function lsp_on_attach(client, bufnr)
             end,
         })
     end
+    if client.server_capabilities.inlayHintProvider then
+        vim.lsp.inlay_hint.enable(bufnr, true)
+    end
 end
 
 local function make_lsp_client_capabilities()
