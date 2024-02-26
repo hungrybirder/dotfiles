@@ -1,7 +1,5 @@
 vim.opt.laststatus = 3
 
-fn = vim.fn
-
 vim.api.nvim_create_augroup("codelens", { clear = true })
 
 vim.api.nvim_create_autocmd({ "BufWritePost" }, {

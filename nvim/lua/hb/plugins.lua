@@ -52,7 +52,7 @@ require("lazy").setup({
     {
         "rcarriga/nvim-notify",
         config = function()
-            notify = require("notify")
+            local notify = require("notify")
             notify.setup({})
             vim.notify = notify
         end,
@@ -1128,13 +1128,11 @@ require("lazy").setup({
                     formatting.stylua,
                     formatting.remark,
                     formatting.shfmt,
-                    -- formatting.yapf,
-                    -- formatting.isort,
                     formatting.black,
-                    formatting.trim_whitespace,
+                    -- formatting.trim_whitespace, -- TODO: use editorconfig
                     formatting.goimports,
                     -- formatting.gofmt,
-                    formatting.rustfmt,
+                    -- formatting.rustfmt, -- TODO: use rust_analyzer
                     formatting.clang_format.with({
                         filetypes = { "c", "cpp" },
                     }),
@@ -1142,18 +1140,15 @@ require("lazy").setup({
                     -- formatting.google_java_format,
                     -- formatting.protolint,
                     formatting.yamlfmt,
-                    formatting.beautysh,
+                    -- formatting.beautysh, -- TODO: use shfmt
                     formatting.prettier.with({
                         filetypes = { "javascript", "typescript" },
                     }),
-                    formatting.xmlformat,
+                    -- formatting.xmlformat, -- TODO: use lemminx
 
-                    diagnostics.shellcheck,
                     diagnostics.staticcheck,
                     diagnostics.pylint,
                     diagnostics.ansiblelint,
-                    -- diagnostics.luacheck,
-
                     -- code_actions
                     code_actions.gitsigns,
                 },
@@ -1168,7 +1163,14 @@ require("lazy").setup({
                     end
                 end,
             })
+            null_ls.register(require("none-ls-shellcheck.diagnostics"))
+            null_ls.register(require("none-ls-shellcheck.code_actions"))
+            null_ls.register(require("none-ls-luacheck.diagnostics.luacheck"))
         end,
+        dependencies = {
+            "gbprod/none-ls-shellcheck.nvim",
+            "gbprod/none-ls-luacheck.nvim",
+        },
     },
     {
         "mbbill/undotree",

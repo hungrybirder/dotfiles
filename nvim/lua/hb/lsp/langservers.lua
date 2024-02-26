@@ -261,7 +261,10 @@ lspconfig.lua_ls.setup({
     settings = {
         Lua = {
             runtime = { version = "LuaJIT" },
-            diagnostics = { globals = { "vim" }, workspaceDelay = 5000 },
+            diagnostics = {
+                globals = { "vim" },
+                workspaceDelay = 5000,
+            },
             workspace = {
                 preloadFileSize = 1024, -- KB
                 checkThirdParty = false,
