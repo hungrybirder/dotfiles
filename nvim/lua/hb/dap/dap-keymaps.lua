@@ -42,6 +42,6 @@ vim.keymap.set(
 )
 
 -- nvim-telescope/telescope-dap.nvim
-require("telescope").load_extension("dap")
-vim.keymap.set("n", "<leader>ds", ":Telescope dap frames<CR>")
-vim.keymap.set("n", "<leader>db", ":Telescope dap list_breakpoints<CR>")
+-- require("telescope").load_extension("dap")
+-- vim.keymap.set("n", "<leader>ds", ":Telescope dap frames<CR>")
+-- vim.keymap.set("n", "<leader>db", ":Telescope dap list_breakpoints<CR>")

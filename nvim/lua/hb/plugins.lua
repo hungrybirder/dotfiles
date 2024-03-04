@@ -722,6 +722,7 @@ require("lazy").setup({
         },
         keys = {
             { "<leader>v", "<cmd>AerialToggle!<CR>" },
+            -- { "<leader>ds", "<cmd>call aerial#fzf()<CR>" },
         },
         dependencies = {
             "nvim-treesitter/nvim-treesitter",
