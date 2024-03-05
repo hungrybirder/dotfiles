@@ -31,23 +31,25 @@ local lsp_util = require("vim.lsp.util")
 local lsp_log = require("vim.lsp.log")
 
 -- Ref1: Copy From https://github.com/neovim/neovim/pull/17339/files
--- Ref2: https://github.com/neovim/neovim/blob/release-0.9/runtime/lua/vim/lsp/handlers.lua#L378-L423
--- 要时刻关注 neovim location_handler 的实现，避免错误使用 loclist
+-- Ref2: runtime/lua/vim/lsp/handlers.lua#L417
+-- 关注 neovim location_handler 的实现，避免错误使用 loclist
 local function my_location_handler(_, result, ctx, config)
     if result == nil or vim.tbl_isempty(result) then
         local _ = lsp_log.info() and lsp_log.info(ctx.method, "No location found")
         return nil
     end
-    local client = vim.lsp.get_client_by_id(ctx.client_id)
+    local client = assert(vim.lsp.get_client_by_id(ctx.client_id))
 
     if #result == 1 then
-        lsp_util.jump_to_location(result[1], client.offset_encoding)
+        lsp_util.jump_to_location(result[1], client.offset_encoding, config.reuse_win)
     else
         config = config or {}
+        local title = "LSP locations"
+        local items = lsp_util.locations_to_items(result, client.offset_encoding)
         if config.loclist then
             vim.fn.setloclist(0, {}, " ", {
-                title = "LSP locations",
-                items = lsp_util.locations_to_items(result, client.offset_encoding),
+                title = title,
+                items = items,
             })
             vim.api.nvim_command("botright lopen")
         elseif config.on_list then
@@ -55,8 +57,8 @@ local function my_location_handler(_, result, ctx, config)
             config.on_list({ title = title, items = items })
         else
             vim.fn.setqflist({}, " ", {
-                title = "LSP locations",
-                items = lsp_util.locations_to_items(result, client.offset_encoding),
+                title = title,
+                items = items,
             })
             vim.api.nvim_command("botright copen")
         end
