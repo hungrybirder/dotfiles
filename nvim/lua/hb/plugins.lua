@@ -1433,4 +1433,11 @@ require("lazy").setup({
     -- tmux
     { "christoomey/vim-tmux-navigator" },
     { "shivamashtikar/tmuxjump.vim" },
+
+    -- free writing
+    -- Lua
+    {
+        "folke/zen-mode.nvim",
+        opts = {},
+    },
 }, lazy_options)
