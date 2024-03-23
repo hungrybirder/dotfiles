@@ -1349,7 +1349,10 @@ require("lazy").setup({
     -- { "mfussenegger/nvim-dap" },
     {
         "rcarriga/nvim-dap-ui",
-        dependencies = { "mfussenegger/nvim-dap" },
+        dependencies = {
+            "mfussenegger/nvim-dap",
+            'nvim-neotest/nvim-nio',
+        },
     },
     {
         "mfussenegger/nvim-dap",
@@ -1369,6 +1372,7 @@ require("lazy").setup({
     {
         "nvim-neotest/neotest",
         dependencies = {
+            "nvim-neotest/nvim-nio",
             "nvim-lua/plenary.nvim",
             "nvim-treesitter/nvim-treesitter",
             "nvim-neotest/neotest-plenary",
