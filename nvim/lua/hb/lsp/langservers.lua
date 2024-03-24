@@ -319,7 +319,7 @@ require("rust-tools").setup(opts)
 -- setup rust-tools end
 
 -- jdtls
-setup_jdtls = function()
+local setup_jdtls = function()
     local on_attach = function(client, bufnr)
         -- using null-ls for formatting...
         if client.supports_method("textDocument/formatting") then
