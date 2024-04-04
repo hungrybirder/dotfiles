@@ -26,6 +26,14 @@ vim.keymap.set("n", "<leader>pu", "<cmd>Lazy sync<CR>")
 
 require("lazy").setup({
     {
+        "folke/which-key.nvim",
+        event = "VeryLazy",
+        init = function()
+            vim.o.timeout = true
+            vim.o.timeoutlen = 300
+        end,
+    },
+    {
         "glepnir/dashboard-nvim",
         event = "VimEnter",
         config = function()
@@ -1352,7 +1360,7 @@ require("lazy").setup({
         "rcarriga/nvim-dap-ui",
         dependencies = {
             "mfussenegger/nvim-dap",
-            'nvim-neotest/nvim-nio',
+            "nvim-neotest/nvim-nio",
         },
     },
     {
