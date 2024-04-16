@@ -11,6 +11,7 @@ if not vim.loop.fs_stat(lazypath) then
         lazypath,
     })
 end
+---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
 
 local lazy_options = {
@@ -43,20 +44,20 @@ require("lazy").setup({
         end,
         dependencies = { { "nvim-tree/nvim-web-devicons" } },
     },
-    -- task runner
-    {
-        "stevearc/overseer.nvim",
-        config = function()
-            require("overseer").setup({
-                strategy = "toggleterm",
-            })
-            require("dap.ext.vscode").json_decode = require("overseer.json").decode
-        end,
-        dependencies = {
-            "mfussenegger/nvim-dap",
-            "akinsho/toggleterm.nvim",
-        },
-    },
+    -- TODO: task runner
+    -- {
+    --     "stevearc/overseer.nvim",
+    --     config = function()
+    --         require("overseer").setup({
+    --             strategy = "toggleterm",
+    --         })
+    --         require("dap.ext.vscode").json_decode = require("overseer.json").decode
+    --     end,
+    --     dependencies = {
+    --         "mfussenegger/nvim-dap",
+    --         "akinsho/toggleterm.nvim",
+    --     },
+    -- },
     {
         "rcarriga/nvim-notify",
         config = function()
@@ -439,9 +440,23 @@ require("lazy").setup({
             vim.keymap.set("n", "ss", "<plug>(SubversiveSubstituteLine)", { noremap = true, silent = true })
             vim.keymap.set("n", "S", "<plug>(SubversiveSubstituteToEndOfLine)", { noremap = true, silent = true })
             -- <leader>s<motion1><motion2>
-            vim.keymap.set({ "n", "x" }, "<leader>s", "<plug>(SubversiveSubstituteRange)", { noremap = true })
-            vim.keymap.set("n", "<leader>ss", "<plug>(SubversiveSubstituteWordRange)", { noremap = true })
+            -- vim.keymap.set({ "n", "x" }, "<leader>s", "<plug>(SubversiveSubstituteRange)", { noremap = true })
+            -- vim.keymap.set("n", "<leader>ss", "<plug>(SubversiveSubstituteWordRange)", { noremap = true })
         end,
+    },
+    {
+        "folke/flash.nvim",
+        event = "VeryLazy",
+        ---@type Flash.Config
+        opts = {},
+        -- stylua: ignore
+        keys = {
+            { "<leader>s", mode = { "n", "x", "o" }, function() require("flash").jump() end,              desc = "Flash" },
+            { "<leader>S", mode = { "n", "x", "o" }, function() require("flash").treesitter() end,        desc = "Flash Treesitter" },
+            { "r",         mode = "o",               function() require("flash").remote() end,            desc = "Remote Flash" },
+            { "R",         mode = { "o", "x" },      function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
+            { "<c-s>",     mode = { "c" },           function() require("flash").toggle() end,            desc = "Toggle Flash Search" },
+        },
     },
     -- {
     --     "svermeulen/vim-yoink",
@@ -1399,9 +1414,10 @@ require("lazy").setup({
                     }),
                     require("neotest-go"),
                 },
-                consumers = {
-                    overseer = require("neotest.consumers.overseer"),
-                },
+                -- TODO:
+                -- consumers = {
+                --     overseer = require("neotest.consumers.overseer"),
+                -- },
             })
 
             vim.api.nvim_command("command! -nargs=0 NeotestRun :lua require('neotest').run.run()<CR>")
