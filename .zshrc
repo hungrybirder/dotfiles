@@ -1,5 +1,7 @@
 # vim: ts=2 sts=2 sw=2 et
 
+fpath+=~/.zfunc
+
 export LC_ALL=en_US.utf-8
 export LANG=en_US.utf-8
 
@@ -186,7 +188,7 @@ cdf() {
 ##########################################
 # translate unix timestamp to readable str
 mytime() {
-    python -c "from time import ctime; print ctime($1)"
+  python -c "from time import ctime; print(ctime($1))"
 }
 
 show_docker_containers() {
@@ -221,15 +223,15 @@ today() {
     fi
 }
 
-get_public_ip() {
-    nc ns1.dnspod.net 6666 | egrep -o "[0-9.]+"
-}
+# get_public_ip() {
+#     nc ns1.dnspod.net 6666 | egrep -o "[0-9.]+"
+# }
 
-link_vimspector() {
-    local fname=".vimspector.json"
-    test -f ${fname} && unlink ${fname}
-    ln -s ${HOME}/codes/dotfiles/${fname} ${fname}
-}
+# link_vimspector() {
+#     local fname=".vimspector.json"
+#     test -f ${fname} && unlink ${fname}
+#     ln -s ${HOME}/codes/dotfiles/${fname} ${fname}
+# }
 
 # 一些特殊的设置
 # zsh <c-u> 默认是kill-whole-line(删除整行) 与bash的<c-u>不同
@@ -245,8 +247,8 @@ bindkey "\e\e[D" backward-word
 bindkey "\e\e[C" forward-word
 
 # 一些特殊的配置，或function
-SPECIAL_SH="${HOME}/Dropbox/snippet/special.sh"
-test -f ${SPECIAL_SH} && source ${SPECIAL_SH}
+# SPECIAL_SH="${HOME}/Dropbox/snippet/special.sh"
+# test -f ${SPECIAL_SH} && source ${SPECIAL_SH}
 
 export GIT_INTERNAL_GETTEXT_TEST_FALLBACKS=1
 
@@ -307,3 +309,6 @@ fi
 export NVM_DIR="$HOME/.nvm"
 [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
 [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+
+# for bob, nvim multi-version manager
+export PATH="/Users/liyong/.local/share/bob/nvim-bin:$PATH"
