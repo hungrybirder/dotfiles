@@ -1249,6 +1249,30 @@ require("lazy").setup({
     -- },
 
     -- dev languages
+    -- for js/ts dev
+    {
+        "barrett-ruth/live-server.nvim",
+        build = "pnpm add -g live-server",
+        cmd = { "LiveServerStart", "LiveServerStop" },
+        config = true,
+    },
+    -- for rust dev
+    { "rust-lang/rust.vim" },
+    { "simrat39/rust-tools.nvim" },
+    {
+        "saecki/crates.nvim",
+        dependencies = { { "nvim-lua/plenary.nvim" } },
+        config = function()
+            require("crates").setup({
+                null_ls = {
+                    enabled = true,
+                    name = "crates.nvim",
+                },
+            })
+        end,
+    },
+
+    -- for Go dev
     -- Alternate between files, such as foo.go and foo_test.go
     {
         "rgroli/other.nvim",
@@ -1279,20 +1303,6 @@ require("lazy").setup({
             vim.api.nvim_create_user_command("AS", function(opts)
                 require("other-nvim").openSplit(opts.fargs[1])
             end, { nargs = "*" })
-        end,
-    },
-    { "rust-lang/rust.vim" },
-    { "simrat39/rust-tools.nvim" },
-    {
-        "saecki/crates.nvim",
-        dependencies = { { "nvim-lua/plenary.nvim" } },
-        config = function()
-            require("crates").setup({
-                null_ls = {
-                    enabled = true,
-                    name = "crates.nvim",
-                },
-            })
         end,
     },
     {
@@ -1333,8 +1343,8 @@ require("lazy").setup({
         end,
     },
 
+    -- for Java dev
     { "mfussenegger/nvim-jdtls" },
-    { "mmarchini/bpftrace.vim" },
 
     -- markdown
     { "mzlogin/vim-markdown-toc" },
@@ -1373,6 +1383,8 @@ require("lazy").setup({
             require("glow").setup()
         end,
     },
+
+    { "mmarchini/bpftrace.vim" },
 
     -- debugger
     -- use("sebdah/vim-delve")
@@ -1470,7 +1482,6 @@ require("lazy").setup({
     { "shivamashtikar/tmuxjump.vim" },
 
     -- free writing
-    -- Lua
     {
         "folke/zen-mode.nvim",
         opts = {},

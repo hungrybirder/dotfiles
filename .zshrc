@@ -312,3 +312,12 @@ export NVM_DIR="$HOME/.nvm"
 
 # for bob, nvim multi-version manager
 export PATH="/Users/liyong/.local/share/bob/nvim-bin:$PATH"
+
+# pnpm
+export PNPM_HOME="$HOME/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# https://pnpm.io/npmrc#store-dir
+# pnpm end
