@@ -603,11 +603,13 @@ require("lazy").setup({
     { "neovim/nvim-lspconfig" },
     {
         "j-hui/fidget.nvim",
-        tag = "legacy",
-        event = "LspAttach",
-        config = function()
-            require("fidget").setup({})
-        end,
+        tags = "*",
+        opts = {
+            -- progress = {
+            --     suppress_on_insert = true,
+            --     ignore_done_already = true,
+            --     ignore_empty_message = true,
+        },
     },
 
     -- lsp for performance UI.
