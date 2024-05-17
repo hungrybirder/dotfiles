@@ -90,7 +90,7 @@ require("lazy").setup({
     -- buffer line at the top of window
     {
         "akinsho/bufferline.nvim",
-        version = "*",
+        -- version = "*",
         dependencies = { "nvim-tree/nvim-web-devicons" },
         config = function()
             vim.opt.termguicolors = true
