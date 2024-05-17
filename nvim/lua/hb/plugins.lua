@@ -831,7 +831,6 @@ require("lazy").setup({
         "nvim-treesitter/nvim-treesitter",
         run = ":TSUpdate",
         dependencies = {
-            "nvim-treesitter/playground",
             "nvim-treesitter/nvim-treesitter-textobjects",
             "nvim-treesitter/nvim-treesitter-refactor",
             "RRethy/nvim-treesitter-endwise",
