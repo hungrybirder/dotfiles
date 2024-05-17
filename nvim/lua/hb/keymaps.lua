@@ -117,5 +117,6 @@ vim.keymap.set({ "n", "i" }, "<F1>", "<nop>")
 vim.keymap.set("n", "]<tab>", "<cmd>tabnext<cr>")
 vim.keymap.set("n", "[<tab>", "<cmd>tabnext<cr>")
 
-vim.api.nvim_command("command! -nargs=0 DisableLspDiagnostic :lua vim.diagnostic.enable(false)<CR>")
-vim.api.nvim_command("command! -nargs=0 EnableLspDiagnostic :lua vim.diagnostic.enable(true)<CR>")
+vim.api.nvim_command(
+    "command! -nargs=0 ToggleLspDiagnostic :lua vim.diagnostic.enable(not vim.diagnostic.is_enabled())<CR>"
+)
