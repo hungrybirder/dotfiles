@@ -828,7 +828,7 @@ require("lazy").setup({
     -- tree sitter
     {
         "nvim-treesitter/nvim-treesitter",
-        run = ":TSUpdate",
+        build = ":TSUpdate",
         dependencies = {
             "nvim-treesitter/nvim-treesitter-textobjects",
             "nvim-treesitter/nvim-treesitter-refactor",
@@ -836,7 +836,8 @@ require("lazy").setup({
             "theprimeagen/jvim.nvim", -- for json
         },
         config = function()
-            require("nvim-treesitter.configs").setup({
+            local configs = require("nvim-treesitter.configs")
+            configs.setup({
                 ensure_installed = {
                     "bash",
                     "c",
