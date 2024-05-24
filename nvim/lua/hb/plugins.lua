@@ -602,7 +602,6 @@ require("lazy").setup({
     { "neovim/nvim-lspconfig" },
     {
         "j-hui/fidget.nvim",
-        tags = "*",
         opts = {
             -- progress = {
             --     suppress_on_insert = true,
