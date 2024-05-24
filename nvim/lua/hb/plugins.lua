@@ -1181,8 +1181,14 @@ require("lazy").setup({
                     diagnostics.staticcheck,
                     diagnostics.pylint,
                     diagnostics.ansiblelint,
-                    -- code_actions
+
+                    -- code_actions for git
                     code_actions.gitsigns,
+                    code_actions.gitrebase,
+
+                    -- code_action for go
+                    code_actions.impl,
+                    code_actions.gomodifytags,
                 },
                 on_attach = function(client)
                     if client.supports_method("textDocument/formatting") then
