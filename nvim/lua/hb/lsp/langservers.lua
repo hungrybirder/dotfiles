@@ -264,7 +264,12 @@ lspconfig.lua_ls.setup({
     flags = lsp_flags,
     settings = {
         Lua = {
-            runtime = { version = "LuaJIT" },
+            codeLens = {
+                enable = true,
+            },
+            runtime = {
+                version = "LuaJIT",
+            },
             diagnostics = {
                 globals = { "vim" },
                 workspaceDelay = 5000,
@@ -277,8 +282,17 @@ lspconfig.lua_ls.setup({
             telemetry = { enable = false },
             completion = {
                 callSnippet = "Replace",
-                -- callSnippet = "Both",
-                -- callSnippet = "Disable",
+            },
+            hint = {
+                enable = true,
+                setType = false,
+                paramType = true,
+                paramName = "Disable",
+                semicolon = "Disable",
+                arrayIndex = "Disable",
+            },
+            doc = {
+                privateName = { "^_" },
             },
         },
     },
