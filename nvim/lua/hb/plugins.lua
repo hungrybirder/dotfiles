@@ -594,6 +594,7 @@ require("lazy").setup({
                     -- https://github.com/williamboman/mason-lspconfig.nvim/blob/main/doc/server-mapping.md
                     "rust_analyzer",
                     "pyright",
+                    "ruff",
                     "gopls",
                     "vimls",
                     "bashls",
