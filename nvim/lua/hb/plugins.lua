@@ -1164,7 +1164,7 @@ require("lazy").setup({
                     formatting.stylua,
                     formatting.remark,
                     formatting.shfmt,
-                    formatting.black,
+                    -- formatting.black,
                     -- formatting.trim_whitespace, -- TODO: use editorconfig
                     formatting.goimports,
                     -- formatting.gofmt,
@@ -1183,7 +1183,7 @@ require("lazy").setup({
                     -- formatting.xmlformat, -- TODO: use lemminx
 
                     diagnostics.staticcheck,
-                    diagnostics.pylint,
+                    -- diagnostics.pylint,
                     diagnostics.ansiblelint,
 
                     -- code_actions for git

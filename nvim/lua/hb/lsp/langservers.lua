@@ -97,7 +97,6 @@ local lsp_fmt_augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 local function lsp_on_attach(client, bufnr)
     require("hb/lsp/keymap").setup_lsp_keymaps(client, bufnr)
     require("lspkind").init({})
-    -- using null-ls for formatting...
     if client.supports_method("textDocument/formatting") then
         vim.api.nvim_clear_autocmds({ group = lsp_fmt_augroup, buffer = bufnr })
         vim.api.nvim_create_autocmd("BufWritePre", {
@@ -178,23 +177,72 @@ lspconfig.sqlls.setup({
     flags = lsp_flags,
 })
 
+local function ruff_on_attach(client, bufnr)
+    -- require("hb/lsp/keymap").setup_lsp_keymaps(client, bufnr)
+    require("lspkind").init({})
+    if client.supports_method("textDocument/formatting") then
+        vim.api.nvim_clear_autocmds({ group = lsp_fmt_augroup, buffer = bufnr })
+        vim.api.nvim_create_autocmd("BufWritePre", {
+            group = lsp_fmt_augroup,
+            buffer = bufnr,
+            callback = function()
+                vim.lsp.buf.format({
+                    bufnr = bufnr,
+                })
+            end,
+        })
+    end
+    if client.server_capabilities.inlayHintProvider then
+        vim.lsp.inlay_hint.enable(true, {
+            bufnr = bufnr,
+        })
+    end
+    if client.name == "ruff" then
+        -- Disable hover in favor of Pyright
+        client.server_capabilities.hoverProvider = false
+    end
+end
+
+lspconfig.ruff.setup({
+    on_attach = ruff_on_attach,
+})
+
 lspconfig.pyright.setup({
     on_attach = lsp_on_attach,
     flags = lsp_flags,
     capabilities = capabilities,
     settings = {
+        pyright = {
+            -- Using Ruff's import organizer
+            disableOrganizeImports = true,
+        },
         python = {
             analysis = {
-                autoImportCompletions = true,
-                autoSearchPaths = true,
-                useLibraryCodeForTypes = true,
-                diagnosticMode = "workspace",
-                typeCheckingMode = "basic",
+                -- Ignore all files for analysis to exclusively use Ruff for linting
+                ignore = { "*" },
             },
             venvPath = require("os").getenv("HOME") .. "/" .. ".virtualenvs",
         },
     },
 })
+
+-- lspconfig.pyright.setup({
+--     on_attach = lsp_on_attach,
+--     flags = lsp_flags,
+--     capabilities = capabilities,
+--     settings = {
+--         python = {
+--             analysis = {
+--                 autoImportCompletions = true,
+--                 autoSearchPaths = true,
+--                 useLibraryCodeForTypes = true,
+--                 diagnosticMode = "workspace",
+--                 typeCheckingMode = "basic",
+--             },
+--             venvPath = require("os").getenv("HOME") .. "/" .. ".virtualenvs",
+--         },
+--     },
+-- })
 
 lspconfig.yamlls.setup({
     on_attach = lsp_on_attach,
