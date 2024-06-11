@@ -311,7 +311,7 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
 # for bob, nvim multi-version manager
-export PATH="/Users/liyong/.local/share/bob/nvim-bin:$PATH"
+export PATH="${HOME}/.local/share/bob/nvim-bin:$PATH"
 
 # pnpm
 export PNPM_HOME="$HOME/Library/pnpm"
