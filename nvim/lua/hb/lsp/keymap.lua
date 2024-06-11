@@ -20,7 +20,7 @@ end
 vim.keymap.set("n", "K", "<cmd>lua show_documentation()<CR>")
 
 M.setup_lsp_keymaps = function(client, bufnr)
-    vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+    vim.api.nvim_set_option_value("omnifunc", "v:lua.vim.lsp.omnifunc", { buf = bufnr })
 
     local opts = { noremap = true, silent = true }
     vim.keymap.set("n", "<space>e", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
@@ -63,8 +63,7 @@ M.setup_lsp_keymaps = function(client, bufnr)
 
     -- Set autocommands conditional on server_capabilities
     if client.server_capabilities.document_highlight then
-        vim.api.nvim_exec(
-            [[
+        vim.api.nvim_exec2([[
       hi LspReferenceRead ctermfg=109 ctermbg=237 guifg=#83a598 guibg=#3c3836
       hi LspReferenceWrite ctermfg=109 ctermbg=237 guifg=#83a598 guibg=#3c3836
       hi LspReferenceText ctermfg=109 ctermbg=237 guifg=#83a598 guibg=#3c3836
@@ -73,9 +72,7 @@ M.setup_lsp_keymaps = function(client, bufnr)
         autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
         autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
       augroup END
-            ]],
-            false
-        )
+            ]])
     end
 end
 
