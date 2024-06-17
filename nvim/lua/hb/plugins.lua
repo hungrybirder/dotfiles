@@ -1183,7 +1183,7 @@ require("lazy").setup({
                     }),
                     -- formatting.xmlformat, -- TODO: use lemminx
 
-                    diagnostics.staticcheck,
+                    diagnostics.golangci_lint,
                     -- diagnostics.pylint,
                     diagnostics.ansiblelint,
 
