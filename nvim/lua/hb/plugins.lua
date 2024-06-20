@@ -547,6 +547,17 @@ require("lazy").setup({
             })
         end,
     },
+    {
+        'stevearc/oil.nvim',
+        opts = {
+            keymaps = {
+                ["<ESC>"] = "actions.close",
+            }
+        },
+        -- Optional dependencies
+        dependencies = { "nvim-tree/nvim-web-devicons" },
+
+    },
 
     {
         "Bekaboo/dropbar.nvim",
