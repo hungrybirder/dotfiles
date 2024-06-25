@@ -1410,7 +1410,6 @@ require("lazy").setup({
 
     -- debugger
     -- use("sebdah/vim-delve")
-    -- { "mfussenegger/nvim-dap" },
     {
         "rcarriga/nvim-dap-ui",
         dependencies = {
@@ -1419,13 +1418,31 @@ require("lazy").setup({
         },
     },
     {
-        "mfussenegger/nvim-dap",
+        "mfussenegger/nvim-dap-python",
         dependencies = {
-            "theHamsta/nvim-dap-virtual-text",
-            "mfussenegger/nvim-dap-python",
-            "leoluz/nvim-dap-go",
-            "jbyuki/one-small-step-for-vimkind",
+            "mfussenegger/nvim-dap",
         },
+    },
+    {
+        "leoluz/nvim-dap-go",
+        dependencies = {
+            "mfussenegger/nvim-dap",
+        },
+    },
+    {
+        "theHamsta/nvim-dap-virtual-text",
+        dependencies = {
+            "mfussenegger/nvim-dap",
+        },
+    },
+    {
+        "jbyuki/one-small-step-for-vimkind",
+        dependencies = {
+            "mfussenegger/nvim-dap",
+        },
+    },
+    {
+        "mfussenegger/nvim-dap",
         config = function()
             require("hb/dap")
         end,
