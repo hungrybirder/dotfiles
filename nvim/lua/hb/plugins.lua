@@ -1369,6 +1369,18 @@ require("lazy").setup({
     { "mfussenegger/nvim-jdtls" },
 
     -- markdown
+    {
+        "MeanderingProgrammer/markdown.nvim",
+        dependencies = { "nvim-treesitter/nvim-treesitter" },
+        config = function()
+            require("render-markdown").setup({})
+        end,
+    },
+    -- {
+    --     "lukas-reineke/headlines.nvim",
+    --     dependencies = "nvim-treesitter/nvim-treesitter",
+    --     opts = {},
+    -- },
     { "mzlogin/vim-markdown-toc" },
     {
         "preservim/vim-markdown",
