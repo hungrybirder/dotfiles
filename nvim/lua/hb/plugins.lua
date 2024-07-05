@@ -271,6 +271,12 @@ require("lazy").setup({
     --     },
     -- },
     { "EdenEast/nightfox.nvim" },
+    {
+        "folke/tokyonight.nvim",
+        lazy = false,
+        priority = 1000,
+        opts = {},
+    },
 
     -- speedup editing friendly
     { "szw/vim-maximizer" },
