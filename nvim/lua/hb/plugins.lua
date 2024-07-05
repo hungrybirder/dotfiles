@@ -27,6 +27,12 @@ vim.keymap.set("n", "<leader>pu", "<cmd>Lazy sync<CR>")
 
 require("lazy").setup({
     {
+        "max397574/better-escape.nvim",
+        config = function()
+            require("better_escape").setup()
+        end,
+    },
+    {
         "folke/which-key.nvim",
         event = "VeryLazy",
         init = function()
