@@ -654,6 +654,26 @@ require("lazy").setup({
             --     ignore_empty_message = true,
         },
     },
+    {
+        "felpafel/inlay-hint.nvim",
+        event = "LspAttach",
+        config = function()
+            require("inlay-hint").setup({
+                virt_text_pos = "inline",
+            })
+            vim.lsp.inlay_hint.enable(true)
+            -- vim.api.nvim_create_autocmd({ "InsertEnter" }, {
+            --     callback = function()
+            --         vim.lsp.inlay_hint.enable(true)
+            --     end,
+            -- })
+            -- vim.api.nvim_create_autocmd({ "InsertLeave" }, {
+            --     callback = function()
+            --         vim.lsp.inlay_hint.enable(false)
+            --     end,
+            -- })
+        end,
+    },
 
     -- lsp for performance UI.
 
@@ -860,6 +880,11 @@ require("lazy").setup({
             -- Disable vim-dispatch mappings
             vim.g.dispatch_no_maps = 1
         end,
+    },
+    {
+        "dgagn/diagflow.nvim",
+        event = "LspAttach",
+        opts = {},
     },
 
     -- nvim-autopairs can set up <CR>

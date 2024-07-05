@@ -406,21 +406,32 @@ local setup_jdtls = function()
         })
         require("jdtls.dap").setup_dap_main_class_configs()
         vim.lsp.codelens.refresh()
+        if client.server_capabilities.inlayHintProvider then
+            vim.lsp.inlay_hint.enable(true, {
+                bufnr = bufnr,
+            })
+        end
     end
 
     local root_markers = { "gradlew", "pom.xml" }
     local root_dir = require("jdtls.setup").find_root(root_markers)
     local home_dir = os.getenv("HOME")
 
-    local extendedClientCapabilities = require("jdtls").extendedClientCapabilities
-    extendedClientCapabilities.resolveAdditionalTextEditsSupport = true
-    extendedClientCapabilities.workspace = { configuration = true }
-    extendedClientCapabilities.textDocument = { completion = { completionItem = { snippetSupport = true } } }
-
     local workspace_folder = home_dir .. "/workspace/" .. vim.fn.fnamemodify(root_dir, ":p:h:t")
     local config = {
         flags = { allow_incremental_sync = true },
-        capabilities = extendedClientCapabilities,
+        capabilities = {
+            workspace = {
+                configuration = true,
+            },
+            textDocument = {
+                completion = {
+                    completionItem = {
+                        snippetSupport = true,
+                    },
+                },
+            },
+        },
     }
 
     config.settings = {
@@ -552,8 +563,14 @@ local setup_jdtls = function()
         bundles,
         vim.split(vim.fn.glob(mason_packages_home .. "/java-test/extension/server/*.jar", true), "\n")
     )
+
+    local extendedClientCapabilities = require("jdtls").extendedClientCapabilities
+    extendedClientCapabilities.resolveAdditionalTextEditsSupport = true
+    extendedClientCapabilities.onCompletionItemSelectedCommand = "editor.action.triggerParameterHints"
+
     config.init_options = {
         bundles = bundles,
+        extendedClientCapabilities = extendedClientCapabilities,
     }
     require("jdtls").start_or_attach(config)
 end
