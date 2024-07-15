@@ -1285,27 +1285,34 @@ require("lazy").setup({
             vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
         end,
     },
-    { "AndrewRadev/splitjoin.vim" },
-    -- {
-    --     "bennypowers/splitjoin.nvim",
-    --     keys = {
-    --         {
-    --             "gJ",
-    --             function()
-    --                 require("splitjoin").join()
-    --             end,
-    --             desc = "Join the object under cursor",
-    --         },
-    --         {
-    --             "gS",
-    --             function()
-    --                 require("splitjoin").split()
-    --             end,
-    --             desc = "Split the object under cursor",
-    --         },
-    --     },
-    -- },
-    -- {
+    {
+        "Wansmer/treesj",
+        dependencies = {
+            "nvim-treesitter/nvim-treesitter",
+            "AndrewRadev/splitjoin.vim",
+        },
+        config = function()
+            require("treesj").setup({
+                use_default_keymaps = false,
+                max_join_length = 120,
+            })
+            local langs = require("treesj.langs")["presets"]
+
+            vim.api.nvim_create_autocmd({ "FileType" }, {
+                pattern = "*",
+                callback = function()
+                    local opts = { buffer = true }
+                    if langs[vim.bo.filetype] then
+                        vim.keymap.set("n", "gS", "<Cmd>TSJSplit<CR>", opts)
+                        vim.keymap.set("n", "gJ", "<Cmd>TSJJoin<CR>", opts)
+                    else
+                        vim.keymap.set("n", "gS", "<Cmd>SplitjoinSplit<CR>", opts)
+                        vim.keymap.set("n", "gJ", "<Cmd>SplitjoinJoin<CR>", opts)
+                    end
+                end,
+            })
+        end,
+    },
     --     "lukas-reineke/indent-blankline.nvim",
     --     main = "ibl",
     --     config = function()
