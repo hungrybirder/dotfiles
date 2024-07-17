@@ -25,6 +25,7 @@ cmp.setup({
             cmp.config.compare.sort_text,
             cmp.config.compare.score,
             under_comparator,
+            cmp.config.compare.recently_used,
             cmp.config.compare.kind,
             cmp.config.compare.length,
             cmp.config.compare.order,
@@ -36,8 +37,6 @@ cmp.setup({
         end,
     },
     sources = cmp.config.sources({
-        { name = "nvim_lsp" },
-        -- { name = "luasnip" },
         {
             name = "luasnip",
             option = { use_show_condition = true },
@@ -48,12 +47,20 @@ cmp.setup({
                 return not string_ctx and not comment_ctx
             end,
         },
+        { name = "nvim_lsp" },
+        { name = "go_pkgs" },
         { name = "buffer" },
         { name = "nvim_lsp_signature_help" },
         { name = "path" },
+        { name = "git" },
+        { name = "git" },
+        { name = "conventionalcommits" },
         { name = "nvim_lua" },
         { name = "crates" },
     }),
+    matching = {
+        disallow_symbol_nonprefix_matching = false,
+    },
     formatting = {
         format = require("lspkind").cmp_format({
             with_text = true,
@@ -65,13 +72,14 @@ cmp.setup({
                 latex_symbols = "[Latex]",
                 vsnip = "[Vsnip]",
                 tags = "[Tag]",
+                go_pkgs = "[pkgs]",
             },
         }),
     },
     experimental = {
-      ghost_text = {
-        hl_group = "CmpGhostText",
-      },
+        ghost_text = {
+            hl_group = "CmpGhostText",
+        },
     },
     mapping = cmp.mapping.preset.insert({
         ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),

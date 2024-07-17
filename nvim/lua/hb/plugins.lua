@@ -841,13 +841,13 @@ require("lazy").setup({
         dependencies = {
             "hrsh7th/cmp-nvim-lsp",
             "onsails/lspkind.nvim",
-            { "hrsh7th/cmp-buffer" },
-            { "hrsh7th/cmp-nvim-lsp-signature-help" },
-            { "hrsh7th/cmp-path" },
-            { "hrsh7th/cmp-nvim-lua" },
-            { "saadparwaiz1/cmp_luasnip" },
-            { "hrsh7th/cmp-cmdline" },
-            { "hrsh7th/cmp-nvim-lsp-document-symbol" },
+            "hrsh7th/cmp-buffer",
+            "hrsh7th/cmp-nvim-lsp-signature-help",
+            "hrsh7th/cmp-path",
+            "hrsh7th/cmp-nvim-lua",
+            "saadparwaiz1/cmp_luasnip",
+            "hrsh7th/cmp-cmdline",
+            "hrsh7th/cmp-nvim-lsp-document-symbol",
             {
                 "petertriho/cmp-git",
                 dependencies = "nvim-lua/plenary.nvim",
@@ -855,7 +855,9 @@ require("lazy").setup({
                     require("cmp_git").setup({})
                 end,
             },
-            { "L3MON4D3/LuaSnip" },
+            "davidsierradz/cmp-conventionalcommits",
+            { "L3MON4D3/LuaSnip", version = "v2.*", build = "make install_jsregexp" },
+            "Snikimonkd/cmp-go-pkgs",
         },
         config = function()
             require("hb/compe")
