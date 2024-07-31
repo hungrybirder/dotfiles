@@ -27,6 +27,23 @@ vim.keymap.set("n", "<leader>pu", "<cmd>Lazy sync<CR>")
 
 require("lazy").setup({
     {
+        "leath-dub/snipe.nvim",
+        keys = {
+            {
+                "<leader>b",
+                function()
+                    require("snipe").open_buffer_menu()
+                end,
+                desc = "Open Snipe buffer menu",
+            },
+        },
+        opts = {
+            ui = {
+                position = "center",
+            },
+        },
+    },
+    {
         "max397574/better-escape.nvim",
         config = function()
             require("better_escape").setup()
