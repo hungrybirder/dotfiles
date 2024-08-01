@@ -191,6 +191,8 @@ mytime() {
   python -c "from time import ctime; print(ctime($1))"
 }
 
+# Required: dockviz, graphviz
+# brew install dockviz graphviz
 show_docker_containers() {
     dockviz images --dot | dot -Tpng -o /tmp/containers.png && open /tmp/containers.png
 }
