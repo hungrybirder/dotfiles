@@ -323,3 +323,9 @@ case ":$PATH:" in
 esac
 # https://pnpm.io/npmrc#store-dir
 # pnpm end
+
+test -e /Users/liyong/.iterm2_shell_integration.zsh && source /Users/liyong/.iterm2_shell_integration.zsh || true
+
+if [[ -d "$HOME/.iterm2" ]]; then
+  export PATH="$HOME/.iterm2:$PATH"
+fi 
