@@ -135,7 +135,7 @@ local servers = {
     "html",
     "cmake",
     "dockerls",
-    "tsserver",
+    "ts_ls",
     "vimls",
     "bashls",
     "kotlin_language_server",
