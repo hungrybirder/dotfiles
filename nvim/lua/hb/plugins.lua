@@ -1449,6 +1449,7 @@ require("lazy").setup({
     { "mfussenegger/nvim-jdtls" },
 
     -- markdown
+    { "qadzek/link.vim" },
     {
         "MeanderingProgrammer/markdown.nvim",
         dependencies = { "nvim-treesitter/nvim-treesitter" },
