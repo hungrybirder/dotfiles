@@ -248,14 +248,23 @@ lspconfig.yamlls.setup({
     on_attach = lsp_on_attach,
     flags = lsp_flags,
     capabilities = capabilities,
-    -- TODO: schemas
-    -- settings = {
-    --     yaml = {
-    --         schemas = {
-    --             ["https://raw.githubusercontent.com/instrumenta/kubernetes-json-schema/master/v1.18.0-standalone-strict/all.json"] = "/*.k8s.yaml",
-    --         },
-    --     },
-    -- },
+    settings = {
+        yaml = {
+            hover = true,
+            format = {
+                enable = true,
+                singleQuote = true,
+            },
+            completion = true,
+            validate = true,
+            schemas = {
+                'https://raw.githubusercontent.com/awslabs/goformation/v4.18.2/schema/cloudformation.schema.json: "/*"',
+            },
+            schemaStore = {
+                enable = true,
+            },
+        },
+    },
 })
 
 -- https://github.com/jose-elias-alvarez/null-ls.nvim/issues/428
