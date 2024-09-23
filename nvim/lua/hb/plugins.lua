@@ -287,6 +287,7 @@ require("lazy").setup({
     --         { "EdenEast/nightfox.nvim" },
     --     },
     -- },
+    { "danwlker/primeppuccin", priority = 1000 },
     { "EdenEast/nightfox.nvim" },
     {
         "folke/tokyonight.nvim",
