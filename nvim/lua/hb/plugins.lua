@@ -126,6 +126,7 @@ require("lazy").setup({
             vim.g.rooter_resolve_links = 1
         end,
     },
+    { "yorumicolors/yorumi.nvim" },
     { "jamessan/vim-gnupg" },
     -- buffer line at the top of window
     {
