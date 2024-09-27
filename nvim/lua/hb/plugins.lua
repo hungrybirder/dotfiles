@@ -126,7 +126,6 @@ require("lazy").setup({
             vim.g.rooter_resolve_links = 1
         end,
     },
-    { "yorumicolors/yorumi.nvim" },
     { "jamessan/vim-gnupg" },
     -- buffer line at the top of window
     {
@@ -288,7 +287,6 @@ require("lazy").setup({
     --         { "EdenEast/nightfox.nvim" },
     --     },
     -- },
-    { "danwlker/primeppuccin", priority = 1000 },
     { "EdenEast/nightfox.nvim" },
     {
         "folke/tokyonight.nvim",
