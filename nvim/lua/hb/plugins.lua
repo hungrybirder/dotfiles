@@ -1351,6 +1351,17 @@ require("lazy").setup({
     -- },
 
     -- dev languages
+    {
+        "hat0uma/prelive.nvim",
+        opts = {},
+        cmd = {
+            "PreLiveGo",
+            "PreLiveStatus",
+            "PreLiveClose",
+            "PreLiveCloseAll",
+            "PreLiveLog",
+        },
+    },
     -- for js/ts dev
     {
         "barrett-ruth/live-server.nvim",
