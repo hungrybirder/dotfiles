@@ -1484,8 +1484,9 @@ require("lazy").setup({
         ft = { "markdown" },
     },
     {
-        -- https://github.com/iamcco/markdown-preview.nvim/issues/354
         "iamcco/markdown-preview.nvim",
+        cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+        ft = { "markdown" },
         build = function()
             vim.fn["mkdp#util#install"]()
         end,
@@ -1497,8 +1498,6 @@ require("lazy").setup({
             vim.g.mkdp_theme = "light"
             vim.g.vim_markdown_math = true
         end,
-        ft = { "markdown" },
-        cmd = "MarkdownPreview",
     },
     { "iamcco/mathjax-support-for-mkdp" },
     -- MacOS: brew install glow
