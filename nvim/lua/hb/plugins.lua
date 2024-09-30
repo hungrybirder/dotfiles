@@ -21,6 +21,14 @@ local lazy_options = {
     diff = {
         cmd = "diffview.nvim",
     },
+    checker = {
+        enabled = true,
+        notify = false,
+    },
+    change_detection = {
+        enabled = true,
+        notify = false,
+    },
 }
 
 vim.keymap.set("n", "<leader>pu", "<cmd>Lazy sync<CR>")
