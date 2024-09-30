@@ -671,6 +671,18 @@ require("lazy").setup({
             --     ignore_empty_message = true,
         },
     },
+    -- IncRename
+    {
+        "smjonas/inc-rename.nvim",
+        config = function()
+            require("inc_rename").setup({
+                input_buffer_type = "dressing",
+            })
+        end,
+        keys = {
+            { "<leader>rn", ":IncRename " },
+        },
+    },
     {
         "felpafel/inlay-hint.nvim",
         event = "LspAttach",
