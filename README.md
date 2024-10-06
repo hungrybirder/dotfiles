@@ -9,6 +9,8 @@ And use it carefully ❗❗❗
 ## Neovim version manager
 
 [Bob](https://github.com/MordechaiHadad/bob)
+
 ```bash
 brew install bob
 ```
+

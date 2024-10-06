@@ -1496,7 +1496,7 @@ require("lazy").setup({
     --     dependencies = "nvim-treesitter/nvim-treesitter",
     --     opts = {},
     -- },
-    { "mzlogin/vim-markdown-toc" },
+    -- { "mzlogin/vim-markdown-toc" },
     {
         "preservim/vim-markdown",
         dependencies = { "godlygeek/tabular" },
@@ -1532,7 +1532,7 @@ require("lazy").setup({
         end,
     },
 
-    { "mmarchini/bpftrace.vim" },
+    -- { "mmarchini/bpftrace.vim" },
 
     -- debugger
     -- use("sebdah/vim-delve")
