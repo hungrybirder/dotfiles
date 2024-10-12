@@ -59,6 +59,8 @@ return {
                     package_pending = "➜",
                     package_uninstalled = "✗",
                 },
+                width = 1.0,
+                height = 1.0,
             },
             registries = {
                 "github:nvim-java/mason-registry",
