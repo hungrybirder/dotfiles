@@ -28,6 +28,9 @@ return {
         dependencies = {
             "nvim-lua/plenary.nvim",
             { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+
+            -- for Telescope lsp_document_symbols keymap
+            { "stevearc/aerial.nvim", opts = {} },
         },
         keys = {
             {
