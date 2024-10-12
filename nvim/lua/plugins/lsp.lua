@@ -25,6 +25,7 @@ return {
                 "clangd",
                 "cmake-language-server",
                 "dockerfile-language-server",
+                "json-lsp",
 
                 -- DAP
                 "codelldb",
