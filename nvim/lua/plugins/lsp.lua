@@ -834,12 +834,12 @@ return {
     },
 
     -- linters
-    -- { "mfussenegger/nvim-lint" },
-    -- 2024-10-08T17:53:34 LazyVim  WARN `conform.nvim` and `nvim-lint` are now the default formatters and linters in LazyVim.
-    --
-    -- You can use those plugins together with `none-ls.nvim`,
-    -- but you need to enable the `lazyvim.plugins.extras.lsp.none-ls` extra,
-    -- for formatting to work correctly.
-    --
-    -- In case you no longer want to use `none-ls.nvim`, just remove the spec from your config.
+    {
+        "mfussenegger/nvim-lint",
+        opts = {
+            linters_by_ft = {
+                go = { "golangcilint" },
+            },
+        },
+    },
 }
