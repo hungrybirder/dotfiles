@@ -21,10 +21,6 @@ vim.keymap.set("n", "<leader>pu", "<cmd>Lazy sync<CR>", { desc = "Lazy sync" })
 require("lazy").setup({
     spec = {
         -- add LazyVim and import its plugins
-        -- {
-        --     "LazyVim/LazyVim",
-        --     import = "lazyvim.plugins",
-        -- },
         {
             "LazyVim/LazyVim",
             import = "lazyvim.plugins",
