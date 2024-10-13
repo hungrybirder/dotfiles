@@ -38,5 +38,8 @@ require("lazy").setup({
     diff = {
         cmd = "diffview.nvim",
     },
+    colorscheme = function()
+        require("nightfox").load()
+    end,
     install = { colorscheme = { "nightfox" } },
 })
