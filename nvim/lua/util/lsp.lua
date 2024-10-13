@@ -88,7 +88,8 @@ function M.setup_lsp_handlers()
     -- Ref2: runtime/lua/vim/lsp/handlers.lua#L417
     -- 关注 neovim location_handler 的实现，避免错误使用 loclist
     local function my_location_handler(_, result, ctx, config)
-        lsp_util = require("vim.lsp.util")
+        local lsp_util = require("vim.lsp.util")
+        local lsp_log = require("vim.lsp.log")
         if result == nil or vim.tbl_isempty(result) then
             local _ = lsp_log.info() and lsp_log.info(ctx.method, "No location found")
             return nil
