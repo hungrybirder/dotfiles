@@ -16,6 +16,9 @@ return {
                     up_and_jump = "<up>",
                     down_and_jump = "<down>",
                 },
+                outline_window = {
+                    wrap = true,
+                },
             }
 
             for kind, symbol in pairs(defaults.symbols.icons) do
