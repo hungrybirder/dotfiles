@@ -258,33 +258,16 @@ return {
         end,
     },
 
-    -- {
-    --     "rhysd/clever-f.vim",
-    --     keys = {
-    --         { ";", "<Plug>(clever-f-repeat-forward)" },
-    --         { ",", "<Plug>(clever-f-repeat-back)" },
-    --     },
-    -- },
-
     {
-        "folke/flash.nvim",
-        event = "VeryLazy",
-        ---@type Flash.Config
-        opts = {
-            modes = {
-                char = {
-                    jump_labels = true,
-                },
-            },
-        },
-        -- stylua: ignore
-        keys = {
-            { "<leader>s", mode = { "n", "x", "o" }, function() require("flash").jump() end,              desc = "Flash" },
-            { "<leader>S", mode = { "n", "x", "o" }, function() require("flash").treesitter() end,        desc = "Flash Treesitter" },
-            { "r",         mode = "o",               function() require("flash").remote() end,            desc = "Remote Flash" },
-            { "R",         mode = { "o", "x" },      function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
-            { "<c-s>",     mode = { "c" },           function() require("flash").toggle() end,            desc = "Toggle Flash Search" },
-        },
+        "rhysd/clever-f.vim",
+        config = function()
+            vim.keymap.set("n", ";", "<Plug>(clever-f-repeat-forward)")
+            vim.keymap.set("n", ",", "<Plug>(clever-f-repeat-back)")
+        end,
+        -- keys = {
+        --     { ";", "<Plug>(clever-f-repeat-forward)" },
+        --     { ",", "<Plug>(clever-f-repeat-back)" },
+        -- },
     },
 
     {
@@ -555,7 +538,7 @@ return {
     {
         "NvChad/nvim-colorizer.lua",
         config = function()
-            require("colorizer").setup()
+            require("colorizer").setup({})
         end,
     },
 
