@@ -258,18 +258,33 @@ return {
         end,
     },
 
+    -- {
+    --     "rhysd/clever-f.vim",
+    --     config = function()
+    --         vim.keymap.set({ "n", "v" }, ";", "<Plug>(clever-f-repeat-forward)", { desc = "clever-f forward" })
+    --         vim.keymap.set({ "n", "v" }, ",", "<Plug>(clever-f-repeat-back)", { desc = "clever-f back" })
+    --     end,
+    -- },
     {
-        "rhysd/clever-f.vim",
+        "folke/flash.nvim",
+        event = "VeryLazy",
+        vscode = true,
+        -- stylua: ignore
+        keys = {
+            { ",s", mode = { "n", "x", "o" }, function() require("flash").jump() end,              desc = "Flash" },
+            { ";s", mode = { "n", "o", "x" }, function() require("flash").treesitter() end,        desc = "Flash Treesitter" },
+            { "r",         mode = "o",               function() require("flash").remote() end,            desc = "Remote Flash" },
+            { "R",         mode = { "o", "x" },      function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
+            { "<c-s>",     mode = { "c" },           function() require("flash").toggle() end,            desc = "Toggle Flash Search" },
+        },
+        dependencies = {
+            { "svermeulen/vim-subversive" },
+        },
         config = function()
-            vim.keymap.set({ "n", "v" }, ";", "<Plug>(clever-f-repeat-forward)", { desc = "clever-f forward" })
-            vim.keymap.set({ "n", "v" }, ",", "<Plug>(clever-f-repeat-back)", { desc = "clever-f back" })
-        end,
-    },
+            vim.keymap.del({ "n", "x", "o" }, "s")
+            vim.keymap.del({ "n", "x", "o" }, "S")
 
-    {
-        "svermeulen/vim-subversive",
-        config = function()
-            -- s for substitue
+            -- for vim-subversive
             vim.keymap.set("n", "s", "<plug>(SubversiveSubstitute)", { noremap = true, silent = true })
             vim.keymap.set("n", "ss", "<plug>(SubversiveSubstituteLine)", { noremap = true, silent = true })
             vim.keymap.set("n", "S", "<plug>(SubversiveSubstituteToEndOfLine)", { noremap = true, silent = true })
