@@ -29,6 +29,11 @@ return {
                 "typescript",
                 "vim",
                 "vimdoc",
+                "git_config",
+                "gitignore",
+                "gitattributes",
+                "gitcommit",
+                "git_rebase",
             },
             indent = { enable = false },
             highlight = {
