@@ -1,3 +1,5 @@
+local bubbly_colors = require("util.color").bubbly_colors
+
 -- min window width
 local function min_window_width(width)
     return function()
@@ -80,31 +82,45 @@ return {
                         {
                             "branch",
                             cond = min_window_width(120),
+                            color = { fg = bubbly_colors.cyan },
                         },
                         {
                             "diff",
                             diff_color = {
                                 added = {
+                                    fg = bubbly_colors.green,
+                                    bg = bubbly_colors.bg,
                                     gui = "bold",
                                 },
                                 modified = {
+                                    fg = bubbly_colors.yellow,
+                                    bg = bubbly_colors.bg,
                                     gui = "bold",
                                 },
                                 removed = {
+                                    fg = bubbly_colors.red,
+                                    bg = bubbly_colors.bg,
                                     gui = "bold",
                                 },
                             },
                         },
+                        { "diagnostics", sources = { "nvim_diagnostic" } },
                     },
                     lualine_c = {
-                        { "diagnostics", sources = { "nvim_diagnostic" } },
                         {
                             "aerial",
-                            cond = min_window_width(40),
-                            color = {
-                                gui = "bold",
-                                -- fg = colors.blue
-                            },
+                            depth = -1,
+
+                            -- When 'dense' mode is on, icons are not rendered near their symbols. Only
+                            -- a single icon that represents the kind of current symbol is rendered at
+                            -- the beginning of status line.
+                            dense = true,
+
+                            -- The separator to be used to separate symbols in dense mode.
+                            dense_sep = ".",
+
+                            -- Color the symbol icons.
+                            colored = true,
                         },
                     },
                     lualine_x = {},
@@ -124,6 +140,7 @@ return {
                             "filetype",
                             icon_only = true,
                             left_padding = 2,
+                            color = { bg = bubbly_colors.bg },
                         },
                     },
                 },
