@@ -261,13 +261,9 @@ return {
     {
         "rhysd/clever-f.vim",
         config = function()
-            vim.keymap.set("n", ";", "<Plug>(clever-f-repeat-forward)")
-            vim.keymap.set("n", ",", "<Plug>(clever-f-repeat-back)")
+            vim.keymap.set({ "n", "v" }, ";", "<Plug>(clever-f-repeat-forward)", { desc = "clever-f forward" })
+            vim.keymap.set({ "n", "v" }, ",", "<Plug>(clever-f-repeat-back)", { desc = "clever-f back" })
         end,
-        -- keys = {
-        --     { ";", "<Plug>(clever-f-repeat-forward)" },
-        --     { ",", "<Plug>(clever-f-repeat-back)" },
-        -- },
     },
 
     {
