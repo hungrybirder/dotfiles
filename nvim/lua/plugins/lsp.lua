@@ -543,7 +543,21 @@ return {
                     settings = opts.settings,
                     capabilities = LazyVim.has("cmp-nvim-lsp") and require("cmp_nvim_lsp").default_capabilities()
                         or nil,
-                    on_attach = lsp_on_attach,
+                    -- on_attach = lsp_on_attach,
+                    on_attach = function(client, bufnr)
+                        lsp_on_attach(client, bufnr)
+                        -- code lens
+                        -- init call
+                        vim.lsp.codelens.refresh()
+                        vim.api.nvim_create_augroup("java_codelens", { clear = true })
+                        vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+                            group = "java_codelens",
+                            pattern = { "*.java" },
+                            callback = function()
+                                vim.lsp.codelens.refresh()
+                            end,
+                        })
+                    end,
                 }, opts.jdtls)
 
                 -- Existing server will be reused if the root_dir matches.
