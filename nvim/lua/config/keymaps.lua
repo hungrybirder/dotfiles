@@ -1,9 +1,8 @@
 vim.keymap.set("n", "<leader>ev", "<cmd>e $MYVIMRC<CR>")
 vim.keymap.set("n", "<leader>sv", "<cmd>so $MYVIMRC<CR>")
 
--- Best remap by ThePrimeagen
--- greatest remap ever
-vim.keymap.set("v", "<leader>p", '"_dP')
+vim.keymap.set("n", "C", '"_C', { noremap = true })
+vim.keymap.set("n", "D", '"_D', { noremap = true })
 
 vim.keymap.set("v", "<", "<gv")
 vim.keymap.set("v", ">", ">gv")
@@ -15,10 +14,13 @@ vim.keymap.set("v", ">", ">gv")
 vim.keymap.set("i", "<C-e>", "<C-o>$")
 vim.keymap.set("i", "<C-a>", "<C-o>0")
 
+-- Best remap by ThePrimeagen
+-- greatest remap ever
+vim.keymap.set("v", "<leader>p", '"_dP')
+
 -- next greatest remap ever : asbjornHaland
-vim.keymap.set("n", "<leader>y", '"+y')
-vim.keymap.set("v", "<leader>y", '"+y')
-vim.keymap.set("n", "<leader>Y", 'gg"+yG')
+vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
+vim.keymap.set("n", "<leader>Y", [[gg"+yG]])
 
 -- Behave Vim
 vim.keymap.set("n", "Y", "y$")
@@ -40,7 +42,7 @@ vim.keymap.set("n", "<C-c>", "<esc>")
 -- Q: Closes the window
 -- remap("n", "Q", "<cmd>q<CR>", opts)
 vim.keymap.set("n", "Q", "<cmd>q<CR>")
--- close all windows
+-- Close all windows
 vim.keymap.set("n", "<leader>Q", "<cmd>qa!<CR>")
 
 -- Undo break points
