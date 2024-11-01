@@ -18,7 +18,9 @@ return {
                 "buf-language-server",
                 "lua-language-server",
                 "yaml-language-server",
+                "tailwindcss-language-server",
                 "typescript-language-server",
+                "css-lsp",
                 "html-lsp",
                 "jdtls",
                 "lombok-nightly",
@@ -40,6 +42,7 @@ return {
                 "buf",
                 "golangci-lint",
                 "luacheck",
+                "selene", -- lua linter
                 "pylint",
                 "ruff",
                 "shellcheck",
@@ -254,16 +257,17 @@ return {
             })
 
             local servers = {
-                "html",
                 "cmake",
                 "dockerls",
-                "ts_ls",
                 "vimls",
                 "bashls",
                 "kotlin_language_server",
                 "texlab",
                 "bufls",
                 "ansiblels",
+                "html",
+                "tailwindcss",
+                "cssls",
             }
 
             for _, name in pairs(servers) do
@@ -272,6 +276,35 @@ return {
                     capabilities = make_lsp_client_capabilities(),
                 })
             end
+            lspconfig.ts_ls.setup({
+                on_attach = lsp_on_attach,
+                capabilities = make_lsp_client_capabilities(),
+                single_file_support = false,
+                settings = {
+                    typescript = {
+                        inlayHints = {
+                            includeInlayParameterNameHints = "literal",
+                            includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+                            includeInlayFunctionParameterTypeHints = true,
+                            includeInlayVariableTypeHints = false,
+                            includeInlayPropertyDeclarationTypeHints = true,
+                            includeInlayFunctionLikeReturnTypeHints = true,
+                            includeInlayEnumMemberValueHints = true,
+                        },
+                    },
+                    javascript = {
+                        inlayHints = {
+                            includeInlayParameterNameHints = "all",
+                            includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+                            includeInlayFunctionParameterTypeHints = true,
+                            includeInlayVariableTypeHints = true,
+                            includeInlayPropertyDeclarationTypeHints = true,
+                            includeInlayFunctionLikeReturnTypeHints = true,
+                            includeInlayEnumMemberValueHints = true,
+                        },
+                    },
+                },
+            })
 
             -- vue
             lspconfig.vuels.setup({
@@ -736,6 +769,7 @@ return {
         opts = {
             linters_by_ft = {
                 go = { "golangcilint" },
+                lua = { "selene" },
             },
         },
     },
