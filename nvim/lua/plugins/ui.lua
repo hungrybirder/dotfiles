@@ -34,7 +34,8 @@ end
 
 return {
     {
-        "glepnir/dashboard-nvim",
+        "nvimdev/dashboard-nvim",
+        lazy = false,
         event = "VimEnter",
         config = function()
             require("dashboard").setup({
