@@ -753,14 +753,14 @@ return {
     {
         "stevearc/conform.nvim",
         opts = {
-            formatter_by_ft = {
+            formatters_by_ft = {
                 lua = { "stylua" },
                 markdown = { "remark" },
                 bash = { "shfmt" },
                 go = { "goimports", "gofumpt" },
             },
         },
-        event = { "BufReadPre", "BufNewFile" },
+        event = { "BufWritePre" },
     },
 
     -- linters
