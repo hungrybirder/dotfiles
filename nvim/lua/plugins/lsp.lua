@@ -47,6 +47,7 @@ return {
                 "ruff",
                 "shellcheck",
                 "staticcheck",
+                -- "vale", -- for markdown, https://vale.sh
 
                 -- Formater
                 "clang-format",
