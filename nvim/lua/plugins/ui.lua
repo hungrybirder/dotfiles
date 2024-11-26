@@ -36,13 +36,12 @@ return {
     {
         "nvimdev/dashboard-nvim",
         lazy = false,
-        event = "VimEnter",
-        config = function()
-            require("dashboard").setup({
+        opts = function()
+            local opts = {
                 theme = "hyper",
-            })
+            }
+            return opts
         end,
-        dependencies = { { "nvim-tree/nvim-web-devicons" } },
     },
 
     -- free writing
