@@ -264,7 +264,7 @@ return {
                 "bashls",
                 "kotlin_language_server",
                 "texlab",
-                "bufls",
+                "buf_ls",
                 "ansiblels",
                 "html",
                 "tailwindcss",
