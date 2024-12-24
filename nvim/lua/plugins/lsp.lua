@@ -83,17 +83,17 @@ return {
     },
 
     -- IncRename
-    {
-        "smjonas/inc-rename.nvim",
-        config = function()
-            require("inc_rename").setup({
-                input_buffer_type = "dressing",
-            })
-        end,
-        keys = {
-            { "<leader>rn", ":IncRename " },
-        },
-    },
+    -- {
+    --     "smjonas/inc-rename.nvim",
+    --     config = function()
+    --         require("inc_rename").setup({
+    --             input_buffer_type = "dressing",
+    --         })
+    --     end,
+    --     keys = {
+    --         { "<leader>rn", ":IncRename " },
+    --     },
+    -- },
     {
         "felpafel/inlay-hint.nvim",
         event = "LspAttach",
