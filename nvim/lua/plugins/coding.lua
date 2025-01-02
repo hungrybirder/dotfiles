@@ -393,7 +393,7 @@ return {
             vim.g.vim_markdown_math = true
         end,
         keys = {
-            { "<leader>md", "<cmd>MarkdownPreview<CR>" },
+            { "<leader>pm", "<cmd>MarkdownPreview<CR>" },
         },
         ft = { "markdown" },
     },
