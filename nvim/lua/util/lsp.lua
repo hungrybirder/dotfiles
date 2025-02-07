@@ -31,7 +31,11 @@ function M.setup_lsp_hightlight_autocmd(bufnr)
 end
 
 function M.lsp_on_attach(client, bufnr)
-    require("lspkind").init()
+    require("lspkind").init({
+        symbol_map = {
+            Supermaven = "",
+        },
+    })
     if client.server_capabilities.documentHighlightProvider then
         M.setup_lsp_hightlight_autocmd(bufnr)
     end

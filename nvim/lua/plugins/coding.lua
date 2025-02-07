@@ -62,6 +62,12 @@ return {
 
     -- auto completion
     {
+        "supermaven-inc/supermaven-nvim",
+        config = function()
+            require("supermaven-nvim").setup({})
+        end,
+    },
+    {
         "hrsh7th/nvim-cmp",
         dependencies = {
             {
@@ -116,6 +122,7 @@ return {
                     end,
                 },
                 sources = cmp.config.sources({
+                    { name = "supermaven" },
                     {
                         name = "luasnip",
                         option = { use_show_condition = true },
