@@ -64,7 +64,13 @@ return {
     {
         "supermaven-inc/supermaven-nvim",
         config = function()
-            require("supermaven-nvim").setup({})
+            require("supermaven-nvim").setup({
+                keymaps = {
+                    accept_suggestion = "<C-l>",
+                    clear_suggestion = "<C-k>",
+                    accept_word = "<C-j>",
+                },
+            })
         end,
     },
     {
@@ -120,6 +126,18 @@ return {
                     expand = function(args)
                         luasnip.lsp_expand(args.body)
                     end,
+                    -- expand = function(fallback)
+                    --     local luasnip = require("luasnip")
+                    --     local suggestion = require("supermaven-nvim.completion_preview")
+                    --
+                    --     if luasnip.expandable() then
+                    --         luasnip.expand()
+                    --     elseif suggestion.has_suggestion() then
+                    --         suggestion.on_accept_suggestion()
+                    --     else
+                    --         fallback()
+                    --     end
+                    -- end,
                 },
                 sources = cmp.config.sources({
                     { name = "supermaven" },
