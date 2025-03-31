@@ -771,6 +771,7 @@ return {
             linters_by_ft = {
                 go = { "golangcilint" },
                 lua = { "selene" },
+                yaml = { "yamllint" },
             },
         },
     },
