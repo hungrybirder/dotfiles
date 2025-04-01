@@ -15,7 +15,6 @@ return {
                 "gopls",
                 "vim-language-server",
                 "bash-language-server",
-                "buf-language-server",
                 "lua-language-server",
                 "yaml-language-server",
                 "tailwindcss-language-server",
@@ -39,7 +38,7 @@ return {
 
                 -- Linter
                 "ansible-lint",
-                "buf",
+                "buf", -- linter, formatter, LSP
                 "golangci-lint",
                 "luacheck",
                 "selene", -- lua linter
