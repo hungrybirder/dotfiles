@@ -71,10 +71,22 @@ vim.keymap.set("n", "<M-l>", ":vertical resize -2<CR>")
 vim.keymap.set("i", "jk", "<esc>")
 
 -- Move to window
-vim.keymap.set("n", "<c-h>", "<cmd>wincmd h<CR>")
-vim.keymap.set("n", "<c-j>", "<cmd>wincmd j<CR>")
-vim.keymap.set("n", "<c-k>", "<cmd>wincmd k<CR>")
-vim.keymap.set("n", "<c-l>", "<cmd>wincmd l<CR>")
+vim.keymap.set("n", "<c-h>", "<cmd>wincmd h<CR>", { desc = "Move to Left Split" })
+vim.keymap.set("n", "<c-l>", "<cmd>wincmd l<CR>", { desc = "Move to Right Split" })
+vim.keymap.set("n", "<c-k>", "<cmd>wincmd k<CR>", { desc = "Move to Up Split" })
+vim.keymap.set("n", "<c-j>", "<cmd>wincmd j<CR>", { desc = "Move to Down Split" })
+vim.keymap.set("n", "s<Left>", "<c-w>h", { desc = "Move to Left Split" })
+vim.keymap.set("n", "s<Right>", "<cmd>wincmd l<CR>", { desc = "Move to Right Split" })
+vim.keymap.set("n", "s<Up>", "<cmd>wincmd k<CR>", { desc = "Move to Up Split" })
+vim.keymap.set("n", "s<Down>", "<cmd>wincmd j<CR>", { desc = "Move to Down Split" })
+
+-- Split window
+vim.keymap.set("n", "|", "<cmd>vsp<CR>")
+vim.keymap.set("n", "sv", "<cmd>vsp<CR>")
+vim.keymap.set("n", "sh", "<cmd>sp<CR>")
+vim.keymap.set("n", "sc", "<c-w>c")
+vim.keymap.set("n", "so", "<c-w>o")
+
 --
 -- ctrl_e ctrl_y 3 lines
 vim.keymap.set("n", "<c-e>", "3<c-e>")
