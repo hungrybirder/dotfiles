@@ -81,11 +81,11 @@ vim.keymap.set("n", "s<Up>", "<cmd>wincmd k<CR>", { desc = "Move to Up Split" })
 vim.keymap.set("n", "s<Down>", "<cmd>wincmd j<CR>", { desc = "Move to Down Split" })
 
 -- Split window
-vim.keymap.set("n", "|", "<cmd>vsp<CR>")
-vim.keymap.set("n", "sv", "<cmd>vsp<CR>")
-vim.keymap.set("n", "sh", "<cmd>sp<CR>")
-vim.keymap.set("n", "sc", "<c-w>c")
-vim.keymap.set("n", "so", "<c-w>o")
+vim.keymap.set("n", "|", "<cmd>vsp<CR>", { desc = "Vertical Split" })
+vim.keymap.set("n", "sv", "<cmd>vsp<CR>", { desc = "Vertical Split" })
+vim.keymap.set("n", "sh", "<cmd>sp<CR>", { desc = "Horizontal Split" })
+vim.keymap.set("n", "sc", "<c-w>c", { desc = "Close Current Split" })
+vim.keymap.set("n", "so", "<c-w>o", { desc = "Close Other Split" })
 
 --
 -- ctrl_e ctrl_y 3 lines
