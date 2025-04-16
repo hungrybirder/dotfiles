@@ -312,9 +312,6 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
 [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
-# for bob, nvim multi-version manager
-export PATH="${HOME}/.local/share/bob/nvim-bin:$PATH"
-
 # pnpm
 export PNPM_HOME="$HOME/Library/pnpm"
 case ":$PATH:" in
@@ -329,3 +326,7 @@ test -e /Users/liyong/.iterm2_shell_integration.zsh && source /Users/liyong/.ite
 if [[ -d "$HOME/.iterm2" ]]; then
   export PATH="$HOME/.iterm2:$PATH"
 fi 
+
+# for bob, nvim multi-version manager
+export PATH="${HOME}/.local/share/bob/nvim-bin:$PATH"
+
