@@ -62,7 +62,7 @@ antigen bundle golang
 antigen bundle z
 # antigen bundle thefuck
 # https://github.com/python-poetry/poetry#enable-tab-completion-for-bash-fish-or-zsh
-antigen bundle darvid/zsh-poetry
+# antigen bundle darvid/zsh-poetry
 # antigen bundle kubectl # TODO
 antigen bundle httpie
 antigen bundle python
