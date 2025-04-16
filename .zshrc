@@ -328,5 +328,5 @@ if [[ -d "$HOME/.iterm2" ]]; then
 fi 
 
 # for bob, nvim multi-version manager
-export PATH="${HOME}/.local/share/bob/nvim-bin:$PATH"
+# export PATH="${HOME}/.local/share/bob/nvim-bin:$PATH"
 
