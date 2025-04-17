@@ -619,6 +619,9 @@ return {
                     --         { key = "<C-e>", action = "" }, -- disable edit_in_place
                     --     },
                     -- },
+                    -- float = {
+                    --     enable = true,
+                    -- },
                 },
                 filters = {
                     dotfiles = false,
@@ -627,6 +630,7 @@ return {
                 },
                 renderer = {
                     highlight_opened_files = "all",
+                    group_empty = true,
                 },
             })
         end,
