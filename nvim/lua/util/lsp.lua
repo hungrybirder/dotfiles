@@ -60,8 +60,6 @@ end
 function M.setup_lsp_keymaps(_, bufnr)
     vim.api.nvim_set_option_value("omnifunc", "v:lua.vim.lsp.omnifunc", { buf = bufnr })
 
-    local opts = { noremap = true, silent = true, buffer = bufnr }
-
     vim.keymap.set("n", "<space>e", vim.diagnostic.open_float, {
         noremap = true,
         silent = true,
