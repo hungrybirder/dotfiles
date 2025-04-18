@@ -108,9 +108,6 @@ return {
         dependencies = {
             "hrsh7th/cmp-nvim-lsp",
         },
-        init = function()
-            setup_lsp_handlers()
-        end,
         config = function()
             -- setup all lsp servers
             local lspconfig = require("lspconfig")

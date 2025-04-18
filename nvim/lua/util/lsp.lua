@@ -57,129 +57,157 @@ function M.make_lsp_client_capabilities()
     return capabilities
 end
 
--- 设置 lsp handlers
--- 使用 loclist 不使用 quickfix
-function M.setup_lsp_handlers()
-    local on_publish_diagnostics = vim.lsp.handlers["textDocument/publishDiagnostics"]
-    vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(on_publish_diagnostics, {
-        underline = false,
-        -- virtual_text = true,
-        virtual_text = false,
-        signs = true,
-        update_in_insert = false,
-    })
-
-    local on_references = vim.lsp.handlers["textDocument/references"]
-    vim.lsp.handlers["textDocument/references"] = vim.lsp.with(on_references, {
-        -- Use location list instead of quickfix list
-        loclist = true,
-    })
-    local on_document_symbol = vim.lsp.handlers["textDocument/documentSymbol"]
-    vim.lsp.handlers["textDocument/documentSymbol"] = vim.lsp.with(on_document_symbol, {
-        loclist = true,
-    })
-    local on_workspace_symbol = vim.lsp.handlers["workspace/symbol"]
-    vim.lsp.handlers["workspace/symbol"] = vim.lsp.with(on_workspace_symbol, {
-        loclist = true,
-    })
-
-    -- Ref1: Copy From https://github.com/neovim/neovim/pull/17339/files
-    -- Ref2: runtime/lua/vim/lsp/handlers.lua#L417
-    -- 关注 neovim location_handler 的实现，避免错误使用 loclist
-    local function my_location_handler(_, result, ctx, config)
-        local lsp_util = require("vim.lsp.util")
-        local lsp_log = require("vim.lsp.log")
-        if result == nil or vim.tbl_isempty(result) then
-            local _ = lsp_log.info() and lsp_log.info(ctx.method, "No location found")
-            return nil
-        end
-        local client = assert(vim.lsp.get_client_by_id(ctx.client_id))
-
-        if #result == 1 then
-            lsp_util.jump_to_location(result[1], client.offset_encoding, config.reuse_win)
-        else
-            config = config or {}
-            local title = "LSP locations"
-            local items = lsp_util.locations_to_items(result, client.offset_encoding)
-            if config.loclist then
-                vim.fn.setloclist(0, {}, " ", {
-                    title = title,
-                    items = items,
-                })
-                vim.api.nvim_command("botright lopen")
-            elseif config.on_list then
-                assert(type(config.on_list) == "function", "on_list is not a function")
-                config.on_list({ title = title, items = items })
-            else
-                vim.fn.setqflist({}, " ", {
-                    title = title,
-                    items = items,
-                })
-                vim.api.nvim_command("botright copen")
-            end
-        end
-    end
-
-    vim.lsp.handlers["textDocument/declaration"] = vim.lsp.with(my_location_handler, {
-        loclist = true,
-    })
-    vim.lsp.handlers["textDocument/definition"] = vim.lsp.with(my_location_handler, {
-        loclist = true,
-    })
-    vim.lsp.handlers["textDocument/typeDefinition"] = vim.lsp.with(my_location_handler, {
-        loclist = true,
-    })
-    vim.lsp.handlers["textDocument/implementation"] = vim.lsp.with(my_location_handler, {
-        loclist = true,
-    })
-end
-
 function M.setup_lsp_keymaps(_, bufnr)
     vim.api.nvim_set_option_value("omnifunc", "v:lua.vim.lsp.omnifunc", { buf = bufnr })
 
-    local opts = { noremap = true, silent = true }
-    vim.keymap.set("n", "<space>e", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
-    vim.keymap.set("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
-    vim.keymap.set("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
-    -- vim.keymap.set("n", "[d", "<cmd>Lspsaga diagnostic_jump_prev<CR>", opts)
-    -- vim.keymap.set("n", "]d", "<cmd>Lspsaga diagnostic_jump_next<CR>", opts)
+    local opts = { noremap = true, silent = true, buffer = bufnr }
 
-    local bufopts = { noremap = true, silent = true, buffer = bufnr }
-    vim.keymap.set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", bufopts)
-    vim.keymap.set("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", bufopts)
-    -- vim.keymap.set("n", "gd", "<cmd>Lspsaga goto_definition<CR>", bufopts)
-    -- vim.keymap.set("n", "gD", "<cmd>Lspsaga goto_type_definition<CR>", bufopts)
+    vim.keymap.set("n", "<space>e", vim.diagnostic.open_float, {
+        noremap = true,
+        silent = true,
+        buffer = bufnr,
+        desc = "Open Diagnostic Float Window",
+    })
 
-    vim.keymap.set("n", "vgd", ":vsplit | wincmd h | lua vim.lsp.buf.definition()<CR>", bufopts)
-    vim.keymap.set("n", "sgd", ":split | wincmd k | lua vim.lsp.buf.definition()<CR>", bufopts)
-    -- vim.keymap.set("n", "vgd", ":vsplit | wincmd h | Lspsaga goto_definition<CR>", bufopts)
-    -- vim.keymap.set("n", "sgd", ":split | wincmd k | Lspsaga goto_type_definition<CR>", bufopts)
+    vim.keymap.set("n", "gl", vim.diagnostic.setloclist, {
+        noremap = true,
+        silent = true,
+        buffer = bufnr,
+        desc = "Set Diagnostic Loclist",
+    })
+    --
+    vim.keymap.set("n", "gd", function()
+        vim.lsp.buf.definition({
+            loclist = true,
+        })
+    end, {
+        noremap = true,
+        silent = true,
+        buffer = bufnr,
+        desc = "Goto Definition",
+    })
 
-    vim.keymap.set("n", "<leader>i", "<cmd>lua vim.lsp.buf.implementation()<CR>", bufopts)
-    vim.keymap.set("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", bufopts)
-    vim.keymap.set("n", "gl", "<cmd>lua vim.diagnostic.set_loclist()<CR>", bufopts)
-    vim.keymap.set("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", bufopts)
-    -- vim.keymap.set("n", "<leader>ca", "<cmd>Lspsaga code_action<CR>", bufopts)
-    vim.keymap.set({ "n", "v" }, "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", bufopts)
-    vim.keymap.set({ "n", "v" }, "<leader>cl", "<cmd>lua vim.lsp.codelens.run()<CR>", bufopts)
-    vim.keymap.set("n", "<leader>cr", "<cmd>lua vim.lsp.codelens.refresh()<CR>", bufopts)
-    -- vim.keymap.set("n", "K", "<Cmd>lua vim.lsp.buf.hover()<CR>", opts)
-    vim.keymap.set("n", "K", "<cmd>lua require('util.lsp').show_documentation()<CR>", bufopts)
-    -- vim.keymap.set("n", "<leader>h", "<cmd>Lspsaga peek_definition<CR>", bufopts)
-    -- vim.keymap.set("n", "gs", "<cmd>Lspsaga signature_help<CR>", bufopts)
+    vim.keymap.set("n", "gD", function()
+        vim.lsp.buf.declaration({ loclist = true })
+    end, {
+        noremap = true,
+        silent = true,
+        buffer = bufnr,
+        desc = "Goto Declaration",
+    })
 
-    vim.keymap.set("n", "gic", "<cmd>lua vim.lsp.buf.incoming_calls()<CR>", bufopts)
-    vim.keymap.set("n", "goc", "<cmd>lua vim.lsp.buf.outgoing_calls()<CR>", bufopts)
-    -- vim.keymap.set("n", "gic", "<cmd>Lspsaga incoming_calls<CR>", bufopts)
-    -- vim.keymap.set("n", "goc", "<cmd>Lspsaga outgoing_calls<CR>", bufopts)
+    vim.keymap.set("n", "<leader>i", function()
+        vim.lsp.buf.implementation({ loclist = true })
+    end, {
+        noremap = true,
+        silent = true,
+        buffer = bufnr,
+        desc = "Goto Implementation",
+    })
 
-    -- vim.keymap.set("n", "<leader>wf", "<cmd>Lspsaga finder<CR>", bufopts)
+    vim.keymap.set("n", "gr", function()
+        vim.lsp.buf.references(nil, { loclist = true })
+    end, {
+        noremap = true,
+        silent = true,
+        buffer = bufnr,
+        desc = "Goto References",
+    })
 
-    vim.keymap.set("n", "<leader>f", "<cmd>lua vim.lsp.buf.format({ async = true})<CR>", bufopts)
+    vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, {
+        noremap = true,
+        silent = true,
+        buffer = bufnr,
+        desc = "Rename",
+    })
 
-    vim.keymap.set("n", "<leader>wa", "<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>", bufopts)
-    vim.keymap.set("n", "<leader>wr", "<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>", bufopts)
-    vim.keymap.set("n", "<leader>wl", "<cmd>lua vim.print(vim.lsp.buf.list_workspace_folders())<CR>", bufopts)
+    vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, {
+        noremap = true,
+        silent = true,
+        buffer = bufnr,
+        desc = "Code Action",
+    })
+
+    vim.keymap.set({ "n", "v" }, "<leader>cl", vim.lsp.codelens.run, {
+        noremap = true,
+        silent = true,
+        buffer = bufnr,
+        desc = "CodeLens Run",
+    })
+
+    vim.keymap.set("n", "<leader>cr", vim.lsp.codelens.refresh, {
+        noremap = true,
+        silent = true,
+        buffer = bufnr,
+        desc = "CodeLens Refresh",
+    })
+
+    vim.keymap.set("n", "K", "<cmd>lua require('util.lsp').show_documentation()<CR>", {
+        noremap = true,
+        silent = true,
+        buffer = bufnr,
+        desc = "Show Documentation",
+    })
+
+    vim.keymap.set("n", "gic", vim.lsp.buf.incoming_calls, {
+        noremap = true,
+        silent = true,
+        buffer = bufnr,
+        desc = "Incoming Calls",
+    })
+
+    vim.keymap.set("n", "goc", vim.lsp.buf.outgoing_calls, {
+        noremap = true,
+        silent = true,
+        buffer = bufnr,
+        desc = "Outgoing Calls",
+    })
+
+    vim.keymap.set("n", "<leader>f", function()
+        vim.lsp.buf.format({ async = true })
+    end, {
+        noremap = true,
+        silent = true,
+        buffer = bufnr,
+        desc = "Format",
+    })
+
+    vim.keymap.set("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, {
+        noremap = true,
+        silent = true,
+        buffer = bufnr,
+        desc = "Add Workspace Folder",
+    })
+
+    vim.keymap.set("n", "<leader>wr", vim.lsp.buf.remove_workspace_folder, {
+        noremap = true,
+        silent = true,
+        buffer = bufnr,
+        desc = "Remove Workspace Folder",
+    })
+
+    vim.keymap.set("n", "<leader>wl", function()
+        vim.print(vim.lsp.buf.list_workspace_folders())
+    end, {
+        noremap = true,
+        silent = true,
+        buffer = bufnr,
+        desc = "List Workspace Folders",
+    })
+
+    vim.keymap.set("n", "vgd", ":vsplit | wincmd h | lua vim.lsp.buf.definition()<CR>", {
+        noremap = true,
+        silent = true,
+        buffer = bufnr,
+        desc = "Vertical Split Goto Definition",
+    })
+
+    vim.keymap.set("n", "sgd", ":split | wincmd k | lua vim.lsp.buf.definition()<CR>", {
+        noremap = true,
+        silent = true,
+        buffer = bufnr,
+        desc = "Split Goto Definition",
+    })
 end
 
 return M
