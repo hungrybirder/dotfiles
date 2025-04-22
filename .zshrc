@@ -71,6 +71,7 @@ antigen bundle mvn
 antigen bundle autojump
 antigen bundle kubectl
 antigen bundle nvm
+antigen bundle gpg-agent
 
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-autosuggestions
