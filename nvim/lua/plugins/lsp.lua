@@ -27,6 +27,7 @@ return {
                 "cmake-language-server",
                 "dockerfile-language-server",
                 "json-lsp",
+                "taplo",
 
                 -- DAP
                 "codelldb",
@@ -265,6 +266,7 @@ return {
                 "html",
                 "tailwindcss",
                 "cssls",
+                "taplo",
             }
 
             for _, name in pairs(servers) do
@@ -756,6 +758,7 @@ return {
                 bash = { "shfmt" },
                 go = { "goimports", "gofumpt" },
                 python = { "ruff_format" },
+                -- toml = { "taplo" },
             },
         },
         event = { "BufWritePre" },
