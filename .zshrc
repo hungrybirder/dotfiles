@@ -331,3 +331,4 @@ fi
 # for bob, nvim multi-version manager
 # export PATH="${HOME}/.local/share/bob/nvim-bin:$PATH"
 
+test -e ${HOME}/.ai.zsh && source ${HOME}/.ai.zsh
