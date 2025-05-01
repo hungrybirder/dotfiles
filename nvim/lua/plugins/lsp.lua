@@ -228,10 +228,6 @@ return {
             lspconfig.ruff.setup({
                 on_attach = function(client, bufnr)
                     lsp_on_attach(client, bufnr)
-                    if client.name == "ruff" then
-                        -- Disable hover in favor of Pyright
-                        client.server_capabilities.hoverProvider = false
-                    end
                 end,
             })
 
@@ -772,7 +768,7 @@ return {
                 go = { "golangcilint" },
                 lua = { "selene" },
                 yaml = { "yamllint" },
-                python = { "ruff" },
+                -- python = { "ruff" },
             },
         },
     },
