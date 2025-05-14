@@ -225,7 +225,9 @@ return {
 
             -- python (ruff & pyright)
             local ruff_caps = make_lsp_client_capabilities()
-            ruff_caps.general.positionEncodings = { "utf-16" }
+            ruff_caps.general = {
+                positionEncodings = { "utf-16" },
+            }
             lspconfig.ruff.setup({
                 on_attach = function(client, bufnr)
                     lsp_on_attach(client, bufnr)
