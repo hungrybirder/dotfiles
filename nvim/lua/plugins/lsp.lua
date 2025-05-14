@@ -1,11 +1,10 @@
 local util_lsp = require("util.lsp")
 local make_lsp_client_capabilities = util_lsp.make_lsp_client_capabilities
 local lsp_on_attach = util_lsp.lsp_on_attach
-local setup_lsp_handlers = util_lsp.setup_lsp_handlers
 
 return {
     {
-        "williamboman/mason.nvim",
+        "mason-org/mason.nvim",
         opts = {
             ensure_installed = {
                 -- LSP
