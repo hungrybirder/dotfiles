@@ -1,5 +1,14 @@
 return {
     {
+        "greggh/claude-code.nvim",
+        dependencies = {
+            "nvim-lua/plenary.nvim", -- Required for git operations
+        },
+        config = function()
+            require("claude-code").setup()
+        end,
+    },
+    {
         "ravitemer/mcphub.nvim",
         dependencies = {
             "nvim-lua/plenary.nvim", -- Required for Job and HTTP requests
