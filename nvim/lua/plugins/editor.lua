@@ -96,14 +96,14 @@ return {
                 end,
                 desc = "Resume the previous telescope picker",
             },
-            {
-                "<leader>pf",
-                function()
-                    local builtin = require("telescope.builtin")
-                    builtin.find_files()
-                end,
-                desc = "Find files",
-            },
+            -- {
+            --     "<leader>pf",
+            --     function()
+            --         local builtin = require("telescope.builtin")
+            --         builtin.find_files()
+            --     end,
+            --     desc = "Find files",
+            -- },
             {
                 "<leader>ps",
                 function()
