@@ -58,7 +58,7 @@ return {
             require("luasnip.loaders.from_vscode").lazy_load()
         end,
     },
-    "Snikimonkd/cmp-go-pkgs",
+    -- "Snikimonkd/cmp-go-pkgs",
 
     -- auto completion
     {
@@ -154,7 +154,7 @@ return {
                         end,
                     },
                     { name = "nvim_lsp" },
-                    { name = "go_pkgs" },
+                    -- { name = "go_pkgs" },
                     { name = "buffer" },
                     { name = "path" },
                     { name = "git" },
