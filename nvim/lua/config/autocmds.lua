@@ -32,3 +32,16 @@ vim.api.nvim_create_autocmd("LspAttach", {
     end,
     desc = "LSP: Disable hover capability from Ruff",
 })
+
+vim.api.nvim_create_autocmd("LspAttach", {
+    group = vim.api.nvim_create_augroup("lsp_attach_post", { clear = true }),
+    callback = function(args)
+        local client = vim.lsp.get_client_by_id(args.data.client_id)
+        if client == nil then
+            return
+        end
+        local util_lsp = require("util.lsp")
+        util_lsp.lsp_on_attach_post(client, bufnr)
+    end,
+    desc = "LSP Attach Post",
+})

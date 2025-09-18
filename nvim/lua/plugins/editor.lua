@@ -645,7 +645,7 @@ return {
                 ["<ESC>"] = { "actions.close", desc = "Close" },
             },
         },
-        dependencies = { { "echasnovski/mini.icons", opts = {} } },
+        dependencies = { { "nvim-mini/mini.icons", opts = {} } },
     },
 
     { "mbbill/undotree" },

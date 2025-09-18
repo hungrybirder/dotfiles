@@ -16,47 +16,6 @@ function M.show_documentation()
     end
 end
 
-function M.setup_lsp_hightlight_autocmd(bufnr)
-    local highlight_augroup = vim.api.nvim_create_augroup("lsp-highlight", { clear = false })
-    vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
-        group = highlight_augroup,
-        buffer = bufnr,
-        callback = vim.lsp.buf.document_highlight,
-    })
-    vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
-        group = highlight_augroup,
-        buffer = bufnr,
-        callback = vim.lsp.buf.clear_references,
-    })
-end
-
-function M.lsp_on_attach(client, bufnr)
-    require("lspkind").init({
-        symbol_map = {
-            Supermaven = "",
-        },
-    })
-    if client.server_capabilities.documentHighlightProvider then
-        M.setup_lsp_hightlight_autocmd(bufnr)
-    end
-    if client.server_capabilities.inlayHintProvider then
-        vim.lsp.inlay_hint.enable(true, {
-            bufnr = bufnr,
-        })
-    end
-    M.setup_lsp_keymaps(client, bufnr)
-end
-
-function M.make_lsp_client_capabilities()
-    -- cmp_nvim_lsp take care of snippetSupport and resolveSupport
-    local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
-    capabilities.textDocument.foldingRange = { -- for nvim-ufo
-        dynamicRegistration = false,
-        lineFoldingOnly = true,
-    }
-    return capabilities
-end
-
 function M.setup_lsp_keymaps(_, bufnr)
     vim.api.nvim_set_option_value("omnifunc", "v:lua.vim.lsp.omnifunc", { buf = bufnr })
 
@@ -206,6 +165,51 @@ function M.setup_lsp_keymaps(_, bufnr)
         buffer = bufnr,
         desc = "Split Goto Definition",
     })
+end
+
+function M.lsp_on_attach_post(client, bufnr)
+    M.setup_lsp_keymaps(client, bufnr)
+
+    require("lspkind").init({
+        symbol_map = {
+            Supermaven = "",
+        },
+    })
+
+    -- config providers
+    if client.server_capabilities.documentHighlightProvider then
+        local highlight_augroup = vim.api.nvim_create_augroup("lsp-highlight", { clear = false })
+        vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+            group = highlight_augroup,
+            buffer = bufnr,
+            callback = vim.lsp.buf.document_highlight,
+        })
+        vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
+            group = highlight_augroup,
+            buffer = bufnr,
+            callback = vim.lsp.buf.clear_references,
+        })
+    end
+
+    if client.server_capabilities.inlayHintProvider then
+        vim.lsp.inlay_hint.enable(true, {
+            bufnr = bufnr,
+        })
+    end
+
+    if client.server_capabilities.codeLensProvider then
+        vim.lsp.codelens.refresh()
+        local buf_ft = vim.api.nvim_get_option_value("filetype", { buf = bufnr })
+        local buf_cl_group = "codelens" .. buf_ft
+        vim.api.nvim_create_augroup(buf_cl_group, { clear = true })
+        vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+            group = buf_cl_group,
+            pattern = { "*." .. buf_ft },
+            callback = function()
+                vim.lsp.codelens.refresh()
+            end,
+        })
+    end
 end
 
 return M
