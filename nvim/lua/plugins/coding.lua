@@ -140,7 +140,6 @@ return {
                     -- end,
                 },
                 sources = cmp.config.sources({
-                    { name = "supermaven" },
                     {
                         name = "luasnip",
                         option = { use_show_condition = true },
@@ -154,6 +153,7 @@ return {
                         end,
                     },
                     { name = "nvim_lsp" },
+                    { name = "supermaven" },
                     -- { name = "go_pkgs" },
                     { name = "buffer" },
                     { name = "path" },
