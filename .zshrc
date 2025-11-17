@@ -72,6 +72,7 @@ antigen bundle autojump
 antigen bundle kubectl
 antigen bundle nvm
 antigen bundle gpg-agent
+antigen bundle fzf
 
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-autosuggestions
@@ -106,7 +107,7 @@ fi
 export FZF_DEFAULT_OPTS='--color fg+:italic,hl:#a0c980:underline,hl+:#a0c980:reverse:underline'
 export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git/*" --glob "!*.pyc" --glob "!*.swp"'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 fs() {
     host=$(awk '{print $1}' $HOME/.ssh/known_hosts | gsed "s/^\[//;s/\].*$//;s/,.*//" | sort | uniq | fzf)
