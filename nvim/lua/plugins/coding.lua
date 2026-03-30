@@ -74,6 +74,16 @@ return {
         end,
     },
     {
+        "Exafunction/windsurf.nvim",
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+            "hrsh7th/nvim-cmp",
+        },
+        config = function()
+            require("codeium").setup({})
+        end,
+    },
+    {
         "hrsh7th/nvim-cmp",
         dependencies = {
             {
@@ -153,7 +163,8 @@ return {
                         end,
                     },
                     { name = "nvim_lsp" },
-                    { name = "supermaven" },
+                    { name = "codeium" },
+                    -- { name = "supermaven" },
                     -- { name = "go_pkgs" },
                     { name = "buffer" },
                     { name = "path" },
