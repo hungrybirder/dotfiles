@@ -98,16 +98,16 @@ return {
     --         { "<leader>rn", ":IncRename " },
     --     },
     -- },
-    {
-        "felpafel/inlay-hint.nvim",
-        event = "LspAttach",
-        config = function()
-            require("inlay-hint").setup({
-                virt_text_pos = "inline",
-            })
-            vim.lsp.inlay_hint.enable(true)
-        end,
-    },
+    -- {
+    --     "felpafel/inlay-hint.nvim",
+    --     event = "LspAttach",
+    --     config = function()
+    --         require("inlay-hint").setup({
+    --             virt_text_pos = "inline",
+    --         })
+    --         vim.lsp.inlay_hint.enable(true)
+    --     end,
+    -- },
     {
         "neovim/nvim-lspconfig",
         dependencies = {

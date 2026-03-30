@@ -81,16 +81,4 @@ return {
             },
         },
     },
-
-    {
-        "olimorris/codecompanion.nvim",
-        opts = {},
-        dependencies = {
-            "nvim-lua/plenary.nvim",
-            "nvim-treesitter/nvim-treesitter",
-        },
-        keys = {
-            { "<leader>C", "<cmd>CodeCompanionChat Toggle<CR>", desc = "CodeCompanion: Toggle Chat" },
-        },
-    },
 }

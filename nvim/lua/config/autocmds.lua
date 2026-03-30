@@ -42,6 +42,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
         end
         local util_lsp = require("util.lsp")
         util_lsp.lsp_on_attach_post(client, bufnr)
+        vim.lsp.inlay_hint.enable(true, nil)
     end,
     desc = "LSP Attach Post",
 })
