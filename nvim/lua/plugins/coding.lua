@@ -163,7 +163,6 @@ return {
                         end,
                     },
                     { name = "nvim_lsp" },
-                    { name = "codeium" },
                     -- { name = "supermaven" },
                     -- { name = "go_pkgs" },
                     { name = "buffer" },
@@ -171,6 +170,7 @@ return {
                     { name = "git" },
                     { name = "nvim_lua" },
                     { name = "crates" },
+                    { name = "codeium" },
                 }),
                 matching = {
                     disallow_symbol_nonprefix_matching = false,

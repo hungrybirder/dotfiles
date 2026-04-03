@@ -22,6 +22,7 @@ return {
                 "pyright",
                 "ruff",
                 "gopls",
+                "golangci-lint-langserver",
                 "vim-language-server",
                 "bash-language-server",
                 "lua-language-server",
@@ -110,15 +111,49 @@ return {
     -- },
     {
         "neovim/nvim-lspconfig",
-        dependencies = {
-            "hrsh7th/cmp-nvim-lsp",
-        },
         config = function()
-            -- setup all lsp servers
-            local lspconfig = require("lspconfig")
+            vim.lsp.config("lua_ls", {
+                on_init = function(client)
+                    if client.workspace_folders then
+                        local path = client.workspace_folders[1].name
+                        if
+                            path ~= vim.fn.stdpath("config")
+                            and (vim.uv.fs_stat(path .. "/.luarc.json") or vim.uv.fs_stat(path .. "/.luarc.jsonc"))
+                        then
+                            return
+                        end
+                    end
 
-            lspconfig.lua_ls.setup({
-                capabilities = make_lsp_client_capabilities(),
+                    client.config.settings.Lua = vim.tbl_deep_extend("force", client.config.settings.Lua, {
+                        runtime = {
+                            -- Tell the language server which version of Lua you're using (most
+                            -- likely LuaJIT in the case of Neovim)
+                            version = "LuaJIT",
+                            -- Tell the language server how to find Lua modules same way as Neovim
+                            -- (see `:h lua-module-load`)
+                            path = {
+                                "lua/?.lua",
+                                "lua/?/init.lua",
+                            },
+                        },
+                        -- Make the server aware of Neovim runtime files
+                        workspace = {
+                            checkThirdParty = false,
+                            library = {
+                                vim.env.VIMRUNTIME,
+                                -- Depending on the usage, you might want to add additional paths
+                                -- here.
+                                -- '${3rd}/luv/library',
+                                -- '${3rd}/busted/library',
+                            },
+                            -- Or pull in all of 'runtimepath'.
+                            -- NOTE: this is a lot slower and will cause issues when working on
+                            -- your own configuration.
+                            -- See https://github.com/neovim/nvim-lspconfig/issues/3189
+                            -- library = vim.api.nvim_get_runtime_file('', true),
+                        },
+                    })
+                end,
                 settings = {
                     Lua = {
                         codeLens = {
@@ -154,8 +189,9 @@ return {
                     },
                 },
             })
+            vim.lsp.enable("lua_ls")
 
-            lspconfig.gopls.setup({
+            vim.lsp.config("gopls", {
                 capabilities = make_lsp_client_capabilities(),
                 settings = {
                     gopls = {
@@ -191,19 +227,38 @@ return {
                     },
                 },
             })
+            vim.lsp.enable("gopls")
+
+            vim.lsp.config("golangci_lint_ls", {
+                cmd = { "golangci-lint-langserver" },
+                root_markers = { ".git", "go.mod" },
+                init_options = {
+                    command = {
+                        "golangci-lint",
+                        "run",
+                        "--output.json.path",
+                        "stdout",
+                        "--show-stats=false",
+                        "--issues-exit-code=1",
+                    },
+                },
+            })
+            vim.lsp.enable("golangci_lint_ls")
 
             -- https://github.com/jose-elias-alvarez/null-ls.nvim/issues/428
             local clangd_cap = make_lsp_client_capabilities()
             clangd_cap.offsetEncoding = { "utf-16" }
-            lspconfig.clangd.setup({
+            -- lspconfig.clangd.setup({
+            vim.lsp.config("clangd", {
                 init_options = { clangdFileStatus = true },
                 capabilities = clangd_cap,
                 cmd = { "clangd", "--background-index" },
                 filetypes = { "c", "cpp" },
             })
+            vim.lsp.enable("clangd")
 
             -- yaml
-            lspconfig.yamlls.setup({
+            vim.lsp.config("yamlls", {
                 capabilities = make_lsp_client_capabilities(),
                 settings = {
                     yaml = {
@@ -223,18 +278,20 @@ return {
                     },
                 },
             })
+            vim.lsp.enable("yamlls")
 
             -- python (ruff & pyright)
             local ruff_caps = make_lsp_client_capabilities()
             ruff_caps.general = {
                 positionEncodings = { "utf-16" },
             }
-            lspconfig.ruff.setup({
+            vim.lsp.config("ruff", {
                 capabilities = ruff_caps,
             })
+            vim.lsp.enable("ruff")
 
             -- python (ruff & pyright)
-            lspconfig.pyright.setup({
+            vim.lsp.config("pyright", {
                 capabilities = make_lsp_client_capabilities(),
                 settings = {
                     pyright = {
@@ -250,6 +307,7 @@ return {
                     },
                 },
             })
+            vim.lsp.enable("pyright")
 
             local servers = {
                 "cmake",
@@ -267,11 +325,12 @@ return {
             }
 
             for _, name in pairs(servers) do
-                lspconfig[name].setup({
+                vim.lsp.config(name, {
                     capabilities = make_lsp_client_capabilities(),
                 })
             end
-            lspconfig.ts_ls.setup({
+
+            vim.lsp.config("ts_ls", {
                 capabilities = make_lsp_client_capabilities(),
                 single_file_support = false,
                 settings = {
@@ -299,15 +358,17 @@ return {
                     },
                 },
             })
+            vim.lsp.enable("ts_ls")
 
             -- vue
-            lspconfig.vuels.setup({
+            vim.lsp.config("vuels", {
                 capabilities = make_lsp_client_capabilities(),
                 settings = { vetur = { experimental = { templateInterpolationService = true } } },
             })
+            vim.lsp.enable("vuels")
 
             --json
-            lspconfig.jsonls.setup({
+            vim.lsp.config("jsonls", {
                 capabilities = make_lsp_client_capabilities(),
                 commands = {
                     Format = {
@@ -321,15 +382,19 @@ return {
                     },
                 },
             })
+            vim.lsp.enable("jsonls")
 
             -- sql
-            lspconfig.sqlls.setup({
+            vim.lsp.config("sqlls", {
                 cmd = { "sql-language-server", "up", "--method", "stdio" },
             })
+            vim.lsp.enable("sqlls")
+
             -- ruby
-            lspconfig.solargraph.setup({
+            vim.lsp.config("solargraph", {
                 capabilities = make_lsp_client_capabilities(),
             })
+            vim.lsp.enable("solargraph")
 
             -- rust
             local rust_cap = make_lsp_client_capabilities()
@@ -421,7 +486,9 @@ return {
         "mfussenegger/nvim-lint",
         opts = {
             linters_by_ft = {
-                go = { "golangcilint" },
+                -- Try golangci-lint-langserver
+                -- go = { "golangcilint" },
+                --
                 lua = { "selene" },
                 yaml = { "yamllint" },
                 -- python = { "ruff" },
