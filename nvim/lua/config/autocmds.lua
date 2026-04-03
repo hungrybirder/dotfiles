@@ -46,3 +46,21 @@ vim.api.nvim_create_autocmd("LspAttach", {
     end,
     desc = "LSP Attach Post",
 })
+
+-- from neovim v0.12.0 LspInfo/LspLog/LspRestart are deprecated
+vim.api.nvim_create_user_command("LspInfo", "checkhealth vim.lsp", {
+    desc = "Show LSP Info",
+})
+
+vim.api.nvim_create_user_command("LspLog", function(_)
+    local state_path = vim.fn.stdpath("state")
+    local log_path = vim.fs.joinpath(state_path, "lsp.log")
+
+    vim.cmd(string.format("edit %s", log_path))
+end, {
+    desc = "Show LSP log",
+})
+
+vim.api.nvim_create_user_command("LspRestart", "lsp restart", {
+    desc = "Restart LSP",
+})

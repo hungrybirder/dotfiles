@@ -192,6 +192,7 @@ return {
             vim.lsp.enable("lua_ls")
 
             vim.lsp.config("gopls", {
+                filetypes = { "go", "gomod" },
                 capabilities = make_lsp_client_capabilities(),
                 settings = {
                     gopls = {
@@ -259,6 +260,7 @@ return {
 
             -- yaml
             vim.lsp.config("yamlls", {
+                filetypes = { "yaml" },
                 capabilities = make_lsp_client_capabilities(),
                 settings = {
                     yaml = {
