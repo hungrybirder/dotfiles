@@ -47,19 +47,19 @@ vim.api.nvim_create_autocmd("LspAttach", {
     desc = "LSP Attach Post",
 })
 
-vim.api.nvim_create_autocmd("LspProgress", {
-    callback = function(ev)
-        local value = ev.data.params.value
-        vim.api.nvim_echo({ { value.message or "done" } }, false, {
-            id = "lsp." .. ev.data.client_id,
-            kind = "progress",
-            source = "vim.lsp",
-            title = value.title,
-            status = value.kind ~= "end" and "running" or "success",
-            percent = value.percentage,
-        })
-    end,
-})
+-- vim.api.nvim_create_autocmd("LspProgress", {
+--     callback = function(ev)
+--         local value = ev.data.params.value
+--         vim.api.nvim_echo({ { value.message or "done" } }, false, {
+--             id = "lsp." .. ev.data.client_id,
+--             kind = "progress",
+--             source = "vim.lsp",
+--             title = value.title,
+--             status = value.kind ~= "end" and "running" or "success",
+--             percent = value.percentage,
+--         })
+--     end,
+-- })
 
 -- from neovim v0.12.0 LspInfo/LspLog/LspRestart are deprecated
 vim.api.nvim_create_user_command("LspInfo", "checkhealth vim.lsp", {
