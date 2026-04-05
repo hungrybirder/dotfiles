@@ -177,19 +177,21 @@ function M.lsp_on_attach_post(client, bufnr)
     })
 
     -- config providers
-    if client.server_capabilities.documentHighlightProvider then
-        local highlight_augroup = vim.api.nvim_create_augroup("lsp-highlight", { clear = false })
-        vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
-            group = highlight_augroup,
-            buffer = bufnr,
-            callback = vim.lsp.buf.document_highlight,
-        })
-        vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
-            group = highlight_augroup,
-            buffer = bufnr,
-            callback = vim.lsp.buf.clear_references,
-        })
-    end
+
+    -- Temp disable document highlight for using opencode
+    -- if client.server_capabilities.documentHighlightProvider then
+    --     local highlight_augroup = vim.api.nvim_create_augroup("lsp-highlight", { clear = false })
+    --     vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+    --         group = highlight_augroup,
+    --         buffer = bufnr,
+    --         callback = vim.lsp.buf.document_highlight,
+    --     })
+    --     vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
+    --         group = highlight_augroup,
+    --         buffer = bufnr,
+    --         callback = vim.lsp.buf.clear_references,
+    --     })
+    -- end
 
     if client.server_capabilities.inlayHintProvider then
         vim.lsp.inlay_hint.enable(true, {
