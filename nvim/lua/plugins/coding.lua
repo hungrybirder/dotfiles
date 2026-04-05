@@ -559,6 +559,7 @@ return {
                 enable = false,
             },
         },
+        ---@diagnostic disable-next-line: unused-local
         config = function(lp, opts)
             require("go").setup(opts)
             local format_sync_grp = vim.api.nvim_create_augroup("GoFormat", {})
@@ -612,6 +613,7 @@ return {
             -- "nvim-neotest/neotest-vim-test",
             "mfussenegger/nvim-dap",
         },
+        ---@diagnostic disable-next-line: unused-local
         config = function(_, opts)
             vim.api.nvim_command("command! -nargs=0 NeotestRun :lua require('neotest').run.run()<CR>")
             vim.api.nvim_command("command! -nargs=0 NeotestStop :lua require('neotest').run.stop()<CR>")

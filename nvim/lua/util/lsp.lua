@@ -92,13 +92,6 @@ function M.setup_lsp_keymaps(_, bufnr)
         desc = "CodeLens Run",
     })
 
-    vim.keymap.set("n", "<leader>cr", vim.lsp.codelens.refresh, {
-        noremap = true,
-        silent = true,
-        buffer = bufnr,
-        desc = "CodeLens Refresh",
-    })
-
     vim.keymap.set("n", "K", "<cmd>lua require('util.lsp').show_documentation()<CR>", {
         noremap = true,
         silent = true,
@@ -180,7 +173,9 @@ function M.lsp_on_attach_post(client, bufnr)
     end
 
     if client.server_capabilities.codeLensProvider then
-        vim.lsp.codelens.refresh()
+        if not vim.lsp.codelens.is_enabled() then
+            vim.lsp.codelens.enable(true)
+        end
         local buf_ft = vim.api.nvim_get_option_value("filetype", { buf = bufnr })
         local buf_cl_group = "codelens" .. buf_ft
         vim.api.nvim_create_augroup(buf_cl_group, { clear = true })
@@ -188,7 +183,9 @@ function M.lsp_on_attach_post(client, bufnr)
             group = buf_cl_group,
             pattern = { "*." .. buf_ft },
             callback = function()
-                vim.lsp.codelens.refresh()
+                if not vim.lsp.codelens.is_enabled() then
+                    vim.lsp.codelens.enable(true)
+                end
             end,
         })
     end
