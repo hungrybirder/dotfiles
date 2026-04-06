@@ -12,9 +12,7 @@ OS_NAME=$(uname -s)
 BREW_PREFIX=$(brew --prefix)
 export HOMEBREW_NO_INSTALL_CLEANUP=1
 
-# use antigen manage zsh plugin, theme ...
-source $BREW_PREFIX/share/antigen/antigen.zsh
-antigen use oh-my-zsh
+export ZSH="$HOME/.oh-my-zsh"
 
 # zsh rc files, load order:
 # 1 .zprofile
@@ -31,7 +29,7 @@ fi
 
 
 POWERLEVEL9K_INSTANT_PROMPT=off
-antigen theme romkatv/powerlevel10k
+ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # zsh history setting
 HISTSIZE=10000000
@@ -51,38 +49,37 @@ setopt HIST_VERIFY               # Don't execute immediately upon history expans
 setopt HIST_BEEP                 # Beep when accessing nonexistent history.
 # zsh history setting end
 
-antigen bundle pyenv
-antigen bundle git
-antigen bundle autojump
-antigen bundle jsontools
-# antigen bundle docker
-antigen bundle macos
-antigen bundle pip
-antigen bundle golang
-antigen bundle z
-# antigen bundle thefuck
-# https://github.com/python-poetry/poetry#enable-tab-completion-for-bash-fish-or-zsh
-# antigen bundle darvid/zsh-poetry
-# antigen bundle kubectl # TODO
-antigen bundle httpie
-antigen bundle python
-antigen bundle copybuffer # ctrl-o, copy cli to clipboard
-antigen bundle mvn
-antigen bundle autojump
-antigen bundle kubectl
-antigen bundle nvm
-antigen bundle gpg-agent
-antigen bundle fzf
-
-antigen bundle zsh-users/zsh-syntax-highlighting
-antigen bundle zsh-users/zsh-autosuggestions
 zle-line-init() {
     zle autosuggest-start
 }
 zle -N zle-line-init
 
-# !! APPLY ANTIGEN !!
-antigen apply
+plugins=(
+  gpg-agent
+  pyenv
+  git
+  pyenv
+  git
+  autojump
+  jsontools
+  macos
+  pip
+  golang
+  z
+  httpie
+  python
+  copybuffer # ctrl-o, copy cli to clipboard
+  mvn
+  autojump
+  kubectl
+  nvm
+  gpg-agent
+  fzf
+  zsh-syntax-highlighting
+  zsh-autosuggestions
+)
+
+source $ZSH/oh-my-zsh.sh
 
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#ff00ff,bg=cyan,bold,underline"
 bindkey '^ ' autosuggest-accept
@@ -257,7 +254,7 @@ bindkey "\e\e[C" forward-word
 export GIT_INTERNAL_GETTEXT_TEST_FALLBACKS=1
 
 # added by travis gem
-[ -f /Users/liyong/.travis/travis.sh ] && source /Users/liyong/.travis/travis.sh
+[ -f $HOME/.travis/travis.sh ] && source $HOME/.travis/travis.sh
 
 # golang
 export PATH="$(go env GOPATH)/bin:${PATH}"
@@ -323,7 +320,7 @@ esac
 # https://pnpm.io/npmrc#store-dir
 # pnpm end
 
-test -e /Users/liyong/.iterm2_shell_integration.zsh && source /Users/liyong/.iterm2_shell_integration.zsh || true
+test -e $HOME/.iterm2_shell_integration.zsh && source $HOME/.iterm2_shell_integration.zsh || true
 
 if [[ -d "$HOME/.iterm2" ]]; then
   export PATH="$HOME/.iterm2:$PATH"
@@ -333,3 +330,12 @@ fi
 # export PATH="${HOME}/.local/share/bob/nvim-bin:$PATH"
 
 test -e ${HOME}/.ai.zsh && source ${HOME}/.ai.zsh
+
+# bun completions
+# [ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+alias claude-mem='$HOME/.bun/bin/bun "$HOME/.claude/plugins/marketplaces/thedotmack/plugin/scripts/worker-service.cjs"'
