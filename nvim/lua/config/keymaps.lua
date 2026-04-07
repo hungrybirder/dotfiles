@@ -134,3 +134,6 @@ vim.keymap.set("n", "[<tab>", "<cmd>tabnext<cr>")
 vim.api.nvim_command(
     "command! -nargs=0 ToggleLspDiagnostic :lua vim.diagnostic.enable(not vim.diagnostic.is_enabled())<CR>"
 )
+
+-- for neo-tree
+vim.keymap.set("n", "<leader><tab>", "<cmd>Neotree toggle<CR>", { desc = "Toggle Neo-tree" })
