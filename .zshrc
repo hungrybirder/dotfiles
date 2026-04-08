@@ -55,6 +55,7 @@ zle-line-init() {
 zle -N zle-line-init
 
 plugins=(
+  ssh-agent
   gpg-agent
   pyenv
   git
@@ -73,7 +74,6 @@ plugins=(
   autojump
   kubectl
   nvm
-  gpg-agent
   fzf
   zsh-syntax-highlighting
   zsh-autosuggestions
