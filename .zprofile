@@ -13,3 +13,6 @@ fi
 if [[ -f ~/.orbstack/shell/init.zsh ]]; then
     source ~/.orbstack/shell/init.zsh 2>/dev/null || :
 fi
+
+# Added by Obsidian
+export PATH="$PATH:/Applications/Obsidian.app/Contents/MacOS"
