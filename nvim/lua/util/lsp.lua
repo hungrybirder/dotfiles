@@ -163,7 +163,10 @@ end
 function M.lsp_on_attach_post(client, bufnr)
     M.setup_lsp_keymaps(client, bufnr)
 
-    require("lspkind").init({})
+    require("lspkind").init({
+        mode = "symbol_text",
+        preset = "codicons",
+    })
 
     -- config providers, see https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
     if client.server_capabilities.inlayHintProvider then
