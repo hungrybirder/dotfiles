@@ -193,7 +193,13 @@ return {
                     ["<CR>"] = cmp.mapping.confirm({ select = true }),
                     ["<Tab>"] = cmp.mapping(function(fallback)
                         if cmp.visible() then
-                            cmp.select_next_item()
+                            local entries = cmp.get_entries()
+                            -- 只有一个候选项时直接确认选中
+                            if #entries == 1 then
+                                cmp.confirm({ select = true })
+                            else
+                                cmp.select_next_item()
+                            end
                         elseif luasnip.expand_or_jumpable() then
                             luasnip.expand_or_jump()
                         elseif has_words_before() then
