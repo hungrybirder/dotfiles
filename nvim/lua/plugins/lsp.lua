@@ -358,11 +358,11 @@ return {
             vim.lsp.enable("ts_ls")
 
             -- vue
-            vim.lsp.config("vuels", {
+            vim.lsp.config("vue_ls", {
                 capabilities = make_lsp_client_capabilities(),
                 settings = { vetur = { experimental = { templateInterpolationService = true } } },
             })
-            vim.lsp.enable("vuels")
+            vim.lsp.enable("vue_ls")
 
             --json
             vim.lsp.config("jsonls", {
