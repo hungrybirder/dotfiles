@@ -440,7 +440,7 @@ return {
     },
 
     -- registers
-    { "tversteeg/registers.nvim" },
+    -- { "tversteeg/registers.nvim" },
 
     -- for gnupg
     { "jamessan/vim-gnupg" },
