@@ -1,0 +1,6 @@
+# Font settings
+font-family = "JetBrainsMono Nerd Font Mono"
+font-size = 18
+
+# Toggle terminal
+keybind = global:cmd+'=toggle_visibility
