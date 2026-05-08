@@ -8,3 +8,17 @@ keybind = global:cmd+'=toggle_visibility
 # Theme
 theme = Night Owl
 # theme = Nightfox
+
+# Cursor
+# 形状：block（块）/ bar（竖线）/ underline（下划线）
+cursor-style = block
+# 是否闪烁：true / false
+cursor-style-blink = false
+# 颜色：十六进制或 X11 颜色名
+cursor-color = #FFFFF0
+# 文字在光标上时的颜色（block 模式下尤其重要）
+cursor-text = #1E1E2E
+# 不透明度，0 到 1
+cursor-opacity = 1.0
+# 关键：禁用 shell 对光标的接管
+shell-integration-features = no-cursor
