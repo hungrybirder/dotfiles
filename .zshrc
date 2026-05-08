@@ -28,8 +28,8 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 
-POWERLEVEL9K_INSTANT_PROMPT=off
-ZSH_THEME="powerlevel10k/powerlevel10k"
+#POWERLEVEL9K_INSTANT_PROMPT=off
+#ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # zsh history setting
 HISTSIZE=10000000
@@ -55,6 +55,7 @@ zle-line-init() {
 zle -N zle-line-init
 
 plugins=(
+  starship
   ssh-agent
   gpg-agent
   pyenv
@@ -73,7 +74,7 @@ plugins=(
   mvn
   autojump
   kubectl
-  nvm
+  # nvm
   fzf
   zsh-syntax-highlighting
   zsh-autosuggestions
@@ -307,9 +308,9 @@ if [[ "Darwin" = ${OS_NAME} ]]; then
 fi
 # alias end
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
-[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+# export NVM_DIR="$HOME/.nvm"
+# [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+# [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
 # pnpm
 export PNPM_HOME="$HOME/Library/pnpm"
