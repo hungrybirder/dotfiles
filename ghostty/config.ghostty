@@ -4,3 +4,7 @@ font-size = 18
 
 # Toggle terminal
 keybind = global:cmd+'=toggle_visibility
+
+# Theme
+theme = Night Owl
+# theme = Nightfox
