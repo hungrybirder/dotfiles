@@ -20,8 +20,7 @@ cursor-color = #FFFFF0
 cursor-text = #1E1E2E
 # 不透明度，0 到 1
 cursor-opacity = 1.0
-# 关键：禁用 shell 对光标的接管
-shell-integration-features = no-cursor
+shell-integration-features = no-cursor,ssh-env,ssh-terminfo
 
 # 关闭 tab 不需要确认
 confirm-close-surface = false
