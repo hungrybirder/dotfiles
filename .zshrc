@@ -344,3 +344,13 @@ alias claude-mem='$HOME/.bun/bin/bun "$HOME/.claude/plugins/marketplaces/thedotm
 if [[ -d "$HOME/.local/bin" ]]; then
   export PATH="$HOME/.local/bin:$PATH"
 fi 
+
+# For iTerm2 & tmux -CC
+ssh() {
+    local host=$1
+    if [[ "$TERM_PROGRAM" == "iTerm.app" && -z "$TMUX" ]]; then
+        command ssh -t "$host" "tmux -CC new -A -s dev"
+    else
+        command ssh "$@"
+    fi
+}
