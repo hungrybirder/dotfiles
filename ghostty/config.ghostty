@@ -24,3 +24,6 @@ shell-integration-features = no-cursor,ssh-env,ssh-terminfo
 
 # 关闭 tab 不需要确认
 confirm-close-surface = false
+
+# 两次 cmd+q 退出
+keybind = cmd+q>cmd+q=quit
