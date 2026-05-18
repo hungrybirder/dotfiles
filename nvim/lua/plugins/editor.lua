@@ -68,14 +68,14 @@ return {
                 end,
                 desc = "Jumplist",
             },
-            {
-                "<F2>",
-                function()
-                    local builtin = require("telescope.builtin")
-                    builtin.resume()
-                end,
-                desc = "Resume the previous telescope picker",
-            },
+            -- {
+            --     "<F2>",
+            --     function()
+            --         local builtin = require("telescope.builtin")
+            --         builtin.resume()
+            --     end,
+            --     desc = "Resume the previous telescope picker",
+            -- },
             -- {
             --     "<leader>pf",
             --     function()
