@@ -304,6 +304,7 @@ alias zrc="[[ -f ~/.zshrc ]] && (source ~/.zshrc && echo 'Reloaded ~/.zshrc') ||
 
 if [[ "Darwin" = ${OS_NAME} ]]; then
     export HOMEBREW_NO_REQUIRE_TAP_TRUST=1
+    export HOMEBREW_NO_ASK=1
     alias bu="brew upgrade"
     alias bubu="brew update && brew upgrade && xattr -dr com.apple.quarantine $(brew --prefix)/bin/claude && brew upgrade --cask && brew cleanup"
 fi
