@@ -27,3 +27,6 @@ confirm-close-surface = false
 
 # 两次 cmd+q 退出
 keybind = cmd+q>cmd+q=quit
+
+# opt as Meta
+macos-option-as-alt = true
