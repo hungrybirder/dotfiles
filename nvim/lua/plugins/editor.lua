@@ -224,14 +224,9 @@ return {
 
             telescope.setup(opts)
 
-            local extensions = {
-                "fzf",
-                "notify",
-                "aerial",
-            }
-            for _, ext in pairs(extensions) do
-                status, _ = pcall(require, ext)
-                if status then
+            for _, ext in ipairs({ "fzf", "aerial" }) do
+                local ok = pcall(require, ext)
+                if ok then
                     telescope.load_extension(ext)
                 end
             end
@@ -470,16 +465,17 @@ return {
         "kevinhwang91/nvim-hlslens",
         config = function()
             local kopts = { noremap = true, silent = true }
+            -- zzzv：跳转后把匹配行居中并展开折叠（原来在 keymaps.lua 里，会覆盖这里的映射）
             vim.api.nvim_set_keymap(
                 "n",
                 "n",
-                [[<Cmd>execute('normal! ' . v:count1 . 'n')<CR><Cmd>lua require('hlslens').start()<CR>]],
+                [[<Cmd>execute('normal! ' . v:count1 . 'n')<CR>zzzv<Cmd>lua require('hlslens').start()<CR>]],
                 kopts
             )
             vim.api.nvim_set_keymap(
                 "n",
                 "N",
-                [[<Cmd>execute('normal! ' . v:count1 . 'N')<CR><Cmd>lua require('hlslens').start()<CR>]],
+                [[<Cmd>execute('normal! ' . v:count1 . 'N')<CR>zzzv<Cmd>lua require('hlslens').start()<CR>]],
                 kopts
             )
             vim.api.nvim_set_keymap("n", "*", [[*<Cmd>lua require('hlslens').start()<CR>]], kopts)
@@ -520,13 +516,6 @@ return {
                 })
             end
             hlslens.setup({ calm_down = true })
-        end,
-    },
-
-    {
-        "norcalli/nvim-colorizer.lua",
-        config = function()
-            require("colorizer").setup({})
         end,
     },
 

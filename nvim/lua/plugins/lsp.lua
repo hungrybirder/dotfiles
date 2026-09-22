@@ -1,16 +1,3 @@
-local util_lsp = require("util.lsp")
--- local make_lsp_client_capabilities = util_lsp.make_lsp_client_capabilities
-
-local make_lsp_client_capabilities = function()
-    -- cmp_nvim_lsp take care of snippetSupport and resolveSupport
-    local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
-    capabilities.textDocument.foldingRange = { -- for nvim-ufo
-        dynamicRegistration = false,
-        lineFoldingOnly = true,
-    }
-    return capabilities
-end
-
 return {
     {
         "mason-org/mason.nvim",
@@ -52,15 +39,14 @@ return {
                 "luacheck",
                 "selene", -- lua linter
                 "pylint",
-                "ruff",
                 "shellcheck",
                 "staticcheck",
+                "yamllint", -- nvim-lint 的 yaml linter
                 -- "vale", -- for markdown, https://vale.sh
 
                 -- Formater
                 "clang-format",
                 "prettier",
-                "remark-cli",
                 "shfmt",
                 "sql-formatter",
                 "stylua",
@@ -93,305 +79,178 @@ return {
     --         { "<leader>rn", ":IncRename " },
     --     },
     -- },
-    -- {
-    --     "felpafel/inlay-hint.nvim",
-    --     event = "LspAttach",
-    --     config = function()
-    --         require("inlay-hint").setup({
-    --             virt_text_pos = "inline",
-    --         })
-    --         vim.lsp.inlay_hint.enable(true)
-    --     end,
-    -- },
+
+    -- 不要给 nvim-lspconfig 写 config = function()：lazy.nvim 对 config 是整体覆盖，
+    -- 会跳过 LazyVim 的 LSP 初始化（诊断样式、vim.lsp.enable、mason-lspconfig、inlay hint）。
+    -- 所有 server 放进 opts.servers，LazyVim 会自动 vim.lsp.config + vim.lsp.enable，
+    -- capabilities 已由 coding.nvim-cmp 扩展通过 vim.lsp.config("*") 统一注入，不用逐个传。
     {
         "neovim/nvim-lspconfig",
-        config = function()
-            vim.lsp.config("lua_ls", {
-                on_init = function(client)
-                    if client.workspace_folders then
-                        local path = client.workspace_folders[1].name
-                        if
-                            path ~= vim.fn.stdpath("config")
-                            and (vim.uv.fs_stat(path .. "/.luarc.json") or vim.uv.fs_stat(path .. "/.luarc.jsonc"))
-                        then
-                            return
-                        end
-                    end
-
-                    client.config.settings.Lua = vim.tbl_deep_extend("force", client.config.settings.Lua, {
-                        runtime = {
-                            -- Tell the language server which version of Lua you're using (most
-                            -- likely LuaJIT in the case of Neovim)
-                            version = "LuaJIT",
-                            -- Tell the language server how to find Lua modules same way as Neovim
-                            -- (see `:h lua-module-load`)
-                            path = {
-                                "lua/?.lua",
-                                "lua/?/init.lua",
+        opts = {
+            -- 折叠交给 nvim-ufo
+            folds = { enabled = false },
+            servers = {
+                ["*"] = {
+                    -- 这些键在 util/lsp.lua 里有自己的实现（loclist / ufo peek），关掉 LazyVim 的默认版本
+                    keys = {
+                        { "gd", false },
+                        { "gD", false },
+                        { "gr", false },
+                        { "K", false },
+                        { "<leader>ca", false },
+                        { "<leader>cc", false },
+                        { "<leader>cl", false },
+                    },
+                },
+                -- Neovim 运行时库、vim 全局变量由 LazyVim 自带的 lazydev.nvim 处理，不再手写 on_init
+                lua_ls = {
+                    settings = {
+                        Lua = {
+                            diagnostics = {
+                                workspaceDelay = 5000,
+                            },
+                            workspace = {
+                                preloadFileSize = 1024, -- KB
+                                maxPreload = 2000,
+                            },
+                            telemetry = { enable = false },
+                        },
+                    },
+                },
+                gopls = {
+                    filetypes = { "go", "gomod" },
+                    settings = {
+                        gopls = {
+                            analyses = {
+                                nilness = true,
+                                unusedparams = true,
+                                unusedwrite = true,
+                                useany = true,
+                            },
+                            codelenses = {
+                                gc_details = false,
+                                generate = true,
+                                regenerate_cgo = true,
+                                run_govulncheck = true,
+                                test = true,
+                                tidy = true,
+                                upgrade_dependency = true,
+                                vendor = true,
+                            },
+                            hints = {
+                                assignVariableTypes = true,
+                                compositeLiteralFields = true,
+                                compositeLiteralTypes = true,
+                                constantValues = true,
+                                functionTypeParameters = false,
+                                parameterNames = false,
+                                rangeVariableTypes = true,
+                            },
+                            usePlaceholders = false,
+                            staticcheck = false,
+                            directoryFilters = { "-.git", "-.vscode", "-.idea", "-.vscode-test", "-node_modules" },
+                            semanticTokens = true,
+                        },
+                    },
+                },
+                -- nvim-lspconfig 自带的 cmd / init_options 已是 golangci-lint v2 语法并带 v1 回退
+                golangci_lint_ls = {},
+                clangd = {
+                    cmd = { "clangd", "--background-index" },
+                    filetypes = { "c", "cpp" },
+                    init_options = { clangdFileStatus = true },
+                },
+                yamlls = {
+                    filetypes = { "yaml" },
+                    settings = {
+                        yaml = {
+                            hover = true,
+                            format = {
+                                enable = true,
+                                singleQuote = true,
+                            },
+                            completion = true,
+                            validate = true,
+                            schemas = {
+                                'https://raw.githubusercontent.com/awslabs/goformation/v4.18.2/schema/cloudformation.schema.json: "/*"',
+                            },
+                            schemaStore = {
+                                enable = true,
                             },
                         },
-                        -- Make the server aware of Neovim runtime files
-                        workspace = {
-                            checkThirdParty = false,
-                            library = {
-                                vim.env.VIMRUNTIME,
-                                -- Depending on the usage, you might want to add additional paths
-                                -- here.
-                                -- '${3rd}/luv/library',
-                                -- '${3rd}/busted/library',
+                    },
+                },
+                -- python (ruff & pyright)，ruff 的 hover 在 config/autocmds.lua 里关闭
+                ruff = {
+                    capabilities = {
+                        general = { positionEncodings = { "utf-16" } },
+                    },
+                },
+                pyright = {
+                    settings = {
+                        pyright = {
+                            -- Using Ruff's import organizer
+                            disableOrganizeImports = true,
+                        },
+                        python = {
+                            analysis = {
+                                -- Ignore all files for analysis to exclusively use Ruff for linting
+                                ignore = { "*" },
                             },
-                            -- Or pull in all of 'runtimepath'.
-                            -- NOTE: this is a lot slower and will cause issues when working on
-                            -- your own configuration.
-                            -- See https://github.com/neovim/nvim-lspconfig/issues/3189
-                            -- library = vim.api.nvim_get_runtime_file('', true),
-                        },
-                    })
-                end,
-                settings = {
-                    Lua = {
-                        codeLens = {
-                            enable = true,
-                        },
-                        runtime = {
-                            version = "LuaJIT",
-                        },
-                        diagnostics = {
-                            globals = { "vim" },
-                            workspaceDelay = 5000,
-                        },
-                        workspace = {
-                            preloadFileSize = 1024, -- KB
-                            checkThirdParty = false,
-                            maxPreload = 2000,
-                        },
-                        telemetry = { enable = false },
-                        completion = {
-                            callSnippet = "Replace",
-                        },
-                        hint = {
-                            enable = true,
-                            setType = false,
-                            paramType = true,
-                            paramName = "Disable",
-                            semicolon = "Disable",
-                            arrayIndex = "Disable",
-                        },
-                        doc = {
-                            privateName = { "^_" },
+                            venvPath = vim.env.HOME .. "/.virtualenvs",
                         },
                     },
                 },
-            })
-            vim.lsp.enable("lua_ls")
-
-            vim.lsp.config("gopls", {
-                filetypes = { "go", "gomod" },
-                capabilities = make_lsp_client_capabilities(),
-                settings = {
-                    gopls = {
-                        analyses = {
-                            nilness = true,
-                            unusedparams = true,
-                            unusedwrite = true,
-                            useany = true,
+                cmake = {},
+                dockerls = {},
+                vimls = {},
+                bashls = {},
+                html = {},
+                tailwindcss = {},
+                cssls = {},
+                taplo = {},
+                buf_ls = {},
+                -- 下面这些没有走 mason 安装：mason = false 表示不自动下载，PATH 里有二进制才会启动
+                kotlin_language_server = { mason = false },
+                texlab = { mason = false },
+                ansiblels = { mason = false },
+                -- single_file_support 是老 require("lspconfig") 框架的字段，vim.lsp.Config 的等价物是 workspace_required
+                ts_ls = {
+                    workspace_required = true,
+                    settings = {
+                        typescript = {
+                            inlayHints = {
+                                includeInlayParameterNameHints = "literal",
+                                includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+                                includeInlayFunctionParameterTypeHints = true,
+                                includeInlayVariableTypeHints = false,
+                                includeInlayPropertyDeclarationTypeHints = true,
+                                includeInlayFunctionLikeReturnTypeHints = true,
+                                includeInlayEnumMemberValueHints = true,
+                            },
                         },
-                        codelenses = {
-                            gc_details = false,
-                            generate = true,
-                            regenerate_cgo = true,
-                            run_govulncheck = true,
-                            test = true,
-                            tidy = true,
-                            upgrade_dependency = true,
-                            vendor = true,
-                        },
-                        hints = {
-                            assignVariableTypes = true,
-                            compositeLiteralFields = true,
-                            compositeLiteralTypes = true,
-                            constantValues = true,
-                            functionTypeParameters = false,
-                            parameterNames = false,
-                            rangeVariableTypes = true,
-                        },
-                        usePlaceholders = false,
-                        staticcheck = false,
-                        directoryFilters = { "-.git", "-.vscode", "-.idea", "-.vscode-test", "-node_modules" },
-                        semanticTokens = true,
-                    },
-                },
-            })
-            vim.lsp.enable("gopls")
-
-            vim.lsp.config("golangci_lint_ls", {
-                cmd = { "golangci-lint-langserver" },
-                root_markers = { ".git", "go.mod" },
-                init_options = {
-                    command = {
-                        "golangci-lint",
-                        "run",
-                        "--output.json.path",
-                        "stdout",
-                        "--show-stats=false",
-                        "--issues-exit-code=1",
-                    },
-                },
-            })
-            vim.lsp.enable("golangci_lint_ls")
-
-            -- https://github.com/jose-elias-alvarez/null-ls.nvim/issues/428
-            local clangd_cap = make_lsp_client_capabilities()
-            clangd_cap.offsetEncoding = { "utf-16" }
-            -- lspconfig.clangd.setup({
-            vim.lsp.config("clangd", {
-                init_options = { clangdFileStatus = true },
-                capabilities = clangd_cap,
-                cmd = { "clangd", "--background-index" },
-                filetypes = { "c", "cpp" },
-            })
-            vim.lsp.enable("clangd")
-
-            -- yaml
-            vim.lsp.config("yamlls", {
-                filetypes = { "yaml" },
-                capabilities = make_lsp_client_capabilities(),
-                settings = {
-                    yaml = {
-                        hover = true,
-                        format = {
-                            enable = true,
-                            singleQuote = true,
-                        },
-                        completion = true,
-                        validate = true,
-                        schemas = {
-                            'https://raw.githubusercontent.com/awslabs/goformation/v4.18.2/schema/cloudformation.schema.json: "/*"',
-                        },
-                        schemaStore = {
-                            enable = true,
+                        javascript = {
+                            inlayHints = {
+                                includeInlayParameterNameHints = "all",
+                                includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+                                includeInlayFunctionParameterTypeHints = true,
+                                includeInlayVariableTypeHints = true,
+                                includeInlayPropertyDeclarationTypeHints = true,
+                                includeInlayFunctionLikeReturnTypeHints = true,
+                                includeInlayEnumMemberValueHints = true,
+                            },
                         },
                     },
                 },
-            })
-            vim.lsp.enable("yamlls")
-
-            -- python (ruff & pyright)
-            local ruff_caps = make_lsp_client_capabilities()
-            ruff_caps.general = {
-                positionEncodings = { "utf-16" },
-            }
-            vim.lsp.config("ruff", {
-                capabilities = ruff_caps,
-            })
-            vim.lsp.enable("ruff")
-
-            -- python (ruff & pyright)
-            vim.lsp.config("pyright", {
-                capabilities = make_lsp_client_capabilities(),
-                settings = {
-                    pyright = {
-                        -- Using Ruff's import organizer
-                        disableOrganizeImports = true,
-                    },
-                    python = {
-                        analysis = {
-                            -- Ignore all files for analysis to exclusively use Ruff for linting
-                            ignore = { "*" },
-                        },
-                        venvPath = require("os").getenv("HOME") .. "/" .. ".virtualenvs",
-                    },
-                },
-            })
-            vim.lsp.enable("pyright")
-
-            local servers = {
-                "cmake",
-                "dockerls",
-                "vimls",
-                "bashls",
-                "kotlin_language_server",
-                "texlab",
-                "buf_ls",
-                "ansiblels",
-                "html",
-                "tailwindcss",
-                "cssls",
-                "taplo",
-            }
-
-            for _, name in pairs(servers) do
-                vim.lsp.config(name, {
-                    capabilities = make_lsp_client_capabilities(),
-                })
-            end
-
-            vim.lsp.config("ts_ls", {
-                capabilities = make_lsp_client_capabilities(),
-                single_file_support = false,
-                settings = {
-                    typescript = {
-                        inlayHints = {
-                            includeInlayParameterNameHints = "literal",
-                            includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-                            includeInlayFunctionParameterTypeHints = true,
-                            includeInlayVariableTypeHints = false,
-                            includeInlayPropertyDeclarationTypeHints = true,
-                            includeInlayFunctionLikeReturnTypeHints = true,
-                            includeInlayEnumMemberValueHints = true,
-                        },
-                    },
-                    javascript = {
-                        inlayHints = {
-                            includeInlayParameterNameHints = "all",
-                            includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-                            includeInlayFunctionParameterTypeHints = true,
-                            includeInlayVariableTypeHints = true,
-                            includeInlayPropertyDeclarationTypeHints = true,
-                            includeInlayFunctionLikeReturnTypeHints = true,
-                            includeInlayEnumMemberValueHints = true,
-                        },
-                    },
-                },
-            })
-            vim.lsp.enable("ts_ls")
-
-            -- vue
-            vim.lsp.config("vue_ls", {
-                capabilities = make_lsp_client_capabilities(),
-                settings = { vetur = { experimental = { templateInterpolationService = true } } },
-            })
-            vim.lsp.enable("vue_ls")
-
-            --json
-            vim.lsp.config("jsonls", {
-                capabilities = make_lsp_client_capabilities(),
-                commands = {
-                    Format = {
-                        function()
-                            vim.lsp.buf.range_formatting(
-                                {},
-                                { 0, 0 },
-                                { vim.fn.line("$"), vim.fn.strwidth(vim.fn.getline("$")) }
-                            )
-                        end,
-                    },
-                },
-            })
-            vim.lsp.enable("jsonls")
-
-            -- sql
-            vim.lsp.config("sqlls", {
-                cmd = { "sql-language-server", "up", "--method", "stdio" },
-            })
-            vim.lsp.enable("sqlls")
-
-            -- ruby
-            vim.lsp.config("solargraph", {
-                capabilities = make_lsp_client_capabilities(),
-            })
-            vim.lsp.enable("solargraph")
-        end,
+                -- vue_ls 3.x 只做 hybrid mode，.vue 里的 TS 需要 ts_ls/vtsls 加载 @vue/typescript-plugin；
+                -- 老的 vetur 设置对它无效。需要完整 Vue 支持时启用 LazyVim 的 lang.vue 扩展。
+                vue_ls = { mason = false },
+                -- vim.lsp.Config 的 commands 是客户端命令处理器，不再创建 :Format；格式化交给 conform / vim.lsp.buf.format()
+                jsonls = {},
+                sqlls = { mason = false },
+                solargraph = { mason = false },
+            },
+        },
     },
 
     -- trouble
@@ -433,20 +292,19 @@ return {
         },
     },
 
-    -- formatter
+    -- formatter（sh = shfmt 由 LazyVim 默认提供；Neovim 把 .sh/.bash 都识别为 sh，没有 bash 这个 filetype）
     {
         "stevearc/conform.nvim",
         opts = {
             formatters_by_ft = {
                 lua = { "stylua" },
-                markdown = { "remark" },
-                bash = { "shfmt" },
+                -- conform 没有内置 remark formatter，用已安装的 prettier
+                markdown = { "prettier" },
                 go = { "goimports", "gofumpt" },
                 python = { "ruff_format" },
                 -- toml = { "taplo" },
             },
         },
-        event = { "BufWritePre" },
     },
 
     -- linters

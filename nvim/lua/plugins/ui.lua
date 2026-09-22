@@ -153,7 +153,7 @@ return {
                     lualine_z = { "location" },
                 },
                 tabline = {},
-                extensions = { "quickfix", "nvim-tree", "toggleterm", "symbols-outline" },
+                extensions = { "quickfix", "neo-tree", "toggleterm", "trouble", "nvim-dap-ui", "lazy", "mason" },
             })
         end,
     },
@@ -161,9 +161,8 @@ return {
     -- bufferline
     {
         "akinsho/bufferline.nvim",
-        enent = "VeryLazy",
+        event = "VeryLazy",
         version = "*",
-        dependencies = { "nvim-tree/nvim-web-devicons" },
         keys = {
             { "gb", "<cmd>BufferLinePick<CR>", desc = "Pick buffer" },
             { "H", "<cmd>BufferLineCyclePrev<CR>", desc = "Prev buffer" },
@@ -176,10 +175,11 @@ return {
                 numbers = "buffer_id",
                 show_buffer_close_icons = false,
                 separator_style = "thin",
+                -- offsets 是列表，会整体替换 LazyVim 的默认值，所以这里要自己写 neo-tree
                 offsets = {
                     {
-                        filetype = "NvimTree",
-                        text = "File Explorer",
+                        filetype = "neo-tree",
+                        text = "Neo-tree",
                         highlight = "Directory",
                         text_align = "left",
                     },
@@ -188,30 +188,6 @@ return {
         },
     },
 
-    {
-        "rcarriga/nvim-notify",
-        opts = {
-            timeout = 5000,
-        },
-    },
-
-    -- icons
-    {
-        "nvim-mini/mini.icons",
-        version = false,
-        opts = {},
-        lazy = true,
-        specs = {
-            { "nvim-tree/nvim-web-devicons", enabled = false, optional = true },
-        },
-        init = function()
-            ---@diagnostic disable-next-line: duplicate-set-field
-            package.preload["nvim-web-devicons"] = function()
-                -- needed since it will be false when loading and mini will fail
-                package.loaded["nvim-web-devicons"] = {}
-                require("mini.icons").mock_nvim_web_devicons()
-                return package.loaded["nvim-web-devicons"]
-            end
-        end,
-    },
+    -- 通知：LazyVim 已把 vim.notify 交给 Snacks.notifier（<leader>n 查看历史），不再需要 nvim-notify
+    -- 图标：mini.icons 的 spec 与 LazyVim core 完全相同，由 LazyVim 提供
 }

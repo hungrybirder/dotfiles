@@ -33,11 +33,11 @@ return {
 
     -- completion sources
     "hrsh7th/cmp-nvim-lsp",
-    "onsails/lspkind.nvim",
+    { "onsails/lspkind.nvim", opts = { mode = "symbol_text", preset = "codicons" } },
     "hrsh7th/cmp-buffer",
     -- "hrsh7th/cmp-nvim-lsp-signature-help",
     "hrsh7th/cmp-path",
-    "hrsh7th/cmp-nvim-lua",
+    -- cmp-nvim-lua 已由 LazyVim 自带的 lazydev.nvim（sources 里的 lazydev）取代
     "saadparwaiz1/cmp_luasnip",
     "hrsh7th/cmp-cmdline",
     "hrsh7th/cmp-nvim-lsp-document-symbol",
@@ -45,17 +45,19 @@ return {
         "petertriho/cmp-git",
         dependencies = "nvim-lua/plenary.nvim",
         opts = {},
-        init = function()
-            table.insert(require("cmp").get_config().sources, { name = "git" })
-        end,
+        -- git source 已在下面 cmp.setup 的 sources 里声明，不再用 init 重复插入
     },
     { "davidsierradz/cmp-conventionalcommits" },
+    -- LazyVim 的 nvim-cmp 扩展会拉进 nvim-snippets，这里用 LuaSnip，关掉它
+    { "garymjr/nvim-snippets", enabled = false },
     {
         "L3MON4D3/LuaSnip",
         build = "make install_jsregexp",
         dependencies = { "rafamadriz/friendly-snippets" },
         config = function()
             require("luasnip.loaders.from_vscode").lazy_load()
+            -- 自己的 VSCode 格式片段（原 vsnip/ 目录，补了 package.json 后 LuaSnip 才会读）
+            require("luasnip.loaders.from_vscode").lazy_load({ paths = { vim.fn.stdpath("config") .. "/snippets" } })
         end,
     },
     -- "Snikimonkd/cmp-go-pkgs",
@@ -140,6 +142,8 @@ return {
                     -- end,
                 },
                 sources = cmp.config.sources({
+                    -- Neovim / LazyVim / 插件 API 的 Lua 补全（lazydev.nvim）
+                    { name = "lazydev", group_index = 0 },
                     {
                         name = "luasnip",
                         option = { use_show_condition = true },
@@ -156,7 +160,6 @@ return {
                     { name = "buffer" },
                     { name = "path" },
                     { name = "git" },
-                    { name = "nvim_lua" },
                     { name = "crates" },
                     { name = "codeium" },
                 }),
@@ -170,7 +173,7 @@ return {
                             buffer = "[Buffer]",
                             nvim_lsp = "[LSP]",
                             luasnip = "[LuaSnip]",
-                            nvim_lua = "[Lua]",
+                            lazydev = "[Lua]",
                             latex_symbols = "[Latex]",
                             vsnip = "[Vsnip]",
                             tags = "[Tag]",
@@ -218,13 +221,7 @@ return {
                 }),
             })
 
-            cmp.setup.filetype("gitcommit", {
-                sources = cmp.config.sources({
-                    { name = "git" },
-                }, {
-                    { name = "buffer" },
-                }),
-            })
+            -- gitcommit 的补全源在 after/ftplugin/gitcommit.lua 里（buffer 级配置优先于 filetype 级）
 
             -- Use buffer source for `/`.
             cmp.setup.cmdline("/", {
@@ -253,12 +250,8 @@ return {
             local cmp_autopairs = require("nvim-autopairs.completion.cmp")
             cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
 
-            local npairs = require("nvim-autopairs")
-            npairs.setup({
-                -- put this to setup function and press <a-e> to use fast_wrap
-                fast_wrap = {},
-            })
-            npairs.remove_rule("`")
+            -- nvim-autopairs 的 setup 已由上面 dependencies 里的 opts 完成，这里只去掉反引号规则
+            require("nvim-autopairs").remove_rule("`")
         end,
         event = "InsertEnter",
     },
@@ -317,11 +310,12 @@ return {
     },
     {
         "tpope/vim-fugitive",
+        -- lazy.nvim 的 keys 格式是 { lhs, rhs, mode = ... }，原来把 "n" 写成了 lhs
         keys = {
-            { "n", "<leader>gh", "<cmd>diffget //2<CR>" },
-            { "n", "<leader>gf", "<cmd>diffget //3<CR>" },
-            { "n", "<leader>gs", "<cmd>G<CR>" },
-            { "n", "<leader>ga", "<cmd>Git fetch --all<CR>" },
+            { "<leader>gh", "<cmd>diffget //2<CR>", desc = "Diffget //2 (ours)" },
+            { "<leader>gf", "<cmd>diffget //3<CR>", desc = "Diffget //3 (theirs)" },
+            { "<leader>gs", "<cmd>G<CR>", desc = "Fugitive status" },
+            { "<leader>ga", "<cmd>Git fetch --all<CR>", desc = "Git fetch --all" },
         },
         lazy = false,
     },
@@ -340,32 +334,29 @@ return {
                         vim.keymap.set(mode, l, r, opts)
                     end
 
-                    -- Navigation
+                    -- Navigation（next_hunk/prev_hunk 已弃用，改用 nav_hunk）
                     map("n", "]c", function()
                         if vim.wo.diff then
-                            return "]c"
+                            vim.cmd.normal({ "]c", bang = true })
+                        else
+                            gs.nav_hunk("next")
                         end
-                        vim.schedule(function()
-                            gs.next_hunk()
-                        end)
-                        return "<Ignore>"
-                    end, { expr = true })
+                    end, { desc = "Next hunk" })
 
                     map("n", "[c", function()
                         if vim.wo.diff then
-                            return "[c"
+                            vim.cmd.normal({ "[c", bang = true })
+                        else
+                            gs.nav_hunk("prev")
                         end
-                        vim.schedule(function()
-                            gs.prev_hunk()
-                        end)
-                        return "<Ignore>"
-                    end, { expr = true })
+                    end, { desc = "Prev hunk" })
 
                     -- Actions
                     map({ "n", "v" }, "<leader>hs", ":Gitsigns stage_hunk<CR>")
                     map({ "n", "v" }, "<leader>hr", ":Gitsigns reset_hunk<CR>")
                     map("n", "<leader>hS", gs.stage_buffer)
-                    map("n", "<leader>hu", gs.undo_stage_hunk)
+                    -- undo_stage_hunk 已弃用：stage_hunk 在已暂存的 hunk 上会取消暂存
+                    map("n", "<leader>hu", gs.stage_hunk)
                     map("n", "<leader>hR", gs.reset_buffer)
                     map("n", "<leader>hp", gs.preview_hunk)
                     map("n", "<leader>hb", function()
@@ -376,7 +367,8 @@ return {
                     map("n", "<leader>hD", function()
                         gs.diffthis("~")
                     end)
-                    map("n", "<leader>td", gs.toggle_deleted)
+                    -- toggle_deleted 已弃用，改用行内预览
+                    map("n", "<leader>td", gs.preview_hunk_inline)
 
                     -- Text object
                     map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>")
@@ -416,18 +408,17 @@ return {
     {
         "iamcco/markdown-preview.nvim",
         cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
-        build = "cd app && yarn install",
+        build = "cd app && npx --yes yarn install",
         init = function()
             vim.g.mkdp_filetypes = { "markdown", "mkd" }
             vim.g.mkdp_theme = "light"
-            vim.g.vim_markdown_math = true
         end,
         keys = {
             { "<leader>pm", "<cmd>MarkdownPreview<CR>" },
         },
         ft = { "markdown" },
     },
-    { "iamcco/mathjax-support-for-mkdp" },
+    -- mathjax-support-for-mkdp 是给老的 markdown-preview.vim 用的，markdown-preview.nvim 内置 KaTeX
     -- MacOS: brew install glow
     -- https://github.com/charmbracelet/glow
     {
@@ -439,7 +430,7 @@ return {
     -- markdown render
     {
         "MeanderingProgrammer/render-markdown.nvim",
-        dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-mini/mini.nvim" }, -- if you use the mini.nvim suite
+        dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-mini/mini.icons" }, -- 只需要图标，不用整个 mini.nvim
         ---@module 'render-markdown'
         ---@type render.md.UserConfig
         opts = {
@@ -502,18 +493,8 @@ return {
                 enable = false,
             },
         },
-        ---@diagnostic disable-next-line: unused-local
-        config = function(lp, opts)
-            require("go").setup(opts)
-            local format_sync_grp = vim.api.nvim_create_augroup("GoFormat", {})
-            vim.api.nvim_create_autocmd("BufWritePre", {
-                pattern = "*.go",
-                callback = function()
-                    require("go.format").goimports()
-                end,
-                group = format_sync_grp,
-            })
-        end,
+        -- 保存时的 goimports/gofumpt 由 conform.nvim（见 lsp.lua）+ LazyVim autoformat 完成，
+        -- 这里不再挂 BufWritePre，避免格式化两遍
         event = { "CmdlineEnter" },
         ft = { "go", "gomod" },
         build = ':lua require("go.install").update_all_sync()', -- if you need to install/update all binaries
@@ -556,24 +537,36 @@ return {
             -- "nvim-neotest/neotest-vim-test",
             "mfussenegger/nvim-dap",
         },
-        ---@diagnostic disable-next-line: unused-local
-        config = function(_, opts)
-            vim.api.nvim_command("command! -nargs=0 NeotestRun :lua require('neotest').run.run()<CR>")
-            vim.api.nvim_command("command! -nargs=0 NeotestStop :lua require('neotest').run.stop()<CR>")
-            vim.api.nvim_command("command! -nargs=0 NeotestAttach :lua require('neotest').run.attach()<CR>")
-            vim.api.nvim_command(
-                "command! -nargs=0 NeotestDebugNearest :lua require('neotest').run.run({strategy = 'dap'})<CR>"
-            )
-            vim.api.nvim_command(
-                "command! -nargs=0 NeotestRunFile :lua require('neotest').run.run(vim.fn.expand('%'))<CR>"
-            )
-            vim.api.nvim_command("command! -nargs=0 NeotestToggleSummary :lua require('neotest').summary.toggle()<CR>")
-            vim.api.nvim_command(
-                "command! -nargs=0 NeotestJumpPrevFailed :lua require('neotest').jump.prev({ status = 'failed' })<CR>"
-            )
-            vim.api.nvim_command(
-                "command! -nargs=0 NeotestJumpnextFailed :lua require('neotest').jump.next({ status = 'failed' })<CR>"
-            )
+        config = function()
+            local neotest_commands = {
+                NeotestRun = function()
+                    require("neotest").run.run()
+                end,
+                NeotestStop = function()
+                    require("neotest").run.stop()
+                end,
+                NeotestAttach = function()
+                    require("neotest").run.attach()
+                end,
+                NeotestDebugNearest = function()
+                    require("neotest").run.run({ strategy = "dap" })
+                end,
+                NeotestRunFile = function()
+                    require("neotest").run.run(vim.fn.expand("%"))
+                end,
+                NeotestToggleSummary = function()
+                    require("neotest").summary.toggle()
+                end,
+                NeotestJumpPrevFailed = function()
+                    require("neotest").jump.prev({ status = "failed" })
+                end,
+                NeotestJumpNextFailed = function()
+                    require("neotest").jump.next({ status = "failed" })
+                end,
+            }
+            for name, fn in pairs(neotest_commands) do
+                vim.api.nvim_create_user_command(name, fn, { desc = name })
+            end
             require("neotest").setup({
                 adapters = {
                     require("neotest-plenary"),

@@ -4,10 +4,7 @@ return {
     {
         "mfussenegger/nvim-dap",
         dependencies = {
-            {
-                "mason-org/mason.nvim",
-                opts = { ensure_installed = { "java-debug-adapter", "java-test" } },
-            },
+            -- java-debug-adapter / java-test 已在 lsp.lua 的 mason 列表和 LazyVim lang.java 扩展里
             {
                 "theHamsta/nvim-dap-virtual-text",
                 opts = {
@@ -16,15 +13,39 @@ return {
             },
             {
                 "mfussenegger/nvim-dap-python",
+                -- 用 <leader>dP 前缀，避免与下面全局的 <leader>df（frames）/ <leader>ds（scopes）冲突
                 keys = {
-                    { "<leader>dn", "<cmd>lua require('dap-python').test_method()<CR>", ft = "python" },
-                    { "<leader>df", "<cmd>lua require('dap-python').test_class()<CR>", ft = "pytyhon" },
-                    { "<leader>ds", "<ESC>:lua require('dap-python').debug_selection()<CR>", ft = "python" },
+                    {
+                        "<leader>dPm",
+                        function()
+                            require("dap-python").test_method()
+                        end,
+                        desc = "Debug Method",
+                        ft = "python",
+                    },
+                    {
+                        "<leader>dPc",
+                        function()
+                            require("dap-python").test_class()
+                        end,
+                        desc = "Debug Class",
+                        ft = "python",
+                    },
+                    {
+                        "<leader>dPs",
+                        function()
+                            require("dap-python").debug_selection()
+                        end,
+                        mode = "v",
+                        desc = "Debug Selection",
+                        ft = "python",
+                    },
                 },
                 config = function()
                     local dap_py = require("dap-python")
                     dap_py.test_runner = "pytest"
-                    dap_py.setup(vim.fn.stdpath("data") .. "/mason/packages/debugpy/venv/bin/python")
+                    -- mason 2.x 提供的 debugpy-adapter 可执行文件，不再硬编码 venv 路径
+                    dap_py.setup("debugpy-adapter")
                 end,
             },
             {
@@ -67,18 +88,41 @@ return {
         },
         config = function()
             -- Dap commands
-            vim.api.nvim_command("command! -nargs=0 DapToggleBreakpoint :lua require'dap'.toggle_breakpoint()<CR>")
-            vim.api.nvim_command("command! -nargs=0 DapToggleRepl :lua require'dap'.repl.toggle()<CR>")
-            vim.api.nvim_command("command! -nargs=0 DapRunLast :lua require'dap'.run_last()<CR>")
-            vim.api.nvim_command("command! -nargs=0 DapContinue :lua require'dap'.continue()<CR>")
-            vim.api.nvim_command("command! -nargs=0 DapNext :lua require'dap'.step_over()<CR>")
-            vim.api.nvim_command("command! -nargs=0 DapStepInto :lua require'dap'.step_into()<CR>")
-            vim.api.nvim_command("command! -nargs=0 DapStepOut :lua require'dap'.step_out()<CR>")
-            vim.api.nvim_command("command! -nargs=0 DapClose :lua require'dap'.close()<CR>")
-            vim.api.nvim_command('command! -nargs=0 DapBreakpoints :lua require"dap".list_breakpoints()')
-            vim.api.nvim_command(
-                "command! -nargs=0 DapCondition :lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>"
-            )
+            local dap_commands = {
+                DapToggleBreakpoint = function()
+                    require("dap").toggle_breakpoint()
+                end,
+                DapToggleRepl = function()
+                    require("dap").repl.toggle()
+                end,
+                DapRunLast = function()
+                    require("dap").run_last()
+                end,
+                DapContinue = function()
+                    require("dap").continue()
+                end,
+                DapNext = function()
+                    require("dap").step_over()
+                end,
+                DapStepInto = function()
+                    require("dap").step_into()
+                end,
+                DapStepOut = function()
+                    require("dap").step_out()
+                end,
+                DapClose = function()
+                    require("dap").close()
+                end,
+                DapBreakpoints = function()
+                    require("dap").list_breakpoints()
+                end,
+                DapCondition = function()
+                    require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: "))
+                end,
+            }
+            for name, fn in pairs(dap_commands) do
+                vim.api.nvim_create_user_command(name, fn, { desc = name })
+            end
 
             vim.keymap.set("n", "<F4>", function()
                 require("dap").close()
@@ -282,7 +326,7 @@ return {
                         close = { "q", "<Esc>" },
                     },
                 },
-                windows = { indent = 1 },
+                render = { indent = 1 },
             })
         end,
     },

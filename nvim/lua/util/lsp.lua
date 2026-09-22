@@ -17,180 +17,52 @@ function M.show_documentation()
 end
 
 function M.setup_lsp_keymaps(_, bufnr)
-    vim.api.nvim_set_option_value("omnifunc", "v:lua.vim.lsp.omnifunc", { buf = bufnr })
+    local function map(mode, lhs, rhs, desc)
+        vim.keymap.set(mode, lhs, rhs, { noremap = true, silent = true, buffer = bufnr, desc = desc })
+    end
 
-    vim.keymap.set("n", "<space>e", vim.diagnostic.open_float, {
-        noremap = true,
-        silent = true,
-        buffer = bufnr,
-        desc = "Open Diagnostic Float Window",
-    })
-
-    vim.keymap.set("n", "gl", vim.diagnostic.setloclist, {
-        noremap = true,
-        silent = true,
-        buffer = bufnr,
-        desc = "Set Diagnostic Loclist",
-    })
-    --
-    vim.keymap.set("n", "gd", function()
-        vim.lsp.buf.definition({
-            loclist = true,
-        })
-    end, {
-        noremap = true,
-        silent = true,
-        buffer = bufnr,
-        desc = "Goto Definition",
-    })
-
-    vim.keymap.set("n", "gD", function()
+    map("n", "<leader>e", vim.diagnostic.open_float, "Open Diagnostic Float Window")
+    map("n", "gl", vim.diagnostic.setloclist, "Set Diagnostic Loclist")
+    map("n", "gd", function()
+        vim.lsp.buf.definition({ loclist = true })
+    end, "Goto Definition")
+    map("n", "gD", function()
         vim.lsp.buf.declaration({ loclist = true })
-    end, {
-        noremap = true,
-        silent = true,
-        buffer = bufnr,
-        desc = "Goto Declaration",
-    })
-
-    vim.keymap.set("n", "<leader>i", function()
+    end, "Goto Declaration")
+    map("n", "<leader>i", function()
         vim.lsp.buf.implementation({ loclist = true })
-    end, {
-        noremap = true,
-        silent = true,
-        buffer = bufnr,
-        desc = "Goto Implementation",
-    })
-
-    vim.keymap.set("n", "gr", function()
+    end, "Goto Implementation")
+    map("n", "gr", function()
         vim.lsp.buf.references(nil, { loclist = true })
-    end, {
-        noremap = true,
-        silent = true,
-        buffer = bufnr,
-        desc = "Goto References",
-    })
-
-    vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, {
-        noremap = true,
-        silent = true,
-        buffer = bufnr,
-        desc = "Rename",
-    })
-
-    vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, {
-        noremap = true,
-        silent = true,
-        buffer = bufnr,
-        desc = "Code Action",
-    })
-
-    vim.keymap.set({ "n", "v" }, "<leader>cl", vim.lsp.codelens.run, {
-        noremap = true,
-        silent = true,
-        buffer = bufnr,
-        desc = "CodeLens Run",
-    })
-
-    vim.keymap.set("n", "K", "<cmd>lua require('util.lsp').show_documentation()<CR>", {
-        noremap = true,
-        silent = true,
-        buffer = bufnr,
-        desc = "Show Documentation",
-    })
-
-    vim.keymap.set("n", "gic", vim.lsp.buf.incoming_calls, {
-        noremap = true,
-        silent = true,
-        buffer = bufnr,
-        desc = "Incoming Calls",
-    })
-
-    vim.keymap.set("n", "goc", vim.lsp.buf.outgoing_calls, {
-        noremap = true,
-        silent = true,
-        buffer = bufnr,
-        desc = "Outgoing Calls",
-    })
-
-    vim.keymap.set("n", "<leader>f", function()
+    end, "Goto References")
+    map("n", "<leader>rn", vim.lsp.buf.rename, "Rename")
+    map({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, "Code Action")
+    map({ "n", "v" }, "<leader>cl", vim.lsp.codelens.run, "CodeLens Run")
+    map("n", "K", M.show_documentation, "Show Documentation")
+    map("n", "gic", vim.lsp.buf.incoming_calls, "Incoming Calls")
+    map("n", "goc", vim.lsp.buf.outgoing_calls, "Outgoing Calls")
+    map("n", "<leader>f", function()
         vim.lsp.buf.format({ async = true })
-    end, {
-        noremap = true,
-        silent = true,
-        buffer = bufnr,
-        desc = "Format",
-    })
-
-    vim.keymap.set("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, {
-        noremap = true,
-        silent = true,
-        buffer = bufnr,
-        desc = "Add Workspace Folder",
-    })
-
-    vim.keymap.set("n", "<leader>wr", vim.lsp.buf.remove_workspace_folder, {
-        noremap = true,
-        silent = true,
-        buffer = bufnr,
-        desc = "Remove Workspace Folder",
-    })
-
-    vim.keymap.set("n", "<leader>wl", function()
+    end, "Format")
+    map("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, "Add Workspace Folder")
+    map("n", "<leader>wr", vim.lsp.buf.remove_workspace_folder, "Remove Workspace Folder")
+    map("n", "<leader>wl", function()
         vim.print(vim.lsp.buf.list_workspace_folders())
-    end, {
-        noremap = true,
-        silent = true,
-        buffer = bufnr,
-        desc = "List Workspace Folders",
-    })
-
-    vim.keymap.set("n", "vgd", ":vsplit | wincmd h | lua vim.lsp.buf.definition()<CR>", {
-        noremap = true,
-        silent = true,
-        buffer = bufnr,
-        desc = "Vertical Split Goto Definition",
-    })
-
-    vim.keymap.set("n", "sgd", ":split | wincmd k | lua vim.lsp.buf.definition()<CR>", {
-        noremap = true,
-        silent = true,
-        buffer = bufnr,
-        desc = "Split Goto Definition",
-    })
+    end, "List Workspace Folders")
+    map("n", "vgd", ":vsplit | wincmd h | lua vim.lsp.buf.definition()<CR>", "Vertical Split Goto Definition")
+    map("n", "sgd", ":split | wincmd k | lua vim.lsp.buf.definition()<CR>", "Split Goto Definition")
 end
 
 function M.lsp_on_attach_post(client, bufnr)
     M.setup_lsp_keymaps(client, bufnr)
 
-    require("lspkind").init({
-        mode = "symbol_text",
-        preset = "codicons",
-    })
-
-    -- config providers, see https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
-    if client.server_capabilities.inlayHintProvider then
-        vim.lsp.inlay_hint.enable(true, {
-            bufnr = bufnr,
-        })
+    if client:supports_method("textDocument/inlayHint", bufnr) then
+        vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
     end
 
-    if client.server_capabilities.codeLensProvider then
-        if not vim.lsp.codelens.is_enabled() then
-            vim.lsp.codelens.enable(true)
-        end
-        local buf_ft = vim.api.nvim_get_option_value("filetype", { buf = bufnr })
-        local buf_cl_group = "codelens" .. buf_ft
-        vim.api.nvim_create_augroup(buf_cl_group, { clear = true })
-        vim.api.nvim_create_autocmd({ "BufWritePost" }, {
-            group = buf_cl_group,
-            pattern = { "*." .. buf_ft },
-            callback = function()
-                if not vim.lsp.codelens.is_enabled() then
-                    vim.lsp.codelens.enable(true)
-                end
-            end,
-        })
+    -- Neovim 0.12 重写了 codelens：enable 后会自动刷新，不再需要 BufWritePost autocmd
+    if client:supports_method("textDocument/codeLens", bufnr) then
+        vim.lsp.codelens.enable(true, { bufnr = bufnr })
     end
 end
 

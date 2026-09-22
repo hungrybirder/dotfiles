@@ -2,8 +2,6 @@
 */*.pyc
 undodir
 .netrwhist
-plugged/*
-plugin/packer_compiled.lua
-lazy-lock.json
 queries
+lazy-lock.json
 lazyvim.json

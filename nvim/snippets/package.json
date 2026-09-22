@@ -1,0 +1,10 @@
+{
+  "name": "user-snippets",
+  "engines": { "vscode": "^1.11.0" },
+  "contributes": {
+    "snippets": [
+      { "language": ["go"], "path": "./go.json" },
+      { "language": ["bpftrace"], "path": "./bpftrace.json" }
+    ]
+  }
+}

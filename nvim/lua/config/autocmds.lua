@@ -1,25 +1,17 @@
-vim.api.nvim_create_augroup("YankHighlight", { clear = true })
+local function augroup(name)
+    return vim.api.nvim_create_augroup("user_" .. name, { clear = true })
+end
 
-vim.api.nvim_create_autocmd("TextYankPost", {
-    group = "YankHighlight",
-    pattern = { "*" },
-    callback = function()
-        vim.highlight.on_yank()
-    end,
-})
-
-vim.api.nvim_create_augroup("nvim_terminal", { clear = true })
-
+-- 终端里按 <Esc> 回到 normal 模式
 vim.api.nvim_create_autocmd("TermOpen", {
-    group = "nvim_terminal",
-    pattern = { "*" },
-    callback = function()
-        vim.keymap.set("t", "<ESC>", "<c-><c-n>", { buffer = true })
+    group = augroup("terminal"),
+    callback = function(args)
+        vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]], { buffer = args.buf, desc = "Terminal normal mode" })
     end,
 })
 
 vim.api.nvim_create_autocmd("LspAttach", {
-    group = vim.api.nvim_create_augroup("lsp_attach_disable_ruff_hover", { clear = true }),
+    group = augroup("lsp_attach_disable_ruff_hover"),
     callback = function(args)
         local client = vim.lsp.get_client_by_id(args.data.client_id)
         if client == nil then
@@ -34,32 +26,16 @@ vim.api.nvim_create_autocmd("LspAttach", {
 })
 
 vim.api.nvim_create_autocmd("LspAttach", {
-    group = vim.api.nvim_create_augroup("lsp_attach_post", { clear = true }),
+    group = augroup("lsp_attach_post"),
     callback = function(args)
         local client = vim.lsp.get_client_by_id(args.data.client_id)
         if client == nil then
             return
         end
-        local util_lsp = require("util.lsp")
-        util_lsp.lsp_on_attach_post(client, bufnr)
-        vim.lsp.inlay_hint.enable(true, nil)
+        require("util.lsp").lsp_on_attach_post(client, args.buf)
     end,
     desc = "LSP Attach Post",
 })
-
--- vim.api.nvim_create_autocmd("LspProgress", {
---     callback = function(ev)
---         local value = ev.data.params.value
---         vim.api.nvim_echo({ { value.message or "done" } }, false, {
---             id = "lsp." .. ev.data.client_id,
---             kind = "progress",
---             source = "vim.lsp",
---             title = value.title,
---             status = value.kind ~= "end" and "running" or "success",
---             percent = value.percentage,
---         })
---     end,
--- })
 
 -- from neovim v0.12.0 LspInfo/LspLog/LspRestart are deprecated
 vim.api.nvim_create_user_command("LspInfo", "checkhealth vim.lsp", {
@@ -79,7 +55,22 @@ vim.api.nvim_create_user_command("LspRestart", "lsp restart", {
     desc = "Restart LSP",
 })
 
--- With UI2, there is not more annoying “Press Enter” prompt after you run a command.
+-- 如果不想用 fidget.nvim，可以改用 0.12 原生的进度消息：
+-- vim.api.nvim_create_autocmd("LspProgress", {
+--     callback = function(ev)
+--         local value = ev.data.params.value
+--         vim.api.nvim_echo({ { value.message or "done" } }, false, {
+--             id = "lsp." .. ev.data.client_id,
+--             kind = "progress",
+--             source = "vim.lsp",
+--             title = value.title,
+--             status = value.kind ~= "end" and "running" or "success",
+--             percent = value.percentage,
+--         })
+--     end,
+-- })
+
+-- Neovim 0.12 实验性的 ui2：不再有 "Press ENTER" 提示（noice.nvim 已在 disabled.lua 关闭）
 require("vim._core.ui2").enable({
     enable = true,
     msg = { -- Options related to the message module.
