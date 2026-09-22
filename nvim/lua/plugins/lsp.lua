@@ -418,8 +418,6 @@ return {
                     },
                 },
             }
-
-            require("rust-tools").setup(opts)
         end,
     },
 
