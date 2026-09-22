@@ -1,6 +1,5 @@
 local util_lsp = require("util.lsp")
 -- local make_lsp_client_capabilities = util_lsp.make_lsp_client_capabilities
-local lsp_on_attach_post = util_lsp.lsp_on_attach_post
 
 local make_lsp_client_capabilities = function()
     -- cmp_nvim_lsp take care of snippetSupport and resolveSupport
@@ -392,32 +391,6 @@ return {
                 capabilities = make_lsp_client_capabilities(),
             })
             vim.lsp.enable("solargraph")
-
-            -- rust
-            local rust_cap = make_lsp_client_capabilities()
-            rust_cap.experimental = {}
-            rust_cap.experimental.hoverActions = true
-
-            local opts = {
-                server = {
-                    on_attach = function(client, bufnr)
-                        local rt = require("rust-tools")
-                        -- Hover actions
-                        vim.keymap.set("n", "<C-space>", rt.hover_actions.hover_actions, { buffer = bufnr })
-                        -- Code action groups
-                        -- vim.keymap.set("n", "<Leader>a", rt.code_action_group.code_action_group, { buffer = bufnr })
-                        lsp_on_attach_post(client, bufnr)
-                    end,
-                    capabilities = rust_cap,
-                },
-                dap = {
-                    adapter = {
-                        type = "executable",
-                        command = "lldb-vscode",
-                        name = "rt_lldb",
-                    },
-                },
-            }
         end,
     },
 
