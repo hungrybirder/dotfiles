@@ -1,3 +1,4 @@
 # ~/.config/starship.toml
 
 
+command_timeout = 1000
