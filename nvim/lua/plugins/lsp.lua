@@ -4,7 +4,6 @@ return {
         opts = {
             ensure_installed = {
                 -- LSP
-                "rust-analyzer",
                 "pyright",
                 "ruff",
                 "gopls",
@@ -12,28 +11,15 @@ return {
                 "vim-language-server",
                 "bash-language-server",
                 "lua-language-server",
-                "yaml-language-server",
-                "tailwindcss-language-server",
-                "typescript-language-server",
-                "css-lsp",
-                "html-lsp",
-                "jdtls",
-                "clangd",
-                "cmake-language-server",
                 "dockerfile-language-server",
                 "json-lsp",
                 "taplo",
 
                 -- DAP
-                "codelldb",
                 "debugpy",
                 "delve",
-                "java-debug-adapter",
-                "java-test",
-                "vscode-java-decompiler",
 
                 -- Linter
-                "ansible-lint",
                 "buf", -- linter, formatter, LSP
                 "golangci-lint",
                 "luacheck",
@@ -41,14 +27,10 @@ return {
                 "pylint",
                 "shellcheck",
                 "staticcheck",
-                "yamllint", -- nvim-lint 的 yaml linter
-                -- "vale", -- for markdown, https://vale.sh
 
                 -- Formater
-                "clang-format",
                 "prettier",
                 "shfmt",
-                "sql-formatter",
                 "stylua",
             },
             ui = {
@@ -155,31 +137,6 @@ return {
                 },
                 -- nvim-lspconfig 自带的 cmd / init_options 已是 golangci-lint v2 语法并带 v1 回退
                 golangci_lint_ls = {},
-                clangd = {
-                    cmd = { "clangd", "--background-index" },
-                    filetypes = { "c", "cpp" },
-                    init_options = { clangdFileStatus = true },
-                },
-                yamlls = {
-                    filetypes = { "yaml" },
-                    settings = {
-                        yaml = {
-                            hover = true,
-                            format = {
-                                enable = true,
-                                singleQuote = true,
-                            },
-                            completion = true,
-                            validate = true,
-                            schemas = {
-                                'https://raw.githubusercontent.com/awslabs/goformation/v4.18.2/schema/cloudformation.schema.json: "/*"',
-                            },
-                            schemaStore = {
-                                enable = true,
-                            },
-                        },
-                    },
-                },
                 -- python (ruff & pyright)，ruff 的 hover 在 config/autocmds.lua 里关闭
                 ruff = {
                     capabilities = {
@@ -201,54 +158,9 @@ return {
                         },
                     },
                 },
-                cmake = {},
                 dockerls = {},
                 vimls = {},
                 bashls = {},
-                html = {},
-                tailwindcss = {},
-                cssls = {},
-                taplo = {},
-                buf_ls = {},
-                -- 下面这些没有走 mason 安装：mason = false 表示不自动下载，PATH 里有二进制才会启动
-                kotlin_language_server = { mason = false },
-                texlab = { mason = false },
-                ansiblels = { mason = false },
-                -- single_file_support 是老 require("lspconfig") 框架的字段，vim.lsp.Config 的等价物是 workspace_required
-                ts_ls = {
-                    workspace_required = true,
-                    settings = {
-                        typescript = {
-                            inlayHints = {
-                                includeInlayParameterNameHints = "literal",
-                                includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-                                includeInlayFunctionParameterTypeHints = true,
-                                includeInlayVariableTypeHints = false,
-                                includeInlayPropertyDeclarationTypeHints = true,
-                                includeInlayFunctionLikeReturnTypeHints = true,
-                                includeInlayEnumMemberValueHints = true,
-                            },
-                        },
-                        javascript = {
-                            inlayHints = {
-                                includeInlayParameterNameHints = "all",
-                                includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-                                includeInlayFunctionParameterTypeHints = true,
-                                includeInlayVariableTypeHints = true,
-                                includeInlayPropertyDeclarationTypeHints = true,
-                                includeInlayFunctionLikeReturnTypeHints = true,
-                                includeInlayEnumMemberValueHints = true,
-                            },
-                        },
-                    },
-                },
-                -- vue_ls 3.x 只做 hybrid mode，.vue 里的 TS 需要 ts_ls/vtsls 加载 @vue/typescript-plugin；
-                -- 老的 vetur 设置对它无效。需要完整 Vue 支持时启用 LazyVim 的 lang.vue 扩展。
-                vue_ls = { mason = false },
-                -- vim.lsp.Config 的 commands 是客户端命令处理器，不再创建 :Format；格式化交给 conform / vim.lsp.buf.format()
-                jsonls = {},
-                sqlls = { mason = false },
-                solargraph = { mason = false },
             },
         },
     },
@@ -302,7 +214,6 @@ return {
                 markdown = { "prettier" },
                 go = { "goimports", "gofumpt" },
                 python = { "ruff_format" },
-                -- toml = { "taplo" },
             },
         },
     },
@@ -316,7 +227,6 @@ return {
                 -- go = { "golangcilint" },
                 --
                 lua = { "selene" },
-                yaml = { "yamllint" },
                 -- python = { "ruff" },
             },
         },
